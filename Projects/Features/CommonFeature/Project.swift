@@ -7,7 +7,6 @@ let project = Project.makeModule(
     dependencies: [
         .Project.Service.Domain,
         .Project.Module.Utility,
-        .Project.UserInterfaces.DesignSystem,
-        .Project.UserInterfaces.LocalizableManager
+        .Project.UserInterfaces.DesignSystem
     ]
 )
