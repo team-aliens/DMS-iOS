@@ -1,5 +1,6 @@
 import ProjectDescription
 import UtilityPlugin
+import Foundation
 
 public extension Project {
     static func makeModule(
@@ -43,9 +44,8 @@ public extension Project {
         infoPlist: InfoPlist,
         hasDemoApp: Bool = false
     ) -> Project {
-        let scripts: [TargetScript] = [
-            .swiftLint
-        ]
+        let isForDev = (ProcessInfo.processInfo.environment["TUIST_DEV"] ?? "0") == "1" ? true : false
+        let scripts: [TargetScript] = isForDev ? [.swiftLint] : []
         let settings: Settings = .settings(
             base: Environment.baseSetting,
             configurations: [

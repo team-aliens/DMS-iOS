@@ -1,6 +1,7 @@
 import ProjectDescriptionHelpers
 import ProjectDescription
 import UtilityPlugin
+import Foundation
 
 let settinges: Settings =
     .settings(base: Environment.baseSetting,
@@ -10,9 +11,9 @@ let settinges: Settings =
               ],
               defaultSettings: .recommended)
 
-let scripts: [TargetScript] = [
-    .swiftLint
-]
+let isForDev = (ProcessInfo.processInfo.environment["TUIST_DEV"] ?? "0") == "1" ? true : false
+
+let scripts: [TargetScript] = isForDev ? [.swiftLint] : []
 
 let targets: [Target] = [
     .init(
