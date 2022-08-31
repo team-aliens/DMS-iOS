@@ -98,7 +98,10 @@ public extension Project {
             deploymentTarget: deploymentTarget,
             infoPlist: .default,
             sources: ["Tests/**"],
-            dependencies: testTargetDependencies
+            dependencies: testTargetDependencies + [
+                .SPM.Quick,
+                .SPM.Nimble
+            ]
         )
         
         let schemes: [Scheme] = hasDemoApp
