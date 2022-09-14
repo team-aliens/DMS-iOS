@@ -8,7 +8,7 @@ import Foundation
 private class BundleFinder {}
 
 extension Foundation.Bundle {
-    /// Since DMS is a application, the bundle for classes within this module can be used directly.
+    /// Since DMS-A is a application, the bundle for classes within this module can be used directly.
     static var module: Bundle = {
         return Bundle(for: BundleFinder.self)
     }()
