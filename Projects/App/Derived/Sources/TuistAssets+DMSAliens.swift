@@ -16,14 +16,14 @@
 // MARK: - Asset Catalogs
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
-public enum DMSAsset {
-  public static let accentColor = DMSColors(name: "AccentColor")
+public enum DMSAliensAsset {
+  public static let accentColor = DMSAliensColors(name: "AccentColor")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
 // MARK: - Implementation Details
 
-public final class DMSColors {
+public final class DMSAliensColors {
   public fileprivate(set) var name: String
 
   #if os(macOS)
@@ -45,10 +45,10 @@ public final class DMSColors {
   }
 }
 
-public extension DMSColors.Color {
+public extension DMSAliensColors.Color {
   @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
-  convenience init?(asset: DMSColors) {
-    let bundle = DMSResources.bundle
+  convenience init?(asset: DMSAliensColors) {
+    let bundle = DMSAliensResources.bundle
     #if os(iOS) || os(tvOS)
     self.init(named: asset.name, in: bundle, compatibleWith: nil)
     #elseif os(macOS)
