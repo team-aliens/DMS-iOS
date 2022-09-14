@@ -8,7 +8,7 @@ import Foundation
 private class BundleFinder {}
 
 extension Foundation.Bundle {
-    /// Since DMS-A is a application, the bundle for classes within this module can be used directly.
+    /// Since DMS-Aliens is a application, the bundle for classes within this module can be used directly.
     static var module: Bundle = {
         return Bundle(for: BundleFinder.self)
     }()
@@ -17,7 +17,7 @@ extension Foundation.Bundle {
 // MARK: - Objective-C Bundle Accessor
 
 @objc
-public class DMSResources: NSObject {
+public class DMSAliensResources: NSObject {
    @objc public class var bundle: Bundle {
          return .module
    }
