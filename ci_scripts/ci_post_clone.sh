@@ -1,6 +1,4 @@
 #!/bin/sh
 
- curl -Ls https://install.tuist.io
-
- $INSTALL_DIR/tuist fetch
- $INSTALL_DIR/tuist generate
+.tuist-bin/tuist fetch
+.tuist-bin/tuist generate
