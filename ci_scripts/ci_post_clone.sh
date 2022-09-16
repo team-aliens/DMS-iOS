@@ -1,4 +1,5 @@
 #!/bin/sh
-
-.tuist-bin/tuist fetch
-.tuist-bin/tuist generate
+sh ci_install_tuist.sh
+cd ../
+ci_scripts/tuist/tuist fetch
+ci_scripts/tuist/tuist generate
