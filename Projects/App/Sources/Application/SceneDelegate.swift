@@ -9,7 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        guard let s = (scene as? UIWindowScene) else { return }
+        guard (scene is UIWindowScene) else { return }
         
     }
     
