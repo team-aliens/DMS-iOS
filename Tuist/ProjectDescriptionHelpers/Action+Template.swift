@@ -5,4 +5,9 @@ public extension TargetScript {
         path: Path.relativeToRoot("Scripts/SwiftLintRunScript.sh"),
         name: "SwiftLint"
     )
+
+    static let needle = TargetScript.pre(
+        path: .relativeToRoot("Scripts/NeedleRunScript.sh"),
+        name: "Needle"
+    )
 }
