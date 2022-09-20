@@ -15,6 +15,7 @@ public extension TargetDependency.Project.Features {
 }
 
 public extension TargetDependency.Project.Module {
+    static let FeatureThirdPartyLib = TargetDependency.module(name: "FeatureThirdPartyLib")
     static let ThirdPartyLib = TargetDependency.module(name: "ThirdPartyLib")
     static let Utility = TargetDependency.module(name: "Utility")
 }
