@@ -28,12 +28,15 @@ public enum DMSFontStyle {
     }
 }
 
-// MARK: - Title
-public extension DMSFontStyle.Title {
+// MARK: - FontableSize
+extension DMSFontable where Self: RawRepresentable, Self.RawValue == CGFloat {
     var size: CGFloat {
         self.rawValue
     }
+}
 
+// MARK: - Title
+public extension DMSFontStyle.Title {
     var weight: Font.Weight {
         switch self {
         case .extraLarge, .large, .medium, .extraSmall:
@@ -47,10 +50,6 @@ public extension DMSFontStyle.Title {
 
 // MARK: - Text
 public extension DMSFontStyle.Text {
-    var size: CGFloat {
-        self.rawValue
-    }
-
     var weight: Font.Weight {
         switch self {
         case .twoExtraLarge, .extraLarge, .large, .medium, .small, .extraSmall, .twoExtraSmall:
