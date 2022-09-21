@@ -5,9 +5,9 @@ protocol DMSFontable {
     var weight: Font.Weight { get }
 }
 
-public enum DMSTypoStyle {
-    case title(DMSTypoStyle.Title)
-    case text(DMSTypoStyle.Text)
+public enum DMSFontStyle {
+    case title(DMSFontStyle.Title)
+    case text(DMSFontStyle.Text)
 
     public enum Title: CGFloat, DMSFontable {
         case extraLarge = 36
@@ -29,7 +29,7 @@ public enum DMSTypoStyle {
 }
 
 // MARK: - Title
-public extension DMSTypoStyle.Title {
+public extension DMSFontStyle.Title {
     var size: CGFloat {
         self.rawValue
     }
@@ -46,7 +46,7 @@ public extension DMSTypoStyle.Title {
 }
 
 // MARK: - Text
-public extension DMSTypoStyle.Text {
+public extension DMSFontStyle.Text {
     var size: CGFloat {
         self.rawValue
     }

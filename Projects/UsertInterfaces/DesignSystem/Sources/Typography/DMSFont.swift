@@ -1,7 +1,7 @@
 import SwiftUI
 
-public struct DMSTypo: ViewModifier {
-    public var style: DMSTypoStyle
+public struct DMSFont: ViewModifier {
+    public var style: DMSFontStyle
 
     public func body(content: Content) -> some View {
         switch style {
@@ -16,14 +16,14 @@ public struct DMSTypo: ViewModifier {
 }
 
 public extension View {
-    func dmsTypo(_ style: DMSTypoStyle) -> some View {
+    func dmsFont(_ style: DMSFontStyle) -> some View {
         self
-            .modifier(DMSTypo(style: style))
+            .modifier(DMSFont(style: style))
     }
 
-    func dmsTypo(_ style: DMSTypoStyle, color: Color) -> some View {
+    func dmsFont(_ style: DMSFontStyle, color: Color) -> some View {
         self
-            .dmsTypo(style)
+            .dmsFont(style)
             .foregroundColor(color)
     }
 }
