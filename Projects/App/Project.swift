@@ -43,9 +43,9 @@ let targets: [Target] = [
         infoPlist: .default,
         sources: ["Tests/**"],
         dependencies: [
-            .target(name: Environment.targetName),
+            .target(name: Environment.targetName)
         ]
-    ),
+    )
 ]
 
 let schemes: [Scheme] = [
