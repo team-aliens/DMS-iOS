@@ -9,6 +9,7 @@ public struct DMSSwitch: View {
 
     public var body: some View {
         Toggle("", isOn: $isOn)
+            .labelsHidden()
             .toggleStyle(.switch)
             .tint(.blue) // TODO: Primary Color
     }
@@ -16,8 +17,9 @@ public struct DMSSwitch: View {
 
 struct DMSSwitch_Previews: PreviewProvider {
     static var previews: some View {
-        @State var isOn = true
-        
-        return DMSSwitch(isOn: $isOn)
+        VStack {
+            Text("A")
+            DMSSwitch(isOn: .constant(true))
+        }
     }
 }
