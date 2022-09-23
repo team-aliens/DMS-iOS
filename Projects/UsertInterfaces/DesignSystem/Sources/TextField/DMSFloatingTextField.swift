@@ -18,14 +18,14 @@ public struct DMSFloatingTextField: View {
     public init(
         _ label: String = "",
         text: Binding<String>,
-        helpText: String = "",
+        helpMessage: String = "",
         isError: Bool = false,
         errorMessage: String = "",
         onCommit: @escaping () -> Void = {}
     ) {
         self.label = label
         self.text = text
-        self.helpMessage = helpText
+        self.helpMessage = helpMessage
         self.isError = isError
         self.errorMessage = errorMessage
         self.onCommit = onCommit
