@@ -17,9 +17,6 @@ public struct DMSSwitch: View {
 
 struct DMSSwitch_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            Text("A")
-            DMSSwitch(isOn: .constant(true))
-        }
+        DMSSwitch(isOn: .constant(true))
     }
 }
