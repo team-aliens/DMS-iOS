@@ -44,6 +44,8 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
+                .padding(.vertical, 14)
+                .padding(.horizontal, 16)
                 .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
                 .background(color)
                 .foregroundColor(.white) // TODO: 디자인 시스템 - 색상 나올 시 수정
@@ -66,6 +68,20 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
+                .padding(.vertical, 14)
+                .padding(.horizontal, 16)
+                .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
+                .background(.clear)
+                .foregroundColor(.white) // TODO: 디자인 시스템 - 색상 나올 시 수정
+                .overlay {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(color, lineWidth: 1)
+                }
+                .opacity(
+                    isEnabled ?
+                        configuration.isPressed ? 0.7 : 1.0 :
+                        0.5
+                )
         }
     }
 }
@@ -79,6 +95,13 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
+                .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
+                .foregroundColor(color)
+                .opacity(
+                    isEnabled ?
+                        configuration.isPressed ? 0.7 : 1.0 :
+                        0.5
+                )
         }
     }
 }
@@ -92,6 +115,19 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
+                .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
+                .foregroundColor(color)
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .foregroundColor(color)
+                        .frame(height: 1)
+                        .offset(y: 1)
+                }
+                .opacity(
+                    isEnabled ?
+                    configuration.isPressed ? 0.7 : 1.0 :
+                        0.5
+                )
         }
     }
 }

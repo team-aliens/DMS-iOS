@@ -21,8 +21,6 @@ public struct DMSButton: View {
     public var body: some View {
         Button(action: action) {
             Text(text)
-                .padding(.vertical, 14)
-                .padding(.horizontal, 16)
         }
         .buttonStyle(DMSButtonStyle(style: style, color: color))
     }
@@ -30,6 +28,13 @@ public struct DMSButton: View {
 
 struct DMSButton_Previews: PreviewProvider {
     static var previews: some View {
-        DMSButton(text: "Asdf")
+        VStack(spacing: 20) {
+            DMSButton(text: "Contained")
+            DMSButton(text: "Outlined", style: .outlined)
+            DMSButton(text: "Text", style: .text)
+            DMSButton(text: "Underline", style: .underline)
+        }
+        .padding()
+        .background(Color.gray)
     }
 }
