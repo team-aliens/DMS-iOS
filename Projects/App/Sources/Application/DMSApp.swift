@@ -1,10 +1,16 @@
 import SwiftUI
+import DesignSystem
 
 @main
 struct DMSApp: App {
+    @State var test = ""
+    @State var isError = false
     var body: some Scene {
         WindowGroup {
-            Text("WOW")
+            DMSFloatingTextField("아이디", text: $test, isError: isError, errorMessage: "Error") {
+                isError.toggle()
+            }
+            .padding()
         }
     }
 }
