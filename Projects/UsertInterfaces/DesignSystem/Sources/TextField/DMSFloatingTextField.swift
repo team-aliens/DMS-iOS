@@ -65,12 +65,13 @@ public struct DMSFloatingTextField: View {
                 if isErrorOccurred {
                     Text(isError ? errorMessage : helpMessage)
                         .dmsFont(.text(.extraSmall), color: isError ? .red : .gray) // TODO: 디자인 시스템 - 색상 완료시 색 적용
+                        .offset(x: 5)
                 }
             }
         }
+        .animation(.default, value: isErrorOccurred)
         .animation(.default, value: isFloaintg)
         .animation(.default, value: isFocused)
-        .animation(.default, value: isErrorOccurred)
     }
 }
 
