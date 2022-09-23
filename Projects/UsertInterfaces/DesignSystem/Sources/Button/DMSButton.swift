@@ -19,12 +19,17 @@ public struct DMSButton: View {
     }
 
     public var body: some View {
-        Text("Hello, World!")
+        Button(action: action) {
+            Text(text)
+                .padding(.vertical, 14)
+                .padding(.horizontal, 16)
+        }
+        .buttonStyle(DMSButtonStyle(style: style, color: color))
     }
 }
 
 struct DMSButton_Previews: PreviewProvider {
     static var previews: some View {
-        DMSButton()
+        DMSButton(text: "Asdf")
     }
 }

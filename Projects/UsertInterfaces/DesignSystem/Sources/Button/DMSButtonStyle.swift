@@ -12,7 +12,18 @@ public struct DMSButtonStyle: ButtonStyle {
     var color: Color
 
     public func makeBody(configuration: Configuration) -> some View {
-        VStack {
+        switch style {
+        case .contained:
+            return AnyView(ContainedButton(configuration: configuration, color: color))
+
+        case .outlined:
+            return AnyView(OutlinedButton(configuration: configuration, color: color))
+
+        case .text:
+            return AnyView(TextButton(configuration: configuration, color: color))
+
+        case .underline:
+            return AnyView(UnderlineButton(configuration: configuration, color: color))
         }
     }
 }
@@ -25,7 +36,7 @@ extension Button {
 }
 
 // MARK: - Contained
-extension Button {
+extension DMSButtonStyle {
     struct ContainedButton: View {
         let configuration: ButtonStyle.Configuration
         let color: Color
@@ -33,12 +44,21 @@ extension Button {
 
         var body: some View {
             configuration.label
+                .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
+                .background(color)
+                .foregroundColor(.white) // TODO: 디자인 시스템 - 색상 나올 시 수정
+                .cornerRadius(5)
+                .opacity(
+                    isEnabled ?
+                        configuration.isPressed ? 0.7 : 1.0 :
+                        0.5
+                )
         }
     }
 }
 
 // MARK: - Outlined
-extension Button {
+extension DMSButtonStyle {
     struct OutlinedButton: View {
         let configuration: ButtonStyle.Configuration
         let color: Color
@@ -51,7 +71,7 @@ extension Button {
 }
 
 // MARK: - Text
-extension Button {
+extension DMSButtonStyle {
     struct TextButton: View {
         let configuration: ButtonStyle.Configuration
         let color: Color
@@ -64,7 +84,7 @@ extension Button {
 }
 
 // MARK: - Underline
-extension Button {
+extension DMSButtonStyle {
     struct UnderlineButton: View {
         let configuration: ButtonStyle.Configuration
         let color: Color
