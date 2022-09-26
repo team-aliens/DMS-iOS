@@ -1,10 +1,10 @@
 import SwiftUI
 
 public extension Color {
-    struct GrayScaleColor { }
+    struct GrayScale{ }
 }
 
-public extension Color.GrayScaleColor {
+public extension Color.GrayScale {
     static let gray1: Color = Color("Gray 1")
     static let gray2: Color = Color("Gray 2")
     static let gray3: Color = Color("Gray 3")
