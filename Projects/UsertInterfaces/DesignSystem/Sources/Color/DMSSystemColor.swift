@@ -1,10 +1,10 @@
 import SwiftUI
 
 public extension Color {
-    struct SystemColor { }
+    struct System { }
 }
 
-public extension Color.SystemColor {
+public extension Color.System {
     static let background: Color = Color("Backgrond")
     static let surface: Color = Color("Surface")
     static let error: Color = Color("Error")
