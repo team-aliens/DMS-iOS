@@ -48,7 +48,7 @@ extension DMSButtonStyle {
                 .padding(.horizontal, 16)
                 .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
                 .background(color)
-                .foregroundColor(.white) // TODO: 디자인 시스템 - 색상 나올 시 수정
+                .foregroundColor(.GrayScale.gray1)
                 .cornerRadius(5)
                 .opacity(
                     isEnabled ?
@@ -72,7 +72,7 @@ extension DMSButtonStyle {
                 .padding(.horizontal, 16)
                 .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
                 .background(.clear)
-                .foregroundColor(.white) // TODO: 디자인 시스템 - 색상 나올 시 수정
+                .foregroundColor(.GrayScale.gray1)
                 .overlay {
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(color, lineWidth: 1)
