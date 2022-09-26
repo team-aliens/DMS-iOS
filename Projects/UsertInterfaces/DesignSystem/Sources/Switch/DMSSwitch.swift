@@ -2,6 +2,7 @@ import SwiftUI
 
 public struct DMSSwitch: View {
     @Binding var isOn: Bool
+    @Environment(\.isEnabled) private var isEnabled: Bool
 
     public init(isOn: Binding<Bool>) {
         _isOn = isOn
@@ -11,7 +12,7 @@ public struct DMSSwitch: View {
         Toggle("", isOn: $isOn)
             .labelsHidden()
             .toggleStyle(.switch)
-            .tint(.blue) // TODO: Primary Color
+            .tint(isEnabled ? .PrimaryVariant.primary : .PrimaryVariant.lighten1)
     }
 }
 
