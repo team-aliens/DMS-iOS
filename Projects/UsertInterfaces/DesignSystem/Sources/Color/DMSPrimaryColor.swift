@@ -1,10 +1,10 @@
 import SwiftUI
 
 public extension Color {
-    struct PrimaryVariantColor { }
+    struct PrimaryVariant { }
 }
 
-public extension Color.PrimaryVariantColor {
+public extension Color.PrimaryVariant {
     static let lighten1: Color = Color("Lighten-1")
     static let lighten2: Color = Color("Lighten-2")
     static let primary: Color = Color("Primary")
