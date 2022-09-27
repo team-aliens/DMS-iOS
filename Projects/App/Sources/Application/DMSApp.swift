@@ -7,9 +7,7 @@ struct DMSApp: App {
     @State var isError = false
     var body: some Scene {
         WindowGroup {
-            DMSFloatingTextField("아이디", text: $test, helpMessage: "asd", isError: isError, errorMessage: "Error") {
-                isError.toggle()
-            }
+            DMSFormTextField("제목을 입력해주세요", text: $test)
             .padding()
         }
     }
