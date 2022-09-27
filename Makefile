@@ -13,5 +13,3 @@ reset:
 
 feature:
 	python3 Scripts/generate_new_feature.py
-
-
