@@ -1,12 +1,13 @@
 import SwiftUI
 
-public struct DMSFloatingTextField: View {
+public struct SecureDMSFloatingTextField: View {
     var label: String
     @Binding var text: String
     var helpMessage: String
     var isError: Bool
     var errorMessage: String
     var onCommit: () -> Void
+    @State var isSecure = true
     @FocusState var isFocused: Bool
     private var isFloaintg: Bool {
         isFocused || !text.isEmpty
@@ -17,9 +18,9 @@ public struct DMSFloatingTextField: View {
     private var dmsForegroundColor: Color {
         isFocused ?
             .PrimaryVariant.darken2 :
-            isError ?
-                .System.error :
-                .GrayScale.gray5
+        isError ?
+            .System.error :
+            .GrayScale.gray5
     }
 
     public init(
@@ -40,22 +41,45 @@ public struct DMSFloatingTextField: View {
 
     public var body: some View {
         ZStack(alignment: .leading) {
-            Text(label)
-                .dmsFont(.text(isFloaintg ? .medium : .extraLarge), color: dmsForegroundColor)
-                .offset(y: isFloaintg ? -40 : isErrorOrHelpNotEmpty ? -10 : 0)
+            HStack {
+                Text(label)
+                    .dmsFont(.text(isFloaintg ? .medium : .extraLarge), color: dmsForegroundColor)
+                    .offset(y: isFloaintg ? -40 : isErrorOrHelpNotEmpty ? -10 : 0)
+                    .onTapGesture {
+                        isFocused = true
+                    }
+
+                Spacer()
+
+                Button {
+                    isSecure.toggle()
+                } label: {
+                    Image(systemName: isSecure ? "eye.fill" : "eye.slash.fill")
+                        .foregroundColor(.GrayScale.gray5)
+                }
+                .padding()
+                .offset(y: isErrorOrHelpNotEmpty ? -10 : 0)
+            }
+            .zIndex(1)
 
             VStack(alignment: .leading, spacing: 10) {
-                TextField("", text: $text)
-                    .dmsFont(.text(.medium), color: .GrayScale.gray9)
-                    .foregroundColor(dmsForegroundColor)
-                    .overlay(alignment: .bottom) {
-                        Rectangle()
-                            .foregroundColor(dmsForegroundColor)
-                            .frame(height: 1)
-                            .offset(y: 7)
+                Group {
+                    if isSecure {
+                        SecureField("", text: $text)
+                    } else {
+                        TextField("", text: $text)
                     }
-                    .focused($isFocused)
-                    .onSubmit(onCommit)
+                }
+                .dmsFont(.text(.medium), color: .GrayScale.gray9)
+                .foregroundColor(dmsForegroundColor)
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .foregroundColor(dmsForegroundColor)
+                        .frame(height: 1)
+                        .offset(y: 7)
+                }
+                .focused($isFocused)
+                .onSubmit(onCommit)
 
                 if isErrorOrHelpNotEmpty {
                     Text(isError ? errorMessage : helpMessage)
@@ -67,11 +91,5 @@ public struct DMSFloatingTextField: View {
         .animation(.easeIn(duration: 0.3), value: isErrorOrHelpNotEmpty)
         .animation(.easeIn(duration: 0.3), value: isFloaintg)
         .animation(.easeIn(duration: 0.3), value: isFocused)
-    }
-}
-
-struct DMSFloatingTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        DMSFloatingTextField("Test", text: .constant(""))
     }
 }
