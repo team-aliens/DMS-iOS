@@ -46,7 +46,7 @@ extension DMSButtonStyle {
             configuration.label
                 .padding(.vertical, 14)
                 .padding(.horizontal, 16)
-                .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
+                .dmsFont(.button(.default))
                 .background(color)
                 .foregroundColor(.GrayScale.gray1)
                 .cornerRadius(5)
@@ -70,7 +70,7 @@ extension DMSButtonStyle {
             configuration.label
                 .padding(.vertical, 14)
                 .padding(.horizontal, 16)
-                .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
+                .dmsFont(.button(.default))
                 .background(.clear)
                 .foregroundColor(.GrayScale.gray1)
                 .overlay {
@@ -95,7 +95,7 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
-                .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
+                .dmsFont(.button(.default))
                 .foregroundColor(color)
                 .opacity(
                     isEnabled ?
@@ -115,7 +115,7 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
-                .dmsFont(.text(.small)) // TODO: 디자인상으로 폰트 적용될 시 수정
+                .dmsFont(.button(.default))
                 .foregroundColor(color)
                 .overlay(alignment: .bottom) {
                     Rectangle()

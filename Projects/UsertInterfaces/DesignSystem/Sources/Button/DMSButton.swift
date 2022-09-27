@@ -35,6 +35,6 @@ struct DMSButton_Previews: PreviewProvider {
             DMSButton(text: "Underline", style: .underline)
         }
         .padding()
-        .background(Color.gray)
+        .background(Color.GrayScale.gray9)
     }
 }
