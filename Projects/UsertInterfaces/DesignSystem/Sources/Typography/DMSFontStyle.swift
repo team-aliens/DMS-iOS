@@ -8,6 +8,7 @@ protocol DMSFontable {
 public enum DMSFontStyle {
     case title(DMSFontStyle.Title)
     case text(DMSFontStyle.Text)
+    case button(DMSFontStyle.Button)
 
     public enum Title: CGFloat, DMSFontable {
         case extraLarge = 36
@@ -25,6 +26,10 @@ public enum DMSFontStyle {
         case small = 14
         case extraSmall = 12
         case twoExtraSmall = 10
+    }
+
+    public enum Button: CGFloat, DMSFontable {
+        case `default` = 14
     }
 }
 
@@ -54,6 +59,16 @@ public extension DMSFontStyle.Text {
         switch self {
         case .twoExtraLarge, .extraLarge, .large, .medium, .small, .extraSmall, .twoExtraSmall:
             return .regular
+        }
+    }
+}
+
+// MARK: - Button
+public extension DMSFontStyle.Button {
+    var weight: Font.Weight {
+        switch self {
+        case .`default`:
+            return .semibold
         }
     }
 }

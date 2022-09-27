@@ -5,15 +5,15 @@ public extension Color {
 }
 
 public extension Color.System {
-    static let background: Color = Color("Backgrond")
-    static let surface: Color = Color("Surface")
-    static let error: Color = Color("Error")
-    static let onError: Color = Color("OnError")
-    static let onPrimary: Color = Color("OnPrimary")
-    static let onBackground: Color = Color("OnBackground")
-    static let title: Color = Color("Title")
-    static let text: Color = Color("Text")
-    static let iconActive: Color = Color("IconActive")
-    static let iconInactive: Color = Color("IconInactive")
-    static let line: Color = Color("Line")
+    static let background: Color = DesignSystemAsset.SystemColor.backgrond.suiColor
+    static let surface: Color = DesignSystemAsset.SystemColor.surface.suiColor
+    static let error: Color = DesignSystemAsset.SystemColor.error.suiColor
+    static let onError: Color = DesignSystemAsset.SystemColor.onError.suiColor
+    static let onPrimary: Color = DesignSystemAsset.SystemColor.onPrimary.suiColor
+    static let onBackground: Color = DesignSystemAsset.SystemColor.onBackground.suiColor
+    static let title: Color = DesignSystemAsset.SystemColor.title.suiColor
+    static let text: Color = DesignSystemAsset.SystemColor.text.suiColor
+    static let iconActive: Color = DesignSystemAsset.SystemColor.iconActive.suiColor
+    static let iconInactive: Color = DesignSystemAsset.SystemColor.iconInactive.suiColor
+    static let line: Color = DesignSystemAsset.SystemColor.line.suiColor
 }

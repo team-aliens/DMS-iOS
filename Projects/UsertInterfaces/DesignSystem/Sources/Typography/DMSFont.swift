@@ -8,7 +8,12 @@ public struct DMSFont: ViewModifier {
         case let .title(font):
             return content
                 .font(.system(size: font.size, weight: font.weight))
+
         case let .text(font):
+            return content
+                .font(.system(size: font.size, weight: font.weight))
+
+        case let .button(font):
             return content
                 .font(.system(size: font.size, weight: font.weight))
         }
