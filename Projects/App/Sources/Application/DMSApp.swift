@@ -7,8 +7,8 @@ struct DMSApp: App {
     @State var isError = false
     var body: some Scene {
         WindowGroup {
-            DMSFormTextField("제목을 입력해주세요", text: $test)
-            .padding()
+            DMSFormTextEditor("제목을 입력해주세요", text: $test)
+                .padding()
         }
     }
 }
