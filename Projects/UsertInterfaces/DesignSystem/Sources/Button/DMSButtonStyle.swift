@@ -72,7 +72,7 @@ extension DMSButtonStyle {
                 .padding(.horizontal, 16)
                 .dmsFont(.button(.default))
                 .background(.clear)
-                .foregroundColor(.GrayScale.gray1)
+                .foregroundColor(color)
                 .overlay {
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(color, lineWidth: 1)
