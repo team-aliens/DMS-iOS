@@ -1,4 +1,5 @@
 import SwiftUI
+import DesignSystem
 
 @main
 struct DMSApp: App {
