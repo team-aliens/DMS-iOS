@@ -33,15 +33,13 @@ public struct DMSRadioButton: View {
                     Image(systemName: self.isOn ? "largecircle.fill.circle" : "circle")
                         .clipShape(Circle())
                         .foregroundColor(self.isOn ? Color.PrimaryVariant.lighten1 : Color.GrayScale.gray3)
-                        .disabled(isDisabeld)
                 } else {
                     Image(systemName: self.isOn ? "largecircle.fill.circle" : "circle")
                         .clipShape(Circle())
                         .foregroundColor(self.isOn ? Color.PrimaryVariant.primary : Color.GrayScale.gray5)
-                        .disabled(isDisabeld)
                 }
             }
-        }
+        }.disabled(isDisabeld)
     }
 }
 
