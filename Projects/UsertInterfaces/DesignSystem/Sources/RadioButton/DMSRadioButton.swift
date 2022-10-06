@@ -34,6 +34,30 @@ public struct DMSRadioButton: View {
 
 struct DMSRadioButton_Previews: PreviewProvider {
     static var previews: some View {
-        DMSRadioButton()
+        DMSRadioButton(isOn: .constant(true))
+            .if(true) {
+                $0.foregroundColor(Color.PrimaryVariant.primary)
+            }
+    }
+}
+
+public extension View {
+    func `if`<T: View>(
+        _ condition: Bool,
+        transform: (Self) -> T
+    ) -> some View {
+        Group {
+            if condition { transform(self) } else { self }
+        }
+    }
+
+    func `if`<T: View>(
+        _ condition: Bool,
+        true trueTransform: (Self) -> T,
+        false falseTransform: (Self) -> T
+    ) -> some View {
+        Group {
+            if condition { trueTransform(self) } else { falseTransform(self) }
+        }
     }
 }
