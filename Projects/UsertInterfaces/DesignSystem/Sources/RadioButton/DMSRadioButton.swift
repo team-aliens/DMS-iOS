@@ -18,15 +18,13 @@ public struct DMSRadioButton: View {
             self.isOn.toggle()
         } label: {
             HStack(alignment: .center) {
-                if self.isDisabeld {
-                    Image(systemName: self.isOn ? "largecircle.fill.circle" : "circle")
-                        .clipShape(Circle())
-                        .foregroundColor(self.isOn ? Color.PrimaryVariant.lighten1 : Color.GrayScale.gray3)
-                } else {
-                    Image(systemName: self.isOn ? "largecircle.fill.circle" : "circle")
-                        .clipShape(Circle())
-                        .foregroundColor(self.isOn ? Color.PrimaryVariant.primary : Color.GrayScale.gray5)
-                }
+                Image(systemName: self.isOn ? "largecircle.fill.circle" : "circle")
+                    .clipShape(Circle())
+                    .if(isDisabeld) {
+                        $0.foregroundColor(self.isOn ? Color.PrimaryVariant.lighten1 : Color.GrayScale.gray3)
+                    } false: {
+                        $0.foregroundColor(self.isOn ? Color.PrimaryVariant.primary : Color.GrayScale.gray5)
+                    }
             }
         }.disabled(isDisabeld)
     }
@@ -35,29 +33,5 @@ public struct DMSRadioButton: View {
 struct DMSRadioButton_Previews: PreviewProvider {
     static var previews: some View {
         DMSRadioButton(isOn: .constant(true))
-            .if(true) {
-                $0.foregroundColor(Color.PrimaryVariant.primary)
-            }
-    }
-}
-
-public extension View {
-    func `if`<T: View>(
-        _ condition: Bool,
-        transform: (Self) -> T
-    ) -> some View {
-        Group {
-            if condition { transform(self) } else { self }
-        }
-    }
-
-    func `if`<T: View>(
-        _ condition: Bool,
-        true trueTransform: (Self) -> T,
-        false falseTransform: (Self) -> T
-    ) -> some View {
-        Group {
-            if condition { trueTransform(self) } else { falseTransform(self) }
-        }
     }
 }
