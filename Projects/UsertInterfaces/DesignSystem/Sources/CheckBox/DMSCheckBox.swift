@@ -1,22 +1,24 @@
 import SwiftUI
 
 public struct DMSCheckBox: View {
-    @State var isChecked: Bool = false
+    @Binding var isOn: Bool
 
-    var title: String
-    func toggle() {isChecked = !isChecked}
+    @Environment(\.isEnabled) private var isEnabled: Bool
+
+    public init(isOn: Binding<Bool>) {
+        _isOn = isOn
+    }
+
     public var body: some View {
-        Button(action: toggle) {
-            HStack {
-                Image(systemName: isChecked ? "checkmark.circle.fill": "circle")
-                Text(title)
-            }
-        }
+        Toggle("", isOn: $isOn)
+            .labelsHidden()
+            .toggleStyle(DMScheckboxStyle())
     }
 }
 
 struct DMSCheckBox_Previews: PreviewProvider {
     static var previews: some View {
-        DMSCheckBox(isChecked: true, title: "")
+        DMSCheckBox(isOn: .constant(true))
+            .padding()
     }
 }
