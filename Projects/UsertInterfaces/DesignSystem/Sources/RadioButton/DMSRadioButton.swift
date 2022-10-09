@@ -19,7 +19,7 @@ public struct DMSRadioButton: View {
                     Circle()
                         .stroke(isOn ? Color.PrimaryVariant.primary : .GrayScale.gray5, lineWidth: 2)
                         .frame(width: 20, height: 20)
-                    
+
                     Circle()
                         .fill(isOn ? Color.PrimaryVariant.primary : .clear)
                         .frame(width: 10, height: 10)
