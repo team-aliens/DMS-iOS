@@ -5,7 +5,7 @@ public struct DMSRadioButton: View {
     @Environment(\.isEnabled) private var isEnabled: Bool
 
     public init(
-        isOn: Binding<Bool> = .constant(false)
+        isOn: Binding<Bool>
     ) {
         self._isOn = isOn
     }
@@ -15,15 +15,16 @@ public struct DMSRadioButton: View {
             self.isOn.toggle()
         } label: {
             ZStack {
-                Circle()
-                    .fill(Color.PrimaryVariant.primary)
-                    .frame(width: 20, height: 20)
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 15, height: 15)
-                Circle()
-                    .fill(Color.PrimaryVariant.primary)
-                    .frame(width: 10, height: 10)
+                Group {
+                    Circle()
+                        .stroke(isOn ? Color.PrimaryVariant.primary : .GrayScale.gray5, lineWidth: 2)
+                        .frame(width: 20, height: 20)
+                    
+                    Circle()
+                        .fill(isOn ? Color.PrimaryVariant.primary : .clear)
+                        .frame(width: 10, height: 10)
+                }
+                .opacity(isEnabled ? 1.0 : 0.5)
             }
         }
     }
@@ -31,6 +32,10 @@ public struct DMSRadioButton: View {
 
 struct DMSRadioButton_Previews: PreviewProvider {
     static var previews: some View {
-        DMSRadioButton(isOn: .constant(true))
+        VStack {
+            DMSRadioButton(isOn: .constant(true))
+
+            DMSRadioButton(isOn: .constant(false))
+        }
     }
 }
