@@ -5,7 +5,7 @@ protocol DMSFontable {
     var weight: Font.Weight { get }
 }
 
-public enum DMSFontStyle {
+public enum DMSFontStyle: Hashable {
     case title(DMSFontStyle.Title)
     case text(DMSFontStyle.Text)
     case button(DMSFontStyle.Button)
