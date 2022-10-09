@@ -18,14 +18,13 @@ public struct DMSRadioButton: View {
                 Circle()
                     .fill(Color.PrimaryVariant.primary)
                     .frame(width: 20, height: 20)
-                    .clipShape(Circle())
                 Circle()
                     .fill(Color.white)
                     .frame(width: 15, height: 15)
                 Circle()
                     .fill(Color.PrimaryVariant.primary)
                     .frame(width: 10, height: 10)
-            }.disabled(isEnabled)
+            }
         }
     }
 }
