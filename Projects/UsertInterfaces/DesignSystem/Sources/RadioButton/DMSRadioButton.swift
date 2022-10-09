@@ -1,32 +1,32 @@
 import SwiftUI
 
 public struct DMSRadioButton: View {
-
     @Binding var isOn: Bool
-    @Binding var isDisabeld: Bool
+    @Environment(\.isEnabled) private var isEnabled: Bool
 
     public init(
-        isOn: Binding<Bool> = .constant(false),
-        isDisabled: Binding<Bool> = .constant(false)
+        isOn: Binding<Bool> = .constant(false)
     ) {
         self._isOn = isOn
-        self._isDisabeld = isDisabled
     }
 
     public var body: some View {
         Button {
             self.isOn.toggle()
         } label: {
-            HStack(alignment: .center) {
-                Image(systemName: self.isOn ? "largecircle.fill.circle" : "circle")
+            ZStack {
+                Circle()
+                    .fill(Color.PrimaryVariant.primary)
+                    .frame(width: 20, height: 20)
                     .clipShape(Circle())
-                    .if(isDisabeld) {
-                        $0.foregroundColor(self.isOn ? Color.PrimaryVariant.lighten1 : Color.GrayScale.gray3)
-                    } false: {
-                        $0.foregroundColor(self.isOn ? Color.PrimaryVariant.primary : Color.GrayScale.gray5)
-                    }
-            }
-        }.disabled(isDisabeld)
+                Circle()
+                    .fill(Color.white)
+                    .frame(width: 15, height: 15)
+                Circle()
+                    .fill(Color.PrimaryVariant.primary)
+                    .frame(width: 10, height: 10)
+            }.disabled(isEnabled)
+        }
     }
 }
 
