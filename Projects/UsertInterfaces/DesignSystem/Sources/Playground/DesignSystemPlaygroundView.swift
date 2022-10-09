@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct DeisgnSystemPlaygroundView: View {
+public struct DesignSystemPlaygroundView: View {
     let list: [(String, AnyView)] = [
         ("Color", AnyView(ColorPlaygroundView())),
         ("Text", AnyView(FontPlaygroundView())),
@@ -28,6 +28,6 @@ public struct DeisgnSystemPlaygroundView: View {
 
 struct DeisgnSystemPlaygroundView_Previews: PreviewProvider {
     static var previews: some View {
-        DeisgnSystemPlaygroundView()
+        DesignSystemPlaygroundView()
     }
 }
