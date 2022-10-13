@@ -2,7 +2,7 @@ import Foundation
 
 public enum DmsError: Error {
     case unknown
-    case custom(message: String, code: Int)
+    case custom(message: String = "알 수 없는 오류가 발생하였습니다", code: Int = 500)
 }
 
 extension DmsError: LocalizedError {
