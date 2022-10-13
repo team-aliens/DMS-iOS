@@ -1,11 +1,11 @@
 import Foundation
 
-public enum DMSError: Error {
+public enum DmsError: Error {
     case unknown
     case custom(message: String, code: Int)
 }
 
-extension DMSError: LocalizedError {
+extension DmsError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unknown:
@@ -18,7 +18,7 @@ extension DMSError: LocalizedError {
 }
 
 public extension Error {
-    var asDMSError: DMSError {
-        self as? DMSError ?? .unknown
+    var asDMSError: DmsError {
+        self as? DmsError ?? .unknown
     }
 }
