@@ -8,6 +8,9 @@ let project = Project.makeModule(
         .Project.Module.ThirdPartyLib,
         .Project.Module.KeychainModule,
         .Project.Module.ErrorModule,
-        .Project.Service.DataMappingModule
+        .Project.Service.DataMappingModule,
+
+        .SPM.Moya,
+        .SPM.CombineMoya
     ]
 )
