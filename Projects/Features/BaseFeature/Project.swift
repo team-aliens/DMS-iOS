@@ -2,7 +2,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "CommonFeature",
+    name: "BaseFeature",
     product: .staticFramework,
     dependencies: [
         .Project.Service.Domain,

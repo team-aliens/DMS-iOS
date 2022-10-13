@@ -29,7 +29,6 @@ let targets: [Target] = [
         scripts: scripts,
         dependencies: [
             .Project.Features.RootFeature,
-            .Project.Module.ThirdPartyLib,
             .Project.Service.Data
         ],
         settings: .settings(base: Environment.baseSetting)
