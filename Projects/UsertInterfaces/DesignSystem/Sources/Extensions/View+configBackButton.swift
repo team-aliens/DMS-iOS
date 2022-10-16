@@ -1,11 +1,19 @@
 import SwiftUI
 
-public extension View {
-    func configBackButton(
-        willDismiss: @escaping () -> Void = {},
+struct DmsBackButtonModifier: ViewModifier {
+    let willDismiss: () -> Void
+    let dismiss: DismissAction
+
+    public init(
+        willDismiss: @escaping () -> Void,
         dismiss: DismissAction
-    ) -> some View {
-        self
+    ) {
+        self.willDismiss = willDismiss
+        self.dismiss = dismiss
+    }
+
+    func body(content: Content) -> some View {
+        content
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button {
@@ -20,6 +28,14 @@ public extension View {
                 }
             }
             .navigationBarBackButtonHidden(true)
+    }
+}
+public extension View {
+    func configBackButton(
+        willDismiss: @escaping () -> Void = {},
+        dismiss: DismissAction
+    ) -> some View {
+        modifier(DmsBackButtonModifier(willDismiss: willDismiss, dismiss: dismiss))
     }
 }
 
