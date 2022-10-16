@@ -18,13 +18,11 @@ struct TextFieldPlaygroundView: View {
 
                 DMSFloatingTextField("HelpText", text: $text3, helpMessage: "HelpText")
 
-                DMSFloatingTextField(
-                    "Error",
-                    text: $text4,
-                    helpMessage: "HelpText",
-                    isError: isError1,
-                    errorMessage: "Error Message"
-                ) {
+                DMSFloatingTextField("Error",
+                                     text: $text4,
+                                     helpMessage: "HelpText",
+                                     isError: isError1,
+                                     errorMessage: "Error Message") {
                     isError1.toggle()
                 }
 

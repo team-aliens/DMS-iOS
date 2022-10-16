@@ -8,7 +8,8 @@ public struct DesignSystemPlaygroundView: View {
         ("Switch", AnyView(SwitchPlaygroundView())),
         ("Checkbox", AnyView(CheckboxPlaygroundView())),
         ("TextField", AnyView(TextFieldPlaygroundView())),
-        ("RadioButton", AnyView(RadiobuttonPlaygroundView()))
+        ("RadioButton", AnyView(RadiobuttonPlaygroundView())),
+        ("Toast", AnyView(ToastPlaygroundView()))
     ]
 
     public init() {}

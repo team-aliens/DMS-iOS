@@ -123,11 +123,9 @@ extension DMSButtonStyle {
                         .frame(height: 1)
                         .offset(y: 1)
                 }
-                .opacity(
-                    isEnabled ?
-                    configuration.isPressed ? 0.7 : 1.0 :
-                        0.5
-                )
+                .opacity(isEnabled ?
+                         configuration.isPressed ? 0.7 : 1.0 :
+                            0.5)
         }
     }
 }
