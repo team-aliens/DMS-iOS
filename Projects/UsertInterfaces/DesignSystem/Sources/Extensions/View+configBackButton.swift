@@ -31,7 +31,7 @@ struct DmsBackButtonModifier: ViewModifier {
     }
 }
 public extension View {
-    func configBackButton(
+    func dmsBackButton(
         willDismiss: @escaping () -> Void = {},
         dismiss: DismissAction
     ) -> some View {
