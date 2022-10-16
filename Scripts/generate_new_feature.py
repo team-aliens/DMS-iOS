@@ -37,7 +37,7 @@ let project = Project.makeModule(
     name: "{feature_name}Feature",
     product: .staticFramework,
     dependencies: [
-        .Project.Features.CommonFeature"""
+        .Project.Features.BaseFeature"""
     file_content += ",\n        ".join(dependencies)
     file_content += "\n    ]" 
     file_content += ",\n    hasDemo: true" if has_demo else ""
