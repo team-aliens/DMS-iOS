@@ -48,7 +48,10 @@ struct DmsToast: ViewModifier {
                     Rectangle()
                         .fill(Color.GrayScale.gray1)
                         .cornerRadius(4)
-                        .shadow(color: .GrayScale.gray9.opacity(0.08), radius: 16, x: 0, y: 1)
+                        .shadow(color: .GrayScale.gray9.opacity(0.08),
+                                radius: 16,
+                                x: 0,
+                                y: 1)
                 }
                 .padding(.horizontal, 12)
                 .onTapGesture {

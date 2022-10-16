@@ -29,6 +29,7 @@ struct ToastPlaygroundView: View {
                 Text("Success")
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .dmsToast(isShowing: $isInfo, message: "메시지", style: .info)
         .dmsToast(isShowing: $isError, message: "메시지", style: .error)
         .dmsToast(isShowing: $isSuccess, message: "메시지", style: .success)
