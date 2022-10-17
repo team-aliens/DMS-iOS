@@ -132,7 +132,7 @@ extension StudentsAPI: DmsAPI {
     "gcn" : "2118",
     "bonus_point" : 0,
     "minus_point" : 24,
-    "phrase" : "안녕하세요 프론트하는 변찬웁니다"
+    "phrase" : "안녕하세요 프론트하는 변찬우입니다"
 }
 """.data(using: .utf8) ?? .init()
 

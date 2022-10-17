@@ -24,7 +24,7 @@ public struct FetchMyProfileResponseDTO: Decodable {
         self.phrase = phrase
     }
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case schoolName = "school_name"
         case bonusPoint = "bonus_point"
         case minusPoint = "minus_point"
