@@ -1,8 +1,9 @@
 import Combine
 import DataMappingModule
+import DomainModule
 import ErrorModule
 
-public struct RemoteAuthDataSourceStub: RemoteAuthDataSource {
+public struct AuthRepositoryStub: AuthRepository {
     public init() {}
 
     public func signin(req: SigninRequestDTO) -> AnyPublisher<Void, DmsError> {
