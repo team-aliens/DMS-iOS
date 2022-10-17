@@ -1,37 +1,22 @@
-import APIKit
-import Nimble
-import DataMappingModule
-import Combine
-import Foundation
 import Quick
+import Nimble
+import Combine
+import DomainModule
+import DataModule
 import NetworkModule
-import Moya
-import XCTest
-@testable import KeychainModule
 
-// swiftlint: disable function_body_length
-final class RemoteAuthDataSourceImplSpec: QuickSpec {
+final class AuthRepositoryImplSpec: QuickSpec {
     override func spec() {
-        var provider: MoyaProvider<AuthAPI>!
-        var sut: RemoteAuthDataSourceImpl!
+        var sut: AuthRepositoryImpl!
+        var remoteAuthDS: RemoteAuthDataSource!
         var bag = Set<AnyCancellable>()
 
         beforeEach {
-            let keychain = KeychainFake()
-            let customEndpointClosure = { (target: AuthAPI) -> Endpoint in
-                Endpoint(url: URL(target: target).absoluteString,
-                         sampleResponseClosure: { .networkResponse(200, target.sampleData) },
-                         method: target.method,
-                         task: target.task,
-                         httpHeaderFields: target.headers)
-            }
-            provider = MoyaProvider(endpointClosure: customEndpointClosure,
-                                    stubClosure: MoyaProvider.immediatelyStub)
-            sut = RemoteAuthDataSourceImpl(keychain: keychain,
-                                           provider: provider)
+            remoteAuthDS = RemoteAuthDataSourceStub()
+            sut = AuthRepositoryImpl(remoteAuthDataSource: remoteAuthDS)
         }
-        describe("RemoteAuthDataSourceImpl에서") {
-            context("signin()을 실행하면") {
+        describe("AuthRepositoryImpl에서") {
+            context("signin()를 실행하면") {
                 it("request를 성공적으로 실행한다.") {
                     var success: Void?
                     sut.signin(req: .init(accountID: "", password: ""))

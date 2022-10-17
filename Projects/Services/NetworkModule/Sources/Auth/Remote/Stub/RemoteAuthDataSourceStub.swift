@@ -1,33 +1,33 @@
 import Combine
 import DataMappingModule
-import DomainModule
 import ErrorModule
-import NetworkModule
 
-public struct AuthRepositoryImpl: AuthRepository {
-    private let remoteAuthDataSource: any RemoteAuthDataSource
-
-    public init(remoteAuthDataSource: any RemoteAuthDataSource) {
-        self.remoteAuthDataSource = remoteAuthDataSource
-    }
+public struct RemoteAuthDataSourceStub: RemoteAuthDataSource {
+    public init() {}
 
     public func signin(req: SigninRequestDTO) -> AnyPublisher<Void, DmsError> {
-        remoteAuthDataSource.signin(req: req)
+        Just(()).mapError { $0.asDMSError }
+            .eraseToAnyPublisher()
     }
 
     public func verifyAuthCode(req: VerifyAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError> {
-        remoteAuthDataSource.verifyAuthCode(req: req)
+        Just(())
+            .mapError { $0.asDMSError }
+            .eraseToAnyPublisher()
     }
 
     public func sendAuthCode(req: SendAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError> {
-        remoteAuthDataSource.sendAuthCode(req: req)
+        Just(()).mapError { $0.asDMSError }
+            .eraseToAnyPublisher()
     }
 
     public func checkEmailExistByAccountID(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, DmsError> {
-        remoteAuthDataSource.checkEmailExistByAccountID(req: req)
+        Just(()).mapError { $0.asDMSError }
+            .eraseToAnyPublisher()
     }
 
     public func checkAccountIDIsExist(id: String) -> AnyPublisher<String, DmsError> {
-        remoteAuthDataSource.checkAccountIDIsExist(id: id)
+        Just("abc******@gmail.com").mapError { $0.asDMSError }
+            .eraseToAnyPublisher()
     }
 }
