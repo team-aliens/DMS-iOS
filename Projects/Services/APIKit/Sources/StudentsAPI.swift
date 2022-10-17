@@ -3,33 +3,101 @@ import DataMappingModule
 import ErrorModule
 
 public enum StudentsAPI {
-    
+    case signup(SignupRequestDTO)
+    case checkDuplicateAccountID(id: String)
+    case checkDuplicateEmail(email: String)
+    case renewalPassword(RenewalPasswordRequestDTO)
+    case findID(FindIDRequestDTO)
 }
 
 extension StudentsAPI: DmsAPI {
     public var domain: DmsDomain {
-        
+        .students
     }
-    
+
     public var urlPath: String {
-        <#code#>
+        switch self {
+        case .signup:
+            return "/signup"
+
+        case .checkDuplicateAccountID:
+            return "/account-id/duplication"
+
+        case .checkDuplicateEmail:
+            return "/email/duplication"
+
+        case .renewalPassword:
+            return "/password/intialization"
+
+        case let .findID(req):
+            return "/account-id/\(req.schoolID)"
+        }
     }
-    
-    public var errorMap: [Int : ErrorModule.DmsError] {
-        <#code#>
-    }
-    
+
     public var method: Moya.Method {
-        <#code#>
+        switch self {
+        case .checkDuplicateAccountID, .checkDuplicateEmail, .findID:
+            return .get
+
+        case .signup:
+            return .post
+
+        case .renewalPassword:
+            return .patch
+        }
     }
-    
+
     public var task: Moya.Task {
-        <#code#>
+        switch self {
+        case let .signup(req):
+            return .requestJSONEncodable(req)
+
+        case let .checkDuplicateAccountID(id):
+            return .requestParameters(parameters: [
+                "account_id": id
+            ], encoding: URLEncoding.queryString)
+
+        case let .checkDuplicateEmail(email):
+            return .requestParameters(parameters: [
+                "email": email
+            ], encoding: URLEncoding.queryString)
+
+        case let .renewalPassword(req):
+            return .requestJSONEncodable(req)
+
+        case let .findID(req):
+            return .requestParameters(parameters: [
+                "name": req.name,
+                "grade": req.grade,
+                "class_room": req.classRoom,
+                "number": req.number
+            ], encoding: URLEncoding.queryString)
+        }
     }
-    
+
     public var jwtTokenType: JwtTokenType {
-        <#code#>
+        switch self {
+        default:
+            return .none
+        }
     }
-    
-    
+
+    public var errorMap: [Int: DmsError] {
+        switch self {
+        case .signup:
+            return [:]
+
+        case .checkDuplicateAccountID:
+            return [:]
+
+        case .checkDuplicateEmail:
+            return [:]
+
+        case .renewalPassword:
+            return [:]
+
+        case .findID:
+            return [:]
+        }
+    }
 }
