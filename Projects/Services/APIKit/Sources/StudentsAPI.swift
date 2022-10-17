@@ -1,6 +1,7 @@
 import Moya
 import DataMappingModule
 import ErrorModule
+import Foundation
 
 public enum StudentsAPI {
     case signup(SignupRequestDTO)
@@ -111,6 +112,32 @@ extension StudentsAPI: DmsAPI {
 
         case .fetchMyProfile:
             return [:]
+        }
+    }
+
+    public var sampleData: Data {
+        switch self {
+        case .findID:
+            return """
+{
+    "email" : "abc*****@gmail.com"
+}
+""".data(using: .utf8) ?? .init()
+
+        case .fetchMyProfile:
+            return """
+{
+    "school_name" : "광주소프트웨어마이스터고등학교",
+    "name" : "변찬우",
+    "gcn" : "2118",
+    "bonus_point" : 0,
+    "minus_point" : 24,
+    "phrase" : "안녕하세요 프론트하는 변찬웁니다"
+}
+""".data(using: .utf8) ?? .init()
+
+        default:
+            return .init()
         }
     }
 }
