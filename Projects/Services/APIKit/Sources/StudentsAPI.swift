@@ -8,6 +8,7 @@ public enum StudentsAPI {
     case checkDuplicateEmail(email: String)
     case renewalPassword(RenewalPasswordRequestDTO)
     case findID(FindIDRequestDTO)
+    case fetchMyProfile
 }
 
 extension StudentsAPI: DmsAPI {
@@ -31,12 +32,15 @@ extension StudentsAPI: DmsAPI {
 
         case let .findID(req):
             return "/account-id/\(req.schoolID)"
+
+        case .fetchMyProfile:
+            return "/my-pages"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-        case .checkDuplicateAccountID, .checkDuplicateEmail, .findID:
+        case .checkDuplicateAccountID, .checkDuplicateEmail, .findID, .fetchMyProfile:
             return .get
 
         case .signup:
@@ -72,11 +76,17 @@ extension StudentsAPI: DmsAPI {
                 "class_room": req.classRoom,
                 "number": req.number
             ], encoding: URLEncoding.queryString)
+
+        default:
+            return .requestPlain
         }
     }
 
     public var jwtTokenType: JwtTokenType {
         switch self {
+        case .fetchMyProfile:
+            return .accessToken
+
         default:
             return .none
         }
@@ -97,6 +107,9 @@ extension StudentsAPI: DmsAPI {
             return [:]
 
         case .findID:
+            return [:]
+
+        case .fetchMyProfile:
             return [:]
         }
     }
