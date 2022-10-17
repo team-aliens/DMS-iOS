@@ -4,6 +4,7 @@ import DataModule
 import DomainModule
 import Combine
 
+// swiftlint: disable type_name
 final class CheckEmailExistByAccountIDUseCaseImplSpec: QuickSpec {
     override func spec() {
         var repo: AuthRepository!
