@@ -3,9 +3,15 @@ import DesignSystem
 
 @main
 struct DMSApp: App {
+    init() {
+        registerProviderFactories()
+    }
+
     var body: some Scene {
         WindowGroup {
-            DesignSystemPlaygroundView()
+            NavigationView {
+                AppComponent().signinComponent.makeView()
+            }
         }
     }
 }
