@@ -5,6 +5,7 @@ import DomainModule
 import DataModule
 import NetworkModule
 
+// swiftlint: disable function_body_length
 final class AuthRepositoryImplSpec: QuickSpec {
     override func spec() {
         var sut: AuthRepositoryImpl!
