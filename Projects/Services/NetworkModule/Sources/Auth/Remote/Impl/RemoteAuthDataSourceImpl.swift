@@ -16,6 +16,10 @@ public final class RemoteAuthDataSourceImpl: BaseRemoteDataSource<AuthAPI>, Remo
         request(.sendAuthCode(req))
     }
 
+    public func reissueToken() -> AnyPublisher<Void, DmsError> {
+        request(.reissueToken)
+    }
+
     public func checkEmailExistByAccountID(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, DmsError> {
         request(.checkEmailExistByAccountID(req))
     }
