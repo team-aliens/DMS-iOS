@@ -6,7 +6,7 @@ public enum AuthAPI {
     case signin(SigninRequestDTO)
     case verifyAuthCode(VerifyAuthCodeRequestDTO)
     case sendAuthCode(SendAuthCodeRequestDTO)
-    case tokenReissue
+    case reissueToken
     case emailExistByAccountID(EmailExistByAccountIDRequestDTO)
     case checkAccountIDIsExist(id: String)
 }
@@ -24,7 +24,7 @@ extension AuthAPI: DmsAPI {
         case .verifyAuthCode, .sendAuthCode:
             return "/code"
 
-        case .tokenReissue:
+        case .reissueToken:
             return "/reissue"
 
         case .emailExistByAccountID:
@@ -43,7 +43,7 @@ extension AuthAPI: DmsAPI {
         case .signin, .sendAuthCode:
             return .post
 
-        case .tokenReissue:
+        case .reissueToken:
             return .put
         }
     }
@@ -81,7 +81,7 @@ extension AuthAPI: DmsAPI {
 
     public var jwtTokenType: JwtTokenType {
         switch self {
-        case .tokenReissue:
+        case .reissueToken:
             return .refreshToken
 
         default:
@@ -93,7 +93,9 @@ extension AuthAPI: DmsAPI {
         switch self {
         case .signin:
             return [
-                400: .badRequest
+                400: .badRequest,
+                401: .passwordMismatch,
+                404: .notFoundUserBySignin
             ]
 
         case .verifyAuthCode:
@@ -106,7 +108,7 @@ extension AuthAPI: DmsAPI {
                 400: .badRequest
             ]
 
-        case .tokenReissue:
+        case .reissueToken:
             return [
                 401: .unknown
             ]
