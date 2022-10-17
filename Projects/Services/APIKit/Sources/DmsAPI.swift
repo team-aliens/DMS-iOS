@@ -24,11 +24,12 @@ public extension DmsAPI {
 
 public enum DmsDomain: String {
     case auth
-    case users
+    case students
     case losts
     case notices
-    case meal
+    case meals
     case images
+    case schools
 }
 
 extension DmsDomain {
