@@ -73,9 +73,10 @@ private extension BaseRemoteDataSource {
     }
 
     func tokenReissue() -> AnyPublisher<Void, DmsError> {
-        return Just(())
+        // swiftlint: disable force_cast
+        return provider.requestPublisher(AuthAPI.reissueToken as! API)
+            .map { _ in return }
             .mapError { _ in DmsError.unknown }
             .eraseToAnyPublisher()
-        // TODO: Token Refresh
     }
 }
