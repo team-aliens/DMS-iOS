@@ -89,7 +89,7 @@ extension AuthAPI: DmsAPI {
         }
     }
 
-    public var errorMap: [Int: ErrorModule.DmsError] {
+    public var errorMap: [Int: DmsError] {
         switch self {
         case .signin:
             return [
@@ -100,12 +100,15 @@ extension AuthAPI: DmsAPI {
 
         case .verifyAuthCode:
             return [
-                400: .badRequest
+                400: .badRequest,
+                401: .authCodeMismatch,
+                404: .notFoundAuthInfo
             ]
 
         case .sendAuthCode:
             return [
-                400: .badRequest
+                400: .badRequest,
+                429: .tooManyRequest
             ]
 
         case .reissueToken:
@@ -115,12 +118,15 @@ extension AuthAPI: DmsAPI {
 
         case .emailExistByAccountID:
             return [
-                400: .badRequest
+                400: .badRequest,
+                401: .diffrentEmailByAccountID,
+                404: .notFoundAccountID
             ]
 
         case .checkAccountIDIsExist:
             return [
-                400: .badRequest
+                400: .badRequest,
+                404: .notFoundAccountID
             ]
         }
     }

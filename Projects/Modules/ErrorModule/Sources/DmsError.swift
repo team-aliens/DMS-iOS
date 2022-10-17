@@ -5,29 +5,56 @@ public enum DmsError: Error {
     case custom(message: String = "알 수 없는 오류가 발생하였습니다", code: Int = 500)
     case badRequest
     case tokenExpired
-    
+    case tooManyRequest
+
     // MARK: - Auth
+    // MARK: Signin
     case passwordMismatch
     case notFoundUserBySignin
+
+    // MARK: VerifyAuthCode
+    case authCodeMismatch
+    case notFoundAuthInfo
+
+    // MARK: emailExistByAccountID
+    case diffrentEmailByAccountID
+    case notFoundAccountID
 }
 
 extension DmsError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unknown:
-            return "알 수 없는 오류가 발생하였습니다"
+            return "알 수 없는 오류가 발생하였습니다."
 
         case let .custom(message, _):
             return message
 
         case .badRequest:
-            return "요청이 잘못되었습니다"
+            return "요청이 잘못되었습니다."
 
         case .tokenExpired:
             return "인증이 만료되었습니다. 다시 로그인해주세요!"
 
+        case .tooManyRequest:
+            return "요청 횟수를 초과했습니다. 잠시 후 다시 시도해주세요!"
+
+        // MARK: - Auth
+
         case .passwordMismatch, .notFoundUserBySignin:
-            return "아이디 또는 비밀번호를 확인해주세요"
+            return "아이디 또는 비밀번호를 확인해주세요."
+
+        case .authCodeMismatch:
+            return "인증코드가 일치하지 않습니다."
+
+        case .notFoundAuthInfo:
+            return "인증 정보를 찾을 수 없습니다."
+
+        case .diffrentEmailByAccountID:
+            return "아이디외 이메일과 일치하지 않습니다."
+
+        case .notFoundAccountID:
+            return "아이디에 따른 유저를 찾을 수 없습니다."
         }
     }
 }
