@@ -1,4 +1,7 @@
 import APIKit
+import Combine
+import CombineMoya
+import ErrorModule
 import Foundation
 import KeychainModule
 import Moya
@@ -22,50 +25,45 @@ public class BaseRemoteDataSource<API: DmsAPI> {
         self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(keychain: keychain)])
         #endif
     }
+
+    public func request<T: Decodable>(_ api: API, dto: T.Type) -> AnyPublisher<T, DmsError> {
+        requestPublisher(api).map(dto, using: decoder)
+    }
+
+    public func request(_ api: API) -> AnyPublisher<Void, DmsError> {
+        requestPublisher(api)
+            .map { _ in return }
+            .eraseToAnyPublisher()
+    }
+
+    private func requestPublisher(_ api: API) -> AnyPublisher<Response, DmsError> {
+        return checkIsApiNeedsAuthorization(api) ?
+            authorizedRequest(api) :
+            defaultRequest(api)
+    }
 }
 
 private extension BaseRemoteDataSource {
-    func defaultRequest(_ api: API) async throws -> Response {
-        for _ in 0..<maxRetryCount {
-            do {
-                return try await performRequest(api)
-            } catch {
-                continue
-            }
-        }
-        return try await performRequest(api)
+    func defaultRequest(_ api: API) -> AnyPublisher<Response, DmsError> {
+        return provider.requestPublisher(api, callbackQueue: .main)
+            .retry(maxRetryCount)
+            .timeout(45, scheduler: DispatchQueue.main)
+            .mapError { api.errorMap[$0.errorCode] ?? .unknown }
+            .eraseToAnyPublisher()
     }
 
-    func authorizedRequest(_ api: API) async throws -> Response {
-        for _ in 0..<maxRetryCount {
-            do {
-                return try await performRequest(api)
-            } catch {
-                if checkTokenIsExpired() { try await tokenReissue() }
-                continue
-            }
-        }
-        return try await performRequest(api)
-    }
-
-    func performRequest(_ api: API) async throws -> Response {
-        try await withCheckedThrowingContinuation { config in
-            provider.request(api) { result in
-                switch result {
-                case let .success(res):
-                    config.resume(returning: res)
-
-                case let .failure(err):
-                    let code = err.response?.statusCode ?? 500
-                    config.resume(
-                        throwing: api.errorMap[code] ?? .custom()
-                    )
-                }
-            }
+    func authorizedRequest(_ api: API) -> AnyPublisher<Response, DmsError> {
+        if checkTokenIsExpired() {
+            return tokenReissue()
+                .retry(maxRetryCount)
+                .flatMap { self.defaultRequest(api) }
+                .eraseToAnyPublisher()
+        } else {
+            return defaultRequest(api)
         }
     }
 
-    func checkIsApiNeedsAuth(_ api: API) -> Bool {
+    func checkIsApiNeedsAuthorization(_ api: API) -> Bool {
         api.jwtTokenType == .accessToken
     }
 
@@ -74,7 +72,11 @@ private extension BaseRemoteDataSource {
         return Date() > expired
     }
 
-    func tokenReissue() async throws {
-        // TODO: Token Refresh
+    func tokenReissue() -> AnyPublisher<Void, DmsError> {
+        // swiftlint: disable force_cast
+        return provider.requestPublisher(AuthAPI.reissueToken as! API)
+            .map { _ in return }
+            .mapError { _ in DmsError.unknown }
+            .eraseToAnyPublisher()
     }
 }
