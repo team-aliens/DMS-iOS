@@ -1,13 +1,14 @@
 import Moya
 import DataMappingModule
 import ErrorModule
+import Foundation
 
 public enum AuthAPI {
     case signin(SigninRequestDTO)
     case verifyAuthCode(VerifyAuthCodeRequestDTO)
     case sendAuthCode(SendAuthCodeRequestDTO)
     case reissueToken
-    case emailExistByAccountID(EmailExistByAccountIDRequestDTO)
+    case checkEmailExistByAccountID(EmailExistByAccountIDRequestDTO)
     case checkAccountIDIsExist(id: String)
 }
 
@@ -27,7 +28,7 @@ extension AuthAPI: DmsAPI {
         case .reissueToken:
             return "/reissue"
 
-        case .emailExistByAccountID:
+        case .checkEmailExistByAccountID:
             return "/email"
 
         case .checkAccountIDIsExist:
@@ -37,7 +38,7 @@ extension AuthAPI: DmsAPI {
 
     public var method: Moya.Method {
         switch self {
-        case .verifyAuthCode, .emailExistByAccountID, .checkAccountIDIsExist:
+        case .verifyAuthCode, .checkEmailExistByAccountID, .checkAccountIDIsExist:
             return .get
 
         case .signin, .sendAuthCode:
@@ -63,7 +64,7 @@ extension AuthAPI: DmsAPI {
         case let .sendAuthCode(req):
             return .requestJSONEncodable(req)
 
-        case let .emailExistByAccountID(req):
+        case let .checkEmailExistByAccountID(req):
             return .requestParameters(parameters: [
                 "account_id": req.accountID,
                 "email": req.email
@@ -116,7 +117,7 @@ extension AuthAPI: DmsAPI {
                 401: .unknown
             ]
 
-        case .emailExistByAccountID:
+        case .checkEmailExistByAccountID:
             return [
                 400: .badRequest,
                 401: .diffrentEmailByAccountID,
@@ -128,6 +129,19 @@ extension AuthAPI: DmsAPI {
                 400: .badRequest,
                 404: .notFoundAccountID
             ]
+        }
+    }
+
+    public var sampleData: Data {
+        switch self {
+        case .checkAccountIDIsExist:
+            return """
+{
+    "email" : "abc******@gmail.com"
+}
+""".data(using: .utf8) ?? .init()
+        default:
+            return .init()
         }
     }
 }

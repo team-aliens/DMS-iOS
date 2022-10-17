@@ -46,7 +46,7 @@ public class BaseRemoteDataSource<API: DmsAPI> {
 private extension BaseRemoteDataSource {
     func defaultRequest(_ api: API) -> AnyPublisher<Response, DmsError> {
         return provider.requestPublisher(api, callbackQueue: .main)
-            .retry(2)
+            .retry(maxRetryCount)
             .timeout(45, scheduler: DispatchQueue.main)
             .mapError { api.errorMap[$0.errorCode] ?? .unknown }
             .eraseToAnyPublisher()
@@ -55,7 +55,7 @@ private extension BaseRemoteDataSource {
     func authorizedRequest(_ api: API) -> AnyPublisher<Response, DmsError> {
         if checkTokenIsExpired() {
             return tokenReissue()
-                .retry(2)
+                .retry(maxRetryCount)
                 .flatMap { self.defaultRequest(api) }
                 .eraseToAnyPublisher()
         } else {
