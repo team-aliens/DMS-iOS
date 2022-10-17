@@ -21,6 +21,15 @@ struct DmsToast: ViewModifier {
 
             dmsToastView()
         }
+        .onChange(of: isShowing) { newValue in
+            if isShowing {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    withAnimation {
+                        isShowing = false
+                    }
+                }
+            }
+        }
     }
 
     @ViewBuilder
@@ -57,13 +66,6 @@ struct DmsToast: ViewModifier {
                 .onTapGesture {
                     withAnimation {
                         isShowing = false
-                    }
-                }
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        withAnimation {
-                            isShowing = false
-                        }
                     }
                 }
             }
