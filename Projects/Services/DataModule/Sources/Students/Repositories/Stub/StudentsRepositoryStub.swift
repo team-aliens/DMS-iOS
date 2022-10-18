@@ -5,6 +5,8 @@ import ErrorModule
 import NetworkModule
 
 public struct StudentsRepositoryStub: StudentsRepository {
+    public init() {}
+
     public func signup(req: SignupRequestDTO) -> AnyPublisher<Void, DmsError> {
         Just(()).mapError { $0.asDMSError }
             .eraseToAnyPublisher()

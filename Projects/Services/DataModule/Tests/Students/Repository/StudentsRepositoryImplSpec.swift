@@ -79,7 +79,7 @@ final class StudentsRepositoryImplSpec: QuickSpec {
                 }
             }
             context("findID()을 실행하면") {
-                it("request를 성공적으로 실행하고, abc*****@gmail.com가 response로 온다") {
+                it("request를 성공적으로 실행하고, response가 온다") {
                     var success: Void?
                     var res: String?
                     sut.findID(req: .init(schoolID: "", name: "", grade: 0, classRoom: 0, number: 0))
