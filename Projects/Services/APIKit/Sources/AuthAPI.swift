@@ -96,38 +96,44 @@ extension AuthAPI: DmsAPI {
             return [
                 400: .badRequest,
                 401: .passwordMismatch,
-                404: .notFoundUserBySignin
+                404: .notFoundUserBySignin,
+                500: .internalServerError
             ]
 
         case .verifyAuthCode:
             return [
                 400: .badRequest,
                 401: .authCodeMismatch,
-                404: .notFoundAuthInfo
+                404: .notFoundAuthInfo,
+                500: .internalServerError
             ]
 
         case .sendAuthCode:
             return [
                 400: .badRequest,
-                429: .tooManyRequest
+                429: .tooManyRequest,
+                500: .internalServerError
             ]
 
         case .reissueToken:
             return [
-                401: .unknown
+                401: .unknown,
+                500: .internalServerError
             ]
 
         case .checkEmailExistByAccountID:
             return [
                 400: .badRequest,
                 401: .diffrentEmailByAccountID,
-                404: .notFoundAccountID
+                404: .notFoundAccountID,
+                500: .internalServerError
             ]
 
         case .checkAccountIDIsExist:
             return [
                 400: .badRequest,
-                404: .notFoundAccountID
+                404: .notFoundAccountID,
+                500: .internalServerError
             ]
         }
     }
