@@ -73,7 +73,6 @@ private extension BaseRemoteDataSource {
     }
 
     func tokenReissue() -> AnyPublisher<Void, DmsError> {
-        // swiftlint: disable force_cast
         let provider = MoyaProvider<AuthAPI>(plugins: [JwtPlugin(keychain: keychain)])
         return provider.requestPublisher(.reissueToken)
             .map { _ in return }
