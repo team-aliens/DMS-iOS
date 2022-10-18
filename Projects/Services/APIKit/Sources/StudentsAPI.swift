@@ -96,22 +96,47 @@ extension StudentsAPI: DmsAPI {
     public var errorMap: [Int: DmsError] {
         switch self {
         case .signup:
-            return [:]
+            return [
+                400: .badRequest,
+                409: .alreadyExistUserBySignup,
+                500: .internalServerError
+            ]
 
         case .checkDuplicateAccountID:
-            return [:]
+            return [
+                400: .badRequest,
+                409: .alreadyExistIDByCheckID,
+                500: .internalServerError
+            ]
 
         case .checkDuplicateEmail:
-            return [:]
+            return [
+                400: .badRequest,
+                409: .alreadyExistEmailByCheckEmail,
+                500: .internalServerError
+            ]
 
         case .renewalPassword:
-            return [:]
+            return [
+                400: .badRequest,
+                401: .authCodeMismatch,
+                404: .notFoundAuthInfo,
+                500: .internalServerError
+            ]
 
         case .findID:
-            return [:]
+            return [
+                400: .badRequest,
+                401: .invalidStudentInfoByFindID,
+                404: .notFoundUserBySignin,
+                500: .internalServerError
+            ]
 
         case .fetchMyProfile:
-            return [:]
+            return [
+                401: .tokenExpired,
+                500: .internalServerError
+            ]
         }
     }
 
