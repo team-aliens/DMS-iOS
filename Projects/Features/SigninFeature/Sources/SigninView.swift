@@ -83,7 +83,7 @@ struct SigninView: View {
                     .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
 
                 DMSButton(text: "회원가입", style: .text, color: .GrayScale.gray6) {
-                    viewModel.isNavigationSignin.toggle()
+                    viewModel.isNavigateSignin.toggle()
                 }
             }
 
@@ -97,6 +97,7 @@ struct SigninView: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 24)
         .dmsBackground()
+        .navigate(to: Text("회원가입"), when: $viewModel.isNavigateSignin)
     }
 }
 
