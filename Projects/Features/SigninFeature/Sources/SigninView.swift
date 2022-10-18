@@ -87,9 +87,10 @@ struct SigninView: View {
                 }
             }
 
-            DMSButton(text: "로그인", color: .PrimaryVariant.primary) {
+            DMSWideButton(text: "로그인", color: .PrimaryVariant.primary) {
                 viewModel.signinButtonDidTap()
             }
+            .padding(.top, 24)
             .frame(maxWidth: .infinity)
             .padding(.bottom, 40)
         }
@@ -101,6 +102,6 @@ struct SigninView: View {
 
 struct SigninView_Previews: PreviewProvider {
     static var previews: some View {
-        SigninView(viewModel: .init())
+        Text("A")
     }
 }
