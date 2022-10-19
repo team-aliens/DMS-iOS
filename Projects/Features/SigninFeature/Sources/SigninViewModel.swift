@@ -16,7 +16,8 @@ final class SigninViewModel: BaseViewModel {
 
     func signinButtonDidTap() {
         addCancellable(signinUseCase.execute(req: .init(accountID: id, password: password))) { [weak self] _ in
-            self?.isNavigateSignup = true
+            self?.isErrorOcuured = true
+            self?.errorMessage = "아이디 또는 비밀번호를 확인해주세요"
         }
     }
 }

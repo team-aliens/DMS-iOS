@@ -59,9 +59,13 @@ public struct DMSFloatingTextField: View {
                     .focused($isFocused)
                     .onSubmit(onCommit)
 
-                if isErrorOrHelpNotEmpty {
-                    Text(isError ? errorMessage : helpMessage)
-                        .dmsFont(.text(.extraSmall), color: isError ? .System.error : .GrayScale.gray5)
+                if !isError && !helpMessage.isEmpty {
+                    Text(helpMessage)
+                        .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
+                        .offset(x: 5)
+                } else if isError && !errorMessage.isEmpty {
+                    Text(errorMessage)
+                        .dmsFont(.text(.extraSmall), color: .System.error)
                         .offset(x: 5)
                 }
             }

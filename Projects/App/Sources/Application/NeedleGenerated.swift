@@ -48,6 +48,14 @@ extension AppComponent: Registration {
         localTable["checkEmailExistByAccountIDUseCase-any CheckEmailExistByAccountIDUseCase"] = { self.checkEmailExistByAccountIDUseCase as Any }
         localTable["checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"] = { self.checkAccountIDIsExistUseCase as Any }
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
+        localTable["remoteStudentsDataSource-any RemoteStudentsDataSource"] = { self.remoteStudentsDataSource as Any }
+        localTable["studentsRepository-any StudentsRepository"] = { self.studentsRepository as Any }
+        localTable["signupUseCase-any SignupUseCase"] = { self.signupUseCase as Any }
+        localTable["checkDuplicateAccountIDUseCase-any CheckDuplicateAccountIDUseCase"] = { self.checkDuplicateAccountIDUseCase as Any }
+        localTable["checkDuplicateEmailUseCase-any CheckDuplicateEmailUseCase"] = { self.checkDuplicateEmailUseCase as Any }
+        localTable["renewalPasswordUseCase-any RenewalPasswordUseCase"] = { self.renewalPasswordUseCase as Any }
+        localTable["findIDUseCase-any FindIDUseCase"] = { self.findIDUseCase as Any }
+        localTable["fetchMyProfileUseCase-any FetchMyProfileUseCase"] = { self.fetchMyProfileUseCase as Any }
     }
 }
 extension SigninComponent: Registration {

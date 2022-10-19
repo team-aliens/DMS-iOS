@@ -29,7 +29,11 @@ struct SigninView: View {
             }
 
             VStack(spacing: 72) {
-                DMSFloatingTextField("아이디", text: $viewModel.id) {
+                DMSFloatingTextField(
+                    "아이디",
+                    text: $viewModel.id,
+                    isError: viewModel.isErrorOcuured
+                ) {
                     focusField = .password
                 }
                 .textContentType(.username)
@@ -85,7 +89,7 @@ struct SigninView: View {
                     .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
 
                 DMSButton(text: "회원가입", style: .text, color: .GrayScale.gray6) {
-                    viewModel.isNavigateSignin.toggle()
+                    viewModel.isNavigateSignup.toggle()
                 }
             }
 
@@ -96,6 +100,7 @@ struct SigninView: View {
             .frame(maxWidth: .infinity)
             .padding(.bottom, 40)
         }
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 24)
         .dmsBackground()
