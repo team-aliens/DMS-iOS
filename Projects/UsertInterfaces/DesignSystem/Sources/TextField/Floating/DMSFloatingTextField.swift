@@ -8,6 +8,7 @@ public struct DMSFloatingTextField: View {
     var errorMessage: String
     var onCommit: () -> Void
     @FocusState var isFocused: Bool
+    @Namespace var animation
     private var isFloaintg: Bool {
         isFocused || !text.isEmpty
     }
@@ -41,8 +42,9 @@ public struct DMSFloatingTextField: View {
     public var body: some View {
         ZStack(alignment: .leading) {
             Text(label)
-                .dmsFont(.text(isFloaintg ? .medium : .extraLarge), color: dmsForegroundColor)
+                .dmsFont(.text(.extraLarge), color: dmsForegroundColor)
                 .offset(y: isFloaintg ? -40 : isErrorOrHelpNotEmpty ? -10 : 0)
+                .scaleEffect(isFloaintg ? 0.8 : 1, anchor: .topLeading)
 
             VStack(alignment: .leading, spacing: 10) {
                 TextField("", text: $text)

@@ -43,8 +43,9 @@ public struct SecureDMSFloatingTextField: View {
         ZStack(alignment: .leading) {
             HStack {
                 Text(label)
-                    .dmsFont(.text(isFloaintg ? .medium : .extraLarge), color: dmsForegroundColor)
+                    .dmsFont(.text(.extraLarge), color: dmsForegroundColor)
                     .offset(y: isFloaintg ? -40 : isErrorOrHelpNotEmpty ? -10 : 0)
+                    .scaleEffect(isFloaintg ? 0.8 : 1, anchor: .topLeading)
                     .onTapGesture {
                         isFocused = true
                     }

@@ -98,6 +98,7 @@ struct SigninView: View {
         .padding(.horizontal, 24)
         .dmsBackground()
         .navigate(to: Text("회원가입"), when: $viewModel.isNavigateSignin)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
