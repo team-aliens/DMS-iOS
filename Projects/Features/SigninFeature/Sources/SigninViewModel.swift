@@ -15,5 +15,6 @@ final class SigninViewModel: BaseViewModel {
     }
 
     func signinButtonDidTap() {
+        
     }
 }

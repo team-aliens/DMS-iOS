@@ -32,11 +32,13 @@ struct SigninView: View {
                 DMSFloatingTextField("아이디", text: $viewModel.id) {
                     focusField = .password
                 }
+                .textContentType(.username)
                 .focused($focusField, equals: .id)
 
                 SecureDMSFloatingTextField("비밀번호", text: $viewModel.password) {
                     viewModel.signinButtonDidTap()
                 }
+                .textContentType(.password)
                 .focused($focusField, equals: .password)
             }
             .padding(.top, 68)
