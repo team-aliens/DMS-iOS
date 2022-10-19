@@ -4,7 +4,7 @@ import ErrorModule
 import Foundation
 
 public enum SchoolAPI {
-    case viewSchoolList
+    case getSchoolList
     case getSchoolQuestion(authCode: String)
     case checkSchoolQuestion(schoolID: String, answer: String)
     case checkSchoolAuthCode(schoolID: String, schoolCode: String)
@@ -16,7 +16,7 @@ extension SchoolAPI: DmsAPI {
      }
     public var urlPath: String {
         switch self {
-        case .viewSchoolList:
+        case .getSchoolList:
             return "/"
         case let .getSchoolQuestion(authCode):
             return "/question/\(authCode)"
@@ -29,7 +29,7 @@ extension SchoolAPI: DmsAPI {
 
     public var errorMap: [Int: ErrorModule.DmsError] {
         switch self {
-        case .viewSchoolList:
+        case .getSchoolList:
             return [
                 429: .tooManyRequest,
                 500: .internalServerError
