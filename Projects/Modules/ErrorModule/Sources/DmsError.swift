@@ -6,19 +6,27 @@ public enum DmsError: Error {
     case badRequest
     case tokenExpired
     case tooManyRequest
+    case internalServerError
+
+    // MARK: VerifyAuthCode
+    case authCodeMismatch
+    case notFoundAuthInfo
 
     // MARK: - Auth
     // MARK: Signin
     case passwordMismatch
     case notFoundUserBySignin
 
-    // MARK: VerifyAuthCode
-    case authCodeMismatch
-    case notFoundAuthInfo
-
     // MARK: emailExistByAccountID
     case diffrentEmailByAccountID
     case notFoundAccountID
+
+    // MARK: - Students
+    case alreadyExistUserBySignup
+    case alreadyExistIDByCheckID
+    case alreadyExistEmailByCheckEmail
+    case invalidStudentInfoByFindID
+    case notFoundStudentByFindID
 }
 
 extension DmsError: LocalizedError {
@@ -39,6 +47,9 @@ extension DmsError: LocalizedError {
         case .tooManyRequest:
             return "요청 횟수를 초과했습니다. 잠시 후 다시 시도해주세요!"
 
+        case .internalServerError:
+            return "서버에서 문제가 발생하였습니다. 잠시 후 다시 시도해주세요!"
+
         // MARK: - Auth
 
         case .passwordMismatch, .notFoundUserBySignin:
@@ -55,6 +66,23 @@ extension DmsError: LocalizedError {
 
         case .notFoundAccountID:
             return "아이디에 따른 유저를 찾을 수 없습니다."
+
+        // MARK: - Students
+
+        case .alreadyExistUserBySignup:
+            return "이미 회원가입한 학생합니다!"
+
+        case .alreadyExistIDByCheckID:
+            return "이미 존재하는 아이디입니다."
+
+        case .alreadyExistEmailByCheckEmail:
+            return "이미 존재하는 이메일입니다."
+
+        case .invalidStudentInfoByFindID:
+            return "학생 정보가 일치하지 않습니다."
+
+        case .notFoundStudentByFindID:
+            return "이름과 학번이 일치하는 계정이 존재하지 않습니다."
         }
     }
 }
