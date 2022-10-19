@@ -11,7 +11,7 @@ open class BaseViewModel: ObservableObject {
     public init() {}
 
     public func addCancellable<T>(
-        _ publisher: AnyPublisher<T, Error>,
+        _ publisher: AnyPublisher<T, DmsError>,
         onReceiveValue: @escaping (T) -> Void,
         onReceiveError: ((DmsError) -> Void)? = nil
     ) {
