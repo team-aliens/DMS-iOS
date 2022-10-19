@@ -68,7 +68,7 @@ extension DmsError: LocalizedError {
             return "아이디에 따른 유저를 찾을 수 없습니다."
 
         // MARK: - Students
-            
+
         case .alreadyExistUserBySignup:
             return "이미 회원가입한 학생합니다!"
 
