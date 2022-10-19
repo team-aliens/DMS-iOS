@@ -15,6 +15,7 @@ final class SigninViewModel: BaseViewModel {
     }
 
     func signinButtonDidTap() {
-        
+        addCancellable(signinUseCase.execute(req: .init(accountID: id, password: password))) { [weak self] _ in
+        }
     }
 }
