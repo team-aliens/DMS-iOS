@@ -6,6 +6,7 @@ public extension SingleSchoolResponseDTO {
         return SchoolEntity(
             id: id,
             name: name,
-            address: address)
+            address: address
+        )
     }
 }
