@@ -4,7 +4,7 @@ public struct CheckSchoolQuestionResponseDTO: Codable {
 
     public let question: String
 
-    internal init(question: String) {
+    public init(question: String) {
         self.question = question
     }
 }

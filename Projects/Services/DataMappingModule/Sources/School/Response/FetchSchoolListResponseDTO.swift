@@ -4,7 +4,7 @@ public struct FetchSchoolListResponseDTO: Codable {
 
     public let schools: [SingleSchoolResponseDTO]
 
-    internal init(schools: [SingleSchoolResponseDTO]) {
+    public init(schools: [SingleSchoolResponseDTO]) {
         self.schools = schools
     }
 }
