@@ -13,22 +13,22 @@ public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
                 name: "대덕소프트웨어마이스터고등학교",
                 address: "대전광역시 유성구 가정북로 76"
             )
-        ]).mapError { $0.asDMSError }
+        ]).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 
     public func getSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
-        Just("우리 학교 학생 수는?").mapError { $0.asDMSError }
+        Just("우리 학교 학생 수는?").setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 
     public func checkSchoolQuestion(schoolID: String, answer: String) -> AnyPublisher<Void, DmsError> {
-        Just(()).mapError { $0.asDMSError }
+        Just(()).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 
     public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<String, DmsError> {
-        Just("aa-bb-pk").mapError { $0.asDMSError }
+        Just("aa-bb-pk").setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
 
     }
