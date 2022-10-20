@@ -21,7 +21,7 @@ struct DmsToast: ViewModifier {
 
             dmsToastView()
         }
-        .onChange(of: isShowing) { newValue in
+        .onChange(of: isShowing) { _ in
             if isShowing {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     withAnimation {
