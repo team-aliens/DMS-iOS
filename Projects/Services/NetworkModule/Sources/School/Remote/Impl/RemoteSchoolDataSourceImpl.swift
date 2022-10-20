@@ -6,13 +6,13 @@ import ErrorModule
 
 public final class RemoteSchoolDataSourceImpl: BaseRemoteDataSource<SchoolAPI>, RemoteSchoolDataSource {
     public func getSchoolList() -> AnyPublisher<[SchoolEntity], DmsError> {
-        request(.getSchoolList, dto: FetchSchoolListResponseDTO.self)
+        request(.fetchSchoolList, dto: FetchSchoolListResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
 
     public func getSchoolQuestion(authCode: String) -> AnyPublisher<CheckSchoolQuestionEntity, DmsError> {
-        request(.getSchoolQuestion(authCode: authCode), dto: CheckSchoolQuestionResponseDTO.self)
+        request(.fetchSchoolQuestion(authCode: authCode), dto: CheckSchoolQuestionResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
