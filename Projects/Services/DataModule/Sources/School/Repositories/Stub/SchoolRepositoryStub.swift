@@ -1,11 +1,3 @@
-//
-//  SchoolRepositoryStub.swift
-//  DataModule
-//
-//  Created by 김대희 on 2022/10/20.
-//  Copyright © 2022 com.team.aliens. All rights reserved.
-//
-
 import Combine
 import DataMappingModule
 import DomainModule
@@ -13,11 +5,7 @@ import ErrorModule
 import NetworkModule
 
 public struct SchoolRepositoryStub: SchoolRepository {
-    private let remoteSchoolDataSource: any RemoteSchoolDataSource
-
-    public init(remoteSchoolDataSource: any RemoteSchoolDataSource) {
-        self.remoteSchoolDataSource = remoteSchoolDataSource
-    }
+    public init() {}
 
     public func getSchoolList() -> AnyPublisher<[SchoolEntity], DmsError> {
         Just([
@@ -32,19 +20,22 @@ public struct SchoolRepositoryStub: SchoolRepository {
     }
 
     public func getSchoolQuestion(authCode: String) -> AnyPublisher<CheckSchoolQuestionEntity, DmsError> {
-        Just(CheckSchoolQuestionEntity(question: "")).setFailureType(to: DmsError.self)
+        Just(CheckSchoolQuestionEntity(question: ""))
+            .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
 
     }
 
     public func checkSchoolQuestion(schoolID: String, answer: String) -> AnyPublisher<Void, DmsError> {
-        Just(()).setFailureType(to: DmsError.self)
+        Just(())
+            .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
 
     }
 
     public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<CheckSchoolCodeEntity, DmsError> {
-        Just(CheckSchoolCodeEntity(schoolID: schoolID)).setFailureType(to: DmsError.self)
+        Just(CheckSchoolCodeEntity(schoolID: schoolID))
+            .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 }
