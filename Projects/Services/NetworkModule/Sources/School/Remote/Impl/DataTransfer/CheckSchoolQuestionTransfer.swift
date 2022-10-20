@@ -1,5 +1,3 @@
-//
-//  CheckSchoolQuestionTransfer.swift
 import DataMappingModule
 import DomainModule
 
