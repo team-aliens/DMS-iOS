@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol CheckSchoolAuthCodeUseCase {
-    func execute(schoolID: String, code: String) -> AnyPublisher<CheckSchoolAuthCodeResponseDTO, DmsError>
+    func execute(schoolID: String, code: String) -> AnyPublisher<CheckSchoolCodeResponseDTO, DmsError>
 }
