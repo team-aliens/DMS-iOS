@@ -4,6 +4,8 @@ import DomainModule
 import ErrorModule
 
 public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
+    public init() {}
+
     public func getSchoolList() -> AnyPublisher<[SchoolEntity], DmsError> {
         Just([
             SchoolEntity(
@@ -30,7 +32,4 @@ public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
             .eraseToAnyPublisher()
 
     }
-
-    public init() {}
-
 }

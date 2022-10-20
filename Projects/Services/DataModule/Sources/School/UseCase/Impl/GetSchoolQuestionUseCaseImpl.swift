@@ -12,7 +12,6 @@ import DomainModule
 import ErrorModule
 
 public struct GetSchoolQuestionUseCaseImpl: GetSchoolQuestionUseCase {
-
     private let schoolRepository: any SchoolRepository
 
     public init(schoolRepository: any SchoolRepository) {

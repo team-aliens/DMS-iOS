@@ -1,7 +1,6 @@
 import Foundation
 
 public struct CheckSchoolCodeResponseDTO: Codable {
-
     public let schoolID: String
 
     public init(schoolID: String) {

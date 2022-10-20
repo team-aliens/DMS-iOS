@@ -4,7 +4,6 @@ import DomainModule
 import ErrorModule
 
 public struct CheckSchoolQuestionUseCaseImpl: CheckSchoolQuestionUseCase {
-
     private let schoolRepository: any SchoolRepository
 
     public init(schoolRepository: any SchoolRepository) {

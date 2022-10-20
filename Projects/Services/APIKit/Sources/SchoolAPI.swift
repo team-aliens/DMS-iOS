@@ -20,10 +20,13 @@ extension SchoolAPI: DmsAPI {
         switch self {
         case .fetchSchoolList:
             return "/"
+
         case let .fetchSchoolQuestion(authCode):
             return "/question/\(authCode)"
+
         case let .checkSchoolQuestion(schoolID, _):
             return "/answer/\(schoolID)"
+
         case let .checkSchoolCode(schoolID, _):
             return "/code/\(schoolID)"
         }
@@ -39,10 +42,12 @@ extension SchoolAPI: DmsAPI {
             return .requestParameters(parameters: [
                 "answer": answer
             ], encoding: URLEncoding.queryString)
+
         case let .checkSchoolCode(_, code):
             return .requestParameters(parameters: [
                 "school_code": code
             ], encoding: URLEncoding.queryString)
+
         default:
             return .requestPlain
         }

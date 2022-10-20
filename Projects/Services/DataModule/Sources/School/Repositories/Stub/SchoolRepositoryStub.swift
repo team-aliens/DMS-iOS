@@ -16,21 +16,18 @@ public struct SchoolRepositoryStub: SchoolRepository {
             )
         ]).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
-
     }
 
     public func getSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
         Just("우리 학교의 학생 수는 몇 명입니까?")
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
-
     }
 
     public func checkSchoolQuestion(schoolID: String, answer: String) -> AnyPublisher<Void, DmsError> {
         Just(())
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
-
     }
 
     public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<String, DmsError> {
