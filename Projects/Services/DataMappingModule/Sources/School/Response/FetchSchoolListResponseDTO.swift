@@ -1,6 +1,6 @@
 import Foundation
 
-public struct FetchSchoolListResponseDTO: Encodable {
+public struct FetchSchoolListResponseDTO: Codable {
 
     public let schools: [SingleSchoolResponseDTO]
 

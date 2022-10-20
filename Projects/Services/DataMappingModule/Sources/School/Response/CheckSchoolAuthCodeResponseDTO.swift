@@ -1,6 +1,6 @@
 import Foundation
 
-public struct CheckSchoolAuthCodeResponseDTO: Encodable {
+public struct CheckSchoolAuthCodeResponseDTO: Codable {
 
     public let schoolID: String
 
