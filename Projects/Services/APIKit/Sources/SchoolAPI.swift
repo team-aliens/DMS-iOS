@@ -29,14 +29,37 @@ extension SchoolAPI: DmsAPI {
         }
     }
 
+    public var method: Moya.Method {
+        return .get
+    }
+
+    public var task: Moya.Task {
+        switch self {
+        case let .checkSchoolQuestion(_, answer):
+            return .requestParameters(parameters: [
+                "answer": answer
+            ], encoding: URLEncoding.queryString)
+        case let .checkSchoolCode(_, code):
+            return .requestParameters(parameters: [
+                "school_code": code
+            ], encoding: URLEncoding.queryString)
+        default:
+            return .requestPlain
+        }
+    }
+
+    public var jwtTokenType: JwtTokenType {
+        return .none
+    }
+
     public var errorMap: [Int: ErrorModule.DmsError] {
         switch self {
-        case .getSchoolList:
+        case .fetchSchoolList:
             return [
                 429: .tooManyRequest,
                 500: .internalServerError
             ]
-        case .getSchoolQuestion:
+        case .fetchSchoolQuestion:
             return [
                 400: .badRequest,
                 404: .notFoundSchool,
@@ -62,29 +85,6 @@ extension SchoolAPI: DmsAPI {
                 500: .internalServerError
             ]
         }
-    }
-
-    public var method: Moya.Method {
-        return .get
-    }
-
-    public var task: Moya.Task {
-        switch self {
-        case let .checkSchoolQuestion(_, answer):
-            return .requestParameters(parameters: [
-                "answer": answer
-            ], encoding: URLEncoding.queryString)
-        case let .checkSchoolCode(_, code):
-            return .requestParameters(parameters: [
-                "school_code": code
-            ], encoding: URLEncoding.queryString)
-        default:
-            return .requestPlain
-        }
-    }
-
-    public var jwtTokenType: JwtTokenType {
-        return .none
     }
 
 }
