@@ -7,7 +7,7 @@ public enum SchoolAPI {
     case getSchoolList
     case getSchoolQuestion(authCode: String)
     case checkSchoolQuestion(schoolID: String, answer: String)
-    case checkSchoolAuthCode(schoolID: String, code: String)
+    case checkSchoolCode(schoolID: String, code: String)
 }
 
 extension SchoolAPI: DmsAPI {
@@ -22,7 +22,7 @@ extension SchoolAPI: DmsAPI {
             return "/question/\(authCode)"
         case let .checkSchoolQuestion(schoolID, _):
             return "/answer/\(schoolID)"
-        case let .checkSchoolAuthCode(schoolID, _):
+        case let .checkSchoolCode(schoolID, _):
             return "/code/\(schoolID)"
         }
     }
@@ -51,7 +51,7 @@ extension SchoolAPI: DmsAPI {
                 500: .internalServerError
             ]
 
-        case .checkSchoolAuthCode:
+        case .checkSchoolCode:
             return [
                 400: .badRequest,
                 401: .invalidQuestionAnswer,
@@ -72,7 +72,7 @@ extension SchoolAPI: DmsAPI {
             return .requestParameters(parameters: [
                 "answer": answer
             ], encoding: URLEncoding.queryString)
-        case let .checkSchoolAuthCode(_, code):
+        case let .checkSchoolCode(_, code):
             return .requestParameters(parameters: [
                 "school_code": code
             ], encoding: URLEncoding.queryString)
