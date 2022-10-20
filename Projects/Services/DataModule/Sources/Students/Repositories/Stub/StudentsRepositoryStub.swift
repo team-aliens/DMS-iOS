@@ -8,27 +8,27 @@ public struct StudentsRepositoryStub: StudentsRepository {
     public init() {}
 
     public func signup(req: SignupRequestDTO) -> AnyPublisher<Void, DmsError> {
-        Just(()).mapError { $0.asDMSError }
+        Just(()).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 
     public func checkDuplicateAccountID(id: String) -> AnyPublisher<Void, DmsError> {
-        Just(()).mapError { $0.asDMSError }
+        Just(()).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 
     public func checkDuplicateEmail(email: String) -> AnyPublisher<Void, DmsError> {
-        Just(()).mapError { $0.asDMSError }
+        Just(()).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 
     public func renewalPassword(req: RenewalPasswordRequestDTO) -> AnyPublisher<Void, DmsError> {
-        Just(()).mapError { $0.asDMSError }
+        Just(()).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 
     public func findID(req: FindIDRequestDTO) -> AnyPublisher<String, DmsError> {
-        Just("abc*****@gmail.com").mapError { $0.asDMSError }
+        Just("abc*****@gmail.com").setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 
@@ -42,7 +42,7 @@ public struct StudentsRepositoryStub: StudentsRepository {
                 minusPoint: 24,
                 phrase: "안녕하세요"
             )
-        ).mapError { $0.asDMSError }
+        ).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
 }
