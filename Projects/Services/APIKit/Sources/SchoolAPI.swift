@@ -7,7 +7,7 @@ public enum SchoolAPI {
     case getSchoolList
     case getSchoolQuestion(authCode: String)
     case checkSchoolQuestion(schoolID: String, answer: String)
-    case checkSchoolAuthCode(schoolID: String, schoolCode: String)
+    case checkSchoolAuthCode(schoolID: String, code: String)
 }
 
 extension SchoolAPI: DmsAPI {
@@ -72,9 +72,9 @@ extension SchoolAPI: DmsAPI {
             return .requestParameters(parameters: [
                 "answer": answer
             ], encoding: URLEncoding.queryString)
-        case let .checkSchoolAuthCode(_, schoolCode):
+        case let .checkSchoolAuthCode(_, code):
             return .requestParameters(parameters: [
-                "school_code": schoolCode
+                "school_code": code
             ], encoding: URLEncoding.queryString)
         default:
             return .requestPlain
