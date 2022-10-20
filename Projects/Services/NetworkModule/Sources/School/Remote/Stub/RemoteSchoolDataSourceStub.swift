@@ -6,7 +6,7 @@ import ErrorModule
 public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
     public init() {}
 
-    public func getSchoolList() -> AnyPublisher<[SchoolEntity], DmsError> {
+    public func fetchSchoolList() -> AnyPublisher<[SchoolEntity], DmsError> {
         Just([
             SchoolEntity(
                 id: "aa-bb-pk",
@@ -17,7 +17,7 @@ public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
             .eraseToAnyPublisher()
     }
 
-    public func getSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
+    public func fetchSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
         Just("우리 학교 학생 수는?").setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }

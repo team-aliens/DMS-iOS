@@ -5,13 +5,13 @@ import DataMappingModule
 import ErrorModule
 
 public final class RemoteSchoolDataSourceImpl: BaseRemoteDataSource<SchoolAPI>, RemoteSchoolDataSource {
-    public func getSchoolList() -> AnyPublisher<[SchoolEntity], DmsError> {
+    public func fetchSchoolList() -> AnyPublisher<[SchoolEntity], DmsError> {
         request(.fetchSchoolList, dto: FetchSchoolListResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
 
-    public func getSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
+    public func fetchSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
         request(.fetchSchoolQuestion(authCode: authCode), dto: CheckSchoolQuestionResponseDTO.self)
             .map { $0.question }
             .eraseToAnyPublisher()

@@ -11,12 +11,12 @@ public struct SchoolRepositoryImpl: SchoolRepository {
         self.remoteSchoolDataSource = remoteSchoolDataSource
     }
 
-    public func getSchoolList() -> AnyPublisher<[SchoolEntity], DmsError> {
-        remoteSchoolDataSource.getSchoolList()
+    public func fetchSchoolList() -> AnyPublisher<[SchoolEntity], DmsError> {
+        remoteSchoolDataSource.fetchSchoolList()
     }
 
-    public func getSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
-        remoteSchoolDataSource.getSchoolQuestion(authCode: authCode)
+    public func fetchSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
+        remoteSchoolDataSource.fetchSchoolQuestion(authCode: authCode)
     }
 
     public func checkSchoolQuestion(schoolID: String, answer: String) -> AnyPublisher<Void, DmsError> {

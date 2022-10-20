@@ -11,7 +11,7 @@ public struct GetSchoolListUseCaseImpl: GetSchoolListUseCase {
     }
 
     public func execute() -> AnyPublisher<[SchoolEntity], DmsError> {
-        schoolRepository.getSchoolList()
+        schoolRepository.fetchSchoolList()
     }
 
 }
