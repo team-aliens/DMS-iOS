@@ -19,7 +19,7 @@ public struct GetSchoolQuestionUseCaseImpl: GetSchoolQuestionUseCase {
         self.schoolRepository = schoolRepository
     }
 
-    public func execute(authCode: String) -> AnyPublisher<CheckSchoolQuestionEntity, DmsError> {
+    public func execute(authCode: String) -> AnyPublisher<String, DmsError> {
         schoolRepository.getSchoolQuestion(authCode: authCode)
     }
 

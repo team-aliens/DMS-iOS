@@ -15,7 +15,7 @@ public struct SchoolRepositoryImpl: SchoolRepository {
         remoteSchoolDataSource.getSchoolList()
     }
 
-    public func getSchoolQuestion(authCode: String) -> AnyPublisher<CheckSchoolQuestionEntity, DmsError> {
+    public func getSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
         remoteSchoolDataSource.getSchoolQuestion(authCode: authCode)
     }
 
@@ -23,7 +23,7 @@ public struct SchoolRepositoryImpl: SchoolRepository {
         remoteSchoolDataSource.checkSchoolQuestion(schoolID: schoolID, answer: answer)
     }
 
-    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<CheckSchoolCodeEntity, DmsError> {
+    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<String, DmsError> {
         remoteSchoolDataSource.checkSchoolCode(schoolID: schoolID, code: code)
     }
 }

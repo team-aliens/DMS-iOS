@@ -19,8 +19,8 @@ public struct SchoolRepositoryStub: SchoolRepository {
 
     }
 
-    public func getSchoolQuestion(authCode: String) -> AnyPublisher<CheckSchoolQuestionEntity, DmsError> {
-        Just(CheckSchoolQuestionEntity(question: ""))
+    public func getSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
+        Just("우리 학교의 학생 수는 몇 명입니까?")
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
 
@@ -33,8 +33,8 @@ public struct SchoolRepositoryStub: SchoolRepository {
 
     }
 
-    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<CheckSchoolCodeEntity, DmsError> {
-        Just(CheckSchoolCodeEntity(schoolID: schoolID))
+    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<String, DmsError> {
+        Just("b77eafed-69ab-422d-8448-1ec1f0a2eb8c")
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }

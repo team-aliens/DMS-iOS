@@ -15,8 +15,8 @@ public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
             .eraseToAnyPublisher()
     }
 
-    public func getSchoolQuestion(authCode: String) -> AnyPublisher<CheckSchoolQuestionEntity, DmsError> {
-        Just(CheckSchoolQuestionEntity(question: "")).mapError { $0.asDMSError }
+    public func getSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
+        Just("우리 학교 학생 수는?").mapError { $0.asDMSError }
             .eraseToAnyPublisher()
     }
 
@@ -25,8 +25,8 @@ public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
             .eraseToAnyPublisher()
     }
 
-    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<CheckSchoolCodeEntity, DmsError> {
-        Just(CheckSchoolCodeEntity(schoolID: schoolID)).mapError { $0.asDMSError }
+    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<String, DmsError> {
+        Just("aa-bb-pk").mapError { $0.asDMSError }
             .eraseToAnyPublisher()
 
     }
