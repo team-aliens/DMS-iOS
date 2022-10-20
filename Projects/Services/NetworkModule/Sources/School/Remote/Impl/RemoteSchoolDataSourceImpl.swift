@@ -16,7 +16,7 @@ public final class RemoteSchoolDataSourceImpl: BaseRemoteDataSource<SchoolAPI>, 
         request(.checkSchoolQuestion(schoolID: schoolID, answer: answer))
     }
 
-    public func checkSchoolAuthCode(schoolID: String, code: String) -> AnyPublisher<CheckSchoolCodeResponseDTO, ErrorModule.DmsError> {
+    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<CheckSchoolCodeResponseDTO, ErrorModule.DmsError> {
         request(.checkSchoolCode(schoolID: schoolID, code: code), dto: CheckSchoolCodeResponseDTO.self)
     }
 
