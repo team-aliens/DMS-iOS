@@ -2,6 +2,6 @@ import Combine
 import DataMappingModule
 import ErrorModule
 
-public protocol GetSchoolListUseCase {
+public protocol FetchSchoolListUseCase {
     func execute() -> AnyPublisher<[SchoolEntity], DmsError>
 }
