@@ -1,6 +1,9 @@
 import SwiftUI
 import DesignSystem
 import FindIDFeature
+
+import SigninFeature
+
 @main
 struct DMSApp: App {
     init() {
@@ -10,7 +13,7 @@ struct DMSApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                AppComponent().findIDComponent.makeView()
+                AppComponent().signinComponent.makeView()
             }
         }
     }
