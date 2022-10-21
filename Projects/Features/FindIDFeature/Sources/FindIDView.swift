@@ -24,12 +24,15 @@ struct FindIdView: View {
                     Text("DMS")
                         .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
                         .padding(.top, 28)
+
                     Text("아이디 찾기")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
                 }
                 .padding(.top, 28)
+
                 Spacer()
             }
+
             Spacer()
                 .frame(height: 70)
 
@@ -41,24 +44,28 @@ struct FindIdView: View {
                         focusField = .classRoom
                     }
                     .focused($focusField, equals: .grade)
+                    .keyboardType(.numberPad)
 
                     DMSFloatingTextField("반", text: $viewModel.classRoom) {
                         focusField = .number
                     }
                     .focused($focusField, equals: .classRoom)
+                    .keyboardType(.numberPad)
 
                     DMSFloatingTextField("번호", text: $viewModel.number) {
                         focusField = .name
                     }
                     .focused($focusField, equals: .number)
-
+                    .keyboardType(.numberPad)
                 }
+
                 DMSFloatingTextField("이름", text: $viewModel.name) {
                     viewModel.findIDButtonDidTap()
                 }
                 .focused($focusField, equals: .name)
 
             }
+
             Spacer()
 
             DMSWideButton(text: "아이디 찾기", color: .PrimaryVariant.primary) {

@@ -12,6 +12,11 @@ final class FIndIDViewModel: BaseViewModel {
 
     @Published var schoolList: [String] =  []
     @Published var isNavigateSignup = false
+    @Published var isSuccessFindID = false
+
+    var isSigninButtonEnabled: Bool {
+        !schoolID.isEmpty && !name.isEmpty && !grade.isEmpty && !classRoom.isEmpty && !number.isEmpty
+     }
 
     private let findIDUseCase: any FindIDUseCase
     private let checkSchoolCodeUseCase: any CheckSchoolCodeUseCase
@@ -25,5 +30,14 @@ final class FIndIDViewModel: BaseViewModel {
     }
 
     func findIDButtonDidTap() {
+        guard isNavigateSignup else { return }
+        addCancellable(findIDUseCase.execute(req: .init(
+            schoolID: schoolID,
+            name: name,
+            grade: Int(grade)!,
+            classRoom: Int(classRoom)!,
+            number: Int(number)!))) { [weak self] _ in
+                self?.isSuccessFindID = true
+         }
     }
 }
