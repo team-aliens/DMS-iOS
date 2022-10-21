@@ -14,9 +14,14 @@ final class FIndIDViewModel: BaseViewModel {
     @Published var isNavigateSignup = false
 
     private let findIDUseCase: any FindIDUseCase
+    private let checkSchoolCodeUseCase: any CheckSchoolCodeUseCase
 
-    public init(findIDUseCase: any FindIDUseCase) {
+    public init(
+        findIDUseCase: any FindIDUseCase,
+        checkSchoolCodeUseCase: any CheckSchoolCodeUseCase
+    ) {
         self.findIDUseCase = findIDUseCase
+        self.checkSchoolCodeUseCase = checkSchoolCodeUseCase
     }
 
     func findIDButtonDidTap() {
