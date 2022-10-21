@@ -32,6 +32,7 @@ struct FindIdView: View {
             }
             Spacer()
                 .frame(height: 70)
+
             VStack(spacing: 60) {
                 SchoolSelectButtonView(schoolList: $viewModel.schoolList)
 
@@ -58,18 +59,15 @@ struct FindIdView: View {
                 .focused($focusField, equals: .name)
 
             }
-
             Spacer()
-                .padding(.top, 68)
 
             DMSWideButton(text: "아이디 찾기", color: .PrimaryVariant.primary) {
                 viewModel.findIDButtonDidTap()
             }
-
+            .disabled(!viewModel.isNavigateSignup)
+            .padding(.bottom, 40)
         }
-        .navigationTitle("아이디 찾기")
         .dmsBackground()
-        .navigationBarTitleDisplayMode(.inline)
-        .padding(24)
+        .padding(.horizontal, 24)
     }
 }
