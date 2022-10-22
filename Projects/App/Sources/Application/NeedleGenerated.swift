@@ -22,6 +22,19 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 
 #if !NEEDLE_DYNAMIC
 
+private class SigninDependencyde06a9d0b22764487733Provider: SigninDependency {
+    var signinUseCase: any SigninUseCase {
+        return appComponent.signinUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->SigninComponent
+private func factory2882a056d84a613debccf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SigninDependencyde06a9d0b22764487733Provider(appComponent: parent1(component) as! AppComponent)
+}
 private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
         return appComponent.findIDUseCase
@@ -29,25 +42,14 @@ private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase {
         return appComponent.checkSchoolCodeUseCase
     }
-}
-private class SigninDependencyde06a9d0b22764487733Provider: SigninDependency {
-    var signinUseCase: any SigninUseCase {
-        return appComponent.signinUseCase
-
-    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
     }
 }
-
 /// ^->AppComponent->FindIDComponent
 private func factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return FindIDDependencyb481fe947a844cc29913Provider(appComponent: parent1(component) as! AppComponent)
-}
-/// ^->AppComponent->SigninComponent
-private func factory2882a056d84a613debccf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return SigninDependencyde06a9d0b22764487733Provider(appComponent: parent1(component) as! AppComponent)
 }
 
 #else
@@ -80,15 +82,15 @@ extension AppComponent: Registration {
         localTable["checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"] = { self.checkSchoolCodeUseCase as Any }
     }
 }
+extension SigninComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\SigninDependency.signinUseCase] = "signinUseCase-any SigninUseCase"
+    }
+}
 extension FindIDComponent: Registration {
     public func registerItems() {
         keyPathToName[\FindIDDependency.findIDUseCase] = "findIDUseCase-any FindIDUseCase"
         keyPathToName[\FindIDDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
-    }
-}
-extension SigninComponent: Registration {
-    public func registerItems() {
-        keyPathToName[\SigninDependency.signinUseCase] = "signinUseCase-any SigninUseCase"
     }
 }
 
@@ -108,8 +110,8 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
-    registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
 #endif
 
