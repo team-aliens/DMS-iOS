@@ -1,10 +1,7 @@
 import SwiftUI
 import DesignSystem
 
-struct FindIdView: View {
-
-    @FocusState private var focusField: FocusField?
-    @StateObject var viewModel: FIndIDViewModel
+struct FindIDView: View {
 
     private enum FocusField {
         case grade
@@ -12,6 +9,9 @@ struct FindIdView: View {
         case number
         case name
     }
+
+    @FocusState private var focusField: FocusField?
+    @StateObject var viewModel: FIndIDViewModel
 
     public init(viewModel: FIndIDViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)

@@ -9,7 +9,7 @@ public protocol FindIDDependency: Dependency {
 
 public final class FindIDComponent: Component<FindIDDependency> {
     public func makeView() -> some View {
-        FindIdView(
+        FindIDView(
             viewModel: .init(
                 findIDUseCase: self.dependency.findIDUseCase,
                 checkSchoolCodeUseCase: self.dependency.checkSchoolCodeUseCase
