@@ -2,14 +2,12 @@ import SwiftUI
 import DesignSystem
 
 struct FindIDView: View {
-
     private enum FocusField {
         case grade
         case classRoom
         case number
         case name
     }
-
     @FocusState private var focusField: FocusField?
     @StateObject var viewModel: FIndIDViewModel
 
@@ -71,10 +69,13 @@ struct FindIDView: View {
             DMSWideButton(text: "아이디 찾기", color: .PrimaryVariant.primary) {
                 viewModel.findIDButtonDidTap()
             }
-            .disabled(!viewModel.isNavigateSignup)
+            .disabled(!viewModel.isSigninButtonEnabled)
             .padding(.bottom, 40)
         }
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsBackground()
+        .frame(maxWidth: .infinity)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .padding(.horizontal, 24)
     }
 }
