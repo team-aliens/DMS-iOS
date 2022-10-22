@@ -30,7 +30,7 @@ final class FIndIDViewModel: BaseViewModel {
     }
 
     func findIDButtonDidTap() {
-        guard isNavigateSignup else { return }
+        guard isSigninButtonEnabled else { return }
         addCancellable(findIDUseCase.execute(req: .init(
             schoolID: schoolID,
             name: name,
