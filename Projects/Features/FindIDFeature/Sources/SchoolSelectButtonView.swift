@@ -19,7 +19,6 @@ struct SchoolSelectButtonView: View {
             HStack(alignment: .bottom) {
                 Text(selectedColor)
                     .dmsFont(.text(.medium), color: textColor)
-                    .foregroundColor(.GrayScale.gray5 )
                 Spacer()
                 Menu {
                     Picker("", selection: $selectedColor) {
