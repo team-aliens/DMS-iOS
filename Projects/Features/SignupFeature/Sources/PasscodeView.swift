@@ -19,6 +19,7 @@ struct PasscodeView: View {
                             text = String(text.prefix(8))
                         }
                     })
+
                 HStack(spacing: 20) {
                     ForEach(1...8, id: \.self) { num in
                         Circle()
