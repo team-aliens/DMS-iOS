@@ -37,8 +37,10 @@ struct AuthenticationCodeView: View {
             VStack {
                 PasscodeView(text: $text)
                     .padding(.horizontal, 64)
+
                 Spacer()
                     .frame(height: 24)
+
                 Text("이메일로 전송된 인증코드 8자리를 입력해주세요.")
                     .dmsFont(.text(.small), color: .GrayScale.gray5)
                     .padding(.horizontal, 24)
