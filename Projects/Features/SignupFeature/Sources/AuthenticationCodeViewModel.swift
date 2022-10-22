@@ -25,7 +25,9 @@ final class AuthenticationCodeViewModel: BaseViewModel {
         addCancellable(
             checkSchoolCodeUseCase.execute(
                 schoolID: schoolID,
-                code: schoolCode)) { [weak self] _ in
+                code: schoolCode
+            )
+        ) { [weak self] _ in
             self?.isNavigateCheckSchool = true
         }
     }
