@@ -48,6 +48,7 @@ struct AuthenticationCodeView: View {
 
             }
             Spacer()
+
             DMSWideButton(text: "인증", color: .PrimaryVariant.primary) {
                 viewModel.verifyAuthCodeButtonDidTap()
             }
