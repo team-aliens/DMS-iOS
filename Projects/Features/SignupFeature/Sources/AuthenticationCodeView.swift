@@ -25,6 +25,7 @@ struct AuthenticationCodeView: View {
                     Text("학교 인증코드 입력")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
                 }
+
                 Spacer()
             }
             .padding(.horizontal, 24)
