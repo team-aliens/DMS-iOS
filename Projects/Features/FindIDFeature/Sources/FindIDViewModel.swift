@@ -31,12 +31,16 @@ final class FIndIDViewModel: BaseViewModel {
 
     func findIDButtonDidTap() {
         guard isSigninButtonEnabled else { return }
+        guard let grade = Int(grade) else { return }
+        guard let classRoom = Int(classRoom) else { return }
+        guard let number = Int(number) else { return }
+
         addCancellable(findIDUseCase.execute(req: .init(
             schoolID: schoolID,
             name: name,
-            grade: Int(grade)!,
-            classRoom: Int(classRoom)!,
-            number: Int(number)!))) { [weak self] _ in
+            grade: grade,
+            classRoom: classRoom,
+            number: number))) { [weak self] _ in
                 self?.isSuccessFindID = true
          }
     }
