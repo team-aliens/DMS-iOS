@@ -21,8 +21,8 @@ public final class RemoteSchoolDataSourceImpl: BaseRemoteDataSource<SchoolAPI>, 
         request(.checkSchoolQuestion(schoolID: schoolID, answer: answer))
     }
 
-    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<String, DmsError> {
-        request(.checkSchoolCode(schoolID: schoolID, code: code), dto: CheckSchoolCodeResponseDTO.self)
+    public func checkSchoolCode(code: String) -> AnyPublisher<String, DmsError> {
+        request(.checkSchoolCode(code: code), dto: CheckSchoolCodeResponseDTO.self)
             .map { $0.schoolID }
             .eraseToAnyPublisher()
     }
