@@ -73,6 +73,7 @@ struct FindIDView: View {
         }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsBackground()
+        .onAppear { viewModel.onAppear() }
         .frame(maxWidth: .infinity)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .padding(.horizontal, 24)

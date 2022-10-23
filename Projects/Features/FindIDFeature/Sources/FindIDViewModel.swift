@@ -19,16 +19,21 @@ final class FIndIDViewModel: BaseViewModel {
      }
 
     private let findIDUseCase: any FindIDUseCase
-    private let checkSchoolCodeUseCase: any CheckSchoolCodeUseCase
+    private let fetchSchoolListUseCase: any FetchSchoolListUseCase
 
     public init(
         findIDUseCase: any FindIDUseCase,
-        checkSchoolCodeUseCase: any CheckSchoolCodeUseCase
+        fetchSchoolListUseCase: any FetchSchoolListUseCase
     ) {
         self.findIDUseCase = findIDUseCase
-        self.checkSchoolCodeUseCase = checkSchoolCodeUseCase
+        self.fetchSchoolListUseCase = fetchSchoolListUseCase
     }
 
+    func onAppear() {
+        addCancellable(fetchSchoolListUseCase.execute()) { schoolList in
+            self.schoolList = schoolList
+        }
+    }
     func findIDButtonDidTap() {
         guard isSigninButtonEnabled else { return }
         guard let grade = Int(grade) else { return }

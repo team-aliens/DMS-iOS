@@ -4,7 +4,7 @@ import SwiftUI
 
 public protocol FindIDDependency: Dependency {
     var findIDUseCase: any FindIDUseCase { get }
-    var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase { get }
+    var fetchSchoolListUseCase: any FetchSchoolListUseCase { get }
 }
 
 public final class FindIDComponent: Component<FindIDDependency> {
@@ -12,7 +12,7 @@ public final class FindIDComponent: Component<FindIDDependency> {
         FindIDView(
             viewModel: .init(
                 findIDUseCase: self.dependency.findIDUseCase,
-                checkSchoolCodeUseCase: self.dependency.checkSchoolCodeUseCase
+                fetchSchoolListUseCase: self.dependency.fetchSchoolListUseCase
             )
         )
     }

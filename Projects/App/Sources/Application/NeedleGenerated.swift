@@ -39,8 +39,8 @@ private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
         return appComponent.findIDUseCase
     }
-    var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase {
-        return appComponent.checkSchoolCodeUseCase
+    var fetchSchoolListUseCase: any FetchSchoolListUseCase {
+        return appComponent.fetchSchoolListUseCase
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -90,7 +90,7 @@ extension SigninComponent: Registration {
 extension FindIDComponent: Registration {
     public func registerItems() {
         keyPathToName[\FindIDDependency.findIDUseCase] = "findIDUseCase-any FindIDUseCase"
-        keyPathToName[\FindIDDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
+        keyPathToName[\FindIDDependency.fetchSchoolListUseCase] = "fetchSchoolListUseCase-any FetchSchoolListUseCase"
     }
 }
 
