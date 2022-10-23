@@ -29,10 +29,10 @@ struct SchoolSelectButtonView: View {
                 Spacer()
 
                 Menu {
-                    ForEach(schoolList) { schoolList in
-                        Button("\(schoolList.name)", action: {
+                    ForEach(schoolList) { school in
+                        Button("\(school.name)", action: {
                             placeholderText = schoolList.name
-                            onCommit(schoolList)
+                            onCommit(school)
 
                         })
 
