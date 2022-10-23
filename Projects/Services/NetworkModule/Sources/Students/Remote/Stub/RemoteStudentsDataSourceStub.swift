@@ -27,7 +27,7 @@ public struct RemoteStudentsDataSourceStub: RemoteStudentsDataSource {
     }
 
     public func findID(req: FindIDRequestDTO) -> AnyPublisher<String, DmsError> {
-        Just("abc*****@gmail.com").setFailureType(to: DmsError.self)
+        Just("abcdef@gmail.com").setFailureType(to: DmsError.self)
                 .eraseToAnyPublisher()
     }
 
