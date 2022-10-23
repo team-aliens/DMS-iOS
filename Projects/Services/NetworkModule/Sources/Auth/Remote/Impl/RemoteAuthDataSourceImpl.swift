@@ -1,11 +1,14 @@
 import APIKit
 import Combine
 import DataMappingModule
+import DomainModule
 import ErrorModule
 
 public final class RemoteAuthDataSourceImpl: BaseRemoteDataSource<AuthAPI>, RemoteAuthDataSource {
-    public func signin(req: SigninRequestDTO) -> AnyPublisher<Void, DmsError> {
-        request(.signin(req))
+    public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
+        request(.signin(req), dto: DmsFeaturesResponseDTO.self)
+            .map { $0.toDomain() }
+            .eraseToAnyPublisher()
     }
 
     public func verifyAuthCode(req: VerifyAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError> {
@@ -16,8 +19,10 @@ public final class RemoteAuthDataSourceImpl: BaseRemoteDataSource<AuthAPI>, Remo
         request(.sendAuthCode(req))
     }
 
-    public func reissueToken() -> AnyPublisher<Void, DmsError> {
-        request(.reissueToken)
+    public func reissueToken() -> AnyPublisher<DmsFeatures, DmsError> {
+        request(.reissueToken, dto: DmsFeaturesResponseDTO.self)
+            .map { $0.toDomain() }
+            .eraseToAnyPublisher()
     }
 
     public func checkEmailExistByAccountID(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, DmsError> {
