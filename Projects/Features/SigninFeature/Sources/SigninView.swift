@@ -49,7 +49,7 @@ struct SigninView: View {
 
             HStack(spacing: 16) {
                 HStack(spacing: 12) {
-                    DMSRadioButton(isOn: $viewModel.isOnAutoSignin)
+                    DMSCheckBox(isOn: $viewModel.isOnAutoSignin)
 
                     Text("자동로그인")
                         .dmsFont(.text(.small), color: .GrayScale.gray6)

@@ -23,7 +23,7 @@ public struct SchoolRepositoryImpl: SchoolRepository {
         remoteSchoolDataSource.checkSchoolQuestion(schoolID: schoolID, answer: answer)
     }
 
-    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<String, DmsError> {
-        remoteSchoolDataSource.checkSchoolCode(schoolID: schoolID, code: code)
+    public func checkSchoolCode(code: String) -> AnyPublisher<String, DmsError> {
+        remoteSchoolDataSource.checkSchoolCode(code: code)
     }
 }
