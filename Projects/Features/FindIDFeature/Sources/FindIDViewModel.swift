@@ -30,8 +30,8 @@ final class FIndIDViewModel: BaseViewModel {
     }
 
     func onAppear() {
-        addCancellable(fetchSchoolListUseCase.execute()) { schoolList in
-            self.schoolList = schoolList
+        addCancellable(fetchSchoolListUseCase.execute()) { [weak self] schoolList in
+            self?.schoolList = schoolList
         }
     }
     func findIDButtonDidTap() {

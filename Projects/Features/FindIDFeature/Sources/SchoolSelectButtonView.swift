@@ -31,22 +31,17 @@ struct SchoolSelectButtonView: View {
                 Menu {
                     ForEach(schoolList) { school in
                         Button("\(school.name)", action: {
-                            placeholderText = schoolList.name
+                            placeholderText = school.name
                             onCommit(school)
-
                         })
-
                     }
                     .labelsHidden()
                     .pickerStyle(InlinePickerStyle())
-
                 } label: {
                     Image(systemName: "chevron.down")
                         .foregroundColor(.GrayScale.gray5)
                         .frame(width: 24, height: 24)
-
                 }
-
             }
             .overlay(alignment: .bottom) {
                 Rectangle()
