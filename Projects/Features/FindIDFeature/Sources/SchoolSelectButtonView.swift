@@ -1,37 +1,50 @@
 import SwiftUI
+import DomainModule
 
 struct SchoolSelectButtonView: View {
-    @State var selectedColor = "학교를 선택해 주세요"
-    @Binding var schoolList: [String]
+    @State var placeholderText = "학교를 선택해 주세요"
+    @Binding var schoolList: [SchoolEntity]
+    var onCommit: (SchoolEntity) -> Void
 
     private var textColor: Color {
-        selectedColor == "학교를 선택해 주세요" ?
+        placeholderText == "학교를 선택해 주세요" ?
             .GrayScale.gray5 :
             .GrayScale.gray9
     }
 
-    public init(schoolList: Binding<[String]>) {
+    public init(
+        schoolList: Binding<[SchoolEntity]>,
+        onCommit: @escaping (SchoolEntity) -> Void = {_ in }
+    ) {
         _schoolList = schoolList
+        self.onCommit = onCommit
     }
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .bottom) {
-                Text(selectedColor)
+                Text(placeholderText)
                     .dmsFont(.text(.medium), color: textColor)
+
                 Spacer()
+
                 Menu {
-                    Picker("", selection: $selectedColor) {
-                        ForEach(schoolList, id: \.self) {
-                            Text($0)
-                        }
+                    ForEach(schoolList) { schoolList in
+                        Button("\(schoolList.name)", action: {
+                            placeholderText = schoolList.name
+                            onCommit(schoolList)
+
+                        })
+
                     }
                     .labelsHidden()
                     .pickerStyle(InlinePickerStyle())
+
                 } label: {
                     Image(systemName: "chevron.down")
                         .foregroundColor(.GrayScale.gray5)
                         .frame(width: 24, height: 24)
+
                 }
 
             }
@@ -40,6 +53,7 @@ struct SchoolSelectButtonView: View {
                     .foregroundColor(.GrayScale.gray5)
                     .frame(height: 1)
                     .offset(y: 7)
+
             }
         }
     }

@@ -10,7 +10,7 @@ final class FIndIDViewModel: BaseViewModel {
     @Published var classRoom = ""
     @Published var number = ""
 
-    @Published var schoolList: [String] =  []
+    @Published var schoolList: [SchoolEntity] =  []
     @Published var isNavigateSignup = false
     @Published var isSuccessFindID = false
 

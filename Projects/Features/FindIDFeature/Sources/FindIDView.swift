@@ -26,16 +26,14 @@ struct FindIDView: View {
                     Text("아이디 찾기")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
                 }
-                .padding(.top, 28)
 
                 Spacer()
             }
 
-            Spacer()
-                .frame(height: 70)
-
             VStack(spacing: 60) {
-                SchoolSelectButtonView(schoolList: $viewModel.schoolList)
+                SchoolSelectButtonView(schoolList: $viewModel.schoolList) { school in
+                    viewModel.schoolID = school.id
+                }
 
                 HStack(spacing: 20) {
                     DMSFloatingTextField("학년", text: $viewModel.grade) {
@@ -63,6 +61,7 @@ struct FindIDView: View {
                 .focused($focusField, equals: .name)
 
             }
+            .padding(.top, 68)
 
             Spacer()
 
