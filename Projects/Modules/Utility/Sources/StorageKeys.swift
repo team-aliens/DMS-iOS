@@ -1,5 +1,5 @@
 import Foundation
 
 public enum StorageKeys: String {
-    case features
+    case sceneFlow = "SCENE_FLOW"
 }
