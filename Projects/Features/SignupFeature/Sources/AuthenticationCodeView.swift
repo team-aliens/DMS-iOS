@@ -21,11 +21,10 @@ struct AuthenticationCodeView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("DMS")
                         .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-                        .padding(.top, 28)
 
                     Text("학교 인증코드 입력")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
+                }.padding(.top, 28)
 
                 Spacer()
             }
