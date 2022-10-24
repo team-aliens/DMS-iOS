@@ -1,7 +1,7 @@
 import SwiftUI
 import DesignSystem
 
-struct AuthenticationCodeView: View {
+struct SchoolCodeView: View {
 
     private enum FocusField {
         case id
