@@ -4,7 +4,6 @@ import DomainModule
 
 final class AuthenticationCodeViewModel: BaseViewModel {
 
-    @Published var schoolID = ""
     @Published var schoolCode = ""
 
     @Published var isOnAutoSignup = true
@@ -24,7 +23,6 @@ final class AuthenticationCodeViewModel: BaseViewModel {
         guard isSigninButtonEnabled else { return }
         addCancellable(
             checkSchoolCodeUseCase.execute(
-                schoolID: schoolID,
                 code: schoolCode
             )
         ) { [weak self] _ in
