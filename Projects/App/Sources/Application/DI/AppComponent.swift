@@ -18,8 +18,8 @@ public final class AppComponent: BootstrapComponent {
 }
 
 public extension AppComponent {
-    var signupComponent: SignupComponent {
-        SignupComponent(parent: self)
+    var authenticationCodeComponent: AuthenticationCodeComponent {
+        AuthenticationCodeComponent(parent: self)
     }
     var findIDComponent: FindIDComponent {
         FindIDComponent(parent: self)
