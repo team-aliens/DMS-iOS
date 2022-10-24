@@ -2,13 +2,13 @@ import DomainModule
 import NeedleFoundation
 import SwiftUI
 
-public protocol SignupDependency: Dependency {
+public protocol AuthenticationCodeDependency: Dependency {
     var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase { get }
 }
 
-public final class SignupComponent: Component<SignupDependency> {
+public final class AuthenticationCodeComponent: Component<AuthenticationCodeDependency> {
     public func makeView() -> some View {
-        AuthenticationCodeView(
+        SchoolCodeView(
             viewModel: .init(
                 checkSchoolCodeUseCase: dependency.checkSchoolCodeUseCase
             )
