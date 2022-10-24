@@ -30,7 +30,7 @@ public struct SchoolRepositoryStub: SchoolRepository {
             .eraseToAnyPublisher()
     }
 
-    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<String, DmsError> {
+    public func checkSchoolCode(code: String) -> AnyPublisher<String, DmsError> {
         Just("b77eafed-69ab-422d-8448-1ec1f0a2eb8c")
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
