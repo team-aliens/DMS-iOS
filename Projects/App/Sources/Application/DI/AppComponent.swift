@@ -6,6 +6,7 @@ import SignupFeature
 
 import FindIDFeature
 import SigninFeature
+import MainTabFeature
 
 public final class AppComponent: BootstrapComponent {
     public func makeRootView() -> some View {
@@ -17,6 +18,7 @@ public final class AppComponent: BootstrapComponent {
     }
 }
 
+// MARK: - Auth
 public extension AppComponent {
     var schoolCodeComponent: SchoolCodeComponent {
         SchoolCodeComponent(parent: self)
@@ -26,5 +28,12 @@ public extension AppComponent {
     }
     var signinComponent: SigninComponent {
         SigninComponent(parent: self)
+    }
+}
+
+// MARK: - Main
+public extension AppComponent {
+    var mainTabComponent: MainTabComponent {
+        MainTabComponent(parent: self)
     }
 }

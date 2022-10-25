@@ -5,7 +5,9 @@ import DesignSystem
 struct DMSApp: App {
     var body: some Scene {
         WindowGroup {
-            DesignSystemPlaygroundView()
+            NavigationView {
+                AppComponent().mainTabComponent.makeView()
+            }
         }
     }
 }

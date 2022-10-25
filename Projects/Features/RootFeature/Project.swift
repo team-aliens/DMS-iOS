@@ -8,6 +8,7 @@ let project = Project.makeModule(
         .Project.Features.BaseFeature,
         .Project.Features.SignupFeature,
         .Project.Features.FindIDFeature,
-        .Project.Features.SigninFeature
+        .Project.Features.SigninFeature,
+        .Project.Features.MainTabFeature
     ]
 )

@@ -4,6 +4,7 @@ import DataModule
 import DomainModule
 import FindIDFeature
 import KeychainModule
+import MainTabFeature
 import NeedleFoundation
 import NetworkModule
 import SigninFeature
@@ -35,6 +36,17 @@ private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDepend
 /// ^->AppComponent->SchoolCodeComponent
 private func factoryb65c1efbf06b87162473f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return SchoolCodeDependencyc0114744c1c8c7843672Provider(appComponent: parent1(component) as! AppComponent)
+
+private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->MainTabComponent
+private func factory1ab5a747ddf21e1393f9e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return MainTabDependency2826cdb310ed0b17a725Provider()
 }
 private class SigninDependencyde06a9d0b22764487733Provider: SigninDependency {
     var signinUseCase: any SigninUseCase {
@@ -81,6 +93,7 @@ extension AppComponent: Registration {
         localTable["schoolCodeComponent-SchoolCodeComponent"] = { self.schoolCodeComponent as Any }
         localTable["findIDComponent-FindIDComponent"] = { self.findIDComponent as Any }
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
+        localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["remoteStudentsDataSource-any RemoteStudentsDataSource"] = { self.remoteStudentsDataSource as Any }
         localTable["studentsRepository-any StudentsRepository"] = { self.studentsRepository as Any }
         localTable["signupUseCase-any SignupUseCase"] = { self.signupUseCase as Any }
@@ -100,6 +113,11 @@ extension AppComponent: Registration {
 extension SchoolCodeComponent: Registration {
     public func registerItems() {
         keyPathToName[\SchoolCodeDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
+    }
+}
+extension MainTabComponent: Registration {
+    public func registerItems() {
+
     }
 }
 extension SigninComponent: Registration {
@@ -131,6 +149,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9e3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
