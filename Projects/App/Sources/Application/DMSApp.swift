@@ -14,7 +14,7 @@ struct DMSApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                AppComponent().schoolCodeComponent.makeView()
+                AppComponent().mainTabComponent.makeView()
             }
         }
     }
