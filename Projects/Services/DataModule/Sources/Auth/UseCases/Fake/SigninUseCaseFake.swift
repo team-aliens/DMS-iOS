@@ -7,9 +7,10 @@ import Foundation
 public struct SigninUseCaseFake: SigninUseCase {
     public init () {}
 
-    public func execute(req: SigninRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func execute(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
         if req.accountID == "baekteun" && req.password == "baekteun" {
-            return Just(()).setFailureType(to: DmsError.self)
+            return Just(DmsFeatures(mealService: false, noticeService: false, pointService: false))
+                .setFailureType(to: DmsError.self)
                 .delay(for: 1, scheduler: DispatchQueue.main)
                 .eraseToAnyPublisher()
         } else {
