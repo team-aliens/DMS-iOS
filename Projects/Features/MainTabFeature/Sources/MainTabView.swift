@@ -4,6 +4,7 @@ import DesignSystem
 struct MainTabView: View {
     @State var selection = 0
     @Namespace var animation
+    @Namespace var tabAnimation
 
     var body: some View {
         VStack {
@@ -63,17 +64,12 @@ struct MainTabView: View {
             }
         } label: {
             Image(systemName: systemName)
-                .foregroundColor(tag == selection ? .GrayScale.gray8 : .GrayScale.gray5)
+                .foregroundColor(tag == selection ? .GrayScale.gray8: .GrayScale.gray5)
                 .overlay(alignment: .top) {
-                    if tag == selection {
-                        Circle()
-                            .fill(Color.PrimaryVariant.darken2)
-                            .frame(width: 4, height: 4)
-                            .matchedGeometryEffect(id: "TAB", in: animation)
-                            .offset(y: -8)
-                    } else {
-                        EmptyView()
-                    }
+                    Circle()
+                        .fill(Color.PrimaryVariant.darken2)
+                        .frame(width: tag == selection ? 4 : 0, height: tag == selection ? 4 : 0)
+                        .offset(y: -8)
                 }
                 .padding(12)
         }
