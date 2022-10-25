@@ -48,6 +48,7 @@ struct SchoolCodeView: View {
                     .padding(.horizontal, 24)
                     .frame(height: 40)
             }
+
             Spacer()
 
             DMSWideButton(text: "인증", color: .PrimaryVariant.primary) {
@@ -56,9 +57,7 @@ struct SchoolCodeView: View {
             .disabled(viewModel.isDisabled)
             .padding(.bottom, 20)
             .padding(.horizontal, 24)
-
         }
-
     }
 }
 
