@@ -9,6 +9,8 @@ final class AuthenticationCodeViewModel: BaseViewModel {
     @Published var isOnAutoSignup = true
     @Published var isNavigateCheckSchool = false
     @Published var isSuccessAuthenticationCode = false
+    @Published var isDisabled = true
+
     var isSigninButtonEnabled: Bool {
         !schoolCode.isEmpty
     }
@@ -28,5 +30,8 @@ final class AuthenticationCodeViewModel: BaseViewModel {
         ) { [weak self] _ in
             self?.isNavigateCheckSchool = true
         }
+    }
+    func checkIsEmptyAuthCode() {
+        isDisabled = 8 != schoolCode.count
     }
 }
