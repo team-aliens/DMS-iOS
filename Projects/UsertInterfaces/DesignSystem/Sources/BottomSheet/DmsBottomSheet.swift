@@ -2,9 +2,9 @@ import SwiftUI
 
 struct DmsBottomSheet<T: View>: ViewModifier {
     @Binding var isShowing: Bool
-    var content: () -> T
     @State var dragHeight: CGFloat = 0
-    var draging: some Gesture {
+    var content: () -> T
+    var sheetDragging: some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .global)
             .onChanged { value in
                 withAnimation(.spring()) {
@@ -46,14 +46,14 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                                 isShowing = false
                             }
                         }
-                        .gesture(draging)
+                        .gesture(sheetDragging)
                         .transition(.opacity)
 
                     ZStack {
                         Color.GrayScale.gray1
                             .cornerRadius(25, corners: [.topLeft, .topRight])
                             .padding(.top, -dragHeight)
-                            .gesture(draging)
+                            .gesture(sheetDragging)
 
                         VStack {
                             RoundedRectangle(cornerRadius: 5)
