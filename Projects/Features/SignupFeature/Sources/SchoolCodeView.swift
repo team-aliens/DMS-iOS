@@ -2,7 +2,6 @@ import SwiftUI
 import DesignSystem
 
 struct SchoolCodeView: View {
-
     private enum FocusField {
         case id
         case password
@@ -57,7 +56,7 @@ struct SchoolCodeView: View {
             .disabled(viewModel.isDisabled)
             .padding(.bottom, 20)
             .padding(.horizontal, 24)
-
+            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
 
     }
