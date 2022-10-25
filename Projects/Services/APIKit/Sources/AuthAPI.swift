@@ -140,6 +140,34 @@ extension AuthAPI: DmsAPI {
 
     public var sampleData: Data {
         switch self {
+        case .signin:
+            return """
+{
+    "access_token" : "access.access.access",
+    "expired_at" : "2022-02-27'T'12:12:12",
+    "refresh_token" : "refresh.refresh.refresh",
+    "features" : {
+        "meal_service" : false,
+        "notice_service" : false,
+        "point_service" : false,
+    }
+}
+""".data(using: .utf8) ?? .init()
+
+        case .reissueToken:
+            return """
+{
+    "access_token" : "access.access.access",
+    "expired_at" : "2022-02-27'T'12:12:12",
+    "refresh_token" : "refresh.refresh.refresh",
+    "features" : {
+        "meal_service" : false,
+        "notice_service" : false,
+        "point_service" : false,
+    }
+}
+""".data(using: .utf8) ?? .init()
+
         case .checkAccountIDIsExist:
             return """
 {

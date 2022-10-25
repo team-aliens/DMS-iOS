@@ -88,6 +88,7 @@ extension AppComponent: Registration {
         localTable["signinUseCase-any SigninUseCase"] = { self.signinUseCase as Any }
         localTable["verifyAuthCodeUseCase-any VerifyAuthCodeUseCase"] = { self.verifyAuthCodeUseCase as Any }
         localTable["sendAuthCodeUseCase-any SendAuthCodeUseCase"] = { self.sendAuthCodeUseCase as Any }
+        localTable["reissueTokenUseCase-any ReissueTokenUseCase"] = { self.reissueTokenUseCase as Any }
         localTable["checkEmailExistByAccountIDUseCase-any CheckEmailExistByAccountIDUseCase"] = { self.checkEmailExistByAccountIDUseCase as Any }
         localTable["checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"] = { self.checkAccountIDIsExistUseCase as Any }
         localTable["schoolCodeComponent-SchoolCodeComponent"] = { self.schoolCodeComponent as Any }
@@ -117,6 +118,7 @@ extension SchoolCodeComponent: Registration {
 }
 extension MainTabComponent: Registration {
     public func registerItems() {
+
 
     }
 }

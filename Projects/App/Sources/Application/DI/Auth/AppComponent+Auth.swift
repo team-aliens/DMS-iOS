@@ -25,6 +25,10 @@ public extension AppComponent {
         SendAuthCodeUseCaseImpl(authRepository: authRepository)
     }
 
+    var reissueTokenUseCase: any ReissueTokenUseCase {
+        ReissueTokenCaseImpl(authRepository: authRepository)
+    }
+
     var checkEmailExistByAccountIDUseCase: any CheckEmailExistByAccountIDUseCase {
         CheckEmailExistByAccountIDUseCaseImpl(authRepository: authRepository)
     }
