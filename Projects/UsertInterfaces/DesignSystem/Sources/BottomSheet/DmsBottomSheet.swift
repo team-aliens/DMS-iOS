@@ -4,6 +4,25 @@ struct DmsBottomSheet<T: View>: ViewModifier {
     @Binding var isShowing: Bool
     var content: () -> T
     @State var dragHeight: CGFloat = 0
+    var draging: some Gesture {
+        DragGesture(minimumDistance: 0, coordinateSpace: .global)
+            .onChanged { value in
+                withAnimation(.spring()) {
+                    dragHeight = min(30, -value.translation.height)
+                }
+            }
+            .onEnded { value in
+                withAnimation {
+                    dragHeight = 0
+                }
+                let verticalAmount = value.translation.height
+                if verticalAmount > -100 {
+                    withAnimation {
+                        isShowing = false
+                    }
+                }
+            }
+    }
 
     init(
         isShowing: Binding<Bool>,
@@ -23,40 +42,30 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                         .opacity(0.10)
                         .ignoresSafeArea()
                         .onTapGesture {
-                            withAnimation {
+                            withAnimation(.spring()) {
                                 isShowing = false
                             }
                         }
-                        .gesture(
-                            DragGesture(minimumDistance: 0, coordinateSpace: .global)
-                                .onChanged { value in
-                                    withAnimation {
-                                        dragHeight = -value.translation.height
-                                    }
-                                }
-                                .onEnded { value in
-                                    withAnimation {
-                                        dragHeight = 0
-                                    }
-                                    let verticalAmount = value.translation.height
-                                    if verticalAmount > -100 {
-                                        withAnimation {
-                                            isShowing = false
-                                        }
-                                    }
-                                }
-                        )
+                        .gesture(draging)
                         .transition(.opacity)
 
                     ZStack {
                         Color.GrayScale.gray1
-                            .cornerRadius(24, corners: [.topLeft, .topRight])
+                            .cornerRadius(25, corners: [.topLeft, .topRight])
                             .padding(.top, -dragHeight)
+                            .gesture(draging)
 
-                        self.content()
-                            .offset(y: -dragHeight)
-                            .frame(maxWidth: .infinity)
-                            .padding(.bottom, 42)
+                        VStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.GrayScale.gray4)
+                                .frame(width: 100, height: 4)
+                                .padding(.top, 12)
+
+                            self.content()
+                                .frame(maxWidth: .infinity)
+                        }
+                        .padding(.bottom, 42)
+                        .offset(y: -dragHeight)
                     }
                     .frame(maxHeight: .infinity)
                     .fixedSize(horizontal: false, vertical: true)
@@ -70,11 +79,10 @@ struct DmsBottomSheet<T: View>: ViewModifier {
 }
 
 public extension View {
-    func bottomSheet<Content: View>(
+    func dmsBottomSheet<Content: View>(
         isShowing: Binding<Bool>,
         content: @escaping () -> Content
     ) -> some View {
         modifier(DmsBottomSheet(isShowing: isShowing, content: content))
     }
 }
-
