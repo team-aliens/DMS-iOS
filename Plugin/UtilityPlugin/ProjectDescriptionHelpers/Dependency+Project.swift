@@ -11,6 +11,7 @@ public extension TargetDependency {
 
 public extension TargetDependency.Project.Features {
     static let RenewalPasswordFeature = TargetDependency.feature(name: "RenewalPasswordFeature")
+    static let MainTabFeature = TargetDependency.feature(name: "MainTabFeature")
     static let FindIDFeature = TargetDependency.feature(name: "FindIDFeature")
     static let SigninFeature = TargetDependency.feature(name: "SigninFeature")
     static let BaseFeature = TargetDependency.feature(name: "BaseFeature")

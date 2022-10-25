@@ -2,11 +2,9 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "NetworkModule",
+    name: "MainTabFeature",
     product: .staticFramework,
     dependencies: [
-        .Project.Module.Utility,
-        .Project.Service.APIKit,
-        .Project.Service.Domain
+        .Project.Features.BaseFeature
     ]
 )
