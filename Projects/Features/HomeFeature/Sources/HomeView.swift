@@ -1,7 +1,14 @@
 import DesignSystem
 import SwiftUI
+import Utility
 
 struct HomeView: View {
+    @StateObject var viewModel: HomeViewModel
+
+    init(viewModel: HomeViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView(showsIndicators: false) {
@@ -13,12 +20,30 @@ struct HomeView: View {
 
                 HStack(spacing: 12) {
                     Button {
+                        viewModel.selectedDate = viewModel.selectedDate.adding(by: .day, value: -1)
                     } label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.GrayScale.gray6)
                     }
 
                     Button {
+                    } label: {
+                        Label {
+                            Text(viewModel.selectedDateString)
+                        } icon: {
+                            Image(systemName: "calendar")
+                        }
+                        .dmsFont(.button(.default), color: .GrayScale.gray6)
+                        .padding(.vertical, 8.5)
+                        .padding(.horizontal, 12)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.GrayScale.gray5, lineWidth: 1)
+                        }
+                    }
+
+                    Button {
+                        viewModel.selectedDate = viewModel.selectedDate.adding(by: .day, value: 1)
                     } label: {
                         Image(systemName: "chevron.right")
                             .foregroundColor(.GrayScale.gray6)
@@ -92,11 +117,5 @@ struct HomeView: View {
             radius: 20,
             y: 1
         )
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
     }
 }
