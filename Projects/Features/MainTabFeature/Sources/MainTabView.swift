@@ -1,48 +1,66 @@
 import SwiftUI
 import DesignSystem
+import HomeFeature
 
+enum TabFlow: Int {
+    case home
+    case apply
+    case notice
+    case myPage
+}
 struct MainTabView: View {
-    @State var selection = 0
-    @Namespace var animation
-    @Namespace var tabAnimation
+    @State var selection: TabFlow = .home
+
+    private let homeComponent: HomeComponent
+
+    init(homeComponent: HomeComponent) {
+        self.homeComponent = homeComponent
+    }
 
     var body: some View {
-        VStack {
-            TabView(selection: $selection) {
-                Text("0")
-                    .tag(0)
+        NavigationView {
+            ZStack {
+                Group {
+                    switch selection {
+                    case .home:
+                        homeComponent.makeView()
 
-                Text("1")
-                    .tag(1)
+                    case .apply:
+                        Text("1")
 
-                Text("2")
-                    .tag(2)
+                    case .notice:
+                        Text("2")
 
-                Text("3")
-                    .tag(3)
-            }
-            .ignoresSafeArea()
-
-            tabbarView()
-                .background {
-                    Color.GrayScale.gray1
-                        .ignoresSafeArea()
+                    case .myPage:
+                        Text("3")
+                    }
                 }
-                .shadow(
-                    color: .GrayScale.gray5.opacity(0.24),
-                    radius: 20,
-                    y: 1
-                )
+
+                VStack {
+                    Spacer()
+
+                    tabbarView()
+                        .background {
+                            Color.GrayScale.gray1
+                                .ignoresSafeArea()
+                        }
+                        .shadow(
+                            color: .GrayScale.gray5.opacity(0.24),
+                            radius: 20,
+                            y: 1
+                    )
+                }
+            }
         }
     }
 
     @ViewBuilder
     func tabbarView() -> some View {
-        let tabItem: [(String, Int)] = [
-            ("house", 0),
-            ("plus.bubble", 1),
-            ("megaphone", 2),
-            ("person", 3)
+        let tabItem: [(String, TabFlow)] = [
+            ("house", .home),
+            ("plus.bubble", .apply),
+            ("megaphone", .notice),
+            ("person", .myPage)
         ]
 
         HStack {
@@ -57,7 +75,7 @@ struct MainTabView: View {
     }
 
     @ViewBuilder
-    func tabItemView(systemName: String, tag: Int) -> some View {
+    func tabItemView(systemName: String, tag: TabFlow) -> some View {
         Button {
             withAnimation {
                 selection = tag

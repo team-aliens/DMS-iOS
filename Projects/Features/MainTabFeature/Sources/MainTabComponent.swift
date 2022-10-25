@@ -1,10 +1,15 @@
 import NeedleFoundation
 import SwiftUI
+import HomeFeature
 
-public protocol MainTabDependency: Dependency {}
+public protocol MainTabDependency: Dependency {
+    var homeComponent: HomeComponent { get }
+}
 
 public final class MainTabComponent: Component<MainTabDependency> {
     public func makeView() -> some View {
-        MainTabView()
+        MainTabView(
+            homeComponent: dependency.homeComponent
+        )
     }
 }
