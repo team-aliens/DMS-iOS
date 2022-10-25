@@ -2,13 +2,7 @@ import SwiftUI
 import DesignSystem
 
 struct SchoolCodeView: View {
-    private enum FocusField {
-        case id
-        case password
-    }
     @StateObject var viewModel: SchoolCodeViewModel
-    @FocusState private var focusField: FocusField?
-    @State var text: String = ""
 
     public init(viewModel: SchoolCodeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
