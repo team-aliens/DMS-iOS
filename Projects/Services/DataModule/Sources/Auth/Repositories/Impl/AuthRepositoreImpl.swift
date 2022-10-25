@@ -11,7 +11,7 @@ public struct AuthRepositoryImpl: AuthRepository {
         self.remoteAuthDataSource = remoteAuthDataSource
     }
 
-    public func signin(req: SigninRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
         remoteAuthDataSource.signin(req: req)
     }
 
@@ -21,6 +21,10 @@ public struct AuthRepositoryImpl: AuthRepository {
 
     public func sendAuthCode(req: SendAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError> {
         remoteAuthDataSource.sendAuthCode(req: req)
+    }
+
+    public func reissueToken() -> AnyPublisher<DmsFeatures, DmsError> {
+        remoteAuthDataSource.reissueToken()
     }
 
     public func checkEmailExistByAccountID(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, DmsError> {

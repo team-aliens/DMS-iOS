@@ -3,14 +3,14 @@ import DataMappingModule
 import DomainModule
 import ErrorModule
 
-public struct SigninUseCaseImpl: SigninUseCase {
+public struct ReissueTokenCaseImpl: ReissueTokenUseCase {
     private let authRepository: any AuthRepository
 
     public init(authRepository: any AuthRepository) {
         self.authRepository = authRepository
     }
 
-    public func execute(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
-        authRepository.signin(req: req)
+    public func execute() -> AnyPublisher<DmsFeatures, DmsError> {
+        authRepository.reissueToken()
     }
 }
