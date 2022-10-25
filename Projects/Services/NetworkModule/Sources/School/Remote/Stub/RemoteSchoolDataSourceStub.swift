@@ -27,7 +27,7 @@ public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
             .eraseToAnyPublisher()
     }
 
-    public func checkSchoolCode(schoolID: String, code: String) -> AnyPublisher<String, DmsError> {
+    public func checkSchoolCode(code: String) -> AnyPublisher<String, DmsError> {
         Just("aa-bb-pk").setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
 

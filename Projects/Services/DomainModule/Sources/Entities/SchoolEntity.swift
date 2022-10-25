@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SchoolEntity: Equatable {
+public struct SchoolEntity: Equatable, Identifiable {
     public let id: String
     public let name: String
     public let address: String
