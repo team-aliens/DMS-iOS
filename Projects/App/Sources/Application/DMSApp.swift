@@ -1,13 +1,20 @@
 import SwiftUI
-import DesignSystem
+ import DesignSystem
+ import FindIDFeature
 
-@main
-struct DMSApp: App {
-    var body: some Scene {
-        WindowGroup {
-            NavigationView {
-                AppComponent().mainTabComponent.makeView()
-            }
-        }
-    }
-}
+ import SigninFeature
+
+ @main
+ struct DMSApp: App {
+     init() {
+         registerProviderFactories()
+     }
+
+     var body: some Scene {
+         WindowGroup {
+             NavigationView {
+                 AppComponent().schoolCodeComponent.makeView()
+             }
+         }
+     }
+ }
