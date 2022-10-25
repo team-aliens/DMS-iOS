@@ -4,6 +4,7 @@ struct DmsBottomSheet<T: View>: ViewModifier {
     @Binding var isShowing: Bool
     @State var dragHeight: CGFloat = 0
     var content: () -> T
+    var height: CGFloat
     var sheetDragging: some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .global)
             .onChanged { value in
@@ -26,9 +27,11 @@ struct DmsBottomSheet<T: View>: ViewModifier {
 
     init(
         isShowing: Binding<Bool>,
+        height: CGFloat = .infinity,
         content: @escaping () -> T
     ) {
         _isShowing = isShowing
+        self.height = height
         self.content = content
     }
 
@@ -67,7 +70,7 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                         .padding(.bottom, 42)
                         .offset(y: -dragHeight)
                     }
-                    .frame(maxHeight: .infinity)
+                    .frame(maxHeight: height)
                     .fixedSize(horizontal: false, vertical: true)
                     .transition(.move(edge: .bottom))
                 }
