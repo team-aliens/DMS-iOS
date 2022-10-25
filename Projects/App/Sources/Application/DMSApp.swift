@@ -10,7 +10,6 @@ struct DMSApp: App {
     init() {
         registerProviderFactories()
     }
-    
     var body: some Scene {
         WindowGroup {
             NavigationView {
