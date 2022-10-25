@@ -3,12 +3,7 @@ import Combine
 import DomainModule
 
 final class SchoolCodeViewModel: BaseViewModel {
-
     @Published var schoolCode = ""
-
-    @Published var isOnAutoSignup = true
-    @Published var isNavigateCheckSchool = false
-    @Published var isSuccessAuthenticationCode = false
     @Published var isDisabled = true
 
     var isSigninButtonEnabled: Bool {
