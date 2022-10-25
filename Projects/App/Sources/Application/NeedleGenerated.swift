@@ -36,7 +36,7 @@ private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDepend
 /// ^->AppComponent->SchoolCodeComponent
 private func factoryb65c1efbf06b87162473f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return SchoolCodeDependencyc0114744c1c8c7843672Provider(appComponent: parent1(component) as! AppComponent)
-
+}
 private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
 
 
