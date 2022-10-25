@@ -70,7 +70,11 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                         .padding(.bottom, 42)
                         .offset(y: -dragHeight)
                     }
-                    .frame(maxHeight: height)
+                    .if(height == .infinity) {
+                        $0.frame(maxHeight: .infinity)
+                    } false: {
+                        $0.frame(height: height)
+                    }
                     .fixedSize(horizontal: false, vertical: true)
                     .transition(.move(edge: .bottom))
                 }
