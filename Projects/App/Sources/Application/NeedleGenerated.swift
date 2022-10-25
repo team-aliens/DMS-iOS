@@ -23,7 +23,7 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 
 #if !NEEDLE_DYNAMIC
 
-private class AuthenticationCodeDependency8a469a202d807c39feafProvider: AuthenticationCodeDependency {
+private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDependency {
     var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase {
         return appComponent.checkSchoolCodeUseCase
     }
@@ -32,9 +32,9 @@ private class AuthenticationCodeDependency8a469a202d807c39feafProvider: Authenti
         self.appComponent = appComponent
     }
 }
-/// ^->AppComponent->AuthenticationCodeComponent
-private func factoryaec354e184f014fc0f18f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return AuthenticationCodeDependency8a469a202d807c39feafProvider(appComponent: parent1(component) as! AppComponent)
+/// ^->AppComponent->SchoolCodeComponent
+private func factoryb65c1efbf06b87162473f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SchoolCodeDependencyc0114744c1c8c7843672Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class SigninDependencyde06a9d0b22764487733Provider: SigninDependency {
     var signinUseCase: any SigninUseCase {
@@ -78,7 +78,7 @@ extension AppComponent: Registration {
         localTable["sendAuthCodeUseCase-any SendAuthCodeUseCase"] = { self.sendAuthCodeUseCase as Any }
         localTable["checkEmailExistByAccountIDUseCase-any CheckEmailExistByAccountIDUseCase"] = { self.checkEmailExistByAccountIDUseCase as Any }
         localTable["checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"] = { self.checkAccountIDIsExistUseCase as Any }
-        localTable["authenticationCodeComponent-AuthenticationCodeComponent"] = { self.authenticationCodeComponent as Any }
+        localTable["schoolCodeComponent-SchoolCodeComponent"] = { self.schoolCodeComponent as Any }
         localTable["findIDComponent-FindIDComponent"] = { self.findIDComponent as Any }
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
         localTable["remoteStudentsDataSource-any RemoteStudentsDataSource"] = { self.remoteStudentsDataSource as Any }
@@ -97,9 +97,9 @@ extension AppComponent: Registration {
         localTable["checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"] = { self.checkSchoolCodeUseCase as Any }
     }
 }
-extension AuthenticationCodeComponent: Registration {
+extension SchoolCodeComponent: Registration {
     public func registerItems() {
-        keyPathToName[\AuthenticationCodeDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
+        keyPathToName[\SchoolCodeDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
     }
 }
 extension SigninComponent: Registration {
@@ -130,7 +130,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
-    registerProviderFactory("^->AppComponent->AuthenticationCodeComponent", factoryaec354e184f014fc0f18f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
