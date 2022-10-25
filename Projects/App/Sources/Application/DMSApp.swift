@@ -1,8 +1,9 @@
 import SwiftUI
- import DesignSystem
- import FindIDFeature
+import DesignSystem
 
- import SigninFeature
+import FindIDFeature
+import SigninFeature
+import SignupFeature
 
  @main
  struct DMSApp: App {
