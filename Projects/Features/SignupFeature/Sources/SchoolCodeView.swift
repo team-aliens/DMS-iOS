@@ -7,11 +7,11 @@ struct SchoolCodeView: View {
         case id
         case password
     }
-    @StateObject var viewModel: AuthenticationCodeViewModel
+    @StateObject var viewModel: SchoolCodeViewModel
     @FocusState private var focusField: FocusField?
     @State var text: String = ""
 
-    public init(viewModel: AuthenticationCodeViewModel) {
+    public init(viewModel: SchoolCodeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
