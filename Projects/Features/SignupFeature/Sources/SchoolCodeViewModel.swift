@@ -5,6 +5,7 @@ import DomainModule
 final class SchoolCodeViewModel: BaseViewModel {
     @Published var schoolCode = ""
     @Published var isDisabled = true
+    @Published var isNavigateCheckSchool = false
 
     var isSigninButtonEnabled: Bool {
         !schoolCode.isEmpty
