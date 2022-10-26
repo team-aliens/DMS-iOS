@@ -52,7 +52,7 @@ struct MealCarouselView: View {
 
             VStack {
                 if meal.isEmpty {
-                    Text("오늘 \(mealType.display)은 없는거 같아요!")
+                    Text("급식이 없습니다.")
                         .dmsFont(.text(.large), color: .GrayScale.gray6)
                         .frame(maxHeight: .infinity)
                 } else {
@@ -106,19 +106,6 @@ enum MealType: Int {
 
         case .dinner:
             return "moon"
-        }
-    }
-
-    var display: String {
-        switch self {
-        case .breakfast:
-            return "아침"
-
-        case .lunch:
-            return "점심"
-
-        case .dinner:
-            return "저녁"
         }
     }
 }

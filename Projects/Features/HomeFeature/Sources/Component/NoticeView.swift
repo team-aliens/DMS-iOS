@@ -9,7 +9,7 @@ struct NoticeView: View {
                 .padding(.leading, 24)
                 .padding(.vertical, 12)
 
-            Text("새로운 공지 있어요!")
+            Text("새로운 공지가 있습니다.")
                 .dmsFont(.text(.small), color: .GrayScale.gray6)
 
             Spacer()
