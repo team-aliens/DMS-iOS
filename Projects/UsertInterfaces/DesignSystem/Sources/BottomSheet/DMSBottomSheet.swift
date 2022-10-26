@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct DmsBottomSheet<T: View>: ViewModifier {
+struct DMSBottomSheet<T: View>: ViewModifier {
     @Binding var isShowing: Bool
     @State var dragHeight: CGFloat = 0
     var content: () -> T
@@ -88,6 +88,6 @@ public extension View {
         isShowing: Binding<Bool>,
         content: @escaping () -> Content
     ) -> some View {
-        modifier(DmsBottomSheet(isShowing: isShowing, content: content))
+        modifier(DMSBottomSheet(isShowing: isShowing, content: content))
     }
 }
