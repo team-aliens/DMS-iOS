@@ -1,6 +1,9 @@
 import NeedleFoundation
 import SwiftUI
 import KeychainModule
+
+import SignupFeature
+
 import FindIDFeature
 import SigninFeature
 import RenewalPasswordFeature
@@ -18,6 +21,9 @@ public final class AppComponent: BootstrapComponent {
 
 // MARK: - Auth
 public extension AppComponent {
+    var schoolCodeComponent: SchoolCodeComponent {
+        SchoolCodeComponent(parent: self)
+    }
     var findIDComponent: FindIDComponent {
         FindIDComponent(parent: self)
     }
