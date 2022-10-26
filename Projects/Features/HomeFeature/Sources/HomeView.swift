@@ -4,55 +4,29 @@ import Utility
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
+    @State var isShowingCalendar = false
+    @Environment(\.tabbarHidden) var tabbarHidden
 
     init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-            ScrollView(showsIndicators: false) {
-                noticeView()
-
-                Text("오늘의 급식")
-                    .dmsFont(.title(.small), color: .GrayScale.gray7)
-                    .padding(.top, 24)
-
-                HStack(spacing: 12) {
-                    Button {
-                        viewModel.selectedDate = viewModel.selectedDate.adding(by: .day, value: -1)
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.GrayScale.gray6)
+        GeometryReader { proxy in
+            ZStack(alignment: .bottom) {
+                ScrollView(showsIndicators: false) {
+                    if viewModel.isExistNewNotice {
+                        NoticeView()
                     }
 
-                    Button {
-                    } label: {
-                        Label {
-                            Text(viewModel.selectedDateString)
-                        } icon: {
-                            Image(systemName: "calendar")
-                        }
-                        .dmsFont(.button(.default), color: .GrayScale.gray6)
-                        .padding(.vertical, 8.5)
-                        .padding(.horizontal, 12)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.GrayScale.gray5, lineWidth: 1)
-                        }
-                    }
+                    Text("오늘의 급식")
+                        .dmsFont(.title(.small), color: .GrayScale.gray7)
+                        .padding(.top, 24)
 
-                    Button {
-                        viewModel.selectedDate = viewModel.selectedDate.adding(by: .day, value: 1)
-                    } label: {
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.GrayScale.gray6)
-                    }
+                    selectDateView()
+                        .padding(.top, 32)
                 }
-                .padding(.top, 32)
-            }
 
-            GeometryReader { proxy in
                 VStack {
                     Spacer()
 
@@ -73,6 +47,9 @@ struct HomeView: View {
                 }
             }
         }
+        .onChange(of: isShowingCalendar) { newValue in
+            tabbarHidden.wrappedValue = newValue
+        }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -80,42 +57,47 @@ struct HomeView: View {
                     .dmsFont(.title(.small), color: .GrayScale.gray7)
             }
         }
+        .dmsBottomSheet(isShowing: $isShowingCalendar) {
+            DeferView {
+                CalendarSheetView(selectedDate: $viewModel.selectedDate)
+                    .padding(.top, 24)
+            }
+        }
     }
 
     @ViewBuilder
-    func noticeView() -> some View {
+    func selectDateView() -> some View {
         HStack(spacing: 12) {
-            Image(systemName: "megaphone")
-                .foregroundColor(.PrimaryVariant.primary)
-                .padding(.leading, 24)
-                .padding(.vertical, 12)
+            Button {
+                viewModel.selectedDate = viewModel.selectedDate.adding(by: .day, value: -1)
+            } label: {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(.GrayScale.gray6)
+            }
 
-            Text("이런저런 공지가 있음!")
-                .dmsFont(.text(.small), color: .GrayScale.gray6)
-
-            Spacer()
-
-            Image(systemName: "chevron.right")
-                .resizable()
-                .foregroundColor(.PrimaryVariant.primary)
-                .frame(width: 7, height: 12)
-                .padding(12)
-                .background {
-                    Color.PrimaryVariant.lighten2
-                        .clipShape(Circle())
+            Button {
+                isShowingCalendar.toggle()
+            } label: {
+                Label {
+                    Text(viewModel.selectedDateString)
+                } icon: {
+                    Image(systemName: "calendar")
                 }
-                .padding(.trailing, 8)
+                .dmsFont(.button(.default), color: .GrayScale.gray6)
+                .padding(.vertical, 8.5)
+                .padding(.horizontal, 12)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.GrayScale.gray5, lineWidth: 1)
+                }
+            }
+
+            Button {
+                viewModel.selectedDate = viewModel.selectedDate.adding(by: .day, value: 1)
+            } label: {
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.GrayScale.gray6)
+            }
         }
-        .background {
-            Color.GrayScale.gray1
-        }
-        .cornerRadius(100)
-        .padding(.horizontal, 24)
-        .padding(.top, 12)
-        .shadow(
-            color: .GrayScale.gray4,
-            radius: 20,
-            y: 1
-        )
     }
 }

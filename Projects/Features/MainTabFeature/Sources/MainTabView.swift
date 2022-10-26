@@ -1,6 +1,8 @@
 import SwiftUI
 import DesignSystem
 import HomeFeature
+import BaseFeature
+import Utility
 
 enum TabFlow: Int {
     case home
@@ -10,6 +12,7 @@ enum TabFlow: Int {
 }
 struct MainTabView: View {
     @State var selection: TabFlow = .home
+    @State var tabbarHidden = false
 
     private let homeComponent: HomeComponent
 
@@ -18,24 +21,23 @@ struct MainTabView: View {
     }
 
     var body: some View {
-        NavigationView {
-            ZStack {
-                Group {
-                    switch selection {
-                    case .home:
-                        homeComponent.makeView()
+        ZStack {
+            TabView(selection: $selection) {
+                homeComponent.makeView()
+                    .tag(TabFlow.home)
 
-                    case .apply:
-                        Text("1")
+                Text("1")
+                    .tag(TabFlow.apply)
 
-                    case .notice:
-                        Text("2")
+                Text("2")
+                    .tag(TabFlow.notice)
 
-                    case .myPage:
-                        Text("3")
-                    }
-                }
+                Text("3")
+                    .tag(TabFlow.myPage)
+            }
+            .environment(\.tabbarHidden, $tabbarHidden)
 
+            if !tabbarHidden {
                 VStack {
                     Spacer()
 
@@ -48,9 +50,12 @@ struct MainTabView: View {
                             color: .GrayScale.gray5.opacity(0.24),
                             radius: 20,
                             y: 1
-                    )
+                        )
                 }
             }
+        }
+        .onAppear {
+            UITabBar.hideTabBar()
         }
     }
 
@@ -89,7 +94,7 @@ struct MainTabView: View {
                         .frame(width: tag == selection ? 4 : 0, height: tag == selection ? 4 : 0)
                         .offset(y: -8)
                 }
-                .padding(12)
+                .padding(16)
         }
 
     }

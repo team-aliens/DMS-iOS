@@ -17,7 +17,7 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                     dragHeight = 0
                 }
                 let verticalAmount = value.translation.height
-                if verticalAmount > -100 {
+                if verticalAmount > 100 {
                     withAnimation {
                         isShowing = false
                     }
@@ -72,8 +72,7 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                     }
                     .fixedSize(horizontal: false, vertical: true)
                     .transition(.move(edge: .bottom))
-                    .frame(maxHeight: height)
-                    .if(!(height == .infinity)) {
+                    .if(height != .infinity) {
                         $0.frame(height: height)
                     }
                 }

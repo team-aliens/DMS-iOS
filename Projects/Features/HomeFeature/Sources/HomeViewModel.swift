@@ -5,6 +5,7 @@ import Utility
 
 final class HomeViewModel: BaseViewModel {
     @Published var selectedDate = Date()
+    @Published var isExistNewNotice = true
     var selectedDateString: String {
         "\(selectedDate.year)/\(selectedDate.month)/\(selectedDate.day) (\(selectedDate.dayOfWeek()))"
     }
