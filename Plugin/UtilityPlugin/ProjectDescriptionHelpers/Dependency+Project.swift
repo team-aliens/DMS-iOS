@@ -10,6 +10,7 @@ public extension TargetDependency {
 }
 
 public extension TargetDependency.Project.Features {
+    static let SignupFeature = TargetDependency.feature(name: "SignupFeature")
     static let HomeFeature = TargetDependency.feature(name: "HomeFeature")
     static let MainTabFeature = TargetDependency.feature(name: "MainTabFeature")
     static let FindIDFeature = TargetDependency.feature(name: "FindIDFeature")
