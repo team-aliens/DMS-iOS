@@ -119,7 +119,6 @@ extension SchoolCodeComponent: Registration {
 extension MainTabComponent: Registration {
     public func registerItems() {
 
-
     }
 }
 extension SigninComponent: Registration {
