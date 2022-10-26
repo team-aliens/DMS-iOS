@@ -13,11 +13,11 @@ struct DMSBottomSheet<T: View>: ViewModifier {
                 }
             }
             .onEnded { value in
-                withAnimation {
+                withAnimation(.spring()) {
                     dragHeight = 0
                 }
                 let verticalAmount = value.translation.height
-                if verticalAmount > -100 {
+                if verticalAmount > 100 {
                     withAnimation {
                         isShowing = false
                     }
@@ -45,7 +45,7 @@ struct DMSBottomSheet<T: View>: ViewModifier {
                         .opacity(0.10)
                         .ignoresSafeArea()
                         .onTapGesture {
-                            withAnimation(.spring()) {
+                            withAnimation {
                                 isShowing = false
                             }
                         }
@@ -72,8 +72,7 @@ struct DMSBottomSheet<T: View>: ViewModifier {
                     }
                     .fixedSize(horizontal: false, vertical: true)
                     .transition(.move(edge: .bottom))
-                    .frame(maxHeight: height)
-                    .if(!(height == .infinity)) {
+                    .if(height != .infinity) {
                         $0.frame(height: height)
                     }
                 }
