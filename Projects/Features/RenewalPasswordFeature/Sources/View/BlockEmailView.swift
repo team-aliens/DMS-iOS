@@ -14,28 +14,26 @@ struct BlockEmailView: View {
     }
 
     var body: some View {
-//        if isShow {
-            ZStack {
-                Color.GrayScale.gray2
-                    .ignoresSafeArea()
+        ZStack {
+            Color.GrayScale.gray2
+                .ignoresSafeArea()
 
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("아이디와 일치하는 이메일 입니다")
-                            .dmsFont(.text(.small), color: .GrayScale.gray7)
-                            .multilineTextAlignment(.leading)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("아이디와 일치하는 이메일 입니다")
+                        .dmsFont(.text(.small), color: .GrayScale.gray7)
+                        .multilineTextAlignment(.leading)
 
-                        Text(email)
-                            .dmsFont(.text(.small), color: .PrimaryVariant.primary)
-                            .multilineTextAlignment(.leading)
-                    }
-                    Spacer()
-
+                    Text(email)
+                        .dmsFont(.text(.small), color: .PrimaryVariant.primary)
+                        .multilineTextAlignment(.leading)
                 }
-                .padding(.horizontal, 16)
-            }
-            .frame(height: 68)
+                Spacer()
 
+            }
+            .padding(.horizontal, 16)
         }
-//    }
+        .frame(height: 68)
+
+    }
 }
