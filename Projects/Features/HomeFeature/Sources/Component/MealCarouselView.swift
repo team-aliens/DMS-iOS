@@ -38,7 +38,7 @@ struct MealCarouselView: View {
             }
             .environmentObject(uiState)
         }
-    } 
+    }
 
     @ViewBuilder
     func mealView(meal: [String], mealType: MealType) -> some View {
@@ -65,9 +65,10 @@ struct MealCarouselView: View {
                     }
                 }
             }
+            .padding(.vertical, 12)
             .frame(maxHeight: .infinity)
 
-            Text(meal.last?.hasSuffix("kcal") ?? false ? meal.last ?? "0kcal" : "0kcal")
+            Text(meal.last?.hasSuffix("Kcal") ?? false ? meal.last ?? "0Kcal" : "0Kcal")
                 .dmsFont(.text(.medium), color: .GrayScale.gray5)
                 .padding(.bottom, 16)
         }
