@@ -13,7 +13,6 @@ struct DMSApp: App {
     var body: some Scene {
         WindowGroup {
             AppComponent().mainTabComponent.makeView()
-                .environment(\.colorScheme, .light)
         }
     }
 }
