@@ -5,7 +5,8 @@ import DataModule
 
 public extension AppComponent {
     var remoteMealDataSource: any RemoteMealDataSource {
-        RemoteMealDataSourceImpl(keychain: keychain)
+        RemoteMealDataSourceStub()
+//        RemoteMealDataSourceImpl(keychain: keychain)
     }
 
     var mealRepository: any MealRepository {
