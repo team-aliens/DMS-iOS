@@ -11,9 +11,3 @@ struct SignupEmailVerifyView: View {
         Text("Hello, World!")
     }
 }
-
-struct SignupEmailVerifyView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignupEmailVerifyView()
-    }
-}
