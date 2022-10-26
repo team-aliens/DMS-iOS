@@ -118,6 +118,9 @@ extension AppComponent: Registration {
         localTable["renewalPasswordUseCase-any RenewalPasswordUseCase"] = { self.renewalPasswordUseCase as Any }
         localTable["findIDUseCase-any FindIDUseCase"] = { self.findIDUseCase as Any }
         localTable["fetchMyProfileUseCase-any FetchMyProfileUseCase"] = { self.fetchMyProfileUseCase as Any }
+        localTable["remoteMealDataSource-any RemoteMealDataSource"] = { self.remoteMealDataSource as Any }
+        localTable["mealRepository-any MealRepository"] = { self.mealRepository as Any }
+        localTable["fetchMealListUseCase-any FetchMealListUseCase"] = { self.fetchMealListUseCase as Any }
         localTable["remoteSchoolDataSource-any RemoteSchoolDataSource"] = { self.remoteSchoolDataSource as Any }
         localTable["schoolRepository-any SchoolRepository"] = { self.schoolRepository as Any }
         localTable["fetchSchoolListUseCase-any FetchSchoolListUseCase"] = { self.fetchSchoolListUseCase as Any }
