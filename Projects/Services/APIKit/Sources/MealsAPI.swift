@@ -33,7 +33,8 @@ public extension MealsAPI: DmsAPI {
 
     public var errorMap: [Int : ErrorModule.DmsError] {
         [
-            400: .badRequest
+            400: .badRequest,
+            500: .internalServerError
         ]
     }
 }
