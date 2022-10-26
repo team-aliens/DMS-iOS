@@ -24,6 +24,19 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 
 #if !NEEDLE_DYNAMIC
 
+private class SchoolConfirmationQuestionsDependency3fa2ccd12da7c7f5cfc1Provider: SchoolConfirmationQuestionsDependency {
+    var checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase {
+        return appComponent.checkSchoolQuestionUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->SchoolConfirmationQuestionsComponent
+private func factoryd462667f0418a53210fcf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SchoolConfirmationQuestionsDependency3fa2ccd12da7c7f5cfc1Provider(appComponent: parent1(component) as! AppComponent)
+}
 private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDependency {
     var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase {
         return appComponent.checkSchoolCodeUseCase
@@ -94,6 +107,7 @@ extension AppComponent: Registration {
         localTable["schoolCodeComponent-SchoolCodeComponent"] = { self.schoolCodeComponent as Any }
         localTable["findIDComponent-FindIDComponent"] = { self.findIDComponent as Any }
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
+        localTable["schoolConfirmationQuestionsComponent-SchoolConfirmationQuestionsComponent"] = { self.schoolConfirmationQuestionsComponent as Any }
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["remoteStudentsDataSource-any RemoteStudentsDataSource"] = { self.remoteStudentsDataSource as Any }
         localTable["studentsRepository-any StudentsRepository"] = { self.studentsRepository as Any }
@@ -111,6 +125,11 @@ extension AppComponent: Registration {
         localTable["checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"] = { self.checkSchoolCodeUseCase as Any }
     }
 }
+extension SchoolConfirmationQuestionsComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\SchoolConfirmationQuestionsDependency.checkSchoolQuestionUseCase] = "checkSchoolQuestionUseCase-any CheckSchoolQuestionUseCase"
+    }
+}
 extension SchoolCodeComponent: Registration {
     public func registerItems() {
         keyPathToName[\SchoolCodeDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
@@ -118,7 +137,6 @@ extension SchoolCodeComponent: Registration {
 }
 extension MainTabComponent: Registration {
     public func registerItems() {
-
 
     }
 }
@@ -150,6 +168,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
+    registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9e3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
