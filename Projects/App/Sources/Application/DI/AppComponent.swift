@@ -29,6 +29,9 @@ public extension AppComponent {
     var signinComponent: SigninComponent {
         SigninComponent(parent: self)
     }
+    var schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent {
+        SchoolConfirmationQuestionsComponent(parent: self)
+    }
 }
 
 // MARK: - Main
