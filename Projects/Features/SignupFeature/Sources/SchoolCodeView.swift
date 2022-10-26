@@ -28,7 +28,7 @@ struct SchoolCodeView: View {
                 .frame(height: 60)
 
             VStack {
-                PasscodeView(text: $viewModel.schoolCode)
+                DMSPassCodeView(codeCount: 8, text: $viewModel.schoolCode)
                     .padding(.horizontal, 64)
                     .onChange(of: viewModel.schoolCode) { _ in
                         viewModel.checkIsEmptyAuthCode()

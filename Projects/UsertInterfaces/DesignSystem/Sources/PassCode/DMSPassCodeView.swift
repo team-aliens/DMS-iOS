@@ -1,12 +1,21 @@
 import SwiftUI
-
 import Combine
 
-struct PasscodeView: View {
+public struct DMSPassCodeView: View {
+
+    @State var codeCount: Int
     @Binding var text: String
     @FocusState var focused: Bool
 
-    var body: some View {
+    public init(
+        codeCount: Int,
+        text: Binding<String>
+    ) {
+        self.codeCount = codeCount
+        _text = text
+    }
+
+    public var body: some View {
         VStack {
             ZStack {
                 TextField("", text: $text)
@@ -15,13 +24,13 @@ struct PasscodeView: View {
                     .accentColor(.clear)
                     .foregroundColor(.clear)
                     .onReceive(Just(text), perform: { _ in
-                        if 8 < text.count {
-                            text = String(text.prefix(8))
+                        if codeCount < text.count {
+                            text = String(text.prefix(codeCount))
                         }
                     })
 
                 HStack(spacing: 20) {
-                    ForEach(1...8, id: \.self) { num in
+                    ForEach(1...codeCount, id: \.self) { num in
                         Circle()
                             .frame(width: 20, height: 20)
                             .foregroundColor(text.count >= num ? Color.GrayScale.gray6 : Color.GrayScale.gray4)
