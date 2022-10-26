@@ -10,7 +10,7 @@ public struct DMSPassCodeView: View {
     public init(
         codeCount: Int,
         text: Binding<String>
-        ) {
+    ) {
         self.codeCount = codeCount
         _text = text
     }
