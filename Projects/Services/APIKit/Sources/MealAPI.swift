@@ -3,11 +3,11 @@ import DomainModule
 import ErrorModule
 import Moya
 
-public enum MealsAPI {
+public enum MealAPI {
     case fetchMealList(String)
 }
 
-public extension MealsAPI: DmsAPI {
+extension MealAPI: DmsAPI {
     public var domain: DmsDomain {
         .meals
     }
@@ -31,7 +31,7 @@ public extension MealsAPI: DmsAPI {
         .accessToken
     }
 
-    public var errorMap: [Int : ErrorModule.DmsError] {
+    public var errorMap: [Int: ErrorModule.DmsError] {
         [
             400: .badRequest,
             500: .internalServerError
