@@ -7,12 +7,26 @@ public extension String {
         formatter.timeZone = TimeZone(identifier: "UTC")
         return formatter.date(from: self) ?? .init()
     }
+
+    func toSmallDMSDate() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        return formatter.date(from: self) ?? .init()
+    }
 }
 
 public extension Date {
     func toDMSDateString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        formatter.timeZone = .init(identifier: "UTC")
+        return formatter.string(from: self)
+    }
+
+    func toSmallDMSDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = .init(identifier: "UTC")
         return formatter.string(from: self)
     }

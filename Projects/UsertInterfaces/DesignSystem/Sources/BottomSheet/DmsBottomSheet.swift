@@ -13,7 +13,7 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                 }
             }
             .onEnded { value in
-                withAnimation {
+                withAnimation(.spring()) {
                     dragHeight = 0
                 }
                 let verticalAmount = value.translation.height
@@ -45,7 +45,7 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                         .opacity(0.10)
                         .ignoresSafeArea()
                         .onTapGesture {
-                            withAnimation(.spring()) {
+                            withAnimation {
                                 isShowing = false
                             }
                         }

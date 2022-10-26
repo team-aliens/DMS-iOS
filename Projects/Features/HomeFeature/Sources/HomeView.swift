@@ -14,19 +14,6 @@ struct HomeView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .bottom) {
-                ScrollView(showsIndicators: false) {
-                    if viewModel.isExistNewNotice {
-                        NoticeView()
-                    }
-
-                    Text("오늘의 급식")
-                        .dmsFont(.title(.small), color: .GrayScale.gray7)
-                        .padding(.top, 24)
-
-                    selectDateView()
-                        .padding(.top, 32)
-                }
-
                 VStack {
                     Spacer()
 
@@ -44,6 +31,26 @@ struct HomeView: View {
                             )
                         )
                         .frame(height: proxy.size.height * 0.5713)
+                }
+
+                ScrollView(showsIndicators: false) {
+                    if viewModel.isExistNewNotice {
+                        NoticeView()
+                    }
+
+                    Text("오늘의 급식")
+                        .dmsFont(.title(.small), color: .GrayScale.gray7)
+                        .padding(.top, 24)
+
+                    selectDateView()
+                        .padding(.top, 32)
+
+                    MealCarouselView(
+                        meal: viewModel.selectedDateMeal,
+                        isLoading: $viewModel.isLoading
+                    )
+                    .padding(.top, 36)
+                    .padding(.bottom, 80)
                 }
             }
         }
@@ -76,7 +83,9 @@ struct HomeView: View {
             }
 
             Button {
-                isShowingCalendar.toggle()
+                withAnimation {
+                    isShowingCalendar.toggle()
+                }
             } label: {
                 Label {
                     Text(viewModel.selectedDateString)

@@ -11,7 +11,7 @@ extension UIView {
 }
 
 public extension UITabBar {
-    static func hideTabBar(animated: Bool = true) {
+    static func hideTabBar(animated: Bool = false) {
         DispatchQueue.main.async {
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             windowScene?.windows.first(where: { $0.isKeyWindow })?.allSubviews().forEach({ (view) in
