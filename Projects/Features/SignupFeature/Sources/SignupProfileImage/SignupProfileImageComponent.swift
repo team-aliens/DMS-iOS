@@ -4,9 +4,11 @@ import NeedleFoundation
 public protocol SignupProfileImageDependency: Dependency {}
 
 public final class SignupProfileImageComponent: Component<SignupProfileImageDependency> {
-    public func makeView() -> some View {
+    public func makeView(signupProfileImageParam: SignupProfileImageParam) -> some View {
         SignupProfileImageView(
-            viewModel: .init()
+            viewModel: .init(
+                signupProfileImageParam: signupProfileImageParam
+            ),
         )
     }
 }
