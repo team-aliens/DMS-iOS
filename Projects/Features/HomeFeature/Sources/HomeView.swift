@@ -54,6 +54,9 @@ struct HomeView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.fetchMealList()
+        }
         .onChange(of: isShowingCalendar) { newValue in
             tabbarHidden.wrappedValue = newValue
         }
