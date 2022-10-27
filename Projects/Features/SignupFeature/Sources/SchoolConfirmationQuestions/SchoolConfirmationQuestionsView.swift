@@ -35,7 +35,6 @@ struct SchoolConfirmationQuestionsView: View {
                     text: $viewModel.answer,
                     isError: viewModel.isErrorOcuured
                 )
-                .textContentType(.username)
             }
             .padding(.top, 42)
             .padding(.horizontal, 24)
