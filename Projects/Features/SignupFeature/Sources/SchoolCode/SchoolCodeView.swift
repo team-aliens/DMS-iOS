@@ -19,11 +19,6 @@ struct SchoolCodeView: View {
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
                 }
 
-                .padding(.top, 28)
-
-                Spacer()
-            }
-
                 Spacer()
             }
             .padding(.top, 24)
@@ -33,13 +28,8 @@ struct SchoolCodeView: View {
                 .frame(height: 60)
 
             VStack {
-
                 DMSPassCodeView(codeCount: 8, text: $viewModel.schoolCode)
-
                     .padding(.horizontal, 64)
-                    .onChange(of: viewModel.schoolCode) { _ in
-                        viewModel.checkIsEmptyAuthCode()
-                    }
 
                 Spacer()
                     .frame(height: 24)
@@ -50,23 +40,14 @@ struct SchoolCodeView: View {
                     .frame(height: 40)
             }
 
-            .padding(.bottom, 430)
-
             Spacer()
 
             DMSWideButton(text: "인증", color: .PrimaryVariant.primary) {
                 viewModel.verifyAuthCodeButtonDidTap()
             }
-            .disabled(viewModel.isDisabled)
+            .disabled(!viewModel.isEnabledVerify)
             .padding(.bottom, 20)
             .padding(.horizontal, 24)
-            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
-
-    }
-
-struct SignupView_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("A")
     }
 }

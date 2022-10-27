@@ -8,7 +8,7 @@ final class SchoolConfirmationQuestionsViewModel: BaseViewModel {
     @Published var isDisabled = true
 
     var isConfirmButtonEnabled: Bool {
-        !id.isEmpty
+        !answer.isEmpty
     }
 
     private let checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase
@@ -24,7 +24,7 @@ final class SchoolConfirmationQuestionsViewModel: BaseViewModel {
                 schoolID: id,
                 answer: answer
             )
-        ) { [weak self] _ in
+        ) { _ in
         }
     }
 }

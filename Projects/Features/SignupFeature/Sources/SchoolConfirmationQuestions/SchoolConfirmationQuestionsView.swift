@@ -22,12 +22,10 @@ struct SchoolConfirmationQuestionsView: View {
                         .padding(.top, 50)
                 }
 
-                .padding(.horizontal, 24)
-
                 Spacer()
             }
 
-            .padding(.top, 28)
+            .padding(.top, 24)
 
             VStack(spacing: 72) {
                 DMSFloatingTextField(
@@ -37,7 +35,6 @@ struct SchoolConfirmationQuestionsView: View {
                 )
             }
             .padding(.top, 42)
-            .padding(.horizontal, 24)
 
             Spacer()
 
@@ -54,12 +51,11 @@ struct SchoolConfirmationQuestionsView: View {
             }
             .disabled(!viewModel.isConfirmButtonEnabled)
             .padding(.top, 24)
-            .frame(maxWidth: .infinity)
             .padding(.bottom, 40)
-            .padding(.horizontal, 24)
         }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .frame(maxWidth: .infinity)
+        .padding(.horizontal, 24)
         .dmsBackground()
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
