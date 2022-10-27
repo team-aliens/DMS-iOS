@@ -48,6 +48,7 @@ struct IDSettingView: View {
                         isError: viewModel.isErrorOcuured
                     )
                 }
+                .keyboardType(.numberPad)
                 .padding(.top, 94)
 
                 DMSFloatingTextField(
