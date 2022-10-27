@@ -31,6 +31,9 @@ public extension AppComponent {
     var signinComponent: SigninComponent {
         SigninComponent(parent: self)
     }
+    var schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent {
+        SchoolConfirmationQuestionsComponent(parent: self)
+    }
     var signupEmailVerifyComponent: SignupEmailVerifyComponent {
         SignupEmailVerifyComponent(parent: self)
     }
@@ -45,6 +48,9 @@ public extension AppComponent {
     }
     var changePasswordComponent: ChangePasswordComponent {
         ChangePasswordComponent(parent: self)
+    }
+    var signupProfileImageComponent: SignupProfileImageComponent {
+        SignupProfileImageComponent(parent: self)
     }
 }
 

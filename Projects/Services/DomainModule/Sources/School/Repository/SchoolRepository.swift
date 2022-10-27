@@ -8,4 +8,3 @@ public protocol SchoolRepository {
     func checkSchoolQuestion(schoolID: String, answer: String) -> AnyPublisher<Void, DmsError>
     func checkSchoolCode(code: String) -> AnyPublisher<String, DmsError>
 }
- 
