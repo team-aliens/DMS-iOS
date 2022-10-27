@@ -8,11 +8,12 @@ public protocol AuthenticationEmailDependency: Dependency {
 }
 
 public final class AuthenticationEmailComponent: Component<AuthenticationEmailDependency> {
-    public func makeView() -> some View {
+    public func makeView(authenticationEmailParam: AuthenticationEmailParam) -> some View {
         AuthenticationEmailView(
             viewModel: .init(
+                sendAuthCodeUseCase: self.dependency.sendAuthCodeUseCase,
                 verifyAuthCodeUseCase: self.dependency.verifyAuthCodeUseCase,
-                sendAuthCodeUseCase: self.dependency.sendAuthCodeUseCase
+                authenticationEmailParam: authenticationEmailParam
             )
         )
     }
