@@ -39,6 +39,17 @@ private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDepend
 private func factoryb65c1efbf06b87162473f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return SchoolCodeDependencyc0114744c1c8c7843672Provider(appComponent: parent1(component) as! AppComponent)
 }
+private class SignupPasswordDependency778bf5389a70d7df6152Provider: SignupPasswordDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->SignupPasswordComponent
+private func factorye93d1d56840ff97c674ae3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SignupPasswordDependency778bf5389a70d7df6152Provider()
+}
 private class SignupEmailAuthCodeVerifyDependencyaf9da1ebf0e9e5f1b708Provider: SignupEmailAuthCodeVerifyDependency {
     var sendAuthCodeUseCase: any SendAuthCodeUseCase {
         return appComponent.sendAuthCodeUseCase
@@ -54,6 +65,17 @@ private class SignupEmailAuthCodeVerifyDependencyaf9da1ebf0e9e5f1b708Provider: S
 /// ^->AppComponent->SignupEmailAuthCodeVerifyComponent
 private func factoryb06be35aa893adde971bf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return SignupEmailAuthCodeVerifyDependencyaf9da1ebf0e9e5f1b708Provider(appComponent: parent1(component) as! AppComponent)
+}
+private class SignupTermsDependency1c828944ed111a755519Provider: SignupTermsDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->SignupTermsComponent
+private func factoryf84223c07d964abc9b0ee3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SignupTermsDependency1c828944ed111a755519Provider()
 }
 private class SignupEmailVerifyDependencyf9d372ac752ee19b78caProvider: SignupEmailVerifyDependency {
     var checkDuplicateEmailUseCase: any CheckDuplicateEmailUseCase {
@@ -190,6 +212,9 @@ extension AppComponent: Registration {
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
         localTable["signupEmailVerifyComponent-SignupEmailVerifyComponent"] = { self.signupEmailVerifyComponent as Any }
         localTable["signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"] = { self.signupEmailAuthCodeVerifyComponent as Any }
+        localTable["signupTermsComponent-SignupTermsComponent"] = { self.signupTermsComponent as Any }
+        localTable["signupProfileImageComponent-SignupProfileImageComponent"] = { self.signupProfileImageComponent as Any }
+        localTable["signupPasswordComponent-SignupPasswordComponent"] = { self.signupPasswordComponent as Any }
         localTable["enterInformationComponent-EnterInformationComponent"] = { self.enterInformationComponent as Any }
         localTable["authenticationEmailComponent-AuthenticationEmailComponent"] = { self.authenticationEmailComponent as Any }
         localTable["changePasswordComponent-ChangePasswordComponent"] = { self.changePasswordComponent as Any }
@@ -222,10 +247,20 @@ extension SchoolCodeComponent: Registration {
         keyPathToName[\SchoolCodeDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
     }
 }
+extension SignupPasswordComponent: Registration {
+    public func registerItems() {
+
+    }
+}
 extension SignupEmailAuthCodeVerifyComponent: Registration {
     public func registerItems() {
         keyPathToName[\SignupEmailAuthCodeVerifyDependency.sendAuthCodeUseCase] = "sendAuthCodeUseCase-any SendAuthCodeUseCase"
         keyPathToName[\SignupEmailAuthCodeVerifyDependency.verifyAuthCodeUseCase] = "verifyAuthCodeUseCase-any VerifyAuthCodeUseCase"
+    }
+}
+extension SignupTermsComponent: Registration {
+    public func registerItems() {
+
     }
 }
 extension SignupEmailVerifyComponent: Registration {
@@ -290,7 +325,9 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->SignupPasswordComponent", factorye93d1d56840ff97c674ae3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SignupEmailAuthCodeVerifyComponent", factoryb06be35aa893adde971bf47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->SignupTermsComponent", factoryf84223c07d964abc9b0ee3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SignupEmailVerifyComponent", factory3b1904c76335d70151ebf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
