@@ -9,6 +9,7 @@ final class EnterInformationViewModel: BaseViewModel {
     @Published var id = ""
     @Published var name = ""
     @Published var isShow = false
+    @Published var isNavigateAuthenticationEmail = false
 
     var isNextButtonEnabled: Bool {
         !email.isEmpty && !id.isEmpty && !name.isEmpty
@@ -23,10 +24,15 @@ final class EnterInformationViewModel: BaseViewModel {
     }
 
     func nextButtonDidTap() {
-
+        self.isNavigateAuthenticationEmail = true
     }
 
     func returnEmailTextField() {
-        isShow.toggle()  // 임시
+        addCancellable(
+            checkAccountIDIsExistUseCase.execute(id: id)
+        ) { [weak self] email in
+            self?.blockEmail = email
+            self?.isShow = true
+        }
     }
 }

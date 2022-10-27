@@ -10,9 +10,15 @@ struct EnterInformationView: View {
 
     @FocusState private var focusField: FocusField?
     @StateObject var viewModel: EnterInformationViewModel
+    let authenticationEmailComponent: AuthenticationEmailComponent
+    @Environment(\.dismiss) var dismiss
 
-    public init(viewModel: EnterInformationViewModel) {
+    public init(
+        viewModel: EnterInformationViewModel,
+        authenticationEmailComponent: AuthenticationEmailComponent
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.authenticationEmailComponent = authenticationEmailComponent
     }
 
     var body: some View {
@@ -71,6 +77,17 @@ struct EnterInformationView: View {
             .padding(.bottom, 40)
 
         }
+        .navigate(
+            to: authenticationEmailComponent.makeView(
+                authenticationEmailParam: .init(
+                    name: viewModel.name,
+                    email: viewModel.email,
+                    id: viewModel.id
+                )
+            ),
+            when: $viewModel.isNavigateAuthenticationEmail
+        )
+        .dmsBackButton(dismiss: dismiss)
         .frame(maxWidth: .infinity)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .padding(.horizontal, 24)
