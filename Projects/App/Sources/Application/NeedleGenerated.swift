@@ -203,7 +203,6 @@ extension SignupEmailVerifyComponent: Registration {
 }
 extension MainTabComponent: Registration {
     public func registerItems() {
-
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
     }
 }
