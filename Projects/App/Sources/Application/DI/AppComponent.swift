@@ -39,6 +39,9 @@ public extension AppComponent {
     var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent {
         SignupEmailAuthCodeVerifyComponent(parent: self)
     }
+    var signupProfileImageComponent: SignupProfileImageComponent {
+        SignupProfileImageComponent(parent: self)
+    }
 }
 
 // MARK: - Main
