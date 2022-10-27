@@ -32,7 +32,7 @@ struct NoticeView: View {
         .padding(.horizontal, 24)
         .padding(.top, 12)
         .shadow(
-            color: .GrayScale.gray4,
+            color: .GrayScale.gray4.opacity(0.24),
             radius: 20,
             y: 1
         )
