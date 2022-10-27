@@ -7,8 +7,8 @@ struct MealCarouselView: View {
     @StateObject var uiState = UIStateModel()
     var meal: MealEntity?
     @Binding var isLoading: Bool
-    let spacing: CGFloat = 16
-    let widthOfHiddenCards: CGFloat = 30
+    let spacing: CGFloat = 30
+    let widthOfHiddenCards: CGFloat = UIScreen.main.bounds.width / 2 * 0.15
     let breakfastSkeleton: [String] = .generateSkeletonDummy()
     let lunchSkeleton: [String] = .generateSkeletonDummy()
     let dinnerSkeleton: [String] = .generateSkeletonDummy()
@@ -73,7 +73,10 @@ struct MealCarouselView: View {
                 .padding(.bottom, 16)
         }
         .redacted(reason: isLoading ? .placeholder : [])
-        .frame(width: 289, height: uiState.activeCard == mealType.rawValue ? 421 : 380)
+        .frame(
+            width: UIScreen.main.bounds.width - (widthOfHiddenCards*2) - (spacing*2),
+            height: uiState.activeCard == mealType.rawValue ? 421 : 380
+        )
         .background {
             Color.GrayScale.gray1
                 .cornerRadius(20)

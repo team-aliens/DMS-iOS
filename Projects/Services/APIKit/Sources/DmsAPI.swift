@@ -28,7 +28,7 @@ public enum DmsDomain: String {
     case losts
     case notices
     case meals
-    case images
+    case files
     case schools
 }
 
