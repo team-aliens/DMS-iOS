@@ -12,7 +12,7 @@ struct DMSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppComponent().signupTermsComponent.makeView()
+            AppComponent().mainTabComponent.makeView()
         }
     }
 }
