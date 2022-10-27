@@ -12,7 +12,7 @@ struct DMSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppComponent().signupEmailAuthCodeVerifyComponent.makeView(signupEmailAuthCodeVerifyParam: .init(schoolCode: "", schoolAnswer: "", email: ""))
+            AppComponent().mainTabComponent.makeView()
         }
     }
 }
