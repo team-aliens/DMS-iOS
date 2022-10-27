@@ -34,6 +34,9 @@ public struct DMSPassCodeView: View {
                         Circle()
                             .frame(width: 20, height: 20)
                             .foregroundColor(text.count >= num ? Color.GrayScale.gray6 : Color.GrayScale.gray4)
+                            .onTapGesture {
+                                focused = true
+                            }
                     }
                 }
             }
