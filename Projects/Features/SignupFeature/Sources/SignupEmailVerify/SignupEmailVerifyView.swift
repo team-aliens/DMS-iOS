@@ -5,9 +5,14 @@ struct SignupEmailVerifyView: View {
     @StateObject var viewModel: SignupEmailVerifyViewModel
     @Environment(\.rootPresentationMode) var rootPresentationMode
     @Environment(\.dismiss) var dismiss
+    let signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent
 
-    public init(viewModel: SignupEmailVerifyViewModel) {
+    public init(
+        viewModel: SignupEmailVerifyViewModel,
+        signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.signupEmailAuthCodeVerifyComponent = signupEmailAuthCodeVerifyComponent
     }
 
     var body: some View {
@@ -53,6 +58,16 @@ struct SignupEmailVerifyView: View {
             .padding(.top, 24)
             .padding(.bottom, 40)
         }
+        .navigate(
+            to: signupEmailAuthCodeVerifyComponent.makeView(
+                signupEmailAuthCodeVerifyParam: .init(
+                    schoolCode: viewModel.signupEmailVerifyParam.schoolCode,
+                    schoolAnswer: viewModel.signupEmailVerifyParam.schoolAnswer,
+                    email: viewModel.email
+                )
+            ),
+            when: $viewModel.isNavigateSignupEmailAuthCodeVerify
+        )
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
     }
