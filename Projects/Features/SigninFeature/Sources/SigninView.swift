@@ -19,7 +19,6 @@ struct SigninView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("DMS")
                         .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-                        .padding(.top, 28)
 
                     Text("더 편한 기숙사 생활을 위해")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
@@ -27,6 +26,7 @@ struct SigninView: View {
 
                 Spacer()
             }
+            .padding(.top, 24)
 
             VStack(spacing: 72) {
                 DMSFloatingTextField(
@@ -96,7 +96,7 @@ struct SigninView: View {
             DMSWideButton(text: "로그인", color: .PrimaryVariant.primary) {
                 viewModel.signinButtonDidTap()
             }
-            .disabled(!viewModel.isSigninButtonEnabled)
+            .disabled(!viewModel.isSigninEnabled)
             .padding(.top, 24)
             .frame(maxWidth: .infinity)
             .padding(.bottom, 40)

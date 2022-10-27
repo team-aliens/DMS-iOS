@@ -7,6 +7,7 @@ import SignupFeature
 import FindIDFeature
 import SigninFeature
 import MainTabFeature
+import HomeFeature
 
 public final class AppComponent: BootstrapComponent {
     public func makeRootView() -> some View {
@@ -32,11 +33,20 @@ public extension AppComponent {
     var schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent {
         SchoolConfirmationQuestionsComponent(parent: self)
     }
+    var signupEmailVerifyComponent: SignupEmailVerifyComponent {
+        SignupEmailVerifyComponent(parent: self)
+    }
+    var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent {
+        SignupEmailAuthCodeVerifyComponent(parent: self)
+    }
 }
 
 // MARK: - Main
 public extension AppComponent {
     var mainTabComponent: MainTabComponent {
         MainTabComponent(parent: self)
+    }
+    var homeComponent: HomeComponent {
+        HomeComponent(parent: self)
     }
 }
