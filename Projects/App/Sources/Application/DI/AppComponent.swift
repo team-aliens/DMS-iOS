@@ -8,6 +8,7 @@ import FindIDFeature
 import SigninFeature
 import RenewalPasswordFeature
 import MainTabFeature
+import HomeFeature
 
 public final class AppComponent: BootstrapComponent {
     public func makeRootView() -> some View {
@@ -45,5 +46,8 @@ public extension AppComponent {
 public extension AppComponent {
     var mainTabComponent: MainTabComponent {
         MainTabComponent(parent: self)
+    }
+    var homeComponent: HomeComponent {
+        HomeComponent(parent: self)
     }
 }
