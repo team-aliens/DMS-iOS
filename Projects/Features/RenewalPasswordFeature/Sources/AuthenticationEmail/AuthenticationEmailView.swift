@@ -53,7 +53,6 @@ struct AuthenticationEmailView: View {
             .padding(.top, 32)
             .padding(.bottom, 40)
         }
-        .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
         .onAppear {
             UIApplication.shared.hideKeyboard()
