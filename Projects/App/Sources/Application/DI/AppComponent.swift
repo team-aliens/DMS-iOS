@@ -42,6 +42,9 @@ public extension AppComponent {
     var signupProfileImageComponent: SignupProfileImageComponent {
         SignupProfileImageComponent(parent: self)
     }
+    var signupTermsComponent: SignupTermsComponent {
+        SignupTermsComponent(parent: self)
+    }
 }
 
 // MARK: - Main
