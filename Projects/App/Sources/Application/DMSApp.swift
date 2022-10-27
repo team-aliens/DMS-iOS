@@ -12,7 +12,18 @@ struct DMSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppComponent().mainTabComponent.makeView()
+            AppComponent().signupProfileImageComponent.makeView(
+                signupProfileImageParam: .init(
+                    schoolCode: "",
+                    schoolAnswer: "",
+                    email: "",
+                    grade: 1,
+                    classRoom: 1,
+                    number: 1,
+                    accountID: "",
+                    password: ""
+                )
+            )
         }
     }
 }

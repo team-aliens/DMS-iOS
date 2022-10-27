@@ -8,7 +8,7 @@ public final class SignupProfileImageComponent: Component<SignupProfileImageDepe
         SignupProfileImageView(
             viewModel: .init(
                 signupProfileImageParam: signupProfileImageParam
-            ),
+            )
         )
     }
 }
