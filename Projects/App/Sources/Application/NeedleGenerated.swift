@@ -51,10 +51,8 @@ private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDepend
 private func factoryb65c1efbf06b87162473f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return SchoolCodeDependencyc0114744c1c8c7843672Provider(appComponent: parent1(component) as! AppComponent)
 }
-
 private class IDSettingDependency8007dfdeec0db237b896Provider: IDSettingDependency {
 
-private class SignupPasswordDependency778bf5389a70d7df6152Provider: SignupPasswordDependency {
 
     init() {
 
@@ -63,7 +61,14 @@ private class SignupPasswordDependency778bf5389a70d7df6152Provider: SignupPasswo
 /// ^->AppComponent->IDSettingComponent
 private func factory8b3573203ea51120dc5ae3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
     return IDSettingDependency8007dfdeec0db237b896Provider()
+}
+private class SignupPasswordDependency778bf5389a70d7df6152Provider: SignupPasswordDependency {
 
+
+    init() {
+
+    }
+}
 /// ^->AppComponent->SignupPasswordComponent
 private func factorye93d1d56840ff97c674ae3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
     return SignupPasswordDependency778bf5389a70d7df6152Provider()
@@ -198,9 +203,9 @@ extension AppComponent: Registration {
         localTable["signupEmailVerifyComponent-SignupEmailVerifyComponent"] = { self.signupEmailVerifyComponent as Any }
         localTable["signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"] = { self.signupEmailAuthCodeVerifyComponent as Any }
         localTable["idSettingComponent-IDSettingComponent"] = { self.idSettingComponent as Any }
-        localTable["signupTermsComponent-SignupTermsComponent"] = { self.signupTermsComponent as Any }
         localTable["signupProfileImageComponent-SignupProfileImageComponent"] = { self.signupProfileImageComponent as Any }
         localTable["signupPasswordComponent-SignupPasswordComponent"] = { self.signupPasswordComponent as Any }
+        localTable["signupTermsComponent-SignupTermsComponent"] = { self.signupTermsComponent as Any }
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["homeComponent-HomeComponent"] = { self.homeComponent as Any }
         localTable["remoteStudentsDataSource-any RemoteStudentsDataSource"] = { self.remoteStudentsDataSource as Any }
@@ -236,6 +241,10 @@ extension SchoolCodeComponent: Registration {
     }
 }
 extension IDSettingComponent: Registration {
+    public func registerItems() {
+
+    }
+}
 extension SignupPasswordComponent: Registration {
     public func registerItems() {
 
