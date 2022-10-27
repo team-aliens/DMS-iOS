@@ -30,6 +30,9 @@ public extension AppComponent {
     var signinComponent: SigninComponent {
         SigninComponent(parent: self)
     }
+    var signupEmailVerifyComponent: SignupEmailVerifyComponent {
+        SignupEmailVerifyComponent(parent: self)
+    }
 }
 
 // MARK: - Main

@@ -22,6 +22,32 @@ struct SignupEmailVerifyView: View {
                 Spacer()
             }
             .padding(.top, 24)
+
+            DMSFloatingTextField(
+                "이메일 주소",
+                text: $viewModel.email,
+                isError: viewModel.isErrorOcuured,
+                errorMessage: viewModel.errorMessage
+            ) {
+                viewModel.sendButtonDidTap()
+            }
+            .padding(.top, 68)
+
+            Spacer()
+
+            HStack(spacing: 6) {
+                Text("이미 계정이 있으신가요?")
+                    .dmsFont(.text(.small), color: .GrayScale.gray5)
+
+                DMSButton(text: "로그인", style: .text, color: .GrayScale.gray6) {
+                }
+            }
+
+            DMSWideButton(text: "인증코드 발송", color: .PrimaryVariant.primary) {
+                viewModel.sendButtonDidTap()
+            }
+            .padding(.top, 32)
+            .padding(.bottom, 40)
         }
     }
 }
