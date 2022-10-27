@@ -33,7 +33,6 @@ struct SchoolCodeView: View {
                 .frame(height: 60)
 
             VStack {
-                PasscodeView(text: $viewModel.schoolCode)
 
                 DMSPassCodeView(codeCount: 8, text: $viewModel.schoolCode)
 
@@ -50,6 +49,9 @@ struct SchoolCodeView: View {
                     .padding(.horizontal, 24)
                     .frame(height: 40)
             }
+
+            .padding(.bottom, 430)
+
             Spacer()
 
             DMSWideButton(text: "인증", color: .PrimaryVariant.primary) {
