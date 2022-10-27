@@ -8,7 +8,7 @@ final class SigninViewModel: BaseViewModel {
     @Published var isOnAutoSignin = true
     @Published var isNavigateSignup = false
     @Published var isSuccessSignin = false
-    var isSigninButtonEnabled: Bool {
+    var isSigninEnabled: Bool {
         !id.isEmpty && !password.isEmpty
     }
 
@@ -19,7 +19,7 @@ final class SigninViewModel: BaseViewModel {
     }
 
     func signinButtonDidTap() {
-        guard isSigninButtonEnabled else { return }
+        guard isSigninEnabled else { return }
         addCancellable(signinUseCase.execute(req: .init(accountID: id, password: password))) { [weak self] _ in
             self?.isSuccessSignin = true
         }
