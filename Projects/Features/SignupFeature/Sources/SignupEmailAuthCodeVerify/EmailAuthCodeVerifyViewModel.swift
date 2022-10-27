@@ -47,6 +47,7 @@ final class SignupEmailAuthCodeVerifyViewModel: BaseViewModel {
                 req: .init(email: signupEmailAuthCodeVerifyParam.email, type: .signup)
             )
         ) { [weak self] _ in
+            self?.authCode = ""
             self?.timeRemaining = 180
             self?.toastMessage = "입력하신 이메일로 인증번호가 전송되었습니다."
             self?.isShowingToast = true

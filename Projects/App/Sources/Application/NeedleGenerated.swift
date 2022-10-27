@@ -58,6 +58,9 @@ private class SignupEmailVerifyDependencyf9d372ac752ee19b78caProvider: SignupEma
     var checkDuplicateEmailUseCase: any CheckDuplicateEmailUseCase {
         return appComponent.checkDuplicateEmailUseCase
     }
+    var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent {
+        return appComponent.signupEmailAuthCodeVerifyComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -176,6 +179,7 @@ extension SignupEmailAuthCodeVerifyComponent: Registration {
 extension SignupEmailVerifyComponent: Registration {
     public func registerItems() {
         keyPathToName[\SignupEmailVerifyDependency.checkDuplicateEmailUseCase] = "checkDuplicateEmailUseCase-any CheckDuplicateEmailUseCase"
+        keyPathToName[\SignupEmailVerifyDependency.signupEmailAuthCodeVerifyComponent] = "signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"
     }
 }
 extension MainTabComponent: Registration {

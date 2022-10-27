@@ -13,7 +13,8 @@ public final class SignupEmailVerifyComponent: Component<SignupEmailVerifyDepend
             viewModel: .init(
                 checkDuplicateEmailUseCase: dependency.checkDuplicateEmailUseCase,
                 signupEmailVerifyParam: signupEmailVerifyParam
-            )
+            ),
+            signupEmailAuthCodeVerifyComponent: dependency.signupEmailAuthCodeVerifyComponent
         )
     }
 }
