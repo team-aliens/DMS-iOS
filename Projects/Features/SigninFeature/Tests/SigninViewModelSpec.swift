@@ -20,7 +20,7 @@ final class SigninViewModelSpec: QuickSpec {
                 it("isSigninButtonEnabled은 false이다.") {
                     expect { sut.id }.to(beEmpty())
                     expect { sut.password }.to(beEmpty())
-                    expect { sut.isSigninButtonEnabled }.to(beFalse())
+                    expect { sut.isSigninEnabled }.to(beFalse())
                 }
             }
             context("유저가 ID만 입력했다면") {
@@ -30,7 +30,7 @@ final class SigninViewModelSpec: QuickSpec {
                 it("isSigninButtonEnabled은 false이다.") {
                     expect { sut.id }.toNot(beEmpty())
                     expect { sut.password }.to(beEmpty())
-                    expect { sut.isSigninButtonEnabled }.to(beFalse())
+                    expect { sut.isSigninEnabled }.to(beFalse())
                 }
             }
             context("유저가 Password만 입력했다면") {
@@ -40,7 +40,7 @@ final class SigninViewModelSpec: QuickSpec {
                 it("isSigninButtonEnabled은 false이다.") {
                     expect { sut.id }.to(beEmpty())
                     expect { sut.password }.toNot(beEmpty())
-                    expect { sut.isSigninButtonEnabled }.to(beFalse())
+                    expect { sut.isSigninEnabled }.to(beFalse())
                 }
             }
             context("유저가 ID와 Password를 모두 입력했다면") {
@@ -51,7 +51,7 @@ final class SigninViewModelSpec: QuickSpec {
                 it("isSigninButtonEnabled은 true이다.") {
                     expect { sut.id }.toNot(beEmpty())
                     expect { sut.password }.toNot(beEmpty())
-                    expect { sut.isSigninButtonEnabled }.to(beTrue())
+                    expect { sut.isSigninEnabled }.to(beTrue())
                 }
             }
             context("유저가 ID와 Password를 알맞게 입력하고 로그인을 시도한다면") {

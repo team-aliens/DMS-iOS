@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct DmsBottomSheet<T: View>: ViewModifier {
+struct DMSBottomSheet<T: View>: ViewModifier {
     @Binding var isShowing: Bool
     @State var dragHeight: CGFloat = 0
     var content: () -> T
@@ -13,11 +13,11 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                 }
             }
             .onEnded { value in
-                withAnimation {
+                withAnimation(.spring()) {
                     dragHeight = 0
                 }
                 let verticalAmount = value.translation.height
-                if verticalAmount > -100 {
+                if verticalAmount > 100 {
                     withAnimation {
                         isShowing = false
                     }
@@ -45,7 +45,7 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                         .opacity(0.10)
                         .ignoresSafeArea()
                         .onTapGesture {
-                            withAnimation(.spring()) {
+                            withAnimation {
                                 isShowing = false
                             }
                         }
@@ -72,8 +72,7 @@ struct DmsBottomSheet<T: View>: ViewModifier {
                     }
                     .fixedSize(horizontal: false, vertical: true)
                     .transition(.move(edge: .bottom))
-                    .frame(maxHeight: height)
-                    .if(!(height == .infinity)) {
+                    .if(height != .infinity) {
                         $0.frame(height: height)
                     }
                 }
@@ -89,6 +88,6 @@ public extension View {
         isShowing: Binding<Bool>,
         content: @escaping () -> Content
     ) -> some View {
-        modifier(DmsBottomSheet(isShowing: isShowing, content: content))
+        modifier(DMSBottomSheet(isShowing: isShowing, content: content))
     }
 }

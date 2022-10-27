@@ -18,10 +18,15 @@ struct SchoolCodeView: View {
                     Text("학교 인증코드 입력")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
                 }
+
                 .padding(.top, 28)
 
                 Spacer()
             }
+
+                Spacer()
+            }
+            .padding(.top, 24)
             .padding(.horizontal, 24)
 
             Spacer()
@@ -29,6 +34,9 @@ struct SchoolCodeView: View {
 
             VStack {
                 PasscodeView(text: $viewModel.schoolCode)
+
+                DMSPassCodeView(codeCount: 8, text: $viewModel.schoolCode)
+
                     .padding(.horizontal, 64)
                     .onChange(of: viewModel.schoolCode) { _ in
                         viewModel.checkIsEmptyAuthCode()
