@@ -4,6 +4,8 @@ import SwiftUI
 struct SignupProfileImageView: View {
     @StateObject var viewModel: SignupProfileImageViewModel
     @State var isShowingImagePicker = false
+    @State var isShowingCameraPicker = false
+    @State var isPresentedImageActionSheet = false
 
     public init(viewModel: SignupProfileImageViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -25,7 +27,7 @@ struct SignupProfileImageView: View {
             .padding(.top, 24)
 
             Button {
-                isShowingImagePicker.toggle()
+                isPresentedImageActionSheet.toggle()
             } label: {
                 ZStack(alignment: .bottomTrailing) {
                     Group {
@@ -64,6 +66,27 @@ struct SignupProfileImageView: View {
             .padding(.bottom, 40)
         }
         .imagePicker(isShow: $isShowingImagePicker, uiImage: $viewModel.selectedImage)
+        .cameraPicker(isShow: $isShowingCameraPicker, uiImage: $viewModel.selectedImage)
         .padding(.horizontal, 24)
+        .dmsActionSheet(isPresented: $isPresentedImageActionSheet) {
+            Button(role: nil) {
+                isPresentedImageActionSheet = false
+                isShowingCameraPicker.toggle()
+            } label: {
+                Label("사진 촬영", systemImage: "camera.fill")
+            }
+            .foregroundColor(.GrayScale.gray6)
+
+            Divider()
+                .foregroundColor(.GrayScale.gray4)
+
+            Button(role: nil) {
+                isPresentedImageActionSheet = false
+                isShowingImagePicker.toggle()
+            } label: {
+                Label("사진 선택", systemImage: "photo.tv")
+            }
+            .foregroundColor(.GrayScale.gray6)
+        }
     }
 }
