@@ -30,6 +30,12 @@ public extension AppComponent {
     var signinComponent: SigninComponent {
         SigninComponent(parent: self)
     }
+    var signupEmailVerifyComponent: SignupEmailVerifyComponent {
+        SignupEmailVerifyComponent(parent: self)
+    }
+    var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent {
+        SignupEmailAuthCodeVerifyComponent(parent: self)
+    }
     var signupProfileImageComponent: SignupProfileImageComponent {
         SignupProfileImageComponent(parent: self)
     }

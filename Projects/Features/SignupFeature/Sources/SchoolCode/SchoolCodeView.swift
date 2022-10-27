@@ -18,10 +18,10 @@ struct SchoolCodeView: View {
                     Text("학교 인증코드 입력")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
                 }
-                .padding(.top, 28)
 
                 Spacer()
             }
+            .padding(.top, 24)
             .padding(.horizontal, 24)
 
             Spacer()
