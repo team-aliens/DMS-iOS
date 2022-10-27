@@ -7,10 +7,11 @@ public protocol ChangePasswordDependency: Dependency {
 }
 
 public final class ChangePasswordComponent: Component<ChangePasswordDependency> {
-    public func makeView() -> some View {
+    public func makeView(changePasswordParm: ChangePasswordParm) -> some View {
         ChangePasswordView(
             viewModel: .init(
-                renewalPasswordUseCase: self.dependency.renewalPasswordUseCase
+                renewalPasswordUseCase: self.dependency.renewalPasswordUseCase,
+                changePasswordParm: changePasswordParm
             )
         )
     }
