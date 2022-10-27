@@ -54,6 +54,7 @@ public extension AppComponent {
     }
     var signupPasswordComponent: SignupPasswordComponent {
         SignupPasswordComponent(parent: self)
+    }
     var signupTermsComponent: SignupTermsComponent {
         SignupTermsComponent(parent: self)
     }

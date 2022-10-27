@@ -26,6 +26,19 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 
 #if !NEEDLE_DYNAMIC
 
+private class SchoolConfirmationQuestionsDependency3fa2ccd12da7c7f5cfc1Provider: SchoolConfirmationQuestionsDependency {
+    var checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase {
+        return appComponent.checkSchoolQuestionUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->SchoolConfirmationQuestionsComponent
+private func factoryd462667f0418a53210fcf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SchoolConfirmationQuestionsDependency3fa2ccd12da7c7f5cfc1Provider(appComponent: parent1(component) as! AppComponent)
+}
 private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDependency {
     var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase {
         return appComponent.checkSchoolCodeUseCase
@@ -93,6 +106,17 @@ private class SignupEmailVerifyDependencyf9d372ac752ee19b78caProvider: SignupEma
 private func factory3b1904c76335d70151ebf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return SignupEmailVerifyDependencyf9d372ac752ee19b78caProvider(appComponent: parent1(component) as! AppComponent)
 }
+private class SignupProfileImageDependency4203088ab57581d9f871Provider: SignupProfileImageDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->SignupProfileImageComponent
+private func factory6792674212c15df7e9cfe3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SignupProfileImageDependency4203088ab57581d9f871Provider()
+}
 private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
     var homeComponent: HomeComponent {
         return appComponent.homeComponent
@@ -138,6 +162,9 @@ private class AuthenticationEmailDependency73189eb572618b10e0fbProvider: Authent
     }
     var sendAuthCodeUseCase: any SendAuthCodeUseCase {
         return appComponent.sendAuthCodeUseCase
+    }
+    var changePasswordComponent: ChangePasswordComponent {
+        return appComponent.changePasswordComponent
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -210,14 +237,15 @@ extension AppComponent: Registration {
         localTable["schoolCodeComponent-SchoolCodeComponent"] = { self.schoolCodeComponent as Any }
         localTable["findIDComponent-FindIDComponent"] = { self.findIDComponent as Any }
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
+        localTable["schoolConfirmationQuestionsComponent-SchoolConfirmationQuestionsComponent"] = { self.schoolConfirmationQuestionsComponent as Any }
         localTable["signupEmailVerifyComponent-SignupEmailVerifyComponent"] = { self.signupEmailVerifyComponent as Any }
         localTable["signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"] = { self.signupEmailAuthCodeVerifyComponent as Any }
-        localTable["signupTermsComponent-SignupTermsComponent"] = { self.signupTermsComponent as Any }
-        localTable["signupProfileImageComponent-SignupProfileImageComponent"] = { self.signupProfileImageComponent as Any }
-        localTable["signupPasswordComponent-SignupPasswordComponent"] = { self.signupPasswordComponent as Any }
         localTable["enterInformationComponent-EnterInformationComponent"] = { self.enterInformationComponent as Any }
         localTable["authenticationEmailComponent-AuthenticationEmailComponent"] = { self.authenticationEmailComponent as Any }
         localTable["changePasswordComponent-ChangePasswordComponent"] = { self.changePasswordComponent as Any }
+        localTable["signupProfileImageComponent-SignupProfileImageComponent"] = { self.signupProfileImageComponent as Any }
+        localTable["signupPasswordComponent-SignupPasswordComponent"] = { self.signupPasswordComponent as Any }
+        localTable["signupTermsComponent-SignupTermsComponent"] = { self.signupTermsComponent as Any }
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["homeComponent-HomeComponent"] = { self.homeComponent as Any }
         localTable["remoteStudentsDataSource-any RemoteStudentsDataSource"] = { self.remoteStudentsDataSource as Any }
@@ -240,6 +268,11 @@ extension AppComponent: Registration {
         localTable["fetchSchoolQuestionUseCase-any FetchSchoolQuestionUseCase"] = { self.fetchSchoolQuestionUseCase as Any }
         localTable["checkSchoolQuestionUseCase-any CheckSchoolQuestionUseCase"] = { self.checkSchoolQuestionUseCase as Any }
         localTable["checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"] = { self.checkSchoolCodeUseCase as Any }
+    }
+}
+extension SchoolConfirmationQuestionsComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\SchoolConfirmationQuestionsDependency.checkSchoolQuestionUseCase] = "checkSchoolQuestionUseCase-any CheckSchoolQuestionUseCase"
     }
 }
 extension SchoolCodeComponent: Registration {
@@ -269,6 +302,11 @@ extension SignupEmailVerifyComponent: Registration {
         keyPathToName[\SignupEmailVerifyDependency.signupEmailAuthCodeVerifyComponent] = "signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"
     }
 }
+extension SignupProfileImageComponent: Registration {
+    public func registerItems() {
+
+    }
+}
 extension MainTabComponent: Registration {
     public func registerItems() {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
@@ -288,6 +326,7 @@ extension AuthenticationEmailComponent: Registration {
     public func registerItems() {
         keyPathToName[\AuthenticationEmailDependency.verifyAuthCodeUseCase] = "verifyAuthCodeUseCase-any VerifyAuthCodeUseCase"
         keyPathToName[\AuthenticationEmailDependency.sendAuthCodeUseCase] = "sendAuthCodeUseCase-any SendAuthCodeUseCase"
+        keyPathToName[\AuthenticationEmailDependency.changePasswordComponent] = "changePasswordComponent-ChangePasswordComponent"
     }
 }
 extension ChangePasswordComponent: Registration {
@@ -324,11 +363,13 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
+    registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupPasswordComponent", factorye93d1d56840ff97c674ae3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SignupEmailAuthCodeVerifyComponent", factoryb06be35aa893adde971bf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupTermsComponent", factoryf84223c07d964abc9b0ee3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SignupEmailVerifyComponent", factory3b1904c76335d70151ebf47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cfe3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)
