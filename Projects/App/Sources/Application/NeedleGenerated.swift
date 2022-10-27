@@ -110,19 +110,6 @@ private class HomeDependency443c4e1871277bd8432aProvider: HomeDependency {
 private func factory67229cdf0f755562b2b1f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return HomeDependency443c4e1871277bd8432aProvider(appComponent: parent1(component) as! AppComponent)
 }
-private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInformationDependency {
-    var checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase {
-        return appComponent.checkAccountIDIsExistUseCase
-    }
-    private let appComponent: AppComponent
-    init(appComponent: AppComponent) {
-        self.appComponent = appComponent
-    }
-}
-/// ^->AppComponent->EnterInformationComponent
-private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
-}
 private class AuthenticationEmailDependency73189eb572618b10e0fbProvider: AuthenticationEmailDependency {
     var verifyAuthCodeUseCase: any VerifyAuthCodeUseCase {
         return appComponent.verifyAuthCodeUseCase
@@ -151,6 +138,19 @@ private class ChangePasswordDependency04ab7ced24136c4fb27eProvider: ChangePasswo
 /// ^->AppComponent->ChangePasswordComponent
 private func factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return ChangePasswordDependency04ab7ced24136c4fb27eProvider(appComponent: parent1(component) as! AppComponent)
+}
+private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInformationDependency {
+    var checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase {
+        return appComponent.checkAccountIDIsExistUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->EnterInformationComponent
+private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
 }
 private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
@@ -246,11 +246,6 @@ extension HomeComponent: Registration {
         keyPathToName[\HomeDependency.fetchMealListUseCase] = "fetchMealListUseCase-any FetchMealListUseCase"
     }
 }
-extension EnterInformationComponent: Registration {
-    public func registerItems() {
-        keyPathToName[\EnterInformationDependency.checkAccountIDIsExistUseCase] = "checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"
-    }
-}
 extension AuthenticationEmailComponent: Registration {
     public func registerItems() {
         keyPathToName[\AuthenticationEmailDependency.verifyAuthCodeUseCase] = "verifyAuthCodeUseCase-any VerifyAuthCodeUseCase"
@@ -260,6 +255,11 @@ extension AuthenticationEmailComponent: Registration {
 extension ChangePasswordComponent: Registration {
     public func registerItems() {
         keyPathToName[\ChangePasswordDependency.renewalPasswordUseCase] = "renewalPasswordUseCase-any RenewalPasswordUseCase"
+    }
+}
+extension EnterInformationComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\EnterInformationDependency.checkAccountIDIsExistUseCase] = "checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"
     }
 }
 extension FindIDComponent: Registration {
@@ -291,9 +291,9 @@ private func register1() {
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
 #endif
