@@ -10,11 +10,7 @@ final class SignupProfileImageViewModel: BaseViewModel {
         self.signupProfileImageParam = signupProfileImageParam
     }
 
-    func skipButtonDidTap() {
-        
-    }
+    func skipButtonDidTap() {}
 
-    func nextButtonDidTap() {
-        
-    }
+    func nextButtonDidTap() {}
 }

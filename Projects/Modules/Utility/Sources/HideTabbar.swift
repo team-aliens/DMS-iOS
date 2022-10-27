@@ -38,14 +38,13 @@ public extension UITabBar {
             UIView.animate(withDuration: 0.8, animations: {
                 self.alpha = hidden ? 0.0 : 1.0
             })
-            UIView.animate(withDuration: 0.6, animations: {
+            UIView.animate(withDuration: 0.6) {
                 if !isViewHidden && hidden {
                     self.frame.origin.y = UIScreen.main.bounds.height + 200
-                }
-                else if isViewHidden && !hidden {
+                } else if isViewHidden && !hidden {
                     self.frame.origin.y = UIScreen.main.bounds.height - self.frame.height
                 }
-            }) { _ in
+            } completion: { _ in
                 if hidden && !self.isHidden {
                     self.isHidden = true
                 }
@@ -53,8 +52,7 @@ public extension UITabBar {
         } else {
             if !isViewHidden && hidden {
                 self.frame.origin.y = UIScreen.main.bounds.height + 200
-            }
-            else if isViewHidden && !hidden {
+            } else if isViewHidden && !hidden {
                 self.frame.origin.y = UIScreen.main.bounds.height - self.frame.height
             }
             self.isHidden = hidden

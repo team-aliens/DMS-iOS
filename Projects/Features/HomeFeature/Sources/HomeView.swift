@@ -32,6 +32,7 @@ struct HomeView: View {
                         )
                         .frame(height: proxy.size.height * 0.5713)
                 }
+                .ignoresSafeArea()
 
                 ScrollView(showsIndicators: false) {
                     if viewModel.isExistNewNotice {

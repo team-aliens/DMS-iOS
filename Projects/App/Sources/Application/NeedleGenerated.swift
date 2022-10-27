@@ -155,6 +155,7 @@ extension AppComponent: Registration {
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
         localTable["signupEmailVerifyComponent-SignupEmailVerifyComponent"] = { self.signupEmailVerifyComponent as Any }
         localTable["signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"] = { self.signupEmailAuthCodeVerifyComponent as Any }
+        localTable["signupProfileImageComponent-SignupProfileImageComponent"] = { self.signupProfileImageComponent as Any }
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["homeComponent-HomeComponent"] = { self.homeComponent as Any }
         localTable["remoteStudentsDataSource-any RemoteStudentsDataSource"] = { self.remoteStudentsDataSource as Any }
@@ -194,6 +195,11 @@ extension SignupEmailVerifyComponent: Registration {
     public func registerItems() {
         keyPathToName[\SignupEmailVerifyDependency.checkDuplicateEmailUseCase] = "checkDuplicateEmailUseCase-any CheckDuplicateEmailUseCase"
         keyPathToName[\SignupEmailVerifyDependency.signupEmailAuthCodeVerifyComponent] = "signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"
+    }
+}
+extension SignupProfileImageComponent: Registration {
+    public func registerItems() {
+
     }
 }
 extension MainTabComponent: Registration {
