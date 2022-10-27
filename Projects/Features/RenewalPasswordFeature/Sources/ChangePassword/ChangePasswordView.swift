@@ -20,10 +20,12 @@ struct ChangePasswordView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("DMS")
                         .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-                        .padding(.top, 28)
 
-                    Text("아이디 찾기")
+                    Text("비밀번호 설정")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
+
+                    Text("비밀번호는 영문, 숫자, 기호를 포함한 8~20자이어야 합니다.")
+                        .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
                 }
 
                 Spacer()
