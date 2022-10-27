@@ -2,11 +2,6 @@ import SwiftUI
 import DesignSystem
 
 struct SchoolConfirmationQuestionsView: View {
-    private enum FocusField {
-        case id
-        case password
-    }
-    @FocusState private var focusField: FocusField?
     @StateObject var viewModel: SchoolConfirmationQuestionsViewModel
 
     public init(viewModel: SchoolConfirmationQuestionsViewModel) {
@@ -18,7 +13,6 @@ struct SchoolConfirmationQuestionsView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("DMS")
                         .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-                        .padding(.top, 28)
 
                     Text("학교 확인 질문")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
@@ -26,19 +20,22 @@ struct SchoolConfirmationQuestionsView: View {
                     Text("우리 학교 학생 수는?")
                         .dmsFont(.text(.large), color: .GrayScale.gray7)
                         .padding(.top, 50)
-                }.padding(.horizontal, 24)
+                }
+
+                .padding(.horizontal, 24)
 
                 Spacer()
             }
 
+            .padding(.top, 28)
+
             VStack(spacing: 72) {
                 DMSFloatingTextField(
                     "답변",
-                    text: $viewModel.id,
+                    text: $viewModel.answer,
                     isError: viewModel.isErrorOcuured
                 )
                 .textContentType(.username)
-                .focused($focusField, equals: .id)
             }
             .padding(.top, 42)
             .padding(.horizontal, 24)
