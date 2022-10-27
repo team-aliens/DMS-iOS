@@ -47,22 +47,25 @@ struct SchoolConfirmationQuestionsView: View {
 
             HStack(spacing: 16) {
                 Text("이미 계정이 있으신가요?")
-                    .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
+                    .dmsFont(.text(.small), color: .GrayScale.gray5)
 
                 DMSButton(text: "로그인", style: .text, color: .GrayScale.gray6) {
-                    viewModel.isNavigateCheckConfirmationQuestion.toggle()
                 }
             }
 
             DMSWideButton(text: "확인", color: .PrimaryVariant.primary) {
                 viewModel.confirmButtonDidTap()
             }
-            .disabled(!viewModel.isSignupButtonEnabled)
+            .disabled(!viewModel.isConfirmButtonEnabled)
             .padding(.top, 24)
             .frame(maxWidth: .infinity)
             .padding(.bottom, 40)
             .padding(.horizontal, 24)
         }
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .frame(maxWidth: .infinity)
+        .dmsBackground()
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
