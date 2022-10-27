@@ -63,20 +63,16 @@ struct IDSettingView: View {
 
             Spacer()
 
-            .padding(.top, 60)
-
-            Spacer()
-
             DMSWideButton(text: "다음", color: .PrimaryVariant.primary) {
                 viewModel.nextButtonDidTap()
             }
             .padding(.bottom, 40)
             .disabled(!viewModel.isEnabledNextStep)
         }
+        .dmsBackground()
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 24)
-        .dmsBackground()
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
