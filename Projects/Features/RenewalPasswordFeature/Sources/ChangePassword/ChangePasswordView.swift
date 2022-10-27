@@ -51,7 +51,6 @@ struct ChangePasswordView: View {
         }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsBackground()
-        .frame(maxWidth: .infinity)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .padding(.horizontal, 24)
     }

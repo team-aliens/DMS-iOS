@@ -3,12 +3,15 @@ import DesignSystem
 
 struct AuthenticationEmailView: View {
     @StateObject var viewModel: AuthenticationEmailViewModel
+    let changePasswordComponent: ChangePasswordComponent
     @Environment(\.dismiss) var dismiss
 
     init(
-        viewModel: AuthenticationEmailViewModel
+        viewModel: AuthenticationEmailViewModel,
+        changePasswordComponent: ChangePasswordComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.changePasswordComponent = changePasswordComponent
     }
 
     var body: some View {
@@ -57,5 +60,18 @@ struct AuthenticationEmailView: View {
             viewModel.sendEmailAuthCode()
         }
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
+        .navigate(
+            to: changePasswordComponent.makeView(
+                changePasswordParm: .init(
+                    name: viewModel.authenticationEmailParam.name,
+                    email: viewModel.authenticationEmailParam.email,
+                    id: viewModel.authenticationEmailParam.id,
+                    authCode: viewModel.authCode
+                )
+            ),
+            when: $viewModel.isNavigateChangePassword
+        )
+        .dmsBackButton(dismiss: dismiss)
+
     }
 }

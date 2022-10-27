@@ -11,7 +11,7 @@ final class AuthenticationEmailViewModel: BaseViewModel {
     @Published var timeRemaining = 180
     @Published var isShowingToast = false
     @Published var toastMessage = ""
-    @Published var isNavigateSignupID = false
+    @Published var isNavigateChangePassword = false
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var timeText: String {
         timeRemaining % 60 < 10 ?
@@ -60,7 +60,7 @@ final class AuthenticationEmailViewModel: BaseViewModel {
                 req: .init(email: authenticationEmailParam.email, authCode: authCode, type: .signup)
             )
         ) { [weak self] _ in
-            self?.isNavigateSignupID = true
+            self?.isNavigateChangePassword = true
         } onReceiveError: { [weak self] _ in
             self?.authCode = ""
         }
