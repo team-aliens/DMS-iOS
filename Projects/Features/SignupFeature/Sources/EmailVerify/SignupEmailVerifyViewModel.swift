@@ -7,6 +7,9 @@ final class SignupEmailVerifyViewModel: BaseViewModel {
     @Published var email = "" {
         didSet { isErrorOcuured = false }
     }
+    var isSendEnabled: Bool {
+        !email.isEmpty
+    }
 
     private let checkDuplicateEmailUseCase: any CheckDuplicateEmailUseCase
 
@@ -18,7 +21,10 @@ final class SignupEmailVerifyViewModel: BaseViewModel {
 
     func sendButtonDidTap() {
         let emailExpression = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        guard email ~= emailExpression else {
+        guard
+            email ~= emailExpression,
+            isSendEnabled
+        else {
             isErrorOcuured = true
             errorMessage = "올바른 이메일 형식이 아닙니다."
             return

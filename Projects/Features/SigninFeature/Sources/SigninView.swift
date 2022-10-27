@@ -96,7 +96,7 @@ struct SigninView: View {
             DMSWideButton(text: "로그인", color: .PrimaryVariant.primary) {
                 viewModel.signinButtonDidTap()
             }
-            .disabled(!viewModel.isSigninButtonEnabled)
+            .disabled(!viewModel.isSigninEnabled)
             .padding(.top, 24)
             .frame(maxWidth: .infinity)
             .padding(.bottom, 40)

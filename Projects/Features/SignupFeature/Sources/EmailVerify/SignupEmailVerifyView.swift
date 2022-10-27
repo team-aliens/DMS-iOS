@@ -3,6 +3,8 @@ import SwiftUI
 
 struct SignupEmailVerifyView: View {
     @StateObject var viewModel: SignupEmailVerifyViewModel
+    @Environment(\.rootPresentationMode) var rootPresentationMode
+    @Environment(\.dismiss) var dismiss
 
     public init(viewModel: SignupEmailVerifyViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -15,7 +17,7 @@ struct SignupEmailVerifyView: View {
                     Text("DMS")
                         .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
 
-                    Text("더 편한 기숙사 생활을 위해")
+                    Text("이메일 주소 입력")
                         .dmsFont(.text(.medium), color: .GrayScale.gray6)
                 }
 
@@ -40,14 +42,18 @@ struct SignupEmailVerifyView: View {
                     .dmsFont(.text(.small), color: .GrayScale.gray5)
 
                 DMSButton(text: "로그인", style: .text, color: .GrayScale.gray6) {
+                    rootPresentationMode.wrappedValue.toggle()
                 }
             }
 
             DMSWideButton(text: "인증코드 발송", color: .PrimaryVariant.primary) {
                 viewModel.sendButtonDidTap()
             }
-            .padding(.top, 32)
+            .disabled(!viewModel.isSendEnabled)
+            .padding(.top, 24)
             .padding(.bottom, 40)
         }
+        .dmsBackButton(dismiss: dismiss)
+        .padding(.horizontal, 24)
     }
 }
