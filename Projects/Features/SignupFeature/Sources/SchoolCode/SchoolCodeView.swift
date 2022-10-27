@@ -62,7 +62,6 @@ struct SchoolCodeView: View {
         }
 
     }
-}
 
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
