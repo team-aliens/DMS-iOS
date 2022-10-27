@@ -8,7 +8,6 @@ public struct DMSFloatingTextField: View {
     var errorMessage: String
     var onCommit: () -> Void
     @FocusState var isFocused: Bool
-    @Namespace var animation
     private var isFloaintg: Bool {
         isFocused || !text.isEmpty
     }
