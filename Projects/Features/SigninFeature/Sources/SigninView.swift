@@ -26,7 +26,7 @@ struct SigninView: View {
 
                 Spacer()
             }
-            .padding(.top, 28)
+            .padding(.top, 24)
 
             VStack(spacing: 72) {
                 DMSFloatingTextField(
