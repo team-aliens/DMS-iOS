@@ -36,6 +36,9 @@ public extension AppComponent {
     var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent {
         SignupEmailAuthCodeVerifyComponent(parent: self)
     }
+    var signupTermsComponent: SignupTermsComponent {
+        SignupTermsComponent(parent: self)
+    }
 }
 
 // MARK: - Main

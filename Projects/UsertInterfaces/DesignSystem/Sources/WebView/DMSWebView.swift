@@ -1,6 +1,6 @@
 import SwiftUI
 import WebKit
- 
+
 public struct DMSWebView: UIViewRepresentable {
     var urlToLoad: String
 
@@ -15,7 +15,9 @@ public struct DMSWebView: UIViewRepresentable {
 
         let webView = WKWebView()
 
-        webView.load(URLRequest(url: url))
+        DispatchQueue.main.async {
+            webView.load(URLRequest(url: url))
+        }
         return webView
     }
 
