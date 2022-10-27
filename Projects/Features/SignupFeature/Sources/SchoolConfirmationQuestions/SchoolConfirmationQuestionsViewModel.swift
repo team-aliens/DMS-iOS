@@ -6,9 +6,8 @@ final class SchoolConfirmationQuestionsViewModel: BaseViewModel {
     @Published var id = ""
     @Published var answer = ""
     @Published var isDisabled = true
-    @Published var isNavigateCheckConfirmationQuestion = false
 
-    var isSignupButtonEnabled: Bool {
+    var isConfirmButtonEnabled: Bool {
         !id.isEmpty
     }
 
@@ -19,14 +18,13 @@ final class SchoolConfirmationQuestionsViewModel: BaseViewModel {
     }
 
     func confirmButtonDidTap() {
-        guard isSignupButtonEnabled else { return }
+        guard isConfirmButtonEnabled else { return }
         addCancellable(
             checkSchoolQuestionUseCase.execute(
                 schoolID: id,
                 answer: answer
             )
         ) { [weak self] _ in
-            self?.isNavigateCheckConfirmationQuestion = true
         }
     }
 }
