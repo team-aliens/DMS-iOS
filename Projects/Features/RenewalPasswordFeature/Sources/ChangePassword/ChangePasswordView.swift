@@ -3,8 +3,8 @@ import DesignSystem
 
 struct ChangePasswordView: View {
     private enum FocusField {
-        case beforePassword
-        case newPassword
+        case password
+        case passwordCheck
     }
 
     @FocusState private var focusField: FocusField?
@@ -34,11 +34,11 @@ struct ChangePasswordView: View {
             VStack(spacing: 60) {
                 SecureDMSFloatingTextField("새 비밀번호 입력", text: $viewModel.password) {
                 }
-                .focused($focusField, equals: .beforePassword)
+                .focused($focusField, equals: .password)
 
                 SecureDMSFloatingTextField("새 비밀번호 확인 ", text: $viewModel.passwordCheck) {
                 }
-                .focused($focusField, equals: .newPassword)
+                .focused($focusField, equals: .passwordCheck)
 
             }
             .padding(.top, 68)
