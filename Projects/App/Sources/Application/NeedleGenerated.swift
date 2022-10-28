@@ -80,15 +80,17 @@ private func factory8b3573203ea51120dc5af47b58f8f304c97af4d5(_ component: Needle
     return IDSettingDependency8007dfdeec0db237b896Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class SignupPasswordDependency778bf5389a70d7df6152Provider: SignupPasswordDependency {
-
-
-    init() {
-
+    var signupProfileImageComponent: SignupProfileImageComponent {
+        return appComponent.signupProfileImageComponent
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
     }
 }
 /// ^->AppComponent->SignupPasswordComponent
-private func factorye93d1d56840ff97c674ae3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return SignupPasswordDependency778bf5389a70d7df6152Provider()
+private func factorye93d1d56840ff97c674af47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SignupPasswordDependency778bf5389a70d7df6152Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class SignupEmailAuthCodeVerifyDependencyaf9da1ebf0e9e5f1b708Provider: SignupEmailAuthCodeVerifyDependency {
     var sendAuthCodeUseCase: any SendAuthCodeUseCase {
@@ -137,15 +139,17 @@ private func factory3b1904c76335d70151ebf47b58f8f304c97af4d5(_ component: Needle
     return SignupEmailVerifyDependencyf9d372ac752ee19b78caProvider(appComponent: parent1(component) as! AppComponent)
 }
 private class SignupProfileImageDependency4203088ab57581d9f871Provider: SignupProfileImageDependency {
-
-
-    init() {
-
+    var signupTermsComponent: SignupTermsComponent {
+        return appComponent.signupTermsComponent
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
     }
 }
 /// ^->AppComponent->SignupProfileImageComponent
-private func factory6792674212c15df7e9cfe3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return SignupProfileImageDependency4203088ab57581d9f871Provider()
+private func factory6792674212c15df7e9cff47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SignupProfileImageDependency4203088ab57581d9f871Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
     var homeComponent: HomeComponent {
@@ -276,7 +280,7 @@ extension IDSettingComponent: Registration {
 }
 extension SignupPasswordComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\SignupPasswordDependency.signupProfileImageComponent] = "signupProfileImageComponent-SignupProfileImageComponent"
     }
 }
 extension SignupEmailAuthCodeVerifyComponent: Registration {
@@ -299,7 +303,7 @@ extension SignupEmailVerifyComponent: Registration {
 }
 extension SignupProfileImageComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\SignupProfileImageDependency.signupTermsComponent] = "signupTermsComponent-SignupTermsComponent"
     }
 }
 extension MainTabComponent: Registration {
@@ -344,11 +348,11 @@ private func register1() {
     registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->IDSettingComponent", factory8b3573203ea51120dc5af47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->SignupPasswordComponent", factorye93d1d56840ff97c674ae3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->SignupPasswordComponent", factorye93d1d56840ff97c674af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupEmailAuthCodeVerifyComponent", factoryb06be35aa893adde971bf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupTermsComponent", factoryf84223c07d964abc9b0ee3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SignupEmailVerifyComponent", factory3b1904c76335d70151ebf47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cfe3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)

@@ -10,6 +10,7 @@ struct IDSettingView: View {
     }
     @StateObject var viewModel: IDSettingViewModel
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     @FocusState private var focusField: FocusField?
     private let signupPasswordComponent: SignupPasswordComponent
 
@@ -78,7 +79,11 @@ struct IDSettingView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background {
-                        Color.GrayScale.gray2
+                        if colorScheme == .light {
+                            Color.GrayScale.gray2
+                        } else {
+                            Color.GrayScale.gray3
+                        }
                     }
                 }
 

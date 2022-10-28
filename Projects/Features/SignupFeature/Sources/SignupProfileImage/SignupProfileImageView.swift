@@ -6,9 +6,14 @@ struct SignupProfileImageView: View {
     @State var isShowingImagePicker = false
     @State var isShowingCameraPicker = false
     @State var isPresentedImageActionSheet = false
+    private let signupTermsComponent: SignupTermsComponent
 
-    public init(viewModel: SignupProfileImageViewModel) {
+    public init(
+        viewModel: SignupProfileImageViewModel,
+        signupTermsComponent: SignupTermsComponent
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.signupTermsComponent = signupTermsComponent
     }
 
     var body: some View {
