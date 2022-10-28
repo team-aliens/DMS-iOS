@@ -7,7 +7,7 @@ import SignupFeature
 
 @main
 struct DMSApp: App {
-    @StateObject var sceneFlowState = SceneFlowState(sceneFlow: .splash)
+    @StateObject var appState = AppState(sceneFlow: .splash, features: .init())
     init() {
         registerProviderFactories()
     }
@@ -15,7 +15,7 @@ struct DMSApp: App {
     var body: some Scene {
         WindowGroup {
             AppComponent().makeRootView()
-                .environmentObject(sceneFlowState)
+                .environmentObject(appState)
         }
     }
 }

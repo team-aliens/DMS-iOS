@@ -4,10 +4,7 @@ import SigninFeature
 import MainTabFeature
 
 struct RootView: View {
-    @EnvironmentObject var sceneFlowState: SceneFlowState
-    @StateObject var dmsFeaturesObject = DmsFeaturesObject(
-        features: .init(mealService: false, noticeService: false, pointService: false)
-    )
+    @EnvironmentObject var appState: AppState
 
     private let signinComponent: SigninComponent
     private let mainTabComponent: MainTabComponent
@@ -22,14 +19,14 @@ struct RootView: View {
 
     var body: some View {
         ZStack {
-            switch sceneFlowState.sceneFlow {
+            switch appState.sceneFlow {
             case .auth:
                 signinComponent.makeView()
-                    .environmentObject(sceneFlowState)
+                    .environmentObject(appState)
 
             case .main:
                 mainTabComponent.makeView()
-                    .environmentObject(sceneFlowState)
+                    .environmentObject(appState)
 
             case .splash:
                 VStack {
@@ -37,12 +34,12 @@ struct RootView: View {
                 }
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        sceneFlowState.sceneFlow = .auth
+                        appState.sceneFlow = .auth
                     }
                 }
             }
         }
-        .animation(.easeInOut, value: sceneFlowState.sceneFlow)
+        .animation(.easeInOut, value: appState.sceneFlow)
         .transition(.opacity.animation(.easeInOut))
     }
 }

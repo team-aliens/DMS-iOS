@@ -11,7 +11,7 @@ struct SigninView: View {
         case id
         case password
     }
-    @EnvironmentObject var sceneFlowState: SceneFlowState
+    @EnvironmentObject var appState: AppState
     @StateObject var viewModel: SigninViewModel
     @FocusState private var focusField: FocusField?
     @State var isNavigateSignup = false
@@ -127,7 +127,7 @@ struct SigninView: View {
         }
         .onChange(of: viewModel.isSuccessSignin) { newValue in
             guard newValue else { return }
-            sceneFlowState.sceneFlow = .main
+            appState.sceneFlow = .main
         }
         .navigationViewStyle(.stack)
         .environment(\.rootPresentationMode, $isNavigateSignup)
