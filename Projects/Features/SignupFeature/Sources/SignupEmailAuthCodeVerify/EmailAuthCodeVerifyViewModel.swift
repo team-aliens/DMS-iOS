@@ -8,7 +8,7 @@ final class SignupEmailAuthCodeVerifyViewModel: BaseViewModel {
     @Published var authCode = "" {
         didSet { isErrorOcuured = false }
     }
-    @Published var timeRemaining = 180
+    @Published var timeRemaining = 0
     @Published var isShowingToast = false
     @Published var toastMessage = ""
     @Published var isNavigateSignupID = false
@@ -38,6 +38,14 @@ final class SignupEmailAuthCodeVerifyViewModel: BaseViewModel {
         ) { [weak self] _ in
             guard let self, self.timeRemaining > 0 else { return }
             self.timeRemaining -= 1
+        }
+
+        addCancellable(
+            $authCode.setFailureType(to: DmsError.self).eraseToAnyPublisher()
+        ) { [weak self] code in
+            if code.count == 6 {
+                self?.verifyEmailAuthCode()
+            }
         }
     }
 

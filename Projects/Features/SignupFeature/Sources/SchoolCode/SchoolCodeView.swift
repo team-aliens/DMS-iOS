@@ -22,8 +22,8 @@ struct SchoolCodeView: View {
             VStack(spacing: 24) {
                 DMSPassCodeView(codeCount: 8, text: $viewModel.schoolCode)
 
-                Text("이메일로 전송된 인증코드 8자리를 입력해주세요.")
-                    .dmsFont(.text(.small), color: .GrayScale.gray5)
+                Text(viewModel.isErrorOcuured ? viewModel.errorMessage : "이메일로 전송된 인증코드 8자리를 입력해주세요.")
+                    .dmsFont(.text(.small), color: viewModel.isErrorOcuured ? .System.error : .GrayScale.gray5)
             }
             .padding(.top, 56)
 

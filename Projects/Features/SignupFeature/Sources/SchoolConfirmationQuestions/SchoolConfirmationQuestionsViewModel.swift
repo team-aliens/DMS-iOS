@@ -4,7 +4,9 @@ import DomainModule
 
 final class SchoolConfirmationQuestionsViewModel: BaseViewModel {
     @Published var question = "질문을 가져오는 중입니다..!"
-    @Published var answer = ""
+    @Published var answer = "" {
+        didSet { isErrorOcuured = false }
+    }
     @Published var isNavigateSignupEmailVerify = false
 
     var isConfirmEnabled: Bool {

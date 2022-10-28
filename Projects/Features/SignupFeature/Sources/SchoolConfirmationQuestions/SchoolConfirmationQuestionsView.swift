@@ -9,10 +9,16 @@ struct SchoolConfirmationQuestionsView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.rootPresentationMode) var rootPresentationMode
     @FocusState private var focusField: FocusField?
+    private let signupEmailVerifyComponent: SignupEmailVerifyComponent
 
-    public init(viewModel: SchoolConfirmationQuestionsViewModel) {
+    public init(
+        viewModel: SchoolConfirmationQuestionsViewModel,
+        signupEmailVerifyComponent: SignupEmailVerifyComponent
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.signupEmailVerifyComponent = signupEmailVerifyComponent
     }
+
     var body: some View {
         VStack {
             AuthHeaderView(subTitle: "학교 확인 질문")
@@ -65,11 +71,14 @@ struct SchoolConfirmationQuestionsView: View {
         }
         .navigationTitle("회원가입")
         .ignoresSafeArea(.keyboard, edges: .bottom)
-    }
-}
-
-struct SchoolConfirmationQuestionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("A")
+        .navigate(
+            to: signupEmailVerifyComponent.makeView(
+                signupEmailVerifyParam: .init(
+                    schoolCode: viewModel.schoolConfirmationQuestionsParam.schoolCode,
+                    schoolAnswer: viewModel.answer,
+                    schoolID: viewModel.schoolConfirmationQuestionsParam.schoolID
+                )
+            ),
+            when: $viewModel.isNavigateSignupEmailVerify)
     }
 }

@@ -14,18 +14,8 @@ struct SignupEmailAuthCodeVerifyView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-
-                    Text("이메일 주소 입력")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
-
-                Spacer()
-            }
-            .padding(.top, 24)
+            AuthHeaderView(subTitle: "이메일 주소 입력")
+                .padding(.top, 24)
 
             VStack(spacing: 40) {
                 DMSPassCodeView(codeCount: 6, text: $viewModel.authCode)
@@ -52,11 +42,13 @@ struct SignupEmailAuthCodeVerifyView: View {
             .padding(.bottom, 40)
         }
         .dmsBackButton(dismiss: dismiss)
+        .dmsBackground()
         .padding(.horizontal, 24)
+        .hideKeyboardWhenTap()
         .onAppear {
-            UIApplication.shared.hideKeyboard()
             viewModel.sendEmailAuthCode()
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
     }
 }
