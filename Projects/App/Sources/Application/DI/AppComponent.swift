@@ -40,6 +40,9 @@ public extension AppComponent {
     var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent {
         SignupEmailAuthCodeVerifyComponent(parent: self)
     }
+    var idSettingComponent: IDSettingComponent {
+        IDSettingComponent(parent: self)
+    }
     var enterInformationComponent: EnterInformationComponent {
         EnterInformationComponent(parent: self)
     }

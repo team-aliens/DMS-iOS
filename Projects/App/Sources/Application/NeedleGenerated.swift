@@ -52,6 +52,17 @@ private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDepend
 private func factoryb65c1efbf06b87162473f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return SchoolCodeDependencyc0114744c1c8c7843672Provider(appComponent: parent1(component) as! AppComponent)
 }
+private class IDSettingDependency8007dfdeec0db237b896Provider: IDSettingDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->IDSettingComponent
+private func factory8b3573203ea51120dc5ae3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return IDSettingDependency8007dfdeec0db237b896Provider()
+}
 private class SignupPasswordDependency778bf5389a70d7df6152Provider: SignupPasswordDependency {
 
 
@@ -240,6 +251,7 @@ extension AppComponent: Registration {
         localTable["schoolConfirmationQuestionsComponent-SchoolConfirmationQuestionsComponent"] = { self.schoolConfirmationQuestionsComponent as Any }
         localTable["signupEmailVerifyComponent-SignupEmailVerifyComponent"] = { self.signupEmailVerifyComponent as Any }
         localTable["signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"] = { self.signupEmailAuthCodeVerifyComponent as Any }
+        localTable["idSettingComponent-IDSettingComponent"] = { self.idSettingComponent as Any }
         localTable["enterInformationComponent-EnterInformationComponent"] = { self.enterInformationComponent as Any }
         localTable["authenticationEmailComponent-AuthenticationEmailComponent"] = { self.authenticationEmailComponent as Any }
         localTable["changePasswordComponent-ChangePasswordComponent"] = { self.changePasswordComponent as Any }
@@ -278,6 +290,11 @@ extension SchoolConfirmationQuestionsComponent: Registration {
 extension SchoolCodeComponent: Registration {
     public func registerItems() {
         keyPathToName[\SchoolCodeDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
+    }
+}
+extension IDSettingComponent: Registration {
+    public func registerItems() {
+
     }
 }
 extension SignupPasswordComponent: Registration {
@@ -365,6 +382,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->IDSettingComponent", factory8b3573203ea51120dc5ae3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SignupPasswordComponent", factorye93d1d56840ff97c674ae3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SignupEmailAuthCodeVerifyComponent", factoryb06be35aa893adde971bf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupTermsComponent", factoryf84223c07d964abc9b0ee3b0c44298fc1c149afb)
