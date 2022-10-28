@@ -112,15 +112,17 @@ private func factoryb06be35aa893adde971bf47b58f8f304c97af4d5(_ component: Needle
     return SignupEmailAuthCodeVerifyDependencyaf9da1ebf0e9e5f1b708Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class SignupTermsDependency1c828944ed111a755519Provider: SignupTermsDependency {
-
-
-    init() {
-
+    var signupUseCase: any SignupUseCase {
+        return appComponent.signupUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
     }
 }
 /// ^->AppComponent->SignupTermsComponent
-private func factoryf84223c07d964abc9b0ee3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return SignupTermsDependency1c828944ed111a755519Provider()
+private func factoryf84223c07d964abc9b0ef47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SignupTermsDependency1c828944ed111a755519Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class SignupEmailVerifyDependencyf9d372ac752ee19b78caProvider: SignupEmailVerifyDependency {
     var checkDuplicateEmailUseCase: any CheckDuplicateEmailUseCase {
@@ -139,6 +141,9 @@ private func factory3b1904c76335d70151ebf47b58f8f304c97af4d5(_ component: Needle
     return SignupEmailVerifyDependencyf9d372ac752ee19b78caProvider(appComponent: parent1(component) as! AppComponent)
 }
 private class SignupProfileImageDependency4203088ab57581d9f871Provider: SignupProfileImageDependency {
+    var uploadFileUseCase: any UploadFileUseCase {
+        return appComponent.uploadFileUseCase
+    }
     var signupTermsComponent: SignupTermsComponent {
         return appComponent.signupTermsComponent
     }
@@ -292,7 +297,7 @@ extension SignupEmailAuthCodeVerifyComponent: Registration {
 }
 extension SignupTermsComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\SignupTermsDependency.signupUseCase] = "signupUseCase-any SignupUseCase"
     }
 }
 extension SignupEmailVerifyComponent: Registration {
@@ -303,6 +308,7 @@ extension SignupEmailVerifyComponent: Registration {
 }
 extension SignupProfileImageComponent: Registration {
     public func registerItems() {
+        keyPathToName[\SignupProfileImageDependency.uploadFileUseCase] = "uploadFileUseCase-any UploadFileUseCase"
         keyPathToName[\SignupProfileImageDependency.signupTermsComponent] = "signupTermsComponent-SignupTermsComponent"
     }
 }
@@ -350,7 +356,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->IDSettingComponent", factory8b3573203ea51120dc5af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupPasswordComponent", factorye93d1d56840ff97c674af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupEmailAuthCodeVerifyComponent", factoryb06be35aa893adde971bf47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->SignupTermsComponent", factoryf84223c07d964abc9b0ee3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->SignupTermsComponent", factoryf84223c07d964abc9b0ef47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupEmailVerifyComponent", factory3b1904c76335d70151ebf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)

@@ -6,6 +6,8 @@ struct SignupProfileImageView: View {
     @State var isShowingImagePicker = false
     @State var isShowingCameraPicker = false
     @State var isPresentedImageActionSheet = false
+    @Environment(\.dismiss) var dismiss
+
     private let signupTermsComponent: SignupTermsComponent
 
     public init(
@@ -72,7 +74,9 @@ struct SignupProfileImageView: View {
         }
         .imagePicker(isShow: $isShowingImagePicker, uiImage: $viewModel.selectedImage)
         .cameraPicker(isShow: $isShowingCameraPicker, uiImage: $viewModel.selectedImage)
+        .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
+        .dmsBackground()
         .dmsActionSheet(isPresented: $isPresentedImageActionSheet) {
             Button(role: nil) {
                 isPresentedImageActionSheet = false
@@ -93,5 +97,14 @@ struct SignupProfileImageView: View {
             }
             .foregroundColor(.GrayScale.gray6)
         }
+        .navigate(
+            to: signupTermsComponent.makeView(
+                signupTermsParam: .init(
+                    signupProfileImageParam: viewModel.signupProfileImageParam,
+                    profileImageURLString: viewModel.isSkip ? nil : viewModel.selectedImageURLString
+                )
+            ),
+            when: $viewModel.isNavigateSignupTerms
+        )
     }
 }

@@ -8,6 +8,7 @@ struct SignupPasswordView: View {
     }
     @StateObject var viewModel: SignupPasswordViewModel
     @FocusState private var focusField: FocusField?
+    @Environment(\.dismiss) var dismiss
     private let signupProfileImageComponent: SignupProfileImageComponent
 
     public init(
@@ -60,7 +61,20 @@ struct SignupPasswordView: View {
             }
             .padding(.bottom, 40)
         }
-        .dmsBackground()
         .padding(.horizontal, 24)
+        .dmsBackground()
+        .onAppear {
+            focusField = .password
+        }
+        .dmsBackButton(dismiss: dismiss)
+        .navigate(
+            to: signupProfileImageComponent.makeView(
+                signupProfileImageParam: .init(
+                    signupPasswordParam: viewModel.signupPasswordParam,
+                    password: viewModel.password
+                )
+            ),
+            when: $viewModel.isNavigateSignupProfileImage
+        )
     }
 }

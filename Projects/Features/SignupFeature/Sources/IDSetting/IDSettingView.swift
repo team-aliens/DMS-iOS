@@ -70,8 +70,8 @@ struct IDSettingView: View {
 
                         DMSButton(text: "확인", style: .text, color: .GrayScale.gray6) {
                             withAnimation {
-                                focusField = nil
                                 viewModel.nameCheckButtonDidTap()
+                                focusField = .id
                             }
                         }
                         .padding(.trailing, 20)
@@ -106,6 +106,7 @@ struct IDSettingView: View {
             DMSWideButton(text: "다음", color: .PrimaryVariant.primary) {
                 withAnimation {
                     viewModel.nextButtonDidTap()
+                    focusField = nil
                 }
             }
             .padding(.bottom, 40)

@@ -3,7 +3,7 @@ import Foundation
 public struct SignupTermsParam: Equatable {
     public init(
         signupProfileImageParam: SignupProfileImageParam,
-        profileImageURLString: String
+        profileImageURLString: String?
     ) {
         self.schoolCode = signupProfileImageParam.schoolCode
         self.schoolID = signupProfileImageParam.schoolID

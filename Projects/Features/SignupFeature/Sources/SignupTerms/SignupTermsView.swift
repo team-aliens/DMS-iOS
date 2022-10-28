@@ -3,6 +3,8 @@ import SwiftUI
 
 struct SignupTermsView: View {
     @StateObject var viewModel: SignupTermsViewModel
+    @Environment(\.rootPresentationMode) var rootPresentationMode
+    @Environment(\.dismiss) var dismiss
 
     init(
         viewModel: SignupTermsViewModel
@@ -57,6 +59,12 @@ struct SignupTermsView: View {
             )
         }
         .dmsBackground()
+        .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
+        .alert(viewModel.alertMessage, isPresented: $viewModel.isShowingAlert) {
+            Button("로그인 화면으로", role: .cancel) {
+                rootPresentationMode.wrappedValue.toggle()
+            }
+        }
     }
 }
