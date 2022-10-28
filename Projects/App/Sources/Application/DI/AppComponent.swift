@@ -19,7 +19,9 @@ public final class AppComponent: BootstrapComponent {
     }
 
     var rootComponent: RootComponent {
-        RootComponent(parent: self)
+        shared {
+            RootComponent(parent: self)
+        }
     }
 }
 

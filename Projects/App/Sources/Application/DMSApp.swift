@@ -1,12 +1,13 @@
 import SwiftUI
 import DesignSystem
+import BaseFeature
 import FindIDFeature
 import SigninFeature
 import SignupFeature
-import Utility
 
 @main
 struct DMSApp: App {
+    @StateObject var sceneFlowState = SceneFlowState(sceneFlow: .splash)
     init() {
         registerProviderFactories()
     }
@@ -14,6 +15,7 @@ struct DMSApp: App {
     var body: some Scene {
         WindowGroup {
             AppComponent().makeRootView()
+                .environmentObject(sceneFlowState)
         }
     }
 }

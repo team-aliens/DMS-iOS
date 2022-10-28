@@ -1,3 +1,4 @@
+import BaseFeature
 import NeedleFoundation
 import SwiftUI
 import SigninFeature

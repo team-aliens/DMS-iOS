@@ -1,3 +1,4 @@
+import BaseFeature
 import DesignSystem
 import FindIDFeature
 import RenewalPasswordFeature
@@ -10,7 +11,7 @@ struct SigninView: View {
         case id
         case password
     }
-    @AppStorage(StorageKeys.sceneFlow.rawValue) var sceneFlow: SceneFlow = .auth
+    @EnvironmentObject var sceneFlowState: SceneFlowState
     @StateObject var viewModel: SigninViewModel
     @FocusState private var focusField: FocusField?
     @State var isNavigateSignup = false
@@ -126,7 +127,7 @@ struct SigninView: View {
         }
         .onChange(of: viewModel.isSuccessSignin) { newValue in
             guard newValue else { return }
-            sceneFlow = .main
+            sceneFlowState.sceneFlow = .main
         }
         .navigationViewStyle(.stack)
         .environment(\.rootPresentationMode, $isNavigateSignup)

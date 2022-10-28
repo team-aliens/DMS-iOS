@@ -2,10 +2,9 @@ import BaseFeature
 import SwiftUI
 import SigninFeature
 import MainTabFeature
-import Utility
 
 struct RootView: View {
-    @AppStorage(StorageKeys.sceneFlow.rawValue) var sceneFlow: SceneFlow = .auth
+    @EnvironmentObject var sceneFlowState: SceneFlowState
     @StateObject var dmsFeaturesObject = DmsFeaturesObject(
         features: .init(mealService: false, noticeService: false, pointService: false)
     )
@@ -23,18 +22,27 @@ struct RootView: View {
 
     var body: some View {
         ZStack {
-            switch sceneFlow {
+            switch sceneFlowState.sceneFlow {
             case .auth:
                 signinComponent.makeView()
+                    .environmentObject(sceneFlowState)
 
             case .main:
                 mainTabComponent.makeView()
+                    .environmentObject(sceneFlowState)
 
             case .splash:
                 VStack {
                     Text("대충 스플래시")
                 }
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        sceneFlowState.sceneFlow = .auth
+                    }
+                }
             }
         }
+        .animation(.easeInOut, value: sceneFlowState.sceneFlow)
+        .transition(.opacity.animation(.easeInOut))
     }
 }
