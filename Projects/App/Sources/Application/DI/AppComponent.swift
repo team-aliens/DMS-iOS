@@ -39,11 +39,15 @@ public extension AppComponent {
     var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent {
         SignupEmailAuthCodeVerifyComponent(parent: self)
     }
+    var idSettingComponent: IDSettingComponent {
+        IDSettingComponent(parent: self)
+    }
     var signupProfileImageComponent: SignupProfileImageComponent {
         SignupProfileImageComponent(parent: self)
     }
     var signupPasswordComponent: SignupPasswordComponent {
         SignupPasswordComponent(parent: self)
+    }
     var signupTermsComponent: SignupTermsComponent {
         SignupTermsComponent(parent: self)
     }
