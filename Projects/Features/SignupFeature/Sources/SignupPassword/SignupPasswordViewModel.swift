@@ -16,6 +16,12 @@ final class SignupPasswordViewModel: BaseViewModel {
         !password.isEmpty && !passwordCheck.isEmpty
     }
 
+    let signupPasswordParam: SignupPasswordParam
+
+    init(signupPasswordParam: SignupPasswordParam) {
+        self.signupPasswordParam = signupPasswordParam
+    }
+
     func nextButtonDidTap() {
         guard isEnabledNextStep else {
             return

@@ -114,5 +114,17 @@ struct IDSettingView: View {
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: viewModel.toastStyle)
+        .navigate(
+            to: signupPasswordComponent.makeView(
+                signupPasswordParam: .init(
+                    idSettingParam: viewModel.idSettingParam,
+                    grade: Int(viewModel.grade) ?? 0,
+                    class: Int(viewModel.group) ?? 0,
+                    number: Int(viewModel.number) ?? 0,
+                    accountID: viewModel.id
+                )
+            ),
+            when: $viewModel.isNavigateSignupPassword
+        )
     }
 }

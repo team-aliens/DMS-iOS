@@ -8,30 +8,27 @@ struct SignupPasswordView: View {
     }
     @StateObject var viewModel: SignupPasswordViewModel
     @FocusState private var focusField: FocusField?
+    private let signupProfileImageComponent: SignupProfileImageComponent
 
     public init(
-        viewModel: SignupPasswordViewModel
+        viewModel: SignupPasswordViewModel,
+        signupProfileImageComponent: SignupProfileImageComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.signupProfileImageComponent = signupProfileImageComponent
     }
 
     var body: some View {
         VStack(spacing: 4) {
+            AuthHeaderView(subTitle: "비밀번호 설정")
+                .padding(.top, 24)
+
             HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-
-                    Text("학교 인증코드 입력")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-
-                    Text("비밀번호는 영문, 숫자, 기호를 포함한 8~20자이어야 합니다.")
-                        .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
-                }
+                Text("비밀번호는 영문, 숫자, 기호를 포함한 8~20자이어야 합니다.")
+                    .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
 
                 Spacer()
             }
-            .padding(.top, 24)
 
             VStack(spacing: 56) {
                 SecureDMSFloatingTextField(

@@ -67,6 +67,9 @@ private class IDSettingDependency8007dfdeec0db237b896Provider: IDSettingDependen
     var checkExistGradeClassNumberUseCase: any CheckExistGradeClassNumberUseCase {
         return appComponent.checkExistGradeClassNumberUseCase
     }
+    var signupPasswordComponent: SignupPasswordComponent {
+        return appComponent.signupPasswordComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -268,6 +271,7 @@ extension IDSettingComponent: Registration {
     public func registerItems() {
         keyPathToName[\IDSettingDependency.checkAccountIDIsExistUseCase] = "checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"
         keyPathToName[\IDSettingDependency.checkExistGradeClassNumberUseCase] = "checkExistGradeClassNumberUseCase-any CheckExistGradeClassNumberUseCase"
+        keyPathToName[\IDSettingDependency.signupPasswordComponent] = "signupPasswordComponent-SignupPasswordComponent"
     }
 }
 extension SignupPasswordComponent: Registration {
