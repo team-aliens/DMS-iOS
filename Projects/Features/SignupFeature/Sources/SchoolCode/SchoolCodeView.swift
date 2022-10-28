@@ -3,42 +3,29 @@ import DesignSystem
 
 struct SchoolCodeView: View {
     @StateObject var viewModel: SchoolCodeViewModel
+    @Environment(\.dismiss) var dismiss
+    private let schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent
 
-    public init(viewModel: SchoolCodeViewModel) {
+    public init(
+        viewModel: SchoolCodeViewModel,
+        schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.schoolConfirmationQuestionsComponent = schoolConfirmationQuestionsComponent
     }
 
     var body: some View {
         VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
+            AuthHeaderView(subTitle: "학교 인증코드 입력")
+                .padding(.top, 24)
 
-                    Text("학교 인증코드 입력")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
-
-                Spacer()
-            }
-            .padding(.top, 24)
-            .padding(.horizontal, 24)
-
-            Spacer()
-                .frame(height: 60)
-
-            VStack {
+            VStack(spacing: 24) {
                 DMSPassCodeView(codeCount: 8, text: $viewModel.schoolCode)
-                    .padding(.horizontal, 64)
-
-                Spacer()
-                    .frame(height: 24)
 
                 Text("이메일로 전송된 인증코드 8자리를 입력해주세요.")
                     .dmsFont(.text(.small), color: .GrayScale.gray5)
-                    .padding(.horizontal, 24)
-                    .frame(height: 40)
             }
+            .padding(.top, 56)
 
             Spacer()
 
@@ -46,8 +33,22 @@ struct SchoolCodeView: View {
                 viewModel.verifyAuthCodeButtonDidTap()
             }
             .disabled(!viewModel.isEnabledVerify)
-            .padding(.bottom, 20)
-            .padding(.horizontal, 24)
+            .padding(.bottom, 40)
         }
+        .hideKeyboardWhenTap()
+        .padding(.horizontal, 24)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .dmsBackground()
+        .navigationTitle("회원가입")
+        .dmsBackButton(dismiss: dismiss)
+        .navigate(
+            to: schoolConfirmationQuestionsComponent.makeView(
+                schoolConfirmationQuestionsParam: .init(
+                    schoolCode: viewModel.schoolCode,
+                    schoolID: viewModel.schoolID
+                )
+            ),
+            when: $viewModel.isNavigateSchoolQuestion
+        )
     }
 }

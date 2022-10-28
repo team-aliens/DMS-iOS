@@ -1,4 +1,5 @@
 import SwiftUI
+import SignupFeature
 import DesignSystem
 
 struct SigninView: View {
@@ -9,24 +10,20 @@ struct SigninView: View {
     @StateObject var viewModel: SigninViewModel
     @FocusState private var focusField: FocusField?
 
-    public init(viewModel: SigninViewModel) {
+    private let schoolCodeComponent: SchoolCodeComponent
+
+    public init(
+        viewModel: SigninViewModel,
+        schoolCodeComponent: SchoolCodeComponent
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.schoolCodeComponent = schoolCodeComponent
     }
 
     var body: some View {
         VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-
-                    Text("더 편한 기숙사 생활을 위해")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
-
-                Spacer()
-            }
-            .padding(.top, 24)
+            AuthHeaderView(subTitle: "더 편한 기숙사 생활을 위해")
+                .padding(.top, 24)
 
             VStack(spacing: 72) {
                 DMSFloatingTextField(
@@ -45,7 +42,7 @@ struct SigninView: View {
                 .textContentType(.password)
                 .focused($focusField, equals: .password)
             }
-            .padding(.top, 68)
+            .padding(.top, 56)
 
             HStack(spacing: 16) {
                 HStack(spacing: 12) {
@@ -101,17 +98,13 @@ struct SigninView: View {
             .frame(maxWidth: .infinity)
             .padding(.bottom, 40)
         }
+        .navigationTitle("로그인")
+        .navigationBarTitleDisplayMode(.inline)
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 24)
         .dmsBackground()
-        .navigate(to: Text("회원가입"), when: $viewModel.isNavigateSignup)
+        .navigate(to: schoolCodeComponent.makeView(), when: $viewModel.isNavigateSignup)
         .ignoresSafeArea(.keyboard, edges: .bottom)
-    }
-}
-
-struct SigninView_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("A")
     }
 }

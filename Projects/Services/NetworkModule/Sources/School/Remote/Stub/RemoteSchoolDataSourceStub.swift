@@ -13,8 +13,9 @@ public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
                 name: "대덕소프트웨어마이스터고등학교",
                 address: "대전광역시 유성구 가정북로 76"
             )
-        ]).setFailureType(to: DmsError.self)
-            .eraseToAnyPublisher()
+        ])
+        .setFailureType(to: DmsError.self)
+        .eraseToAnyPublisher()
     }
 
     public func fetchSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
@@ -28,8 +29,7 @@ public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
     }
 
     public func checkSchoolCode(code: String) -> AnyPublisher<String, DmsError> {
-        Just("aa-bb-pk").setFailureType(to: DmsError.self)
+        return Just("aa-bb-pk").setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
-
     }
 }

@@ -12,7 +12,7 @@ struct DMSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppComponent().idSettingComponent.makeView()
+            AppComponent().signinComponent.makeView()
         }
     }
 }

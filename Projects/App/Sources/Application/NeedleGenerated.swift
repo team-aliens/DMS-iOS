@@ -42,6 +42,9 @@ private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDepend
     var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase {
         return appComponent.checkSchoolCodeUseCase
     }
+    var schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent {
+        return appComponent.schoolConfirmationQuestionsComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -144,6 +147,9 @@ private class SigninDependencyde06a9d0b22764487733Provider: SigninDependency {
     var signinUseCase: any SigninUseCase {
         return appComponent.signinUseCase
     }
+    var schoolCodeComponent: SchoolCodeComponent {
+        return appComponent.schoolCodeComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -238,6 +244,7 @@ extension SchoolConfirmationQuestionsComponent: Registration {
 extension SchoolCodeComponent: Registration {
     public func registerItems() {
         keyPathToName[\SchoolCodeDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
+        keyPathToName[\SchoolCodeDependency.schoolConfirmationQuestionsComponent] = "schoolConfirmationQuestionsComponent-SchoolConfirmationQuestionsComponent"
     }
 }
 extension IDSettingComponent: Registration {
@@ -280,6 +287,7 @@ extension MainTabComponent: Registration {
 extension SigninComponent: Registration {
     public func registerItems() {
         keyPathToName[\SigninDependency.signinUseCase] = "signinUseCase-any SigninUseCase"
+        keyPathToName[\SigninDependency.schoolCodeComponent] = "schoolCodeComponent-SchoolCodeComponent"
     }
 }
 extension HomeComponent: Registration {

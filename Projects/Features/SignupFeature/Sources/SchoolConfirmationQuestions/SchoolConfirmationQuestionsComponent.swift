@@ -7,10 +7,11 @@ public protocol SchoolConfirmationQuestionsDependency: Dependency {
 }
 
 public final class SchoolConfirmationQuestionsComponent: Component<SchoolConfirmationQuestionsDependency> {
-    public func makeView() -> some View {
+    public func makeView(schoolConfirmationQuestionsParam: SchoolConfirmationQuestionsParam) -> some View {
         SchoolConfirmationQuestionsView(
             viewModel: .init(
-                checkSchoolQuestionUseCase: dependency.checkSchoolQuestionUseCase
+                checkSchoolQuestionUseCase: dependency.checkSchoolQuestionUseCase,
+                schoolConfirmationQuestionsParam: schoolConfirmationQuestionsParam
             )
         )
     }

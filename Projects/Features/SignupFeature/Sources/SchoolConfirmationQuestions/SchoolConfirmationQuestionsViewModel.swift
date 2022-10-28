@@ -12,9 +12,14 @@ final class SchoolConfirmationQuestionsViewModel: BaseViewModel {
     }
 
     private let checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase
+    let schoolConfirmationQuestionsParam: SchoolConfirmationQuestionsParam
 
-    public init(checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase) {
+    public init(
+        checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase,
+        schoolConfirmationQuestionsParam: SchoolConfirmationQuestionsParam
+    ) {
         self.checkSchoolQuestionUseCase = checkSchoolQuestionUseCase
+        self.schoolConfirmationQuestionsParam = schoolConfirmationQuestionsParam
     }
 
     func confirmButtonDidTap() {
