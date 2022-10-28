@@ -44,7 +44,7 @@ final class AuthenticationEmailViewModel: BaseViewModel {
     func sendEmailAuthCode() {
         addCancellable(
             sendAuthCodeUseCase.execute(
-                req: .init(email: authenticationEmailParam.email, type: .signup)
+                req: .init(email: authenticationEmailParam.email, type: .password)
             )
         ) { [weak self] _ in
             self?.authCode = ""
