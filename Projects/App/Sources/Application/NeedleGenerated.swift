@@ -180,6 +180,9 @@ private class SigninDependencyde06a9d0b22764487733Provider: SigninDependency {
     var findIDComponent: FindIDComponent {
         return appComponent.findIDComponent
     }
+    var enterInformationComponent: EnterInformationComponent {
+        return appComponent.enterInformationComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -377,6 +380,7 @@ extension SigninComponent: Registration {
         keyPathToName[\SigninDependency.signinUseCase] = "signinUseCase-any SigninUseCase"
         keyPathToName[\SigninDependency.schoolCodeComponent] = "schoolCodeComponent-SchoolCodeComponent"
         keyPathToName[\SigninDependency.findIDComponent] = "findIDComponent-FindIDComponent"
+        keyPathToName[\SigninDependency.enterInformationComponent] = "enterInformationComponent-EnterInformationComponent"
     }
 }
 extension HomeComponent: Registration {

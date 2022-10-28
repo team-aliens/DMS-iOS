@@ -3,12 +3,17 @@ import Combine
 import DomainModule
 
 final class EnterInformationViewModel: BaseViewModel {
-
-    @Published var email = ""
+    @Published var email = "" {
+        didSet { isErrorOcuured = false }
+    }
     @Published var blockEmail = "082****@naver.com"
-    @Published var id = ""
-    @Published var name = ""
-    @Published var isShow = false
+    @Published var id = "" {
+        didSet { isErrorOcuured = false }
+    }
+    @Published var name = "" {
+        didSet { isErrorOcuured = false }
+    }
+    @Published var isShowFoundEmail = false
     @Published var isNavigateAuthenticationEmail = false
 
     var isNextButtonEnabled: Bool {
@@ -27,12 +32,13 @@ final class EnterInformationViewModel: BaseViewModel {
         self.isNavigateAuthenticationEmail = true
     }
 
-    func returnEmailTextField() {
+    func returnEmailTextField(completion: @escaping () -> Void) {
         addCancellable(
             checkAccountIDIsExistUseCase.execute(id: id)
         ) { [weak self] email in
             self?.blockEmail = email
-            self?.isShow = true
+            self?.isShowFoundEmail = true
+            completion()
         }
     }
 }

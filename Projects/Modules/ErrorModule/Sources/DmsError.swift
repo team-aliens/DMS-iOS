@@ -70,7 +70,7 @@ extension DmsError: LocalizedError {
             return "아이디외 이메일과 일치하지 않습니다."
 
         case .notFoundAccountID:
-            return "아이디에 따른 유저를 찾을 수 없습니다."
+            return "존재하지 않는 아이디입니다."
 
         // MARK: - Students
 

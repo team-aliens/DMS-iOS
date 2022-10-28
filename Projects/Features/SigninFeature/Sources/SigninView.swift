@@ -1,5 +1,6 @@
 import DesignSystem
 import FindIDFeature
+import RenewalPasswordFeature
 import SwiftUI
 import SignupFeature
 
@@ -14,15 +15,18 @@ struct SigninView: View {
 
     private let schoolCodeComponent: SchoolCodeComponent
     private let findIDComponent: FindIDComponent
+    private let enterInformationComponent: EnterInformationComponent
 
     public init(
         viewModel: SigninViewModel,
         schoolCodeComponent: SchoolCodeComponent,
-        findIDComponent: FindIDComponent
+        findIDComponent: FindIDComponent,
+        enterInformationComponent: EnterInformationComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.schoolCodeComponent = schoolCodeComponent
         self.findIDComponent = findIDComponent
+        self.enterInformationComponent = enterInformationComponent
     }
 
     var body: some View {
@@ -79,7 +83,9 @@ struct SigninView: View {
                         .frame(height: 13)
 
                     NavigationLink {
-                        Text("비밀번호 재설정")
+                        DeferView {
+                            enterInformationComponent.makeView()
+                        }
                     } label: {
                         Text("비밀번호 재설정")
                             .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)

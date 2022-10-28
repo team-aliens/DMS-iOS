@@ -8,11 +8,14 @@ final class AuthenticationEmailViewModel: BaseViewModel {
     @Published var authCode = "" {
         didSet { isErrorOcuured = false }
     }
-    @Published var timeRemaining = 180
+    @Published var timeRemaining = 0
     @Published var isShowingToast = false
     @Published var toastMessage = ""
     @Published var isNavigateChangePassword = false
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    var isVerifyEnable: Bool {
+        authCode.count == 6
+    }
     var timeText: String {
         timeRemaining % 60 < 10 ?
             "\(timeRemaining/60):0\(timeRemaining%60)" :
@@ -33,6 +36,13 @@ final class AuthenticationEmailViewModel: BaseViewModel {
         self.authenticationEmailParam = authenticationEmailParam
         super.init()
 
+        addCancellable(
+            $authCode.setFailureType(to: DmsError.self).eraseToAnyPublisher()
+        ) { [weak self] code in
+            if code.count >= 6 {
+                self?.verifyEmailAuthCode()
+            }
+        }
         addCancellable(
             timer.setFailureType(to: DmsError.self).eraseToAnyPublisher()
         ) { [weak self] _ in
