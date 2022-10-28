@@ -6,6 +6,7 @@ import SignupFeature
 
 import FindIDFeature
 import SigninFeature
+import RenewalPasswordFeature
 import MainTabFeature
 import HomeFeature
 
@@ -41,6 +42,15 @@ public extension AppComponent {
     }
     var idSettingComponent: IDSettingComponent {
         IDSettingComponent(parent: self)
+    }
+    var enterInformationComponent: EnterInformationComponent {
+        EnterInformationComponent(parent: self)
+    }
+    var authenticationEmailComponent: AuthenticationEmailComponent {
+        AuthenticationEmailComponent(parent: self)
+    }
+    var changePasswordComponent: ChangePasswordComponent {
+        ChangePasswordComponent(parent: self)
     }
     var signupProfileImageComponent: SignupProfileImageComponent {
         SignupProfileImageComponent(parent: self)
