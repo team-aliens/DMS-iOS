@@ -5,11 +5,14 @@ import SwiftUI
 struct SignupEmailAuthCodeVerifyView: View {
     @StateObject var viewModel: SignupEmailAuthCodeVerifyViewModel
     @Environment(\.dismiss) var dismiss
+    private let idSettingComponent: IDSettingComponent
 
     init(
-        viewModel: SignupEmailAuthCodeVerifyViewModel
+        viewModel: SignupEmailAuthCodeVerifyViewModel,
+        idSettingComponent: IDSettingComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.idSettingComponent = idSettingComponent
     }
 
     var body: some View {
@@ -42,13 +45,22 @@ struct SignupEmailAuthCodeVerifyView: View {
             .padding(.bottom, 40)
         }
         .dmsBackButton(dismiss: dismiss)
-        .dmsBackground()
         .padding(.horizontal, 24)
+        .dmsBackground()
         .hideKeyboardWhenTap()
         .onAppear {
             viewModel.sendEmailAuthCode()
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
+        .navigate(
+            to: idSettingComponent.makeView(
+                idSettingParam: .init(
+                    signupEmailAuthCodeVerifyParam: viewModel.signupEmailAuthCodeVerifyParam,
+                    authCode: viewModel.authCode
+                )
+            ),
+            when: $viewModel.isNavigateSignupID
+        )
     }
 }

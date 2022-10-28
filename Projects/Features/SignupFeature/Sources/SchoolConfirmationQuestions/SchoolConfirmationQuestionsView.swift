@@ -38,7 +38,9 @@ struct SchoolConfirmationQuestionsView: View {
                     text: $viewModel.answer,
                     isError: viewModel.isErrorOcuured,
                     errorMessage: viewModel.errorMessage
-                )
+                ) {
+                    viewModel.confirmButtonDidTap()
+                }
                 .focused($focusField, equals: .answer)
             }
             .padding(.top, 42)
@@ -70,7 +72,6 @@ struct SchoolConfirmationQuestionsView: View {
             focusField = .answer
         }
         .navigationTitle("회원가입")
-        .ignoresSafeArea(.keyboard, edges: .bottom)
         .navigate(
             to: signupEmailVerifyComponent.makeView(
                 signupEmailVerifyParam: .init(

@@ -9,6 +9,7 @@ public enum StudentsAPI {
     case checkDuplicateEmail(email: String)
     case renewalPassword(RenewalPasswordRequestDTO)
     case findID(FindIDRequestDTO)
+    case checkExistGradeClassNumber(CheckExistGradeClassNumberRequestDTO)
     case fetchMyProfile
 }
 
@@ -34,6 +35,9 @@ extension StudentsAPI: DmsAPI {
         case let .findID(req):
             return "/account-id/\(req.schoolID)"
 
+        case .checkExistGradeClassNumber:
+            return "/name"
+
         case .fetchMyProfile:
             return "/my-pages"
         }
@@ -41,7 +45,7 @@ extension StudentsAPI: DmsAPI {
 
     public var method: Moya.Method {
         switch self {
-        case .checkDuplicateAccountID, .checkDuplicateEmail, .findID, .fetchMyProfile:
+        case .checkDuplicateAccountID, .checkDuplicateEmail, .findID, .fetchMyProfile, .checkExistGradeClassNumber:
             return .get
 
         case .signup:
@@ -75,6 +79,14 @@ extension StudentsAPI: DmsAPI {
                 "name": req.name,
                 "grade": req.grade,
                 "class_room": req.classRoom,
+                "number": req.number
+            ], encoding: URLEncoding.queryString)
+
+        case let .checkExistGradeClassNumber(req):
+            return .requestParameters(parameters: [
+                "school_id": req.schoolID,
+                "grade": req.grade,
+                "class_room": req.class,
                 "number": req.number
             ], encoding: URLEncoding.queryString)
 
@@ -129,6 +141,13 @@ extension StudentsAPI: DmsAPI {
                 400: .badRequest,
                 401: .invalidStudentInfoByFindID,
                 404: .notFoundUserBySignin,
+                500: .internalServerError
+            ]
+
+        case .checkExistGradeClassNumber:
+            return [
+                400: .badRequest,
+                403: .notFoundGradeClassNumber,
                 500: .internalServerError
             ]
 

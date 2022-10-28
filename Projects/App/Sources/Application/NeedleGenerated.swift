@@ -61,15 +61,20 @@ private func factoryb65c1efbf06b87162473f47b58f8f304c97af4d5(_ component: Needle
     return SchoolCodeDependencyc0114744c1c8c7843672Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class IDSettingDependency8007dfdeec0db237b896Provider: IDSettingDependency {
-
-
-    init() {
-
+    var checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase {
+        return appComponent.checkAccountIDIsExistUseCase
+    }
+    var checkExistGradeClassNumberUseCase: any CheckExistGradeClassNumberUseCase {
+        return appComponent.checkExistGradeClassNumberUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
     }
 }
 /// ^->AppComponent->IDSettingComponent
-private func factory8b3573203ea51120dc5ae3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return IDSettingDependency8007dfdeec0db237b896Provider()
+private func factory8b3573203ea51120dc5af47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return IDSettingDependency8007dfdeec0db237b896Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class SignupPasswordDependency778bf5389a70d7df6152Provider: SignupPasswordDependency {
 
@@ -88,6 +93,9 @@ private class SignupEmailAuthCodeVerifyDependencyaf9da1ebf0e9e5f1b708Provider: S
     }
     var verifyAuthCodeUseCase: any VerifyAuthCodeUseCase {
         return appComponent.verifyAuthCodeUseCase
+    }
+    var idSettingComponent: IDSettingComponent {
+        return appComponent.idSettingComponent
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -227,6 +235,7 @@ extension AppComponent: Registration {
         localTable["checkDuplicateEmailUseCase-any CheckDuplicateEmailUseCase"] = { self.checkDuplicateEmailUseCase as Any }
         localTable["renewalPasswordUseCase-any RenewalPasswordUseCase"] = { self.renewalPasswordUseCase as Any }
         localTable["findIDUseCase-any FindIDUseCase"] = { self.findIDUseCase as Any }
+        localTable["checkExistGradeClassNumberUseCase-any CheckExistGradeClassNumberUseCase"] = { self.checkExistGradeClassNumberUseCase as Any }
         localTable["fetchMyProfileUseCase-any FetchMyProfileUseCase"] = { self.fetchMyProfileUseCase as Any }
         localTable["remoteMealDataSource-any RemoteMealDataSource"] = { self.remoteMealDataSource as Any }
         localTable["mealRepository-any MealRepository"] = { self.mealRepository as Any }
@@ -257,7 +266,8 @@ extension SchoolCodeComponent: Registration {
 }
 extension IDSettingComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\IDSettingDependency.checkAccountIDIsExistUseCase] = "checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"
+        keyPathToName[\IDSettingDependency.checkExistGradeClassNumberUseCase] = "checkExistGradeClassNumberUseCase-any CheckExistGradeClassNumberUseCase"
     }
 }
 extension SignupPasswordComponent: Registration {
@@ -269,6 +279,7 @@ extension SignupEmailAuthCodeVerifyComponent: Registration {
     public func registerItems() {
         keyPathToName[\SignupEmailAuthCodeVerifyDependency.sendAuthCodeUseCase] = "sendAuthCodeUseCase-any SendAuthCodeUseCase"
         keyPathToName[\SignupEmailAuthCodeVerifyDependency.verifyAuthCodeUseCase] = "verifyAuthCodeUseCase-any VerifyAuthCodeUseCase"
+        keyPathToName[\SignupEmailAuthCodeVerifyDependency.idSettingComponent] = "idSettingComponent-IDSettingComponent"
     }
 }
 extension SignupTermsComponent: Registration {
@@ -328,7 +339,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->IDSettingComponent", factory8b3573203ea51120dc5ae3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->IDSettingComponent", factory8b3573203ea51120dc5af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupPasswordComponent", factorye93d1d56840ff97c674ae3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->SignupEmailAuthCodeVerifyComponent", factoryb06be35aa893adde971bf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupTermsComponent", factoryf84223c07d964abc9b0ee3b0c44298fc1c149afb)

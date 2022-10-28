@@ -2,12 +2,23 @@ import DesignSystem
 import SwiftUI
 
 struct IDSettingView: View {
+    private enum FocusField {
+        case grade
+        case `class`
+        case number
+        case id
+    }
     @StateObject var viewModel: IDSettingViewModel
+    @Environment(\.dismiss) var dismiss
+    @FocusState private var focusField: FocusField?
+    private let signupPasswordComponent: SignupPasswordComponent
 
     public init(
-        viewModel: IDSettingViewModel
+        viewModel: IDSettingViewModel,
+        signupPasswordComponent: SignupPasswordComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.signupPasswordComponent = signupPasswordComponent
     }
 
     var body: some View {
@@ -22,51 +33,86 @@ struct IDSettingView: View {
                 Spacer()
             }
 
-            VStack(spacing: 60) {
+            VStack(spacing: 30) {
                 HStack(spacing: 20) {
                     DMSFloatingTextField(
                         "학년",
                         text: $viewModel.grade,
                         isError: viewModel.isErrorOcuured
                     )
+                    .focused($focusField, equals: .grade)
 
                     DMSFloatingTextField(
                         "반",
                         text: $viewModel.group,
                         isError: viewModel.isErrorOcuured
                     )
+                    .focused($focusField, equals: .class)
 
                     DMSFloatingTextField(
                         "번호",
                         text: $viewModel.number,
                         isError: viewModel.isErrorOcuured
                     )
+                    .focused($focusField, equals: .number)
                 }
                 .keyboardType(.numberPad)
                 .padding(.top, 94)
 
-                DMSFloatingTextField(
-                    "아이디",
-                    text: $viewModel.id,
-                    isError: viewModel.isInvalidIDError,
-                    errorMessage: "아이디가 유효하지 않습니다."
-                ) {
-                    viewModel.nextButtonDidTap()
+                if viewModel.isShowingCheckStudent && !viewModel.isCheckedStudent {
+                    HStack {
+                        Text("\(viewModel.checkedName)님이 맞으신가요?")
+                            .dmsFont(.text(.small), color: .GrayScale.gray7)
+                            .padding(.leading, 20)
+
+                        Spacer()
+
+                        DMSButton(text: "확인", style: .text, color: .GrayScale.gray6) {
+                            withAnimation {
+                                focusField = nil
+                                viewModel.nameCheckButtonDidTap()
+                            }
+                        }
+                        .padding(.trailing, 20)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background {
+                        Color.GrayScale.gray2
+                    }
+                }
+
+                if viewModel.isCheckedStudent {
+                    DMSFloatingTextField(
+                        "아이디",
+                        text: $viewModel.id,
+                        isError: viewModel.isInvalidIDError,
+                        errorMessage: "아이디가 이미 존재합니다."
+                    ) {
+                        viewModel.nextButtonDidTap()
+                    }
+                    .focused($focusField, equals: .id)
+                    .padding(.top, 56)
                 }
             }
 
             Spacer()
 
             DMSWideButton(text: "다음", color: .PrimaryVariant.primary) {
-                viewModel.nextButtonDidTap()
+                withAnimation {
+                    viewModel.nextButtonDidTap()
+                }
             }
             .padding(.bottom, 40)
             .disabled(!viewModel.isEnabledNextStep)
         }
+        .onAppear {
+            focusField = .grade
+        }
+        .dmsBackButton(dismiss: dismiss)
+        .padding(.horizontal, 24)
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 24)
-        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: viewModel.toastStyle)
     }
 }

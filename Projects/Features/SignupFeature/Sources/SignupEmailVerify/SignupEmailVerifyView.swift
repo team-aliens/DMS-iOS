@@ -63,7 +63,9 @@ struct SignupEmailVerifyView: View {
             when: $viewModel.isNavigateSignupEmailAuthCodeVerify
         )
         .onAppear {
-            focusField = .email
+            withAnimation {
+                focusField = .email
+            }
         }
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
