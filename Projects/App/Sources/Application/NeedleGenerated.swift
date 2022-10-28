@@ -9,6 +9,7 @@ import MainTabFeature
 import NeedleFoundation
 import NetworkModule
 import RenewalPasswordFeature
+import RootFeature
 import SigninFeature
 import SignupFeature
 import SwiftUI
@@ -169,6 +170,22 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
 /// ^->AppComponent->MainTabComponent
 private func factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return MainTabDependency2826cdb310ed0b17a725Provider(appComponent: parent1(component) as! AppComponent)
+}
+private class RootDependency3944cc797a4a88956fb5Provider: RootDependency {
+    var signinComponent: SigninComponent {
+        return appComponent.signinComponent
+    }
+    var mainTabComponent: MainTabComponent {
+        return appComponent.mainTabComponent
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->RootComponent
+private func factory264bfc4d4cb6b0629b40f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return RootDependency3944cc797a4a88956fb5Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class SigninDependencyde06a9d0b22764487733Provider: SigninDependency {
     var signinUseCase: any SigninUseCase {
@@ -375,6 +392,12 @@ extension MainTabComponent: Registration {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
     }
 }
+extension RootComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\RootDependency.signinComponent] = "signinComponent-SigninComponent"
+        keyPathToName[\RootDependency.mainTabComponent] = "mainTabComponent-MainTabComponent"
+    }
+}
 extension SigninComponent: Registration {
     public func registerItems() {
         keyPathToName[\SigninDependency.signinUseCase] = "signinUseCase-any SigninUseCase"
@@ -438,6 +461,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->SignupEmailVerifyComponent", factory3b1904c76335d70151ebf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->RootComponent", factory264bfc4d4cb6b0629b40f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)

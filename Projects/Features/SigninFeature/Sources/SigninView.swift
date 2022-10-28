@@ -3,12 +3,14 @@ import FindIDFeature
 import RenewalPasswordFeature
 import SwiftUI
 import SignupFeature
+import Utility
 
 struct SigninView: View {
     private enum FocusField {
         case id
         case password
     }
+    @AppStorage(StorageKeys.sceneFlow.rawValue) var sceneFlow: SceneFlow = .auth
     @StateObject var viewModel: SigninViewModel
     @FocusState private var focusField: FocusField?
     @State var isNavigateSignup = false
@@ -109,7 +111,6 @@ struct SigninView: View {
                 }
                 .disabled(!viewModel.isSigninEnabled)
                 .padding(.top, 24)
-                .frame(maxWidth: .infinity)
                 .padding(.bottom, 40)
             }
             .navigationTitle("로그인")
@@ -122,6 +123,10 @@ struct SigninView: View {
                 when: $isNavigateSignup
             )
             .ignoresSafeArea(.keyboard, edges: .bottom)
+        }
+        .onChange(of: viewModel.isSuccessSignin) { newValue in
+            guard newValue else { return }
+            sceneFlow = .main
         }
         .navigationViewStyle(.stack)
         .environment(\.rootPresentationMode, $isNavigateSignup)

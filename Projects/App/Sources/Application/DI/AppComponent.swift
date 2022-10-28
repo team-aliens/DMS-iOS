@@ -1,9 +1,8 @@
 import NeedleFoundation
 import SwiftUI
 import KeychainModule
-
 import SignupFeature
-
+import RootFeature
 import FindIDFeature
 import SigninFeature
 import RenewalPasswordFeature
@@ -12,11 +11,15 @@ import HomeFeature
 
 public final class AppComponent: BootstrapComponent {
     public func makeRootView() -> some View {
-        Text("Testing")
+        rootComponent.makeView()
     }
 
     public var keychain: any Keychain {
         KeychainImpl()
+    }
+
+    var rootComponent: RootComponent {
+        RootComponent(parent: self)
     }
 }
 
