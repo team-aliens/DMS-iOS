@@ -1,4 +1,5 @@
 import DomainModule
+import FindIDFeature
 import NeedleFoundation
 import SwiftUI
 import SignupFeature
@@ -6,6 +7,7 @@ import SignupFeature
 public protocol SigninDependency: Dependency {
     var signinUseCase: any SigninUseCase { get }
     var schoolCodeComponent: SchoolCodeComponent { get }
+    var findIDComponent: FindIDComponent { get }
 }
 
 public final class SigninComponent: Component<SigninDependency> {
@@ -14,7 +16,8 @@ public final class SigninComponent: Component<SigninDependency> {
             viewModel: .init(
                 signinUseCase: self.dependency.signinUseCase
             ),
-            schoolCodeComponent: self.dependency.schoolCodeComponent
+            schoolCodeComponent: self.dependency.schoolCodeComponent,
+            findIDComponent: self.dependency.findIDComponent
         )
     }
 }

@@ -84,7 +84,7 @@ extension DmsError: LocalizedError {
             return "이미 존재하는 이메일입니다."
 
         case .invalidStudentInfoByFindID:
-            return "학생 정보가 일치하지 않습니다."
+            return "이름과 학번이 일치하는 계정이 존재하지 않습니다."
 
         case .notFoundStudentByFindID:
             return "이름과 학번이 일치하는 계정이 존재하지 않습니다."

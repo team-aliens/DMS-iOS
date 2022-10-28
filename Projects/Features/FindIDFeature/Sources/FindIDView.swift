@@ -1,5 +1,6 @@
 import SwiftUI
 import DesignSystem
+import Utility
 
 struct FindIDView: View {
     private enum FocusField {
@@ -10,6 +11,7 @@ struct FindIDView: View {
     }
     @FocusState private var focusField: FocusField?
     @StateObject var viewModel: FIndIDViewModel
+    @Environment(\.dismiss) var dismiss
 
     public init(viewModel: FIndIDViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -17,18 +19,8 @@ struct FindIDView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-                        .padding(.top, 28)
-
-                    Text("아이디 찾기")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
-
-                Spacer()
-            }
+            AuthHeaderView(subTitle: "아이디 찾기")
+                .padding(.top, 24)
 
             VStack(spacing: 60) {
                 SchoolSelectButtonView(schoolList: $viewModel.schoolList) { school in
@@ -59,7 +51,6 @@ struct FindIDView: View {
                     viewModel.findIDButtonDidTap()
                 }
                 .focused($focusField, equals: .name)
-
             }
             .padding(.top, 68)
 
@@ -68,14 +59,19 @@ struct FindIDView: View {
             DMSWideButton(text: "아이디 찾기", color: .PrimaryVariant.primary) {
                 viewModel.findIDButtonDidTap()
             }
-            .disabled(!viewModel.isSigninButtonEnabled)
+            .disabled(!viewModel.isFindEnabled)
             .padding(.bottom, 40)
         }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .padding(.horizontal, 24)
         .dmsBackground()
+        .dmsBackButton(dismiss: dismiss)
         .onAppear { viewModel.onAppear() }
         .frame(maxWidth: .infinity)
-        .ignoresSafeArea(.keyboard, edges: .bottom)
-        .padding(.horizontal, 24)
+        .alert("\(viewModel.email)으로 아이디가 전송되었습니다.", isPresented: $viewModel.isSuccessFindID) {
+            Button("확인") {
+                NavigationUtil.popToRootView()
+            }
+        }
     }
 }

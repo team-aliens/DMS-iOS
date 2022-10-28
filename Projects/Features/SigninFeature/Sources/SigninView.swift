@@ -1,6 +1,7 @@
+import DesignSystem
+import FindIDFeature
 import SwiftUI
 import SignupFeature
-import DesignSystem
 
 struct SigninView: View {
     private enum FocusField {
@@ -12,13 +13,16 @@ struct SigninView: View {
     @State var isNavigateSignup = false
 
     private let schoolCodeComponent: SchoolCodeComponent
+    private let findIDComponent: FindIDComponent
 
     public init(
         viewModel: SigninViewModel,
-        schoolCodeComponent: SchoolCodeComponent
+        schoolCodeComponent: SchoolCodeComponent,
+        findIDComponent: FindIDComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.schoolCodeComponent = schoolCodeComponent
+        self.findIDComponent = findIDComponent
     }
 
     var body: some View {
@@ -62,7 +66,9 @@ struct SigninView: View {
                     Spacer()
 
                     NavigationLink {
-                        Text("아이디 찾기")
+                        DeferView {
+                            findIDComponent.makeView()
+                        }
                     } label: {
                         Text("아이디 찾기")
                             .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)

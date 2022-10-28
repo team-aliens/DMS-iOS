@@ -176,6 +176,9 @@ private class SigninDependencyde06a9d0b22764487733Provider: SigninDependency {
     var schoolCodeComponent: SchoolCodeComponent {
         return appComponent.schoolCodeComponent
     }
+    var findIDComponent: FindIDComponent {
+        return appComponent.findIDComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -321,6 +324,7 @@ extension SigninComponent: Registration {
     public func registerItems() {
         keyPathToName[\SigninDependency.signinUseCase] = "signinUseCase-any SigninUseCase"
         keyPathToName[\SigninDependency.schoolCodeComponent] = "schoolCodeComponent-SchoolCodeComponent"
+        keyPathToName[\SigninDependency.findIDComponent] = "findIDComponent-FindIDComponent"
     }
 }
 extension HomeComponent: Registration {
