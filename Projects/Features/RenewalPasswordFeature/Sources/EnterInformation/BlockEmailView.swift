@@ -3,14 +3,11 @@ import DesignSystem
 
 struct BlockEmailView: View {
     @Binding var email: String
-    @Binding var isShow: Bool
 
     init(
-        email: Binding<String>,
-        isShow: Binding<Bool>
+        email: Binding<String>
     ) {
         _email = email
-        _isShow = isShow
     }
 
     var body: some View {

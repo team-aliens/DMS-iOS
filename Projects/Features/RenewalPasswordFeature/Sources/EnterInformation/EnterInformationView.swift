@@ -46,7 +46,7 @@ struct EnterInformationView: View {
                 .textContentType(.nickname)
 
                 if viewModel.isShow {
-                    BlockEmailView(email: $viewModel.blockEmail, isShow: $viewModel.isShow)
+                    BlockEmailView(email: $viewModel.blockEmail)
                 }
 
             }
