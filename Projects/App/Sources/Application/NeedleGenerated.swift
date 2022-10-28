@@ -29,6 +29,9 @@ private class SchoolConfirmationQuestionsDependency3fa2ccd12da7c7f5cfc1Provider:
     var checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase {
         return appComponent.checkSchoolQuestionUseCase
     }
+    var fetchSchoolQuestionUseCase: any FetchSchoolQuestionUseCase {
+        return appComponent.fetchSchoolQuestionUseCase
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -239,6 +242,7 @@ extension AppComponent: Registration {
 extension SchoolConfirmationQuestionsComponent: Registration {
     public func registerItems() {
         keyPathToName[\SchoolConfirmationQuestionsDependency.checkSchoolQuestionUseCase] = "checkSchoolQuestionUseCase-any CheckSchoolQuestionUseCase"
+        keyPathToName[\SchoolConfirmationQuestionsDependency.fetchSchoolQuestionUseCase] = "fetchSchoolQuestionUseCase-any FetchSchoolQuestionUseCase"
     }
 }
 extension SchoolCodeComponent: Registration {

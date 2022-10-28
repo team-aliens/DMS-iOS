@@ -18,7 +18,7 @@ public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
         .eraseToAnyPublisher()
     }
 
-    public func fetchSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
+    public func fetchSchoolQuestion(schoolID: String) -> AnyPublisher<String, DmsError> {
         Just("우리 학교 학생 수는?").setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }

@@ -10,13 +10,11 @@ public protocol SigninDependency: Dependency {
 
 public final class SigninComponent: Component<SigninDependency> {
     public func makeView() -> some View {
-        NavigationView {
-            SigninView(
-                viewModel: .init(
-                    signinUseCase: self.dependency.signinUseCase
-                ),
-                schoolCodeComponent: self.dependency.schoolCodeComponent
-            )
-        }
+        SigninView(
+            viewModel: .init(
+                signinUseCase: self.dependency.signinUseCase
+            ),
+            schoolCodeComponent: self.dependency.schoolCodeComponent
+        )
     }
 }

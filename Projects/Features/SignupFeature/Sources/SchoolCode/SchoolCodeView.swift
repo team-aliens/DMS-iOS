@@ -35,6 +35,9 @@ struct SchoolCodeView: View {
             .disabled(!viewModel.isEnabledVerify)
             .padding(.bottom, 40)
         }
+        .onAppear {
+            viewModel.schoolCode = ""
+        }
         .hideKeyboardWhenTap()
         .padding(.horizontal, 24)
         .ignoresSafeArea(.keyboard, edges: .bottom)

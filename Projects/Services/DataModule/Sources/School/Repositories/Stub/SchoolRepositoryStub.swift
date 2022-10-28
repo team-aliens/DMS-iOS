@@ -18,7 +18,7 @@ public struct SchoolRepositoryStub: SchoolRepository {
             .eraseToAnyPublisher()
     }
 
-    public func fetchSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
+    public func fetchSchoolQuestion(schoolID: String) -> AnyPublisher<String, DmsError> {
         Just("우리 학교의 학생 수는 몇 명입니까?")
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()

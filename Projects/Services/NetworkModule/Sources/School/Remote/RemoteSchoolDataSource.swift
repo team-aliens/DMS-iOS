@@ -7,7 +7,7 @@ import Foundation
 
 public protocol RemoteSchoolDataSource {
     func fetchSchoolList() -> AnyPublisher<[SchoolEntity], DmsError>
-    func fetchSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError>
+    func fetchSchoolQuestion(schoolID: String) -> AnyPublisher<String, DmsError>
     func checkSchoolQuestion(schoolID: String, answer: String) -> AnyPublisher<Void, DmsError>
     func checkSchoolCode(code: String) -> AnyPublisher<String, DmsError>
 }
