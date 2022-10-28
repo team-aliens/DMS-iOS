@@ -56,8 +56,7 @@ struct SignupEmailVerifyView: View {
         .navigate(
             to: signupEmailAuthCodeVerifyComponent.makeView(
                 signupEmailAuthCodeVerifyParam: .init(
-                    schoolCode: viewModel.signupEmailVerifyParam.schoolCode,
-                    schoolAnswer: viewModel.signupEmailVerifyParam.schoolAnswer,
+                    signupEmailVerifyParam: viewModel.signupEmailVerifyParam,
                     email: viewModel.email
                 )
             ),

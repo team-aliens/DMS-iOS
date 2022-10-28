@@ -16,6 +16,12 @@ final class IDSettingViewModel: BaseViewModel {
         !grade.isEmpty && !group.isEmpty && !number.isEmpty && !id.isEmpty
     }
 
+    let idSettingParam: IDSettingParam
+
+    init(idSettingParam: IDSettingParam) {
+        self.idSettingParam = idSettingParam
+    }
+
     func nextButtonDidTap() {
         guard isEnabledNextStep else {
             return

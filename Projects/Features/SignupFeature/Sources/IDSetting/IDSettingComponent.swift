@@ -4,9 +4,11 @@ import SwiftUI
 public protocol IDSettingDependency: Dependency {}
 
 public final class IDSettingComponent: Component<IDSettingDependency> {
-    public func makeView() -> some View {
+    public func makeView(idSettingParam: IDSettingParam) -> some View {
         IDSettingView(
-            viewModel: .init()
+            viewModel: .init(
+                idSettingParam: idSettingParam
+            )
         )
     }
 }

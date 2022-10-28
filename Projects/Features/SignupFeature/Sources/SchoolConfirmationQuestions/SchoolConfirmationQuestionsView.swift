@@ -74,9 +74,8 @@ struct SchoolConfirmationQuestionsView: View {
         .navigate(
             to: signupEmailVerifyComponent.makeView(
                 signupEmailVerifyParam: .init(
-                    schoolCode: viewModel.schoolConfirmationQuestionsParam.schoolCode,
-                    schoolAnswer: viewModel.answer,
-                    schoolID: viewModel.schoolConfirmationQuestionsParam.schoolID
+                    schoolConfirmationQuestionsParam: viewModel.schoolConfirmationQuestionsParam,
+                    schoolAnswer: viewModel.answer
                 )
             ),
             when: $viewModel.isNavigateSignupEmailVerify)

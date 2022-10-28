@@ -12,21 +12,15 @@ struct IDSettingView: View {
 
     var body: some View {
         VStack(spacing: 4) {
+            AuthHeaderView(subTitle: "아이디 설정")
+                .padding(.top, 24)
+
             HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-
-                    Text("아이디 설정")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-
-                    Text("학년, 반, 번호는 숫자만 입력하여 주세요.")
-                        .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
-                }
+                Text("학년, 반, 번호는 숫자만 입력하여 주세요.")
+                    .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
 
                 Spacer()
             }
-            .padding(.top, 24)
 
             VStack(spacing: 60) {
                 HStack(spacing: 20) {
