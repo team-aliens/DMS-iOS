@@ -35,6 +35,7 @@ struct EnterInformationView: View {
 
                 Spacer()
             }
+
             VStack(spacing: 20) {
                 DMSFloatingTextField("아이디", text: $viewModel.id) {
                     focusField = .name
