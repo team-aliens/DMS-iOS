@@ -90,7 +90,7 @@ struct MealCarouselView: View {
                     lineWidth: 1
                 )
         }
-        .shadow(color: .GrayScale.gray9.opacity(0.1), radius: 15)
+        .shadow(color: .GrayScale.gray9.opacity(0.1), blur: 15)
         .transition(.slide)
         .animation(.spring(), value: uiState.screenDrag)
     }

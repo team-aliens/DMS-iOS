@@ -54,8 +54,8 @@ struct SignupTermsView: View {
             .dmsBackground()
             .shadow(
                 color: .GrayScale.gray4.opacity(0.24),
-                radius: 20,
-                y: 1
+                y: 1,
+                blur: 20
             )
         }
         .dmsBackground()
