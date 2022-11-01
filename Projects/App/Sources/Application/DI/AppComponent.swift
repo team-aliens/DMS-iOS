@@ -8,7 +8,7 @@ import SigninFeature
 import RenewalPasswordFeature
 import MainTabFeature
 import HomeFeature
-import ApplicationFeature
+import ApplyFeature
 import MyPageFeature
 import NoticeFeature
 
@@ -79,8 +79,8 @@ public extension AppComponent {
     var homeComponent: HomeComponent {
         HomeComponent(parent: self)
     }
-    var applicationComponent: ApplicationComponent {
-        ApplicationComponent(parent: self)
+    var applyComponent: ApplyComponent {
+        ApplyComponent(parent: self)
     }
     var noticeComponent: NoticeComponent {
         NoticeComponent(parent: self)

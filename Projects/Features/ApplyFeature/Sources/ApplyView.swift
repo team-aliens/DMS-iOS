@@ -1,11 +1,11 @@
 import DesignSystem
 import SwiftUI
 
-struct ApplicationView: View {
-    @StateObject var viewModel: ApplicationViewModel
+struct ApplyView: View {
+    @StateObject var viewModel: ApplyViewModel
 
     init(
-        viewModel: ApplicationViewModel
+        viewModel: ApplyViewModel
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }

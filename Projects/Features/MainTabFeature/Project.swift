@@ -7,7 +7,7 @@ let project = Project.makeModule(
     dependencies: [
         .Project.Features.BaseFeature,
         .Project.Features.HomeFeature,
-        .Project.Features.ApplicationFeature,
+        .Project.Features.ApplyFeature,
         .Project.Features.NoticeFeature,
         .Project.Features.MyPageFeature
     ]

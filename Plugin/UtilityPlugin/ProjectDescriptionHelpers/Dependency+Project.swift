@@ -12,7 +12,7 @@ public extension TargetDependency {
 public extension TargetDependency.Project.Features {
     static let MyPageFeature = TargetDependency.feature(name: "MyPageFeature")
     static let NoticeFeature = TargetDependency.feature(name: "NoticeFeature")
-    static let ApplicationFeature = TargetDependency.feature(name: "ApplicationFeature")
+    static let ApplyFeature = TargetDependency.feature(name: "ApplyFeature")
     static let SignupFeature = TargetDependency.feature(name: "SignupFeature")
     static let HomeFeature = TargetDependency.feature(name: "HomeFeature")
     static let RenewalPasswordFeature = TargetDependency.feature(name: "RenewalPasswordFeature")
