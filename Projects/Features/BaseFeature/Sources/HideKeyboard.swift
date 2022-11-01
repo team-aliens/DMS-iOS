@@ -1,4 +1,11 @@
+import SwiftUI
 import UIKit
+
+public extension View {
+    func hideKeyboardWhenTap() -> some View {
+        onAppear(perform: UIApplication.shared.hideKeyboard)
+    }
+}
 
 public extension UIApplication {
     func hideKeyboard() {

@@ -15,8 +15,8 @@ public struct SchoolRepositoryImpl: SchoolRepository {
         remoteSchoolDataSource.fetchSchoolList()
     }
 
-    public func fetchSchoolQuestion(authCode: String) -> AnyPublisher<String, DmsError> {
-        remoteSchoolDataSource.fetchSchoolQuestion(authCode: authCode)
+    public func fetchSchoolQuestion(schoolID: String) -> AnyPublisher<String, DmsError> {
+        remoteSchoolDataSource.fetchSchoolQuestion(schoolID: schoolID)
     }
 
     public func checkSchoolQuestion(schoolID: String, answer: String) -> AnyPublisher<Void, DmsError> {

@@ -5,27 +5,20 @@ import SwiftUI
 struct SignupEmailAuthCodeVerifyView: View {
     @StateObject var viewModel: SignupEmailAuthCodeVerifyViewModel
     @Environment(\.dismiss) var dismiss
+    private let idSettingComponent: IDSettingComponent
 
     init(
-        viewModel: SignupEmailAuthCodeVerifyViewModel
+        viewModel: SignupEmailAuthCodeVerifyViewModel,
+        idSettingComponent: IDSettingComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.idSettingComponent = idSettingComponent
     }
 
     var body: some View {
         VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-
-                    Text("이메일 주소 입력")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
-
-                Spacer()
-            }
-            .padding(.top, 24)
+            AuthHeaderView(subTitle: "이메일 주소 입력")
+                .padding(.top, 24)
 
             VStack(spacing: 40) {
                 DMSPassCodeView(codeCount: 6, text: $viewModel.authCode)
@@ -53,10 +46,21 @@ struct SignupEmailAuthCodeVerifyView: View {
         }
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
+        .dmsBackground()
+        .hideKeyboardWhenTap()
         .onAppear {
-            UIApplication.shared.hideKeyboard()
             viewModel.sendEmailAuthCode()
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
+        .navigate(
+            to: idSettingComponent.makeView(
+                idSettingParam: .init(
+                    signupEmailAuthCodeVerifyParam: viewModel.signupEmailAuthCodeVerifyParam,
+                    authCode: viewModel.authCode
+                )
+            ),
+            when: $viewModel.isNavigateSignupID
+        )
     }
 }

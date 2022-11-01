@@ -59,7 +59,7 @@ struct MealCarouselView: View {
                     ForEach(meal.indices, id: \.self) { index in
                         if index != meal.count - 1 {
                             Text(meal[index])
-                                .dmsFont(.text(.large), color: .GrayScale.gray6)
+                                .dmsFont(.text(.medium), color: .GrayScale.gray6)
                                 .frame(maxHeight: .infinity)
                         }
                     }
@@ -75,7 +75,9 @@ struct MealCarouselView: View {
         .redacted(reason: isLoading ? .placeholder : [])
         .frame(
             width: UIScreen.main.bounds.width - (widthOfHiddenCards*2) - (spacing*2),
-            height: uiState.activeCard == mealType.rawValue ? 421 : 380
+            height: uiState.activeCard == mealType.rawValue ?
+                UIScreen.main.bounds.height * 0.4546 :
+                UIScreen.main.bounds.height * 0.4103
         )
         .background {
             Color.GrayScale.gray1
@@ -88,7 +90,7 @@ struct MealCarouselView: View {
                     lineWidth: 1
                 )
         }
-        .shadow(color: .GrayScale.gray9.opacity(0.1), radius: 15)
+        .shadow(color: .GrayScale.gray9.opacity(0.1), blur: 15)
         .transition(.slide)
         .animation(.spring(), value: uiState.screenDrag)
     }

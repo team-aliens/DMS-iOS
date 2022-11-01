@@ -1,6 +1,7 @@
 import BaseFeature
 import Combine
 import DomainModule
+import Utility
 
 final class ChangePasswordViewModel: BaseViewModel {
     @Published var password = "" {
@@ -11,9 +12,10 @@ final class ChangePasswordViewModel: BaseViewModel {
     }
     @Published var isPasswordRegexError = false
     @Published var isPasswordMismatchedError = false
-    @Published var isDoneAlertShow = false
+    @Published var isSuccessRenewalPassword = false
+    @Published var isShowingToast = false
 
-    var isRenewalPasswordButtonEnabled: Bool {
+    var isRenewalPasswordEnabled: Bool {
         !password.isEmpty && !passwordCheck.isEmpty
     }
 
@@ -29,11 +31,11 @@ final class ChangePasswordViewModel: BaseViewModel {
     }
 
     func renewalPasswordButtonDidTap() {
-        guard isRenewalPasswordButtonEnabled else {
+        guard isRenewalPasswordEnabled else {
             return
         }
 
-        let passwordExpression = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,20}"
+        let passwordExpression = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,20}$"
         guard password ~= passwordExpression else {
             isPasswordRegexError = true
             return
@@ -54,9 +56,10 @@ final class ChangePasswordViewModel: BaseViewModel {
                 )
             )
         ) { [weak self] _ in
-            self?.isDoneAlertShow = true
+            self?.isSuccessRenewalPassword = true
+        } onReceiveError: { [weak self] _ in
+            self?.isShowingToast = true
         }
-
     }
 
     func resettingError() {

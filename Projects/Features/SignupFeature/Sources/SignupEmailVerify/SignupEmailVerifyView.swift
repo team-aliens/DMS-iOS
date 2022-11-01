@@ -2,9 +2,13 @@ import DesignSystem
 import SwiftUI
 
 struct SignupEmailVerifyView: View {
+    private enum FocusField {
+        case email
+    }
     @StateObject var viewModel: SignupEmailVerifyViewModel
     @Environment(\.rootPresentationMode) var rootPresentationMode
     @Environment(\.dismiss) var dismiss
+    @FocusState private var focusField: FocusField?
     let signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent
 
     public init(
@@ -17,18 +21,8 @@ struct SignupEmailVerifyView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-
-                    Text("이메일 주소 입력")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
-
-                Spacer()
-            }
-            .padding(.top, 24)
+            AuthHeaderView(subTitle: "이메일 주소 입력")
+                .padding(.top, 24)
 
             DMSFloatingTextField(
                 "이메일 주소",
@@ -38,7 +32,8 @@ struct SignupEmailVerifyView: View {
             ) {
                 viewModel.sendButtonDidTap()
             }
-            .padding(.top, 68)
+            .focused($focusField, equals: .email)
+            .padding(.top, 56)
 
             Spacer()
 
@@ -61,13 +56,17 @@ struct SignupEmailVerifyView: View {
         .navigate(
             to: signupEmailAuthCodeVerifyComponent.makeView(
                 signupEmailAuthCodeVerifyParam: .init(
-                    schoolCode: viewModel.signupEmailVerifyParam.schoolCode,
-                    schoolAnswer: viewModel.signupEmailVerifyParam.schoolAnswer,
+                    signupEmailVerifyParam: viewModel.signupEmailVerifyParam,
                     email: viewModel.email
                 )
             ),
             when: $viewModel.isNavigateSignupEmailAuthCodeVerify
         )
+        .onAppear {
+            withAnimation {
+                focusField = .email
+            }
+        }
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
     }

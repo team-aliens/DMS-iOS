@@ -48,7 +48,6 @@ struct SchoolSelectButtonView: View {
                     .foregroundColor(.GrayScale.gray5)
                     .frame(height: 1)
                     .offset(y: 7)
-
             }
         }
     }

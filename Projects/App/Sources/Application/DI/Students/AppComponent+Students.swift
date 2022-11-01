@@ -32,6 +32,10 @@ public extension AppComponent {
         FindIDUseCaseImpl(studentsRepository: studentsRepository)
     }
 
+    var checkExistGradeClassNumberUseCase: any CheckExistGradeClassNumberUseCase {
+        CheckExistGradeClassNumberUseCaseImpl(studentsRepository: studentsRepository)
+    }
+
     var fetchMyProfileUseCase: any FetchMyProfileUseCase {
         FetchMyProfileUseCaseImpl(studentsRepository: studentsRepository)
     }

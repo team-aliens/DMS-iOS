@@ -27,8 +27,9 @@ public enum DmsError: Error {
     case alreadyExistEmailByCheckEmail
     case invalidStudentInfoByFindID
     case notFoundStudentByFindID
+    case notFoundGradeClassNumber
 
-    // MARK: - Students
+    // MARK: - School
     case notFoundSchool
     case invalidQuestionAnswer
 }
@@ -69,7 +70,7 @@ extension DmsError: LocalizedError {
             return "아이디외 이메일과 일치하지 않습니다."
 
         case .notFoundAccountID:
-            return "아이디에 따른 유저를 찾을 수 없습니다."
+            return "존재하지 않는 아이디입니다."
 
         // MARK: - Students
 
@@ -83,11 +84,15 @@ extension DmsError: LocalizedError {
             return "이미 존재하는 이메일입니다."
 
         case .invalidStudentInfoByFindID:
-            return "학생 정보가 일치하지 않습니다."
+            return "이름과 학번이 일치하는 계정이 존재하지 않습니다."
 
         case .notFoundStudentByFindID:
             return "이름과 학번이 일치하는 계정이 존재하지 않습니다."
 
+        case .notFoundGradeClassNumber:
+            return "학번을 확인해주세요."
+
+        // MARK: - School
         case .notFoundSchool:
             return "학교를 찾을 수 없습니다"
 

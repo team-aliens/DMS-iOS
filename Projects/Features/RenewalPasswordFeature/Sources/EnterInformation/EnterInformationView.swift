@@ -23,30 +23,26 @@ struct EnterInformationView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-                        .padding(.top, 28)
-
-                    Text("계정 본인인증")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
-
-                Spacer()
-            }
+            AuthHeaderView(subTitle: "계정 본인인증")
+                .padding(.top, 24)
 
             VStack(spacing: 20) {
-                DMSFloatingTextField("아이디", text: $viewModel.id) {
-                    focusField = .name
+                DMSFloatingTextField(
+                    "아이디",
+                    text: $viewModel.id,
+                    isError: viewModel.isErrorOcuured,
+                    errorMessage: viewModel.errorMessage
+                ) {
                     withAnimation(Animation.easeIn(duration: 0.2)) {
-                        viewModel.returnEmailTextField()
+                        viewModel.returnEmailTextField {
+                            self.focusField = .name
+                        }
                     }
                 }
                 .focused($focusField, equals: .id)
-                .textContentType(.nickname)
+                .textContentType(.username)
 
-                if viewModel.isShow {
+                if viewModel.isShowFoundEmail {
                     BlockEmailView(email: $viewModel.blockEmail)
                 }
 
@@ -54,20 +50,22 @@ struct EnterInformationView: View {
             .padding(.top, 68)
             .transition(.slide)
 
-            VStack(spacing: 60) {
-                DMSFloatingTextField("이름", text: $viewModel.name) {
-                    focusField = .email
-                }
-                .focused($focusField, equals: .name)
-                .textContentType(.name)
+            if viewModel.isShowFoundEmail {
+                VStack(spacing: 60) {
+                    DMSFloatingTextField("이름", text: $viewModel.name) {
+                        focusField = .email
+                    }
+                    .focused($focusField, equals: .name)
+                    .textContentType(.name)
 
-                DMSFloatingTextField("이메일", text: $viewModel.email) {
-                    viewModel.nextButtonDidTap()
+                    DMSFloatingTextField("이메일", text: $viewModel.email) {
+                        viewModel.nextButtonDidTap()
+                    }
+                    .focused($focusField, equals: .email)
+                    .textContentType(.emailAddress)
                 }
-                .focused($focusField, equals: .email)
-                .textContentType(.emailAddress)
+                .padding(.top, 40)
             }
-            .padding(.top, 40)
 
             Spacer()
 
@@ -76,7 +74,9 @@ struct EnterInformationView: View {
             }
             .disabled(!viewModel.isNextButtonEnabled )
             .padding(.bottom, 40)
-
+        }
+        .onAppear {
+            focusField = .id
         }
         .navigate(
             to: authenticationEmailComponent.makeView(

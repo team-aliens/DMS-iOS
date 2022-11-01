@@ -1,20 +1,45 @@
 import BaseFeature
 import SwiftUI
-import Utility
+import SigninFeature
+import MainTabFeature
 
 struct RootView: View {
-    @AppStorage(StorageKeys.sceneFlow.rawValue) var sceneFlow: SceneFlow = .splash
-    @StateObject var dmsFeaturesObject = DmsFeaturesObject(
-        features: .init(mealService: false, noticeService: false, pointService: false)
-    )
+    @EnvironmentObject var appState: AppState
+
+    private let signinComponent: SigninComponent
+    private let mainTabComponent: MainTabComponent
+
+    public init(
+        signinComponent: SigninComponent,
+        mainTabComponent: MainTabComponent
+    ) {
+        self.signinComponent = signinComponent
+        self.mainTabComponent = mainTabComponent
+    }
 
     var body: some View {
-        Text("Hello, World!")
-    }
-}
+        ZStack {
+            switch appState.sceneFlow {
+            case .auth:
+                signinComponent.makeView()
+                    .environmentObject(appState)
 
-struct RootView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootView()
+            case .main:
+                mainTabComponent.makeView()
+                    .environmentObject(appState)
+
+            case .splash:
+                VStack {
+                    Text("대충 스플래시")
+                }
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        appState.sceneFlow = .auth
+                    }
+                }
+            }
+        }
+        .animation(.easeInOut, value: appState.sceneFlow)
+        .transition(.opacity.animation(.easeInOut))
     }
 }

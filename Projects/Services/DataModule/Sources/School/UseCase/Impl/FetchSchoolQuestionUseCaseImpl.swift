@@ -10,8 +10,8 @@ public struct FetchSchoolQuestionUseCaseImpl: FetchSchoolQuestionUseCase {
         self.schoolRepository = schoolRepository
     }
 
-    public func execute(authCode: String) -> AnyPublisher<String, DmsError> {
-        schoolRepository.fetchSchoolQuestion(authCode: authCode)
+    public func execute(schoolID: String) -> AnyPublisher<String, DmsError> {
+        schoolRepository.fetchSchoolQuestion(schoolID: schoolID)
     }
 
 }

@@ -41,17 +41,17 @@ struct HomeView: View {
 
                     Text("오늘의 급식")
                         .dmsFont(.title(.small), color: .GrayScale.gray7)
-                        .padding(.top, 24)
+                        .padding(.top, 16)
 
                     selectDateView()
-                        .padding(.top, 32)
+                        .padding(.top, 24)
 
                     MealCarouselView(
                         meal: viewModel.selectedDateMeal,
                         isLoading: $viewModel.isLoading
                     )
                     .padding(.top, 36)
-                    .padding(.bottom, 80)
+                    .padding(.bottom, 50)
                 }
             }
         }
@@ -68,6 +68,7 @@ struct HomeView: View {
                     .dmsFont(.title(.small), color: .GrayScale.gray7)
             }
         }
+        .dmsBackground()
         .dmsBottomSheet(isShowing: $isShowingCalendar) {
             DeferView {
                 CalendarSheetView(selectedDate: $viewModel.selectedDate)

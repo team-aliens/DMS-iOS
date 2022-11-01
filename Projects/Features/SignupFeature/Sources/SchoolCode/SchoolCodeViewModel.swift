@@ -1,10 +1,12 @@
 import BaseFeature
 import Combine
 import DomainModule
+import ErrorModule
 
 final class SchoolCodeViewModel: BaseViewModel {
     @Published var schoolCode = ""
-    @Published var isNavigateCheckSchool = false
+    @Published var isNavigateSchoolQuestion = false
+    @Published var schoolID = ""
 
     var isEnabledVerify: Bool {
         schoolCode.count == 8
@@ -14,6 +16,15 @@ final class SchoolCodeViewModel: BaseViewModel {
 
     public init(checkSchoolCodeUseCase: any CheckSchoolCodeUseCase) {
         self.checkSchoolCodeUseCase = checkSchoolCodeUseCase
+        super.init()
+
+        addCancellable(
+            $schoolCode.setFailureType(to: DmsError.self).eraseToAnyPublisher()
+        ) { [weak self] code in
+            if code.count == 8 {
+                self?.verifyAuthCodeButtonDidTap()
+            }
+        }
     }
 
     func verifyAuthCodeButtonDidTap() {
@@ -22,8 +33,11 @@ final class SchoolCodeViewModel: BaseViewModel {
             checkSchoolCodeUseCase.execute(
                 code: schoolCode
             )
-        ) { [weak self] _ in
-            self?.isNavigateCheckSchool = true
+        ) { [weak self] id in
+            self?.schoolID = id
+            self?.isNavigateSchoolQuestion = true
+        } onReceiveError: { [weak self] _ in
+            self?.schoolCode = ""
         }
     }
 }

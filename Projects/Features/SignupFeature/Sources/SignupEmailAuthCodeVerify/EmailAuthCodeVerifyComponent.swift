@@ -5,6 +5,7 @@ import SwiftUI
 public protocol SignupEmailAuthCodeVerifyDependency: Dependency {
     var sendAuthCodeUseCase: any SendAuthCodeUseCase { get }
     var verifyAuthCodeUseCase: any VerifyAuthCodeUseCase { get }
+    var idSettingComponent: IDSettingComponent { get }
 }
 
 public final class SignupEmailAuthCodeVerifyComponent: Component<SignupEmailAuthCodeVerifyDependency> {
@@ -14,7 +15,8 @@ public final class SignupEmailAuthCodeVerifyComponent: Component<SignupEmailAuth
                 sendAuthCodeUseCase: dependency.sendAuthCodeUseCase,
                 verifyAuthCodeUseCase: dependency.verifyAuthCodeUseCase,
                 signupEmailAuthCodeVerifyParam: signupEmailAuthCodeVerifyParam
-            )
+            ),
+            idSettingComponent: dependency.idSettingComponent
         )
     }
 }

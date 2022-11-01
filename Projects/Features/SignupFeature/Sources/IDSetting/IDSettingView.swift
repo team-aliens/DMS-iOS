@@ -2,77 +2,135 @@ import DesignSystem
 import SwiftUI
 
 struct IDSettingView: View {
+    private enum FocusField {
+        case grade
+        case `class`
+        case number
+        case id
+    }
     @StateObject var viewModel: IDSettingViewModel
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
+    @FocusState private var focusField: FocusField?
+    private let signupPasswordComponent: SignupPasswordComponent
 
     public init(
-        viewModel: IDSettingViewModel
+        viewModel: IDSettingViewModel,
+        signupPasswordComponent: SignupPasswordComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.signupPasswordComponent = signupPasswordComponent
     }
 
     var body: some View {
         VStack(spacing: 4) {
+            AuthHeaderView(subTitle: "아이디 설정")
+                .padding(.top, 24)
+
             HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-
-                    Text("아이디 설정")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-
-                    Text("학년, 반, 번호는 숫자만 입력하여 주세요.")
-                        .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
-                }
+                Text("학년, 반, 번호는 숫자만 입력하여 주세요.")
+                    .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
 
                 Spacer()
             }
-            .padding(.top, 24)
 
-            VStack(spacing: 60) {
+            VStack(spacing: 30) {
                 HStack(spacing: 20) {
                     DMSFloatingTextField(
                         "학년",
                         text: $viewModel.grade,
                         isError: viewModel.isErrorOcuured
                     )
+                    .focused($focusField, equals: .grade)
 
                     DMSFloatingTextField(
                         "반",
                         text: $viewModel.group,
                         isError: viewModel.isErrorOcuured
                     )
+                    .focused($focusField, equals: .class)
 
                     DMSFloatingTextField(
                         "번호",
                         text: $viewModel.number,
                         isError: viewModel.isErrorOcuured
                     )
+                    .focused($focusField, equals: .number)
                 }
                 .keyboardType(.numberPad)
                 .padding(.top, 94)
 
-                DMSFloatingTextField(
-                    "아이디",
-                    text: $viewModel.id,
-                    isError: viewModel.isInvalidIDError,
-                    errorMessage: "아이디가 유효하지 않습니다."
-                ) {
-                    viewModel.nextButtonDidTap()
+                if viewModel.isShowingCheckStudent && !viewModel.isCheckedStudent {
+                    HStack {
+                        Text("\(viewModel.checkedName)님이 맞으신가요?")
+                            .dmsFont(.text(.small), color: .GrayScale.gray7)
+                            .padding(.leading, 20)
+
+                        Spacer()
+
+                        DMSButton(text: "확인", style: .text, color: .GrayScale.gray6) {
+                            withAnimation {
+                                viewModel.nameCheckButtonDidTap()
+                                focusField = .id
+                            }
+                        }
+                        .padding(.trailing, 20)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background {
+                        if colorScheme == .light {
+                            Color.GrayScale.gray2
+                        } else {
+                            Color.GrayScale.gray3
+                        }
+                    }
+                }
+
+                if viewModel.isCheckedStudent {
+                    DMSFloatingTextField(
+                        "아이디",
+                        text: $viewModel.id,
+                        isError: viewModel.isInvalidIDError,
+                        errorMessage: "아이디가 이미 존재합니다."
+                    ) {
+                        viewModel.nextButtonDidTap()
+                    }
+                    .focused($focusField, equals: .id)
+                    .padding(.top, 56)
                 }
             }
 
             Spacer()
 
             DMSWideButton(text: "다음", color: .PrimaryVariant.primary) {
-                viewModel.nextButtonDidTap()
+                withAnimation {
+                    viewModel.nextButtonDidTap()
+                    focusField = nil
+                }
             }
             .padding(.bottom, 40)
             .disabled(!viewModel.isEnabledNextStep)
         }
+        .onAppear {
+            focusField = .grade
+        }
+        .dmsBackButton(dismiss: dismiss)
+        .padding(.horizontal, 24)
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 24)
-        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: viewModel.toastStyle)
+        .navigate(
+            to: signupPasswordComponent.makeView(
+                signupPasswordParam: .init(
+                    idSettingParam: viewModel.idSettingParam,
+                    grade: Int(viewModel.grade) ?? 0,
+                    class: Int(viewModel.group) ?? 0,
+                    number: Int(viewModel.number) ?? 0,
+                    accountID: viewModel.id
+                )
+            ),
+            when: $viewModel.isNavigateSignupPassword
+        )
     }
 }

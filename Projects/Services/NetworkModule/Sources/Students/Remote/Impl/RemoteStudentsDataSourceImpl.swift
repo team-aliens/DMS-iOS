@@ -27,6 +27,12 @@ public final class RemoteStudentsDataSourceImpl: BaseRemoteDataSource<StudentsAP
             .eraseToAnyPublisher()
     }
 
+    public func checkExistGradeClassNumber(req: CheckExistGradeClassNumberRequestDTO) -> AnyPublisher<String, DmsError> {
+        request(.checkExistGradeClassNumber(req), dto: CheckAccountIDIsExistResponseDTO.self)
+            .map(\.email)
+            .eraseToAnyPublisher()
+    }
+
     public func fetchMyProfile() -> AnyPublisher<MyProfileEntity, DmsError> {
         request(.fetchMyProfile, dto: FetchMyProfileResponseDTO.self)
             .map { $0.toDomain() }

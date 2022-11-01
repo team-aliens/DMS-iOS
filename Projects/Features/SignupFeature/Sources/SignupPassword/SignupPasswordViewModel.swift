@@ -11,9 +11,16 @@ final class SignupPasswordViewModel: BaseViewModel {
     }
     @Published var isPasswordRegexError = false
     @Published var isPasswordMismatchedError = false
+    @Published var isNavigateSignupProfileImage = false
 
     var isEnabledNextStep: Bool {
         !password.isEmpty && !passwordCheck.isEmpty
+    }
+
+    let signupPasswordParam: SignupPasswordParam
+
+    init(signupPasswordParam: SignupPasswordParam) {
+        self.signupPasswordParam = signupPasswordParam
     }
 
     func nextButtonDidTap() {
@@ -31,6 +38,7 @@ final class SignupPasswordViewModel: BaseViewModel {
             isPasswordMismatchedError = true
             return
         }
+        isNavigateSignupProfileImage = true
     }
 
     func resettingError() {
