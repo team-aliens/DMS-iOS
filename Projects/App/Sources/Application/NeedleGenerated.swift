@@ -1,5 +1,6 @@
 
 
+import ApplyFeature
 import BaseFeature
 import DataModule
 import DomainModule
@@ -7,8 +8,10 @@ import FindIDFeature
 import HomeFeature
 import KeychainModule
 import MainTabFeature
+import MyPageFeature
 import NeedleFoundation
 import NetworkModule
+import NoticeFeature
 import RenewalPasswordFeature
 import RootFeature
 import SigninFeature
@@ -172,6 +175,17 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
 private func factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return MainTabDependency2826cdb310ed0b17a725Provider(appComponent: parent1(component) as! AppComponent)
 }
+private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->MyPageComponent
+private func factory0f6f456ebf157d02dfb3e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return MyPageDependency48d84b530313b3ee40feProvider()
+}
 private class RootDependency3944cc797a4a88956fb5Provider: RootDependency {
     var signinComponent: SigninComponent {
         return appComponent.signinComponent
@@ -223,6 +237,17 @@ private class HomeDependency443c4e1871277bd8432aProvider: HomeDependency {
 private func factory67229cdf0f755562b2b1f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return HomeDependency443c4e1871277bd8432aProvider(appComponent: parent1(component) as! AppComponent)
 }
+private class ApplyDependency468ec8d97f04fe0ebd10Provider: ApplyDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->ApplyComponent
+private func factory3cbfeafbe8b73941b232e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return ApplyDependency468ec8d97f04fe0ebd10Provider()
+}
 private class AuthenticationEmailDependency73189eb572618b10e0fbProvider: AuthenticationEmailDependency {
     var verifyAuthCodeUseCase: any VerifyAuthCodeUseCase {
         return appComponent.verifyAuthCodeUseCase
@@ -271,6 +296,17 @@ private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInfor
 private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
 }
+private class NoticeDependencyaec92ef53617a421bdf3Provider: NoticeDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->NoticeComponent
+private func factoryaf8e5665e5b9217918f5e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return NoticeDependencyaec92ef53617a421bdf3Provider()
+}
 private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
         return appComponent.findIDUseCase
@@ -316,6 +352,9 @@ extension AppComponent: Registration {
         localTable["signupTermsComponent-SignupTermsComponent"] = { self.signupTermsComponent as Any }
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["homeComponent-HomeComponent"] = { self.homeComponent as Any }
+        localTable["applyComponent-ApplyComponent"] = { self.applyComponent as Any }
+        localTable["noticeComponent-NoticeComponent"] = { self.noticeComponent as Any }
+        localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
         localTable["remoteStudentsDataSource-any RemoteStudentsDataSource"] = { self.remoteStudentsDataSource as Any }
         localTable["studentsRepository-any StudentsRepository"] = { self.studentsRepository as Any }
         localTable["signupUseCase-any SignupUseCase"] = { self.signupUseCase as Any }
@@ -393,6 +432,11 @@ extension MainTabComponent: Registration {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
     }
 }
+extension MyPageComponent: Registration {
+    public func registerItems() {
+
+    }
+}
 extension RootComponent: Registration {
     public func registerItems() {
         keyPathToName[\RootDependency.signinComponent] = "signinComponent-SigninComponent"
@@ -412,6 +456,11 @@ extension HomeComponent: Registration {
         keyPathToName[\HomeDependency.fetchMealListUseCase] = "fetchMealListUseCase-any FetchMealListUseCase"
     }
 }
+extension ApplyComponent: Registration {
+    public func registerItems() {
+
+    }
+}
 extension AuthenticationEmailComponent: Registration {
     public func registerItems() {
         keyPathToName[\AuthenticationEmailDependency.verifyAuthCodeUseCase] = "verifyAuthCodeUseCase-any VerifyAuthCodeUseCase"
@@ -428,6 +477,11 @@ extension EnterInformationComponent: Registration {
     public func registerItems() {
         keyPathToName[\EnterInformationDependency.checkAccountIDIsExistUseCase] = "checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"
         keyPathToName[\EnterInformationDependency.authenticationEmailComponent] = "authenticationEmailComponent-AuthenticationEmailComponent"
+    }
+}
+extension NoticeComponent: Registration {
+    public func registerItems() {
+
     }
 }
 extension FindIDComponent: Registration {
@@ -462,12 +516,15 @@ private func register1() {
     registerProviderFactory("^->AppComponent->SignupEmailVerifyComponent", factory3b1904c76335d70151ebf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->MyPageComponent", factory0f6f456ebf157d02dfb3e3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->RootComponent", factory264bfc4d4cb6b0629b40f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->ApplyComponent", factory3cbfeafbe8b73941b232e3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->NoticeComponent", factoryaf8e5665e5b9217918f5e3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
 #endif
