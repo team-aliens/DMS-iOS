@@ -166,6 +166,15 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
     var homeComponent: HomeComponent {
         return appComponent.homeComponent
     }
+    var applyComponent: ApplyComponent {
+        return appComponent.applyComponent
+    }
+    var noticeComponent: NoticeComponent {
+        return appComponent.noticeComponent
+    }
+    var myPageComponent: MyPageComponent {
+        return appComponent.myPageComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -430,6 +439,9 @@ extension SignupProfileImageComponent: Registration {
 extension MainTabComponent: Registration {
     public func registerItems() {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
+        keyPathToName[\MainTabDependency.applyComponent] = "applyComponent-ApplyComponent"
+        keyPathToName[\MainTabDependency.noticeComponent] = "noticeComponent-NoticeComponent"
+        keyPathToName[\MainTabDependency.myPageComponent] = "myPageComponent-MyPageComponent"
     }
 }
 extension MyPageComponent: Registration {
