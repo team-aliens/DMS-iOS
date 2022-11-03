@@ -4,8 +4,8 @@ import Moya
 
 public enum NoticeAPI {
     case fetchWhetherNewNotice
-    case fetchNoticeList(order: String)
-    case fetchNotice(id: String)
+    case fetchNoticeList(order: NoticeOrderType)
+    case fetchDetailNotice(id: String)
 }
 
 extension NoticeAPI: DmsAPI {
@@ -18,7 +18,7 @@ extension NoticeAPI: DmsAPI {
         case .fetchWhetherNewNotice, .fetchNoticeList:
             return ""
 
-        case let .fetchNotice(id):
+        case let .fetchDetailNotice(id):
             return "/\(id)"
         }
     }
@@ -31,7 +31,7 @@ extension NoticeAPI: DmsAPI {
         switch self {
         case let .fetchNoticeList(order):
             return .requestParameters(parameters: [
-                "order": order
+                "order": order.rawValue
             ], encoding: URLEncoding.queryString)
 
         default:
