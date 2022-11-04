@@ -31,7 +31,9 @@ public struct StudentsRepositoryImpl: StudentsRepository {
         remoteStudentsDataSource.findID(req: req)
     }
 
-    public func checkExistGradeClassNumber(req: CheckExistGradeClassNumberRequestDTO) -> AnyPublisher<String, DmsError> {
+    public func checkExistGradeClassNumber(
+        req: CheckExistGradeClassNumberRequestDTO
+    ) -> AnyPublisher<String, DmsError> {
         remoteStudentsDataSource.checkExistGradeClassNumber(req: req)
     }
 

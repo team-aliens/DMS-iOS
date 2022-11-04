@@ -8,4 +8,3 @@ public final class NoticeComponent: Component<NoticeDependency> {
         Text("Text")
     }
 }
-
