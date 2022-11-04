@@ -6,7 +6,8 @@ import NetworkModule
 public extension AppComponent {
     var remoteNoticeDataSource: any RemoteNoticeDataSource {
         shared {
-            RemoteNoticeDataSourceImpl(keychain: keychain)
+            RemoteNoticeDataSourceStub()
+//            RemoteNoticeDataSourceImpl(keychain: keychain)
         }
     }
 
