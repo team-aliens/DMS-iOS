@@ -32,7 +32,9 @@ public struct StudentsRepositoryStub: StudentsRepository {
             .eraseToAnyPublisher()
     }
 
-    public func checkExistGradeClassNumber(req: CheckExistGradeClassNumberRequestDTO) -> AnyPublisher<String, DmsError> {
+    public func checkExistGradeClassNumber(
+        req: CheckExistGradeClassNumberRequestDTO
+    ) -> AnyPublisher<String, DmsError> {
         Just("김범진").setFailureType(to: DmsError.self)
                 .eraseToAnyPublisher()
     }

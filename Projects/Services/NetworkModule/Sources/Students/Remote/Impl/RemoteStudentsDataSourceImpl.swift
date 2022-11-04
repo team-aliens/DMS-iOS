@@ -27,7 +27,9 @@ public final class RemoteStudentsDataSourceImpl: BaseRemoteDataSource<StudentsAP
             .eraseToAnyPublisher()
     }
 
-    public func checkExistGradeClassNumber(req: CheckExistGradeClassNumberRequestDTO) -> AnyPublisher<String, DmsError> {
+    public func checkExistGradeClassNumber(
+        req: CheckExistGradeClassNumberRequestDTO
+    ) -> AnyPublisher<String, DmsError> {
         request(.checkExistGradeClassNumber(req), dto: CheckAccountIDIsExistResponseDTO.self)
             .map(\.email)
             .eraseToAnyPublisher()

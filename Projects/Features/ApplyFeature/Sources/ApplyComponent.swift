@@ -8,4 +8,3 @@ public final class ApplyComponent: Component<ApplyDependency> {
         Text("Text")
     }
 }
-
