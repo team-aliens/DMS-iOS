@@ -364,6 +364,11 @@ extension AppComponent: Registration {
         localTable["applyComponent-ApplyComponent"] = { self.applyComponent as Any }
         localTable["noticeComponent-NoticeComponent"] = { self.noticeComponent as Any }
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
+        localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
+        localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
+        localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { self.fetchWhetherNewNoticeUseCase as Any }
+        localTable["fetchNoticeListUseCase-any FetchNoticeListUseCase"] = { self.fetchNoticeListUseCase as Any }
+        localTable["fetchDetailNoticeUseCase-any FetchDetailNoticeUseCase"] = { self.fetchDetailNoticeUseCase as Any }
         localTable["remoteStudentsDataSource-any RemoteStudentsDataSource"] = { self.remoteStudentsDataSource as Any }
         localTable["studentsRepository-any StudentsRepository"] = { self.studentsRepository as Any }
         localTable["signupUseCase-any SignupUseCase"] = { self.signupUseCase as Any }

@@ -8,4 +8,3 @@ public final class MyPageComponent: Component<MyPageDependency> {
         Text("Text")
     }
 }
-
