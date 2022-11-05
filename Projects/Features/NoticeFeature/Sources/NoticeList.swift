@@ -2,15 +2,15 @@
 
 import Foundation
 
-struct NoticeList {
+struct NoticeList: Hashable {
     init(
         title: String,
-        contentz: String
+        content: String
     ) {
         self.title = title
-        self.contentz = contentz
+        self.content = content
     }
 
-    let title: String
-    let contentz: String
+    var title: String
+    var content: String
 }
