@@ -6,9 +6,9 @@ public protocol NoticeDependency: Dependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase { get }
 }
 
-public final class NoticeComponent: Component<NoticeDependency> {
+public final class NoticeListComponent: Component<NoticeDependency> {
     public func makeView() -> some View {
-        NoticeView(
+        NoticeListView(
             viewModel: .init(
                 fetchNoticeListUseCase: dependency.fetchNoticeListUseCase
             )

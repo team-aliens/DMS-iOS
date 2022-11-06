@@ -82,8 +82,8 @@ public extension AppComponent {
     var applyComponent: ApplyComponent {
         ApplyComponent(parent: self)
     }
-    var noticeComponent: NoticeComponent {
-        NoticeComponent(parent: self)
+    var noticeComponent: NoticeListComponent {
+        NoticeListComponent(parent: self)
     }
     var myPageComponent: MyPageComponent {
         MyPageComponent(parent: self)

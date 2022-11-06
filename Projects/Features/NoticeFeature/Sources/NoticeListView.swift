@@ -1,12 +1,12 @@
 import DesignSystem
 import SwiftUI
 
-struct NoticeView: View {
-    @StateObject var viewModel: NoticeViewModel
+struct NoticeListView: View {
+    @StateObject var viewModel: NoticeListViewModel
     @State var isNavigateSignup = false
 
     init(
-        viewModel: NoticeViewModel
+        viewModel: NoticeListViewModel
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -17,7 +17,9 @@ struct NoticeView: View {
                 HStack {
                     Spacer()
 
-                    NoticeOrderButton(text: "최신순", color: .GrayScale.gray6)
+                    NoticeOrderButton(text: viewModel.orderTypeButtonName, color: .GrayScale.gray6) {
+                        viewModel.orderTypeButtonDidTap()
+                    }
                         .padding(.horizontal, 24)
                 }
                 .padding(.top, 12)
@@ -30,7 +32,7 @@ struct NoticeView: View {
                         ForEach(viewModel.noticeList, id: \.self) { noticeList in
                             noticeListCellView(
                                 title: noticeList.title,
-                                content: noticeList.content
+                                content: viewModel.dateToString(date: noticeList.createdAt)
                             )
                             .padding(.top, 5)
                             .listRowInsets(EdgeInsets())

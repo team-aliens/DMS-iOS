@@ -8,7 +8,7 @@ import MyPageFeature
 public protocol MainTabDependency: Dependency {
     var homeComponent: HomeComponent { get }
     var applyComponent: ApplyComponent { get }
-    var noticeComponent: NoticeComponent { get }
+    var noticeComponent: NoticeListComponent { get }
     var myPageComponent: MyPageComponent { get }
 }
 

@@ -19,13 +19,13 @@ struct MainTabView: View {
 
     private let homeComponent: HomeComponent
     private let applyComponent: ApplyComponent
-    private let noticeComponent: NoticeComponent
+    private let noticeComponent: NoticeListComponent
     private let myPageComponent: MyPageComponent
 
     init(
         homeComponent: HomeComponent,
         applyComponent: ApplyComponent,
-        noticeComponent: NoticeComponent,
+        noticeComponent: NoticeListComponent,
         myPageComponent: MyPageComponent
     ) {
         self.homeComponent = homeComponent

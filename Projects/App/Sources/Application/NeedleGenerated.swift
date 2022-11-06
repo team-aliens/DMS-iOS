@@ -169,7 +169,7 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
     var applyComponent: ApplyComponent {
         return appComponent.applyComponent
     }
-    var noticeComponent: NoticeComponent {
+    var noticeComponent: NoticeListComponent {
         return appComponent.noticeComponent
     }
     var myPageComponent: MyPageComponent {
@@ -305,7 +305,7 @@ private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInfor
 private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
 }
-private class NoticeDependencyaec92ef53617a421bdf3Provider: NoticeDependency {
+private class NoticeDependency0e93eb53be8626c408e4Provider: NoticeDependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase {
         return appComponent.fetchNoticeListUseCase
     }
@@ -314,9 +314,9 @@ private class NoticeDependencyaec92ef53617a421bdf3Provider: NoticeDependency {
         self.appComponent = appComponent
     }
 }
-/// ^->AppComponent->NoticeComponent
-private func factoryaf8e5665e5b9217918f5f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return NoticeDependencyaec92ef53617a421bdf3Provider(appComponent: parent1(component) as! AppComponent)
+/// ^->AppComponent->NoticeListComponent
+private func factory2ff025b7b4896593c80af47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return NoticeDependency0e93eb53be8626c408e4Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
@@ -364,7 +364,7 @@ extension AppComponent: Registration {
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["homeComponent-HomeComponent"] = { self.homeComponent as Any }
         localTable["applyComponent-ApplyComponent"] = { self.applyComponent as Any }
-        localTable["noticeComponent-NoticeComponent"] = { self.noticeComponent as Any }
+        localTable["noticeComponent-NoticeListComponent"] = { self.noticeComponent as Any }
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
@@ -447,7 +447,7 @@ extension MainTabComponent: Registration {
     public func registerItems() {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
         keyPathToName[\MainTabDependency.applyComponent] = "applyComponent-ApplyComponent"
-        keyPathToName[\MainTabDependency.noticeComponent] = "noticeComponent-NoticeComponent"
+        keyPathToName[\MainTabDependency.noticeComponent] = "noticeComponent-NoticeListComponent"
         keyPathToName[\MainTabDependency.myPageComponent] = "myPageComponent-MyPageComponent"
     }
 }
@@ -498,7 +498,7 @@ extension EnterInformationComponent: Registration {
         keyPathToName[\EnterInformationDependency.authenticationEmailComponent] = "authenticationEmailComponent-AuthenticationEmailComponent"
     }
 }
-extension NoticeComponent: Registration {
+extension NoticeListComponent: Registration {
     public func registerItems() {
         keyPathToName[\NoticeDependency.fetchNoticeListUseCase] = "fetchNoticeListUseCase-any FetchNoticeListUseCase"
     }
@@ -543,7 +543,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->NoticeComponent", factoryaf8e5665e5b9217918f5f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->NoticeListComponent", factory2ff025b7b4896593c80af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
 #endif
