@@ -1,6 +1,6 @@
 import Foundation
 
-public struct NoticeEntity: Equatable {
+public struct NoticeEntity: Equatable, Hashable {
     public init(id: String, title: String, createdAt: Date) {
         self.id = id
         self.title = title
