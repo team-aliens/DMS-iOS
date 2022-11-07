@@ -1,7 +1,10 @@
 import SwiftUI
-import DesignSystem
 import HomeFeature
+import ApplyFeature
+import NoticeFeature
+import MyPageFeature
 import BaseFeature
+import DesignSystem
 import Utility
 
 enum TabFlow: Int {
@@ -15,9 +18,20 @@ struct MainTabView: View {
     @State var tabbarHidden = false
 
     private let homeComponent: HomeComponent
+    private let applyComponent: ApplyComponent
+    private let noticeComponent: NoticeListComponent
+    private let myPageComponent: MyPageComponent
 
-    init(homeComponent: HomeComponent) {
+    init(
+        homeComponent: HomeComponent,
+        applyComponent: ApplyComponent,
+        noticeComponent: NoticeListComponent,
+        myPageComponent: MyPageComponent
+    ) {
         self.homeComponent = homeComponent
+        self.applyComponent = applyComponent
+        self.noticeComponent = noticeComponent
+        self.myPageComponent = myPageComponent
     }
 
     var body: some View {
@@ -26,13 +40,13 @@ struct MainTabView: View {
                 homeComponent.makeView()
                     .tag(TabFlow.home)
 
-                Text("1")
+                applyComponent.makeView()
                     .tag(TabFlow.apply)
 
-                Text("2")
+                noticeComponent.makeView()
                     .tag(TabFlow.notice)
 
-                Text("3")
+                myPageComponent.makeView()
                     .tag(TabFlow.myPage)
             }
             .environment(\.tabbarHidden, $tabbarHidden)

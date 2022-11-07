@@ -166,6 +166,15 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
     var homeComponent: HomeComponent {
         return appComponent.homeComponent
     }
+    var applyComponent: ApplyComponent {
+        return appComponent.applyComponent
+    }
+    var noticeListComponent: NoticeListComponent {
+        return appComponent.noticeListComponent
+    }
+    var myPageComponent: MyPageComponent {
+        return appComponent.myPageComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -296,16 +305,18 @@ private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInfor
 private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
 }
-private class NoticeDependencyaec92ef53617a421bdf3Provider: NoticeDependency {
-
-
-    init() {
-
+private class NoticeListDependency0e93eb53be8626c408e4Provider: NoticeListDependency {
+    var fetchNoticeListUseCase: any FetchNoticeListUseCase {
+        return appComponent.fetchNoticeListUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
     }
 }
-/// ^->AppComponent->NoticeComponent
-private func factoryaf8e5665e5b9217918f5e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return NoticeDependencyaec92ef53617a421bdf3Provider()
+/// ^->AppComponent->NoticeListComponent
+private func factorye14e687c08985bdffcd0f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return NoticeListDependency0e93eb53be8626c408e4Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
@@ -353,7 +364,7 @@ extension AppComponent: Registration {
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["homeComponent-HomeComponent"] = { self.homeComponent as Any }
         localTable["applyComponent-ApplyComponent"] = { self.applyComponent as Any }
-        localTable["noticeComponent-NoticeComponent"] = { self.noticeComponent as Any }
+        localTable["noticeListComponent-NoticeListComponent"] = { self.noticeListComponent as Any }
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
@@ -435,6 +446,9 @@ extension SignupProfileImageComponent: Registration {
 extension MainTabComponent: Registration {
     public func registerItems() {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
+        keyPathToName[\MainTabDependency.applyComponent] = "applyComponent-ApplyComponent"
+        keyPathToName[\MainTabDependency.noticeListComponent] = "noticeListComponent-NoticeListComponent"
+        keyPathToName[\MainTabDependency.myPageComponent] = "myPageComponent-MyPageComponent"
     }
 }
 extension MyPageComponent: Registration {
@@ -484,9 +498,9 @@ extension EnterInformationComponent: Registration {
         keyPathToName[\EnterInformationDependency.authenticationEmailComponent] = "authenticationEmailComponent-AuthenticationEmailComponent"
     }
 }
-extension NoticeComponent: Registration {
+extension NoticeListComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\NoticeListDependency.fetchNoticeListUseCase] = "fetchNoticeListUseCase-any FetchNoticeListUseCase"
     }
 }
 extension FindIDComponent: Registration {
@@ -529,7 +543,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->NoticeComponent", factoryaf8e5665e5b9217918f5e3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->NoticeListComponent", factorye14e687c08985bdffcd0f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
 #endif
