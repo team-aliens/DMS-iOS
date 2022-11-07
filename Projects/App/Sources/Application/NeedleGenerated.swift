@@ -169,8 +169,8 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
     var applyComponent: ApplyComponent {
         return appComponent.applyComponent
     }
-    var noticeComponent: NoticeListComponent {
-        return appComponent.noticeComponent
+    var noticeListComponent: NoticeListComponent {
+        return appComponent.noticeListComponent
     }
     var myPageComponent: MyPageComponent {
         return appComponent.myPageComponent
@@ -364,7 +364,7 @@ extension AppComponent: Registration {
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["homeComponent-HomeComponent"] = { self.homeComponent as Any }
         localTable["applyComponent-ApplyComponent"] = { self.applyComponent as Any }
-        localTable["noticeComponent-NoticeListComponent"] = { self.noticeComponent as Any }
+        localTable["noticeListComponent-NoticeListComponent"] = { self.noticeListComponent as Any }
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
@@ -447,7 +447,7 @@ extension MainTabComponent: Registration {
     public func registerItems() {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
         keyPathToName[\MainTabDependency.applyComponent] = "applyComponent-ApplyComponent"
-        keyPathToName[\MainTabDependency.noticeComponent] = "noticeComponent-NoticeListComponent"
+        keyPathToName[\MainTabDependency.noticeListComponent] = "noticeListComponent-NoticeListComponent"
         keyPathToName[\MainTabDependency.myPageComponent] = "myPageComponent-MyPageComponent"
     }
 }

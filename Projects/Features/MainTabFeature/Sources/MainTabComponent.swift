@@ -8,7 +8,7 @@ import MyPageFeature
 public protocol MainTabDependency: Dependency {
     var homeComponent: HomeComponent { get }
     var applyComponent: ApplyComponent { get }
-    var noticeComponent: NoticeListComponent { get }
+    var noticeListComponent: NoticeListComponent { get }
     var myPageComponent: MyPageComponent { get }
 }
 
@@ -17,7 +17,7 @@ public final class MainTabComponent: Component<MainTabDependency> {
         MainTabView(
             homeComponent: dependency.homeComponent,
             applyComponent: dependency.applyComponent,
-            noticeComponent: dependency.noticeComponent,
+            noticeComponent: dependency.noticeListComponent,
             myPageComponent: dependency.myPageComponent
         )
     }

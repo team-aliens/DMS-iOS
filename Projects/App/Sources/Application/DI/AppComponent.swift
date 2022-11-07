@@ -82,7 +82,7 @@ public extension AppComponent {
     var applyComponent: ApplyComponent {
         ApplyComponent(parent: self)
     }
-    var noticeComponent: NoticeListComponent {
+    var noticeListComponent: NoticeListComponent {
         NoticeListComponent(parent: self)
     }
     var myPageComponent: MyPageComponent {
