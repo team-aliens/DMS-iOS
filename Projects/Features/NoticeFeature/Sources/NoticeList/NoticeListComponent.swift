@@ -2,11 +2,11 @@ import DomainModule
 import NeedleFoundation
 import SwiftUI
 
-public protocol NoticeDependency: Dependency {
+public protocol NoticeListDependency: Dependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase { get }
 }
 
-public final class NoticeListComponent: Component<NoticeDependency> {
+public final class NoticeListComponent: Component<NoticeListDependency> {
     public func makeView() -> some View {
         NoticeListView(
             viewModel: .init(

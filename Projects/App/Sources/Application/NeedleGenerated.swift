@@ -305,7 +305,7 @@ private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInfor
 private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
 }
-private class NoticeDependency0e93eb53be8626c408e4Provider: NoticeDependency {
+private class NoticeDependency0e93eb53be8626c408e4Provider: NoticeListDependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase {
         return appComponent.fetchNoticeListUseCase
     }
@@ -500,7 +500,7 @@ extension EnterInformationComponent: Registration {
 }
 extension NoticeListComponent: Registration {
     public func registerItems() {
-        keyPathToName[\NoticeDependency.fetchNoticeListUseCase] = "fetchNoticeListUseCase-any FetchNoticeListUseCase"
+        keyPathToName[\NoticeListDependency.fetchNoticeListUseCase] = "fetchNoticeListUseCase-any FetchNoticeListUseCase"
     }
 }
 extension FindIDComponent: Registration {
