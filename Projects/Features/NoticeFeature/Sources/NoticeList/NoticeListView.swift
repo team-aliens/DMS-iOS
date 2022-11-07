@@ -1,9 +1,9 @@
 import DesignSystem
+import Utility
 import SwiftUI
 
 struct NoticeListView: View {
     @StateObject var viewModel: NoticeListViewModel
-    @State var isNavigateSignup = false
 
     init(
         viewModel: NoticeListViewModel
@@ -32,7 +32,7 @@ struct NoticeListView: View {
                         ForEach(viewModel.noticeList, id: \.self) { noticeList in
                             noticeListCellView(
                                 title: noticeList.title,
-                                content: viewModel.dateToString(date: noticeList.createdAt)
+                                content: noticeList.createdAt.toSmallDMSDateString()
                             )
                             .padding(.top, 5)
                             .listRowInsets(EdgeInsets())

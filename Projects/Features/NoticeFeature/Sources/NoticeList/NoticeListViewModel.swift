@@ -41,11 +41,4 @@ final class NoticeListViewModel: BaseViewModel {
             fetchNoticeList()
         }
     }
-
-    func dateToString(date: Date) -> String {
-        let dateFomatter = DateFormatter()
-        dateFomatter.dateFormat = "yyyy-MM-dd"
-        return dateFomatter.string(from: date)
-    }
-
 }
