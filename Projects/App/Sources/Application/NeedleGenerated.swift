@@ -305,7 +305,7 @@ private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInfor
 private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
 }
-private class NoticeDependency0e93eb53be8626c408e4Provider: NoticeListDependency {
+private class NoticeListDependency0e93eb53be8626c408e4Provider: NoticeListDependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase {
         return appComponent.fetchNoticeListUseCase
     }
@@ -315,8 +315,8 @@ private class NoticeDependency0e93eb53be8626c408e4Provider: NoticeListDependency
     }
 }
 /// ^->AppComponent->NoticeListComponent
-private func factory2ff025b7b4896593c80af47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return NoticeDependency0e93eb53be8626c408e4Provider(appComponent: parent1(component) as! AppComponent)
+private func factorye14e687c08985bdffcd0f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return NoticeListDependency0e93eb53be8626c408e4Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
@@ -543,7 +543,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->NoticeListComponent", factory2ff025b7b4896593c80af47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->NoticeListComponent", factorye14e687c08985bdffcd0f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
 #endif

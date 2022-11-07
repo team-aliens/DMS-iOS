@@ -8,7 +8,6 @@ import DataMappingModule
 final class NoticeListViewModel: BaseViewModel {
     @Published var noticeList: [NoticeEntity] = []
     @Published var noticeOrderType: NoticeOrderType = .new
-    @Published var orderTypeButtonName: String = "최신순"
 
     private let fetchNoticeListUseCase: any FetchNoticeListUseCase
 
@@ -31,14 +30,7 @@ final class NoticeListViewModel: BaseViewModel {
     }
 
     func orderTypeButtonDidTap() {
-        if noticeOrderType == .new {
-            self.noticeOrderType = .old
-            self.orderTypeButtonName = "오래된순"
-            fetchNoticeList()
-        } else if noticeOrderType == .old {
-            self.noticeOrderType = .new
-            self.orderTypeButtonName = "최신순"
-            fetchNoticeList()
-        }
+        self.noticeOrderType = noticeOrderType == .new ? .old : .new
+        fetchNoticeList()
     }
 }

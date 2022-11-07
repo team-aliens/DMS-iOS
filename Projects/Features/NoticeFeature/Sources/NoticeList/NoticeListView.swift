@@ -17,7 +17,7 @@ struct NoticeListView: View {
                 HStack {
                     Spacer()
 
-                    NoticeOrderButton(text: viewModel.orderTypeButtonName, color: .GrayScale.gray6) {
+                    NoticeOrderButton(text: viewModel.noticeOrderType.display, color: .GrayScale.gray6) {
                         viewModel.orderTypeButtonDidTap()
                     }
                         .padding(.horizontal, 24)
