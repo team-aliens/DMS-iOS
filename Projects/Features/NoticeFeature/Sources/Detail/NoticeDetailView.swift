@@ -34,7 +34,5 @@ struct NoticeDetailView: View {
         .navigationTitle("공지")
         .navigationBarTitleDisplayMode(.inline)
         .padding(.horizontal, 24)
-
-        Spacer()
     }
 }
