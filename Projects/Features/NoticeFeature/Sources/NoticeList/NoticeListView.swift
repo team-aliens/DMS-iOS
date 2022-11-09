@@ -4,11 +4,14 @@ import SwiftUI
 
 struct NoticeListView: View {
     @StateObject var viewModel: NoticeListViewModel
+    private let noticeDetailComponent: NoticeDetailComponent
 
     init(
-        viewModel: NoticeListViewModel
+        viewModel: NoticeListViewModel,
+        noticeDetailComponent: NoticeDetailComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.noticeDetailComponent = noticeDetailComponent
     }
 
     var body: some View {
@@ -30,13 +33,14 @@ struct NoticeListView: View {
                             .frame(height: 10)
 
                         ForEach(viewModel.noticeList, id: \.self) { noticeList in
-                            noticeListCellView(
-                                title: noticeList.title,
-                                content: noticeList.createdAt.toSmallDMSDateString()
-                            )
-                            .padding(.top, 5)
-                            .listRowInsets(EdgeInsets())
-
+                            NavigationLink(destination: noticeDetailComponent.makeView(id: noticeList.id)) {
+                                noticeListCellView(
+                                    title: noticeList.title,
+                                    content: noticeList.createdAt.toSmallDMSDateString()
+                                )
+                                .padding(.top, 5)
+                                .listRowInsets(EdgeInsets())
+                            }
                         }
                     }
                     .padding(.horizontal, 24)
@@ -45,6 +49,7 @@ struct NoticeListView: View {
             }
             .navigationTitle("공지")
             .navigationBarTitleDisplayMode(.inline)
+            .dmsBackground()
         }
     }
 
