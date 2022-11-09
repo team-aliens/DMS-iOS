@@ -1,38 +1,40 @@
 import DesignSystem
 import SwiftUI
+import Utility
 
 struct NoticeDetailView: View {
     @StateObject var viewModel: NoticeDetailViewModel
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        NavigationView {
-            VStack {
-                VStack(alignment: .leading, spacing: 24) {
-                    Text("공지 제목")
-                        .dmsFont(.title(.small), color: .GrayScale.gray7)
-                        .padding(.top, 40)
+        VStack {
+            VStack(alignment: .leading, spacing: 24) {
+                Text(viewModel.title)
+                    .dmsFont(.title(.small), color: .GrayScale.gray7)
+                    .padding(.top, 40)
 
-                    Divider()
-                }
-                HStack(alignment: .bottom) {
-                    Text("""
-동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람, 대한으로 길이 보전하세 남산 위에 저 소나무, 철갑을 두른 듯바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람, 대한으로 길이 보전하세
-""")
+                Divider()
+            }
+            VStack(alignment: .leading, spacing: 24) {
+                Text(viewModel.content)
                     .padding(.top, 24)
                     .padding(.bottom, 40)
 
-                    Text("22/01/21  8:29")
-                        .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
-
+                HStack {
                     Spacer()
+
+                    Text(viewModel.date.toDMSDateString())
+                        .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
+                        .frame(alignment: .trailing)
                 }
-                Spacer()
             }
-            .navigationTitle("공지")
-            .navigationBarTitleDisplayMode(.inline)
-            .padding(.horizontal, 24)
+
             Spacer()
         }
+        .navigationTitle("공지")
+        .navigationBarTitleDisplayMode(.inline)
+        .padding(.horizontal, 24)
+
         Spacer()
     }
 }
