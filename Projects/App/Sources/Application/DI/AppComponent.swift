@@ -88,4 +88,7 @@ public extension AppComponent {
     var myPageComponent: MyPageComponent {
         MyPageComponent(parent: self)
     }
+    var noticeDetailComponent: NoticeDetailComponent {
+        NoticeDetailComponent(parent: self)
+    }
 }
