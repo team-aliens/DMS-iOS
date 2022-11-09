@@ -309,6 +309,9 @@ private class NoticeListDependency0e93eb53be8626c408e4Provider: NoticeListDepend
     var fetchNoticeListUseCase: any FetchNoticeListUseCase {
         return appComponent.fetchNoticeListUseCase
     }
+    var noticeDetailComponent: NoticeDetailComponent {
+        return appComponent.noticeDetailComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -317,6 +320,19 @@ private class NoticeListDependency0e93eb53be8626c408e4Provider: NoticeListDepend
 /// ^->AppComponent->NoticeListComponent
 private func factorye14e687c08985bdffcd0f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return NoticeListDependency0e93eb53be8626c408e4Provider(appComponent: parent1(component) as! AppComponent)
+}
+private class NoticeDetailDependency714af3aed40eaebda420Provider: NoticeDetailDependency {
+    var fetchDetailNoticeUseCase: any FetchDetailNoticeUseCase {
+        return appComponent.fetchDetailNoticeUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->NoticeDetailComponent
+private func factory3db143c2f80d621d5a7ff47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return NoticeDetailDependency714af3aed40eaebda420Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
@@ -366,6 +382,7 @@ extension AppComponent: Registration {
         localTable["applyComponent-ApplyComponent"] = { self.applyComponent as Any }
         localTable["noticeListComponent-NoticeListComponent"] = { self.noticeListComponent as Any }
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
+        localTable["noticeDetailComponent-NoticeDetailComponent"] = { self.noticeDetailComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
         localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { self.fetchWhetherNewNoticeUseCase as Any }
@@ -501,6 +518,12 @@ extension EnterInformationComponent: Registration {
 extension NoticeListComponent: Registration {
     public func registerItems() {
         keyPathToName[\NoticeListDependency.fetchNoticeListUseCase] = "fetchNoticeListUseCase-any FetchNoticeListUseCase"
+        keyPathToName[\NoticeListDependency.noticeDetailComponent] = "noticeDetailComponent-NoticeDetailComponent"
+    }
+}
+extension NoticeDetailComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\NoticeDetailDependency.fetchDetailNoticeUseCase] = "fetchDetailNoticeUseCase-any FetchDetailNoticeUseCase"
     }
 }
 extension FindIDComponent: Registration {
@@ -544,6 +567,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->NoticeListComponent", factorye14e687c08985bdffcd0f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->NoticeDetailComponent", factory3db143c2f80d621d5a7ff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
 #endif
