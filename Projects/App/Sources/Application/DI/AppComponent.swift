@@ -91,4 +91,5 @@ public extension AppComponent {
     var noticeDetailComponent: NoticeDetailComponent {
         NoticeDetailComponent(parent: self)
     }
+    var rewardPointDetailComponent:
 }
