@@ -3,6 +3,7 @@ import SwiftUI
 
 struct RewardPointDetailView: View {
     @StateObject var viewModel: RewardPointDetailViewModel
+    private let rewardPointDetailComponent: RewardPointDetailComponent
 
     var body: some View {
         NavigationView {
