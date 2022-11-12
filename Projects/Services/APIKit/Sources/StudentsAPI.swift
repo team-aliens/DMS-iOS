@@ -11,6 +11,7 @@ public enum StudentsAPI {
     case findID(FindIDRequestDTO)
     case checkExistGradeClassNumber(CheckExistGradeClassNumberRequestDTO)
     case fetchMyProfile
+    case myPage
 }
 
 extension StudentsAPI: DmsAPI {
@@ -40,12 +41,15 @@ extension StudentsAPI: DmsAPI {
 
         case .fetchMyProfile:
             return "/my-pages"
+            
+        case .myPage:
+            return "/profile"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-        case .checkDuplicateAccountID, .checkDuplicateEmail, .findID, .fetchMyProfile, .checkExistGradeClassNumber:
+        case .checkDuplicateAccountID, .checkDuplicateEmail, .findID, .fetchMyProfile, .checkExistGradeClassNumber, .myPage:
             return .get
 
         case .signup:
@@ -156,6 +160,11 @@ extension StudentsAPI: DmsAPI {
                 401: .tokenExpired,
                 500: .internalServerError
             ]
+        case .myPage:
+            return [
+                401: .tokenExpired,
+                500: .internalServerError
+            ]
         }
     }
 
@@ -177,6 +186,19 @@ extension StudentsAPI: DmsAPI {
     "bonus_point" : 0,
     "minus_point" : 24,
     "phrase" : "안녕하세요 프론트하는 변찬우입니다"
+}
+""".data(using: .utf8) ?? .init()
+
+        case .myPage:
+            return """
+{
+    "school_name" : "학교 이름",
+    "name" : "이름",
+    "gcn" : "학번",
+    "profile_image_url" : "https://~~",
+    "bonus_point" : "상점",
+    "minus_point" : "벌점",
+    "phrase" : "문구"
 }
 """.data(using: .utf8) ?? .init()
 
