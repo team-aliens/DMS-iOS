@@ -6,6 +6,12 @@ public enum PointsAPI {
     case fetchPointsList(String)
 }
 
+public enum type {
+    case ALL
+    case BONUS
+    case MINUS
+}
+
 extension PointsAPI: DmsAPI {
     public var domain: DmsDomain {
         .points
