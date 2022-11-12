@@ -13,8 +13,8 @@ extension PointsAPI: DmsAPI {
 
     public var urlPath: String {
         switch self {
-        case let .fetchPointsList(date):
-            return "/\(date)"
+        case let .fetchPointsList(type):
+            return "/\(type)"
         }
     }
 
