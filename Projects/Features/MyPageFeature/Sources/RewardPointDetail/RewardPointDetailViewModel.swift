@@ -1,17 +1,29 @@
 import BaseFeature
-import UIKit
-import Combine
+import Foundation
 import DomainModule
+import ErrorModule
+import Combine
+import DataMappingModule
 
 final class RewardPointDetailViewModel: BaseViewModel {
+    @Published var pointList: [PointEntity] = []
 
-    private var fetchDetailNoticeUseCase: any FetchDetailNoticeUseCase
+    private let fetchMyProfileUseCase: any FetchMyProfileUseCase
 
     init(
-        fetchDetailNoticeUseCase: any FetchDetailNoticeUseCase,
-        id: String
+        fetchMyProfileUseCase: any FetchMyProfileUseCase
     ) {
-        self.fetchDetailNoticeUseCase = fetchDetailNoticeUseCase
+        self.fetchMyProfileUseCase = fetchMyProfileUseCase
         super.init()
+        fetchPointList()
+    }
+
+    func fetchPointList() {
+        addCancellable(
+            fetchMyProfileUseCase.execute(
+            )
+        ) { [weak self]  pointList in
+//            self?.pointList = pointList
+        }
     }
 }
