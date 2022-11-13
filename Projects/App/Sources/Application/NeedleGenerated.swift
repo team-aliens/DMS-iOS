@@ -195,6 +195,22 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
 private func factory0f6f456ebf157d02dfb3e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
     return MyPageDependency48d84b530313b3ee40feProvider()
 }
+private class RewardPointDetailDependency623f1251c3863ea3b233Provider: RewardPointDetailDependency {
+    var fetchMyProfileUseCase: any FetchMyProfileUseCase {
+        return appComponent.fetchMyProfileUseCase
+    }
+    var rewardPointDetailComponent: RewardPointDetailComponent {
+        return appComponent.rewardPointDetailComponent
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->RewardPointDetailComponent
+private func factory87993268d9e212be8b1af47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return RewardPointDetailDependency623f1251c3863ea3b233Provider(appComponent: parent1(component) as! AppComponent)
+}
 private class RootDependency3944cc797a4a88956fb5Provider: RootDependency {
     var signinComponent: SigninComponent {
         return appComponent.signinComponent
@@ -383,6 +399,7 @@ extension AppComponent: Registration {
         localTable["noticeListComponent-NoticeListComponent"] = { self.noticeListComponent as Any }
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
         localTable["noticeDetailComponent-NoticeDetailComponent"] = { self.noticeDetailComponent as Any }
+        localTable["rewardPointDetailComponent-RewardPointDetailComponent"] = { self.rewardPointDetailComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
         localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { self.fetchWhetherNewNoticeUseCase as Any }
@@ -473,6 +490,12 @@ extension MyPageComponent: Registration {
 
     }
 }
+extension RewardPointDetailComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\RewardPointDetailDependency.fetchMyProfileUseCase] = "fetchMyProfileUseCase-any FetchMyProfileUseCase"
+        keyPathToName[\RewardPointDetailDependency.rewardPointDetailComponent] = "rewardPointDetailComponent-RewardPointDetailComponent"
+    }
+}
 extension RootComponent: Registration {
     public func registerItems() {
         keyPathToName[\RootDependency.signinComponent] = "signinComponent-SigninComponent"
@@ -559,6 +582,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MyPageComponent", factory0f6f456ebf157d02dfb3e3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->RewardPointDetailComponent", factory87993268d9e212be8b1af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->RootComponent", factory264bfc4d4cb6b0629b40f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)
