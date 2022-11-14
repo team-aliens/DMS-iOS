@@ -7,6 +7,7 @@ public extension FetchMyProfileResponseDTO {
             schoolName: schoolName,
             name: name,
             gcn: gcn,
+            profileImageURL: profileImageURL,
             bonusPoint: bonusPoint,
             minusPoint: minusPoint,
             phrase: phrase
