@@ -43,7 +43,7 @@ struct MyPageView: View {
                 }
                 .padding(.top, 64)
 
-                Text("벌점이 10점이예요. 더 바른 생활을 위해 노력해주세요~")
+                Text(viewModel.profile?.phrase ?? "")
                     .dmsFont(.text(.small), color: .GrayScale.gray7)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity)
