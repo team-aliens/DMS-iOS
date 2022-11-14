@@ -6,7 +6,7 @@ import ErrorModule
 
 public final class RemotePointsDataSourceImpl: BaseRemoteDataSource<PointsAPI>, RemotePointsDataSource {
     public func fetchPointsList(type: String) -> AnyPublisher<[PointEntity], DmsError> {
-        request(.fetchPointsList(type), dto: FetchPointsListResponseDTO.self)
+        request(.fetchPointsList(type), dto: FetchPointListResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
