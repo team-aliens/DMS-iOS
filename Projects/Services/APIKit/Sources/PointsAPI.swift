@@ -3,7 +3,7 @@ import ErrorModule
 import Moya
 
 public enum PointsAPI {
-    case fetchPointsList(String)
+    case fetchPointsList(type: PointsType)
 }
 
 public enum PointsType: String {
@@ -29,7 +29,15 @@ extension PointsAPI: DmsAPI {
     }
 
     public var task: Moya.Task {
-        return .requestPlain
+        switch self {
+        case .fetchPointsList(let type):
+            return .requestParameters(
+                parameters: [
+                    "type": type.rawValue
+                ],
+                encoding: JSONEncoding.default
+            )
+        }
     }
 
     public var jwtTokenType: JwtTokenType {
