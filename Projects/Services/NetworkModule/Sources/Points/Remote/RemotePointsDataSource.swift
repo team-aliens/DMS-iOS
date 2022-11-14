@@ -3,5 +3,5 @@ import DomainModule
 import ErrorModule
 
 public protocol RemotePointsDataSource {
-    func fetchPointsList(type: String) -> AnyPublisher<[PointsEntity], DmsError>
+    func fetchPointsList(type: String) -> AnyPublisher<[PointEntity], DmsError>
 }

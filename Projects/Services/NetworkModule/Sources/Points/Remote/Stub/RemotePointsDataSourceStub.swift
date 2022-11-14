@@ -8,7 +8,7 @@ import Utility
 public struct RemotePointsDataSourceStub: RemotePointsDataSource {
     public init() {}
 
-    public func fetchPointsList(type: String) -> AnyPublisher<[PointsEntity], DmsError> {
+    public func fetchPointsList(type: String) -> AnyPublisher<[PointEntity], DmsError> {
         Just([
         ]).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
