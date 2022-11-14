@@ -4,11 +4,12 @@ import DomainModule
 import ErrorModule
 import Foundation
 import Utility
+import APIKit
 
 public struct RemotePointsDataSourceStub: RemotePointsDataSource {
     public init() {}
 
-    public func fetchPointsList(type: String) -> AnyPublisher<[PointEntity], DmsError> {
+    public func fetchPointsList(type: PointsType) -> AnyPublisher<[PointEntity], DmsError> {
         Just([
         ]).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
