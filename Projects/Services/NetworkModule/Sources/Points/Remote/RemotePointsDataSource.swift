@@ -1,7 +1,8 @@
 import Combine
+import APIKit
 import DomainModule
 import ErrorModule
 
 public protocol RemotePointsDataSource {
-    func fetchPointsList(type: String) -> AnyPublisher<[PointEntity], DmsError>
+    func fetchPointsList(type: PointsType) -> AnyPublisher<[PointEntity], DmsError>
 }
