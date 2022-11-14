@@ -4,6 +4,7 @@ import DomainModule
 
 final class MyPageViewModel: BaseViewModel {
     @Published var profile: MyProfileEntity?
+    @Published var isPresentedLogoutAlert = false
 
     private let fetchMyProfileUseCase: any FetchMyProfileUseCase
 
@@ -20,4 +21,10 @@ final class MyPageViewModel: BaseViewModel {
             self?.profile = profile
         }
     }
+
+    func logoutButtonDidTap() {
+        isPresentedLogoutAlert = true
+    }
+
+    func confirmLogoutButtonDidTap() {}
 }

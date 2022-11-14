@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct DMSShadow: ViewModifier {
-    var style: DMSShadowStyle
+public struct DMSShadow: ViewModifier {
+    public var style: DMSShadowStyle
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         switch style {
         case .surface:
             content
