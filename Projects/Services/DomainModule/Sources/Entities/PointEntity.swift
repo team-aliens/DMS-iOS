@@ -1,11 +1,13 @@
 import Foundation
 
 public struct PointEntity: Equatable, Hashable {
-    public init(id: String,
-                date: Date,
-                type: String,
-                name: String,
-                score: Int) {
+    public init(
+        id: String,
+        date: Date,
+        type: String,
+        name: String,
+        score: Int
+    ) {
         self.id = id
         self.date = date
         self.type = type
