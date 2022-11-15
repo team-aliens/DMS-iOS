@@ -5,7 +5,7 @@ public extension SinglePointResponseDTO {
     func toDomain() -> PointEntity {
         PointEntity(
             pointID: pointID,
-            date: date,
+            date: date.toDMSDate(),
             type: type,
             name: name,
             score: score
