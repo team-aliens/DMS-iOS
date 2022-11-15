@@ -4,7 +4,7 @@ import DomainModule
 public extension SinglePointResponseDTO {
     func toDomain() -> PointEntity {
         PointEntity(
-            id: id,
+            pointID: pointID,
             date: date,
             type: type,
             name: name,
