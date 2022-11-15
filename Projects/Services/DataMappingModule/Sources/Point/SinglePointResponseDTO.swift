@@ -3,7 +3,7 @@ import Foundation
 public struct SinglePointResponseDTO: Decodable {
     public init(
         pointID: String,
-        date: Date,
+        date: String,
         type: String,
         name: String,
         score: Int
@@ -16,7 +16,7 @@ public struct SinglePointResponseDTO: Decodable {
     }
 
     public let pointID: String
-    public let date: Date
+    public let date: String
     public let type: String
     public let name: String
     public let score: Int
