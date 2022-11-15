@@ -3,6 +3,7 @@
 import ApplyFeature
 import BaseFeature
 import DataModule
+import DesignSystem
 import DomainModule
 import FindIDFeature
 import HomeFeature
@@ -188,6 +189,9 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase {
         return appComponent.fetchMyProfileUseCase
     }
+    var changeProfileComponent: ChangeProfileComponent {
+        return appComponent.changeProfileComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -196,6 +200,22 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
 /// ^->AppComponent->MyPageComponent
 private func factory0f6f456ebf157d02dfb3f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return MyPageDependency48d84b530313b3ee40feProvider(appComponent: parent1(component) as! AppComponent)
+}
+private class ChangeProfileDependency18055275199967076a28Provider: ChangeProfileDependency {
+    var changeProfileImageUseCase: any ChangeProfileImageUseCase {
+        return appComponent.changeProfileImageUseCase
+    }
+    var uploadFileUseCase: any UploadFileUseCase {
+        return appComponent.uploadFileUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->ChangeProfileComponent
+private func factory239204ef0c47c0c68c97f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return ChangeProfileDependency18055275199967076a28Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class RootDependency3944cc797a4a88956fb5Provider: RootDependency {
     var signinComponent: SigninComponent {
@@ -384,6 +404,7 @@ extension AppComponent: Registration {
         localTable["applyComponent-ApplyComponent"] = { self.applyComponent as Any }
         localTable["noticeListComponent-NoticeListComponent"] = { self.noticeListComponent as Any }
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
+        localTable["changeProfileComponent-ChangeProfileComponent"] = { self.changeProfileComponent as Any }
         localTable["noticeDetailComponent-NoticeDetailComponent"] = { self.noticeDetailComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
@@ -399,6 +420,7 @@ extension AppComponent: Registration {
         localTable["findIDUseCase-any FindIDUseCase"] = { self.findIDUseCase as Any }
         localTable["checkExistGradeClassNumberUseCase-any CheckExistGradeClassNumberUseCase"] = { self.checkExistGradeClassNumberUseCase as Any }
         localTable["fetchMyProfileUseCase-any FetchMyProfileUseCase"] = { self.fetchMyProfileUseCase as Any }
+        localTable["changeProfileImageUseCase-any ChangeProfileImageUseCase"] = { self.changeProfileImageUseCase as Any }
         localTable["remoteMealDataSource-any RemoteMealDataSource"] = { self.remoteMealDataSource as Any }
         localTable["mealRepository-any MealRepository"] = { self.mealRepository as Any }
         localTable["fetchMealListUseCase-any FetchMealListUseCase"] = { self.fetchMealListUseCase as Any }
@@ -473,6 +495,13 @@ extension MainTabComponent: Registration {
 extension MyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyPageDependency.fetchMyProfileUseCase] = "fetchMyProfileUseCase-any FetchMyProfileUseCase"
+        keyPathToName[\MyPageDependency.changeProfileComponent] = "changeProfileComponent-ChangeProfileComponent"
+    }
+}
+extension ChangeProfileComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\ChangeProfileDependency.changeProfileImageUseCase] = "changeProfileImageUseCase-any ChangeProfileImageUseCase"
+        keyPathToName[\ChangeProfileDependency.uploadFileUseCase] = "uploadFileUseCase-any UploadFileUseCase"
     }
 }
 extension RootComponent: Registration {
@@ -561,6 +590,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MyPageComponent", factory0f6f456ebf157d02dfb3f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->ChangeProfileComponent", factory239204ef0c47c0c68c97f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->RootComponent", factory264bfc4d4cb6b0629b40f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)

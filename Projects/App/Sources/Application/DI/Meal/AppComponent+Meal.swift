@@ -5,15 +5,21 @@ import DataModule
 
 public extension AppComponent {
     var remoteMealDataSource: any RemoteMealDataSource {
-        RemoteMealDataSourceStub()
-//        RemoteMealDataSourceImpl(keychain: keychain)
+        shared {
+//            RemoteMealDataSourceStub()
+            RemoteMealDataSourceImpl(keychain: keychain)
+        }
     }
 
     var mealRepository: any MealRepository {
-        MealRepositoryImpl(remoteMealDataSource: remoteMealDataSource)
+        shared {
+            MealRepositoryImpl(remoteMealDataSource: remoteMealDataSource)
+        }
     }
 
     var fetchMealListUseCase: any FetchMealListUseCase {
-        FetchMealListUseCaseImpl(mealRepository: mealRepository)
+        shared {
+            FetchMealListUseCaseImpl(mealRepository: mealRepository)
+        }
     }
 }

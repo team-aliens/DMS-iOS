@@ -5,35 +5,51 @@ import DataModule
 
 public extension AppComponent {
     var remoteAuthDataSource: any RemoteAuthDataSource {
-        RemoteAuthDataSourceStub() // TODO: 퍼블리싱용 Stub, 테스트 서버 나오면 변경
-//        RemoteAuthDataSourceImpl(keychain: keychain)
+        shared {
+//            RemoteAuthDataSourceStub() // TODO: 퍼블리싱용 Stub, 테스트 서버 나오면 변경
+            RemoteAuthDataSourceImpl(keychain: keychain)
+        }
     }
 
     var authRepository: any AuthRepository {
-        AuthRepositoryImpl(remoteAuthDataSource: remoteAuthDataSource)
+        shared {
+            AuthRepositoryImpl(remoteAuthDataSource: remoteAuthDataSource)
+        }
     }
 
     var signinUseCase: any SigninUseCase {
-        SigninUseCaseImpl(authRepository: authRepository)
+        shared {
+            SigninUseCaseImpl(authRepository: authRepository)
+        }
     }
 
     var verifyAuthCodeUseCase: any VerifyAuthCodeUseCase {
-        VerifyAuthCodeUseCaseImpl(authRepository: authRepository)
+        shared {
+            VerifyAuthCodeUseCaseImpl(authRepository: authRepository)
+        }
     }
 
     var sendAuthCodeUseCase: any SendAuthCodeUseCase {
-        SendAuthCodeUseCaseImpl(authRepository: authRepository)
+        shared {
+            SendAuthCodeUseCaseImpl(authRepository: authRepository)
+        }
     }
 
     var reissueTokenUseCase: any ReissueTokenUseCase {
-        ReissueTokenCaseImpl(authRepository: authRepository)
+        shared {
+            ReissueTokenCaseImpl(authRepository: authRepository)
+        }
     }
 
     var checkEmailExistByAccountIDUseCase: any CheckEmailExistByAccountIDUseCase {
-        CheckEmailExistByAccountIDUseCaseImpl(authRepository: authRepository)
+        shared {
+            CheckEmailExistByAccountIDUseCaseImpl(authRepository: authRepository)
+        }
     }
 
     var checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase {
-        CheckAccountIDIsExistUseCaseImpl(authRepository: authRepository)
+        shared {
+            CheckAccountIDIsExistUseCaseImpl(authRepository: authRepository)
+        }
     }
 }

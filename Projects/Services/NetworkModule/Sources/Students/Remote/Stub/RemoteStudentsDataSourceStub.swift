@@ -51,4 +51,10 @@ public struct RemoteStudentsDataSourceStub: RemoteStudentsDataSource {
         ).setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
+
+    public func changeProfileImage(url: String) -> AnyPublisher<Void, DmsError> {
+        Just(())
+            .setFailureType(to: DmsError.self)
+            .eraseToAnyPublisher()
+    }
 }

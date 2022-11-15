@@ -4,10 +4,14 @@ import SwiftUI
 struct MyPageView: View {
     @StateObject var viewModel: MyPageViewModel
 
+    private let changeProfileComponent: ChangeProfileComponent
+
     init(
-        viewModel: MyPageViewModel
+        viewModel: MyPageViewModel,
+        changeProfileComponent: ChangeProfileComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.changeProfileComponent = changeProfileComponent
     }
 
     var body: some View {
@@ -43,6 +47,9 @@ struct MyPageView: View {
                                 DMSImage(.pencil)
                                     .frame(width: 16, height: 16)
                             }
+                    }
+                    .onTapGesture {
+                        viewModel.profileImageDidTap()
                     }
                 }
                 .padding(.top, 48)
@@ -111,6 +118,10 @@ struct MyPageView: View {
             Text("정말 로그아웃 하시겠습니까?")
                 .dmsFont(.text(.medium), color: .GrayScale.gray6)
         }
+        .navigate(
+            to: changeProfileComponent.makeView(),
+            when: $viewModel.isNavigateChangeProfile
+        )
     }
 
     @ViewBuilder
