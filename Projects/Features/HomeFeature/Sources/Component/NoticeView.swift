@@ -31,10 +31,6 @@ struct NoticeView: View {
         .cornerRadius(100)
         .padding(.horizontal, 24)
         .padding(.top, 12)
-        .shadow(
-            color: .GrayScale.gray4.opacity(0.24),
-            y: 1,
-            blur: 20
-        )
+        .dmsShadow()
     }
 }
