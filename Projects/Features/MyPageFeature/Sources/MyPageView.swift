@@ -124,7 +124,6 @@ struct MyPageView: View {
                     .dmsShadow()
             }
         }
-
     }
 
     @ViewBuilder
