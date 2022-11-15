@@ -39,6 +39,10 @@ struct MyPageView: View {
                         Circle()
                             .fill(Color.GrayScale.gray3)
                             .frame(width: 24, height: 24)
+                            .overlay {
+                                DMSImage(.pencil)
+                                    .frame(width: 16, height: 16)
+                            }
                     }
                 }
                 .padding(.top, 48)
