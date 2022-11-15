@@ -2,20 +2,20 @@ import Foundation
 
 public struct PointEntity: Equatable, Hashable {
     public init(
-        id: String,
+        pointID: String,
         date: Date,
         type: String,
         name: String,
         score: Int
     ) {
-        self.id = id
+        self.pointID = pointID
         self.date = date
         self.type = type
         self.name = name
         self.score = score
     }
 
-    public let id: String
+    public let pointID: String
     public let date: Date
     public let type: String
     public let name: String
