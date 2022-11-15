@@ -26,5 +26,4 @@ public struct MyProfileEntity: Equatable {
     public let bonusPoint: Int
     public let minusPoint: Int
     public let phrase: String
-    
 }
