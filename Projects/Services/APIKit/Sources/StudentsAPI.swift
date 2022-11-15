@@ -39,7 +39,7 @@ extension StudentsAPI: DmsAPI {
             return "/name"
 
         case .fetchMyProfile:
-            return "/my-pages"
+            return "/profile"
         }
     }
 
