@@ -25,12 +25,10 @@ extension PointsAPI: DmsAPI {
     public var task: Moya.Task {
         switch self {
         case .fetchPointsList(let type):
-            return .requestParameters(
-                parameters: [
+            return .requestParameters(parameters: [
                     "type": type.rawValue
                 ],
-                encoding: JSONEncoding.default
-            )
+                encoding: JSONEncoding.default)
         }
     }
 
