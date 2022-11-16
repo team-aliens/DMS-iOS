@@ -40,4 +40,8 @@ public final class RemoteStudentsDataSourceImpl: BaseRemoteDataSource<StudentsAP
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
+
+    public func changeProfileImage(url: String) -> AnyPublisher<Void, DmsError> {
+        request(.changeProfileImage(url: url))
+    }
 }

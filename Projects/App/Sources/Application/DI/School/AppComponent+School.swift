@@ -5,26 +5,39 @@ import DataModule
 
 public extension AppComponent {
     var remoteSchoolDataSource: any RemoteSchoolDataSource {
-        RemoteSchoolDataSourceStub()
+        shared {
+//            RemoteSchoolDataSourceStub()
+            RemoteSchoolDataSourceImpl(keychain: keychain)
+        }
     }
 
     var schoolRepository: any SchoolRepository {
-        SchoolRepositoryImpl(remoteSchoolDataSource: remoteSchoolDataSource)
+        shared {
+            SchoolRepositoryImpl(remoteSchoolDataSource: remoteSchoolDataSource)
+        }
     }
 
     var fetchSchoolListUseCase: any FetchSchoolListUseCase {
-        FetchSchoolListUseCaseImpl(schoolRepository: schoolRepository)
+        shared {
+            FetchSchoolListUseCaseImpl(schoolRepository: schoolRepository)
+        }
     }
 
     var fetchSchoolQuestionUseCase: any FetchSchoolQuestionUseCase {
-        FetchSchoolQuestionUseCaseImpl(schoolRepository: schoolRepository)
+        shared {
+            FetchSchoolQuestionUseCaseImpl(schoolRepository: schoolRepository)
+        }
     }
 
     var checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase {
-        CheckSchoolQuestionUseCaseImpl(schoolRepository: schoolRepository)
+        shared {
+            CheckSchoolQuestionUseCaseImpl(schoolRepository: schoolRepository)
+        }
     }
 
     var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase {
-        CheckSchoolCodeUseCaseImpl(schoolRepository: schoolRepository)
+        shared {
+            CheckSchoolCodeUseCaseImpl(schoolRepository: schoolRepository)
+        }
     }
 }

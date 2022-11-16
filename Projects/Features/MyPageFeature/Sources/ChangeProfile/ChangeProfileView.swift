@@ -1,26 +1,23 @@
 import DesignSystem
 import SwiftUI
 
-struct SignupProfileImageView: View {
-    @StateObject var viewModel: SignupProfileImageViewModel
+struct ChangeProfileView: View {
+    @StateObject var viewModel: ChangeProfileViewModel
     @State var isShowingImagePicker = false
     @State var isShowingCameraPicker = false
     @State var isPresentedImageActionSheet = false
     @Environment(\.dismiss) var dismiss
+    @Environment(\.tabbarHidden) var tabbarHidden
 
-    private let signupTermsComponent: SignupTermsComponent
-
-    public init(
-        viewModel: SignupProfileImageViewModel,
-        signupTermsComponent: SignupTermsComponent
+    init(
+        viewModel: ChangeProfileViewModel
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.signupTermsComponent = signupTermsComponent
     }
 
     var body: some View {
         VStack {
-            AuthHeaderView(subTitle: "프로필 사진")
+            DMSHeaderView(subTitle: "프로필 사진")
                 .padding(.top, 24)
 
             Button {
@@ -51,16 +48,18 @@ struct SignupProfileImageView: View {
 
             Spacer()
 
-            DMSButton(text: "다음에 설정하기", style: .underline, color: .GrayScale.gray6) {
-                viewModel.skipButtonDidTap()
-            }
-
-            DMSWideButton(text: "다음", color: .PrimaryVariant.primary) {
-                viewModel.nextButtonDidTap()
+            DMSWideButton(text: "확인", color: .PrimaryVariant.primary) {
+                viewModel.completeButtonDidTap()
             }
             .disabled(viewModel.selectedImage == nil)
             .padding(.top, 32)
             .padding(.bottom, 40)
+        }
+        .onAppear {
+            tabbarHidden.wrappedValue = true
+        }
+        .onDisappear {
+            tabbarHidden.wrappedValue = false
         }
         .imagePicker(isShow: $isShowingImagePicker, uiImage: $viewModel.selectedImage)
         .cameraPicker(isShow: $isShowingCameraPicker, uiImage: $viewModel.selectedImage)
@@ -87,14 +86,10 @@ struct SignupProfileImageView: View {
             }
             .foregroundColor(.GrayScale.gray6)
         }
-        .navigate(
-            to: signupTermsComponent.makeView(
-                signupTermsParam: .init(
-                    signupProfileImageParam: viewModel.signupProfileImageParam,
-                    profileImageURLString: viewModel.isSkip ? nil : viewModel.selectedImageURLString
-                )
-            ),
-            when: $viewModel.isNavigateSignupTerms
-        )
+        .onChange(of: viewModel.isSuccessChangeImage) { newValue in
+            if newValue {
+                dismiss()
+            }
+        }
     }
 }

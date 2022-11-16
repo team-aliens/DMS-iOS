@@ -5,6 +5,7 @@ import DomainModule
 final class MyPageViewModel: BaseViewModel {
     @Published var profile: MyProfileEntity?
     @Published var isPresentedLogoutAlert = false
+    @Published var isNavigateChangeProfile = false
 
     private let fetchMyProfileUseCase: any FetchMyProfileUseCase
 
@@ -27,4 +28,8 @@ final class MyPageViewModel: BaseViewModel {
     }
 
     func confirmLogoutButtonDidTap() {}
+
+    func profileImageDidTap() {
+        isNavigateChangeProfile = true
+    }
 }
