@@ -4,7 +4,7 @@ public struct FetchMyProfileResponseDTO: Decodable {
     public let schoolName: String
     public let name: String
     public let gcn: String
-    public let profileImageURL: URL
+    public let profileImageURL: String
     public let bonusPoint: Int
     public let minusPoint: Int
     public let phrase: String
@@ -13,7 +13,7 @@ public struct FetchMyProfileResponseDTO: Decodable {
         schoolName: String,
         name: String,
         gcn: String,
-        profileImageURL: URL,
+        profileImageURL: String,
         bonusPoint: Int,
         minusPoint: Int,
         phrase: String
