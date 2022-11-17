@@ -1,5 +1,6 @@
 import DataMappingModule
 import DomainModule
+import Foundation
 
 public extension FetchMyProfileResponseDTO {
     func toDomain() -> MyProfileEntity {
@@ -7,6 +8,7 @@ public extension FetchMyProfileResponseDTO {
             schoolName: schoolName,
             name: name,
             gcn: gcn,
+            profileImageURL: URL(string: profileImageURL),
             bonusPoint: bonusPoint,
             minusPoint: minusPoint,
             phrase: phrase
