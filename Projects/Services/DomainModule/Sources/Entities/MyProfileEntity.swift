@@ -5,7 +5,7 @@ public struct MyProfileEntity: Equatable {
         schoolName: String,
         name: String,
         gcn: String,
-        profileImageURL: URL,
+        profileImageURL: URL?,
         bonusPoint: Int,
         minusPoint: Int,
         phrase: String
@@ -22,7 +22,7 @@ public struct MyProfileEntity: Equatable {
     public let schoolName: String
     public let name: String
     public let gcn: String
-    public let profileImageURL: URL
+    public let profileImageURL: URL?
     public let bonusPoint: Int
     public let minusPoint: Int
     public let phrase: String
