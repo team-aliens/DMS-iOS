@@ -24,7 +24,7 @@ extension PointsAPI: DmsAPI {
 
     public var task: Moya.Task {
         switch self {
-        case .fetchPointsList(let type):
+        case let .fetchPointsList(type):
             return .requestParameters(parameters: [
                     "type": type.rawValue
                 ],
