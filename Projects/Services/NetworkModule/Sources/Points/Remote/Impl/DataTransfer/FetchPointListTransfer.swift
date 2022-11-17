@@ -1,5 +1,6 @@
 import DataMappingModule
 import DomainModule
+import Utility
 
 public extension SinglePointResponseDTO {
     func toDomain() -> PointEntity {
