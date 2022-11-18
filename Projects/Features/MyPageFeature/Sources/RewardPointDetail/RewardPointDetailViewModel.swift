@@ -8,19 +8,19 @@ import DataMappingModule
 final class RewardPointDetailViewModel: BaseViewModel {
     @Published var pointList: [PointEntity] = []
 
-    private let fetchMyProfileUseCase: any FetchMyProfileUseCase
+    private let fetchPointsUseCase: any fetchPointsUseCase
 
     init(
-        fetchMyProfileUseCase: any FetchMyProfileUseCase
+        fetchPointsUseCase: any FetchPointsUseCase
     ) {
-        self.fetchMyProfileUseCase = fetchMyProfileUseCase
+        self.fetchPointsUseCase = fetchPointsUseCase
         super.init()
         fetchPointList()
     }
 
     func fetchPointList() {
         addCancellable(
-            fetchMyProfileUseCase.execute(
+            fetchPointsUseCase.execute(
             )
         ) { [weak self]  pointList in
 //            self?.pointList = pointList
