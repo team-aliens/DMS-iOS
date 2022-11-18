@@ -5,38 +5,63 @@ import DataModule
 
 public extension AppComponent {
     var remoteStudentsDataSource: any RemoteStudentsDataSource {
-        RemoteStudentsDataSourceStub()
+        shared {
+//            RemoteStudentsDataSourceStub()
+            RemoteStudentsDataSourceImpl(keychain: keychain)
+        }
     }
 
     var studentsRepository: any StudentsRepository {
-        StudentsRepositoryImpl(remoteStudentsDataSource: remoteStudentsDataSource)
+        shared {
+            StudentsRepositoryImpl(remoteStudentsDataSource: remoteStudentsDataSource)
+        }
     }
 
     var signupUseCase: any SignupUseCase {
-        SignupUseCaseImpl(studentsRepository: studentsRepository)
+        shared {
+            SignupUseCaseImpl(studentsRepository: studentsRepository)
+        }
     }
 
     var checkDuplicateAccountIDUseCase: any CheckDuplicateAccountIDUseCase {
-        CheckDuplicateAccountIDUseCaseImpl(studentsRepository: studentsRepository)
+        shared {
+            CheckDuplicateAccountIDUseCaseImpl(studentsRepository: studentsRepository)
+        }
     }
 
     var checkDuplicateEmailUseCase: any CheckDuplicateEmailUseCase {
-        CheckDuplicateEmailUseCaseImpl(studentsRepository: studentsRepository)
+        shared {
+            CheckDuplicateEmailUseCaseImpl(studentsRepository: studentsRepository)
+        }
     }
 
     var renewalPasswordUseCase: any RenewalPasswordUseCase {
-        RenewalPasswordUseCaseImpl(studentsRepository: studentsRepository)
+        shared {
+            RenewalPasswordUseCaseImpl(studentsRepository: studentsRepository)
+        }
     }
 
     var findIDUseCase: any FindIDUseCase {
-        FindIDUseCaseImpl(studentsRepository: studentsRepository)
+        shared {
+            FindIDUseCaseImpl(studentsRepository: studentsRepository)
+        }
     }
 
     var checkExistGradeClassNumberUseCase: any CheckExistGradeClassNumberUseCase {
-        CheckExistGradeClassNumberUseCaseImpl(studentsRepository: studentsRepository)
+        shared {
+            CheckExistGradeClassNumberUseCaseImpl(studentsRepository: studentsRepository)
+        }
     }
 
     var fetchMyProfileUseCase: any FetchMyProfileUseCase {
-        FetchMyProfileUseCaseImpl(studentsRepository: studentsRepository)
+        shared {
+            FetchMyProfileUseCaseImpl(studentsRepository: studentsRepository)
+        }
+    }
+
+    var changeProfileImageUseCase: any ChangeProfileImageUseCase {
+        shared {
+            ChangeProfileImageUseCaseImpl(studentsRepository: studentsRepository)
+        }
     }
 }
