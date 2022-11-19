@@ -10,4 +10,5 @@ public protocol StudentsRepository {
     func findID(req: FindIDRequestDTO) -> AnyPublisher<String, DmsError>
     func checkExistGradeClassNumber(req: CheckExistGradeClassNumberRequestDTO) -> AnyPublisher<String, DmsError>
     func fetchMyProfile() -> AnyPublisher<MyProfileEntity, DmsError>
+    func changeProfileImage(url: String) -> AnyPublisher<Void, DmsError>
 }

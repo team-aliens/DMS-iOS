@@ -40,4 +40,8 @@ public struct StudentsRepositoryImpl: StudentsRepository {
     public func fetchMyProfile() -> AnyPublisher<MyProfileEntity, DmsError> {
         remoteStudentsDataSource.fetchMyProfile()
     }
+
+    public func changeProfileImage(url: String) -> AnyPublisher<Void, DmsError> {
+        remoteStudentsDataSource.changeProfileImage(url: url)
+    }
 }

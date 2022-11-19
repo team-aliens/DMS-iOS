@@ -18,7 +18,9 @@ public final class AppComponent: BootstrapComponent {
     }
 
     public var keychain: any Keychain {
-        KeychainImpl()
+        shared {
+            KeychainImpl()
+        }
     }
 
     var rootComponent: RootComponent {
@@ -87,6 +89,9 @@ public extension AppComponent {
     }
     var myPageComponent: MyPageComponent {
         MyPageComponent(parent: self)
+    }
+    var changeProfileComponent: ChangeProfileComponent {
+        ChangeProfileComponent(parent: self)
     }
     var noticeDetailComponent: NoticeDetailComponent {
         NoticeDetailComponent(parent: self)

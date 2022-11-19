@@ -20,18 +20,8 @@ struct SignupProfileImageView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-
-                    Text("프로필 사진")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
-
-                Spacer()
-            }
-            .padding(.top, 24)
+            AuthHeaderView(subTitle: "프로필 사진")
+                .padding(.top, 24)
 
             Button {
                 isPresentedImageActionSheet.toggle()
