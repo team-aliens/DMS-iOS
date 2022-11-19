@@ -3,7 +3,7 @@ import NeedleFoundation
 import SwiftUI
 
 public protocol RewardPointDetailDependency: Dependency {
-    var fetchPointsUseCase: any FetchPointsUseCase { get }
+    var fetchPointListUseCase: any FetchPointListUseCase { get }
     var rewardPointDetailComponent: RewardPointDetailComponent { get }
 }
 
@@ -11,7 +11,7 @@ public final class RewardPointDetailComponent: Component<RewardPointDetailDepend
     public func makeView() -> some View {
         RewardPointDetailView(
             viewModel: .init(
-                fetchPointsUseCase: self.dependency.fetchPointsUseCase
+                fetchPointListUseCase: self.dependency.fetchPointListUseCase
             ),
             rewardPointDetailComponent: dependency.rewardPointDetailComponent
         )
