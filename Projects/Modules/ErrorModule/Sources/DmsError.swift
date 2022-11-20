@@ -32,6 +32,8 @@ public enum DmsError: Error {
     // MARK: - School
     case notFoundSchool
     case invalidQuestionAnswer
+
+    // MARK: - Users
 }
 
 extension DmsError: LocalizedError {

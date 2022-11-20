@@ -9,15 +9,13 @@ public struct FetchMyProfileResponseDTO: Decodable {
     public let minusPoint: Int
     public let phrase: String
 
-    public init(
-        schoolName: String,
-        name: String,
-        gcn: String,
-        profileImageURL: String,
-        bonusPoint: Int,
-        minusPoint: Int,
-        phrase: String
-    ) {
+    public init(schoolName: String,
+                name: String,
+                gcn: String,
+                profileImageURL: String,
+                bonusPoint: Int,
+                minusPoint: Int,
+                phrase: String) {
         self.schoolName = schoolName
         self.name = name
         self.gcn = gcn
