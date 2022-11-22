@@ -9,7 +9,7 @@ public struct PointEntity: Equatable, Hashable {
 
     public let totalPoint: Int
     public let poinsts: [SinglePoint]
-    
+
     public struct SinglePoint: Equatable, Hashable {
         public init(
             pointID: String,

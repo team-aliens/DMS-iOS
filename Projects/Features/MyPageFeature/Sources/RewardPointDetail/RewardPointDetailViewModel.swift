@@ -4,9 +4,11 @@ import DomainModule
 import ErrorModule
 import Combine
 import DataMappingModule
+import DesignSystem
 
 final class RewardPointDetailViewModel: BaseViewModel {
-    @Published var pointList: PointEntity?
+    @Published var point: PointEntity?
+    @Published var pointsType: PointsType = .all
 
     private let fetchPointListUseCase: any FetchPointListUseCase
 
@@ -19,6 +21,18 @@ final class RewardPointDetailViewModel: BaseViewModel {
     }
 
     func fetchPointList() {
-        
+        addCancellable(
+            self.fetchPointListUseCase.execute(
+                type: pointsType
+            )) { [weak self] point in
+                self?.point = point
+            }
+    }
+
+    func pointTypeButtonDidTap(type: PointsType) {
+        if PointsType.bonus == true {
+            DMSButton(color: PrimaryColor.lighten1)
+        }
+        fetchPointList()
     }
 }
