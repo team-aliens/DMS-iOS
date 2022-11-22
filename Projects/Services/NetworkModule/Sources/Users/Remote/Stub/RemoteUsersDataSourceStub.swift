@@ -11,4 +11,9 @@ public struct RemoteUsersDataSourceStub: RemoteUsersDataSource {
         Just(()).setFailureType(to: DmsError.self)
                 .eraseToAnyPublisher()
     }
+
+    public func compareCurrentPasssword(password: String) -> AnyPublisher<Void, DmsError> {
+        Just(()).setFailureType(to: DmsError.self)
+                .eraseToAnyPublisher()
+    }
 }
