@@ -44,8 +44,7 @@ struct DmsToast: ViewModifier {
                         .foregroundColor(style.iconForeground)
 
                     Text(message)
-                        .dmsFont(.text(.small))
-                        .foregroundColor(style.textForeground)
+                        .dmsFont(.body(.body3), color: style.textForeground)
 
                     Spacer()
                 }

@@ -36,7 +36,7 @@ struct NoticeListView: View {
                             NavigationLink(destination: noticeDetailComponent.makeView(id: noticeList.id)) {
                                 noticeListCellView(
                                     title: noticeList.title,
-                                    content: noticeList.createdAt.toSmallDMSDateString()
+                                    date: noticeList.createdAt
                                 )
                                 .padding(.top, 5)
                                 .listRowInsets(EdgeInsets())
@@ -44,7 +44,6 @@ struct NoticeListView: View {
                         }
                     }
                     .padding(.horizontal, 24)
-
                 }
             }
             .navigationTitle("공지")
@@ -54,7 +53,7 @@ struct NoticeListView: View {
     }
 
     @ViewBuilder
-    func noticeListCellView(title: String, content: String) -> some View {
+    func noticeListCellView(title: String, date: Date) -> some View {
         ZStack {
             Color.System.surface
                 .cornerRadius(6)
@@ -62,10 +61,10 @@ struct NoticeListView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text(title)
-                        .dmsFont(.text(.medium), color: .System.title)
+                        .dmsFont(.body(.body2), color: .System.title)
 
-                    Text(content)
-                        .dmsFont(.text(.extraSmall), color: .System.text)
+                    Text(date.toSmallDMSDateString())
+                        .dmsFont(.etc(.caption), color: .System.text)
                 }
                 Spacer()
             }

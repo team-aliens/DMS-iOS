@@ -35,7 +35,7 @@ struct SigninView: View {
     var body: some View {
         NavigationView {
             VStack {
-                AuthHeaderView(subTitle: "더 편한 기숙사 생활을 위해")
+                DMSHeaderTitleView(subTitle: "더 편한 기숙사 생활을 위해")
                     .padding(.top, 24)
 
                 VStack(spacing: 72) {
@@ -62,7 +62,7 @@ struct SigninView: View {
                         DMSCheckBox(isOn: $viewModel.isOnAutoSignin)
 
                         Text("자동로그인")
-                            .dmsFont(.text(.small), color: .GrayScale.gray6)
+                            .dmsFont(.body(.body3), color: .GrayScale.gray6)
                     }
                     .onTapGesture {
                         withAnimation {
@@ -78,7 +78,7 @@ struct SigninView: View {
                         }
                     } label: {
                         Text("아이디 찾기")
-                            .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
+                            .dmsFont(.etc(.caption), color: .GrayScale.gray5)
                     }
 
                     Divider()
@@ -91,7 +91,7 @@ struct SigninView: View {
                         }
                     } label: {
                         Text("비밀번호 재설정")
-                            .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
+                            .dmsFont(.etc(.caption), color: .GrayScale.gray5)
                     }
                 }
                 .padding(.top, 16)
@@ -100,7 +100,7 @@ struct SigninView: View {
 
                 HStack(spacing: 16) {
                     Text("아직 회원이 아니신가요?")
-                        .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
+                        .dmsFont(.etc(.caption), color: .GrayScale.gray5)
 
                     DMSButton(text: "회원가입", style: .text, color: .GrayScale.gray6) {
                         isNavigateSignup.toggle()

@@ -5,17 +5,21 @@ public struct DMSFont: ViewModifier {
 
     public func body(content: Content) -> some View {
         switch style {
+        case let .headline(font):
+            return content
+                .font(.custom("NotoSansKR-\(font.weight.rawValue)", size: font.size))
+
         case let .title(font):
             return content
-                .font(.system(size: font.size, weight: font.weight))
+                .font(.custom("NotoSansKR-\(font.weight.rawValue)", size: font.size))
 
-        case let .text(font):
+        case let .body(font):
             return content
-                .font(.system(size: font.size, weight: font.weight))
+                .font(.custom("NotoSansKR-\(font.weight.rawValue)", size: font.size))
 
-        case let .button(font):
+        case let .etc(font):
             return content
-                .font(.system(size: font.size, weight: font.weight))
+                .font(.custom("NotoSansKR-\(font.weight.rawValue)", size: font.size))
         }
     }
 }

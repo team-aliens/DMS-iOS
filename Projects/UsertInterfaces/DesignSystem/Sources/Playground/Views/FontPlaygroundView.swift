@@ -2,24 +2,25 @@ import SwiftUI
 
 struct FontPlaygroundView: View {
     let fonts: [(String, [DMSFontStyle])] = [
+        ("Headline", [
+            .headline(.headline1),
+            .headline(.headline2),
+            .headline(.headline3)
+        ]),
         ("Title", [
-            .title(.extraLarge),
-            .title(.large),
-            .title(.medium),
-            .title(.small),
-            .title(.extraSmall)
+            .title(.title1),
+            .title(.title2),
+            .title(.subTitle1)
         ]),
-        ("Text", [
-            .text(.twoExtraLarge),
-            .text(.extraLarge),
-            .text(.large),
-            .text(.medium),
-            .text(.small),
-            .text(.extraSmall),
-            .text(.twoExtraSmall)
+        ("Body", [
+            .body(.body1),
+            .body(.body2),
+            .body(.body3)
         ]),
-        ("Button", [
-            .button(.default)
+        ("Etc", [
+            .etc(.caption),
+            .etc(.overline),
+            .etc(.button)
         ])
     ]
     var body: some View {
@@ -28,7 +29,7 @@ struct FontPlaygroundView: View {
                 ForEach(fonts, id: \.0) { proto in
                     Section {
                         Text(proto.0)
-                            .dmsFont(.title(.extraLarge))
+                            .dmsFont(.title(.title1))
                     }
 
                     VStack(alignment: .leading) {
