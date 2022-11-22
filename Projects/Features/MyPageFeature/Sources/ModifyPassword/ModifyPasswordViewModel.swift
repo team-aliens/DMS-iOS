@@ -18,7 +18,7 @@ final class ModifyPasswordViewModel: BaseViewModel {
         !password.isEmpty && !passwordCheck.isEmpty
     }
 
-    private let currentPassword: String
+    let currentPassword: String
     private let changePasswordUseCase: any ChangePasswordUseCase
 
     public init(
