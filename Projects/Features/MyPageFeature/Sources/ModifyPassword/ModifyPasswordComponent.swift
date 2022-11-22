@@ -4,6 +4,7 @@ import NeedleFoundation
 
 public protocol ModifyPasswordDependency: Dependency {
     var changePasswordUseCase: any ChangePasswordUseCase { get }
+    var currentPassword: String { get }
 }
 
 public final class MyPageComponent: Component<ModifyPasswordDependency> {
