@@ -1,9 +1,18 @@
-//
-//  CheckPasswordComponent.swift
-//  MyPageFeatureTests
-//
-//  Created by 김대희 on 2022/11/22.
-//  Copyright © 2022 com.team.aliens. All rights reserved.
-//
+import DomainModule
+import SwiftUI
+import NeedleFoundation
 
-import Foundation
+public protocol CheckPasswordDependency: Dependency {
+    var compareCurrentPasswordUseCase: any CompareCurrentPasswordUseCase { get }
+    var modifyPasswordComponent:  ModifyPasswordComponent { get }
+}
+
+public final class CheckPasswordComponent: Component<CheckPasswordDependency> {
+    public func makeView(currentPassword: String) -> some View {
+        CheckPasswordView(
+            viewModel: .init(
+                compareCurrentPasswordUseCase: self.dependency.compareCurrentPasswordUseCase
+            )
+        )
+    }
+}

@@ -1,9 +1,48 @@
-//
-//  CheckPasswordViewModel.swift
-//  MyPageFeatureTests
-//
-//  Created by 김대희 on 2022/11/22.
-//  Copyright © 2022 com.team.aliens. All rights reserved.
-//
+import BaseFeature
+import Combine
+import DomainModule
 
-import Foundation
+final class CheckPasswordViewModel: BaseViewModel {
+    @Published var password = "" {
+        didSet { resettingError() }
+    }
+    @Published var isPasswordRegexError = false
+    @Published var isSuccessCheckPassword = false
+    @Published var isShowingToast = false
+
+    var isCheckPasswordEnabled: Bool {
+        !password.isEmpty
+    }
+
+    private let compareCurrentPasswordUseCase: any CompareCurrentPasswordUseCase
+
+    public init(
+        compareCurrentPasswordUseCase: any CompareCurrentPasswordUseCase
+    ) {
+        self.compareCurrentPasswordUseCase = compareCurrentPasswordUseCase
+    }
+
+    func checkPasswordButtonDidTap() {
+        guard isCheckPasswordEnabled else {
+            return
+        }
+
+        let passwordExpression = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,20}$"
+        guard password ~= passwordExpression else {
+            isPasswordRegexError = true
+            return
+        }
+
+        addCancellable(
+            compareCurrentPasswordUseCase.execute(password: password)
+        ) { [weak self] _ in
+            self?.isSuccessCheckPassword = true
+        } onReceiveError: { [weak self] _ in
+            self?.isShowingToast = true
+        }
+    }
+
+    func resettingError() {
+        isPasswordRegexError = false
+    }
+}
