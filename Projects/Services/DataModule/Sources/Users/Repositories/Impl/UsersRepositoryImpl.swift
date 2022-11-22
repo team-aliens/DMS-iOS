@@ -14,4 +14,8 @@ public struct UsersRepositoryImpl: UsersRepository {
     public func changePassword(req: ChangePasswordRequestDTO) -> AnyPublisher<Void, DmsError> {
         remoteUsersDataSource.changePassword(req: req)
     }
+
+    public func compareCurrentPasssword(password: String) -> AnyPublisher<Void, DmsError> {
+        remoteUsersDataSource.compareCurrentPasssword(password: password)
+    }
 }

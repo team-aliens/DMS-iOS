@@ -8,4 +8,8 @@ public final class RemoteUsersDataSourceImpl: BaseRemoteDataSource<UsersAPI>, Re
     public func changePassword(req: ChangePasswordRequestDTO) -> AnyPublisher<Void, DmsError> {
         request(.changePassword(req))
     }
+
+    public func compareCurrentPasssword(password: String) -> AnyPublisher<Void, DmsError> {
+        request(.compareCurrentPasssword(password: password))
+    }
 }

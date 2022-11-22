@@ -22,4 +22,10 @@ public extension AppComponent {
             ChangePasswordUseCaseImpl(usersRepository: usersRepository)
         }
     }
+
+    var compareCurrentPasswordUseCase: any CompareCurrentPasswordUseCase {
+        shared {
+            CompareCurrentPasswordUseCaseImpl(usersRepository: usersRepository)
+        }
+    }
 }
