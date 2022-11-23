@@ -1,4 +1,3 @@
-
 import DesignSystem
 import DomainModule
 import SwiftUI
@@ -19,4 +18,3 @@ public final class ChangeProfileComponent: Component<ChangeProfileDependency> {
         )
     }
 }
-
