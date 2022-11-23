@@ -17,7 +17,7 @@ struct RewardPointDetailView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                HStack(spacing: 0) {
+                HStack {
                     ForEach(PointsType.allCases, id: \.self) { point in
                         DMSButton(text: point.display,
                                   style: viewModel.pointsType == point ? .contained : .outlined,
