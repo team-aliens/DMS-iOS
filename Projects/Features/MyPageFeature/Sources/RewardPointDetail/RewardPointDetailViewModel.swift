@@ -28,11 +28,4 @@ final class RewardPointDetailViewModel: BaseViewModel {
                 self?.point = point
             }
     }
-
-    func pointTypeButtonDidTap(type: PointsType) {
-        if PointsType.bonus == true {
-            DMSButton(color: PrimaryColor.lighten1)
-        }
-        fetchPointList()
-    }
 }

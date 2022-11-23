@@ -18,9 +18,12 @@ struct RewardPointDetailView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 HStack(spacing: 0) {
-                    ForEach(PointsType.allCases, id: \.self) {
-                        DMSButton(text: $0.display, style: viewModel.pointsType == $0 ? .outlined : .contained, color: .GrayScale.gray6) {
-                            viewModel.pointTypeButtonDidTap(type: .all)
+                    ForEach(PointsType.allCases, id: \.self) { point in
+                        DMSButton(text: point.display,
+                                  style: viewModel.pointsType == point ? .contained : .outlined,
+                                  color: viewModel.pointsType == point ? .PrimaryVariant.primary : .GrayScale.gray6) {
+                            viewModel.pointsType = point
+                            viewModel.fetchPointList()
                         }
                         .padding(.trailing, 12)
                     }
@@ -33,7 +36,6 @@ struct RewardPointDetailView: View {
                     .padding(.top, 44)
                     .padding(.horizontal, 24)
                     .padding(.bottom, 44)
-
                 ScrollView {
                     VStack {
                         ForEach(viewModel.point?.poinsts ?? [], id: \.self) { pointList in
@@ -63,17 +65,17 @@ struct RewardPointDetailView: View {
 
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("8월 4일")
+                    Text(date)
                         .dmsFont(.text(.extraSmall), color: .System.title)
 
-                    Text("무단 외출")
+                    Text(name)
                         .dmsFont(.text(.medium), color: .System.text)
                 }
                 HStack {
                     Spacer()
 
-                    Text("-5")
-                        .dmsFont(.text(.medium), color: .System.error)
+                    Text(score)
+                        .dmsFont(.text(.medium), color: score.contains("-") ? .System.error : .PrimaryVariant.darken2)
                 }
 
                 Spacer()
