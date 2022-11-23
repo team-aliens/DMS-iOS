@@ -4,14 +4,11 @@ import SwiftUI
 
 struct RewardPointDetailView: View {
     @StateObject var viewModel: RewardPointDetailViewModel
-    private let rewardPointDetailComponent: RewardPointDetailComponent
 
     init(
-        viewModel: RewardPointDetailViewModel,
-        rewardPointDetailComponent: RewardPointDetailComponent
+        viewModel: RewardPointDetailViewModel
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.rewardPointDetailComponent = rewardPointDetailComponent
     }
 
     var body: some View {
@@ -19,9 +16,11 @@ struct RewardPointDetailView: View {
             VStack(alignment: .leading) {
                 HStack {
                     ForEach(PointsType.allCases, id: \.self) { point in
-                        DMSButton(text: point.display,
-                                  style: viewModel.pointsType == point ? .contained : .outlined,
-                                  color: viewModel.pointsType == point ? .PrimaryVariant.primary : .GrayScale.gray6) {
+                        DMSButton(
+                            text: point.display,
+                            style: viewModel.pointsType == point ? .contained : .outlined,
+                            color: viewModel.pointsType == point ? .PrimaryVariant.primary : .GrayScale.gray6
+                        ) {
                             viewModel.pointsType = point
                             viewModel.fetchPointList()
                         }

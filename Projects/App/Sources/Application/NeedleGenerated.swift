@@ -205,9 +205,6 @@ private class RewardPointDetailDependency623f1251c3863ea3b233Provider: RewardPoi
     var fetchPointListUseCase: any FetchPointListUseCase {
         return appComponent.fetchPointListUseCase
     }
-    var rewardPointDetailComponent: RewardPointDetailComponent {
-        return appComponent.rewardPointDetailComponent
-    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -525,7 +522,6 @@ extension MyPageComponent: Registration {
 extension RewardPointDetailComponent: Registration {
     public func registerItems() {
         keyPathToName[\RewardPointDetailDependency.fetchPointListUseCase] = "fetchPointListUseCase-any FetchPointListUseCase"
-        keyPathToName[\RewardPointDetailDependency.rewardPointDetailComponent] = "rewardPointDetailComponent-RewardPointDetailComponent"
     }
 }
 extension ChangeProfileComponent: Registration {

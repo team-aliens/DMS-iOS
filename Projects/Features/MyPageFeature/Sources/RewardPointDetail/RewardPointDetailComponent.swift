@@ -4,7 +4,6 @@ import SwiftUI
 
 public protocol RewardPointDetailDependency: Dependency {
     var fetchPointListUseCase: any FetchPointListUseCase { get }
-    var rewardPointDetailComponent: RewardPointDetailComponent { get }
 }
 
 public final class RewardPointDetailComponent: Component<RewardPointDetailDependency> {
@@ -12,8 +11,7 @@ public final class RewardPointDetailComponent: Component<RewardPointDetailDepend
         RewardPointDetailView(
             viewModel: .init(
                 fetchPointListUseCase: self.dependency.fetchPointListUseCase
-            ),
-            rewardPointDetailComponent: dependency.rewardPointDetailComponent
+            )
         )
     }
 }
