@@ -32,6 +32,9 @@ public enum DmsError: Error {
     // MARK: - School
     case notFoundSchool
     case invalidQuestionAnswer
+
+    // MARK: - Users
+    case currentPasswordMismatch
 }
 
 extension DmsError: LocalizedError {
@@ -94,10 +97,14 @@ extension DmsError: LocalizedError {
 
         // MARK: - School
         case .notFoundSchool:
-            return "학교를 찾을 수 없습니다"
+            return "학교를 찾을 수 없습니다."
 
         case .invalidQuestionAnswer:
             return "질문에 대한 답변이 일치하지 않습니다."
+
+        // MARK: - Users
+        case .currentPasswordMismatch:
+            return "유효하지 않은 비밀번호입니다."
         }
     }
 }
