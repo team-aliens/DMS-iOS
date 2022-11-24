@@ -1,5 +1,6 @@
 import Foundation
 
+// swiftlint: disable nesting
 public struct FetchPointListResponseDTO: Decodable {
     public init(
         totalPoint: Int,
