@@ -2,12 +2,12 @@ import DataMappingModule
 import DomainModule
 import Utility
 
-public extension SinglePointResponseDTO {
-    func toDomain() -> PointEntity {
-        PointEntity(
+public extension FetchPointListResponseDTO.SinglePointResponseDTO {
+    func toDomain() -> PointEntity.SinglePoint {
+        PointEntity.SinglePoint(
             pointID: pointID,
             date: date.toDMSDate(),
-            type: type,
+            type: PointsType(rawValue: type) ?? .bonus,
             name: name,
             score: score
         )
@@ -15,7 +15,10 @@ public extension SinglePointResponseDTO {
 }
 
 public extension FetchPointListResponseDTO {
-    func toDomain() -> [PointEntity] {
-        points.map { $0.toDomain() }
+    func toDomain() -> PointEntity {
+        PointEntity(
+            totalPoint: totalPoint,
+            poinsts: points.map { $0.toDomain() }
+        )
     }
 }

@@ -31,6 +31,7 @@ public enum DmsDomain: String {
     case files
     case schools
     case points
+    case users
 }
 
 extension DmsDomain {
