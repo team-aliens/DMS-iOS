@@ -44,8 +44,8 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
-                .padding(.vertical, 14)
-                .padding(.horizontal, 16)
+                .padding(.vertical, 8.5)
+                .padding(.horizontal, 19.5)
                 .dmsFont(.button(.default))
                 .background(color)
                 .foregroundColor(.GrayScale.gray1)
@@ -68,8 +68,8 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
-                .padding(.vertical, 14)
-                .padding(.horizontal, 16)
+                .padding(.vertical, 8.5)
+                .padding(.horizontal, 19.5)
                 .dmsFont(.button(.default))
                 .background(.clear)
                 .foregroundColor(color)
