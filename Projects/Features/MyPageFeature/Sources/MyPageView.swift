@@ -5,13 +5,16 @@ struct MyPageView: View {
     @StateObject var viewModel: MyPageViewModel
 
     private let changeProfileComponent: ChangeProfileComponent
+    private let rewardPointDetailComponent: RewardPointDetailComponent
 
     init(
         viewModel: MyPageViewModel,
-        changeProfileComponent: ChangeProfileComponent
+        changeProfileComponent: ChangeProfileComponent,
+        rewardPointDetailComponent: RewardPointDetailComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.changeProfileComponent = changeProfileComponent
+        self.rewardPointDetailComponent = rewardPointDetailComponent
     }
 
     var body: some View {
@@ -73,9 +76,15 @@ struct MyPageView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 0) {
-                    myPageOptionRowCardView(title: "상벌점 내역 확인")
-                        .dmsFont(.body(.body2), color: .GrayScale.gray6)
-                        .cornerRadius(10, corners: [.topLeft, .topRight])
+                    NavigationLink {
+                        DeferView {
+                            rewardPointDetailComponent.makeView()
+                        }
+                    } label: {
+                        myPageOptionRowCardView(title: "상벌점 내역 확인")
+                            .dmsFont(.body(.body2), color: .GrayScale.gray6)
+                            .cornerRadius(10, corners: [.topLeft, .topRight])
+                    }
 
                     Divider()
                         .padding(.horizontal, 10)
@@ -91,7 +100,7 @@ struct MyPageView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 0) {
-                    myPageOptionRowCardView(title: "로그아웃", action: viewModel.logoutButtonDidTap)
+                    myPageOptionRowCardView(title: "로그아웃")
                         .dmsFont(.body(.body2), color: .System.error)
                         .onTapGesture(perform: viewModel.logoutButtonDidTap)
                         .cornerRadius(10)
@@ -125,19 +134,17 @@ struct MyPageView: View {
     }
 
     @ViewBuilder
-    func myPageOptionRowCardView(title: String, action: @escaping () -> Void = {}) -> some View {
-        Button(action: action) {
-            HStack {
-                Text(title)
+    func myPageOptionRowCardView(title: String) -> some View {
+        HStack {
+            Text(title)
 
-                Spacer()
-            }
-            .padding(.vertical, 15)
-            .padding(.horizontal, 20)
-            .background {
-                Color.GrayScale.gray1
-                    .dmsShadow()
-            }
+            Spacer()
+        }
+        .padding(.vertical, 15)
+        .padding(.horizontal, 20)
+        .background {
+            Color.GrayScale.gray1
+                .dmsShadow()
         }
     }
 
