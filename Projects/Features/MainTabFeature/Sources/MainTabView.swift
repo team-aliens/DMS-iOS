@@ -58,6 +58,7 @@ struct MainTabView: View {
                     tabbarView()
                         .background {
                             Color.GrayScale.gray1
+                                .cornerRadius(24, corners: [.topLeft, .topRight])
                                 .ignoresSafeArea()
                         }
                         .shadow(
@@ -75,40 +76,41 @@ struct MainTabView: View {
 
     @ViewBuilder
     func tabbarView() -> some View {
-        let tabItem: [(String, TabFlow)] = [
-            ("house", .home),
-            ("plus.bubble", .apply),
-            ("megaphone", .notice),
-            ("person", .myPage)
+        let tabItem: [(String, String, TabFlow)] = [
+            ("house", "홈", .home),
+            ("plus.bubble", "신청", .apply),
+            ("megaphone", "안내", .notice),
+            ("person", "마이페이지", .myPage)
         ]
 
         HStack {
             Spacer()
 
-            ForEach(tabItem, id: \.1) { name, tag in
-                tabItemView(systemName: name, tag: tag)
+            ForEach(tabItem, id: \.1) { name, title, tag in
+                tabItemView(systemName: name, title: title, tag: tag)
 
                 Spacer()
             }
         }
+        
     }
 
     @ViewBuilder
-    func tabItemView(systemName: String, tag: TabFlow) -> some View {
+    func tabItemView(systemName: String, title: String, tag: TabFlow) -> some View {
         Button {
             withAnimation {
                 selection = tag
             }
         } label: {
-            Image(systemName: systemName)
-                .foregroundColor(tag == selection ? .GrayScale.gray8: .GrayScale.gray5)
-                .overlay(alignment: .top) {
-                    Circle()
-                        .fill(Color.PrimaryVariant.darken2)
-                        .frame(width: tag == selection ? 4 : 0, height: tag == selection ? 4 : 0)
-                        .offset(y: -8)
-                }
-                .padding(16)
+            VStack(spacing: 7) {
+                Image(systemName: systemName)
+                    .foregroundColor(tag == selection ? .GrayScale.gray8 : .GrayScale.gray5)
+
+                Text(title)
+                    .dmsFont(.etc(.overline), color: tag == selection ? .GrayScale.gray8 : .GrayScale.gray5)
+            }
+            .padding(.top, 12)
+            .padding(.bottom, 4)
         }
 
     }

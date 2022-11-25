@@ -14,9 +14,8 @@ struct DMSApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            AppComponent().makeRootView()
-//                .environmentObject(appState)
-            AppComponent().rewardPointDetailComponent.makeView()
+            AppComponent().makeRootView()
+                .environmentObject(appState)
         }
     }
 }
