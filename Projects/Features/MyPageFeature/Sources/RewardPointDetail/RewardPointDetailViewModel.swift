@@ -20,12 +20,18 @@ final class RewardPointDetailViewModel: BaseViewModel {
         fetchPointList()
     }
 
+    func pointsTypeChanged(type: PointsType) {
+        pointsType = type
+        fetchPointList()
+    }
+
     func fetchPointList() {
         addCancellable(
             self.fetchPointListUseCase.execute(
                 type: pointsType
-            )) { [weak self] point in
-                self?.point = point
-            }
+            )
+        ) { [weak self] point in
+            self?.point = point
+        }
     }
 }

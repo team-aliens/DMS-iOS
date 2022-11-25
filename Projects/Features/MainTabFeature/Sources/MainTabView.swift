@@ -92,7 +92,6 @@ struct MainTabView: View {
                 Spacer()
             }
         }
-        
     }
 
     @ViewBuilder

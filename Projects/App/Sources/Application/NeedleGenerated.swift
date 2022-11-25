@@ -192,6 +192,9 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     var changeProfileComponent: ChangeProfileComponent {
         return appComponent.changeProfileComponent
     }
+    var rewardPointDetailComponent: RewardPointDetailComponent {
+        return appComponent.rewardPointDetailComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -517,6 +520,7 @@ extension MyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyPageDependency.fetchMyProfileUseCase] = "fetchMyProfileUseCase-any FetchMyProfileUseCase"
         keyPathToName[\MyPageDependency.changeProfileComponent] = "changeProfileComponent-ChangeProfileComponent"
+        keyPathToName[\MyPageDependency.rewardPointDetailComponent] = "rewardPointDetailComponent-RewardPointDetailComponent"
     }
 }
 extension RewardPointDetailComponent: Registration {

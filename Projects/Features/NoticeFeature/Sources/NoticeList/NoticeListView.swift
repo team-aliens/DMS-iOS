@@ -21,9 +21,11 @@ struct NoticeListView: View {
                     Spacer()
 
                     NoticeOrderButton(text: viewModel.noticeOrderType.display, color: .GrayScale.gray6) {
-                        viewModel.orderTypeButtonDidTap()
+                        withAnimation {
+                            viewModel.orderTypeButtonDidTap()
+                        }
                     }
-                        .padding(.horizontal, 24)
+                    .padding(.horizontal, 24)
                 }
                 .padding(.top, 12)
 
@@ -63,7 +65,7 @@ struct NoticeListView: View {
                     Text(title)
                         .dmsFont(.body(.body2), color: .System.title)
 
-                    Text(date.toSmallDMSDateString())
+                    Text("\(String(date.year))/\(date.month)/\(date.day)")
                         .dmsFont(.etc(.caption), color: .System.text)
                 }
                 Spacer()
@@ -72,6 +74,5 @@ struct NoticeListView: View {
         }
         .frame(height: 68)
         .shadow(color: .GrayScale.gray5.opacity(0.15), blur: 20)
-
     }
 }
