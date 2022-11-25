@@ -27,7 +27,7 @@ final class NoticeDetailViewModel: BaseViewModel {
             fetchDetailNoticeUseCase.execute(id: id)
         ) { [weak self] noticeDetail in
             self?.title = noticeDetail.title
-            self?.content = "asdasf\nasda"
+            self?.content = noticeDetail.content
             self?.date = noticeDetail.createdAt
         }
     }
