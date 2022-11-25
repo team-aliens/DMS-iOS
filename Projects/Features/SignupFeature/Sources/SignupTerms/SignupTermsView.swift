@@ -14,18 +14,8 @@ struct SignupTermsView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("DMS")
-                        .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
-
-                    Text("이메일 주소 입력")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
-                }
-
-                Spacer()
-            }
-            .padding(.top, 24)
+            DMSHeaderTitleView(subTitle: "이메일 주소 입력")
+                .padding(.top, 24)
 
             DMSWebView(urlToLoad: "https://team-aliens-webview.dsm-dms.com/sign-up-policy")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -36,7 +26,7 @@ struct SignupTermsView: View {
                     DMSCheckBox(isOn: $viewModel.isAgreeTerms)
 
                     Text("전체 약관 동의")
-                        .dmsFont(.text(.small), color: .GrayScale.gray6)
+                        .dmsFont(.body(.body3), color: .GrayScale.gray6)
 
                     Spacer()
                 }

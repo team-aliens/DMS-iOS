@@ -50,7 +50,7 @@ extension DMSWideButtonStyle {
 
         var body: some View {
             configuration.label
-                .dmsFont(.button(.default))
+                .dmsFont(.etc(.button))
                 .background(color)
                 .foregroundColor(.GrayScale.gray1)
                 .cornerRadius(5)
@@ -74,7 +74,7 @@ extension DMSWideButtonStyle {
 
         var body: some View {
             configuration.label
-                .dmsFont(.button(.default))
+                .dmsFont(.etc(.button))
                 .background(.clear)
                 .foregroundColor(color)
                 .overlay {
@@ -101,7 +101,7 @@ extension DMSWideButtonStyle {
 
         var body: some View {
             configuration.label
-                .dmsFont(.button(.default))
+                .dmsFont(.etc(.button))
                 .foregroundColor(color)
                 .opacity(opacity)
         }
@@ -123,7 +123,7 @@ extension DMSWideButtonStyle {
 
         var body: some View {
             configuration.label
-                .dmsFont(.button(.default))
+                .dmsFont(.etc(.button))
                 .foregroundColor(color)
                 .overlay(alignment: .bottom) {
                     Rectangle()

@@ -4,6 +4,7 @@ public struct DMSFormTextEditor: View {
     var placeholder: String
     @Binding var text: String
     var minHeight: CGFloat
+    @FocusState var isFocused: Bool
 
     public init(
         _ placeholder: String = "",
@@ -24,17 +25,20 @@ public struct DMSFormTextEditor: View {
                         .strokeBorder(Color.GrayScale.gray4)
 
                     TextEditor(text: $text)
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
+                        .dmsFont(.body(.body2), color: .GrayScale.gray6)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 15)
                         .frame(minHeight: minHeight, alignment: .leading)
                         .cornerRadius(4)
 
                     Text(placeholder)
-                        .dmsFont(.text(.medium), color: .GrayScale.gray5)
+                        .dmsFont(.body(.body2), color: .GrayScale.gray5)
                         .padding(.horizontal, 21)
                         .padding(.vertical, 21)
                         .opacity(text.isEmpty ? 1 : 0)
+                        .onTapGesture {
+                            isFocused = true
+                        }
                 }
             }
         }

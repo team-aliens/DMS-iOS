@@ -20,10 +20,10 @@ struct MyPageView: View {
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("\(viewModel.profile?.gcn ?? "") \(viewModel.profile?.name ?? "Loading...")")
-                            .dmsFont(.title(.small), color: .GrayScale.gray7)
+                            .dmsFont(.title(.title1), color: .GrayScale.gray7)
 
                         Text(viewModel.profile?.schoolName ?? "")
-                            .dmsFont(.text(.small), color: .GrayScale.gray6)
+                            .dmsFont(.body(.body3), color: .GrayScale.gray6)
                     }
 
                     Spacer()
@@ -55,7 +55,7 @@ struct MyPageView: View {
                 .padding(.top, 48)
 
                 Text(viewModel.profile?.phrase ?? "")
-                    .dmsFont(.text(.small), color: .GrayScale.gray7)
+                    .dmsFont(.body(.body3), color: .GrayScale.gray7)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
@@ -74,14 +74,14 @@ struct MyPageView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     myPageOptionRowCardView(title: "상벌점 내역 확인")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
+                        .dmsFont(.body(.body2), color: .GrayScale.gray6)
                         .cornerRadius(10, corners: [.topLeft, .topRight])
 
                     Divider()
                         .padding(.horizontal, 10)
 
                     myPageOptionRowCardView(title: "비밀번호 변경")
-                        .dmsFont(.text(.medium), color: .GrayScale.gray6)
+                        .dmsFont(.body(.body2), color: .GrayScale.gray6)
                         .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
                 }
                 .background {
@@ -92,7 +92,7 @@ struct MyPageView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     myPageOptionRowCardView(title: "로그아웃", action: viewModel.logoutButtonDidTap)
-                        .dmsFont(.text(.medium), color: .System.error)
+                        .dmsFont(.body(.body2), color: .System.error)
                         .onTapGesture(perform: viewModel.logoutButtonDidTap)
                         .cornerRadius(10)
                 }
@@ -113,10 +113,10 @@ struct MyPageView: View {
         .onAppear(perform: viewModel.onAppear)
         .alert("", isPresented: $viewModel.isPresentedLogoutAlert) {
             Button("취소", role: .cancel) {}
-            Button("로그아웃", role: .destructive, action: viewModel.confirmLogoutButtonDidTap)
+            Button("확인", role: .destructive, action: viewModel.confirmLogoutButtonDidTap)
         } message: {
             Text("정말 로그아웃 하시겠습니까?")
-                .dmsFont(.text(.medium), color: .GrayScale.gray6)
+                .dmsFont(.body(.body2), color: .GrayScale.gray6)
         }
         .navigate(
             to: changeProfileComponent.makeView(),
@@ -146,7 +146,7 @@ struct MyPageView: View {
         VStack {
             HStack {
                 Text(title)
-                    .dmsFont(.text(.small), color: .GrayScale.gray6)
+                    .dmsFont(.body(.body3), color: .GrayScale.gray6)
 
                 Spacer()
             }
@@ -156,7 +156,7 @@ struct MyPageView: View {
                 Spacer()
 
                 Text("\(point)")
-                    .dmsFont(.title(.large), color: .GrayScale.gray6)
+                    .dmsFont(.headline(.headline2), color: .GrayScale.gray6)
             }
             .padding(.bottom, 16)
         }

@@ -31,7 +31,7 @@ struct RewardPointDetailView: View {
                 .padding(.top, 16)
 
                 Text("\(viewModel.point?.totalPoint ?? 0)" + " 점")
-                    .dmsFont(.title(.large), color: .GrayScale.gray6)
+                    .dmsFont(.headline(.headline2), color: .GrayScale.gray6)
                     .padding(.top, 44)
                     .padding(.horizontal, 24)
                     .padding(.bottom, 44)
@@ -65,16 +65,16 @@ struct RewardPointDetailView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(date)
-                        .dmsFont(.text(.extraSmall), color: .System.title)
+                        .dmsFont(.etc(.caption), color: .System.title)
 
                     Text(name)
-                        .dmsFont(.text(.medium), color: .System.text)
+                        .dmsFont(.body(.body2), color: .System.text)
                 }
                 HStack {
                     Spacer()
 
                     Text(score)
-                        .dmsFont(.text(.medium), color: score.contains("-") ? .System.error : .PrimaryVariant.darken2)
+                        .dmsFont(.body(.body2), color: score.contains("-") ? .System.error : .PrimaryVariant.darken2)
                 }
 
                 Spacer()

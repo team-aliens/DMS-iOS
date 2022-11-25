@@ -24,7 +24,7 @@ struct SchoolSelectButtonView: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .bottom) {
                 Text(placeholderText)
-                    .dmsFont(.text(.medium), color: textColor)
+                    .dmsFont(.body(.body1), color: textColor)
 
                 Spacer()
 

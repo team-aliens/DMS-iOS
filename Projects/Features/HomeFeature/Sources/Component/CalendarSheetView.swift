@@ -15,7 +15,7 @@ struct CalendarSheetView: View {
         VStack {
             HStack {
                 Text(selectedDateString)
-                    .dmsFont(.text(.extraLarge), color: .GrayScale.gray6)
+                    .dmsFont(.title(.title2), color: .GrayScale.gray6)
 
                 Spacer()
             }
@@ -27,7 +27,7 @@ struct CalendarSheetView: View {
                             if model.day != -1 {
                                 Text("\(model.day)")
                                     .dmsFont(
-                                        .text(.large),
+                                        .body(.body1),
                                         color: model.date.isSameDay(selectedDate) ? .GrayScale.gray1 : .GrayScale.gray6
                                     )
                                     .padding(8)
