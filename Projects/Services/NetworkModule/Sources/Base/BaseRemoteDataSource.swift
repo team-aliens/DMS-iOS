@@ -27,7 +27,11 @@ public class BaseRemoteDataSource<API: DmsAPI> {
     }
 
     public func request<T: Decodable>(_ api: API, dto: T.Type) -> AnyPublisher<T, DmsError> {
-        requestPublisher(api).map(dto, using: decoder)
+        requestPublisher(api)
+            .map(\.data)
+            .decode(type: dto, decoder: decoder)
+            .mapError { $0.asDMSError }
+            .eraseToAnyPublisher()
     }
 
     public func request(_ api: API) -> AnyPublisher<Void, DmsError> {
@@ -45,6 +49,9 @@ public class BaseRemoteDataSource<API: DmsAPI> {
 
 private extension BaseRemoteDataSource {
     func defaultRequest(_ api: API) -> AnyPublisher<Response, DmsError> {
+        provider.request(api) { result in
+            print(try? result.get().mapJSON())
+        }
         return provider.requestPublisher(api, callbackQueue: .main)
             .retry(maxRetryCount)
             .timeout(45, scheduler: DispatchQueue.main)
@@ -69,7 +76,7 @@ private extension BaseRemoteDataSource {
 
     func checkTokenIsExpired() -> Bool {
         let expired = keychain.load(type: .expiredAt).toDMSDate()
-        return Date() > expired
+        return Date() < expired
     }
 
     func tokenReissue() -> AnyPublisher<Void, DmsError> {
