@@ -6,6 +6,7 @@ public protocol MyPageDependency: Dependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase { get }
     var changeProfileComponent: ChangeProfileComponent { get }
     var rewardPointDetailComponent: RewardPointDetailComponent { get }
+    var checkPasswordComponent: CheckPasswordComponent { get }
 }
 
 public final class MyPageComponent: Component<MyPageDependency> {
@@ -16,7 +17,8 @@ public final class MyPageComponent: Component<MyPageDependency> {
                     fetchMyProfileUseCase: self.dependency.fetchMyProfileUseCase
                 ),
                 changeProfileComponent: self.dependency.changeProfileComponent,
-                rewardPointDetailComponent: self.dependency.rewardPointDetailComponent
+                rewardPointDetailComponent: self.dependency.rewardPointDetailComponent,
+                checkPasswordComponent: self.dependency.checkPasswordComponent
             )
         }
     }

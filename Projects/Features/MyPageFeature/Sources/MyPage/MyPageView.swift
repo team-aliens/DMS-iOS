@@ -6,15 +6,18 @@ struct MyPageView: View {
 
     private let changeProfileComponent: ChangeProfileComponent
     private let rewardPointDetailComponent: RewardPointDetailComponent
+    private let checkPasswordComponent: CheckPasswordComponent
 
     init(
         viewModel: MyPageViewModel,
         changeProfileComponent: ChangeProfileComponent,
-        rewardPointDetailComponent: RewardPointDetailComponent
+        rewardPointDetailComponent: RewardPointDetailComponent,
+        checkPasswordComponent: CheckPasswordComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.changeProfileComponent = changeProfileComponent
         self.rewardPointDetailComponent = rewardPointDetailComponent
+        self.checkPasswordComponent = checkPasswordComponent
     }
 
     var body: some View {
@@ -89,9 +92,16 @@ struct MyPageView: View {
                     Divider()
                         .padding(.horizontal, 10)
 
-                    myPageOptionRowCardView(title: "비밀번호 변경")
-                        .dmsFont(.body(.body2), color: .GrayScale.gray6)
-                        .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
+                    NavigationLink {
+                        DeferView {
+                            checkPasswordComponent.makeView()
+                        }
+                    } label: {
+                        myPageOptionRowCardView(title: "비밀번호 변경")
+                            .dmsFont(.body(.body2), color: .GrayScale.gray6)
+                            .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
+                    }
+
                 }
                 .background {
                     RoundedRectangle(cornerRadius: 10)
