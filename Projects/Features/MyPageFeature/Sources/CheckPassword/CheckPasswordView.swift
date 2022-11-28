@@ -18,7 +18,7 @@ struct CheckPasswordView: View {
 
     var body: some View {
         VStack(spacing: 4) {
-            AuthHeaderView(subTitle: "새 비밀번호 설정")
+            DMSHeaderTitleView(subTitle: "기존 비밀번호")
                 .padding(.top, 24)
 
             SecureDMSFloatingTextField(

@@ -6,6 +6,7 @@ public protocol MyPageDependency: Dependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase { get }
     var changeProfileComponent: ChangeProfileComponent { get }
     var rewardPointDetailComponent: RewardPointDetailComponent { get }
+    var checkPasswordComponent: CheckPasswordComponent { get }
 }
 
 public final class MyPageComponent: Component<MyPageDependency> {

@@ -20,12 +20,12 @@ struct ModifyPasswordView: View {
 
     var body: some View {
         VStack(spacing: 4) {
-            AuthHeaderView(subTitle: "새 비밀번호 설정")
+            DMSHeaderTitleView(subTitle: "새 비밀번호 설정")
                 .padding(.top, 24)
 
             HStack {
                 Text("비밀번호는 영문, 숫자, 기호를 포함한 8~20자이어야 합니다.")
-                    .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
+                    .dmsFont(.etc(.caption), color: .GrayScale.gray5)
 
                 Spacer()
             }
@@ -70,5 +70,10 @@ struct ModifyPasswordView: View {
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.errorMessage, style: .error)
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .onChange(of: viewModel.isSuccessRenewalPassword) { newValue in
+            if newValue {
+                NavigationUtil.popToRootView()
+            }
+        }
     }
 }
