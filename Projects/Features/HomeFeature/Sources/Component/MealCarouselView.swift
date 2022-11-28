@@ -53,13 +53,13 @@ struct MealCarouselView: View {
             VStack {
                 if meal.isEmpty {
                     Text("급식이 없습니다.")
-                        .dmsFont(.text(.large), color: .GrayScale.gray6)
+                        .dmsFont(.body(.body1), color: .GrayScale.gray6)
                         .frame(maxHeight: .infinity)
                 } else {
                     ForEach(meal.indices, id: \.self) { index in
                         if index != meal.count - 1 {
                             Text(meal[index])
-                                .dmsFont(.text(.medium), color: .GrayScale.gray6)
+                                .dmsFont(.body(.body1), color: .GrayScale.gray6)
                                 .frame(maxHeight: .infinity)
                         }
                     }
@@ -69,7 +69,7 @@ struct MealCarouselView: View {
             .frame(maxHeight: .infinity)
 
             Text(meal.last?.hasSuffix("Kcal") ?? false ? meal.last ?? "0Kcal" : "0Kcal")
-                .dmsFont(.text(.medium), color: .GrayScale.gray5)
+                .dmsFont(.body(.body2), color: .GrayScale.gray5)
                 .padding(.bottom, 16)
         }
         .redacted(reason: isLoading ? .placeholder : [])

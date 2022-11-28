@@ -13,8 +13,8 @@ extension PointsAPI: DmsAPI {
 
     public var urlPath: String {
         switch self {
-        case let .fetchPointsList(type):
-            return "/\(type)"
+        case .fetchPointsList:
+            return "/"
         }
     }
 
@@ -27,8 +27,7 @@ extension PointsAPI: DmsAPI {
         case let .fetchPointsList(type):
             return .requestParameters(parameters: [
                     "type": type.rawValue
-                ],
-                encoding: JSONEncoding.default)
+                ], encoding: URLEncoding.queryString)
         }
     }
 

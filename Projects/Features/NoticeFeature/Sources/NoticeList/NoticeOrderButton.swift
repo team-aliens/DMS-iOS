@@ -41,7 +41,7 @@ extension NoticeOrderButtonStyle {
             configuration.label
                 .padding(.vertical, 8.5)
                 .padding(.horizontal, 16)
-                .dmsFont(.button(.default))
+                .dmsFont(.etc(.button))
                 .background(.clear)
                 .foregroundColor(color)
                 .overlay {

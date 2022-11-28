@@ -16,13 +16,12 @@ struct TextFieldPlaygroundView: View {
 
                 SecureDMSFloatingTextField("비밀번호", text: $text2)
 
-                DMSFloatingTextField("HelpText", text: $text3, helpMessage: "HelpText")
-
-                DMSFloatingTextField("Error",
-                                     text: $text4,
-                                     helpMessage: "HelpText",
-                                     isError: isError1,
-                                     errorMessage: "Error Message") {
+                DMSFloatingTextField(
+                    "Error",
+                    text: $text3,
+                    isError: isError1,
+                    errorMessage: "Error Message"
+                ) {
                     isError1.toggle()
                 }
 

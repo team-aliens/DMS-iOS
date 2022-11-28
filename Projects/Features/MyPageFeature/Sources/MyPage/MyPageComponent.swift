@@ -5,6 +5,7 @@ import NeedleFoundation
 public protocol MyPageDependency: Dependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase { get }
     var changeProfileComponent: ChangeProfileComponent { get }
+    var rewardPointDetailComponent: RewardPointDetailComponent { get }
 }
 
 public final class MyPageComponent: Component<MyPageDependency> {
@@ -14,7 +15,8 @@ public final class MyPageComponent: Component<MyPageDependency> {
                 viewModel: .init(
                     fetchMyProfileUseCase: self.dependency.fetchMyProfileUseCase
                 ),
-                changeProfileComponent: self.dependency.changeProfileComponent
+                changeProfileComponent: self.dependency.changeProfileComponent,
+                rewardPointDetailComponent: self.dependency.rewardPointDetailComponent
             )
         }
     }

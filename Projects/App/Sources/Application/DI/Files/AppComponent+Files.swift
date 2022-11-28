@@ -5,8 +5,8 @@ import NetworkModule
 public extension AppComponent {
     var remoteFilesDataSource: any RemoteFilesDataSource {
         shared {
-//            RemoteFilesDataSourceStub()
-            RemoteFilesDataSourceImpl(keychain: keychain)
+            RemoteFilesDataSourceStub()
+//            RemoteFilesDataSourceImpl(keychain: keychain)
         }
     }
     var filesRepository: any FilesRepository {

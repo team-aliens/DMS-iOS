@@ -16,14 +16,14 @@ struct SchoolCodeView: View {
 
     var body: some View {
         VStack {
-            AuthHeaderView(subTitle: "학교 인증코드 입력")
+            DMSHeaderTitleView(subTitle: "학교 인증코드 입력")
                 .padding(.top, 24)
 
             VStack(spacing: 24) {
                 DMSPassCodeView(codeCount: 8, text: $viewModel.schoolCode)
 
                 Text(viewModel.isErrorOcuured ? viewModel.errorMessage : "이메일로 전송된 인증코드 8자리를 입력해주세요.")
-                    .dmsFont(.text(.small), color: viewModel.isErrorOcuured ? .System.error : .GrayScale.gray5)
+                    .dmsFont(.body(.body3), color: viewModel.isErrorOcuured ? .System.error : .GrayScale.gray5)
             }
             .padding(.top, 56)
 

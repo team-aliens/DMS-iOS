@@ -23,7 +23,7 @@ struct EnterInformationView: View {
 
     var body: some View {
         VStack {
-            AuthHeaderView(subTitle: "계정 본인인증")
+            DMSHeaderTitleView(subTitle: "계정 본인인증")
                 .padding(.top, 24)
 
             VStack(spacing: 20) {

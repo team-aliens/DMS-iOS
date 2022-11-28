@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct DMSHeaderView: View {
+public struct DMSHeaderTitleView: View {
     private let subTitle: String
 
     public init(subTitle: String) {
@@ -11,10 +11,10 @@ public struct DMSHeaderView: View {
         HStack {
             VStack(alignment: .leading, spacing: 8) {
                 Text("DMS")
-                    .dmsFont(.title(.extraLarge), color: .PrimaryVariant.primary)
+                    .dmsFont(.headline(.headline1), color: .PrimaryVariant.primary)
 
                 Text(subTitle)
-                    .dmsFont(.text(.medium), color: .GrayScale.gray6)
+                    .dmsFont(.body(.body2), color: .GrayScale.gray6)
             }
 
             Spacer()

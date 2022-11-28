@@ -1,6 +1,7 @@
 import Combine
 import ErrorModule
+import DataMappingModule
 
 public protocol PointsRepository {
-    func fetchPointsList(date: String) -> AnyPublisher<[PointEntity], DmsError>
+    func fetchPointList(type: PointsType) -> AnyPublisher<PointEntity, DmsError>
 }
