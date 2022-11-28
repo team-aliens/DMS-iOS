@@ -17,7 +17,8 @@ public final class MyPageComponent: Component<MyPageDependency> {
                     fetchMyProfileUseCase: self.dependency.fetchMyProfileUseCase
                 ),
                 changeProfileComponent: self.dependency.changeProfileComponent,
-                rewardPointDetailComponent: self.dependency.rewardPointDetailComponent
+                rewardPointDetailComponent: self.dependency.rewardPointDetailComponent,
+                checkPasswordComponent: self.dependency.checkPasswordComponent
             )
         }
     }
