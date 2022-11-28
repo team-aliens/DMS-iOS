@@ -102,4 +102,7 @@ public extension AppComponent {
     var checkPasswordComponent: CheckPasswordComponent {
         CheckPasswordComponent(parent: self)
     }
+    var modifyPasswordComponent: ModifyPasswordComponent {
+        ModifyPasswordComponent(parent: self)
+    }
 }
