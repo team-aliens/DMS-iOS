@@ -7,8 +7,11 @@ final class NoticeDetailViewModel: BaseViewModel {
     @Published var title = ""
     @Published var content = ""
     @Published var date = Date()
+    var displayDate: String {
+        "\(date.year)/\(date.month)/\(date.day) \(date.hour):\(date.minute)"
+    }
 
-    let id: String
+    private let id: String
 
     private let fetchDetailNoticeUseCase: any FetchDetailNoticeUseCase
 

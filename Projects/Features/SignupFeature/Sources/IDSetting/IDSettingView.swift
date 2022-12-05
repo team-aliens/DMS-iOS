@@ -24,12 +24,12 @@ struct IDSettingView: View {
 
     var body: some View {
         VStack(spacing: 4) {
-            AuthHeaderView(subTitle: "아이디 설정")
+            DMSHeaderTitleView(subTitle: "아이디 설정")
                 .padding(.top, 24)
 
             HStack {
                 Text("학년, 반, 번호는 숫자만 입력하여 주세요.")
-                    .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
+                    .dmsFont(.etc(.caption), color: .GrayScale.gray5)
 
                 Spacer()
             }
@@ -63,7 +63,7 @@ struct IDSettingView: View {
                 if viewModel.isShowingCheckStudent && !viewModel.isCheckedStudent {
                     HStack {
                         Text("\(viewModel.checkedName)님이 맞으신가요?")
-                            .dmsFont(.text(.small), color: .GrayScale.gray7)
+                            .dmsFont(.body(.body3), color: .GrayScale.gray7)
                             .padding(.leading, 20)
 
                         Spacer()

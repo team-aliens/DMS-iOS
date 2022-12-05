@@ -46,7 +46,7 @@ extension DMSButtonStyle {
             configuration.label
                 .padding(.vertical, 14)
                 .padding(.horizontal, 16)
-                .dmsFont(.button(.default))
+                .dmsFont(.etc(.button))
                 .background(color)
                 .foregroundColor(.GrayScale.gray1)
                 .cornerRadius(5)
@@ -70,7 +70,7 @@ extension DMSButtonStyle {
             configuration.label
                 .padding(.vertical, 14)
                 .padding(.horizontal, 16)
-                .dmsFont(.button(.default))
+                .dmsFont(.etc(.button))
                 .background(.clear)
                 .foregroundColor(color)
                 .overlay {
@@ -95,7 +95,8 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
-                .dmsFont(.button(.default))
+                .dmsFont(
+                    .etc(.button))
                 .foregroundColor(color)
                 .opacity(
                     isEnabled ?
@@ -115,7 +116,7 @@ extension DMSButtonStyle {
 
         var body: some View {
             configuration.label
-                .dmsFont(.button(.default))
+                .dmsFont(.etc(.button))
                 .foregroundColor(color)
                 .overlay(alignment: .bottom) {
                     Rectangle()

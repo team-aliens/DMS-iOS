@@ -40,7 +40,7 @@ struct HomeView: View {
                     }
 
                     Text("오늘의 급식")
-                        .dmsFont(.title(.small), color: .GrayScale.gray7)
+                        .dmsFont(.title(.title1), color: .GrayScale.gray7)
                         .padding(.top, 16)
 
                     selectDateView()
@@ -65,7 +65,7 @@ struct HomeView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Text("로고")
-                    .dmsFont(.title(.small), color: .GrayScale.gray7)
+                    .dmsFont(.title(.title1), color: .GrayScale.gray7)
             }
         }
         .dmsBackground()
@@ -97,7 +97,7 @@ struct HomeView: View {
                 } icon: {
                     Image(systemName: "calendar")
                 }
-                .dmsFont(.button(.default), color: .GrayScale.gray6)
+                .dmsFont(.etc(.button), color: .GrayScale.gray6)
                 .padding(.vertical, 8.5)
                 .padding(.horizontal, 12)
                 .overlay {

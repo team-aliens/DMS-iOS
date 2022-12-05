@@ -96,4 +96,13 @@ public extension AppComponent {
     var noticeDetailComponent: NoticeDetailComponent {
         NoticeDetailComponent(parent: self)
     }
+    var rewardPointDetailComponent: RewardPointDetailComponent {
+        RewardPointDetailComponent(parent: self)
+    }
+    var checkPasswordComponent: CheckPasswordComponent {
+        CheckPasswordComponent(parent: self)
+    }
+    var modifyPasswordComponent: ModifyPasswordComponent {
+        ModifyPasswordComponent(parent: self)
+    }
 }

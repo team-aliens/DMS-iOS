@@ -70,4 +70,12 @@ public extension Date {
     var day: Int {
         return Calendar.current.component(.day, from: self)
     }
+
+    var hour: Int {
+        return Calendar.current.component(.hour, from: self)
+    }
+
+    var minute: Int {
+        return Calendar.current.component(.minute, from: self)
+    }
 }

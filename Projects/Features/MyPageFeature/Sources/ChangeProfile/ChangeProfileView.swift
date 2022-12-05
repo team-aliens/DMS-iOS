@@ -17,7 +17,7 @@ struct ChangeProfileView: View {
 
     var body: some View {
         VStack {
-            DMSHeaderView(subTitle: "프로필 사진")
+            DMSHeaderTitleView(subTitle: "프로필 사진")
                 .padding(.top, 24)
 
             Button {

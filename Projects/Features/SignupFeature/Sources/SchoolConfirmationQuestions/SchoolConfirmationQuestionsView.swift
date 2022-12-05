@@ -21,12 +21,12 @@ struct SchoolConfirmationQuestionsView: View {
 
     var body: some View {
         VStack {
-            AuthHeaderView(subTitle: "학교 확인 질문")
+            DMSHeaderTitleView(subTitle: "학교 확인 질문")
                 .padding(.top, 24)
 
             HStack {
                 Text(viewModel.question)
-                    .dmsFont(.text(.large), color: .GrayScale.gray7)
+                    .dmsFont(.body(.body2), color: .GrayScale.gray7)
 
                 Spacer()
             }
@@ -49,7 +49,7 @@ struct SchoolConfirmationQuestionsView: View {
 
             HStack(spacing: 16) {
                 Text("이미 계정이 있으신가요?")
-                    .dmsFont(.text(.small), color: .GrayScale.gray5)
+                    .dmsFont(.body(.body3), color: .GrayScale.gray5)
 
                 DMSButton(text: "로그인", style: .text, color: .GrayScale.gray6) {
                     rootPresentationMode.wrappedValue.toggle()

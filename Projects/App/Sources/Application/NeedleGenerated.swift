@@ -192,6 +192,12 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     var changeProfileComponent: ChangeProfileComponent {
         return appComponent.changeProfileComponent
     }
+    var rewardPointDetailComponent: RewardPointDetailComponent {
+        return appComponent.rewardPointDetailComponent
+    }
+    var checkPasswordComponent: CheckPasswordComponent {
+        return appComponent.checkPasswordComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -200,6 +206,32 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
 /// ^->AppComponent->MyPageComponent
 private func factory0f6f456ebf157d02dfb3f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return MyPageDependency48d84b530313b3ee40feProvider(appComponent: parent1(component) as! AppComponent)
+}
+private class ModifyPasswordDependency8e8e0713c7893c69f342Provider: ModifyPasswordDependency {
+    var changePasswordUseCase: any ChangePasswordUseCase {
+        return appComponent.changePasswordUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->ModifyPasswordComponent
+private func factoryf1815b12945a9aa456a2f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return ModifyPasswordDependency8e8e0713c7893c69f342Provider(appComponent: parent1(component) as! AppComponent)
+}
+private class RewardPointDetailDependency623f1251c3863ea3b233Provider: RewardPointDetailDependency {
+    var fetchPointListUseCase: any FetchPointListUseCase {
+        return appComponent.fetchPointListUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->RewardPointDetailComponent
+private func factory87993268d9e212be8b1af47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return RewardPointDetailDependency623f1251c3863ea3b233Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class ChangeProfileDependency18055275199967076a28Provider: ChangeProfileDependency {
     var changeProfileImageUseCase: any ChangeProfileImageUseCase {
@@ -216,6 +248,22 @@ private class ChangeProfileDependency18055275199967076a28Provider: ChangeProfile
 /// ^->AppComponent->ChangeProfileComponent
 private func factory239204ef0c47c0c68c97f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return ChangeProfileDependency18055275199967076a28Provider(appComponent: parent1(component) as! AppComponent)
+}
+private class CheckPasswordDependencyd8ff624643356835c570Provider: CheckPasswordDependency {
+    var compareCurrentPasswordUseCase: any CompareCurrentPasswordUseCase {
+        return appComponent.compareCurrentPasswordUseCase
+    }
+    var modifyPasswordComponent: ModifyPasswordComponent {
+        return appComponent.modifyPasswordComponent
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->CheckPasswordComponent
+private func factorycb24ea072925f86bef40f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return CheckPasswordDependencyd8ff624643356835c570Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class RootDependency3944cc797a4a88956fb5Provider: RootDependency {
     var signinComponent: SigninComponent {
@@ -406,6 +454,9 @@ extension AppComponent: Registration {
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
         localTable["changeProfileComponent-ChangeProfileComponent"] = { self.changeProfileComponent as Any }
         localTable["noticeDetailComponent-NoticeDetailComponent"] = { self.noticeDetailComponent as Any }
+        localTable["rewardPointDetailComponent-RewardPointDetailComponent"] = { self.rewardPointDetailComponent as Any }
+        localTable["checkPasswordComponent-CheckPasswordComponent"] = { self.checkPasswordComponent as Any }
+        localTable["modifyPasswordComponent-ModifyPasswordComponent"] = { self.modifyPasswordComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
         localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { self.fetchWhetherNewNoticeUseCase as Any }
@@ -421,6 +472,13 @@ extension AppComponent: Registration {
         localTable["checkExistGradeClassNumberUseCase-any CheckExistGradeClassNumberUseCase"] = { self.checkExistGradeClassNumberUseCase as Any }
         localTable["fetchMyProfileUseCase-any FetchMyProfileUseCase"] = { self.fetchMyProfileUseCase as Any }
         localTable["changeProfileImageUseCase-any ChangeProfileImageUseCase"] = { self.changeProfileImageUseCase as Any }
+        localTable["remoteUsersDataSource-any RemoteUsersDataSource"] = { self.remoteUsersDataSource as Any }
+        localTable["usersRepository-any UsersRepository"] = { self.usersRepository as Any }
+        localTable["changePasswordUseCase-any ChangePasswordUseCase"] = { self.changePasswordUseCase as Any }
+        localTable["compareCurrentPasswordUseCase-any CompareCurrentPasswordUseCase"] = { self.compareCurrentPasswordUseCase as Any }
+        localTable["remotePointsDataSource-any RemotePointsDataSource"] = { self.remotePointsDataSource as Any }
+        localTable["pointsRepository-any PointsRepository"] = { self.pointsRepository as Any }
+        localTable["fetchPointListUseCase-any FetchPointListUseCase"] = { self.fetchPointListUseCase as Any }
         localTable["remoteMealDataSource-any RemoteMealDataSource"] = { self.remoteMealDataSource as Any }
         localTable["mealRepository-any MealRepository"] = { self.mealRepository as Any }
         localTable["fetchMealListUseCase-any FetchMealListUseCase"] = { self.fetchMealListUseCase as Any }
@@ -496,12 +554,30 @@ extension MyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyPageDependency.fetchMyProfileUseCase] = "fetchMyProfileUseCase-any FetchMyProfileUseCase"
         keyPathToName[\MyPageDependency.changeProfileComponent] = "changeProfileComponent-ChangeProfileComponent"
+        keyPathToName[\MyPageDependency.rewardPointDetailComponent] = "rewardPointDetailComponent-RewardPointDetailComponent"
+        keyPathToName[\MyPageDependency.checkPasswordComponent] = "checkPasswordComponent-CheckPasswordComponent"
+    }
+}
+extension ModifyPasswordComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\ModifyPasswordDependency.changePasswordUseCase] = "changePasswordUseCase-any ChangePasswordUseCase"
+    }
+}
+extension RewardPointDetailComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\RewardPointDetailDependency.fetchPointListUseCase] = "fetchPointListUseCase-any FetchPointListUseCase"
     }
 }
 extension ChangeProfileComponent: Registration {
     public func registerItems() {
         keyPathToName[\ChangeProfileDependency.changeProfileImageUseCase] = "changeProfileImageUseCase-any ChangeProfileImageUseCase"
         keyPathToName[\ChangeProfileDependency.uploadFileUseCase] = "uploadFileUseCase-any UploadFileUseCase"
+    }
+}
+extension CheckPasswordComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\CheckPasswordDependency.compareCurrentPasswordUseCase] = "compareCurrentPasswordUseCase-any CompareCurrentPasswordUseCase"
+        keyPathToName[\CheckPasswordDependency.modifyPasswordComponent] = "modifyPasswordComponent-ModifyPasswordComponent"
     }
 }
 extension RootComponent: Registration {
@@ -578,7 +654,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 #if !NEEDLE_DYNAMIC
 
-private func register1() {
+@inline(never) private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
@@ -590,7 +666,10 @@ private func register1() {
     registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MyPageComponent", factory0f6f456ebf157d02dfb3f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->ModifyPasswordComponent", factoryf1815b12945a9aa456a2f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->RewardPointDetailComponent", factory87993268d9e212be8b1af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangeProfileComponent", factory239204ef0c47c0c68c97f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->CheckPasswordComponent", factorycb24ea072925f86bef40f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->RootComponent", factory264bfc4d4cb6b0629b40f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)

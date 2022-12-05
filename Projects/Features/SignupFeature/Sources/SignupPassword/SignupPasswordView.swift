@@ -21,12 +21,12 @@ struct SignupPasswordView: View {
 
     var body: some View {
         VStack(spacing: 4) {
-            AuthHeaderView(subTitle: "비밀번호 설정")
+            DMSHeaderTitleView(subTitle: "비밀번호 설정")
                 .padding(.top, 24)
 
             HStack {
                 Text("비밀번호는 영문, 숫자, 기호를 포함한 8~20자이어야 합니다.")
-                    .dmsFont(.text(.extraSmall), color: .GrayScale.gray5)
+                    .dmsFont(.etc(.caption), color: .GrayScale.gray5)
 
                 Spacer()
             }

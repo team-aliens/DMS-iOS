@@ -46,10 +46,7 @@ public struct StudentsRepositoryStub: StudentsRepository {
                 schoolName: "광주소프트웨어마이스터고등학교",
                 name: "변찬우",
                 gcn: "2118",
-                profileImageURL: URL(string: """
-                                     https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.nave
-r.net%2FMjAyMjExMDdfNjEg%2FMDAxNjY3Nzk5MTczMDg1.F93U6F1WhSWJbojBzO8OzLIVEmIbG24N3wSZo0ZPJc4g.pLD-fxrHiczl7lAExPrh-bqrk5GjLmwdiFLyzSM7Z1Ig.JPEG.dbdidna23%2F24.jpg&type=sc960_832
-""")!,
+                profileImageURL: URL(string: "https://avatars.githubusercontent.com/u/57276315?v=4"),
                 bonusPoint: 0,
                 minusPoint: 24,
                 phrase: "안녕하세요"

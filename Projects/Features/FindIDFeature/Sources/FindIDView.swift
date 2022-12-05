@@ -19,7 +19,7 @@ struct FindIDView: View {
 
     var body: some View {
         VStack {
-            AuthHeaderView(subTitle: "아이디 찾기")
+            DMSHeaderTitleView(subTitle: "아이디 찾기")
                 .padding(.top, 24)
 
             VStack(spacing: 60) {
