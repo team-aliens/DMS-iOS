@@ -63,10 +63,10 @@ struct NoticeListView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text(title)
-                        .dmsFont(.body(.body2), color: .System.title)
+                        .dmsFont(.body(.body2), color: .System.backgroundTitle)
 
                     Text("\(String(date.year))/\(date.month)/\(date.day)")
-                        .dmsFont(.etc(.caption), color: .System.text)
+                        .dmsFont(.etc(.caption), color: .System.backgroundText)
                 }
                 Spacer()
             }

@@ -47,17 +47,24 @@ public enum DesignSystemAsset {
     public static let primary = DesignSystemColors(name: "Primary")
   }
   public enum SystemColor {
-    public static let backgrond = DesignSystemColors(name: "Backgrond")
+    public static let background = DesignSystemColors(name: "Background")
+    public static let errorContainer = DesignSystemColors(name: "Error Container")
     public static let error = DesignSystemColors(name: "Error")
-    public static let iconActive = DesignSystemColors(name: "IconActive")
-    public static let iconInactive = DesignSystemColors(name: "IconInactive")
+    public static let icon = DesignSystemColors(name: "Icon")
     public static let line = DesignSystemColors(name: "Line")
-    public static let onBackground = DesignSystemColors(name: "OnBackground")
-    public static let onError = DesignSystemColors(name: "OnError")
-    public static let onPrimary = DesignSystemColors(name: "OnPrimary")
+    public static let onBackgroundVariantEtc = DesignSystemColors(name: "On Background Variant Etc")
+    public static let onBackgroundVariantText = DesignSystemColors(name: "On Background Variant Text")
+    public static let onBackground = DesignSystemColors(name: "On Background")
+    public static let onErrorContainer = DesignSystemColors(name: "On Error Container")
+    public static let onError = DesignSystemColors(name: "On Error")
+    public static let onPrimaryContainer = DesignSystemColors(name: "On Primary Container")
+    public static let onPrimary = DesignSystemColors(name: "On Primary")
+    public static let onSurfaceVariantEtc = DesignSystemColors(name: "On Surface Variant Etc")
+    public static let onSurfaceVariantText = DesignSystemColors(name: "On Surface Variant Text")
+    public static let onSurface = DesignSystemColors(name: "On Surface")
+    public static let primaryContainer = DesignSystemColors(name: "Primary Container")
+    public static let primary = DesignSystemColors(name: "Primary")
     public static let surface = DesignSystemColors(name: "Surface")
-    public static let text = DesignSystemColors(name: "Text")
-    public static let title = DesignSystemColors(name: "Title")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
