@@ -15,7 +15,7 @@ public struct DMSFloatingTextField: View {
     }
     private var dmsForegroundColor: Color {
         isFocused ?
-            .PrimaryVariant.darken2 :
+            .PrimaryVariant.primary :
             isError ?
                 .System.error :
                 .GrayScale.gray5
