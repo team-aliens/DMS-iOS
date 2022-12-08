@@ -3,7 +3,9 @@ import SwiftUI
 public struct DMSButtonStyle: ButtonStyle {
     public enum Style {
         case contained
+        case shortPaddingContained
         case outlined
+        case shortPaddingOutlined
         case text
         case underline
     }
@@ -16,8 +18,14 @@ public struct DMSButtonStyle: ButtonStyle {
         case .contained:
             return AnyView(ContainedButton(configuration: configuration, color: color))
 
+        case .shortPaddingContained:
+            return AnyView(ShortPaddingContainedButton(configuration: configuration, color: color))
+
         case .outlined:
             return AnyView(OutlinedButton(configuration: configuration, color: color))
+
+        case .shortPaddingOutlined:
+            return AnyView(ShortPaddingOutlinedButton(configuration: configuration, color: color))
 
         case .text:
             return AnyView(TextButton(configuration: configuration, color: color))
@@ -59,6 +67,30 @@ extension DMSButtonStyle {
     }
 }
 
+// MARK: - ShortPaddingContained
+extension DMSButtonStyle {
+    struct ShortPaddingContainedButton: View {
+        let configuration: ButtonStyle.Configuration
+        let color: Color
+        @Environment(\.isEnabled) private var isEnabled: Bool
+
+        var body: some View {
+            configuration.label
+                .padding(.vertical, 8.5)
+                .padding(.horizontal, 16)
+                .dmsFont(.etc(.button))
+                .background(color)
+                .foregroundColor(.GrayScale.gray1)
+                .cornerRadius(5)
+                .opacity(
+                    isEnabled ?
+                        configuration.isPressed ? 0.7 : 1.0 :
+                        0.5
+                )
+        }
+    }
+}
+
 // MARK: - Outlined
 extension DMSButtonStyle {
     struct OutlinedButton: View {
@@ -69,6 +101,33 @@ extension DMSButtonStyle {
         var body: some View {
             configuration.label
                 .padding(.vertical, 14)
+                .padding(.horizontal, 16)
+                .dmsFont(.etc(.button))
+                .background(.clear)
+                .foregroundColor(color)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(color, lineWidth: 1)
+                }
+                .opacity(
+                    isEnabled ?
+                        configuration.isPressed ? 0.7 : 1.0 :
+                        0.5
+                )
+        }
+    }
+}
+
+// MARK: - ShortPaddingOutlined
+extension DMSButtonStyle {
+    struct ShortPaddingOutlinedButton: View {
+        let configuration: ButtonStyle.Configuration
+        let color: Color
+        @Environment(\.isEnabled) private var isEnabled: Bool
+
+        var body: some View {
+            configuration.label
+                .padding(.vertical, 8.5)
                 .padding(.horizontal, 16)
                 .dmsFont(.etc(.button))
                 .background(.clear)

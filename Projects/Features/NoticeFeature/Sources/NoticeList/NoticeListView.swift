@@ -20,7 +20,11 @@ struct NoticeListView: View {
                 HStack {
                     Spacer()
 
-                    NoticeOrderButton(text: viewModel.noticeOrderType.display, color: .GrayScale.gray6) {
+                    DMSButton(
+                        text: viewModel.noticeOrderType.display,
+                        style: .shortPaddingOutlined,
+                        color: .GrayScale.gray6
+                    ) {
                         withAnimation {
                             viewModel.orderTypeButtonDidTap()
                         }
@@ -73,6 +77,6 @@ struct NoticeListView: View {
             .padding(.horizontal, 16)
         }
         .frame(height: 68)
-        .shadow(color: .GrayScale.gray5.opacity(0.15), blur: 20)
+        .dmsShadow(style: .surface)
     }
 }
