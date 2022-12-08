@@ -49,10 +49,7 @@ public class BaseRemoteDataSource<API: DmsAPI> {
 
 private extension BaseRemoteDataSource {
     func defaultRequest(_ api: API) -> AnyPublisher<Response, DmsError> {
-        provider.request(api) { result in
-            print(try? result.get().mapJSON())
-        }
-        return provider.requestPublisher(api, callbackQueue: .main)
+        provider.requestPublisher(api, callbackQueue: .main)
             .retry(maxRetryCount)
             .timeout(45, scheduler: DispatchQueue.main)
             .mapError { api.errorMap[$0.response?.statusCode ?? 0] ?? .unknown }

@@ -6,8 +6,8 @@ import Foundation
 let settinges: Settings =
     .settings(base: Environment.baseSetting,
               configurations: [
-                .debug(name: .debug),
-                .release(name: .release)
+                .debug(name: .dev, xcconfig: .relativeToXCConfig(type: .dev, name: Environment.targetName)),
+                .release(name: .prod, xcconfig: .relativeToXCConfig(type: .prod, name: Environment.targetName))
               ],
               defaultSettings: .recommended)
 
@@ -49,31 +49,31 @@ let targets: [Target] = [
 
 let schemes: [Scheme] = [
     .init(
-      name: "\(Environment.targetName)-DEBUG",
+      name: "\(Environment.targetName)-DEV",
       shared: true,
       buildAction: .buildAction(targets: ["\(Environment.targetName)"]),
       testAction: TestAction.targets(
           ["\(Environment.targetTestName)"],
-          configuration: .debug,
+          configuration: .dev,
           options: TestActionOptions.options(
               coverage: true,
               codeCoverageTargets: ["\(Environment.targetName)"]
           )
       ),
-      runAction: .runAction(configuration: .debug),
-      archiveAction: .archiveAction(configuration: .debug),
-      profileAction: .profileAction(configuration: .debug),
-      analyzeAction: .analyzeAction(configuration: .debug)
+      runAction: .runAction(configuration: .dev),
+      archiveAction: .archiveAction(configuration: .dev),
+      profileAction: .profileAction(configuration: .dev),
+      analyzeAction: .analyzeAction(configuration: .dev)
     ),
     .init(
-      name: "\(Environment.targetName)-RELEASE",
+      name: "\(Environment.targetName)-PROD",
       shared: true,
       buildAction: BuildAction(targets: ["\(Environment.targetName)"]),
       testAction: nil,
-      runAction: .runAction(configuration: .release),
-      archiveAction: .archiveAction(configuration: .release),
-      profileAction: .profileAction(configuration: .release),
-      analyzeAction: .analyzeAction(configuration: .release)
+      runAction: .runAction(configuration: .prod),
+      archiveAction: .archiveAction(configuration: .prod),
+      profileAction: .profileAction(configuration: .prod),
+      analyzeAction: .analyzeAction(configuration: .prod)
     )
 ]
 

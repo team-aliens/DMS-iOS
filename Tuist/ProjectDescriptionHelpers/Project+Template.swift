@@ -49,8 +49,8 @@ public extension Project {
         let settings: Settings = .settings(
             base: Environment.baseSetting,
             configurations: [
-                .debug(name: .debug),
-                .release(name: .release)
+                .debug(name: .dev, xcconfig: .relativeToXCConfig(type: .dev, name: name)),
+                .release(name: .prod, xcconfig: .relativeToXCConfig(type: .prod, name: name))
             ], defaultSettings: .recommended)
         let appTarget = Target(
             name: name,
@@ -105,8 +105,8 @@ public extension Project {
         )
         
         let schemes: [Scheme] = hasDemoApp
-        ? [.makeScheme(target: .debug, name: name), .makeDemoScheme(target: .debug, name: name)]
-        : [.makeScheme(target: .debug, name: name)]
+        ? [.makeScheme(target: .dev, name: name), .makeDemoScheme(target: .dev, name: name)]
+        : [.makeScheme(target: .dev, name: name)]
         
         let targets: [Target] = hasDemoApp
         ? [appTarget, testTarget, demoAppTarget]

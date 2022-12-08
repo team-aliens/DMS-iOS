@@ -6,8 +6,8 @@ import DataModule
 public extension AppComponent {
     var remoteSchoolDataSource: any RemoteSchoolDataSource {
         shared {
-            RemoteSchoolDataSourceStub()
-//            RemoteSchoolDataSourceImpl(keychain: keychain)
+//            RemoteSchoolDataSourceStub()
+            RemoteSchoolDataSourceImpl(keychain: keychain)
         }
     }
 
