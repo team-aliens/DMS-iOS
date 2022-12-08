@@ -11,12 +11,12 @@ public extension Color.System {
     static let surface: Color = DesignSystemAsset.SystemColor.surface.suiColor
     static let onSurface: Color = DesignSystemAsset.SystemColor.onSurface.suiColor
 
-    static let error: Color = DesignSystemAsset.SystemColor.error.suiColor
+    static let error: Color = DesignSystemAsset.ErrorColor.error.suiColor
     static let onError: Color = DesignSystemAsset.SystemColor.onError.suiColor
     static let errorContainer: Color = DesignSystemAsset.SystemColor.errorContainer.suiColor
     static let onErrorContainer: Color = DesignSystemAsset.SystemColor.onErrorContainer.suiColor
 
-    static let primary: Color = DesignSystemAsset.SystemColor.primary.suiColor
+    static let primary: Color = DesignSystemAsset.PrimaryColor.primary.suiColor
     static let onPrimary: Color = DesignSystemAsset.SystemColor.onPrimary.suiColor
     static let primaryContainer: Color = DesignSystemAsset.SystemColor.primaryContainer.suiColor
     static let onPrimaryContainer: Color = DesignSystemAsset.SystemColor.onPrimaryContainer.suiColor

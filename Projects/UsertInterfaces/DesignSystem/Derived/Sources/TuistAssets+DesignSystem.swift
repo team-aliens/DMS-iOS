@@ -49,7 +49,6 @@ public enum DesignSystemAsset {
   public enum SystemColor {
     public static let background = DesignSystemColors(name: "Background")
     public static let errorContainer = DesignSystemColors(name: "Error Container")
-    public static let error = DesignSystemColors(name: "Error")
     public static let icon = DesignSystemColors(name: "Icon")
     public static let line = DesignSystemColors(name: "Line")
     public static let onBackgroundVariantEtc = DesignSystemColors(name: "On Background Variant Etc")
@@ -63,7 +62,6 @@ public enum DesignSystemAsset {
     public static let onSurfaceVariantText = DesignSystemColors(name: "On Surface Variant Text")
     public static let onSurface = DesignSystemColors(name: "On Surface")
     public static let primaryContainer = DesignSystemColors(name: "Primary Container")
-    public static let primary = DesignSystemColors(name: "Primary")
     public static let surface = DesignSystemColors(name: "Surface")
   }
 }
