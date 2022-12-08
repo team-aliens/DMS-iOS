@@ -6,7 +6,7 @@ import DataModule
 public extension AppComponent {
     var remoteAuthDataSource: any RemoteAuthDataSource {
         shared {
-            RemoteAuthDataSourceStub() // MARK: 퍼블리싱용 Stub, 테스트 서버 나오면 변경
+            RemoteAuthDataSourceStub() // TODO: 퍼블리싱용 Stub, 테스트 서버 나오면 변경
 //            RemoteAuthDataSourceImpl(keychain: keychain)
         }
     }
