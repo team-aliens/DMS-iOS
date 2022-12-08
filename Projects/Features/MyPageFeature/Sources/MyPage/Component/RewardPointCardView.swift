@@ -12,7 +12,7 @@ struct RewardPointCardView: View {
     let rewardType: RewardPointType
 
     var textColor: Color {
-        rewardType == .bonusPoint ? .PrimaryVariant.darken2 : .ErrorVariant.darken2
+        rewardType == .bonusPoint ? .PrimaryVariant.darken1 : .ErrorVariant.darken1
     }
 
     var containerColor: Color {
