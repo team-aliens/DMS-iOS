@@ -3,6 +3,7 @@ import SwiftUI
 
 struct MyPageView: View {
     @StateObject var viewModel: MyPageViewModel
+    @Environment(\.tabbarHidden) var tabbarHidden
 
     private let changeProfileComponent: ChangeProfileComponent
     private let rewardPointDetailComponent: RewardPointDetailComponent
@@ -87,10 +88,8 @@ struct MyPageView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 0) {
-                    NavigationLink {
-                        DeferView {
-                            rewardPointDetailComponent.makeView()
-                        }
+                    Button {
+                        viewModel.isNavigateRewardPointDetail.toggle()
                     } label: {
                         myPageOptionRowCardView(title: "상벌점 내역 확인")
                             .dmsFont(.body(.body2), color: .GrayScale.gray6)
@@ -100,10 +99,8 @@ struct MyPageView: View {
                     Divider()
                         .padding(.horizontal, 10)
 
-                    NavigationLink {
-                        DeferView {
-                            checkPasswordComponent.makeView()
-                        }
+                    Button {
+                        viewModel.isNavigateChangePassword.toggle()
                     } label: {
                         myPageOptionRowCardView(title: "비밀번호 변경")
                             .dmsFont(.body(.body2), color: .GrayScale.gray6)
@@ -145,9 +142,32 @@ struct MyPageView: View {
             Text("정말 로그아웃 하시겠습니까?")
                 .dmsFont(.body(.body2), color: .GrayScale.gray6)
         }
+        .onChange(of: viewModel.isNavigateChangeProfile) { newValue in
+            withAnimation {
+                tabbarHidden.wrappedValue = newValue
+            }
+        }
+        .onChange(of: viewModel.isNavigateRewardPointDetail) { newValue in
+            withAnimation {
+                tabbarHidden.wrappedValue = newValue
+            }
+        }
+        .onChange(of: viewModel.isNavigateChangePassword) { newValue in
+            withAnimation {
+                tabbarHidden.wrappedValue = newValue
+            }
+        }
         .navigate(
             to: changeProfileComponent.makeView(),
             when: $viewModel.isNavigateChangeProfile
+        )
+        .navigate(
+            to: checkPasswordComponent.makeView(),
+            when: $viewModel.isNavigateChangePassword
+        )
+        .navigate(
+            to: rewardPointDetailComponent.makeView(),
+            when: $viewModel.isNavigateRewardPointDetail
         )
     }
 
