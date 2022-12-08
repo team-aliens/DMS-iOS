@@ -28,6 +28,14 @@ public struct DMSShadow: ViewModifier {
                     color: colorScheme == .dark ? .GrayScale.gray9.opacity(0.08) : .GrayScale.gray9.opacity(0.1),
                     blur: 15
                 )
+
+        case .tabbar:
+            content
+                .shadow(
+                    color: colorScheme == .dark ? .GrayScale.gray5.opacity(0.14) : .GrayScale.gray5.opacity(0.20),
+                    y: 1,
+                    blur: 20
+                )
         }
     }
 }
