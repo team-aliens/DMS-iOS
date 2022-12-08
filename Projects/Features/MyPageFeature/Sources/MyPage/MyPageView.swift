@@ -147,11 +147,6 @@ struct MyPageView: View {
                 tabbarHidden.wrappedValue = newValue
             }
         }
-        .onChange(of: viewModel.isNavigateRewardPointDetail) { newValue in
-            withAnimation {
-                tabbarHidden.wrappedValue = newValue
-            }
-        }
         .onChange(of: viewModel.isNavigateChangePassword) { newValue in
             withAnimation {
                 tabbarHidden.wrappedValue = newValue
