@@ -73,9 +73,17 @@ struct MyPageView: View {
                     .padding(.top, 60)
 
                 HStack(spacing: 12) {
-                    rewardPointCardView(title: "상점", point: viewModel.profile?.bonusPoint ?? 0)
+                    RewardPointCardView(
+                        title: "상점",
+                        point: viewModel.profile?.bonusPoint ?? 0,
+                        rewardType: .bonusPoint
+                    )
 
-                    rewardPointCardView(title: "벌점", point: viewModel.profile?.minusPoint ?? 0)
+                    RewardPointCardView(
+                        title: "벌점",
+                        point: viewModel.profile?.minusPoint ?? 0,
+                        rewardType: .minusPoint
+                    )
                 }
 
                 VStack(alignment: .leading, spacing: 0) {
@@ -125,10 +133,10 @@ struct MyPageView: View {
                 Spacer()
             }
             .padding(.horizontal, 24)
-            .dmsBackground()
             .navigationTitle("마이페이지")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .dmsBackground()
         .onAppear(perform: viewModel.onAppear)
         .alert("", isPresented: $viewModel.isPresentedLogoutAlert) {
             Button("취소", role: .cancel) {}
@@ -154,36 +162,7 @@ struct MyPageView: View {
         .padding(.horizontal, 20)
         .background {
             Color.GrayScale.gray1
-                .dmsShadow()
-        }
-    }
-
-    @ViewBuilder
-    func rewardPointCardView(title: String, point: Int) -> some View {
-        VStack {
-            HStack {
-                Text(title)
-                    .dmsFont(.body(.body3), color: .GrayScale.gray6)
-
-                Spacer()
-            }
-            .padding(.top, 16)
-
-            HStack {
-                Spacer()
-
-                Text("\(point)")
-                    .dmsFont(.headline(.headline2), color: .GrayScale.gray6)
-            }
-            .padding(.bottom, 16)
-        }
-        .padding(.horizontal, 20)
-        .frame(maxWidth: .infinity)
-        .frame(height: 95)
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.PrimaryVariant.primary, lineWidth: 1)
-                .dmsShadow()
+                .dmsShadow(style: .surface)
         }
     }
 }
