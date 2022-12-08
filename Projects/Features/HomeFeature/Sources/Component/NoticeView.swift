@@ -31,6 +31,6 @@ struct NoticeView: View {
         .cornerRadius(100)
         .padding(.horizontal, 24)
         .padding(.top, 12)
-        .dmsShadow()
+        .dmsShadow(style: .surface)
     }
 }
