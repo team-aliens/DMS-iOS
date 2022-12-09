@@ -8,6 +8,7 @@ public struct DMSButtonStyle: ButtonStyle {
         case shortPaddingOutlined
         case text
         case underline
+        case rounded
     }
 
     var style: Style
@@ -32,6 +33,9 @@ public struct DMSButtonStyle: ButtonStyle {
 
         case .underline:
             return AnyView(UnderlineButton(configuration: configuration, color: color))
+
+        case .rounded:
+            return AnyView(RoundedButton(configuration: configuration, color: color))
         }
     }
 }
@@ -186,6 +190,46 @@ extension DMSButtonStyle {
                 .opacity(isEnabled ?
                          configuration.isPressed ? 0.7 : 1.0 :
                             0.5)
+        }
+    }
+}
+
+ // MARK: - Rounded
+extension DMSButtonStyle {
+    struct RoundedButton: View {
+        let configuration: ButtonStyle.Configuration
+        let color: Color
+        var containerColor: Color {
+            switch color {
+            case .System.primary:
+                return .System.primaryContainer
+
+            case .System.error:
+                return .System.errorContainer
+
+            case .System.surfaceTitle, .GrayScale.gray6:
+                return .GrayScale.gray2
+
+            default:
+                return .GrayScale.gray1
+            }
+        }
+
+        @Environment(\.isEnabled) private var isEnabled: Bool
+
+        var body: some View {
+            configuration.label
+                .padding(.vertical, 14)
+                .padding(.horizontal, 16)
+                .dmsFont(.etc(.button))
+                .background(color)
+                .foregroundColor(containerColor)
+                .cornerRadius(100)
+                .opacity(
+                    isEnabled ?
+                        configuration.isPressed ? 0.7 : 1.0 :
+                        0.5
+                )
         }
     }
 }
