@@ -201,10 +201,10 @@ extension DMSButtonStyle {
         let color: Color
         var containerColor: Color {
             switch color {
-            case .System.primary:
+            case .System.primary, .PrimaryVariant.primary:
                 return .System.primaryContainer
 
-            case .System.error:
+            case .System.error, .ErrorVariant.error:
                 return .System.errorContainer
 
             case .System.surfaceTitle, .GrayScale.gray6:
@@ -222,9 +222,9 @@ extension DMSButtonStyle {
                 .padding(.vertical, 14)
                 .padding(.horizontal, 16)
                 .dmsFont(.etc(.button))
-                .background(color)
-                .foregroundColor(containerColor)
-                .cornerRadius(100)
+                .background(containerColor)
+                .foregroundColor(color)
+                .clipShape(Capsule())
                 .opacity(
                     isEnabled ?
                         configuration.isPressed ? 0.7 : 1.0 :
