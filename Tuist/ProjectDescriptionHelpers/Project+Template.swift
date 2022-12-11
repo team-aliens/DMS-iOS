@@ -44,13 +44,13 @@ public extension Project {
         infoPlist: InfoPlist,
         hasDemoApp: Bool = false
     ) -> Project {
-        let isForDev = (ProcessInfo.processInfo.environment["TUIST_DEV"] ?? "0") == "1" ? true : false
-        let scripts: [TargetScript] = isForDev ? [.swiftLint] : []
+        let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? true : false
+        let scripts: [TargetScript] = isCI ? [] : [.swiftLint]
         let settings: Settings = .settings(
             base: Environment.baseSetting,
             configurations: [
-                .debug(name: .dev, xcconfig: .relativeToXCConfig(type: .dev, name: name)),
-                .release(name: .prod, xcconfig: .relativeToXCConfig(type: .prod, name: name))
+                .debug(name: .dev, xcconfig: isCI ? nil : .relativeToXCConfig(type: .dev, name: name)),
+                .release(name: .prod, xcconfig: isCI ? nil : .relativeToXCConfig(type: .prod, name: name))
             ], defaultSettings: .recommended)
         let appTarget = Target(
             name: name,
