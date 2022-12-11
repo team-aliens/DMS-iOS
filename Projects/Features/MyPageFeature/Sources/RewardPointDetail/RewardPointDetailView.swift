@@ -19,7 +19,7 @@ struct RewardPointDetailView: View {
                 ForEach(PointsType.allCases, id: \.self) { type in
                     DMSButton(
                         text: type.display,
-                        style: viewModel.pointsType == type ? .contained : .outlined,
+                        style: viewModel.pointsType == type ? .shortPaddingContained : .shortPaddingOutlined,
                         color: viewModel.pointsType == type ? .PrimaryVariant.primary : .GrayScale.gray6
                     ) {
                         withAnimation {
@@ -80,6 +80,6 @@ struct RewardPointDetailView: View {
             .padding(.horizontal, 16)
         }
         .frame(height: 68)
-        .shadow(color: .GrayScale.gray5.opacity(0.15), blur: 20)
+        .dmsShadow(style: .surface)
     }
 }
