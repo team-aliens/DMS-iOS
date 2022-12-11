@@ -61,11 +61,7 @@ struct MainTabView: View {
                                 .cornerRadius(24, corners: [.topLeft, .topRight])
                                 .ignoresSafeArea()
                         }
-                        .shadow(
-                            color: .GrayScale.gray5.opacity(0.24),
-                            y: 1,
-                            blur: 20
-                        )
+                    .dmsShadow(style: .tabbar)
                 }
             }
         }

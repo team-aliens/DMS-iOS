@@ -3,6 +3,7 @@ import SwiftUI
 
 struct MyPageView: View {
     @StateObject var viewModel: MyPageViewModel
+    @Environment(\.tabbarHidden) var tabbarHidden
 
     private let changeProfileComponent: ChangeProfileComponent
     private let rewardPointDetailComponent: RewardPointDetailComponent
@@ -73,16 +74,22 @@ struct MyPageView: View {
                     .padding(.top, 60)
 
                 HStack(spacing: 12) {
-                    rewardPointCardView(title: "상점", point: viewModel.profile?.bonusPoint ?? 0)
+                    RewardPointCardView(
+                        title: "상점",
+                        point: viewModel.profile?.bonusPoint ?? 0,
+                        rewardType: .bonusPoint
+                    )
 
-                    rewardPointCardView(title: "벌점", point: viewModel.profile?.minusPoint ?? 0)
+                    RewardPointCardView(
+                        title: "벌점",
+                        point: viewModel.profile?.minusPoint ?? 0,
+                        rewardType: .minusPoint
+                    )
                 }
 
                 VStack(alignment: .leading, spacing: 0) {
-                    NavigationLink {
-                        DeferView {
-                            rewardPointDetailComponent.makeView()
-                        }
+                    Button {
+                        viewModel.isNavigateRewardPointDetail.toggle()
                     } label: {
                         myPageOptionRowCardView(title: "상벌점 내역 확인")
                             .dmsFont(.body(.body2), color: .GrayScale.gray6)
@@ -92,10 +99,8 @@ struct MyPageView: View {
                     Divider()
                         .padding(.horizontal, 10)
 
-                    NavigationLink {
-                        DeferView {
-                            checkPasswordComponent.makeView()
-                        }
+                    Button {
+                        viewModel.isNavigateChangePassword.toggle()
                     } label: {
                         myPageOptionRowCardView(title: "비밀번호 변경")
                             .dmsFont(.body(.body2), color: .GrayScale.gray6)
@@ -125,10 +130,10 @@ struct MyPageView: View {
                 Spacer()
             }
             .padding(.horizontal, 24)
-            .dmsBackground()
             .navigationTitle("마이페이지")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .dmsBackground()
         .onAppear(perform: viewModel.onAppear)
         .alert("", isPresented: $viewModel.isPresentedLogoutAlert) {
             Button("취소", role: .cancel) {}
@@ -137,9 +142,27 @@ struct MyPageView: View {
             Text("정말 로그아웃 하시겠습니까?")
                 .dmsFont(.body(.body2), color: .GrayScale.gray6)
         }
+        .onChange(of: viewModel.isNavigateChangeProfile) { newValue in
+            withAnimation {
+                tabbarHidden.wrappedValue = newValue
+            }
+        }
+        .onChange(of: viewModel.isNavigateChangePassword) { newValue in
+            withAnimation {
+                tabbarHidden.wrappedValue = newValue
+            }
+        }
         .navigate(
             to: changeProfileComponent.makeView(),
             when: $viewModel.isNavigateChangeProfile
+        )
+        .navigate(
+            to: checkPasswordComponent.makeView(),
+            when: $viewModel.isNavigateChangePassword
+        )
+        .navigate(
+            to: rewardPointDetailComponent.makeView(),
+            when: $viewModel.isNavigateRewardPointDetail
         )
     }
 
@@ -154,36 +177,7 @@ struct MyPageView: View {
         .padding(.horizontal, 20)
         .background {
             Color.GrayScale.gray1
-                .dmsShadow()
-        }
-    }
-
-    @ViewBuilder
-    func rewardPointCardView(title: String, point: Int) -> some View {
-        VStack {
-            HStack {
-                Text(title)
-                    .dmsFont(.body(.body3), color: .GrayScale.gray6)
-
-                Spacer()
-            }
-            .padding(.top, 16)
-
-            HStack {
-                Spacer()
-
-                Text("\(point)")
-                    .dmsFont(.headline(.headline2), color: .GrayScale.gray6)
-            }
-            .padding(.bottom, 16)
-        }
-        .padding(.horizontal, 20)
-        .frame(maxWidth: .infinity)
-        .frame(height: 95)
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.PrimaryVariant.primary, lineWidth: 1)
-                .dmsShadow()
+                .dmsShadow(style: .surface)
         }
     }
 }

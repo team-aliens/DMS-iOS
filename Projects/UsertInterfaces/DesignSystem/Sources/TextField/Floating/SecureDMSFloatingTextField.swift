@@ -16,7 +16,7 @@ public struct SecureDMSFloatingTextField: View {
     }
     private var dmsForegroundColor: Color {
         isFocused ?
-            .PrimaryVariant.darken2 :
+            .PrimaryVariant.primary :
         isError ?
             .System.error :
             .GrayScale.gray5
@@ -40,7 +40,7 @@ public struct SecureDMSFloatingTextField: View {
         ZStack(alignment: .leading) {
             HStack {
                 Text(label)
-                    .dmsFont(.body(.body1), color: dmsForegroundColor)
+                    .dmsFont(.body(.body2), color: dmsForegroundColor)
                     .offset(y: isFloaintg ? -40 : isErrorAndNotEmpty ? -10 : 0)
                     .scaleEffect(isFloaintg ? 0.8 : 1, anchor: .topLeading)
                     .onTapGesture {

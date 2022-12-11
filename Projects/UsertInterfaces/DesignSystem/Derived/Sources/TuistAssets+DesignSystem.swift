@@ -17,13 +17,16 @@
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum DesignSystemAsset {
-  public enum Icons {
-    public static let pencil = DesignSystemImages(name: "pencil")
+  public enum ErrorColor {
+    public static let errorDarken1 = DesignSystemColors(name: "Error Darken-1")
+    public static let errorDarken2 = DesignSystemColors(name: "Error Darken-2")
+    public static let errorLighten1 = DesignSystemColors(name: "Error Lighten-1")
+    public static let errorLighten2 = DesignSystemColors(name: "Error Lighten-2")
+    public static let error = DesignSystemColors(name: "Error")
   }
-  public enum PrimaryColor {
-    public static let darken1 = DesignSystemColors(name: "Darken-1")
-    public static let darken2 = DesignSystemColors(name: "Darken-2")
+  public enum GrayColor {
     public static let gray1 = DesignSystemColors(name: "Gray 1")
+    public static let gray10 = DesignSystemColors(name: "Gray 10")
     public static let gray2 = DesignSystemColors(name: "Gray 2")
     public static let gray3 = DesignSystemColors(name: "Gray 3")
     public static let gray4 = DesignSystemColors(name: "Gray 4")
@@ -32,22 +35,34 @@ public enum DesignSystemAsset {
     public static let gray7 = DesignSystemColors(name: "Gray 7")
     public static let gray8 = DesignSystemColors(name: "Gray 8")
     public static let gray9 = DesignSystemColors(name: "Gray 9")
+  }
+  public enum Icons {
+    public static let pencil = DesignSystemImages(name: "pencil")
+  }
+  public enum PrimaryColor {
+    public static let darken1 = DesignSystemColors(name: "Darken-1")
+    public static let darken2 = DesignSystemColors(name: "Darken-2")
     public static let lighten1 = DesignSystemColors(name: "Lighten-1")
     public static let lighten2 = DesignSystemColors(name: "Lighten-2")
     public static let primary = DesignSystemColors(name: "Primary")
   }
   public enum SystemColor {
-    public static let backgrond = DesignSystemColors(name: "Backgrond")
-    public static let error = DesignSystemColors(name: "Error")
-    public static let iconActive = DesignSystemColors(name: "IconActive")
-    public static let iconInactive = DesignSystemColors(name: "IconInactive")
+    public static let background = DesignSystemColors(name: "Background")
+    public static let errorContainer = DesignSystemColors(name: "Error Container")
+    public static let icon = DesignSystemColors(name: "Icon")
     public static let line = DesignSystemColors(name: "Line")
-    public static let onBackground = DesignSystemColors(name: "OnBackground")
-    public static let onError = DesignSystemColors(name: "OnError")
-    public static let onPrimary = DesignSystemColors(name: "OnPrimary")
+    public static let onBackgroundVariantEtc = DesignSystemColors(name: "On Background Variant Etc")
+    public static let onBackgroundVariantText = DesignSystemColors(name: "On Background Variant Text")
+    public static let onBackground = DesignSystemColors(name: "On Background")
+    public static let onErrorContainer = DesignSystemColors(name: "On Error Container")
+    public static let onError = DesignSystemColors(name: "On Error")
+    public static let onPrimaryContainer = DesignSystemColors(name: "On Primary Container")
+    public static let onPrimary = DesignSystemColors(name: "On Primary")
+    public static let onSurfaceVariantEtc = DesignSystemColors(name: "On Surface Variant Etc")
+    public static let onSurfaceVariantText = DesignSystemColors(name: "On Surface Variant Text")
+    public static let onSurface = DesignSystemColors(name: "On Surface")
+    public static let primaryContainer = DesignSystemColors(name: "Primary Container")
     public static let surface = DesignSystemColors(name: "Surface")
-    public static let text = DesignSystemColors(name: "Text")
-    public static let title = DesignSystemColors(name: "Title")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

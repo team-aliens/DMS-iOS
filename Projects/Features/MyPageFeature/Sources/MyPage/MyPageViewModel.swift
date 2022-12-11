@@ -6,6 +6,8 @@ final class MyPageViewModel: BaseViewModel {
     @Published var profile: MyProfileEntity?
     @Published var isPresentedLogoutAlert = false
     @Published var isNavigateChangeProfile = false
+    @Published var isNavigateChangePassword = false
+    @Published var isNavigateRewardPointDetail = false
 
     private let fetchMyProfileUseCase: any FetchMyProfileUseCase
 

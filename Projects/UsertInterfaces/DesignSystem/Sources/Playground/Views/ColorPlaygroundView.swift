@@ -27,10 +27,10 @@ struct ColorPlaygroundView: View {
             .System.onError,
             .System.onPrimary,
             .System.onBackground,
-            .System.title,
-            .System.text,
-            .System.iconActive,
-            .System.iconInactive,
+            .System.backgroundTitle,
+            .System.backgroundText,
+            .System.surfaceTitle,
+            .System.surfaceText,
             .System.line
         ]
     ]
