@@ -64,6 +64,8 @@ private extension BaseRemoteDataSource {
                 .eraseToAnyPublisher()
         } else {
             return defaultRequest(api)
+                .retry(maxRetryCount)
+                .eraseToAnyPublisher()
         }
     }
 
@@ -72,7 +74,7 @@ private extension BaseRemoteDataSource {
     }
 
     func checkTokenIsExpired() -> Bool {
-        let expired = keychain.load(type: .expiredAt).toDMSDate()
+        let expired = keychain.load(type: .accessExpiredAt).toDMSDate()
         return Date() > expired
     }
 

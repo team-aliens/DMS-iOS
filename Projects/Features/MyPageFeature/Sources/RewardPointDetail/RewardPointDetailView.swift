@@ -45,9 +45,11 @@ struct RewardPointDetailView: View {
                             .padding(.top, 5)
                     }
                 }
-                .padding(.horizontal, 24)
             }
+            .padding(.horizontal, 24)
+            .frame(maxWidth: .infinity)
         }
+        .frame(maxWidth: .infinity)
         .dmsBackButton(dismiss: dismiss)
         .navigationTitle("상벌점 현황")
         .navigationBarTitleDisplayMode(.inline)
