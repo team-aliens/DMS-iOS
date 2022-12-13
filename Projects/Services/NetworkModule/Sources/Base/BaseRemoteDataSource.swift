@@ -19,8 +19,8 @@ public class BaseRemoteDataSource<API: DmsAPI> {
     ) {
         self.keychain = keychain
 
-        #if DEBUG
-        self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(keychain: keychain), NetworkLoggerPlugin()])
+        #if DEV
+        self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(keychain: keychain), CustomLoggingPlugin()])
         #else
         self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(keychain: keychain)])
         #endif
