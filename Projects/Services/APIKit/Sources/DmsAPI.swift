@@ -10,7 +10,9 @@ public protocol DmsAPI: TargetType, JwtAuthorizable {
 
 public extension DmsAPI {
     var baseURL: URL {
-        URL(string: "http://3.39.162.197:8080")!
+        URL(
+            string: Bundle.main.object(forInfoDictionaryKey: "BASE_URL") as? String ?? ""
+        ) ?? URL(string: "https://www.google.com")!
     }
 
     var path: String {
