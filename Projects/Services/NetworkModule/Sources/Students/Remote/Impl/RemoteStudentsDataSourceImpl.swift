@@ -30,8 +30,8 @@ public final class RemoteStudentsDataSourceImpl: BaseRemoteDataSource<StudentsAP
     public func checkExistGradeClassNumber(
         req: CheckExistGradeClassNumberRequestDTO
     ) -> AnyPublisher<String, DmsError> {
-        request(.checkExistGradeClassNumber(req), dto: CheckAccountIDIsExistResponseDTO.self)
-            .map(\.email)
+        request(.checkExistGradeClassNumber(req), dto: CheckExistGradeClassNumberResponseDTO.self)
+            .map(\.name)
             .eraseToAnyPublisher()
     }
 

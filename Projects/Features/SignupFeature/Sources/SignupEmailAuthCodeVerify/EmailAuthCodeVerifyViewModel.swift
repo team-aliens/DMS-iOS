@@ -41,7 +41,9 @@ final class SignupEmailAuthCodeVerifyViewModel: BaseViewModel {
         }
 
         addCancellable(
-            $authCode.setFailureType(to: DmsError.self).eraseToAnyPublisher()
+            $authCode.setFailureType(to: DmsError.self)
+                .debounce(for: 0.5, scheduler: RunLoop.main)
+                .eraseToAnyPublisher()
         ) { [weak self] code in
             if code.count == 6 {
                 self?.verifyEmailAuthCode()
@@ -50,9 +52,11 @@ final class SignupEmailAuthCodeVerifyViewModel: BaseViewModel {
     }
 
     func sendEmailAuthCode() {
+        let email = signupEmailAuthCodeVerifyParam.email
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         addCancellable(
             sendAuthCodeUseCase.execute(
-                req: .init(email: signupEmailAuthCodeVerifyParam.email, type: .signup)
+                req: .init(email: email, type: .signup)
             )
         ) { [weak self] _ in
             self?.authCode = ""
@@ -63,12 +67,17 @@ final class SignupEmailAuthCodeVerifyViewModel: BaseViewModel {
     }
 
     func verifyEmailAuthCode() {
+        guard authCode.count >= 6 else { return }
+        let email = signupEmailAuthCodeVerifyParam.email
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         addCancellable(
             verifyAuthCodeUseCase.execute(
-                req: .init(email: signupEmailAuthCodeVerifyParam.email, authCode: authCode, type: .signup)
+                req: .init(email: email, authCode: authCode, type: .signup)
             )
         ) { [weak self] _ in
-            self?.isNavigateSignupID = true
+            if self?.isNavigateSignupID == false {
+                self?.isNavigateSignupID = true
+            }
         } onReceiveError: { [weak self] _ in
             self?.authCode = ""
         }

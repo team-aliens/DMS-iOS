@@ -157,7 +157,8 @@ extension StudentsAPI: DmsAPI {
         case .checkExistGradeClassNumber:
             return [
                 400: .badRequest,
-                403: .notFoundGradeClassNumber,
+                404: .notFoundGradeClassNumber,
+                409: .alreadyExistUserBySignup,
                 500: .internalServerError
             ]
 

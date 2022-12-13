@@ -76,6 +76,7 @@ struct IDSettingView: View {
                         }
                         .padding(.trailing, 20)
                     }
+                    .animation(.default, value: viewModel.isShowingCheckStudent)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background {
@@ -119,6 +120,7 @@ struct IDSettingView: View {
         .padding(.horizontal, 24)
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
+        .dmsToast(isShowing: $viewModel.isShowingErrorToast, message: viewModel.errorToastMessage, style: .error)
         .navigate(
             to: signupPasswordComponent.makeView(
                 signupPasswordParam: .init(
