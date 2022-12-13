@@ -6,8 +6,8 @@ import DataModule
 public extension AppComponent {
     var remotePointsDataSource: any RemotePointsDataSource {
         shared {
-            RemotePointsDataSourceStub()
-//            RemotePointsDataSourceImpl(keychain: keychain)
+//            RemotePointsDataSourceStub()
+            RemotePointsDataSourceImpl(keychain: keychain)
         }
     }
 
