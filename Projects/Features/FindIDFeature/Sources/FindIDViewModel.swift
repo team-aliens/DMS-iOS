@@ -13,6 +13,8 @@ final class FIndIDViewModel: BaseViewModel {
     @Published var schoolList: [SchoolEntity] =  []
     @Published var isNavigateSignup = false
     @Published var isSuccessFindID = false
+    @Published var isShowingToast = false
+    @Published var toastMessage = ""
 
     var isFindEnabled: Bool {
         !schoolID.isEmpty && !name.isEmpty && !grade.isEmpty && !classRoom.isEmpty && !number.isEmpty

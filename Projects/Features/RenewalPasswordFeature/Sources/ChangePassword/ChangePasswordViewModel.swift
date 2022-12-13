@@ -14,6 +14,7 @@ final class ChangePasswordViewModel: BaseViewModel {
     @Published var isPasswordMismatchedError = false
     @Published var isSuccessRenewalPassword = false
     @Published var isShowingToast = false
+    @Published var toastMessage = ""
 
     var isRenewalPasswordEnabled: Bool {
         !password.isEmpty && !passwordCheck.isEmpty

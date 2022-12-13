@@ -118,8 +118,7 @@ struct IDSettingView: View {
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
         .dmsBackground()
-        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
-        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: viewModel.toastStyle)
+        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .navigate(
             to: signupPasswordComponent.makeView(
                 signupPasswordParam: .init(

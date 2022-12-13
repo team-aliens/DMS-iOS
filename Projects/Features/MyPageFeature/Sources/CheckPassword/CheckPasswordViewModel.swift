@@ -9,6 +9,7 @@ final class CheckPasswordViewModel: BaseViewModel {
     @Published var isPasswordRegexError = false
     @Published var isSuccessCheckPassword = false
     @Published var isShowingToast = false
+    @Published var toastMessage = ""
 
     var isCheckPasswordEnabled: Bool {
         !password.isEmpty

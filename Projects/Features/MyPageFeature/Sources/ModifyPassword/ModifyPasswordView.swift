@@ -68,7 +68,7 @@ struct ModifyPasswordView: View {
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
         .dmsBackground()
-        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.errorMessage, style: .error)
+        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .onChange(of: viewModel.isSuccessRenewalPassword) { newValue in
             if newValue {
