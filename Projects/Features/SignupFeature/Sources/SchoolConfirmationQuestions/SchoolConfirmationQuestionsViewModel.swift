@@ -4,6 +4,8 @@ import DomainModule
 
 final class SchoolConfirmationQuestionsViewModel: BaseViewModel {
     @Published var question = "질문을 가져오는 중입니다..!"
+    @Published var isShowingToast = false
+    @Published var toastMessage = ""
     @Published var answer = "" {
         didSet { isErrorOcuured = false }
     }

@@ -63,7 +63,7 @@ struct SchoolConfirmationQuestionsView: View {
             .padding(.top, 24)
             .padding(.bottom, 40)
         }
-        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
         .dmsBackground()
