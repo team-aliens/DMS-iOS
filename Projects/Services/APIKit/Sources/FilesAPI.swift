@@ -25,7 +25,8 @@ extension FilesAPI: DmsAPI {
             return .uploadMultipart([
                 .init(
                     provider: .data(data),
-                    name: "file"
+                    name: "file",
+                    fileName: "\(UUID().uuidString).png"
                 )
             ])
         }

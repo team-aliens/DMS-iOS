@@ -14,7 +14,7 @@ extension PointsAPI: DmsAPI {
     public var urlPath: String {
         switch self {
         case .fetchPointsList:
-            return "/"
+            return ""
         }
     }
 

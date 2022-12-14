@@ -13,6 +13,7 @@ final class ModifyPasswordViewModel: BaseViewModel {
     @Published var isPasswordMismatchedError = false
     @Published var isSuccessRenewalPassword = false
     @Published var isShowingToast = false
+    @Published var toastMessage = ""
 
     var iChangePasswordEnabled: Bool {
         !password.isEmpty && !passwordCheck.isEmpty

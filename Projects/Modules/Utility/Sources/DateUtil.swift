@@ -4,14 +4,14 @@ public extension String {
     func toDMSDate() -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.locale = Locale(identifier: "ko_kr")
         return formatter.date(from: self) ?? .init()
     }
 
     func toSmallDMSDate() -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.locale = Locale(identifier: "ko_kr")
         return formatter.date(from: self) ?? .init()
     }
 }
@@ -20,14 +20,14 @@ public extension Date {
     func toDMSDateString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        formatter.timeZone = .init(identifier: "UTC")
+        formatter.locale = Locale(identifier: "ko_kr")
         return formatter.string(from: self)
     }
 
     func toSmallDMSDateString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = .init(identifier: "UTC")
+        formatter.locale = Locale(identifier: "ko_kr")
         return formatter.string(from: self)
     }
 
@@ -53,7 +53,7 @@ public extension Date {
     func dayOfWeek() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEEEE"
-        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.locale = Locale(identifier: "ko_kr")
         return formatter.string(from: self)
     }
 }

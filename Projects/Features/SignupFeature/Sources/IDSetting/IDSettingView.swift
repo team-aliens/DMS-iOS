@@ -76,6 +76,7 @@ struct IDSettingView: View {
                         }
                         .padding(.trailing, 20)
                     }
+                    .animation(.default, value: viewModel.isShowingCheckStudent)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background {
@@ -118,8 +119,8 @@ struct IDSettingView: View {
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
         .dmsBackground()
-        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
-        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: viewModel.toastStyle)
+        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
+        .dmsToast(isShowing: $viewModel.isShowingErrorToast, message: viewModel.errorToastMessage, style: .error)
         .navigate(
             to: signupPasswordComponent.makeView(
                 signupPasswordParam: .init(

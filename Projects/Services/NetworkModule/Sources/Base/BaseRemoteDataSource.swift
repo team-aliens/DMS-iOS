@@ -19,8 +19,8 @@ public class BaseRemoteDataSource<API: DmsAPI> {
     ) {
         self.keychain = keychain
 
-        #if DEBUG
-        self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(keychain: keychain), NetworkLoggerPlugin()])
+        #if DEV
+        self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(keychain: keychain), CustomLoggingPlugin()])
         #else
         self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(keychain: keychain)])
         #endif
@@ -64,6 +64,8 @@ private extension BaseRemoteDataSource {
                 .eraseToAnyPublisher()
         } else {
             return defaultRequest(api)
+                .retry(maxRetryCount)
+                .eraseToAnyPublisher()
         }
     }
 
@@ -72,7 +74,7 @@ private extension BaseRemoteDataSource {
     }
 
     func checkTokenIsExpired() -> Bool {
-        let expired = keychain.load(type: .expiredAt).toDMSDate()
+        let expired = keychain.load(type: .accessExpiredAt).toDMSDate()
         return Date() > expired
     }
 

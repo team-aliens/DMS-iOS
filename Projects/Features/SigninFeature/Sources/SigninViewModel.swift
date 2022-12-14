@@ -7,6 +7,9 @@ final class SigninViewModel: BaseViewModel {
     @Published var password = ""
     @Published var isOnAutoSignin = true
     @Published var isSuccessSignin = false
+    @Published var isShowingToast = false
+    @Published var toastMessage = ""
+
     var isSigninEnabled: Bool {
         !id.isEmpty && !password.isEmpty
     }

@@ -22,6 +22,10 @@ public extension DmsAPI {
     var headers: [String: String]? {
         ["Content-Type": "application/json"]
     }
+
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }
 
 public enum DmsDomain: String {

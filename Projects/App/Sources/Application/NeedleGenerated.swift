@@ -68,11 +68,11 @@ private func factoryb65c1efbf06b87162473f47b58f8f304c97af4d5(_ component: Needle
     return SchoolCodeDependencyc0114744c1c8c7843672Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class IDSettingDependency8007dfdeec0db237b896Provider: IDSettingDependency {
-    var checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase {
-        return appComponent.checkAccountIDIsExistUseCase
-    }
     var checkExistGradeClassNumberUseCase: any CheckExistGradeClassNumberUseCase {
         return appComponent.checkExistGradeClassNumberUseCase
+    }
+    var checkDuplicateAccountIDUseCase: any CheckDuplicateAccountIDUseCase {
+        return appComponent.checkDuplicateAccountIDUseCase
     }
     var signupPasswordComponent: SignupPasswordComponent {
         return appComponent.signupPasswordComponent
@@ -508,8 +508,8 @@ extension SchoolCodeComponent: Registration {
 }
 extension IDSettingComponent: Registration {
     public func registerItems() {
-        keyPathToName[\IDSettingDependency.checkAccountIDIsExistUseCase] = "checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"
         keyPathToName[\IDSettingDependency.checkExistGradeClassNumberUseCase] = "checkExistGradeClassNumberUseCase-any CheckExistGradeClassNumberUseCase"
+        keyPathToName[\IDSettingDependency.checkDuplicateAccountIDUseCase] = "checkDuplicateAccountIDUseCase-any CheckDuplicateAccountIDUseCase"
         keyPathToName[\IDSettingDependency.signupPasswordComponent] = "signupPasswordComponent-SignupPasswordComponent"
     }
 }

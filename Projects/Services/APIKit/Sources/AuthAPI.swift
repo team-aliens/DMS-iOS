@@ -56,7 +56,7 @@ extension AuthAPI: DmsAPI {
 
         case let .verifyAuthCode(req):
             return .requestParameters(parameters: [
-                "email": req.email,
+                "email": req.email.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
                 "auth_code": req.authCode,
                 "type": req.type.rawValue
             ], encoding: URLEncoding.queryString)

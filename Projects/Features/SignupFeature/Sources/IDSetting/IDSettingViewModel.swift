@@ -6,13 +6,22 @@ import Utility
 
 final class IDSettingViewModel: BaseViewModel {
     @Published var grade = "" {
-        didSet { isCheckedStudent = false }
+        didSet {
+            isCheckedStudent = false
+            resettingError()
+        }
     }
     @Published var group = "" {
-        didSet { isCheckedStudent = false }
+        didSet {
+            isCheckedStudent = false
+            resettingError()
+        }
     }
     @Published var number = "" {
-        didSet { isCheckedStudent = false }
+        didSet {
+            isCheckedStudent = false
+            resettingError()
+        }
     }
     @Published var id = "" {
         didSet { resettingError() }
@@ -22,7 +31,9 @@ final class IDSettingViewModel: BaseViewModel {
     @Published var isInvalidIDError = false
     @Published var isCheckedStudent = false
     @Published var isShowingToast = false
+    @Published var isShowingErrorToast = false
     @Published var toastMessage = ""
+    @Published var errorToastMessage = ""
     @Published var toastStyle: DmsToastStyle = .info
     @Published var isNavigateSignupPassword = false
 
@@ -31,16 +42,16 @@ final class IDSettingViewModel: BaseViewModel {
         || (isCheckedStudent && !grade.isEmpty && !group.isEmpty && !number.isEmpty && !id.isEmpty)
     }
 
-    private let checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase
     private let checkExistGradeClassNumberUseCase: any CheckExistGradeClassNumberUseCase
+    private let checkDuplicateAccountIDUseCase: any CheckDuplicateAccountIDUseCase
     let idSettingParam: IDSettingParam
 
     init(
-        checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase,
+        checkDuplicateAccountIDUseCase: any CheckDuplicateAccountIDUseCase,
         checkExistGradeClassNumberUseCase: any CheckExistGradeClassNumberUseCase,
         idSettingParam: IDSettingParam
     ) {
-        self.checkAccountIDIsExistUseCase = checkAccountIDIsExistUseCase
+        self.checkDuplicateAccountIDUseCase = checkDuplicateAccountIDUseCase
         self.checkExistGradeClassNumberUseCase = checkExistGradeClassNumberUseCase
         self.idSettingParam = idSettingParam
     }
@@ -67,6 +78,9 @@ final class IDSettingViewModel: BaseViewModel {
             ) { [weak self] name in
                 self?.checkedName = name
                 self?.isShowingCheckStudent = true
+            } onReceiveError: { [weak self] error in
+                self?.isShowingErrorToast = true
+                self?.errorToastMessage = error.localizedDescription
             }
             return
         }
@@ -76,7 +90,7 @@ final class IDSettingViewModel: BaseViewModel {
         }
 
         addCancellable(
-            checkAccountIDIsExistUseCase.execute(id: id)
+            checkDuplicateAccountIDUseCase.execute(id: id)
         ) { [weak self] _ in
             self?.isNavigateSignupPassword = true
         } onReceiveError: { [weak self] _ in
