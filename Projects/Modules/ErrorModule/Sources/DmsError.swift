@@ -35,6 +35,9 @@ public enum DmsError: Error {
 
     // MARK: - Users
     case currentPasswordMismatch
+
+    // MARK: - StudyRooms
+    case seatIsAlreadyExist
 }
 
 extension DmsError: LocalizedError {
@@ -105,6 +108,10 @@ extension DmsError: LocalizedError {
         // MARK: - Users
         case .currentPasswordMismatch:
             return "유효하지 않은 비밀번호입니다."
+
+        // MARK: - StudyRooms
+        case .seatIsAlreadyExist:
+            return "이미 신청된 자리입니다"
         }
     }
 }
