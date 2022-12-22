@@ -426,6 +426,14 @@ extension AppComponent: Registration {
     public func registerItems() {
 
         localTable["keychain-any Keychain"] = { self.keychain as Any }
+        localTable["remoteStudyRoomsDataSource-any RemoteStudyRoomsDataSource"] = { self.remoteStudyRoomsDataSource as Any }
+        localTable["studyRoomsRepository-any StudyRoomsRepository"] = { self.studyRoomsRepository as Any }
+        localTable["fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"] = { self.fetchStudyAvailableTimeUseCase as Any }
+        localTable["fetchSeatTypesUseCase-any FetchSeatTypesUseCase"] = { self.fetchSeatTypesUseCase as Any }
+        localTable["fetchStudyRoomListUseCase-any FetchStudyRoomListUseCase"] = { self.fetchStudyRoomListUseCase as Any }
+        localTable["fetchDetailStudyRoomUseCase-any FetchDetailStudyRoomUseCase"] = { self.fetchDetailStudyRoomUseCase as Any }
+        localTable["applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"] = { self.applyStudyRoomSeatUseCase as Any }
+        localTable["cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"] = { self.cancelStudyRoomSeatUseCase as Any }
         localTable["remoteAuthDataSource-any RemoteAuthDataSource"] = { self.remoteAuthDataSource as Any }
         localTable["authRepository-any AuthRepository"] = { self.authRepository as Any }
         localTable["signinUseCase-any SigninUseCase"] = { self.signinUseCase as Any }
