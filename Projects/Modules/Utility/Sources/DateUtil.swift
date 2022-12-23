@@ -14,6 +14,13 @@ public extension String {
         formatter.locale = Locale(identifier: "ko_kr")
         return formatter.date(from: self) ?? .init()
     }
+
+    func toDMSTime() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:MM:dd"
+        formatter.locale = Locale(identifier: "ko_kr")
+        return formatter.date(from: self) ?? .init()
+    }
 }
 
 public extension Date {

@@ -38,6 +38,7 @@ public enum DmsDomain: String {
     case schools
     case points
     case users
+    case studyRooms = "study-rooms"
 }
 
 extension DmsDomain {
