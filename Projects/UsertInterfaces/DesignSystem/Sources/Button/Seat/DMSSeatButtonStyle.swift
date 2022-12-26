@@ -43,6 +43,8 @@ extension DMSSeatButtonStyle {
                     .dmsFont(.etc(.overline), color: .GrayScale.gray1)
             }
             .frame(width: 40, height: 40)
+            .dmsShadow(style: .surface)
+
         }
     }
 }
@@ -62,6 +64,8 @@ extension DMSSeatButtonStyle {
                     .dmsFont(.etc(.overline), color: .GrayScale.gray1)
             }
             .frame(width: 40, height: 40)
+            .dmsShadow(style: .surface)
+
         }
     }
 }
@@ -82,6 +86,8 @@ extension DMSSeatButtonStyle {
                     .dmsFont(.etc(.overline), color: .GrayScale.gray1)
             }
             .frame(width: 40, height: 40)
+            .dmsShadow(style: .surface)
+
         }
     }
 }
@@ -95,10 +101,10 @@ extension DMSSeatButtonStyle {
                     .foregroundColor(.clear)
             }
             .frame(width: 40, height: 40)
+
         }
     }
 }
-
 
 // MARK: - IsSelect
 extension DMSSeatButtonStyle {
@@ -115,6 +121,7 @@ extension DMSSeatButtonStyle {
                     .dmsFont(.etc(.overline), color: .GrayScale.gray7)
             }
             .frame(width: 40, height: 40)
+            .dmsShadow(style: .surface)
         }
     }
 }
