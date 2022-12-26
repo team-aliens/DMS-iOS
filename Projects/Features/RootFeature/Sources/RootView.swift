@@ -2,19 +2,23 @@ import BaseFeature
 import SwiftUI
 import SigninFeature
 import MainTabFeature
+import SplashFeature
 
 struct RootView: View {
     @EnvironmentObject var appState: AppState
 
     private let signinComponent: SigninComponent
     private let mainTabComponent: MainTabComponent
+    private let splashComponent: SplashComponent
 
     public init(
         signinComponent: SigninComponent,
-        mainTabComponent: MainTabComponent
+        mainTabComponent: MainTabComponent,
+        splashComponent: SplashComponent
     ) {
         self.signinComponent = signinComponent
         self.mainTabComponent = mainTabComponent
+        self.splashComponent = splashComponent
     }
 
     var body: some View {
@@ -29,14 +33,8 @@ struct RootView: View {
                     .environmentObject(appState)
 
             case .splash:
-                VStack {
-                    Text("대충 스플래시")
-                }
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        appState.sceneFlow = .auth
-                    }
-                }
+                splashComponent.makeView()
+                    .environmentObject(appState)
             }
         }
         .animation(.easeInOut, value: appState.sceneFlow)

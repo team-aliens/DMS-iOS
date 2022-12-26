@@ -17,6 +17,7 @@ import RenewalPasswordFeature
 import RootFeature
 import SigninFeature
 import SignupFeature
+import SplashFeature
 import SwiftUI
 
 // swiftlint:disable unused_declaration
@@ -32,6 +33,19 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 
 #if !NEEDLE_DYNAMIC
 
+private class SplashDependencye0cb7136f2ec3edfd60aProvider: SplashDependency {
+    var reissueTokenUseCase: any ReissueTokenUseCase {
+        return appComponent.reissueTokenUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->SplashComponent
+private func factoryace9f05f51d68f4c0677f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SplashDependencye0cb7136f2ec3edfd60aProvider(appComponent: parent1(component) as! AppComponent)
+}
 private class SchoolConfirmationQuestionsDependency3fa2ccd12da7c7f5cfc1Provider: SchoolConfirmationQuestionsDependency {
     var checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase {
         return appComponent.checkSchoolQuestionUseCase
@@ -272,6 +286,9 @@ private class RootDependency3944cc797a4a88956fb5Provider: RootDependency {
     var mainTabComponent: MainTabComponent {
         return appComponent.mainTabComponent
     }
+    var splashComponent: SplashComponent {
+        return appComponent.splashComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -445,6 +462,7 @@ extension AppComponent: Registration {
         localTable["schoolCodeComponent-SchoolCodeComponent"] = { self.schoolCodeComponent as Any }
         localTable["findIDComponent-FindIDComponent"] = { self.findIDComponent as Any }
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
+        localTable["splashComponent-SplashComponent"] = { self.splashComponent as Any }
         localTable["schoolConfirmationQuestionsComponent-SchoolConfirmationQuestionsComponent"] = { self.schoolConfirmationQuestionsComponent as Any }
         localTable["signupEmailVerifyComponent-SignupEmailVerifyComponent"] = { self.signupEmailVerifyComponent as Any }
         localTable["signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"] = { self.signupEmailAuthCodeVerifyComponent as Any }
@@ -499,6 +517,11 @@ extension AppComponent: Registration {
         localTable["fetchSchoolQuestionUseCase-any FetchSchoolQuestionUseCase"] = { self.fetchSchoolQuestionUseCase as Any }
         localTable["checkSchoolQuestionUseCase-any CheckSchoolQuestionUseCase"] = { self.checkSchoolQuestionUseCase as Any }
         localTable["checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"] = { self.checkSchoolCodeUseCase as Any }
+    }
+}
+extension SplashComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\SplashDependency.reissueTokenUseCase] = "reissueTokenUseCase-any ReissueTokenUseCase"
     }
 }
 extension SchoolConfirmationQuestionsComponent: Registration {
@@ -592,6 +615,7 @@ extension RootComponent: Registration {
     public func registerItems() {
         keyPathToName[\RootDependency.signinComponent] = "signinComponent-SigninComponent"
         keyPathToName[\RootDependency.mainTabComponent] = "mainTabComponent-MainTabComponent"
+        keyPathToName[\RootDependency.splashComponent] = "splashComponent-SplashComponent"
     }
 }
 extension SigninComponent: Registration {
@@ -664,6 +688,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 @inline(never) private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
+    registerProviderFactory("^->AppComponent->SplashComponent", factoryace9f05f51d68f4c0677f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolCodeComponent", factoryb65c1efbf06b87162473f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->IDSettingComponent", factory8b3573203ea51120dc5af47b58f8f304c97af4d5)
