@@ -28,7 +28,7 @@ extension StudyRoomsAPI: DmsAPI {
             return "/list/students"
 
         case let .fetchDetailStudyRoom(id):
-            return "\(id)/students"
+            return "/\(id)/students"
 
         case let .applyStudyRoomSeat(id):
             return "/seats/\(id)"
