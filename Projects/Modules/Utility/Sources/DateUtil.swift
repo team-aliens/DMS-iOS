@@ -31,6 +31,13 @@ public extension Date {
         return formatter.string(from: self)
     }
 
+    func toSmallDMSTimeString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        formatter.locale = Locale(identifier: "ko_kr")
+        return formatter.string(from: self)
+    }
+
     func toSmallDMSDateString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
