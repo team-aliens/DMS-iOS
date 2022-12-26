@@ -11,6 +11,7 @@ import HomeFeature
 import ApplyFeature
 import MyPageFeature
 import NoticeFeature
+import SplashFeature
 
 public final class AppComponent: BootstrapComponent {
     public func makeRootView() -> some View {
@@ -40,6 +41,9 @@ public extension AppComponent {
     }
     var signinComponent: SigninComponent {
         SigninComponent(parent: self)
+    }
+    var splashComponent: SplashComponent {
+        SplashComponent(parent: self)
     }
     var schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent {
         SchoolConfirmationQuestionsComponent(parent: self)

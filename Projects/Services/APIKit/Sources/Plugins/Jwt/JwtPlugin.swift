@@ -17,7 +17,7 @@ public struct JwtPlugin: PluginType {
               jwtTokenType != .none
         else { return request }
         var req = request
-        let token = "Bearer \(getToken(type: jwtTokenType == .accessToken ? .accessToken : .refreshToken))"
+        let token = "\(getToken(type: jwtTokenType == .accessToken ? .accessToken : .refreshToken))"
 
         req.addValue(token, forHTTPHeaderField: jwtTokenType.rawValue)
         return req
@@ -42,7 +42,7 @@ private extension JwtPlugin {
     func getToken(type: KeychainType) -> String {
         switch type {
         case .accessToken:
-            return keychain.load(type: .accessToken)
+            return "Bearer \(keychain.load(type: .accessToken))"
 
         case .refreshToken:
             return keychain.load(type: .refreshToken)
