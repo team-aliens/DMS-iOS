@@ -22,7 +22,7 @@ extension StudyRoomsAPI: DmsAPI {
             return "/available-time"
 
         case .fetchSeatTypes:
-            return "types"
+            return "/types"
 
         case .fetchStudyRoomList:
             return "/list/students"
