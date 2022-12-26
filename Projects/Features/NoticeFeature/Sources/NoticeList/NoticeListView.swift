@@ -55,6 +55,9 @@ struct NoticeListView: View {
             .navigationTitle("공지")
             .navigationBarTitleDisplayMode(.inline)
             .dmsBackground()
+            .onAppear {
+                viewModel.onAppear()
+            }
         }
     }
 

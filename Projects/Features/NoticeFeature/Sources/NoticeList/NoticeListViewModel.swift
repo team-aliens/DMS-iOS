@@ -15,11 +15,9 @@ final class NoticeListViewModel: BaseViewModel {
         fetchNoticeListUseCase: any FetchNoticeListUseCase
     ) {
         self.fetchNoticeListUseCase = fetchNoticeListUseCase
-        super.init()
-        fetchNoticeList()
     }
 
-    func fetchNoticeList() {
+    func onAppear() {
         addCancellable(
             fetchNoticeListUseCase.execute(
                 order: noticeOrderType
@@ -31,6 +29,6 @@ final class NoticeListViewModel: BaseViewModel {
 
     func orderTypeButtonDidTap() {
         self.noticeOrderType = noticeOrderType == .new ? .old : .new
-        fetchNoticeList()
+        onAppear()
     }
 }

@@ -37,5 +37,8 @@ struct NoticeDetailView: View {
         .padding(.horizontal, 24)
         .dmsBackground()
         .dmsBackButton(dismiss: dismiss)
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
