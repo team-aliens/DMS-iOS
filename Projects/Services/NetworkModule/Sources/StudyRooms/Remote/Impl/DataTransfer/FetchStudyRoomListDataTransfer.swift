@@ -14,7 +14,7 @@ public extension SingleStudyRoomResponseDTO {
             floor: floor,
             name: name,
             availableGrade: availableGrade,
-            availableSex: availableSex,
+            availableSex: AvailableSexType(rawValue: availableSex) ?? .all,
             inUseHeadcount: inUseHeadcount,
             totalAvailableSeat: totalAvailableSeat,
             isMine: isMine
