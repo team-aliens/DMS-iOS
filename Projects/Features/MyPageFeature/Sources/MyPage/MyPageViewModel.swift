@@ -8,13 +8,17 @@ final class MyPageViewModel: BaseViewModel {
     @Published var isNavigateChangeProfile = false
     @Published var isNavigateChangePassword = false
     @Published var isNavigateRewardPointDetail = false
+    @Published var isSuccessLogout = false
 
     private let fetchMyProfileUseCase: any FetchMyProfileUseCase
+    private let logoutUseCase: any LogoutUseCase
 
     public init(
-        fetchMyProfileUseCase: any FetchMyProfileUseCase
+        fetchMyProfileUseCase: any FetchMyProfileUseCase,
+        logoutUseCase: any LogoutUseCase
     ) {
         self.fetchMyProfileUseCase = fetchMyProfileUseCase
+        self.logoutUseCase = logoutUseCase
     }
 
     func onAppear() {
@@ -29,7 +33,10 @@ final class MyPageViewModel: BaseViewModel {
         isPresentedLogoutAlert = true
     }
 
-    func confirmLogoutButtonDidTap() {}
+    func confirmLogoutButtonDidTap() {
+        logoutUseCase.execute()
+        isSuccessLogout = true
+    }
 
     func profileImageDidTap() {
         isNavigateChangeProfile = true
