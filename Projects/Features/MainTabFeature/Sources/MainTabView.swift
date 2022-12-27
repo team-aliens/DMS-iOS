@@ -40,7 +40,7 @@ struct MainTabView: View {
                 homeComponent.makeView()
                     .tag(TabFlow.home)
 
-                applyComponent.makeView(studyRoomID: "730915bf-82b5-11ed-b4c1-05a58ffb7e9b")
+                applyComponent.makeView(studyRoomID: "956e86a9-85ca-11ed-973c-27c0200c5ff2")
                     .tag(TabFlow.apply)
 
                 noticeComponent.makeView()

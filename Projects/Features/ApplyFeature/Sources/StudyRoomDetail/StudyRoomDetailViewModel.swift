@@ -20,6 +20,7 @@ final class StudyRoomDetailViewModel: BaseViewModel {
         seats: []
     )
     @Published var seatTypes: [SeatTypeEntity] = []
+    @Published var seat: [[SeatEntity]] = [[]]
     @Published var availableTime: String = ""
 
     var studyRoomID: String
@@ -81,5 +82,20 @@ final class StudyRoomDetailViewModel: BaseViewModel {
         ) { [weak self] detailStudyRoom in
             self?.studyRoomDetail = detailStudyRoom
         }
+    }
+
+    func detailRoomSeatTwoDimensional() {
+        let width = self.studyRoomDetail.totalWidthSize
+        let height = self.studyRoomDetail.totalHeightSize
+        let beforeSeat = self.studyRoomDetail.seats
+        var totalCount = 0
+
+        for widthCount in 0..<width {
+            for heightCount in 0..<height {
+                self.seat[widthCount+1][heightCount+1] = beforeSeat[totalCount]
+                totalCount += 1
+            }
+        }
+        totalCount = 0
     }
 }
