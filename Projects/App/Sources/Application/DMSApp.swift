@@ -4,6 +4,7 @@ import BaseFeature
 import FindIDFeature
 import SigninFeature
 import SignupFeature
+import ApplyFeature
 
 @main
 struct DMSApp: App {

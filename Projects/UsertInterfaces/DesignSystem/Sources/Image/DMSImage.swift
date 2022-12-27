@@ -9,6 +9,7 @@ fileprivate extension DesignSystemImages {
 public struct DMSImage: View {
     public enum Image {
         case pencil
+        case logoHorizontal
     }
 
     private var image: Image
@@ -28,11 +29,13 @@ public struct DMSImage: View {
             .renderingMode(renderingMode)
     }
 
-    @ViewBuilder
     private func dmsImageToImage() -> SwiftUI.Image {
         switch image {
         case .pencil:
-            DesignSystemAsset.Icons.pencil.suiImage
+            return DesignSystemAsset.Icons.pencil.suiImage
+
+        case .logoHorizontal:
+            return DesignSystemAsset.Icons.dmsHorizontal.suiImage
         }
     }
 }

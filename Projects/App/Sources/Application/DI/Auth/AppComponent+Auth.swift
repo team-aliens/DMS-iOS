@@ -2,8 +2,14 @@ import NeedleFoundation
 import NetworkModule
 import DomainModule
 import DataModule
+import DatabaseModule
 
 public extension AppComponent {
+    var localAuthDataSource: any LocalAuthDataSource {
+        shared {
+            LocalAuthDataSourceImpl(keychain: keychain)
+        }
+    }
     var remoteAuthDataSource: any RemoteAuthDataSource {
         shared {
 //            RemoteAuthDataSourceStub() // TODO: 퍼블리싱용 Stub, 테스트 서버 나오면 변경
@@ -13,7 +19,10 @@ public extension AppComponent {
 
     var authRepository: any AuthRepository {
         shared {
-            AuthRepositoryImpl(remoteAuthDataSource: remoteAuthDataSource)
+            AuthRepositoryImpl(
+                remoteAuthDataSource: remoteAuthDataSource,
+                localAuthDataSource: localAuthDataSource
+            )
         }
     }
 
@@ -51,5 +60,9 @@ public extension AppComponent {
         shared {
             CheckAccountIDIsExistUseCaseImpl(authRepository: authRepository)
         }
+    }
+
+    var logoutUseCase: any LogoutUseCase {
+        LogoutUseCaseImpl(authRepository: authRepository)
     }
 }

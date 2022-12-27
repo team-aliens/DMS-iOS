@@ -45,6 +45,13 @@ public extension Date {
         return formatter.string(from: self)
     }
 
+    func toHourAndMinuteDSMDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm"
+        formatter.locale = Locale(identifier: "ko_kr")
+        return formatter.string(from: self)
+    }
+
     func isSameDay(_ target: Date) -> Bool {
         let calendar = Calendar.current
         return calendar.isDate(self, inSameDayAs: target)
@@ -67,6 +74,13 @@ public extension Date {
     func dayOfWeek() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEEEE"
+        formatter.locale = Locale(identifier: "ko_kr")
+        return formatter.string(from: self)
+    }
+
+    func customFormat(_ format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
         formatter.locale = Locale(identifier: "ko_kr")
         return formatter.string(from: self)
     }

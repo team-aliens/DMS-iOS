@@ -1,9 +1,11 @@
+import BaseFeature
 import DesignSystem
 import SwiftUI
 
 struct MyPageView: View {
     @StateObject var viewModel: MyPageViewModel
     @Environment(\.tabbarHidden) var tabbarHidden
+    @EnvironmentObject var appState: AppState
 
     private let changeProfileComponent: ChangeProfileComponent
     private let rewardPointDetailComponent: RewardPointDetailComponent
@@ -152,6 +154,13 @@ struct MyPageView: View {
                 tabbarHidden.wrappedValue = newValue
             }
         }
+        .onChange(of: viewModel.isSuccessLogout, perform: { newValue in
+            if newValue {
+                withAnimation {
+                    appState.sceneFlow = .auth
+                }
+            }
+        })
         .navigate(
             to: changeProfileComponent.makeView(),
             when: $viewModel.isNavigateChangeProfile

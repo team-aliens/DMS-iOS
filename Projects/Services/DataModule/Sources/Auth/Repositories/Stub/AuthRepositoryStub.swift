@@ -6,6 +6,8 @@ import ErrorModule
 public struct AuthRepositoryStub: AuthRepository {
     public init() {}
 
+    public func logout() {}
+
     public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
         Just(DmsFeatures(mealService: false, noticeService: false, pointService: false))
             .setFailureType(to: DmsError.self)

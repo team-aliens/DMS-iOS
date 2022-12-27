@@ -16,7 +16,7 @@ public final class MainTabComponent: Component<MainTabDependency> {
     public func makeView() -> some View {
         MainTabView(
             homeComponent: dependency.homeComponent,
-            applyComponent: dependency.applyComponent,
+            studyRoomListComponent: dependency.studyRoomListComponent,
             noticeComponent: dependency.noticeListComponent,
             myPageComponent: dependency.myPageComponent
         )

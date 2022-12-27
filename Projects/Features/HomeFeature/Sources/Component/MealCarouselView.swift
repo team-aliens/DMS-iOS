@@ -56,9 +56,9 @@ struct MealCarouselView: View {
                         .dmsFont(.body(.body1), color: .GrayScale.gray6)
                         .frame(maxHeight: .infinity)
                 } else {
-                    ForEach(meal.indices, id: \.self) { index in
-                        if index != meal.count - 1 {
-                            Text(meal[index])
+                    ForEach(meal, id: \.self) { meal in
+                        if !meal.hasSuffix("Kcal") {
+                            Text(meal)
                                 .dmsFont(.body(.body1), color: .GrayScale.gray6)
                                 .frame(maxHeight: .infinity)
                         }

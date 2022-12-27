@@ -29,7 +29,7 @@ struct MainTabView: View {
         myPageComponent: MyPageComponent
     ) {
         self.homeComponent = homeComponent
-        self.applyComponent = applyComponent
+        self.studyRoomListComponent = studyRoomListComponent
         self.noticeComponent = noticeComponent
         self.myPageComponent = myPageComponent
     }

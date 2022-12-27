@@ -37,6 +37,7 @@ public enum DesignSystemAsset {
     public static let gray9 = DesignSystemColors(name: "Gray 9")
   }
   public enum Icons {
+    public static let dmsHorizontal = DesignSystemImages(name: "DMSHorizontal")
     public static let pencil = DesignSystemImages(name: "pencil")
   }
   public enum PrimaryColor {

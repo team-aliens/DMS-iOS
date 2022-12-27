@@ -3,6 +3,7 @@
 import ApplyFeature
 import BaseFeature
 import DataModule
+import DatabaseModule
 import DesignSystem
 import DomainModule
 import FindIDFeature
@@ -203,6 +204,9 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase {
         return appComponent.fetchMyProfileUseCase
     }
+    var logoutUseCase: any LogoutUseCase {
+        return appComponent.logoutUseCase
+    }
     var changeProfileComponent: ChangeProfileComponent {
         return appComponent.changeProfileComponent
     }
@@ -324,6 +328,9 @@ private class HomeDependency443c4e1871277bd8432aProvider: HomeDependency {
     var fetchMealListUseCase: any FetchMealListUseCase {
         return appComponent.fetchMealListUseCase
     }
+    var fetchWhetherNewNoticeUseCase: any FetchWhetherNewNoticeUseCase {
+        return appComponent.fetchWhetherNewNoticeUseCase
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -357,6 +364,22 @@ private class StudyRoomDetailDependency00589e4f8d1416a01b43Provider: StudyRoomDe
 /// ^->AppComponent->StudyRoomDetailComponent
 private func factorya36f40c25dcb280bae0ff47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return StudyRoomDetailDependency00589e4f8d1416a01b43Provider(appComponent: parent1(component) as! AppComponent)
+}
+private class StudyRoomListDependencyef56e26c25d5de596604Provider: StudyRoomListDependency {
+    var fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase {
+        return appComponent.fetchStudyRoomListUseCase
+    }
+    var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
+        return appComponent.fetchStudyAvailableTimeUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->StudyRoomListComponent
+private func factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return StudyRoomListDependencyef56e26c25d5de596604Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class AuthenticationEmailDependency73189eb572618b10e0fbProvider: AuthenticationEmailDependency {
     var verifyAuthCodeUseCase: any VerifyAuthCodeUseCase {
@@ -465,6 +488,7 @@ extension AppComponent: Registration {
         localTable["fetchDetailStudyRoomUseCase-any FetchDetailStudyRoomUseCase"] = { self.fetchDetailStudyRoomUseCase as Any }
         localTable["applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"] = { self.applyStudyRoomSeatUseCase as Any }
         localTable["cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"] = { self.cancelStudyRoomSeatUseCase as Any }
+        localTable["localAuthDataSource-any LocalAuthDataSource"] = { self.localAuthDataSource as Any }
         localTable["remoteAuthDataSource-any RemoteAuthDataSource"] = { self.remoteAuthDataSource as Any }
         localTable["authRepository-any AuthRepository"] = { self.authRepository as Any }
         localTable["signinUseCase-any SigninUseCase"] = { self.signinUseCase as Any }
@@ -473,6 +497,7 @@ extension AppComponent: Registration {
         localTable["reissueTokenUseCase-any ReissueTokenUseCase"] = { self.reissueTokenUseCase as Any }
         localTable["checkEmailExistByAccountIDUseCase-any CheckEmailExistByAccountIDUseCase"] = { self.checkEmailExistByAccountIDUseCase as Any }
         localTable["checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"] = { self.checkAccountIDIsExistUseCase as Any }
+        localTable["logoutUseCase-any LogoutUseCase"] = { self.logoutUseCase as Any }
         localTable["schoolCodeComponent-SchoolCodeComponent"] = { self.schoolCodeComponent as Any }
         localTable["findIDComponent-FindIDComponent"] = { self.findIDComponent as Any }
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
@@ -497,6 +522,7 @@ extension AppComponent: Registration {
         localTable["rewardPointDetailComponent-RewardPointDetailComponent"] = { self.rewardPointDetailComponent as Any }
         localTable["checkPasswordComponent-CheckPasswordComponent"] = { self.checkPasswordComponent as Any }
         localTable["modifyPasswordComponent-ModifyPasswordComponent"] = { self.modifyPasswordComponent as Any }
+        localTable["studyRoomListComponent-StudyRoomListComponent"] = { self.studyRoomListComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
         localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { self.fetchWhetherNewNoticeUseCase as Any }
@@ -590,7 +616,7 @@ extension SignupProfileImageComponent: Registration {
 extension MainTabComponent: Registration {
     public func registerItems() {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
-        keyPathToName[\MainTabDependency.applyComponent] = "applyComponent-StudyRoomDetailComponent"
+        keyPathToName[\MainTabDependency.applyComponent] = "applyComponent-ApplyComponent"
         keyPathToName[\MainTabDependency.noticeListComponent] = "noticeListComponent-NoticeListComponent"
         keyPathToName[\MainTabDependency.myPageComponent] = "myPageComponent-MyPageComponent"
     }
@@ -598,6 +624,7 @@ extension MainTabComponent: Registration {
 extension MyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyPageDependency.fetchMyProfileUseCase] = "fetchMyProfileUseCase-any FetchMyProfileUseCase"
+        keyPathToName[\MyPageDependency.logoutUseCase] = "logoutUseCase-any LogoutUseCase"
         keyPathToName[\MyPageDependency.changeProfileComponent] = "changeProfileComponent-ChangeProfileComponent"
         keyPathToName[\MyPageDependency.rewardPointDetailComponent] = "rewardPointDetailComponent-RewardPointDetailComponent"
         keyPathToName[\MyPageDependency.checkPasswordComponent] = "checkPasswordComponent-CheckPasswordComponent"
@@ -643,6 +670,7 @@ extension SigninComponent: Registration {
 extension HomeComponent: Registration {
     public func registerItems() {
         keyPathToName[\HomeDependency.fetchMealListUseCase] = "fetchMealListUseCase-any FetchMealListUseCase"
+        keyPathToName[\HomeDependency.fetchWhetherNewNoticeUseCase] = "fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"
     }
 }
 extension StudyRoomDetailComponent: Registration {
@@ -652,6 +680,12 @@ extension StudyRoomDetailComponent: Registration {
         keyPathToName[\StudyRoomDetailDependency.fetchDetailStudyRoomUseCase] = "fetchDetailStudyRoomUseCase-any FetchDetailStudyRoomUseCase"
         keyPathToName[\StudyRoomDetailDependency.applyStudyRoomSeatUseCase] = "applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"
         keyPathToName[\StudyRoomDetailDependency.cancelStudyRoomSeatUseCase] = "cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"
+    }
+}
+extension StudyRoomListComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\StudyRoomListDependency.fetchStudyRoomListUseCase] = "fetchStudyRoomListUseCase-any FetchStudyRoomListUseCase"
+        keyPathToName[\StudyRoomListDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
     }
 }
 extension AuthenticationEmailComponent: Registration {
@@ -704,7 +738,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 #if !NEEDLE_DYNAMIC
 
-@inline(never) private func register1() {
+private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->AppComponent->SplashComponent", factoryace9f05f51d68f4c0677f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
