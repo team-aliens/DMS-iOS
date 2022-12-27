@@ -14,7 +14,7 @@ public extension FetchDetailStudyRoomResponseDTO {
             westDescription: westDescription,
             southDescription: southDescription,
             northDescription: northDescription,
-            totalWidthSize: totalAvailableSeat,
+            totalWidthSize: totalWidthSize,
             totalHeightSize: totalHeightSize,
             seats: seats.map { $0.toDomain() }
         )
