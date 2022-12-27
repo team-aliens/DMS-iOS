@@ -56,11 +56,12 @@ struct StudyRoomListView: View {
         inUseHeadcount: Int,
         totalAvailableSeat: Int,
         availableGrade: Int,
-        availableSex: AvailableSexType
+        availableSex: String
     ) -> some View {
         ZStack {
             Color.System.surface
                 .cornerRadius(6)
+
             VStack(alignment: .leading, spacing: 18) {
                 HStack(spacing: 14) {
                     Text("\(floor)층")
