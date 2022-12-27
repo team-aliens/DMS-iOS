@@ -116,7 +116,7 @@ struct SigninView: View {
             }
             .navigationTitle("로그인")
             .navigationBarTitleDisplayMode(.inline)
-            .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
+            .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
             .padding(.horizontal, 24)
             .dmsBackground()
             .navigate(
