@@ -4,6 +4,7 @@ import SwiftUI
 
 public protocol HomeDependency: Dependency {
     var fetchMealListUseCase: any FetchMealListUseCase { get }
+    var fetchWhetherNewNoticeUseCase: any FetchWhetherNewNoticeUseCase { get }
 }
 
 public final class HomeComponent: Component<HomeDependency> {
@@ -11,7 +12,8 @@ public final class HomeComponent: Component<HomeDependency> {
         NavigationView {
             HomeView(
                 viewModel: .init(
-                    fetchMealListUseCase: dependency.fetchMealListUseCase
+                    fetchMealListUseCase: dependency.fetchMealListUseCase,
+                    fetchWhetherNewNoticeUseCase: dependency.fetchWhetherNewNoticeUseCase
                 )
             )
         }

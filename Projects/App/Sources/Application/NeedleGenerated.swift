@@ -324,6 +324,9 @@ private class HomeDependency443c4e1871277bd8432aProvider: HomeDependency {
     var fetchMealListUseCase: any FetchMealListUseCase {
         return appComponent.fetchMealListUseCase
     }
+    var fetchWhetherNewNoticeUseCase: any FetchWhetherNewNoticeUseCase {
+        return appComponent.fetchWhetherNewNoticeUseCase
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -629,6 +632,7 @@ extension SigninComponent: Registration {
 extension HomeComponent: Registration {
     public func registerItems() {
         keyPathToName[\HomeDependency.fetchMealListUseCase] = "fetchMealListUseCase-any FetchMealListUseCase"
+        keyPathToName[\HomeDependency.fetchWhetherNewNoticeUseCase] = "fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"
     }
 }
 extension ApplyComponent: Registration {

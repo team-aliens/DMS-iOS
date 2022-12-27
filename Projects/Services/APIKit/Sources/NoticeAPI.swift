@@ -15,7 +15,10 @@ extension NoticeAPI: DmsAPI {
 
     public var urlPath: String {
         switch self {
-        case .fetchWhetherNewNotice, .fetchNoticeList:
+        case .fetchWhetherNewNotice:
+            return "/status"
+
+        case .fetchNoticeList:
             return ""
 
         case let .fetchDetailNotice(id):
