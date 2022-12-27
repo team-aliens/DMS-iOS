@@ -3,6 +3,7 @@
 import ApplyFeature
 import BaseFeature
 import DataModule
+import DatabaseModule
 import DesignSystem
 import DomainModule
 import FindIDFeature
@@ -202,6 +203,9 @@ private func factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5(_ component: Needle
 private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase {
         return appComponent.fetchMyProfileUseCase
+    }
+    var logoutUseCase: any LogoutUseCase {
+        return appComponent.logoutUseCase
     }
     var changeProfileComponent: ChangeProfileComponent {
         return appComponent.changeProfileComponent
@@ -454,6 +458,7 @@ extension AppComponent: Registration {
         localTable["fetchDetailStudyRoomUseCase-any FetchDetailStudyRoomUseCase"] = { self.fetchDetailStudyRoomUseCase as Any }
         localTable["applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"] = { self.applyStudyRoomSeatUseCase as Any }
         localTable["cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"] = { self.cancelStudyRoomSeatUseCase as Any }
+        localTable["localAuthDataSource-any LocalAuthDataSource"] = { self.localAuthDataSource as Any }
         localTable["remoteAuthDataSource-any RemoteAuthDataSource"] = { self.remoteAuthDataSource as Any }
         localTable["authRepository-any AuthRepository"] = { self.authRepository as Any }
         localTable["signinUseCase-any SigninUseCase"] = { self.signinUseCase as Any }
@@ -462,6 +467,7 @@ extension AppComponent: Registration {
         localTable["reissueTokenUseCase-any ReissueTokenUseCase"] = { self.reissueTokenUseCase as Any }
         localTable["checkEmailExistByAccountIDUseCase-any CheckEmailExistByAccountIDUseCase"] = { self.checkEmailExistByAccountIDUseCase as Any }
         localTable["checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"] = { self.checkAccountIDIsExistUseCase as Any }
+        localTable["logoutUseCase-any LogoutUseCase"] = { self.logoutUseCase as Any }
         localTable["schoolCodeComponent-SchoolCodeComponent"] = { self.schoolCodeComponent as Any }
         localTable["findIDComponent-FindIDComponent"] = { self.findIDComponent as Any }
         localTable["signinComponent-SigninComponent"] = { self.signinComponent as Any }
@@ -587,6 +593,7 @@ extension MainTabComponent: Registration {
 extension MyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyPageDependency.fetchMyProfileUseCase] = "fetchMyProfileUseCase-any FetchMyProfileUseCase"
+        keyPathToName[\MyPageDependency.logoutUseCase] = "logoutUseCase-any LogoutUseCase"
         keyPathToName[\MyPageDependency.changeProfileComponent] = "changeProfileComponent-ChangeProfileComponent"
         keyPathToName[\MyPageDependency.rewardPointDetailComponent] = "rewardPointDetailComponent-RewardPointDetailComponent"
         keyPathToName[\MyPageDependency.checkPasswordComponent] = "checkPasswordComponent-CheckPasswordComponent"

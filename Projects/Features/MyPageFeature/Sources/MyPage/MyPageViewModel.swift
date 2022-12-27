@@ -35,6 +35,7 @@ final class MyPageViewModel: BaseViewModel {
 
     func confirmLogoutButtonDidTap() {
         logoutUseCase.execute()
+        isSuccessLogout = true
     }
 
     func profileImageDidTap() {
