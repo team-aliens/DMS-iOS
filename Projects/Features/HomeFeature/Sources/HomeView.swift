@@ -55,7 +55,11 @@ struct HomeView: View {
                 }
             }
         }
+        .onChange(of: viewModel.selectedDate) { newValue in
+            viewModel.onChangeSelectedDate()
+        }
         .onAppear {
+            viewModel.onAppear()
             viewModel.fetchMealList()
         }
         .onChange(of: isShowingCalendar) { newValue in

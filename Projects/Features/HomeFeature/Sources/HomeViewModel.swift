@@ -11,7 +11,7 @@ final class HomeViewModel: BaseViewModel {
     @Published var meals: [String: MealEntity] = [:]
     @Published var prevMonth = Date().month
     var selectedDateString: String {
-        "\(selectedDate.year)/\(selectedDate.month)/\(selectedDate.day) (\(selectedDate.dayOfWeek()))"
+        "\(selectedDate.customFormat("yyyy/MM/dd")) (\(selectedDate.dayOfWeek()))"
     }
     var selectedDateMeal: MealEntity {
         meals[selectedDate.toSmallDMSDateString()] ?? .init(
@@ -23,21 +23,28 @@ final class HomeViewModel: BaseViewModel {
     }
 
     private let fetchMealListUseCase: any FetchMealListUseCase
+    private let fetchWhetherNewNoticeUseCase: any FetchWhetherNewNoticeUseCase
 
     init(
-        fetchMealListUseCase: any FetchMealListUseCase
+        fetchMealListUseCase: any FetchMealListUseCase,
+        fetchWhetherNewNoticeUseCase: any FetchWhetherNewNoticeUseCase
     ) {
         self.fetchMealListUseCase = fetchMealListUseCase
+        self.fetchWhetherNewNoticeUseCase = fetchWhetherNewNoticeUseCase
         super.init()
+    }
 
-        addCancellable(
-            $selectedDate.setFailureType(to: DmsError.self).eraseToAnyPublisher()
-        ) { [weak self] date in
-            if self?.prevMonth != date.month {
-                self?.fetchMealList()
-            }
-            self?.prevMonth = date.month
+    func onAppear() {
+        addCancellable(fetchWhetherNewNoticeUseCase.execute()) { [weak self] isExistNewNotice in
+            self?.isExistNewNotice = isExistNewNotice
         }
+    }
+
+    func onChangeSelectedDate() {
+        if self.prevMonth != selectedDate.month {
+            self.fetchMealList()
+        }
+        self.prevMonth = selectedDate.month
     }
 
     func fetchMealList() {
