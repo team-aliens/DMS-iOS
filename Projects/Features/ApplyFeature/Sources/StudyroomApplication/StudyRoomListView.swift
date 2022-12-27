@@ -30,7 +30,7 @@ struct StudyRoomListView: View {
                                     inUseHeadcount: studyRoomList.inUseHeadcount,
                                     totalAvailableSeat: studyRoomList.totalAvailableSeat,
                                     availableGrade: studyRoomList.availableGrade,
-                                    availableSex: studyRoomList.availableSex.rawValue
+                                    availableSex: studyRoomList.availableSex.sexType()
                                 )
                                 .padding(.top, 5)
                                 .listRowInsets(EdgeInsets())
@@ -61,8 +61,8 @@ struct StudyRoomListView: View {
         ZStack {
             Color.System.surface
                 .cornerRadius(6)
-            VStack (alignment: .leading, spacing: 18) {
-                HStack (spacing: 14) {
+            VStack(alignment: .leading, spacing: 18) {
+                HStack(spacing: 14) {
                     Text("\(floor)층")
                         .dmsFont(.body(.body3), color: .System.primary)
 
