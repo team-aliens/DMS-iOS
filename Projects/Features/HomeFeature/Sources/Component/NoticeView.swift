@@ -26,7 +26,7 @@ struct NoticeView: View {
                 .padding(.trailing, 8)
         }
         .background {
-            Color.GrayScale.gray1
+            Color.System.surface
         }
         .cornerRadius(100)
         .padding(.horizontal, 24)

@@ -176,7 +176,7 @@ struct MyPageView: View {
         .padding(.vertical, 15)
         .padding(.horizontal, 20)
         .background {
-            Color.GrayScale.gray1
+            Color.System.surface
                 .dmsShadow(style: .surface)
         }
     }

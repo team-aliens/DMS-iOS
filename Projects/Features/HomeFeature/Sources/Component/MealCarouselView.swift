@@ -80,7 +80,7 @@ struct MealCarouselView: View {
                 UIScreen.main.bounds.height * 0.4103
         )
         .background {
-            Color.GrayScale.gray1
+            Color.System.surface
                 .cornerRadius(20)
         }
         .overlay {
