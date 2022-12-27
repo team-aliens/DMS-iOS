@@ -1,5 +1,4 @@
 import BaseFeature
-import Moya
 import Foundation
 import DomainModule
 import ErrorModule
