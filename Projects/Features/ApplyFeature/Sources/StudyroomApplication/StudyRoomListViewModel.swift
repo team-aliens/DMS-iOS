@@ -46,7 +46,7 @@ final class StudyRoomListViewModel: BaseViewModel {
 
     var rangeString: String {
         if let time = studyAvailableTime {
-            var text = "자습실 신청 시간은 " + time.startAt.toHourAndMinuteDSMDateString() +
+            let text = "자습실 신청 시간은 " + time.startAt.toHourAndMinuteDSMDateString() +
             " ~ " + time.endAt.toHourAndMinuteDSMDateString() + " 까지 입니다."
             return text
         } else {
