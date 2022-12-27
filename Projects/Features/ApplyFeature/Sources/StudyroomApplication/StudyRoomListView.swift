@@ -39,7 +39,6 @@ struct StudyRoomListView: View {
                     .padding(.horizontal, 24)
                 }
             }
-
             .navigationTitle("자습실 신청")
             .navigationBarTitleDisplayMode(.inline)
             .dmsBackground()
@@ -51,17 +50,19 @@ struct StudyRoomListView: View {
     }
 
     @ViewBuilder
-    func studyRoomListCellView(name: String,
-                               floor: Int,
-                               inUseHeadcount: Int,
-                               totalAvailableSeat: Int,
-                               availableGrade: Int,
-                               availableSex: String) -> some View {
+    func studyRoomListCellView(
+        name: String,
+        floor: Int,
+        inUseHeadcount: Int,
+        totalAvailableSeat: Int,
+        availableGrade: Int,
+        availableSex: String
+    ) -> some View {
         ZStack {
             Color.System.surface
                 .cornerRadius(6)
-            VStack(alignment: .leading, spacing: 18) {
-                HStack(spacing: 14) {
+            VStack (alignment: .leading, spacing: 18) {
+                HStack (spacing: 14) {
                     Text("\(floor)층")
                         .dmsFont(.body(.body3), color: .System.primary)
 
