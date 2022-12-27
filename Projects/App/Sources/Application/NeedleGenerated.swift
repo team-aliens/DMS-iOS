@@ -182,8 +182,8 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
     var homeComponent: HomeComponent {
         return appComponent.homeComponent
     }
-    var applyComponent: StudyRoomDetailComponent {
-        return appComponent.applyComponent
+    var studyRoomListComponent: StudyRoomListComponent {
+        return appComponent.studyRoomListComponent
     }
     var noticeListComponent: NoticeListComponent {
         return appComponent.noticeListComponent
@@ -616,7 +616,7 @@ extension SignupProfileImageComponent: Registration {
 extension MainTabComponent: Registration {
     public func registerItems() {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
-        keyPathToName[\MainTabDependency.applyComponent] = "applyComponent-ApplyComponent"
+        keyPathToName[\MainTabDependency.studyRoomListComponent] = "studyRoomListComponent-StudyRoomListComponent"
         keyPathToName[\MainTabDependency.noticeListComponent] = "noticeListComponent-NoticeListComponent"
         keyPathToName[\MainTabDependency.myPageComponent] = "myPageComponent-MyPageComponent"
     }
@@ -759,6 +759,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->StudyRoomDetailComponent", factorya36f40c25dcb280bae0ff47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->StudyRoomListComponent", factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)

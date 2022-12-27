@@ -18,7 +18,7 @@ struct StudyRoomNoticeView: View {
             Spacer()
         }
         .background {
-            Color.GrayScale.gray1
+            Color.System.surface
         }
         .cornerRadius(100)
         .padding(.horizontal, 24)
