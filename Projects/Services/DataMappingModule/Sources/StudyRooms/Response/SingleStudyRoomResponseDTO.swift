@@ -6,7 +6,7 @@ public struct SingleStudyRoomResponseDTO: Decodable {
         floor: Int,
         name: String,
         availableGrade: Int,
-        availableSex: String,
+        availableSex: AvailableSexType,
         inUseHeadcount: Int,
         totalAvailableSeat: Int,
         isMine: Bool
@@ -25,7 +25,7 @@ public struct SingleStudyRoomResponseDTO: Decodable {
     public let floor: Int
     public let name: String
     public let availableGrade: Int
-    public let availableSex: String
+    public let availableSex: AvailableSexType
     public let inUseHeadcount: Int
     public let totalAvailableSeat: Int
     public let isMine: Bool
