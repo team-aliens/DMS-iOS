@@ -15,7 +15,8 @@ public final class MyPageComponent: Component<MyPageDependency> {
         NavigationView {
             MyPageView(
                 viewModel: .init(
-                    fetchMyProfileUseCase: self.dependency.fetchMyProfileUseCase
+                    fetchMyProfileUseCase: self.dependency.fetchMyProfileUseCase,
+                    logoutUseCase: self.dependency.logoutUseCase
                 ),
                 changeProfileComponent: self.dependency.changeProfileComponent,
                 rewardPointDetailComponent: self.dependency.rewardPointDetailComponent,
