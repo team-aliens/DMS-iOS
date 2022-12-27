@@ -1,6 +1,5 @@
 import SwiftUI
 import DataMappingModule
-import DesignSystem
 
 public struct DMSSeatButton: View {
     var text: String
