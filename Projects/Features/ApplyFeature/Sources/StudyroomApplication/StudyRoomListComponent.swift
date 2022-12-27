@@ -6,6 +6,7 @@ import NeedleFoundation
 public protocol StudyRoomListDependency: Dependency {
     var fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase { get }
     var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase { get }
+    var studyRoomDetailComponent: StudyRoomDetailComponent { get }
 }
 
 public final class StudyRoomListComponent: Component<StudyRoomListDependency> {
@@ -14,7 +15,8 @@ public final class StudyRoomListComponent: Component<StudyRoomListDependency> {
             viewModel: .init(
                 fetchStudyRoomListUseCase: dependency.fetchStudyRoomListUseCase,
                 fetchStudyAvailableTimeUseCase: dependency.fetchStudyAvailableTimeUseCase
-            )
+            ),
+            studyRoomDetailComponent: dependency.studyRoomDetailComponent
         )
     }
 }
