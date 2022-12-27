@@ -7,7 +7,7 @@ import MyPageFeature
 
 public protocol MainTabDependency: Dependency {
     var homeComponent: HomeComponent { get }
-    var applyComponent: StudyRoomDetailComponent { get }
+    var studyRoomListComponent: StudyRoomListComponent { get }
     var noticeListComponent: NoticeListComponent { get }
     var myPageComponent: MyPageComponent { get }
 }
