@@ -19,7 +19,7 @@ struct StudyRoomListView: View {
                         StudyRoomNoticeView(text: viewModel.rangeString)
                     }
 
-                    LazyVStack {
+                    LazyVStack(spacing: 16) {
                         Spacer()
                             .frame(height: 10)
 
