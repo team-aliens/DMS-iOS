@@ -30,7 +30,7 @@ struct StudyRoomListView: View {
                                     inUseHeadcount: studyRoomList.inUseHeadcount,
                                     totalAvailableSeat: studyRoomList.totalAvailableSeat,
                                     availableGrade: studyRoomList.availableGrade,
-                                    availableSex: studyRoomList.availableSex.sexType()
+                                    availableSex: studyRoomList.availableSex.displayString()
                                 )
                                 .padding(.top, 5)
                                 .listRowInsets(EdgeInsets())

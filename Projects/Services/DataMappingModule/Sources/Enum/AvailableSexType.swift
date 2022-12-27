@@ -5,7 +5,7 @@ public enum AvailableSexType: String, Decodable {
     case male = "MALE"
     case female = "FEMALE"
 
-    public func sexType() -> String {
+    public func displayString() -> String {
         switch self {
         case .all:
             return "남녀"
