@@ -56,7 +56,7 @@ struct StudyRoomListView: View {
         inUseHeadcount: Int,
         totalAvailableSeat: Int,
         availableGrade: Int,
-        availableSex: String
+        availableSex: AvailableSexType
     ) -> some View {
         ZStack {
             Color.System.surface
