@@ -18,18 +18,18 @@ struct MainTabView: View {
     @State var tabbarHidden = false
 
     private let homeComponent: HomeComponent
-    private let applyComponent: ApplyComponent
+    private let studyRoomListComponent: StudyRoomListComponent
     private let noticeComponent: NoticeListComponent
     private let myPageComponent: MyPageComponent
 
     init(
         homeComponent: HomeComponent,
-        applyComponent: ApplyComponent,
+        studyRoomListComponent: StudyRoomListComponent,
         noticeComponent: NoticeListComponent,
         myPageComponent: MyPageComponent
     ) {
         self.homeComponent = homeComponent
-        self.applyComponent = applyComponent
+        self.studyRoomListComponent = studyRoomListComponent
         self.noticeComponent = noticeComponent
         self.myPageComponent = myPageComponent
     }
@@ -40,7 +40,7 @@ struct MainTabView: View {
                 homeComponent.makeView()
                     .tag(TabFlow.home)
 
-                applyComponent.makeView()
+                studyRoomListComponent.makeView()
                     .tag(TabFlow.apply)
 
                 noticeComponent.makeView()

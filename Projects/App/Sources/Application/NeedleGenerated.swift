@@ -181,8 +181,8 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
     var homeComponent: HomeComponent {
         return appComponent.homeComponent
     }
-    var applyComponent: ApplyComponent {
-        return appComponent.applyComponent
+    var studyRoomListComponent: StudyRoomListComponent {
+        return appComponent.studyRoomListComponent
     }
     var noticeListComponent: NoticeListComponent {
         return appComponent.noticeListComponent
@@ -347,6 +347,22 @@ private class ApplyDependency468ec8d97f04fe0ebd10Provider: ApplyDependency {
 private func factory3cbfeafbe8b73941b232e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
     return ApplyDependency468ec8d97f04fe0ebd10Provider()
 }
+private class StudyRoomListDependencyef56e26c25d5de596604Provider: StudyRoomListDependency {
+    var fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase {
+        return appComponent.fetchStudyRoomListUseCase
+    }
+    var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
+        return appComponent.fetchStudyAvailableTimeUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->StudyRoomListComponent
+private func factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return StudyRoomListDependencyef56e26c25d5de596604Provider(appComponent: parent1(component) as! AppComponent)
+}
 private class AuthenticationEmailDependency73189eb572618b10e0fbProvider: AuthenticationEmailDependency {
     var verifyAuthCodeUseCase: any VerifyAuthCodeUseCase {
         return appComponent.verifyAuthCodeUseCase
@@ -486,6 +502,7 @@ extension AppComponent: Registration {
         localTable["rewardPointDetailComponent-RewardPointDetailComponent"] = { self.rewardPointDetailComponent as Any }
         localTable["checkPasswordComponent-CheckPasswordComponent"] = { self.checkPasswordComponent as Any }
         localTable["modifyPasswordComponent-ModifyPasswordComponent"] = { self.modifyPasswordComponent as Any }
+        localTable["studyRoomListComponent-StudyRoomListComponent"] = { self.studyRoomListComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { self.noticeRepository as Any }
         localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { self.fetchWhetherNewNoticeUseCase as Any }
@@ -579,7 +596,7 @@ extension SignupProfileImageComponent: Registration {
 extension MainTabComponent: Registration {
     public func registerItems() {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
-        keyPathToName[\MainTabDependency.applyComponent] = "applyComponent-ApplyComponent"
+        keyPathToName[\MainTabDependency.studyRoomListComponent] = "studyRoomListComponent-StudyRoomListComponent"
         keyPathToName[\MainTabDependency.noticeListComponent] = "noticeListComponent-NoticeListComponent"
         keyPathToName[\MainTabDependency.myPageComponent] = "myPageComponent-MyPageComponent"
     }
@@ -640,6 +657,12 @@ extension ApplyComponent: Registration {
 
     }
 }
+extension StudyRoomListComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\StudyRoomListDependency.fetchStudyRoomListUseCase] = "fetchStudyRoomListUseCase-any FetchStudyRoomListUseCase"
+        keyPathToName[\StudyRoomListDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
+    }
+}
 extension AuthenticationEmailComponent: Registration {
     public func registerItems() {
         keyPathToName[\AuthenticationEmailDependency.verifyAuthCodeUseCase] = "verifyAuthCodeUseCase-any VerifyAuthCodeUseCase"
@@ -690,7 +713,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 #if !NEEDLE_DYNAMIC
 
-@inline(never) private func register1() {
+private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->AppComponent->SplashComponent", factoryace9f05f51d68f4c0677f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
@@ -711,6 +734,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ApplyComponent", factory3cbfeafbe8b73941b232e3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->StudyRoomListComponent", factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)

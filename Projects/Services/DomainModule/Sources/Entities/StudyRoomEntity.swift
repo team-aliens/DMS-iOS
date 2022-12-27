@@ -1,7 +1,7 @@
 import Foundation
 import DataMappingModule
 
-public struct StudyRoomEntity: Equatable {
+public struct StudyRoomEntity: Equatable, Hashable {
     public init(
         id: String,
         floor: Int,

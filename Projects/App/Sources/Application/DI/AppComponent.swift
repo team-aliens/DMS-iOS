@@ -109,4 +109,7 @@ public extension AppComponent {
     var modifyPasswordComponent: ModifyPasswordComponent {
         ModifyPasswordComponent(parent: self)
     }
+    var studyRoomListComponent: StudyRoomListComponent {
+        StudyRoomListComponent(parent: self)
+    }
 }
