@@ -3,40 +3,39 @@ import DomainModule
 import SwiftUI
 import Utility
 
-struct StudyRoomSeatView: View {
-    var detailStudyRoom: DetailStudyRoomEntity
+extension StudyRoomDetailView {
 
-//    @ViewBuilder
-//    func StudyRoomSeatView() -> some View {
-//        
-//    }
-    var body: some View {
+    @ViewBuilder
+    func studyRoomSeatView() -> some View {
         VStack {
             Spacer()
-                .frame(height: 66)
+                .frame(height: 30)
+
+            studyRoomSeatTypeView()
+
+            Spacer()
+                .frame(height: 15)
+
             HStack {
-                Text(detailStudyRoom.westDescription)
+                Text(viewModel.studyRoomDetail.westDescription)
                     .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                     .rotationEffect(.degrees(-90))
                     .padding(.leading, 8)
 
-//                Spacer()
-
                 VStack(alignment: .center) {
-                    Text(detailStudyRoom.northDescription)
+                    Text(viewModel.studyRoomDetail.northDescription)
                         .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                         .padding(.top, 8)
 
-                    StudyRoomSeatDetailView(detailStudyRoom: detailStudyRoom)
+                    studyRoomSeatDetailView()
 
-                    Text(detailStudyRoom.southDescription)
+                    Text(viewModel.studyRoomDetail.southDescription)
                         .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                         .padding(.bottom, 8)
 
                 }
-//                Spacer()
 
-                Text(detailStudyRoom.eastDescription)
+                Text(viewModel.studyRoomDetail.eastDescription)
                     .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                     .rotationEffect(.degrees(90))
                     .padding(.trailing, 8)
@@ -58,8 +57,4 @@ struct StudyRoomSeatView: View {
         }
     }
 
-    @ViewBuilder
-    func studyRoomSeatScrollview() -> some View {
-
-    }
 }

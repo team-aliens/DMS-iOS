@@ -12,6 +12,10 @@ struct StudyRoomDetailView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
+    var columns: [GridItem] {
+        Array(repeating: GridItem(.flexible(), spacing: 40), count: viewModel.studyRoomDetail.totalWidthSize)
+    }
+
     var body: some View {
         VStack {
             Spacer()
@@ -21,6 +25,9 @@ struct StudyRoomDetailView: View {
                 .padding(.bottom, 0)
         }
         .dmsBackButton(dismiss: dismiss)
+        .navigationTitle("자습실 자리 신청")
+        .navigationBarTitleDisplayMode(.inline)
+        .dmsBackground()
         .onAppear {
             viewModel.onAppear()
         }
@@ -29,10 +36,8 @@ struct StudyRoomDetailView: View {
     @ViewBuilder
     func studyRoomDetailBackView() -> some View {
         VStack {
-            StudyRoomSeatView(
-                detailStudyRoom: viewModel.studyRoomDetail
-            )
-            .padding(.bottom, 6)
+            studyRoomSeatView()
+                .padding(.bottom, 6)
 
             HStack(spacing: 10) {
                 DMSWideButton(text: "취소", style: .contained, color: .GrayScale.gray4)

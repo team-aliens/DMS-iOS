@@ -4,16 +4,13 @@ import DataMappingModule
 import SwiftUI
 import Utility
 
-struct StudyRoomSeatDetailView: View {
-    var detailStudyRoom: DetailStudyRoomEntity
-    var columns: [GridItem] {
-        Array(repeating: GridItem(.flexible(), spacing: 40), count: detailStudyRoom.totalWidthSize)
-    }
+extension StudyRoomDetailView {
 
-    var body: some View {
+    @ViewBuilder
+    func studyRoomSeatDetailView() -> some View {
         ScrollView([.horizontal, .vertical]) {
             LazyVGrid(columns: columns) {
-                ForEach(detailStudyRoom.seats, id: \.self) { singleSeat in
+                ForEach(viewModel.studyRoomDetail.seats, id: \.self) { singleSeat in
                     DMSSeatButton(
                         text: generateSeatButtonText(seat: singleSeat),
                         style: singleSeat.status,
@@ -23,6 +20,7 @@ struct StudyRoomSeatDetailView: View {
             }
         }
     }
+
     func generateSeatButtonText(seat: SeatEntity) -> String {
         var text: String {
             seat.status == .available ?
