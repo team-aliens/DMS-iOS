@@ -25,7 +25,7 @@ struct StudyRoomListCellView: View {
                         .dmsFont(.body(.body3), color: .GrayScale.gray5)
                 }
 
-                Text("\(studyRoomEntity.availableGrade)학년 \(studyRoomEntity.availableSex.displayString())")
+                Text("\(gradeToString(studyRoomEntity.availableGrade)) \(studyRoomEntity.availableSex.displayString())")
                     .dmsFont(.body(.body3), color: .System.primary)
             }
             .padding(.vertical, 16)
@@ -33,5 +33,9 @@ struct StudyRoomListCellView: View {
         }
         .frame(height: 68)
         .dmsShadow(style: .surface)
+    }
+
+    func gradeToString(_ grade: Int) -> String {
+        return grade == 0 ? "전학년" : String(grade) + "학년"
     }
 }
