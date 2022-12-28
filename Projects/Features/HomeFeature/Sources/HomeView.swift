@@ -68,8 +68,9 @@ struct HomeView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Text("로고")
-                    .dmsFont(.title(.title1), color: .GrayScale.gray7)
+                DMSImage(.logoHorizontal, renderingMode: .original)
+                    .scaledToFit()
+                    .frame(height: 28)
             }
         }
         .dmsBackground()

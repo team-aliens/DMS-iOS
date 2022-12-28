@@ -38,7 +38,7 @@ struct MyPageView: View {
                     Spacer()
 
                     ZStack(alignment: .bottomTrailing) {
-                        AsyncImage(url: URL(string: "")) { image in
+                        AsyncImage(url: viewModel.profile?.profileImageURL) { image in
                             image
                                 .resizable()
                                 .frame(width: 74, height: 74)

@@ -45,6 +45,7 @@ struct CheckPasswordView: View {
         .padding(.horizontal, 24)
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .navigate(
             to: modifyPasswordComponent.makeView(

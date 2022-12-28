@@ -54,6 +54,7 @@ struct RewardPointDetailView: View {
         .navigationTitle("상벌점 현황")
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackground()
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
     }
 
     @ViewBuilder

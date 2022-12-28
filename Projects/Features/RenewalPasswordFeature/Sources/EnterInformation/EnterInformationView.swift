@@ -88,6 +88,7 @@ struct EnterInformationView: View {
             ),
             when: $viewModel.isNavigateAuthenticationEmail
         )
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsBackButton(dismiss: dismiss)
         .frame(maxWidth: .infinity)
         .ignoresSafeArea(.keyboard, edges: .bottom)

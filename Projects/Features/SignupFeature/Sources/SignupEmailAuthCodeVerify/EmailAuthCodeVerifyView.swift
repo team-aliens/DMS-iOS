@@ -52,6 +52,7 @@ struct SignupEmailAuthCodeVerifyView: View {
             viewModel.sendEmailAuthCode()
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .onChange(of: viewModel.isNavigateSignupID, perform: { newValue in
             print("navigate-signup-id", newValue)

@@ -32,6 +32,7 @@ struct NoticeDetailView: View {
                 Spacer()
             }
         }
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .navigationTitle("공지")
         .navigationBarTitleDisplayMode(.inline)
         .padding(.horizontal, 24)

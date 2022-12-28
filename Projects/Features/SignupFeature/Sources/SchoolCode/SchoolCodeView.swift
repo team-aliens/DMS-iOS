@@ -39,6 +39,7 @@ struct SchoolCodeView: View {
             viewModel.schoolCode = ""
         }
         .hideKeyboardWhenTap()
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .padding(.horizontal, 24)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .dmsBackground()

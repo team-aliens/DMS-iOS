@@ -63,6 +63,7 @@ struct ChangeProfileView: View {
         }
         .imagePicker(isShow: $isShowingImagePicker, uiImage: $viewModel.selectedImage)
         .cameraPicker(isShow: $isShowingCameraPicker, uiImage: $viewModel.selectedImage)
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
         .dmsBackground()

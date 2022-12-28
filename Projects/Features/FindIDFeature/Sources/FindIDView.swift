@@ -62,6 +62,7 @@ struct FindIDView: View {
             .disabled(!viewModel.isFindEnabled)
             .padding(.bottom, 40)
         }
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .padding(.horizontal, 24)
         .dmsBackground()

@@ -49,7 +49,12 @@ struct SigninView: View {
                     .textContentType(.username)
                     .focused($focusField, equals: .id)
 
-                    SecureDMSFloatingTextField("비밀번호", text: $viewModel.password) {
+                    SecureDMSFloatingTextField(
+                        "비밀번호",
+                        text: $viewModel.password,
+                        isError: viewModel.isErrorOcuured,
+                        errorMessage: viewModel.errorMessage
+                    ) {
                         viewModel.signinButtonDidTap()
                     }
                     .textContentType(.password)

@@ -37,6 +37,7 @@ struct StudyRoomDetailView: View {
         .navigationTitle("자습실 자리 신청")
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackground()
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .onAppear {
             viewModel.onAppear()
         }

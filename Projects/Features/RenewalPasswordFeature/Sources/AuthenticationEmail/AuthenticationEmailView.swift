@@ -62,6 +62,6 @@ struct AuthenticationEmailView: View {
             when: $viewModel.isNavigateChangePassword
         )
         .dmsBackButton(dismiss: dismiss)
-
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
     }
 }
