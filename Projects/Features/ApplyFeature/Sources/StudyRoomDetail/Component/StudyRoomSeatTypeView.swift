@@ -7,7 +7,7 @@ extension StudyRoomDetailView {
 
     @ViewBuilder
     func studyRoomSeatTypeView() -> some View {
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(viewModel.seatTypes, id: \.self) { seatType in
                     HStack {

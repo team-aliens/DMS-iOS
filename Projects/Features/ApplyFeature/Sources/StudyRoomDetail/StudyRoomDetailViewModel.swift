@@ -25,12 +25,7 @@ final class StudyRoomDetailViewModel: BaseViewModel {
     @Published var availableTimeString: String = ""
     @Published var isShowingToast = false
     @Published var toastMessage = ""
-    @Published var selectSeat: SeatEntity = .init(
-        id: "",
-        widthLocation: 0,
-        heightLocation: 0,
-        status: .empty
-    )
+    @Published var selectedSeat: SeatEntity?
 
     let studyRoomEntity: StudyRoomEntity
 
@@ -74,9 +69,8 @@ final class StudyRoomDetailViewModel: BaseViewModel {
         addCancellable(
             fetchStudyAvailableTimeUseCase.execute()
         ) { [weak self] availableTime in
-            var startTime = availableTime.startAt.toSmallDMSTimeString()
-            var endTime = availableTime.endAt.toSmallDMSTimeString()
-            print(startTime, endTime)
+            let startTime = availableTime.startAt.toSmallDMSTimeString()
+            let endTime = availableTime.endAt.toSmallDMSTimeString()
             self?.availableTimeString = "자습실 신청 시간은 \(startTime) ~ \(endTime) 까지 입니다."
         }
     }
@@ -88,7 +82,6 @@ final class StudyRoomDetailViewModel: BaseViewModel {
                 roomID: self.studyRoomEntity.id
             )
         ) { [weak self] detailStudyRoom in
-//            self?.studyRoomDetail = detailStudyRoom
             newSeatArray = self?.addEmptySeat(
                 width: detailStudyRoom.totalWidthSize,
                 height: detailStudyRoom.totalHeightSize,
@@ -113,9 +106,10 @@ final class StudyRoomDetailViewModel: BaseViewModel {
         }
     }
 
-    func applyStudyRoomSeat(id: String) {
+    func applyStudyRoomSeat() {
+        guard let selectedSeat else { return }
         addCancellable(
-            applyStudyRoomSeatUseCase.execute(seatID: id)
+            applyStudyRoomSeatUseCase.execute(seatID: selectedSeat.id)
         ) { [weak self] _ in
             self?.fetchDetailStudyRoom()
             self?.isShowingToast = true
@@ -123,7 +117,7 @@ final class StudyRoomDetailViewModel: BaseViewModel {
         }
     }
 
-    func cancelStudyRoomSeat(id: String) {
+    func cancelStudyRoomSeat() {
         addCancellable(
             cancelStudyRoomSeatUseCase.execute()
         ) { [weak self] _ in

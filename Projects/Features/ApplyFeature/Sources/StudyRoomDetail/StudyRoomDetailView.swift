@@ -50,8 +50,14 @@ struct StudyRoomDetailView: View {
                 .padding(.bottom, 6)
 
             HStack(spacing: 10) {
-                DMSWideButton(text: "취소", style: .contained, color: .GrayScale.gray4)
-                DMSWideButton(text: "신청", style: .contained, color: .System.primary)
+                DMSWideButton(text: "취소",style: .contained, color: .GrayScale.gray4) {
+                    viewModel.cancelStudyRoomSeat()
+                }
+
+                DMSWideButton(text: "신청", style: .contained, color: .System.primary) {
+                    viewModel.applyStudyRoomSeat()
+                }
+                .disabled(viewModel.selectedSeat == nil)
             }
             .padding(.bottom, 40)
 

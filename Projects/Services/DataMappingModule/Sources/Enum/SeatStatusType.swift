@@ -5,5 +5,4 @@ public enum SeatStatusType: String, Decodable {
     case unavailable = "UNAVAILABLE"
     case inUse = "IN_USE"
     case empty = "EMPTY"
-    case isSelect = "IS_SELECT"
 }

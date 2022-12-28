@@ -6,6 +6,7 @@ struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
     @State var isShowingCalendar = false
     @Environment(\.tabbarHidden) var tabbarHidden
+    @Environment(\.dmsSelectionTabbKey) var dmsSelectionTabbKey
 
     init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -36,7 +37,11 @@ struct HomeView: View {
 
                 ScrollView(showsIndicators: false) {
                     if viewModel.isExistNewNotice {
-                        NoticeView()
+                        Button {
+                            dmsSelectionTabbKey.wrappedValue = .notice
+                        } label: {
+                            NoticeView()
+                        }
                     }
 
                     Text("오늘의 급식")

@@ -7,12 +7,6 @@ import BaseFeature
 import DesignSystem
 import Utility
 
-enum TabFlow: Int {
-    case home
-    case apply
-    case notice
-    case myPage
-}
 struct MainTabView: View {
     @State var selection: TabFlow = .home
     @State var tabbarHidden = false
@@ -61,10 +55,12 @@ struct MainTabView: View {
                                 .cornerRadius(24, corners: [.topLeft, .topRight])
                                 .ignoresSafeArea()
                         }
-                    .dmsShadow(style: .tabbar)
+                        .dmsShadow(style: .tabbar)
+                        .environment(\.dmsSelectionTabbKey, $selection)
                 }
             }
         }
+        .environment(\.dmsSelectionTabbKey, $selection)
         .onAppear {
             UITabBar.hideTabBar()
         }

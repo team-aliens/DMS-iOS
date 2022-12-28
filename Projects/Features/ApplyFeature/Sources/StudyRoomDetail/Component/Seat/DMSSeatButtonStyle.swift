@@ -2,29 +2,27 @@ import SwiftUI
 import DataMappingModule
 
 public struct DMSSeatButtonStyle: ButtonStyle {
-    var style: SeatStatusType
+    public enum Style {
+        case available
+        case unavailable
+        case inUse
+        case empty
+    }
+    var style: Style
     var color: Color
+    var isSelected: Bool
 
     public func makeBody(configuration: Configuration) -> some View {
         switch style {
         case .available:
-            return AnyView(AvailableButton(configuration: configuration, color: color))
+            return AnyView(AvailableButton(configuration: configuration, color: color, isSelected: isSelected))
         case .unavailable:
             return AnyView(UnAvailableButton(configuration: configuration, color: color))
         case .inUse:
             return AnyView(InUseButton(configuration: configuration, color: color))
         case .empty:
             return AnyView(EmptyButton())
-        case .isSelect:
-            return AnyView(IsSelectButton(configuration: configuration, color: color))
         }
-    }
-}
-
-// MARK: - Usage
-extension Button {
-    func dmsStyle(_ style: SeatStatusType, color: Color) -> some View {
-        self.buttonStyle(DMSSeatButtonStyle(style: style, color: color))
     }
 }
 
@@ -33,18 +31,23 @@ extension DMSSeatButtonStyle {
     struct AvailableButton: View {
         let configuration: ButtonStyle.Configuration
         let color: Color
+        let isSelected: Bool
 
         var body: some View {
             ZStack {
-                Circle()
-                    .foregroundColor(color)
+                if isSelected {
+                    Circle()
+                        .strokeBorder(color)
+                } else {
+                    Circle()
+                        .foregroundColor(color)
+                }
 
                 configuration.label
-                    .dmsFont(.etc(.overline), color: .GrayScale.gray1)
+                    .dmsFont(.etc(.overline), color: isSelected ? .GrayScale.gray7 : .GrayScale.gray1)
             }
             .frame(width: 40, height: 40)
             .dmsShadow(style: .surface)
-
         }
     }
 }
@@ -102,26 +105,6 @@ extension DMSSeatButtonStyle {
             }
             .frame(width: 40, height: 40)
 
-        }
-    }
-}
-
-// MARK: - IsSelect
-extension DMSSeatButtonStyle {
-    struct IsSelectButton: View {
-        let configuration: ButtonStyle.Configuration
-        let color: Color
-
-        var body: some View {
-            ZStack {
-                Circle()
-                    .stroke(color, lineWidth: 4)
-
-                configuration.label
-                    .dmsFont(.etc(.overline), color: .GrayScale.gray7)
-            }
-            .frame(width: 40, height: 40)
-            .dmsShadow(style: .surface)
         }
     }
 }
