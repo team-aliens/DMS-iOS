@@ -85,7 +85,7 @@ public extension AppComponent {
     var homeComponent: HomeComponent {
         HomeComponent(parent: self)
     }
-    var applyComponent: StudyRoomDetailComponent {
+    var studyRoomDetailComponent: StudyRoomDetailComponent {
         StudyRoomDetailComponent(parent: self)
     }
     var noticeListComponent: NoticeListComponent {

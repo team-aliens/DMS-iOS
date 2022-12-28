@@ -372,6 +372,9 @@ private class StudyRoomListDependencyef56e26c25d5de596604Provider: StudyRoomList
     var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
         return appComponent.fetchStudyAvailableTimeUseCase
     }
+    var studyRoomDetailComponent: StudyRoomDetailComponent {
+        return appComponent.studyRoomDetailComponent
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -514,7 +517,7 @@ extension AppComponent: Registration {
         localTable["signupTermsComponent-SignupTermsComponent"] = { self.signupTermsComponent as Any }
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["homeComponent-HomeComponent"] = { self.homeComponent as Any }
-        localTable["applyComponent-StudyRoomDetailComponent"] = { self.applyComponent as Any }
+        localTable["studyRoomDetailComponent-StudyRoomDetailComponent"] = { self.studyRoomDetailComponent as Any }
         localTable["noticeListComponent-NoticeListComponent"] = { self.noticeListComponent as Any }
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
         localTable["changeProfileComponent-ChangeProfileComponent"] = { self.changeProfileComponent as Any }
@@ -686,6 +689,7 @@ extension StudyRoomListComponent: Registration {
     public func registerItems() {
         keyPathToName[\StudyRoomListDependency.fetchStudyRoomListUseCase] = "fetchStudyRoomListUseCase-any FetchStudyRoomListUseCase"
         keyPathToName[\StudyRoomListDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
+        keyPathToName[\StudyRoomListDependency.studyRoomDetailComponent] = "studyRoomDetailComponent-StudyRoomDetailComponent"
     }
 }
 extension AuthenticationEmailComponent: Registration {
@@ -738,7 +742,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 #if !NEEDLE_DYNAMIC
 
-private func register1() {
+@inline(never) private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->AppComponent->SplashComponent", factoryace9f05f51d68f4c0677f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
