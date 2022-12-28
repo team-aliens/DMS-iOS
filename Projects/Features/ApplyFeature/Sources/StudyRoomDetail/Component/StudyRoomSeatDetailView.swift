@@ -9,7 +9,7 @@ extension StudyRoomDetailView {
     @ViewBuilder
     func studyRoomSeatDetailView() -> some View {
         ScrollView([.horizontal, .vertical]) {
-            LazyVGrid(columns: columns) {
+            LazyHGrid(rows: rows) {
                 ForEach(viewModel.studyRoomDetail.seats, id: \.self) { singleSeat in
                     DMSSeatButton(
                         text: generateSeatButtonText(seat: singleSeat),

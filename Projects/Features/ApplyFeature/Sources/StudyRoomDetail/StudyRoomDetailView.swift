@@ -14,8 +14,8 @@ struct StudyRoomDetailView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
-    var columns: [GridItem] {
-        Array(repeating: GridItem(.flexible(), spacing: 40), count: viewModel.studyRoomDetail.totalWidthSize)
+    var rows: [GridItem] {
+        Array(repeating: GridItem(.flexible(), spacing: 40), count: viewModel.studyRoomDetail.totalHeightSize)
     }
 
     var body: some View {
