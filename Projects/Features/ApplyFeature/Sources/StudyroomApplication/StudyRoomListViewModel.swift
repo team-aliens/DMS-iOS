@@ -11,6 +11,17 @@ final class StudyRoomListViewModel: BaseViewModel {
     @Published var isShowingToast = false
     @Published var toastMessage = ""
     @Published var studyAvailableTime: StudyAvailableTimeEntity?
+    @Published var isNavigateDetail: Bool = false
+    @Published var studyRoomDetail: StudyRoomEntity = .init(
+        id: "",
+        floor: 0,
+        name: "",
+        availableGrade: 0,
+        availableSex: .all,
+        inUseHeadcount: 0,
+        totalAvailableSeat: 0,
+        isMine: false
+    )
 
     var rangeString: String {
         if let time = studyAvailableTime {

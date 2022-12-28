@@ -57,7 +57,8 @@ struct StudyRoomDetailView: View {
         }
         .padding(.horizontal, 24)
         .background {
-            Color.System.surface
+            Color.System.background
+                .ignoresSafeArea()
                 .cornerRadius(20)
         }
         .dmsShadow(style: .surface)

@@ -27,11 +27,10 @@ struct StudyRoomListView: View {
                         Spacer()
                             .frame(height: 10)
                         ForEach(viewModel.studyRoomList, id: \.self) { studyRoomList in
-                            NavigationLink(
-                                destination: studyRoomDetailComponent.makeView(
-                                    studyRoomEntity: studyRoomList
-                                )
-                            ) {
+                            Button {
+                                viewModel.isNavigateDetail.toggle()
+                                viewModel.studyRoomDetail = studyRoomList
+                            } label: {
                                 StudyRoomListCellView(studyRoomEntity: studyRoomList)
                                     .padding(.top, 5)
                                     .padding(.bottom, 10)
@@ -46,11 +45,16 @@ struct StudyRoomListView: View {
                 .onAppear {
                     viewModel.fetchStudyRoomList()
                     viewModel.fetchStudyAvailableTime()
-                    tabbarHidden.wrappedValue = false
                 }
-                .onDisappear {
-                    tabbarHidden.wrappedValue = true
+                .onChange(of: viewModel.isNavigateDetail) { newValue in
+                    withAnimation {
+                        tabbarHidden.wrappedValue = newValue
+                    }
                 }
+                .navigate(
+                    to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),
+                    when: $viewModel.isNavigateDetail
+                )
             }
         }
     }
