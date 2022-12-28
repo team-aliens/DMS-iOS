@@ -82,12 +82,34 @@ final class StudyRoomDetailViewModel: BaseViewModel {
     }
 
     func fetchDetailStudyRoom() {
+        var newSeatArray: [SeatEntity] = []
         addCancellable(
             fetchDetailStudyRoomUseCase.execute(
                 roomID: self.studyRoomEntity.id
             )
         ) { [weak self] detailStudyRoom in
-            self?.studyRoomDetail = detailStudyRoom
+//            self?.studyRoomDetail = detailStudyRoom
+            newSeatArray = self?.addEmptySeat(
+                width: detailStudyRoom.totalWidthSize,
+                height: detailStudyRoom.totalHeightSize,
+                beforeArray: detailStudyRoom.seats
+            ) ?? []
+
+            self?.studyRoomDetail = .init(
+                floor: detailStudyRoom.floor,
+                name: detailStudyRoom.name,
+                totalAvailableSeat: detailStudyRoom.totalAvailableSeat,
+                inUseHeadcount: detailStudyRoom.inUseHeadcount,
+                availableSex: detailStudyRoom.availableSex,
+                availableGrade: detailStudyRoom.availableGrade,
+                eastDescription: detailStudyRoom.eastDescription,
+                westDescription: detailStudyRoom.westDescription,
+                southDescription: detailStudyRoom.southDescription,
+                northDescription: detailStudyRoom.northDescription,
+                totalWidthSize: detailStudyRoom.totalWidthSize,
+                totalHeightSize: detailStudyRoom.totalHeightSize,
+                seats: newSeatArray
+            )
         }
     }
 
@@ -110,4 +132,27 @@ final class StudyRoomDetailViewModel: BaseViewModel {
             self?.toastMessage = "자습실 취소가 완료되었습니다."
         }
     }
+
+    func addEmptySeat(width: Int, height: Int, beforeArray: [SeatEntity]) -> [SeatEntity] {
+        if beforeArray.count == width * height {
+            return beforeArray
+        }
+
+        var newArray = [SeatEntity](
+            repeating: SeatEntity(
+                id: "",
+                widthLocation: 1,
+                heightLocation: 1,
+                status: .empty
+            ),
+            count: width * height
+        )
+
+        beforeArray.forEach { value in
+            let index = (value.widthLocation - 1) * height + value.heightLocation - 1
+            newArray[index] = value
+        }
+        return newArray
+    }
+
 }
