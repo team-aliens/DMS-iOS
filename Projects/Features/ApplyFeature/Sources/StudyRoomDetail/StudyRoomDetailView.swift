@@ -32,6 +32,7 @@ struct StudyRoomDetailView: View {
             studyRoomDetailBackView()
                 .padding(.top, 20)
                 .padding(.bottom, 0)
+                .edgesIgnoringSafeArea(.bottom)
         }
         .dmsBackButton(dismiss: dismiss)
         .navigationTitle("자습실 자리 신청")
