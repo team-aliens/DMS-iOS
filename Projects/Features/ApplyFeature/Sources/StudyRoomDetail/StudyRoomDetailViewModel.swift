@@ -23,6 +23,14 @@ final class StudyRoomDetailViewModel: BaseViewModel {
     @Published var seatTypes: [SeatTypeEntity] = []
     @Published var seat: [[SeatEntity]] = [[]]
     @Published var availableTimeString: String = ""
+    @Published var isShowingToast = false
+    @Published var toastMessage = ""
+    @Published var selectSeat: SeatEntity = .init(
+        id: "",
+        widthLocation: 0,
+        heightLocation: 0,
+        status: .empty
+    )
 
     let studyRoomEntity: StudyRoomEntity
 
@@ -83,18 +91,23 @@ final class StudyRoomDetailViewModel: BaseViewModel {
         }
     }
 
-    func detailRoomSeatTwoDimensional() {
-        let width = self.studyRoomDetail.totalWidthSize
-        let height = self.studyRoomDetail.totalHeightSize
-        let beforeSeat = self.studyRoomDetail.seats
-        var totalCount = 0
-
-        for widthCount in 0..<width {
-            for heightCount in 0..<height {
-                self.seat[widthCount+1][heightCount+1] = beforeSeat[totalCount]
-                totalCount += 1
-            }
+    func applyStudyRoomSeat(id: String) {
+        addCancellable(
+            applyStudyRoomSeatUseCase.execute(seatID: id)
+        ) { [weak self] _ in
+            self?.fetchDetailStudyRoom()
+            self?.isShowingToast = true
+            self?.toastMessage = "자습실 신청이 완료되었습니다."
         }
-        totalCount = 0
+    }
+
+    func cancelStudyRoomSeat(id: String) {
+        addCancellable(
+            cancelStudyRoomSeatUseCase.execute()
+        ) { [weak self] _ in
+            self?.fetchDetailStudyRoom()
+            self?.isShowingToast = true
+            self?.toastMessage = "자습실 취소가 완료되었습니다."
+        }
     }
 }
