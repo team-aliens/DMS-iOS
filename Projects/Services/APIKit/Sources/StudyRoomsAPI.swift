@@ -68,6 +68,12 @@ extension StudyRoomsAPI: DmsAPI {
                 500: .internalServerError
             ]
 
+        case .fetchDetailStudyRoom:
+            return [
+                400: .badRequest,
+                500: .photoCapacityIsLarge
+            ]
+
         default:
             return [
                 400: .badRequest,
