@@ -6,6 +6,7 @@ import SwiftUI
 struct StudyRoomListView: View {
     @StateObject var viewModel: StudyRoomListViewModel
     private let studyRoomDetailComponent: StudyRoomDetailComponent
+    @Environment(\.tabbarHidden) var tabbarHidden
 
     init(
         viewModel: StudyRoomListViewModel,
@@ -28,13 +29,12 @@ struct StudyRoomListView: View {
                         ForEach(viewModel.studyRoomList, id: \.self) { studyRoomList in
                             NavigationLink(
                                 destination: studyRoomDetailComponent.makeView(
-                                    studyRoomID: studyRoomList.id
+                                    studyRoomEntity: studyRoomList
                                 )
                             ) {
                                 StudyRoomListCellView(studyRoomEntity: studyRoomList)
                                     .padding(.top, 5)
                                     .padding(.bottom, 10)
-                                    .listRowInsets(EdgeInsets())
                             }
                         }
                         .padding(.horizontal, 24)
@@ -46,6 +46,10 @@ struct StudyRoomListView: View {
                 .onAppear {
                     viewModel.fetchStudyRoomList()
                     viewModel.fetchStudyAvailableTime()
+                    tabbarHidden.wrappedValue = false
+                }
+                .onDisappear {
+                    tabbarHidden.wrappedValue = true
                 }
             }
         }

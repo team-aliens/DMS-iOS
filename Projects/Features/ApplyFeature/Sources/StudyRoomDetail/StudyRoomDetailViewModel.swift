@@ -2,6 +2,7 @@ import BaseFeature
 import DomainModule
 import DataMappingModule
 import Combine
+import Foundation
 
 final class StudyRoomDetailViewModel: BaseViewModel {
     @Published var studyRoomDetail: DetailStudyRoomEntity = .init(
@@ -21,9 +22,9 @@ final class StudyRoomDetailViewModel: BaseViewModel {
     )
     @Published var seatTypes: [SeatTypeEntity] = []
     @Published var seat: [[SeatEntity]] = [[]]
-    @Published var availableTime: String = ""
+    @Published var availableTimeString: String = ""
 
-    var studyRoomID: String
+    let studyRoomEntity: StudyRoomEntity
 
     private let fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase
     private let fetchSeatTypesUseCase: any FetchSeatTypesUseCase
@@ -32,14 +33,14 @@ final class StudyRoomDetailViewModel: BaseViewModel {
     private let cancelStudyRoomSeatUseCase: any CancelStudyRoomSeatUseCase
 
     public init(
-        studyRoomID: String,
+        studyRoomEntity: StudyRoomEntity,
         fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase,
         fetchSeatTypesUseCase: any FetchSeatTypesUseCase,
         fetchDetailStudyRoomUseCase: any FetchDetailStudyRoomUseCase,
         applyStudyRoomSeatUseCase: any ApplyStudyRoomSeatUseCase,
         cancelStudyRoomSeatUseCase: any CancelStudyRoomSeatUseCase
     ) {
-        self.studyRoomID = studyRoomID
+        self.studyRoomEntity = studyRoomEntity
         self.fetchStudyAvailableTimeUseCase = fetchStudyAvailableTimeUseCase
         self.fetchSeatTypesUseCase = fetchSeatTypesUseCase
         self.fetchDetailStudyRoomUseCase = fetchDetailStudyRoomUseCase
@@ -62,22 +63,20 @@ final class StudyRoomDetailViewModel: BaseViewModel {
     }
 
     func fetchStudyAvailableTime() {
-        var startTime: String = ""
-        var endTime: String = ""
-
         addCancellable(
             fetchStudyAvailableTimeUseCase.execute()
         ) { [weak self] availableTime in
-            startTime = availableTime.startAt.toSmallDMSTimeString()
-            endTime = availableTime.endAt.toSmallDMSTimeString()
-            self?.availableTime = "\(startTime) ~ \(endTime)"
+            var startTime = availableTime.startAt.toSmallDMSTimeString()
+            var endTime = availableTime.endAt.toSmallDMSTimeString()
+            print(startTime, endTime)
+            self?.availableTimeString = "자습실 신청 시간은 \(startTime) ~ \(endTime) 까지 입니다."
         }
     }
 
     func fetchDetailStudyRoom() {
         addCancellable(
             fetchDetailStudyRoomUseCase.execute(
-                roomID: self.studyRoomID
+                roomID: self.studyRoomEntity.id
             )
         ) { [weak self] detailStudyRoom in
             self?.studyRoomDetail = detailStudyRoom

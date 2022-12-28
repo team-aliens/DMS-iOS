@@ -12,10 +12,10 @@ public protocol StudyRoomDetailDependency: Dependency {
 }
 
 public final class StudyRoomDetailComponent: Component<StudyRoomDetailDependency> {
-    public func makeView(studyRoomID: String) -> some View {
+    public func makeView(studyRoomEntity: StudyRoomEntity) -> some View {
         StudyRoomDetailView(
             viewModel: .init(
-                studyRoomID: studyRoomID,
+                studyRoomEntity: studyRoomEntity,
                 fetchStudyAvailableTimeUseCase: dependency.fetchStudyAvailableTimeUseCase,
                 fetchSeatTypesUseCase: dependency.fetchSeatTypesUseCase,
                 fetchDetailStudyRoomUseCase: dependency.fetchDetailStudyRoomUseCase,

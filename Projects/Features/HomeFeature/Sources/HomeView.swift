@@ -55,7 +55,7 @@ struct HomeView: View {
                 }
             }
         }
-        .onChange(of: viewModel.selectedDate) { newValue in
+        .onChange(of: viewModel.selectedDate) { _ in
             viewModel.onChangeSelectedDate()
         }
         .onAppear {

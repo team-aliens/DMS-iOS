@@ -17,7 +17,7 @@ public extension String {
 
     func toDMSTime() -> Date {
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:MM:dd"
+        formatter.dateFormat = "HH:mm:ss"
         formatter.locale = Locale(identifier: "ko_kr")
         return formatter.date(from: self) ?? .init()
     }

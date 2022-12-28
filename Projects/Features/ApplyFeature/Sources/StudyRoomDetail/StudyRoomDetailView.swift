@@ -1,3 +1,4 @@
+import BaseFeature
 import DesignSystem
 import DomainModule
 import SwiftUI
@@ -5,6 +6,7 @@ import SwiftUI
 struct StudyRoomDetailView: View {
     @StateObject var viewModel: StudyRoomDetailViewModel
     @Environment(\.dismiss) var dismiss
+    @Environment(\.tabbarHidden) var tabbarHidden
 
     init(
         viewModel: StudyRoomDetailViewModel
@@ -18,10 +20,17 @@ struct StudyRoomDetailView: View {
 
     var body: some View {
         VStack {
-            Spacer()
+            StudyRoomNoticeView(text: viewModel.availableTimeString)
+                .padding(.top, 12)
+
+            StudyRoomListCellView(
+                studyRoomEntity: viewModel.studyRoomEntity
+            )
+            .padding(.horizontal, 24)
+            .padding(.top, 30)
 
             studyRoomDetailBackView()
-                .padding(.top, 204)
+                .padding(.top, 20)
                 .padding(.bottom, 0)
         }
         .dmsBackButton(dismiss: dismiss)

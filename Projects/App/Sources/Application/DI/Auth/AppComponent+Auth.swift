@@ -63,6 +63,8 @@ public extension AppComponent {
     }
 
     var logoutUseCase: any LogoutUseCase {
-        LogoutUseCaseImpl(authRepository: authRepository)
+        shared {
+            LogoutUseCaseImpl(authRepository: authRepository)
+        }
     }
 }
