@@ -15,7 +15,10 @@ struct StudyRoomDetailView: View {
     }
 
     var rows: [GridItem] {
-        Array(repeating: GridItem(.flexible(), spacing: 40), count: viewModel.studyRoomDetail.totalHeightSize)
+        Array(
+            repeating: GridItem(.flexible(), spacing: 40),
+            count: viewModel.studyRoomDetail?.totalHeightSize ?? 0
+        )
     }
 
     var body: some View {

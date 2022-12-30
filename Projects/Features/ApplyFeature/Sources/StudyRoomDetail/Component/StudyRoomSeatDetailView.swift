@@ -10,12 +10,12 @@ extension StudyRoomDetailView {
     func studyRoomSeatDetailView() -> some View {
         ScrollView([.horizontal, .vertical]) {
             LazyHGrid(rows: rows) {
-                ForEach(viewModel.studyRoomDetail.seats, id: \.self) { singleSeat in
+                ForEach(viewModel.studyRoomDetail?.seats ?? [], id: \.self) { singleSeat in
                     DMSSeatButton(
                         text: generateSeatButtonText(seat: singleSeat),
                         style: seatStatusToSeatStyle(status: singleSeat.status),
                         color: Color(hex: singleSeat.type?.color ?? ""),
-                        isSelected: singleSeat == viewModel.selectedSeat
+                        isSelected: singleSeat.id == viewModel.selectedSeat?.id ?? ""
                     ) {
                         if viewModel.selectedSeat?.id == singleSeat.id || singleSeat.status != .available {
                             withAnimation {

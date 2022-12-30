@@ -17,25 +17,25 @@ extension StudyRoomDetailView {
                 .frame(height: 15)
 
             HStack {
-                Text(viewModel.studyRoomDetail.westDescription)
+                Text(viewModel.studyRoomDetail?.westDescription ?? "동")
                     .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                     .rotationEffect(.degrees(-90))
                     .padding(.leading, 8)
 
                 VStack(alignment: .center) {
-                    Text(viewModel.studyRoomDetail.northDescription)
+                    Text(viewModel.studyRoomDetail?.northDescription ?? "북")
                         .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                         .padding(.top, 8)
 
                     studyRoomSeatDetailView()
 
-                    Text(viewModel.studyRoomDetail.southDescription)
+                    Text(viewModel.studyRoomDetail?.southDescription ?? "ska")
                         .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                         .padding(.bottom, 8)
 
                 }
 
-                Text(viewModel.studyRoomDetail.eastDescription)
+                Text(viewModel.studyRoomDetail?.eastDescription ?? "서")
                     .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                     .rotationEffect(.degrees(90))
                     .padding(.trailing, 8)

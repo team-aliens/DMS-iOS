@@ -5,21 +5,7 @@ import Combine
 import Foundation
 
 final class StudyRoomDetailViewModel: BaseViewModel {
-    @Published var studyRoomDetail: DetailStudyRoomEntity = .init(
-        floor: 0,
-        name: "",
-        totalAvailableSeat: 0,
-        inUseHeadcount: 0,
-        availableSex: .all,
-        availableGrade: 0,
-        eastDescription: "",
-        westDescription: "",
-        southDescription: "",
-        northDescription: "",
-        totalWidthSize: 0,
-        totalHeightSize: 0,
-        seats: []
-    )
+    @Published var studyRoomDetail: DetailStudyRoomEntity?
     @Published var seatTypes: [SeatTypeEntity] = []
     @Published var seat: [[SeatEntity]] = [[]]
     @Published var availableTimeString: String = ""
