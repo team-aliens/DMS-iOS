@@ -118,13 +118,8 @@ final class StudyRoomDetailViewModel: BaseViewModel {
             return beforeArray
         }
 
-        var newArray = [SeatEntity](
-            repeating: SeatEntity(
-                id: "",
-                widthLocation: 1,
-                heightLocation: 1,
-                status: .empty
-            ),
+        var newArray = [SeatEntity?](
+            repeating: nil,
             count: width * height
         )
 
@@ -132,7 +127,13 @@ final class StudyRoomDetailViewModel: BaseViewModel {
             let index = (value.widthLocation - 1) * height + value.heightLocation - 1
             newArray[index] = value
         }
-        return newArray
+        return newArray.compactMap {
+            $0 ?? SeatEntity(
+                id: UUID().uuidString,
+                widthLocation: 1,
+                heightLocation: 1,
+                status: .empty
+            )
+        }
     }
-
 }

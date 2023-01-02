@@ -39,6 +39,7 @@ public enum DmsError: Error {
 
     // MARK: - StudyRooms
     case seatIsAlreadyExist
+    case notFoundAppliedSeat
 }
 
 extension DmsError: LocalizedError {
@@ -116,6 +117,9 @@ extension DmsError: LocalizedError {
         // MARK: - StudyRooms
         case .seatIsAlreadyExist:
             return "이미 신청된 자리입니다"
+
+        case .notFoundAppliedSeat:
+            return "신청한 자리가 없습니다"
         }
     }
 }

@@ -74,6 +74,13 @@ extension StudyRoomsAPI: DmsAPI {
                 500: .photoCapacityIsLarge
             ]
 
+        case .cancelStudyRoomSeat:
+            return [
+                400: .badRequest,
+                404: .notFoundAppliedSeat,
+                500: .internalServerError
+            ]
+
         default:
             return [
                 400: .badRequest,

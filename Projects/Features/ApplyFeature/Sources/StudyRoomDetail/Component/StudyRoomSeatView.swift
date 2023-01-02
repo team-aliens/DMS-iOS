@@ -32,7 +32,6 @@ extension StudyRoomDetailView {
                     Text(viewModel.studyRoomDetail?.southDescription ?? "ska")
                         .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                         .padding(.bottom, 8)
-
                 }
 
                 Text(viewModel.studyRoomDetail?.eastDescription ?? "서")
