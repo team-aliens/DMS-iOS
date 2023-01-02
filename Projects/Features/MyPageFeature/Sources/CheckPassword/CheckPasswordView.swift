@@ -7,6 +7,7 @@ struct CheckPasswordView: View {
     @StateObject var viewModel: CheckPasswordViewModel
     let modifyPasswordComponent: ModifyPasswordComponent
     @Environment(\.dismiss) var dismiss
+    @Environment(\.rootPresentationMode) var rootPresentationMode
 
     init(
         viewModel: CheckPasswordViewModel,
@@ -50,7 +51,7 @@ struct CheckPasswordView: View {
         .navigate(
             to: modifyPasswordComponent.makeView(
                 currentPassword: viewModel.password
-            ),
+            ).environment(\.rootPresentationMode, rootPresentationMode),
             when: $viewModel.isSuccessCheckPassword
         )
     }

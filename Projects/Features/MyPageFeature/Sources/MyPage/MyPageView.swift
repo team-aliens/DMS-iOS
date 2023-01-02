@@ -166,7 +166,8 @@ struct MyPageView: View {
             when: $viewModel.isNavigateChangeProfile
         )
         .navigate(
-            to: checkPasswordComponent.makeView(),
+            to: checkPasswordComponent.makeView()
+                .environment(\.rootPresentationMode, $viewModel.isNavigateChangePassword),
             when: $viewModel.isNavigateChangePassword
         )
         .navigate(

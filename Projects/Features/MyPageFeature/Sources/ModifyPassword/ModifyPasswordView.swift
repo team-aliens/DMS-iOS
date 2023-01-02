@@ -11,6 +11,7 @@ struct ModifyPasswordView: View {
     @FocusState private var focusField: FocusField?
     @StateObject var viewModel: ModifyPasswordViewModel
     @Environment(\.dismiss) var dismiss
+    @Environment(\.rootPresentationMode) var rootPresentationMode
 
     init(
         viewModel: ModifyPasswordViewModel
@@ -73,7 +74,8 @@ struct ModifyPasswordView: View {
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .onChange(of: viewModel.isSuccessRenewalPassword) { newValue in
             if newValue {
-                NavigationUtil.popToRootView()
+                print("A")
+                rootPresentationMode.wrappedValue.dismiss()
             }
         }
     }
