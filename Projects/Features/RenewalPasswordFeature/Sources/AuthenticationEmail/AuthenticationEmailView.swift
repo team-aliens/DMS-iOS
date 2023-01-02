@@ -3,8 +3,9 @@ import DesignSystem
 
 struct AuthenticationEmailView: View {
     @StateObject var viewModel: AuthenticationEmailViewModel
-    let changePasswordComponent: ChangePasswordComponent
+    private let changePasswordComponent: ChangePasswordComponent
     @Environment(\.dismiss) var dismiss
+    @State var isViewDidLoad = false
 
     init(
         viewModel: AuthenticationEmailViewModel,
@@ -49,6 +50,11 @@ struct AuthenticationEmailView: View {
         .onChange(of: viewModel.authCode) { newValue in
             if newValue.count == 6 {
                 viewModel.verifyEmailAuthCode()
+            }
+        }
+        .onAppear {
+            if !isViewDidLoad {
+                viewModel.sendEmailAuthCode()
             }
         }
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)

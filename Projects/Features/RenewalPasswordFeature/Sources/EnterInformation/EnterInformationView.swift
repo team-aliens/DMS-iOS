@@ -10,7 +10,7 @@ struct EnterInformationView: View {
 
     @FocusState private var focusField: FocusField?
     @StateObject var viewModel: EnterInformationViewModel
-    let authenticationEmailComponent: AuthenticationEmailComponent
+    private let authenticationEmailComponent: AuthenticationEmailComponent
     @Environment(\.dismiss) var dismiss
 
     public init(
@@ -45,7 +45,6 @@ struct EnterInformationView: View {
                 if viewModel.isShowFoundEmail {
                     BlockEmailView(email: $viewModel.blockEmail)
                 }
-
             }
             .padding(.top, 68)
             .transition(.slide)
@@ -72,7 +71,7 @@ struct EnterInformationView: View {
             DMSWideButton(text: "다음", color: .PrimaryVariant.primary) {
                 viewModel.nextButtonDidTap()
             }
-            .disabled(!viewModel.isNextButtonEnabled )
+            .disabled(!viewModel.isNextButtonEnabled)
             .padding(.bottom, 40)
         }
         .onAppear {
@@ -93,6 +92,5 @@ struct EnterInformationView: View {
         .frame(maxWidth: .infinity)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .padding(.horizontal, 24)
-
     }
 }

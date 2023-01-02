@@ -43,6 +43,7 @@ struct MyPageView: View {
                                 .resizable()
                                 .frame(width: 74, height: 74)
                                 .clipShape(Circle())
+                                .scaledToFill()
                         } placeholder: {
                             Color.GrayScale.gray5
                                 .frame(width: 74, height: 74)

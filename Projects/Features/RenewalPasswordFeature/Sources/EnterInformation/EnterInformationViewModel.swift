@@ -6,7 +6,7 @@ final class EnterInformationViewModel: BaseViewModel {
     @Published var email = "" {
         didSet { isErrorOcuured = false }
     }
-    @Published var blockEmail = "082****@naver.com"
+    @Published var blockEmail = ""
     @Published var id = "" {
         didSet { isErrorOcuured = false }
     }

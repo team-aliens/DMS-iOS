@@ -5,6 +5,7 @@ import SwiftUI
 struct SignupEmailAuthCodeVerifyView: View {
     @StateObject var viewModel: SignupEmailAuthCodeVerifyViewModel
     @Environment(\.dismiss) var dismiss
+    @State var isViewDidLoad = false
     private let idSettingComponent: IDSettingComponent
 
     init(
@@ -43,6 +44,11 @@ struct SignupEmailAuthCodeVerifyView: View {
             }
             .padding(.top, 32)
             .padding(.bottom, 40)
+        }
+        .onAppear {
+            if !isViewDidLoad {
+                viewModel.sendEmailAuthCode()
+            }
         }
         .onChange(of: viewModel.authCode) { newValue in
             if newValue.count == 6 {

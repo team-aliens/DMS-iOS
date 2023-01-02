@@ -32,7 +32,6 @@ final class SignupEmailAuthCodeVerifyViewModel: BaseViewModel {
         self.verifyAuthCodeUseCase = verifyAuthCodeUseCase
         self.signupEmailAuthCodeVerifyParam = signupEmailAuthCodeVerifyParam
         super.init()
-        sendEmailAuthCode()
 
         addCancellable(
             timer.setFailureType(to: DmsError.self).eraseToAnyPublisher()

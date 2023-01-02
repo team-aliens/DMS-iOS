@@ -36,7 +36,6 @@ final class AuthenticationEmailViewModel: BaseViewModel {
         self.authenticationEmailParam = authenticationEmailParam
         super.init()
 
-        sendEmailAuthCode()
         addCancellable(
             timer.setFailureType(to: DmsError.self).eraseToAnyPublisher()
         ) { [weak self] _ in
