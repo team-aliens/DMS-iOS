@@ -2,22 +2,14 @@ import Foundation
 
 public struct DmsFeatures: Equatable {
     public init(
-        mealService: Bool,
-        noticeService: Bool,
-        pointService: Bool
+        studyRoomService: Bool
     ) {
-        self.mealService = mealService
-        self.noticeService = noticeService
-        self.pointService = pointService
+        self.studyRoomService = studyRoomService
     }
 
     public init() {
-        self.mealService = false
-        self.noticeService = false
-        self.pointService = false
+        self.studyRoomService = false
     }
 
-    public let mealService: Bool
-    public let noticeService: Bool
-    public let pointService: Bool
+    public let studyRoomService: Bool
 }

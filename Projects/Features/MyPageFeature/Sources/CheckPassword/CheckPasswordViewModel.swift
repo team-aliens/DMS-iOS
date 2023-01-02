@@ -1,6 +1,7 @@
 import BaseFeature
 import Combine
 import DomainModule
+import Utility
 
 final class CheckPasswordViewModel: BaseViewModel {
     @Published var password = "" {

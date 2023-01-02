@@ -7,9 +7,23 @@ import BaseFeature
 import DesignSystem
 import Utility
 
+// swiftlint: disable large_tuple
 struct MainTabView: View {
     @State var selection: TabFlow = .home
     @State var tabbarHidden = false
+    @EnvironmentObject var appState: AppState
+
+    var tabItem: [(String, String, TabFlow)] {
+        var tabItems: [(String, String, TabFlow)] = [
+            ("house", "홈", .home),
+            ("megaphone", "안내", .notice),
+            ("person", "마이페이지", .myPage)
+        ]
+        if appState.features.studyRoomService {
+            tabItems.insert(("plus.bubble", "신청", .apply), at: 1)
+        }
+        return tabItems
+    }
 
     private let homeComponent: HomeComponent
     private let studyRoomListComponent: StudyRoomListComponent
@@ -34,8 +48,10 @@ struct MainTabView: View {
                 homeComponent.makeView()
                     .tag(TabFlow.home)
 
-                studyRoomListComponent.makeView()
-                    .tag(TabFlow.apply)
+                if appState.features.studyRoomService {
+                    studyRoomListComponent.makeView()
+                        .tag(TabFlow.apply)
+                }
 
                 noticeComponent.makeView()
                     .tag(TabFlow.notice)
@@ -68,13 +84,6 @@ struct MainTabView: View {
 
     @ViewBuilder
     func tabbarView() -> some View {
-        let tabItem: [(String, String, TabFlow)] = [
-            ("house", "홈", .home),
-            ("plus.bubble", "신청", .apply),
-            ("megaphone", "안내", .notice),
-            ("person", "마이페이지", .myPage)
-        ]
-
         HStack {
             Spacer()
 

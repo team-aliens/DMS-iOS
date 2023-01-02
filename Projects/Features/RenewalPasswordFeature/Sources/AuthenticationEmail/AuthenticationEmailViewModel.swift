@@ -36,13 +36,7 @@ final class AuthenticationEmailViewModel: BaseViewModel {
         self.authenticationEmailParam = authenticationEmailParam
         super.init()
 
-        addCancellable(
-            $authCode.setFailureType(to: DmsError.self).eraseToAnyPublisher()
-        ) { [weak self] code in
-            if code.count >= 6 {
-                self?.verifyEmailAuthCode()
-            }
-        }
+        sendEmailAuthCode()
         addCancellable(
             timer.setFailureType(to: DmsError.self).eraseToAnyPublisher()
         ) { [weak self] _ in
@@ -65,9 +59,11 @@ final class AuthenticationEmailViewModel: BaseViewModel {
     }
 
     func verifyEmailAuthCode() {
+        let email = authenticationEmailParam.email
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         addCancellable(
             verifyAuthCodeUseCase.execute(
-                req: .init(email: authenticationEmailParam.email, authCode: authCode, type: .signup)
+                req: .init(email: email, authCode: authCode, type: .password)
             )
         ) { [weak self] _ in
             self?.isNavigateChangePassword = true

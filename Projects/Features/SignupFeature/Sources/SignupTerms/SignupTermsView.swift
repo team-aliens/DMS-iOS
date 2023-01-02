@@ -1,9 +1,9 @@
 import DesignSystem
 import SwiftUI
+import Utility
 
 struct SignupTermsView: View {
     @StateObject var viewModel: SignupTermsViewModel
-    @Environment(\.rootPresentationMode) var rootPresentationMode
     @Environment(\.dismiss) var dismiss
 
     init(
@@ -54,7 +54,7 @@ struct SignupTermsView: View {
         .padding(.horizontal, 24)
         .alert(viewModel.alertMessage, isPresented: $viewModel.isShowingAlert) {
             Button("로그인 화면으로", role: .cancel) {
-                rootPresentationMode.wrappedValue.toggle()
+                NavigationUtil.popToRootView()
             }
         }
     }

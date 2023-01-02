@@ -1,3 +1,4 @@
+import BaseFeature
 import DesignSystem
 import SwiftUI
 import Utility
@@ -7,6 +8,7 @@ struct HomeView: View {
     @State var isShowingCalendar = false
     @Environment(\.tabbarHidden) var tabbarHidden
     @Environment(\.dmsSelectionTabbKey) var dmsSelectionTabbKey
+    @EnvironmentObject var appState: AppState
 
     init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)

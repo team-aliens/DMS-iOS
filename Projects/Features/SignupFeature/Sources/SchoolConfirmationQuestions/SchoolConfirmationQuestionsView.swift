@@ -63,6 +63,7 @@ struct SchoolConfirmationQuestionsView: View {
             .padding(.top, 24)
             .padding(.bottom, 40)
         }
+        .hideKeyboardWhenTap()
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
@@ -79,6 +80,7 @@ struct SchoolConfirmationQuestionsView: View {
                     schoolAnswer: viewModel.answer
                 )
             ),
-            when: $viewModel.isNavigateSignupEmailVerify)
+            when: $viewModel.isNavigateSignupEmailVerify
+        )
     }
 }

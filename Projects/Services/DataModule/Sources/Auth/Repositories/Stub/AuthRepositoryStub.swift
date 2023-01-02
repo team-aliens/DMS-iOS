@@ -9,7 +9,7 @@ public struct AuthRepositoryStub: AuthRepository {
     public func logout() {}
 
     public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
-        Just(DmsFeatures(mealService: false, noticeService: false, pointService: false))
+        Just(DmsFeatures(studyRoomService: false))
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
@@ -25,7 +25,7 @@ public struct AuthRepositoryStub: AuthRepository {
     }
 
     public func reissueToken() -> AnyPublisher<DmsFeatures, DmsError> {
-        Just(DmsFeatures(mealService: false, noticeService: false, pointService: false))
+        Just(DmsFeatures(studyRoomService: false))
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }

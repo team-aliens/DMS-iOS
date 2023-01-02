@@ -32,22 +32,13 @@ final class SignupEmailAuthCodeVerifyViewModel: BaseViewModel {
         self.verifyAuthCodeUseCase = verifyAuthCodeUseCase
         self.signupEmailAuthCodeVerifyParam = signupEmailAuthCodeVerifyParam
         super.init()
+        sendEmailAuthCode()
 
         addCancellable(
             timer.setFailureType(to: DmsError.self).eraseToAnyPublisher()
         ) { [weak self] _ in
             guard let self, self.timeRemaining > 0 else { return }
             self.timeRemaining -= 1
-        }
-
-        addCancellable(
-            $authCode.setFailureType(to: DmsError.self)
-                .debounce(for: 0.5, scheduler: RunLoop.main)
-                .eraseToAnyPublisher()
-        ) { [weak self] code in
-            if code.count == 6 {
-                self?.verifyEmailAuthCode()
-            }
         }
     }
 

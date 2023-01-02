@@ -46,8 +46,10 @@ struct AuthenticationEmailView: View {
         }
         .padding(.horizontal, 24)
         .hideKeyboardWhenTap()
-        .onAppear {
-            viewModel.sendEmailAuthCode()
+        .onChange(of: viewModel.authCode) { newValue in
+            if newValue.count == 6 {
+                viewModel.verifyEmailAuthCode()
+            }
         }
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .navigate(

@@ -44,19 +44,18 @@ struct SignupEmailAuthCodeVerifyView: View {
             .padding(.top, 32)
             .padding(.bottom, 40)
         }
+        .onChange(of: viewModel.authCode) { newValue in
+            if newValue.count == 6 {
+                viewModel.verifyEmailAuthCode()
+            }
+        }
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
         .dmsBackground()
         .hideKeyboardWhenTap()
-        .onAppear {
-            viewModel.sendEmailAuthCode()
-        }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
-        .onChange(of: viewModel.isNavigateSignupID, perform: { newValue in
-            print("navigate-signup-id", newValue)
-        })
         .navigate(
             to: idSettingComponent.makeView(
                 idSettingParam: .init(

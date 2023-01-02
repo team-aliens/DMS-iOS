@@ -130,6 +130,12 @@ struct SigninView: View {
             )
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
+        .hideKeyboardWhenTap()
+        .onChange(of: viewModel.dmsFeatures) { newValue in
+            if let newValue {
+                appState.features = newValue
+            }
+        }
         .onChange(of: viewModel.isSuccessSignin) { newValue in
             guard newValue else { return }
             appState.sceneFlow = .main
