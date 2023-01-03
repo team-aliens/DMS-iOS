@@ -48,6 +48,9 @@ struct NoticeListView: View {
                                 .listRowInsets(EdgeInsets())
                             }
                         }
+                        Spacer()
+                            .frame(height: 80)
+
                     }
                     .padding(.horizontal, 24)
                 }

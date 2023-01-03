@@ -37,6 +37,9 @@ struct StudyRoomListView: View {
                             }
                         }
                         .padding(.horizontal, 24)
+
+                        Spacer()
+                            .frame(height: 110)
                     }
                 }
                 .navigationTitle("자습실 신청")
