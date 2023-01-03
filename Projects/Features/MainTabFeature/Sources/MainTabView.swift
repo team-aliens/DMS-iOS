@@ -40,6 +40,7 @@ struct MainTabView: View {
         self.studyRoomListComponent = studyRoomListComponent
         self.noticeComponent = noticeComponent
         self.myPageComponent = myPageComponent
+        UITabBar.hideTabBar()
     }
 
     var body: some View {
@@ -77,9 +78,6 @@ struct MainTabView: View {
             }
         }
         .environment(\.dmsSelectionTabbKey, $selection)
-        .onAppear {
-            UITabBar.hideTabBar()
-        }
     }
 
     @ViewBuilder
