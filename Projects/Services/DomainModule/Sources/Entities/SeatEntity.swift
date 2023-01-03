@@ -1,7 +1,7 @@
 import Foundation
 import DataMappingModule
 
-public struct SeatEntity: Equatable {
+public struct SeatEntity: Equatable, Hashable {
     public init(
         id: String,
         widthLocation: Int,

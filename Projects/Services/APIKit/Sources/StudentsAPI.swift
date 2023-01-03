@@ -31,7 +31,7 @@ extension StudentsAPI: DmsAPI {
             return "/email/duplication"
 
         case .renewalPassword:
-            return "/password/intialization"
+            return "/password/initialization"
 
         case let .findID(req):
             return "/account-id/\(req.schoolID)"

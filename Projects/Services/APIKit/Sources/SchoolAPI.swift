@@ -19,7 +19,7 @@ extension SchoolAPI: DmsAPI {
     public var urlPath: String {
         switch self {
         case .fetchSchoolList:
-            return "/"
+            return ""
 
         case let .fetchSchoolQuestion(authCode):
             return "/question/\(authCode)"

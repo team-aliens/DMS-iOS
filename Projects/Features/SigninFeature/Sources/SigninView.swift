@@ -49,7 +49,12 @@ struct SigninView: View {
                     .textContentType(.username)
                     .focused($focusField, equals: .id)
 
-                    SecureDMSFloatingTextField("비밀번호", text: $viewModel.password) {
+                    SecureDMSFloatingTextField(
+                        "비밀번호",
+                        text: $viewModel.password,
+                        isError: viewModel.isErrorOcuured,
+                        errorMessage: viewModel.errorMessage
+                    ) {
                         viewModel.signinButtonDidTap()
                     }
                     .textContentType(.password)
@@ -116,7 +121,7 @@ struct SigninView: View {
             }
             .navigationTitle("로그인")
             .navigationBarTitleDisplayMode(.inline)
-            .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
+            .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
             .padding(.horizontal, 24)
             .dmsBackground()
             .navigate(
@@ -124,6 +129,12 @@ struct SigninView: View {
                 when: $isNavigateSignup
             )
             .ignoresSafeArea(.keyboard, edges: .bottom)
+        }
+        .hideKeyboardWhenTap()
+        .onChange(of: viewModel.dmsFeatures) { newValue in
+            if let newValue {
+                appState.features = newValue
+            }
         }
         .onChange(of: viewModel.isSuccessSignin) { newValue in
             guard newValue else { return }

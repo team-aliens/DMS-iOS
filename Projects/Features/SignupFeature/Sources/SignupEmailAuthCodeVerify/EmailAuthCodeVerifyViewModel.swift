@@ -39,16 +39,6 @@ final class SignupEmailAuthCodeVerifyViewModel: BaseViewModel {
             guard let self, self.timeRemaining > 0 else { return }
             self.timeRemaining -= 1
         }
-
-        addCancellable(
-            $authCode.setFailureType(to: DmsError.self)
-                .debounce(for: 0.5, scheduler: RunLoop.main)
-                .eraseToAnyPublisher()
-        ) { [weak self] code in
-            if code.count == 6 {
-                self?.verifyEmailAuthCode()
-            }
-        }
     }
 
     func sendEmailAuthCode() {

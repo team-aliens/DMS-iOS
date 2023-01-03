@@ -38,11 +38,12 @@ struct MyPageView: View {
                     Spacer()
 
                     ZStack(alignment: .bottomTrailing) {
-                        AsyncImage(url: URL(string: "")) { image in
+                        AsyncImage(url: viewModel.profile?.profileImageURL) { image in
                             image
                                 .resizable()
                                 .frame(width: 74, height: 74)
                                 .clipShape(Circle())
+                                .scaledToFill()
                         } placeholder: {
                             Color.GrayScale.gray5
                                 .frame(width: 74, height: 74)
@@ -166,7 +167,8 @@ struct MyPageView: View {
             when: $viewModel.isNavigateChangeProfile
         )
         .navigate(
-            to: checkPasswordComponent.makeView(),
+            to: checkPasswordComponent.makeView()
+                .environment(\.rootPresentationMode, $viewModel.isNavigateChangePassword),
             when: $viewModel.isNavigateChangePassword
         )
         .navigate(
@@ -185,7 +187,7 @@ struct MyPageView: View {
         .padding(.vertical, 15)
         .padding(.horizontal, 20)
         .background {
-            Color.GrayScale.gray1
+            Color.System.surface
                 .dmsShadow(style: .surface)
         }
     }

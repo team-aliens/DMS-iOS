@@ -1,3 +1,4 @@
+import BaseFeature
 import DesignSystem
 import SwiftUI
 import Utility
@@ -6,6 +7,8 @@ struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
     @State var isShowingCalendar = false
     @Environment(\.tabbarHidden) var tabbarHidden
+    @Environment(\.dmsSelectionTabbKey) var dmsSelectionTabbKey
+    @EnvironmentObject var appState: AppState
 
     init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -36,7 +39,11 @@ struct HomeView: View {
 
                 ScrollView(showsIndicators: false) {
                     if viewModel.isExistNewNotice {
-                        NoticeView()
+                        Button {
+                            dmsSelectionTabbKey.wrappedValue = .notice
+                        } label: {
+                            NoticeView()
+                        }
                     }
 
                     Text("오늘의 급식")
@@ -55,7 +62,7 @@ struct HomeView: View {
                 }
             }
         }
-        .onChange(of: viewModel.selectedDate) { newValue in
+        .onChange(of: viewModel.selectedDate) { _ in
             viewModel.onChangeSelectedDate()
         }
         .onAppear {
@@ -68,8 +75,9 @@ struct HomeView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Text("로고")
-                    .dmsFont(.title(.title1), color: .GrayScale.gray7)
+                DMSImage(.logoHorizontal, renderingMode: .original)
+                    .scaledToFit()
+                    .frame(height: 28)
             }
         }
         .dmsBackground()

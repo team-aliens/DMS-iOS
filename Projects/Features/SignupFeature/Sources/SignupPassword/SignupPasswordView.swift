@@ -66,6 +66,7 @@ struct SignupPasswordView: View {
         .onAppear {
             focusField = .password
         }
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsBackButton(dismiss: dismiss)
         .navigate(
             to: signupProfileImageComponent.makeView(

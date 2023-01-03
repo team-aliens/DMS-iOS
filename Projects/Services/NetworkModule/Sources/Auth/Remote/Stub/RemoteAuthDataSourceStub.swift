@@ -7,7 +7,7 @@ public struct RemoteAuthDataSourceStub: RemoteAuthDataSource {
     public init() {}
 
     public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
-        Just(DmsFeatures(mealService: false, noticeService: false, pointService: false))
+        Just(DmsFeatures(studyRoomService: false))
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
@@ -23,7 +23,7 @@ public struct RemoteAuthDataSourceStub: RemoteAuthDataSource {
     }
 
     public func reissueToken() -> AnyPublisher<DmsFeatures, DmsError> {
-        Just(DmsFeatures(mealService: false, noticeService: false, pointService: false))
+        Just(DmsFeatures(studyRoomService: false))
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }

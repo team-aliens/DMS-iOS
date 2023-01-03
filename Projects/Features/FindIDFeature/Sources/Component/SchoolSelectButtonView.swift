@@ -21,34 +21,35 @@ struct SchoolSelectButtonView: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .bottom) {
-                Text(placeholderText)
-                    .dmsFont(.body(.body1), color: textColor)
+        Menu {
+            ForEach(schoolList) { school in
+                Button("\(school.name)", action: {
+                    placeholderText = school.name
+                    onCommit(school)
+                })
+            }
+            .labelsHidden()
+            .pickerStyle(InlinePickerStyle())
+        } label: {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(alignment: .bottom) {
+                    Text(placeholderText)
+                        .dmsFont(.body(.body1), color: textColor)
 
-                Spacer()
+                    Spacer()
 
-                Menu {
-                    ForEach(schoolList) { school in
-                        Button("\(school.name)", action: {
-                            placeholderText = school.name
-                            onCommit(school)
-                        })
-                    }
-                    .labelsHidden()
-                    .pickerStyle(InlinePickerStyle())
-                } label: {
                     Image(systemName: "chevron.down")
                         .foregroundColor(.GrayScale.gray5)
                         .frame(width: 24, height: 24)
                 }
-            }
-            .overlay(alignment: .bottom) {
-                Rectangle()
-                    .foregroundColor(.GrayScale.gray5)
-                    .frame(height: 1)
-                    .offset(y: 7)
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .foregroundColor(.GrayScale.gray5)
+                        .frame(height: 1)
+                        .offset(y: 7)
+                }
             }
         }
+
     }
 }

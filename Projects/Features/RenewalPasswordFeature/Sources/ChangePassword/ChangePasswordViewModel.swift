@@ -58,8 +58,6 @@ final class ChangePasswordViewModel: BaseViewModel {
             )
         ) { [weak self] _ in
             self?.isSuccessRenewalPassword = true
-        } onReceiveError: { [weak self] _ in
-            self?.isShowingToast = true
         }
     }
 

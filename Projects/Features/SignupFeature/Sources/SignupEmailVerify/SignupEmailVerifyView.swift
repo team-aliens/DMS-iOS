@@ -68,6 +68,7 @@ struct SignupEmailVerifyView: View {
             }
         }
         .dmsBackButton(dismiss: dismiss)
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .padding(.horizontal, 24)
     }
 }

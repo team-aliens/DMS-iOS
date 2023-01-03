@@ -340,16 +340,30 @@ private class HomeDependency443c4e1871277bd8432aProvider: HomeDependency {
 private func factory67229cdf0f755562b2b1f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return HomeDependency443c4e1871277bd8432aProvider(appComponent: parent1(component) as! AppComponent)
 }
-private class ApplyDependency468ec8d97f04fe0ebd10Provider: ApplyDependency {
-
-
-    init() {
-
+private class StudyRoomDetailDependency00589e4f8d1416a01b43Provider: StudyRoomDetailDependency {
+    var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
+        return appComponent.fetchStudyAvailableTimeUseCase
+    }
+    var fetchSeatTypesUseCase: any FetchSeatTypesUseCase {
+        return appComponent.fetchSeatTypesUseCase
+    }
+    var fetchDetailStudyRoomUseCase: any FetchDetailStudyRoomUseCase {
+        return appComponent.fetchDetailStudyRoomUseCase
+    }
+    var applyStudyRoomSeatUseCase: any ApplyStudyRoomSeatUseCase {
+        return appComponent.applyStudyRoomSeatUseCase
+    }
+    var cancelStudyRoomSeatUseCase: any CancelStudyRoomSeatUseCase {
+        return appComponent.cancelStudyRoomSeatUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
     }
 }
-/// ^->AppComponent->ApplyComponent
-private func factory3cbfeafbe8b73941b232e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return ApplyDependency468ec8d97f04fe0ebd10Provider()
+/// ^->AppComponent->StudyRoomDetailComponent
+private func factorya36f40c25dcb280bae0ff47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return StudyRoomDetailDependency00589e4f8d1416a01b43Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class StudyRoomListDependencyef56e26c25d5de596604Provider: StudyRoomListDependency {
     var fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase {
@@ -357,6 +371,9 @@ private class StudyRoomListDependencyef56e26c25d5de596604Provider: StudyRoomList
     }
     var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
         return appComponent.fetchStudyAvailableTimeUseCase
+    }
+    var studyRoomDetailComponent: StudyRoomDetailComponent {
+        return appComponent.studyRoomDetailComponent
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -500,7 +517,7 @@ extension AppComponent: Registration {
         localTable["signupTermsComponent-SignupTermsComponent"] = { self.signupTermsComponent as Any }
         localTable["mainTabComponent-MainTabComponent"] = { self.mainTabComponent as Any }
         localTable["homeComponent-HomeComponent"] = { self.homeComponent as Any }
-        localTable["applyComponent-ApplyComponent"] = { self.applyComponent as Any }
+        localTable["studyRoomDetailComponent-StudyRoomDetailComponent"] = { self.studyRoomDetailComponent as Any }
         localTable["noticeListComponent-NoticeListComponent"] = { self.noticeListComponent as Any }
         localTable["myPageComponent-MyPageComponent"] = { self.myPageComponent as Any }
         localTable["changeProfileComponent-ChangeProfileComponent"] = { self.changeProfileComponent as Any }
@@ -659,15 +676,20 @@ extension HomeComponent: Registration {
         keyPathToName[\HomeDependency.fetchWhetherNewNoticeUseCase] = "fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"
     }
 }
-extension ApplyComponent: Registration {
+extension StudyRoomDetailComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\StudyRoomDetailDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
+        keyPathToName[\StudyRoomDetailDependency.fetchSeatTypesUseCase] = "fetchSeatTypesUseCase-any FetchSeatTypesUseCase"
+        keyPathToName[\StudyRoomDetailDependency.fetchDetailStudyRoomUseCase] = "fetchDetailStudyRoomUseCase-any FetchDetailStudyRoomUseCase"
+        keyPathToName[\StudyRoomDetailDependency.applyStudyRoomSeatUseCase] = "applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"
+        keyPathToName[\StudyRoomDetailDependency.cancelStudyRoomSeatUseCase] = "cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"
     }
 }
 extension StudyRoomListComponent: Registration {
     public func registerItems() {
         keyPathToName[\StudyRoomListDependency.fetchStudyRoomListUseCase] = "fetchStudyRoomListUseCase-any FetchStudyRoomListUseCase"
         keyPathToName[\StudyRoomListDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
+        keyPathToName[\StudyRoomListDependency.studyRoomDetailComponent] = "studyRoomDetailComponent-StudyRoomDetailComponent"
     }
 }
 extension AuthenticationEmailComponent: Registration {
@@ -720,7 +742,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 #if !NEEDLE_DYNAMIC
 
-private func register1() {
+@inline(never) private func register1() {
     registerProviderFactory("^->AppComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->AppComponent->SplashComponent", factoryace9f05f51d68f4c0677f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SchoolConfirmationQuestionsComponent", factoryd462667f0418a53210fcf47b58f8f304c97af4d5)
@@ -740,7 +762,7 @@ private func register1() {
     registerProviderFactory("^->AppComponent->RootComponent", factory264bfc4d4cb6b0629b40f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->ApplyComponent", factory3cbfeafbe8b73941b232e3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->StudyRoomDetailComponent", factorya36f40c25dcb280bae0ff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->StudyRoomListComponent", factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)

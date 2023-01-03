@@ -11,6 +11,27 @@ final class StudyRoomListViewModel: BaseViewModel {
     @Published var isShowingToast = false
     @Published var toastMessage = ""
     @Published var studyAvailableTime: StudyAvailableTimeEntity?
+    @Published var isNavigateDetail: Bool = false
+    @Published var studyRoomDetail: StudyRoomEntity = .init(
+        id: "",
+        floor: 0,
+        name: "",
+        availableGrade: 0,
+        availableSex: .all,
+        inUseHeadcount: 0,
+        totalAvailableSeat: 0,
+        isMine: false
+    )
+
+    var rangeString: String {
+        if let time = studyAvailableTime {
+            let text = "자습실 신청 시간은 " + time.startAt.toHourAndMinuteDSMDateString() +
+            " ~ " + time.endAt.toHourAndMinuteDSMDateString() + " 까지 입니다."
+            return text
+        } else {
+            return ""
+        }
+    }
 
     private let fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase
     private let fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase
@@ -29,8 +50,6 @@ final class StudyRoomListViewModel: BaseViewModel {
             fetchStudyRoomListUseCase.execute()
         ) { [weak self]  studyRoomList in
             self?.studyRoomList = studyRoomList
-        } onReceiveError: { error in
-            print(error)
         }
     }
 
@@ -39,18 +58,6 @@ final class StudyRoomListViewModel: BaseViewModel {
             fetchStudyAvailableTimeUseCase.execute()
         ) { [weak self] studyAvailableTime  in
             self?.studyAvailableTime = studyAvailableTime
-        } onReceiveError: { error in
-            print(error)
-        }
-    }
-
-    var rangeString: String {
-        if let time = studyAvailableTime {
-            let text = "자습실 신청 시간은 " + time.startAt.toHourAndMinuteDSMDateString() +
-            " ~ " + time.endAt.toHourAndMinuteDSMDateString() + " 까지 입니다."
-            return text
-        } else {
-            return ""
         }
     }
 }

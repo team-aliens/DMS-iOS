@@ -55,6 +55,10 @@ struct NoticeListView: View {
             .navigationTitle("공지")
             .navigationBarTitleDisplayMode(.inline)
             .dmsBackground()
+            .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+            .onAppear {
+                viewModel.onAppear()
+            }
         }
     }
 

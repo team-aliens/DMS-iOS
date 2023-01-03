@@ -22,13 +22,13 @@ extension StudyRoomsAPI: DmsAPI {
             return "/available-time"
 
         case .fetchSeatTypes:
-            return "types"
+            return "/types"
 
         case .fetchStudyRoomList:
             return "/list/students"
 
         case let .fetchDetailStudyRoom(id):
-            return "\(id)/students"
+            return "/\(id)/students"
 
         case let .applyStudyRoomSeat(id):
             return "/seats/\(id)"
@@ -65,6 +65,19 @@ extension StudyRoomsAPI: DmsAPI {
             return [
                 400: .badRequest,
                 409: .seatIsAlreadyExist,
+                500: .internalServerError
+            ]
+
+        case .fetchDetailStudyRoom:
+            return [
+                400: .badRequest,
+                500: .photoCapacityIsLarge
+            ]
+
+        case .cancelStudyRoomSeat:
+            return [
+                400: .badRequest,
+                404: .notFoundAppliedSeat,
                 500: .internalServerError
             ]
 

@@ -23,5 +23,6 @@ public final class MyPageComponent: Component<MyPageDependency> {
                 checkPasswordComponent: self.dependency.checkPasswordComponent
             )
         }
+        .navigationViewStyle(.stack)
     }
 }

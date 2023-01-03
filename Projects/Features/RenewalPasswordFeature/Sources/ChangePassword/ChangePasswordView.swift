@@ -66,6 +66,7 @@ struct ChangePasswordView: View {
         .dmsBackButton(dismiss: dismiss)
         .padding(.horizontal, 24)
         .dmsBackground()
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .alert("비밀번호가 변경되었습니다.", isPresented: $viewModel.isSuccessRenewalPassword) {

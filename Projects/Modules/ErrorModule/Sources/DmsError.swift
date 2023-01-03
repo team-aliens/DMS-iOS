@@ -35,9 +35,11 @@ public enum DmsError: Error {
 
     // MARK: - Users
     case currentPasswordMismatch
+    case photoCapacityIsLarge
 
     // MARK: - StudyRooms
     case seatIsAlreadyExist
+    case notFoundAppliedSeat
 }
 
 extension DmsError: LocalizedError {
@@ -109,9 +111,15 @@ extension DmsError: LocalizedError {
         case .currentPasswordMismatch:
             return "유효하지 않은 비밀번호입니다."
 
+        case .photoCapacityIsLarge:
+            return "사진의 최대 용량을 초과했습니다."
+
         // MARK: - StudyRooms
         case .seatIsAlreadyExist:
             return "이미 신청된 자리입니다"
+
+        case .notFoundAppliedSeat:
+            return "신청한 자리가 없습니다"
         }
     }
 }

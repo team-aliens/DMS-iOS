@@ -3,8 +3,9 @@ import DesignSystem
 
 struct AuthenticationEmailView: View {
     @StateObject var viewModel: AuthenticationEmailViewModel
-    let changePasswordComponent: ChangePasswordComponent
+    private let changePasswordComponent: ChangePasswordComponent
     @Environment(\.dismiss) var dismiss
+    @State var isViewDidLoad = false
 
     init(
         viewModel: AuthenticationEmailViewModel,
@@ -46,8 +47,15 @@ struct AuthenticationEmailView: View {
         }
         .padding(.horizontal, 24)
         .hideKeyboardWhenTap()
+        .onChange(of: viewModel.authCode) { newValue in
+            if newValue.count == 6 {
+                viewModel.verifyEmailAuthCode()
+            }
+        }
         .onAppear {
-            viewModel.sendEmailAuthCode()
+            if !isViewDidLoad {
+                viewModel.sendEmailAuthCode()
+            }
         }
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .navigate(
@@ -62,6 +70,6 @@ struct AuthenticationEmailView: View {
             when: $viewModel.isNavigateChangePassword
         )
         .dmsBackButton(dismiss: dismiss)
-
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
     }
 }

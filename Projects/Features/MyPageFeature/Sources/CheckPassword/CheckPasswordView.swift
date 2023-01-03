@@ -7,6 +7,7 @@ struct CheckPasswordView: View {
     @StateObject var viewModel: CheckPasswordViewModel
     let modifyPasswordComponent: ModifyPasswordComponent
     @Environment(\.dismiss) var dismiss
+    @Environment(\.rootPresentationMode) var rootPresentationMode
 
     init(
         viewModel: CheckPasswordViewModel,
@@ -45,11 +46,12 @@ struct CheckPasswordView: View {
         .padding(.horizontal, 24)
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .navigate(
             to: modifyPasswordComponent.makeView(
                 currentPassword: viewModel.password
-            ),
+            ).environment(\.rootPresentationMode, rootPresentationMode),
             when: $viewModel.isSuccessCheckPassword
         )
     }

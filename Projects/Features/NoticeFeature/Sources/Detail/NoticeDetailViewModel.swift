@@ -21,8 +21,9 @@ final class NoticeDetailViewModel: BaseViewModel {
     ) {
         self.fetchDetailNoticeUseCase = fetchDetailNoticeUseCase
         self.id = id
-        super.init()
+    }
 
+    func onAppear() {
         addCancellable(
             fetchDetailNoticeUseCase.execute(id: id)
         ) { [weak self] noticeDetail in
@@ -30,5 +31,6 @@ final class NoticeDetailViewModel: BaseViewModel {
             self?.content = noticeDetail.content
             self?.date = noticeDetail.createdAt
         }
+
     }
 }

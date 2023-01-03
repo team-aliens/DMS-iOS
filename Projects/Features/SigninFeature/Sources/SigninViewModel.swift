@@ -7,8 +7,7 @@ final class SigninViewModel: BaseViewModel {
     @Published var password = ""
     @Published var isOnAutoSignin = true
     @Published var isSuccessSignin = false
-    @Published var isShowingToast = false
-    @Published var toastMessage = ""
+    @Published var dmsFeatures: DmsFeatures?
 
     var isSigninEnabled: Bool {
         !id.isEmpty && !password.isEmpty
@@ -22,7 +21,15 @@ final class SigninViewModel: BaseViewModel {
 
     func signinButtonDidTap() {
         guard isSigninEnabled else { return }
-        addCancellable(signinUseCase.execute(req: .init(accountID: id, password: password))) { [weak self] _ in
+        addCancellable(
+            signinUseCase.execute(
+                req: .init(
+                    accountID: id,
+                    password: password
+                )
+            )
+        ) { [weak self] feature in
+            self?.dmsFeatures = feature
             self?.isSuccessSignin = true
         }
     }
