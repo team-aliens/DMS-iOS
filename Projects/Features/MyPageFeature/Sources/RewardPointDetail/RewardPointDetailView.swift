@@ -34,19 +34,21 @@ struct RewardPointDetailView: View {
 
             Text("\(viewModel.point?.totalPoint ?? 0)" + " 점")
                 .dmsFont(.headline(.headline2), color: .GrayScale.gray6)
-                .padding(.top, 44)
+                .padding(.top, 34)
                 .padding(.horizontal, 24)
-                .padding(.bottom, 44)
+                .padding(.bottom, 24)
 
             ScrollView {
-                VStack {
+                Spacer()
+                    .frame(height: 10)
+                LazyVStack {
                     ForEach(viewModel.point?.poinsts ?? [], id: \.self) { point in
                         pointsListCellView(point: point)
                             .padding(.top, 5)
+                            .padding(.horizontal, 24)
                     }
                 }
             }
-            .padding(.horizontal, 24)
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
