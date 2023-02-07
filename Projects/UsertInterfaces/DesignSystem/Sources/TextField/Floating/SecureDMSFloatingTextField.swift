@@ -53,6 +53,7 @@ public struct SecureDMSFloatingTextField: View {
                     isSecure.toggle()
                 } label: {
                     Image(systemName: isSecure ? "eye.fill" : "eye.slash.fill")
+                        .frame(width: 24, height: 24)
                         .foregroundColor(.GrayScale.gray5)
                 }
                 .padding()
@@ -90,5 +91,6 @@ public struct SecureDMSFloatingTextField: View {
         .animation(.easeIn(duration: 0.3), value: isError)
         .animation(.easeIn(duration: 0.3), value: isFloaintg)
         .animation(.easeIn(duration: 0.3), value: isFocused)
+        .animation(.easeIn(duration: 0.3), value: isSecure)
     }
 }
