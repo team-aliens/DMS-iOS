@@ -12,7 +12,9 @@ public struct DMScheckboxStyle: ToggleStyle {
                 .foregroundColor(configuration.isOn ? .PrimaryVariant.primary : .GrayScale.gray5)
                 .opacity(isEnabled ? 1.0 : 0.5)
                 .onTapGesture {
-                    configuration.isOn.toggle()
+                    withAnimation(.easeIn(duration: 0.1)) {
+                        configuration.isOn.toggle()
+                    }
                 }
         }
     }

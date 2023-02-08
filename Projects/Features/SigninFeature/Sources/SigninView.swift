@@ -70,7 +70,7 @@ struct SigninView: View {
                             .dmsFont(.body(.body3), color: .GrayScale.gray6)
                     }
                     .onTapGesture {
-                        withAnimation {
+                        withAnimation(.easeIn(duration: 0.1)) {
                             viewModel.isOnAutoSignin.toggle()
                         }
                     }
