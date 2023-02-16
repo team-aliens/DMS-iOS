@@ -85,9 +85,9 @@ public extension AppComponent {
     var homeComponent: HomeComponent {
         HomeComponent(parent: self)
     }
-    var studyRoomDetailComponent: StudyRoomDetailComponent {
-        StudyRoomDetailComponent(parent: self)
-    }
+//    var studyRoomDetailComponent: StudyRoomDetailComponent {
+//        StudyRoomDetailComponent(parent: self)
+//    }
     var noticeListComponent: NoticeListComponent {
         NoticeListComponent(parent: self)
     }
@@ -109,7 +109,10 @@ public extension AppComponent {
     var modifyPasswordComponent: ModifyPasswordComponent {
         ModifyPasswordComponent(parent: self)
     }
-    var studyRoomListComponent: StudyRoomListComponent {
-        StudyRoomListComponent(parent: self)
+//    var studyRoomListComponent: StudyRoomListComponent {
+//        StudyRoomListComponent(parent: self)
+//    }
+    var applyPageComponent: ApplyPageComponent {
+        ApplyPageComponent(parent: self)
     }
 }
