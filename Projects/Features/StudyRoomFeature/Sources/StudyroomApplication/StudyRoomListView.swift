@@ -20,6 +20,7 @@ struct StudyRoomListView: View {
     var body: some View {
         NavigationView {
             VStack {
+                Spacer()
                 ScrollView {
                     if viewModel.isStudyRoomTime {
                         StudyRoomNoticeView(text: viewModel.rangeString)
