@@ -7,6 +7,7 @@ struct StudyRoomListView: View {
     @StateObject var viewModel: StudyRoomListViewModel
     private let studyRoomDetailComponent: StudyRoomDetailComponent
     @Environment(\.tabbarHidden) var tabbarHidden
+    @Environment(\.dismiss) var dismiss
 
     init(
         viewModel: StudyRoomListViewModel,
@@ -42,24 +43,25 @@ struct StudyRoomListView: View {
                             .frame(height: 110)
                     }
                 }
-                .navigationTitle("자습실 신청")
-                .navigationBarTitleDisplayMode(.inline)
-                .dmsBackground()
-                .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
-                .onAppear {
-                    viewModel.fetchStudyRoomList()
-                    viewModel.fetchStudyAvailableTime()
-                }
-                .onChange(of: viewModel.isNavigateDetail) { newValue in
-                    withAnimation {
-                        tabbarHidden.wrappedValue = newValue
-                    }
-                }
-                .navigate(
-                    to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),
-                    when: $viewModel.isNavigateDetail
-                )
             }
         }
+        .navigationTitle("자습실 신청")
+        .navigationBarTitleDisplayMode(.inline)
+        .dmsBackground()
+        .dmsBackButton(dismiss: dismiss)
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .onAppear {
+            viewModel.fetchStudyRoomList()
+            viewModel.fetchStudyAvailableTime()
+        }
+        .onChange(of: viewModel.isNavigateDetail) { newValue in
+            withAnimation {
+                tabbarHidden.wrappedValue = newValue
+            }
+        }
+        .navigate(
+            to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),
+            when: $viewModel.isNavigateDetail
+        )
     }
 }

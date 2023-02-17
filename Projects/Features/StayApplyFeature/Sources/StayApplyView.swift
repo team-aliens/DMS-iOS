@@ -3,6 +3,7 @@ import SwiftUI
 
 struct StayApplyView: View {
     @StateObject var viewModel: StayApplyViewModel
+    @Environment(\.dismiss) var dismiss
 
     init(
         viewModel: StayApplyViewModel
@@ -11,6 +12,14 @@ struct StayApplyView: View {
     }
 
     var body: some View {
-        Text("Text")
+        ScrollView(showsIndicators: false) {
+            VStack {
+                Text("ㅎㅇㅎㅇ")
+            }
+            .navigationTitle("잔류 신청")
+            .navigationBarTitleDisplayMode(.inline)
+            .dmsBackground()
+            .dmsBackButton(dismiss: dismiss)
+        }
     }
 }
