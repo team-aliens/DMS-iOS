@@ -47,17 +47,11 @@ extension RemainsAPI: DmsAPI {
 
     public var errorMap: [Int: DmsError] {
         switch self {
-        case .remainingApplicationsChanges:
+        default:
             return [
                 400: .badRequest,
-                401: .token
+                500: .internalServerError
             ]
-        case .fetchMyRemainApplicationItems:
-            <#code#>
-        case .fetchRemainsAvailableTime:
-            <#code#>
-        case .fetchListRemainApplicationItems:
-            <#code#>
         }
     }
 }
