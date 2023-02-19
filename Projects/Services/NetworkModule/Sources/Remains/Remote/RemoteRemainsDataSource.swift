@@ -9,6 +9,6 @@ public protocol RemoteRemainsDataSource {
     func remainingApplicationsChanges(id: String) -> AnyPublisher<Void, DmsError>
     func fetchMyRemainApplicationItems() -> AnyPublisher<MyRemainApplicationItemsEntity, DmsError>
     func fetchRemainsAvailableTime() -> AnyPublisher<RemainsAvailableTimeEntity, DmsError>
-    func fetchListRemainApplicationItems() -> AnyPublisher<ListRemainApplicationItemsEntity,
+    func fetchListRemainApplicationItem() -> AnyPublisher<ListRemainApplicationItemEntity,
                                                             DmsError>
 }

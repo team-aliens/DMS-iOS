@@ -25,8 +25,8 @@ public struct RemainsRepositoryImpl: RemainsRepository {
         remoteRemainsDataSource.fetchRemainsAvailableTime()
     }
 
-    public func fetchListRemainApplicationItems() ->
-    AnyPublisher<ListRemainApplicationItemsEntity, DmsError> {
-        remoteRemainsDataSource.fetchListRemainApplicationItems()
+    public func fetchListRemainApplicationItem() ->
+    AnyPublisher<ListRemainApplicationItemEntity, DmsError> {
+        remoteRemainsDataSource.fetchListRemainApplicationItem()
     }
 }

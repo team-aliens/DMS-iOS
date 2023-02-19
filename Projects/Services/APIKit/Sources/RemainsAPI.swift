@@ -7,7 +7,7 @@ public enum RemainsAPI {
     case remainingApplicationsChanges(id: String)
     case fetchMyRemainApplicationItems
     case fetchRemainsAvailableTime
-    case fetchListRemainApplicationItems
+    case fetchListRemainApplicationItem
 }
 
 extension RemainsAPI: DmsAPI {
@@ -26,7 +26,7 @@ extension RemainsAPI: DmsAPI {
         case .fetchRemainsAvailableTime:
             return "/available-time"
 
-        case .fetchListRemainApplicationItems:
+        case .fetchListRemainApplicationItem:
             return "/options"
         }
     }
@@ -36,7 +36,7 @@ extension RemainsAPI: DmsAPI {
         case .remainingApplicationsChanges:
             return .put
 
-        case .fetchMyRemainApplicationItems, .fetchRemainsAvailableTime, .fetchListRemainApplicationItems:
+        case .fetchMyRemainApplicationItems, .fetchRemainsAvailableTime, .fetchListRemainApplicationItem:
             return .get
         }
     }
@@ -82,7 +82,7 @@ extension RemainsAPI: DmsAPI {
                 500: .internalServerError
             ]
 
-        case .fetchListRemainApplicationItems:
+        case .fetchListRemainApplicationItem:
             return [
                 400: .badRequest,
                 401: .tokenExpired,

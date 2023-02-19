@@ -2,8 +2,8 @@ import DataMappingModule
 import DomainModule
 
 public extension FetchListRemainAppItemsResponseDTO {
-    func toDomain() -> ListRemainApplicationItemsEntity {
-        ListRemainApplicationItemsEntity(
+    func toDomain() -> ListRemainApplicationItemEntity {
+        ListRemainApplicationItemEntity(
             selectedOption: selectedOption,
             remainOptions: remainOptions.map { $0.toDomain() }
         )

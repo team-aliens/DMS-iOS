@@ -20,7 +20,7 @@ public extension AppComponent {
         FetchMyRemainApplicationItemsUseCaselmpl(remainsRepository: remainsRepository)
     }
 
-    var fetchListRemainApplicationItemsUseCase: any FetchListRemainApplicationItemsUseCase {
+    var fetchListRemainApplicationItemUseCase: any FetchListRemainApplicationItemUseCase {
         FetchListRemainAppItemsUseCaselmpl(remainsRepository: remainsRepository)
     }
 

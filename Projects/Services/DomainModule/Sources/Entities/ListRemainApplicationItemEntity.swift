@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ListRemainApplicationItemsEntity: Equatable, Hashable {
+public struct ListRemainApplicationItemEntity: Equatable, Hashable {
     public init(
         selectedOption: String,
         remainOptions: [RemainOptionEntity]

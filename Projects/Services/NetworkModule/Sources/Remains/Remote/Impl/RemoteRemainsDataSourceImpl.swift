@@ -20,8 +20,8 @@ public final class RemoteRemainsDataSourceImpl: BaseRemoteDataSource<RemainsAPI>
         .map { $0.toDomain() }
         .eraseToAnyPublisher()
     }
-    public func fetchListRemainApplicationItems() -> AnyPublisher<ListRemainApplicationItemsEntity, DmsError> {
-        request(.fetchListRemainApplicationItems,
+    public func fetchListRemainApplicationItem() -> AnyPublisher<ListRemainApplicationItemEntity, DmsError> {
+        request(.fetchListRemainApplicationItem,
                 dto: FetchListRemainAppItemsResponseDTO.self)
         .map { $0.toDomain() }
         .eraseToAnyPublisher()
