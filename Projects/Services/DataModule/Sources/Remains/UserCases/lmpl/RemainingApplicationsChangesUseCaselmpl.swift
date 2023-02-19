@@ -9,6 +9,7 @@ public struct RemainingApplicationsChangesUseCaselmpl: RemainingApplicationsChan
     public init(remainsRepository: any RemainsRepository) {
         self.remainsRepository = remainsRepository
     }
+
     public func execute(id: String) -> AnyPublisher<Void, ErrorModule.DmsError> {
         remainsRepository.remainingApplicationsChanges(id: id)
     }

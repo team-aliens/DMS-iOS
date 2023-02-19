@@ -10,20 +10,23 @@ public struct RemainsRepositoryImpl: RemainsRepository {
     public init(remoteRemainsDataSource: any RemoteRemainsDataSource) {
         self.remoteRemainsDataSource = remoteRemainsDataSource
     }
-    
+
     public func remainingApplicationsChanges(id: String) -> AnyPublisher<Void, ErrorModule.DmsError> {
         remoteRemainsDataSource.remainingApplicationsChanges(id: id)
     }
-    
-    public func fetchMyRemainApplicationItems() -> AnyPublisher<DomainModule.MyRemainApplicationItemsEntity, ErrorModule.DmsError> {
+
+    public func fetchMyRemainApplicationItems() ->
+    AnyPublisher<DomainModule.MyRemainApplicationItemsEntity, ErrorModule.DmsError> {
         remoteRemainsDataSource.fetchMyRemainApplicationItems()
     }
-    
-    public func fetchRemainsAvailableTime() -> AnyPublisher<DomainModule.RemainsAvailableTimeEntity, ErrorModule.DmsError> {
+
+    public func fetchRemainsAvailableTime() ->
+    AnyPublisher<DomainModule.RemainsAvailableTimeEntity, ErrorModule.DmsError> {
         remoteRemainsDataSource.fetchRemainsAvailableTime()
     }
-    
-    public func fetchListRemainApplicationItems() -> AnyPublisher<DomainModule.ListRemainApplicationItemsEntity, ErrorModule.DmsError> {
+
+    public func fetchListRemainApplicationItems() ->
+    AnyPublisher<DomainModule.ListRemainApplicationItemsEntity, ErrorModule.DmsError> {
         remoteRemainsDataSource.fetchListRemainApplicationItems()
     }
 }

@@ -10,6 +10,7 @@ public struct RemainOptionResponseDTO: Decodable {
         self.title = title
         self.description = description
     }
+
     public let id: String
     public let title: String
     public let description: String

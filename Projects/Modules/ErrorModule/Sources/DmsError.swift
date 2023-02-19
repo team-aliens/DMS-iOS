@@ -129,14 +129,14 @@ extension DmsError: LocalizedError {
 
         case .noPermissionApplySeat:
             return "신청 불가능한 자습실입니다"
-            
+
         // MARK: - Remains
         case .forbidden:
             return "잔류 신청 기간이 아님"
-            
+
         case .notFound:
             return "찾을 수 없음"
-            
+
         case .conflict:
             return "이미 존재함"
         }

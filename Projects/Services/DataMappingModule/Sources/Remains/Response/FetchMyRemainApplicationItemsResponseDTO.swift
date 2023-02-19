@@ -6,5 +6,6 @@ public struct FetchMyRemainApplicationItemsResponseDTO: Decodable {
     ) {
         self.title = title
     }
+
     public let title: String
 }

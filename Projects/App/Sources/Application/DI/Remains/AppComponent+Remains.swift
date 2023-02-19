@@ -21,7 +21,7 @@ public extension AppComponent {
     }
 
     var fetchListRemainApplicationItemsUseCase: any FetchListRemainApplicationItemsUseCase {
-        FetchListRemainApplicationItemsUseCaselmpl(remainsRepository: remainsRepository)
+        FetchListRemainAppItemsUseCaselmpl(remainsRepository: remainsRepository)
     }
 
     var fetchRemainsAvailableTimeUseCase: any FetchRemainsAvailableTimeUseCase {

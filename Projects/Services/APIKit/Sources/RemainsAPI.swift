@@ -19,10 +19,13 @@ extension RemainsAPI: DmsAPI {
         switch self {
         case .remainingApplicationsChanges(let id):
             return "/\(id)"
+
         case .fetchMyRemainApplicationItems:
             return "/my"
+
         case .fetchRemainsAvailableTime:
             return "/available-time"
+
         case .fetchListRemainApplicationItems:
             return "/options"
         }
@@ -32,6 +35,7 @@ extension RemainsAPI: DmsAPI {
         switch self {
         case .remainingApplicationsChanges:
             return .put
+
         case .fetchMyRemainApplicationItems, .fetchRemainsAvailableTime, .fetchListRemainApplicationItems:
             return .get
         }
@@ -57,6 +61,7 @@ extension RemainsAPI: DmsAPI {
                 429: .tooManyRequest,
                 500: .internalServerError
             ]
+
         case .fetchMyRemainApplicationItems:
             return [
                 400: .badRequest,
@@ -66,6 +71,7 @@ extension RemainsAPI: DmsAPI {
                 429: .tooManyRequest,
                 500: .internalServerError
             ]
+
         case .fetchRemainsAvailableTime:
             return [
                 400: .badRequest,
@@ -75,6 +81,7 @@ extension RemainsAPI: DmsAPI {
                 429: .tooManyRequest,
                 500: .internalServerError
             ]
+
         case .fetchListRemainApplicationItems:
             return [
                 400: .badRequest,

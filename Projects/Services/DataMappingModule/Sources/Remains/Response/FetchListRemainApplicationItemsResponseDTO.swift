@@ -10,7 +10,7 @@ public struct FetchListRemainAppItemsResponseDTO: Decodable {
     }
     public let selectedOption: String
     public let remainOptions: [RemainOptionResponseDTO]
-    
+
     enum CodingKeys: String, CodingKey {
         case selectedOption = "selected_option"
         case remainOptions = "remain_options"
