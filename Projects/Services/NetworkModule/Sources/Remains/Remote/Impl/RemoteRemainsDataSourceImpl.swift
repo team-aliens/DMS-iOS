@@ -4,36 +4,26 @@ import DataMappingModule
 import DomainModule
 import ErrorModule
 
-public final class RemoteRemainsDataSourceImpl: BaseRemoteDataSource<StudyRoomsAPI>, RemoteStudyRoomsDataSource {
-    public func fetchStudyAvailableTime() -> AnyPublisher<StudyAvailableTimeEntity, DmsError> {
-        request(.fetchStudyAvailableTime, dto: FetchStudyAvailableTimeResponseDTO.self)
-            .map { $0.toDomain() }
-            .eraseToAnyPublisher()
+public final class RemoteRemainsDataSourceImpl: BaseRemoteDataSource<RemainsAPI>, RemoteRemainsDataSource {
+    public func remainingApplicationsChanges(id: String) -> AnyPublisher<Void, DmsError> {
+        request(.remainingApplicationsChanges(id: id))
     }
-
-    public func fetchSeatTypes() -> AnyPublisher<[SeatTypeEntity], DmsError> {
-        request(.fetchSeatTypes, dto: FetchSeatTypesResponseDTO.self)
-            .map { $0.toDomain() }
-            .eraseToAnyPublisher()
+    public func fetchMyRemainApplicationItems() -> AnyPublisher<MyRemainApplicationItemsEntity, DmsError> {
+        request(.fetchMyRemainApplicationItems,
+                dto: FetchMyRemainApplicationItemsResponseDTO.self)
+        .map { $0.toDomain() }
+        .eraseToAnyPublisher()
     }
-
-    public func fetchStudyRoomList() -> AnyPublisher<[StudyRoomEntity], DmsError> {
-        request(.fetchStudyRoomList, dto: FetchStudyRoomListResponDTO.self)
-            .map { $0.toDomain() }
-            .eraseToAnyPublisher()
+    public func fetchRemainsAvailableTime() -> AnyPublisher<RemainsAvailableTimeEntity, DmsError> {
+        request(.fetchRemainsAvailableTime,
+                dto: FetchRemainsAvailableTimeResponseDTO.self)
+        .map { $0.toDomain() }
+        .eraseToAnyPublisher()
     }
-
-    public func fetchDetailStudyRoom(roomID: String) -> AnyPublisher<DetailStudyRoomEntity, DmsError> {
-        request(.fetchDetailStudyRoom(roomID: roomID), dto: FetchDetailStudyRoomResponseDTO.self)
-            .map { $0.toDomain() }
-            .eraseToAnyPublisher()
-    }
-
-    public func applyStudyRoomSeat(seatID: String) -> AnyPublisher<Void, DmsError> {
-        request(.applyStudyRoomSeat(seatID: seatID))
-    }
-
-    public func cancelStudyRoomSeat() -> AnyPublisher<Void, DmsError> {
-        request(.cancelStudyRoomSeat)
+    public func fetchListRemainApplicationItems() -> AnyPublisher<ListRemainApplicationItemsEntity, DmsError> {
+        request(.fetchListRemainApplicationItems,
+                dto: FetchListRemainAppItemsResponseDTO.self)
+        .map { $0.toDomain() }
+        .eraseToAnyPublisher()
     }
 }
