@@ -1,9 +1,16 @@
-//
-//  FetchListRemainApplicationItemsUseCaselmpl.swift
-//  DataModule
-//
-//  Created by 홍승재 on 2023/02/19.
-//  Copyright © 2023 com.team.aliens. All rights reserved.
-//
+import Combine
+import DataMappingModule
+import DomainModule
+import ErrorModule
 
-import Foundation
+public struct FetchListRemainApplicationItemsUseCaselmpl: FetchListRemainApplicationItemsUseCase {
+    private let remainsRepository: any RemainsRepository
+
+    public init(remainsRepository: any RemainsRepository) {
+        self.remainsRepository = remainsRepository
+    }
+    
+    public func execute() -> AnyPublisher<DomainModule.ListRemainApplicationItemsEntity, ErrorModule.DmsError> {
+        remainsRepository.fetchListRemainApplicationItems()
+    }
+}

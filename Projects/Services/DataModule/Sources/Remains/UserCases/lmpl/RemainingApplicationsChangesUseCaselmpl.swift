@@ -4,13 +4,12 @@ import DomainModule
 import ErrorModule
 
 public struct RemainingApplicationsChangesUseCaselmpl: RemainingApplicationsChangesUseCase {
-    private let studyRoomsRepository: any StudyRoomsRepository
+    private let remainsRepository: any RemainsRepository
 
-    public init(studyRoomsRepository: any StudyRoomsRepository) {
-        self.studyRoomsRepository = studyRoomsRepository
+    public init(remainsRepository: any RemainsRepository) {
+        self.remainsRepository = remainsRepository
     }
-
-    public func execute(seatID: String) -> AnyPublisher<Void, DmsError> {
-        studyRoomsRepository.applyStudyRoomSeat(seatID: seatID)
+    public func execute(id: String) -> AnyPublisher<Void, ErrorModule.DmsError> {
+        remainsRepository.remainingApplicationsChanges(id: id)
     }
 }
