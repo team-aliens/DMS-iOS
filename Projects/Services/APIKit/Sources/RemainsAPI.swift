@@ -55,9 +55,9 @@ extension RemainsAPI: DmsAPI {
             return [
                 400: .badRequest,
                 401: .tokenExpired,
-                403: .forbidden,
-                404: .notFound,
-                409: .conflict,
+                403: .forbiddenPeriod,
+                404: .notFoundRemain,
+                409: .conflictRemain,
                 429: .tooManyRequest,
                 500: .internalServerError
             ]
@@ -66,8 +66,8 @@ extension RemainsAPI: DmsAPI {
             return [
                 400: .badRequest,
                 401: .tokenExpired,
-                403: .forbidden,
-                404: .notFound,
+                403: .forbiddenPeriod,
+                404: .notFoundRemain,
                 429: .tooManyRequest,
                 500: .internalServerError
             ]
@@ -76,8 +76,8 @@ extension RemainsAPI: DmsAPI {
             return [
                 400: .badRequest,
                 401: .tokenExpired,
-                403: .forbidden,
-                404: .notFound,
+                403: .forbiddenPeriod,
+                404: .notFoundRemain,
                 429: .tooManyRequest,
                 500: .internalServerError
             ]
@@ -86,7 +86,7 @@ extension RemainsAPI: DmsAPI {
             return [
                 400: .badRequest,
                 401: .tokenExpired,
-                404: .notFound,
+                404: .notFoundRemain,
                 429: .tooManyRequest,
                 500: .internalServerError
             ]
