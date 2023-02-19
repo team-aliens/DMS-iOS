@@ -47,9 +47,40 @@ extension RemainsAPI: DmsAPI {
 
     public var errorMap: [Int: DmsError] {
         switch self {
-        default:
+        case .remainingApplicationsChanges:
             return [
                 400: .badRequest,
+                401: .tokenExpired,
+                403: .forbidden,
+                404: .notFound,
+                409: .conflict,
+                429: .tooManyRequest,
+                500: .internalServerError
+            ]
+        case .fetchMyRemainApplicationItems:
+            return [
+                400: .badRequest,
+                401: .tokenExpired,
+                403: .forbidden,
+                404: .notFound,
+                429: .tooManyRequest,
+                500: .internalServerError
+            ]
+        case .fetchRemainsAvailableTime:
+            return [
+                400: .badRequest,
+                401: .tokenExpired,
+                403: .forbidden,
+                404: .notFound,
+                429: .tooManyRequest,
+                500: .internalServerError
+            ]
+        case .fetchListRemainApplicationItems:
+            return [
+                400: .badRequest,
+                401: .tokenExpired,
+                404: .notFound,
+                429: .tooManyRequest,
                 500: .internalServerError
             ]
         }
