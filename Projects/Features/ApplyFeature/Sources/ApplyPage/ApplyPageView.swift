@@ -24,7 +24,7 @@ struct ApplyPageView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 30) {
                         Spacer()
-                            .frame(height: 10)
+                            .frame(height: 5)
                         applyListCellView(
                             viewModel: viewModel,
                             name: "자습실",
