@@ -5,26 +5,38 @@ import DataModule
 
 public extension AppComponent {
     var remoteRemainsDataSource: any RemoteRemainsDataSource {
-        RemoteRemainsDataSourceImpl(keychain: keychain)
+        shared {
+            RemoteRemainsDataSourceImpl(keychain: keychain)
+        }
     }
 
     var remainsRepository: any RemainsRepository {
-        RemainsRepositoryImpl(remoteRemainsDataSource: remoteRemainsDataSource)
+        shared {
+            RemainsRepositoryImpl(remoteRemainsDataSource: remoteRemainsDataSource)
+        }
     }
 
     var remainingApplicationsChangesUseCase: any RemainingApplicationsChangesUseCase {
-        RemainingApplicationsChangesUseCaselmpl(remainsRepository: remainsRepository)
+        shared {
+            RemainingApplicationsChangesUseCaselmpl(remainsRepository: remainsRepository)
+        }
     }
 
     var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase {
-        FetchMyRemainApplicationItemsUseCaselmpl(remainsRepository: remainsRepository)
+        shared {
+            FetchMyRemainApplicationItemsUseCaselmpl(remainsRepository: remainsRepository)
+        }
     }
 
     var fetchListRemainApplicationItemUseCase: any FetchListRemainApplicationItemUseCase {
-        FetchListRemainAppItemsUseCaselmpl(remainsRepository: remainsRepository)
+        shared {
+            FetchListRemainAppItemsUseCaselmpl(remainsRepository: remainsRepository)
+        }
     }
 
     var fetchRemainsAvailableTimeUseCase: any FetchRemainsAvailableTimeUseCase {
-        FetchRemainsAvailableTimeUseCaselmpl(remainsRepository: remainsRepository)
+        shared {
+            FetchRemainsAvailableTimeUseCaselmpl(remainsRepository: remainsRepository)
+        }
     }
 }
