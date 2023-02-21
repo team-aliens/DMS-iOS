@@ -4,7 +4,7 @@ import Combine
 final class StayApplyViewModel: BaseViewModel {
     @Published var isApplicationTime = true
     @Published var isShowingToast = false
-    @Published var toastMessage = ""
+    @Published var toastMessage = "잔류 신청 시간이 아닙니다."
     var startTime = "화 18:00"
     var endTime = "목 18:00"
     var rangeString: String {

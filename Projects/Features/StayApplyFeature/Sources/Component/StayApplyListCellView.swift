@@ -57,8 +57,8 @@ struct StayApplyListCellView: View {
         HStack {
             Button(action: {
                 uiState.currentSelectedType = list.listName
+                uiState.currentSelectedNum = list.listNum
                 print(uiState.currentSelectedType)
-                print(applyType.rawValue)
             }, label: {
                 Text(list.listName)
                     .dmsFont(.title(.title2),
@@ -80,7 +80,8 @@ struct StayApplyListCellView: View {
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .inset(by: 1)
-                .stroke(uiState.currentSelectedNum == applyType.rawValue ? Color.System.primary : .clear, lineWidth: 1)
+                .stroke(uiState.currentSelectedNum == applyType.rawValue ?
+                        Color.System.primary : .clear, lineWidth: 1.5)
         )
         .padding(.bottom, 12)
         .dmsShadow(style: .surface)
