@@ -10,7 +10,7 @@ public struct FetchRemainsAvailableTimeUseCaselmpl: FetchRemainsAvailableTimeUse
         self.remainsRepository = remainsRepository
     }
 
-    public func execute() -> AnyPublisher<DomainModule.RemainsAvailableTimeEntity, ErrorModule.DmsError> {
+    public func execute() -> AnyPublisher<RemainsAvailableTimeEntity, DmsError> {
         remainsRepository.fetchRemainsAvailableTime()
     }
 }

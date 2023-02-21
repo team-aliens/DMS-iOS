@@ -10,7 +10,7 @@ public struct FetchMyRemainApplicationItemsUseCaselmpl: FetchMyRemainApplication
         self.remainsRepository = remainsRepository
     }
 
-    public func execute() -> AnyPublisher<DomainModule.MyRemainApplicationItemsEntity, ErrorModule.DmsError> {
+    public func execute() -> AnyPublisher<MyRemainApplicationItemsEntity, DmsError> {
         remainsRepository.fetchMyRemainApplicationItems()
     }
 }

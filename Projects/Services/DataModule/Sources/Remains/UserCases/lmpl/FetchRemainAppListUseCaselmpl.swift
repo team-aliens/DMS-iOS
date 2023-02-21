@@ -10,7 +10,7 @@ public struct FetchRemainAppListUseCaselmpl: FetchRemainApplicationListUseCase {
         self.remainsRepository = remainsRepository
     }
 
-    public func execute() -> AnyPublisher<DomainModule.RemainApplicationListEntity, ErrorModule.DmsError> {
+    public func execute() -> AnyPublisher<RemainApplicationListEntity, DmsError> {
         remainsRepository.fetchRemainApplicationList()
     }
 }
