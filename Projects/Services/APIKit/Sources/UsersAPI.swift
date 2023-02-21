@@ -34,7 +34,7 @@ extension UsersAPI: DmsAPI {
         switch self {
         case let .changePassword(req):
             return .requestJSONEncodable(req)
-            
+
         case let .compareCurrentPasssword(password):
             return .requestParameters(parameters: [
                 "password": password
