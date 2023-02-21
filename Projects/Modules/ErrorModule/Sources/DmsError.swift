@@ -131,7 +131,7 @@ extension DmsError: LocalizedError {
             return "신청 불가능한 자습실입니다"
 
         // MARK: - Remains
-        case .forbiddenPeriod:
+        case .forbiddenRemainPeriod:
             return "잔류 신청 기간이 아닙니다"
 
         case .notFoundRemain:
