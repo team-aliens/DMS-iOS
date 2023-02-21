@@ -7,6 +7,7 @@ struct ApplyPageView: View {
     @Environment(\.tabbarHidden) var tabbarHidden
     private let studyRoomListComponent: StudyRoomListComponent
     private let stayApplyComponent: StayApplyComponent
+
     init(
         viewModel: ApplyPageViewModel,
         studyRoomListComponent: StudyRoomListComponent,
@@ -16,15 +17,18 @@ struct ApplyPageView: View {
         self.studyRoomListComponent = studyRoomListComponent
         self.stayApplyComponent = stayApplyComponent
     }
+
     var body: some View {
         NavigationView {
             VStack {
                 Spacer()
                     .frame(height: 1)
+
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 30) {
                         Spacer()
                             .frame(height: 5)
+
                         applyListCellView(
                             viewModel: viewModel,
                             name: "자습실",
@@ -33,6 +37,7 @@ struct ApplyPageView: View {
             """,
                             buttonTitle: "자습실 신청하기",
                             state: "2층 자습실")
+
                         applyListCellView(
                             viewModel: viewModel,
                             name: "잔류",
@@ -68,18 +73,19 @@ struct ApplyPageView: View {
             )
         }
     }
+
     @ViewBuilder
     func applyListCellView(
         viewModel: ApplyPageViewModel,
         name: String,
         content: String,
         buttonTitle: String,
-        state: String) -> some View {
+        state: String?) -> some View {
             ApplyListCellView(
                 viewModel: viewModel,
                 name: name,
                 content: content,
                 buttonTitle: buttonTitle,
-                state: state)
+                state: state ?? "")
         }
 }

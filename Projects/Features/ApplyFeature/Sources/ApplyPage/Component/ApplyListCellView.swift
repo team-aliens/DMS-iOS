@@ -20,16 +20,17 @@ struct ApplyListCellView: View {
                 Spacer()
                 Text(state)
                     .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
-                    .frame(height: 34)
+                    .frame(height: 22)
+                    .padding(.vertical, 6)
                     .padding(.horizontal, 14)
                     .background(Color.PrimaryVariant.lighten2)
                     .cornerRadius(24)
                     .padding(.trailing, 16)
+                    .padding(.top, -2)
             }
             Text(content)
                 .dmsFont(.body(.body3), color: .GrayScale.gray9)
                 .multilineTextAlignment(.leading)
-                .frame(alignment: .leading)
                 .padding(.leading, 20)
                 .padding(.trailing, 29.48)
             DMSWideButton(
@@ -45,7 +46,6 @@ struct ApplyListCellView: View {
         }
         .background(Color.System.surface)
         .cornerRadius(10)
-        .frame(height: 206)
         .dmsShadow(style: .surface)
     }
 }
