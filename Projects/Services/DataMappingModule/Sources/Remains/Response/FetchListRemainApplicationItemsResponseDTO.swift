@@ -1,6 +1,6 @@
 import Foundation
 
-public struct FetchListRemainAppItemsResponseDTO: Decodable {
+public struct FetchRemainAppListResponseDTO: Decodable {
     public init(
         selectedOption: String,
         remainOptions: [RemainOptionResponseDTO]
@@ -8,7 +8,7 @@ public struct FetchListRemainAppItemsResponseDTO: Decodable {
         self.selectedOption = selectedOption
         self.remainOptions = remainOptions
     }
-    
+
     public let selectedOption: String
     public let remainOptions: [RemainOptionResponseDTO]
 

@@ -28,9 +28,9 @@ public extension AppComponent {
         }
     }
 
-    var fetchListRemainApplicationItemUseCase: any FetchListRemainApplicationItemUseCase {
+    var fetchRemainApplicationListUseCase: any FetchRemainApplicationListUseCase {
         shared {
-            FetchListRemainAppItemsUseCaselmpl(remainsRepository: remainsRepository)
+            FetchRemainAppListUseCaselmpl(remainsRepository: remainsRepository)
         }
     }
 

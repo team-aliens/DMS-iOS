@@ -7,7 +7,7 @@ public enum RemainsAPI {
     case remainingApplicationsChanges(id: String)
     case fetchMyRemainApplicationItems
     case fetchRemainsAvailableTime
-    case fetchListRemainApplicationItem
+    case fetchRemainApplicationList
 }
 
 extension RemainsAPI: DmsAPI {
@@ -26,7 +26,7 @@ extension RemainsAPI: DmsAPI {
         case .fetchRemainsAvailableTime:
             return "/available-time"
 
-        case .fetchListRemainApplicationItem:
+        case .fetchRemainApplicationList:
             return "/options"
         }
     }
@@ -36,7 +36,7 @@ extension RemainsAPI: DmsAPI {
         case .remainingApplicationsChanges:
             return .put
 
-        case .fetchMyRemainApplicationItems, .fetchRemainsAvailableTime, .fetchListRemainApplicationItem:
+        case .fetchMyRemainApplicationItems, .fetchRemainsAvailableTime, .fetchRemainApplicationList:
             return .get
         }
     }
@@ -55,7 +55,7 @@ extension RemainsAPI: DmsAPI {
             return [
                 400: .badRequest,
                 401: .tokenExpired,
-                403: .forbiddenPeriod,
+                403: .forbiddenRemainPeriod,
                 404: .notFoundRemain,
                 409: .conflictRemain,
                 429: .tooManyRequest,
@@ -66,7 +66,7 @@ extension RemainsAPI: DmsAPI {
             return [
                 400: .badRequest,
                 401: .tokenExpired,
-                403: .forbiddenPeriod,
+                403: .forbiddenRemainPeriod,
                 404: .notFoundRemain,
                 429: .tooManyRequest,
                 500: .internalServerError
@@ -76,13 +76,13 @@ extension RemainsAPI: DmsAPI {
             return [
                 400: .badRequest,
                 401: .tokenExpired,
-                403: .forbiddenPeriod,
+                403: .forbiddenRemainPeriod,
                 404: .notFoundRemain,
                 429: .tooManyRequest,
                 500: .internalServerError
             ]
 
-        case .fetchListRemainApplicationItem:
+        case .fetchRemainApplicationList:
             return [
                 400: .badRequest,
                 401: .tokenExpired,

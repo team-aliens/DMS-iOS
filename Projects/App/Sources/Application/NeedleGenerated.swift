@@ -558,7 +558,7 @@ extension AppComponent: Registration {
         localTable["remainsRepository-any RemainsRepository"] = { [unowned self] in self.remainsRepository as Any }
         localTable["remainingApplicationsChangesUseCase-any RemainingApplicationsChangesUseCase"] = { [unowned self] in self.remainingApplicationsChangesUseCase as Any }
         localTable["fetchMyRemainApplicationItemsUseCase-any FetchMyRemainApplicationItemsUseCase"] = { [unowned self] in self.fetchMyRemainApplicationItemsUseCase as Any }
-        localTable["fetchListRemainApplicationItemUseCase-any FetchListRemainApplicationItemUseCase"] = { [unowned self] in self.fetchListRemainApplicationItemUseCase as Any }
+        localTable["fetchRemainApplicationListUseCase-any FetchRemainApplicationListUseCase"] = { [unowned self] in self.fetchRemainApplicationListUseCase as Any }
         localTable["fetchRemainsAvailableTimeUseCase-any FetchRemainsAvailableTimeUseCase"] = { [unowned self] in self.fetchRemainsAvailableTimeUseCase as Any }
         localTable["remoteSchoolDataSource-any RemoteSchoolDataSource"] = { [unowned self] in self.remoteSchoolDataSource as Any }
         localTable["schoolRepository-any SchoolRepository"] = { [unowned self] in self.schoolRepository as Any }

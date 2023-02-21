@@ -6,6 +6,6 @@ public protocol RemainsRepository {
     func remainingApplicationsChanges(id: String) -> AnyPublisher<Void, DmsError>
     func fetchMyRemainApplicationItems() -> AnyPublisher<MyRemainApplicationItemsEntity, DmsError>
     func fetchRemainsAvailableTime() -> AnyPublisher<RemainsAvailableTimeEntity, DmsError>
-    func fetchListRemainApplicationItem() -> AnyPublisher<ListRemainApplicationItemEntity,
+    func fetchRemainApplicationList() -> AnyPublisher<RemainApplicationListEntity,
                                                             DmsError>
 }
