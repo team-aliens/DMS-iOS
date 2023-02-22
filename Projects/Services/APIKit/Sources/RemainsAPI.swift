@@ -17,7 +17,7 @@ extension RemainsAPI: DmsAPI {
 
     public var urlPath: String {
         switch self {
-        case .remainingApplicationsChanges(let id):
+        case let .remainingApplicationsChanges(id):
             return "/\(id)"
 
         case .fetchMyRemainApplicationItems:
