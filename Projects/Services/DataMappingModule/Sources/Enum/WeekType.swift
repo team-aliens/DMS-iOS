@@ -1,11 +1,11 @@
 import Foundation
 
-public enum WeekDayType: String {
-    case monDay = "MONDAY"
-    case tuesDay = "TUESDAY"
-    case wednesDay = "WEDNESDAY"
-    case thursDay = "THURSDAY"
-    case friDay = "FRIDAY"
-    case satuDay = "SATURDAY"
-    case sunDay = "SUNDAY"
+public enum WeekType: String {
+    case monday = "MONDAY"
+    case tuesday = "TUESDAY"
+    case wednesday = "WEDNESDAY"
+    case thursday = "THURSDAY"
+    case friday = "FRIDAY"
+    case satuday = "SATURDAY"
+    case sunday = "SUNDAY"
 }

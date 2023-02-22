@@ -21,6 +21,7 @@ public final class RemoteRemainsDataSourceImpl: BaseRemoteDataSource<RemainsAPI>
         .map { $0.toDomain() }
         .eraseToAnyPublisher()
     }
+
     public func fetchRemainApplicationList() -> AnyPublisher<RemainApplicationListEntity, DmsError> {
         request(.fetchRemainApplicationList, dto: FetchRemainAppListResponseDTO.self)
         .map { $0.toDomain() }
