@@ -1,6 +1,6 @@
 import Foundation
 
-public enum WeekType: String {
+public enum WeekType: String, Decodable {
     case monday = "MONDAY"
     case tuesday = "TUESDAY"
     case wednesday = "WEDNESDAY"
