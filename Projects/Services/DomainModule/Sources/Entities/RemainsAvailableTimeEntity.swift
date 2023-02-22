@@ -12,6 +12,7 @@ public struct RemainsAvailableTimeEntity: Equatable, Hashable {
         self.endDayOfWeek = endDayOfWeek
         self.endAt = endAt
     }
+    
     public let startDayOfWeek: String
     public let startAt: String
     public let endDayOfWeek: String

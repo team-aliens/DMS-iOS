@@ -8,6 +8,7 @@ public struct RemainApplicationListEntity: Equatable, Hashable {
         self.selectedOption = selectedOption
         self.remainOptions = remainOptions
     }
+    
     public let selectedOption: String
     public let remainOptions: [RemainOptionEntity]
 }
