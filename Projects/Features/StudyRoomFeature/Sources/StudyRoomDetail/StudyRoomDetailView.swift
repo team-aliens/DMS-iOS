@@ -5,6 +5,7 @@ import SwiftUI
 
 struct StudyRoomDetailView: View {
     @StateObject var viewModel: StudyRoomDetailViewModel
+    @EnvironmentObject var studyState: StudyRoomStateModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.tabbarHidden) var tabbarHidden
 
@@ -54,13 +55,15 @@ struct StudyRoomDetailView: View {
                 .padding(.bottom, 6)
 
             HStack(spacing: 10) {
-                DMSWideButton(text: "취소", style: .contained, color: .GrayScale.gray4) {
+                DMSWideButton(text: "취소", style: .contained, color: .GrayScale.gray6) {
                     viewModel.cancelStudyRoomSeat()
                 }
 
                 DMSWideButton(text: "신청", style: .contained, color: .System.primary) {
+                    studyState.appliedState = viewModel.studyRoomEntity.name
                     viewModel.applyStudyRoomSeat()
                 }
+                .environmentObject(studyState)
                 .disabled(viewModel.selectedSeat == nil)
             }
             .padding(.bottom, 40)

@@ -4,6 +4,8 @@ import SwiftUI
 
 struct ApplyPageView: View {
     @StateObject var viewModel: ApplyPageViewModel
+    @EnvironmentObject var studyState: StudyRoomStateModel
+    @EnvironmentObject var stayState: StayStateModel
     @Environment(\.tabbarHidden) var tabbarHidden
     private let studyRoomListComponent: StudyRoomListComponent
     private let stayApplyComponent: StayApplyComponent

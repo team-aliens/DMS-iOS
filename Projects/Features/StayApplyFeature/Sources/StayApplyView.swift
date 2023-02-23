@@ -4,7 +4,7 @@ import SwiftUI
 struct StayApplyView: View {
     @StateObject var viewModel: StayApplyViewModel
     @Environment(\.dismiss) var dismiss
-    @StateObject var uiState = StayStateModel()
+    @EnvironmentObject var uiState: StayStateModel
 
     init(
         viewModel: StayApplyViewModel
