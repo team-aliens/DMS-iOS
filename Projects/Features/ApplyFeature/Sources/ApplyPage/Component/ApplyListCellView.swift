@@ -23,12 +23,13 @@ struct ApplyListCellView: View {
 
                 Spacer()
 
-                Text((name == "자습실" ? studyState.appliedState : stayState.appliedState) ?? "")
+                Text(name == "자습실" ? studyState.appliedState : stayState.appliedState)
                     .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
                     .frame(height: 22)
                     .padding(.vertical, 6)
                     .padding(.horizontal, 14)
-                    .background(Color.PrimaryVariant.lighten2)
+                    .background((studyState.appliedState.isEmpty && stayState.appliedState.isEmpty)
+                                ? .clear : Color.PrimaryVariant.lighten2)
                     .cornerRadius(24)
                     .padding(.trailing, 16)
                     .padding(.top, -2)
