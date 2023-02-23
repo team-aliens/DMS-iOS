@@ -80,8 +80,8 @@ struct StayApplyListCellView: View {
 
                     Spacer()
 
-                    Image(systemName: uiState.isDetailTapped == true && uiState.selectedNum == applyType.rawValue ?
-                          "chevron.up" : "chevron.down")
+                    Image(systemName: uiState.isDetailTapped == true && uiState.selectedNum == applyType.rawValue
+                          ? "chevron.up" : "chevron.down")
                         .foregroundColor(uiState.selectedNum == applyType.rawValue ? .System.primary : .GrayScale.gray7)
                         .padding(.vertical, 26.15)
                         .padding(.trailing, 25.32)
