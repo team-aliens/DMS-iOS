@@ -86,6 +86,7 @@ struct StayApplyListCellView: View {
                         .padding(.trailing, 25.32)
                         .onTapGesture {
                             uiState.selectedNum = applyType.rawValue
+                            uiState.selectedType = list.listName
                             uiState.isDetailTapped.toggle()
                         }
                 })
