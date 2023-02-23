@@ -22,16 +22,36 @@ struct StayApplyView: View {
                     StayApplyNoticeView(notice: viewModel.rangeString)
                 }
                 StayApplyListCellView()
+                    .padding(.horizontal, 24)
             }
 
             DMSWideButton(
-                text: uiState.currentSelectedType + (uiState.isAlreadyApplied ? "로 변경하기" : "신청하기"),
+                text: {
+                    if uiState.isAlreadyApplied && (uiState.selectedType == uiState.appliedState) {
+                        return "신청 완료"
+                    } else if uiState.isAlreadyApplied && (uiState.selectedType != uiState.appliedState) {
+                        return uiState.selectedType + "로 변경하기"
+                    } else {
+                        return uiState.selectedType + " 신청하기"
+                    }
+                }(),
                 style: .contained,
-                color: uiState.isAlreadyApplied ? .System.primary.opacity(0.5) : .System.primary,
+                color: {
+                    if uiState.isAlreadyApplied && (uiState.selectedType == uiState.appliedState) {
+                        return .System.primary.opacity(0.5)
+                    } else if uiState.selectedType.isEmpty {
+                        return .clear
+                    } else {
+                        return .System.primary
+                    }
+                }(),
                 action: {
-                    print(uiState.currentSelectedType + (uiState.isAlreadyApplied ? "로 변경하기" : "신청하기"))
+                    uiState.appliedState = uiState.selectedType
+                    uiState.isAlreadyApplied = true
+                    uiState.appliedStateNum = uiState.selectedNum
                 })
             .padding(.bottom, 71)
+            .padding(.horizontal, 24)
         }
         .environmentObject(uiState)
         .navigationTitle("잔류 신청")
@@ -39,8 +59,7 @@ struct StayApplyView: View {
         .dmsBackground()
         .dmsBackButton(dismiss: dismiss)
         .dmsToast(isShowing: $viewModel.isErrorOcuured,
-                  message: viewModel.rangeString,
+                  message: viewModel.toastMessage,
                   style: .error)
-        .padding(.horizontal, 24)
     }
 }
