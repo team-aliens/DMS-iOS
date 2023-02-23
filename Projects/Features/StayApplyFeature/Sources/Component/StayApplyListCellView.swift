@@ -53,6 +53,7 @@ struct StayApplyListCellView: View {
     }
 
     @ViewBuilder
+    // swiftlint:disable function_body_length
     func stayApplyListCellView(list: ApplyDummy, applyType: ApplyType) -> some View {
         VStack {
             HStack {
@@ -66,6 +67,7 @@ struct StayApplyListCellView: View {
                                      ? .System.primary : .GrayScale.gray7)
                             .padding(.vertical, 14)
                             .padding(.horizontal, 20)
+
                         if uiState.isAlreadyApplied == true && uiState.appliedStateNum == applyType.rawValue {
                             Text("신청 완료")
                                 .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
@@ -75,7 +77,9 @@ struct StayApplyListCellView: View {
                                 .cornerRadius(24)
                         }
                     }
+
                     Spacer()
+
                     Image(systemName: "chevron.down")
                         .foregroundColor(uiState.selectedNum == applyType.rawValue ? .System.primary : .GrayScale.gray7)
                         .padding(.vertical, 26.15)
@@ -104,6 +108,7 @@ struct StayApplyListCellView: View {
         .padding(.bottom, 12)
         .dmsShadow(style: .surface)
     }
+    // swiftlint:enable function_body_length
 }
 
 enum ApplyType: Int {
