@@ -39,7 +39,7 @@ struct ApplyListCellView: View {
                 .dmsFont(.body(.body3), color: .GrayScale.gray9)
                 .multilineTextAlignment(.leading)
                 .padding(.leading, 20)
-                .padding(.trailing, 29.48)
+                .padding(.trailing, 29)
 
             DMSWideButton(
                 text: buttonTitle,
