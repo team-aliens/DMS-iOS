@@ -585,18 +585,18 @@ extension AppComponent: Registration {
         localTable["remoteFilesDataSource-any RemoteFilesDataSource"] = { [unowned self] in self.remoteFilesDataSource as Any }
         localTable["filesRepository-any FilesRepository"] = { [unowned self] in self.filesRepository as Any }
         localTable["uploadFileUseCase-any UploadFileUseCase"] = { [unowned self] in self.uploadFileUseCase as Any }
+        localTable["remoteRemainsDataSource-any RemoteRemainsDataSource"] = { [unowned self] in self.remoteRemainsDataSource as Any }
+        localTable["remainsRepository-any RemainsRepository"] = { [unowned self] in self.remainsRepository as Any }
+        localTable["remainingApplicationsChangesUseCase-any RemainingApplicationsChangesUseCase"] = { [unowned self] in self.remainingApplicationsChangesUseCase as Any }
+        localTable["fetchMyRemainApplicationItemsUseCase-any FetchMyRemainApplicationItemsUseCase"] = { [unowned self] in self.fetchMyRemainApplicationItemsUseCase as Any }
+        localTable["fetchRemainApplicationListUseCase-any FetchRemainApplicationListUseCase"] = { [unowned self] in self.fetchRemainApplicationListUseCase as Any }
+        localTable["fetchRemainsAvailableTimeUseCase-any FetchRemainsAvailableTimeUseCase"] = { [unowned self] in self.fetchRemainsAvailableTimeUseCase as Any }
         localTable["remoteSchoolDataSource-any RemoteSchoolDataSource"] = { [unowned self] in self.remoteSchoolDataSource as Any }
         localTable["schoolRepository-any SchoolRepository"] = { [unowned self] in self.schoolRepository as Any }
         localTable["fetchSchoolListUseCase-any FetchSchoolListUseCase"] = { [unowned self] in self.fetchSchoolListUseCase as Any }
         localTable["fetchSchoolQuestionUseCase-any FetchSchoolQuestionUseCase"] = { [unowned self] in self.fetchSchoolQuestionUseCase as Any }
         localTable["checkSchoolQuestionUseCase-any CheckSchoolQuestionUseCase"] = { [unowned self] in self.checkSchoolQuestionUseCase as Any }
         localTable["checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"] = { [unowned self] in self.checkSchoolCodeUseCase as Any }
-        localTable["remainsRepository-any RemainsRepository"] = { [unowned self] in self.remainsRepository as Any }
-        localTable["remoteRemainsDataSource-any RemoteRemainsDataSource"] = { [unowned self] in self.remoteRemainsDataSource as Any }
-        localTable["remainingApplicationsChangesUseCase-any RemainingApplicationsChangesUseCase"] = { [unowned self] in self.remainingApplicationsChangesUseCase as Any }
-        localTable["fetchMyRemainApplicationItemsUseCase-any FetchMyRemainApplicationItemsUseCase"] = { [unowned self] in self.fetchMyRemainApplicationItemsUseCase as Any }
-        localTable["fetchRemainsAvailableTimeUseCase-any FetchRemainsAvailableTimeUseCase"] = { [unowned self] in self.fetchRemainsAvailableTimeUseCase as Any }
-        localTable["fetchRemainApplicationListUseCase-any FetchRemainApplicationListUseCase"] = { [unowned self] in self.fetchRemainApplicationListUseCase as Any }
     }
 }
 extension SplashComponent: Registration {
