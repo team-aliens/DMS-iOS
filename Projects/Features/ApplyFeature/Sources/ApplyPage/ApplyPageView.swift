@@ -1,23 +1,23 @@
 import StudyRoomFeature
-import StayApplyFeature
+import RemainApplyFeature
 import SwiftUI
 
 struct ApplyPageView: View {
     @StateObject var viewModel: ApplyPageViewModel
     @EnvironmentObject var studyState: StudyRoomStateModel
-    @EnvironmentObject var stayState: StayStateModel
+    @EnvironmentObject var remainState: RemainStateModel
     @Environment(\.tabbarHidden) var tabbarHidden
     private let studyRoomListComponent: StudyRoomListComponent
-    private let stayApplyComponent: StayApplyComponent
+    private let remainApplyComponent: RemainApplyComponent
 
     init(
         viewModel: ApplyPageViewModel,
         studyRoomListComponent: StudyRoomListComponent,
-        stayApplyComponent: StayApplyComponent
+        remainApplyComponent: RemainApplyComponent
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.studyRoomListComponent = studyRoomListComponent
-        self.stayApplyComponent = stayApplyComponent
+        self.remainApplyComponent = remainApplyComponent
     }
 
     var body: some View {
@@ -60,7 +60,7 @@ struct ApplyPageView: View {
                     tabbarHidden.wrappedValue = newValue
                 }
             }
-            .onChange(of: viewModel.isNavigateToStay) { newValue in
+            .onChange(of: viewModel.isNavigateToRemain) { newValue in
                 withAnimation {
                     tabbarHidden.wrappedValue = newValue
                 }
@@ -70,8 +70,8 @@ struct ApplyPageView: View {
                 when: $viewModel.isNavigateToStudy
             )
             .navigate(
-                to: stayApplyComponent.makeView(),
-                when: $viewModel.isNavigateToStay
+                to: remainApplyComponent.makeView(),
+                when: $viewModel.isNavigateToRemain
             )
         }
     }

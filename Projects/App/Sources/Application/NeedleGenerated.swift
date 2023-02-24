@@ -14,12 +14,12 @@ import MyPageFeature
 import NeedleFoundation
 import NetworkModule
 import NoticeFeature
+import RemainApplyFeature
 import RenewalPasswordFeature
 import RootFeature
 import SigninFeature
 import SignupFeature
 import SplashFeature
-import StayApplyFeature
 import StudyRoomFeature
 import SwiftUI
 
@@ -390,8 +390,8 @@ private class ApplyPageDependency3fe4e7c221b14c86d427Provider: ApplyPageDependen
     var studyRoomListComponent: StudyRoomListComponent {
         return appComponent.studyRoomListComponent
     }
-    var stayApplyComponent: StayApplyComponent {
-        return appComponent.stayApplyComponent
+    var remainApplyComponent: RemainApplyComponent {
+        return appComponent.remainApplyComponent
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -450,6 +450,17 @@ private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInfor
 private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
 }
+private class RemainApplyDependency4d8caef674dc801cbb54Provider: RemainApplyDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->RemainApplyComponent
+private func factory9615846346c92a2f8176e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return RemainApplyDependency4d8caef674dc801cbb54Provider()
+}
 private class NoticeListDependency0e93eb53be8626c408e4Provider: NoticeListDependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase {
         return appComponent.fetchNoticeListUseCase
@@ -478,17 +489,6 @@ private class NoticeDetailDependency714af3aed40eaebda420Provider: NoticeDetailDe
 /// ^->AppComponent->NoticeDetailComponent
 private func factory3db143c2f80d621d5a7ff47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return NoticeDetailDependency714af3aed40eaebda420Provider(appComponent: parent1(component) as! AppComponent)
-}
-private class StayApplyDependency6a1b34272c2752b6352fProvider: StayApplyDependency {
-
-
-    init() {
-
-    }
-}
-/// ^->AppComponent->StayApplyComponent
-private func factoryed6580562e6e1de5b716e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return StayApplyDependency6a1b34272c2752b6352fProvider()
 }
 private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
@@ -556,7 +556,7 @@ extension AppComponent: Registration {
         localTable["modifyPasswordComponent-ModifyPasswordComponent"] = { [unowned self] in self.modifyPasswordComponent as Any }
         localTable["studyRoomListComponent-StudyRoomListComponent"] = { [unowned self] in self.studyRoomListComponent as Any }
         localTable["applyPageComponent-ApplyPageComponent"] = { [unowned self] in self.applyPageComponent as Any }
-        localTable["stayApplyComponent-StayApplyComponent"] = { [unowned self] in self.stayApplyComponent as Any }
+        localTable["remainApplyComponent-RemainApplyComponent"] = { [unowned self] in self.remainApplyComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { [unowned self] in self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { [unowned self] in self.noticeRepository as Any }
         localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { [unowned self] in self.fetchWhetherNewNoticeUseCase as Any }
@@ -726,7 +726,7 @@ extension HomeComponent: Registration {
 extension ApplyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\ApplyPageDependency.studyRoomListComponent] = "studyRoomListComponent-StudyRoomListComponent"
-        keyPathToName[\ApplyPageDependency.stayApplyComponent] = "stayApplyComponent-StayApplyComponent"
+        keyPathToName[\ApplyPageDependency.remainApplyComponent] = "remainApplyComponent-RemainApplyComponent"
     }
 }
 extension AuthenticationEmailComponent: Registration {
@@ -747,6 +747,11 @@ extension EnterInformationComponent: Registration {
         keyPathToName[\EnterInformationDependency.authenticationEmailComponent] = "authenticationEmailComponent-AuthenticationEmailComponent"
     }
 }
+extension RemainApplyComponent: Registration {
+    public func registerItems() {
+
+    }
+}
 extension NoticeListComponent: Registration {
     public func registerItems() {
         keyPathToName[\NoticeListDependency.fetchNoticeListUseCase] = "fetchNoticeListUseCase-any FetchNoticeListUseCase"
@@ -756,11 +761,6 @@ extension NoticeListComponent: Registration {
 extension NoticeDetailComponent: Registration {
     public func registerItems() {
         keyPathToName[\NoticeDetailDependency.fetchDetailNoticeUseCase] = "fetchDetailNoticeUseCase-any FetchDetailNoticeUseCase"
-    }
-}
-extension StayApplyComponent: Registration {
-    public func registerItems() {
-
     }
 }
 extension FindIDComponent: Registration {
@@ -810,9 +810,9 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->RemainApplyComponent", factory9615846346c92a2f8176e3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->NoticeListComponent", factorye14e687c08985bdffcd0f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->NoticeDetailComponent", factory3db143c2f80d621d5a7ff47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->StayApplyComponent", factoryed6580562e6e1de5b716e3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
 #endif

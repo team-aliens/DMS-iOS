@@ -1,6 +1,6 @@
 import Combine
 
-public final class StayStateModel: ObservableObject {
+public final class RemainStateModel: ObservableObject {
     public init() {}
     @Published public var selectedNum: Int = 3
     @Published public var selectedType: String = ""

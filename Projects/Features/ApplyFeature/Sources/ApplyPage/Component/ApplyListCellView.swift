@@ -1,12 +1,12 @@
 import SwiftUI
 import StudyRoomFeature
-import StayApplyFeature
+import RemainApplyFeature
 import DesignSystem
 
 struct ApplyListCellView: View {
     @StateObject var viewModel: ApplyPageViewModel
     @EnvironmentObject var studyState: StudyRoomStateModel
-    @EnvironmentObject var stayState: StayStateModel
+    @EnvironmentObject var remainState: RemainStateModel
     var name: String
     var content: String
     var buttonTitle: String
@@ -23,12 +23,12 @@ struct ApplyListCellView: View {
 
                 Spacer()
 
-                Text(name == "자습실" ? studyState.appliedState : stayState.appliedState)
+                Text(name == "자습실" ? studyState.appliedState : remainState.appliedState)
                     .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
                     .frame(height: 22)
                     .padding(.vertical, 6)
                     .padding(.horizontal, 14)
-                    .background((studyState.appliedState.isEmpty && stayState.appliedState.isEmpty)
+                    .background((studyState.appliedState.isEmpty && remainState.appliedState.isEmpty)
                                 ? .clear : Color.PrimaryVariant.lighten2)
                     .cornerRadius(24)
                     .padding(.trailing, 16)
@@ -47,13 +47,13 @@ struct ApplyListCellView: View {
                     if name == "자습실" {
                         viewModel.isNavigateToStudy.toggle()
                     } else {
-                        viewModel.isNavigateToStay.toggle()
+                        viewModel.isNavigateToRemain.toggle()
                     }
                 }
                 .padding(20)
         }
         .environmentObject(studyState)
-        .environmentObject(stayState)
+        .environmentObject(remainState)
         .background(Color.System.surface)
         .cornerRadius(10)
         .dmsShadow(style: .surface)

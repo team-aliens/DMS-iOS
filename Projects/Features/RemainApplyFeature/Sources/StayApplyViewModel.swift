@@ -1,7 +1,7 @@
 import BaseFeature
 import Combine
 
-final class StayApplyViewModel: BaseViewModel {
+final class RemainApplyViewModel: BaseViewModel {
     @Published var isApplicationTime = true
     @Published var isShowingToast = false
     @Published var toastMessage = "잔류 신청 시간이 아닙니다."

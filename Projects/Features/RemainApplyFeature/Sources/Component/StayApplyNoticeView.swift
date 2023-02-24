@@ -2,7 +2,7 @@ import DesignSystem
 import DomainModule
 import SwiftUI
 
-struct StayApplyNoticeView: View {
+struct RemainApplyNoticeView: View {
     let notice: String
 
     var body: some View {

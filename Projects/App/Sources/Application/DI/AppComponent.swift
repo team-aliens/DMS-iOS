@@ -10,7 +10,7 @@ import MainTabFeature
 import HomeFeature
 import ApplyFeature
 import StudyRoomFeature
-import StayApplyFeature
+import RemainApplyFeature
 import MyPageFeature
 import NoticeFeature
 import SplashFeature
@@ -117,7 +117,7 @@ public extension AppComponent {
     var applyPageComponent: ApplyPageComponent {
         ApplyPageComponent(parent: self)
     }
-    var stayApplyComponent: StayApplyComponent {
-        StayApplyComponent(parent: self)
+    var remainApplyComponent: RemainApplyComponent {
+        RemainApplyComponent(parent: self)
     }
 }

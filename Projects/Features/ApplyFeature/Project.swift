@@ -7,6 +7,6 @@ let project = Project.makeModule(
     dependencies: [
         .Project.Features.BaseFeature,
         .Project.Features.StudyRoomFeature,
-        .Project.Features.StayApplyFeature
+        .Project.Features.RemainApplyFeature
     ]
 )

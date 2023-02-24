@@ -1,8 +1,8 @@
 import DesignSystem
 import SwiftUI
 
-struct StayApplyListCellView: View {
-    @EnvironmentObject var uiState: StayStateModel
+struct RemainApplyListCellView: View {
+    @EnvironmentObject var uiState: RemainStateModel
 
     let dummy1 = ApplyDummy(
         listNum: 0,
@@ -43,18 +43,18 @@ struct StayApplyListCellView: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            stayApplyListCellView(list: dummy1, applyType: .friday)
+            remainApplyListCellView(list: dummy1, applyType: .friday)
 
-            stayApplyListCellView(list: dummy2, applyType: .saturday)
+            remainApplyListCellView(list: dummy2, applyType: .saturday)
 
-            stayApplyListCellView(list: dummy3, applyType: .stay)
+            remainApplyListCellView(list: dummy3, applyType: .stay)
         }
         .environmentObject(uiState)
     }
 
     @ViewBuilder
     // swiftlint:disable function_body_length
-    func stayApplyListCellView(list: ApplyDummy, applyType: ApplyType) -> some View {
+    func remainApplyListCellView(list: ApplyDummy, applyType: ApplyType) -> some View {
         VStack {
             HStack {
                 Button(action: {

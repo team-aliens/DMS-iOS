@@ -1,11 +1,11 @@
 import SwiftUI
 import StudyRoomFeature
-import StayApplyFeature
+import RemainApplyFeature
 import NeedleFoundation
 
 public protocol ApplyPageDependency: Dependency {
     var studyRoomListComponent: StudyRoomListComponent { get }
-    var stayApplyComponent: StayApplyComponent { get }
+    var remainApplyComponent: RemainApplyComponent { get }
 }
 
 public final class ApplyPageComponent: Component<ApplyPageDependency> {
@@ -13,7 +13,7 @@ public final class ApplyPageComponent: Component<ApplyPageDependency> {
         ApplyPageView(
             viewModel: ApplyPageViewModel(),
             studyRoomListComponent: dependency.studyRoomListComponent,
-            stayApplyComponent: dependency.stayApplyComponent
+            remainApplyComponent: dependency.remainApplyComponent
         )
     }
 }

@@ -6,7 +6,7 @@ import SigninFeature
 import SignupFeature
 import ApplyFeature
 import StudyRoomFeature
-import StayApplyFeature
+import RemainApplyFeature
 
 @main
 struct DMSApp: App {
@@ -20,7 +20,7 @@ struct DMSApp: App {
             AppComponent().makeRootView()
                 .environmentObject(appState)
                 .environmentObject(StudyRoomStateModel())
-                .environmentObject(StayStateModel())
+                .environmentObject(RemainStateModel())
         }
     }
 }

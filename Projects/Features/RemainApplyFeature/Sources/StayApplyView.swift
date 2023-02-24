@@ -1,13 +1,13 @@
 import DesignSystem
 import SwiftUI
 
-struct StayApplyView: View {
-    @StateObject var viewModel: StayApplyViewModel
+struct RemainApplyView: View {
+    @StateObject var viewModel: RemainApplyViewModel
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var uiState: StayStateModel
+    @EnvironmentObject var uiState: RemainStateModel
 
     init(
-        viewModel: StayApplyViewModel
+        viewModel: RemainApplyViewModel
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -19,9 +19,9 @@ struct StayApplyView: View {
 
             ScrollView(showsIndicators: false) {
                 if viewModel.isApplicationTime {
-                    StayApplyNoticeView(notice: viewModel.rangeString)
+                    RemainApplyNoticeView(notice: viewModel.rangeString)
                 }
-                StayApplyListCellView()
+                RemainApplyListCellView()
                     .padding(.horizontal, 24)
             }
 
