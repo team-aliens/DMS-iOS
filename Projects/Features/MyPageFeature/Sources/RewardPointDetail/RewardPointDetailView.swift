@@ -38,7 +38,7 @@ struct RewardPointDetailView: View {
                 .padding(.horizontal, 24)
                 .padding(.bottom, 24)
 
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 Spacer()
                     .frame(height: 10)
                 LazyVStack {

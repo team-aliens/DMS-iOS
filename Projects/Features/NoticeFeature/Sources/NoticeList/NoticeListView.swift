@@ -33,7 +33,7 @@ struct NoticeListView: View {
                 }
                 .padding(.top, 12)
 
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     LazyVStack {
                         Spacer()
                             .frame(height: 10)

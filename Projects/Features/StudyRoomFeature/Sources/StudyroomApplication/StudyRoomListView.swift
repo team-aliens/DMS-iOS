@@ -21,7 +21,8 @@ struct StudyRoomListView: View {
         NavigationView {
             VStack {
                 Spacer()
-                ScrollView {
+
+                ScrollView(showsIndicators: false) {
                     if viewModel.isStudyRoomTime {
                         StudyRoomNoticeView(text: viewModel.rangeString)
                     }
