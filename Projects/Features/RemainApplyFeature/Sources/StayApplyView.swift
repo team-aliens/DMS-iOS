@@ -58,8 +58,10 @@ struct RemainApplyView: View {
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackground()
         .dmsBackButton(dismiss: dismiss)
-        .dmsToast(isShowing: $viewModel.isErrorOcuured,
-                  message: viewModel.toastMessage,
-                  style: .error)
+        .dmsToast(
+            isShowing: $viewModel.isErrorOcuured,
+            message: viewModel.toastMessage,
+            style: .error
+        )
     }
 }

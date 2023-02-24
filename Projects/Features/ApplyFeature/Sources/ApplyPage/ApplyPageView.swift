@@ -88,6 +88,7 @@ struct ApplyPageView: View {
                 name: name,
                 content: content,
                 buttonTitle: buttonTitle,
-                state: state ?? "")
+                state: state ?? ""
+            )
         }
 }
