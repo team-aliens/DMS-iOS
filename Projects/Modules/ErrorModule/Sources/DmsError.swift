@@ -42,6 +42,10 @@ public enum DmsError: Error {
     case notFoundAppliedSeat
     case noPermissionApplySeat
 
+    // MARK: - Remains
+    case forbiddenRemainPeriod
+    case notFoundRemain
+    case conflictRemain
 }
 
 extension DmsError: LocalizedError {
@@ -125,6 +129,16 @@ extension DmsError: LocalizedError {
 
         case .noPermissionApplySeat:
             return "신청 불가능한 자습실입니다"
+
+        // MARK: - Remains
+        case .forbiddenRemainPeriod:
+            return "잔류 신청 기간이 아닙니다"
+
+        case .notFoundRemain:
+            return "찾을 수 없습니다"
+
+        case .conflictRemain:
+            return "이미 존재합니다"
         }
     }
 }

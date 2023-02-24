@@ -39,9 +39,6 @@ extension UsersAPI: DmsAPI {
             return .requestParameters(parameters: [
                 "password": password
             ], encoding: URLEncoding.queryString)
-
-        default:
-            return .requestPlain
         }
     }
 
