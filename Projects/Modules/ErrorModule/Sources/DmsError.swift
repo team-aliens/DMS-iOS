@@ -132,7 +132,7 @@ extension DmsError: LocalizedError {
             return "신청한 자리가 없습니다"
 
         case .noPermissionApplySeat:
-            return "신청 불가능한 자습실입니다"
+            return "신청 불가능한 자리입니다"
 
         // MARK: - Remains
         case .forbiddenRemainPeriod:
