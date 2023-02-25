@@ -17,5 +17,6 @@ public final class HomeComponent: Component<HomeDependency> {
                 )
             )
         }
+        .navigationViewStyle(.stack)
     }
 }

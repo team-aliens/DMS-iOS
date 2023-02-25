@@ -61,5 +61,6 @@ struct StudyRoomListView: View {
                 )
             }
         }
+        .navigationViewStyle(.stack)
     }
 }

@@ -63,6 +63,7 @@ struct NoticeListView: View {
                 viewModel.onAppear()
             }
         }
+        .navigationViewStyle(.stack)
     }
 
     @ViewBuilder
