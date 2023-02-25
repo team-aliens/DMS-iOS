@@ -54,7 +54,7 @@ struct StudyRoomDetailView: View {
                 .padding(.bottom, 6)
 
             HStack(spacing: 10) {
-                DMSWideButton(text: "취소",style: .contained, color: .GrayScale.gray4) {
+                DMSWideButton(text: "취소", style: .contained, color: .GrayScale.gray4) {
                     viewModel.cancelStudyRoomSeat()
                 }
 
