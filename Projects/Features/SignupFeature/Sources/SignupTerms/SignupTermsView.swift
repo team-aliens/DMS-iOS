@@ -14,7 +14,7 @@ struct SignupTermsView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            DMSHeaderTitleView(subTitle: "이메일 주소 입력")
+            DMSHeaderTitleView(subTitle: "약관 동의")
                 .padding(.top, 24)
 
             DMSWebView(urlToLoad: "https://team-aliens-webview.dsm-dms.com/sign-up-policy")
