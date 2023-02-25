@@ -12,4 +12,5 @@ public protocol RemoteStudentsDataSource {
     func checkExistGradeClassNumber(req: CheckExistGradeClassNumberRequestDTO) -> AnyPublisher<String, DmsError>
     func fetchMyProfile() -> AnyPublisher<MyProfileEntity, DmsError>
     func changeProfileImage(url: String) -> AnyPublisher<Void, DmsError>
+    func withdrawal() -> AnyPublisher<Void, DmsError>
 }

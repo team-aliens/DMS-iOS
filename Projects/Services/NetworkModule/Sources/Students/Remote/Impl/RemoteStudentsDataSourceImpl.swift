@@ -44,4 +44,8 @@ public final class RemoteStudentsDataSourceImpl: BaseRemoteDataSource<StudentsAP
     public func changeProfileImage(url: String) -> AnyPublisher<Void, DmsError> {
         request(.changeProfileImage(url: url))
     }
+
+    public func withdrawal() -> AnyPublisher<Void, DmsError> {
+        request(.withdrawal)
+    }
 }
