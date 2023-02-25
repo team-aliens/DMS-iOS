@@ -130,6 +130,19 @@ struct MyPageView: View {
                         .dmsShadow()
                 }
 
+                VStack(alignment: .leading, spacing: 0) {
+                    myPageOptionRowCardView(title: "회원 탈퇴")
+                        .dmsFont(.body(.body2), color: .GrayScale.gray6)
+                        .onTapGesture(perform: viewModel.withdrawalButtonDidTap)
+                        .cornerRadius(10)
+                }
+                .frame(maxWidth: .infinity)
+                .background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.GrayScale.gray1)
+                        .dmsShadow(style: .surface)
+                }
+
                 Spacer()
             }
             .padding(.horizontal, 24)
@@ -143,6 +156,13 @@ struct MyPageView: View {
             Button("확인", role: .destructive, action: viewModel.confirmLogoutButtonDidTap)
         } message: {
             Text("정말 로그아웃 하시겠습니까?")
+                .dmsFont(.body(.body2), color: .GrayScale.gray6)
+        }
+        .alert("", isPresented: $viewModel.isPresentedWithdrawalAlert) {
+            Button("취소", role: .cancel) {}
+            Button("탈퇴", role: .destructive, action: viewModel.confirmWithdrawalButtonDidTap)
+        } message: {
+            Text("정말 회원 탈퇴 하시겠습니까?")
                 .dmsFont(.body(.body2), color: .GrayScale.gray6)
         }
         .onChange(of: viewModel.isNavigateChangeProfile) { newValue in

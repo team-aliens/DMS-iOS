@@ -64,4 +64,10 @@ public extension AppComponent {
             ChangeProfileImageUseCaseImpl(studentsRepository: studentsRepository)
         }
     }
+
+    var withdrawalUseCase: any WithdrawalUseCase {
+        shared {
+            WithdrawalUseCaseImpl(studentsRepository: studentsRepository)
+        }
+    }
 }

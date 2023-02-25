@@ -8,17 +8,21 @@ final class MyPageViewModel: BaseViewModel {
     @Published var isNavigateChangeProfile = false
     @Published var isNavigateChangePassword = false
     @Published var isNavigateRewardPointDetail = false
+    @Published var isPresentedWithdrawalAlert = false
     @Published var isSuccessLogout = false
 
     private let fetchMyProfileUseCase: any FetchMyProfileUseCase
     private let logoutUseCase: any LogoutUseCase
+    private let withdrawalUseCase: any WithdrawalUseCase
 
     public init(
         fetchMyProfileUseCase: any FetchMyProfileUseCase,
-        logoutUseCase: any LogoutUseCase
+        logoutUseCase: any LogoutUseCase,
+        withdrawalUseCase: any WithdrawalUseCase
     ) {
         self.fetchMyProfileUseCase = fetchMyProfileUseCase
         self.logoutUseCase = logoutUseCase
+        self.withdrawalUseCase = withdrawalUseCase
     }
 
     func onAppear() {
@@ -40,5 +44,15 @@ final class MyPageViewModel: BaseViewModel {
 
     func profileImageDidTap() {
         isNavigateChangeProfile = true
+    }
+
+    func withdrawalButtonDidTap() {
+        isPresentedWithdrawalAlert = true
+    }
+
+    func confirmWithdrawalButtonDidTap() {
+        addCancellable(withdrawalUseCase.execute()) { [weak self] _ in
+            self?.isSuccessLogout = true
+        }
     }
 }

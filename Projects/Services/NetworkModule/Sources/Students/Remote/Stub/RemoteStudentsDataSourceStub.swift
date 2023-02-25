@@ -59,4 +59,10 @@ public struct RemoteStudentsDataSourceStub: RemoteStudentsDataSource {
             .setFailureType(to: DmsError.self)
             .eraseToAnyPublisher()
     }
+
+    public func withdrawal() -> AnyPublisher<Void, DmsError> {
+        Just(())
+            .setFailureType(to: DmsError.self)
+            .eraseToAnyPublisher()
+    }
 }
