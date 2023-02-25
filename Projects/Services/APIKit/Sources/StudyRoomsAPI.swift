@@ -64,6 +64,7 @@ extension StudyRoomsAPI: DmsAPI {
         case .applyStudyRoomSeat:
             return [
                 400: .badRequest,
+                401: .unavailableSex,
                 403: .noPermissionApplySeat,
                 409: .seatIsAlreadyExist,
                 429: .tooManyRequest,

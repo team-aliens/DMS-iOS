@@ -42,6 +42,7 @@ public enum DmsError: Error {
     case seatIsAlreadyExist
     case notFoundAppliedSeat
     case noPermissionApplySeat
+    case unavailableSex
 
     // MARK: - Remains
     case forbiddenRemainPeriod
@@ -133,6 +134,9 @@ extension DmsError: LocalizedError {
 
         case .noPermissionApplySeat:
             return "신청 불가능한 자리입니다"
+
+        case .unavailableSex:
+            return "신청 불가능한 성별입니다"
 
         // MARK: - Remains
         case .forbiddenRemainPeriod:
