@@ -1,6 +1,7 @@
 import BaseFeature
 import DesignSystem
 import SwiftUI
+import Utility
 
 struct MyPageView: View {
     @StateObject var viewModel: MyPageViewModel
@@ -111,12 +112,7 @@ struct MyPageView: View {
                     }
 
                 }
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.GrayScale.gray1)
-                        .dmsShadow()
-                }
-
+                .myPageBackground()
                 VStack(alignment: .leading, spacing: 0) {
                     myPageOptionRowCardView(title: "로그아웃")
                         .dmsFont(.body(.body2), color: .System.error)
@@ -124,11 +120,7 @@ struct MyPageView: View {
                         .cornerRadius(10)
                 }
                 .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.GrayScale.gray1)
-                        .dmsShadow()
-                }
+                .myPageBackground()
 
                 VStack(alignment: .leading, spacing: 0) {
                     myPageOptionRowCardView(title: "회원 탈퇴")
@@ -137,11 +129,7 @@ struct MyPageView: View {
                         .cornerRadius(10)
                 }
                 .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.GrayScale.gray1)
-                        .dmsShadow(style: .surface)
-                }
+                .myPageBackground()
 
                 Spacer()
             }
