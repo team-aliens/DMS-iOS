@@ -122,7 +122,7 @@ extension DmsError: LocalizedError {
             return "사진의 최대 용량을 초과했습니다."
 
         case .failedToWithdrawal:
-            return "회원탈퇴에 실패했습니다."
+            return "회원탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요."
 
         // MARK: - StudyRooms
         case .seatIsAlreadyExist:
