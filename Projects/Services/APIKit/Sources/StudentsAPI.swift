@@ -12,6 +12,7 @@ public enum StudentsAPI {
     case checkExistGradeClassNumber(CheckExistGradeClassNumberRequestDTO)
     case fetchMyProfile
     case changeProfileImage(url: String)
+    case withdrawal
 }
 
 extension StudentsAPI: DmsAPI {
@@ -44,6 +45,9 @@ extension StudentsAPI: DmsAPI {
 
         case .changeProfileImage:
             return "/profile"
+
+        case .withdrawal:
+            return ""
         }
     }
 
@@ -57,6 +61,9 @@ extension StudentsAPI: DmsAPI {
 
         case .renewalPassword, .changeProfileImage:
             return .patch
+
+        case .withdrawal:
+            return .delete
         }
     }
 
@@ -107,7 +114,7 @@ extension StudentsAPI: DmsAPI {
 
     public var jwtTokenType: JwtTokenType {
         switch self {
-        case .fetchMyProfile, .changeProfileImage:
+        case .fetchMyProfile, .changeProfileImage, .withdrawal:
             return .accessToken
 
         default:
@@ -171,6 +178,14 @@ extension StudentsAPI: DmsAPI {
         case .changeProfileImage:
             return [
                 401: .tokenExpired,
+                500: .internalServerError
+            ]
+
+        case .withdrawal:
+            return [
+                400: .badRequest,
+                401: .tokenExpired,
+                404: .failedToWithdrawal,
                 500: .internalServerError
             ]
         }

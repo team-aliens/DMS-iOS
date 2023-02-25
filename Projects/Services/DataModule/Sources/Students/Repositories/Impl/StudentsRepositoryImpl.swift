@@ -44,4 +44,8 @@ public struct StudentsRepositoryImpl: StudentsRepository {
     public func changeProfileImage(url: String) -> AnyPublisher<Void, DmsError> {
         remoteStudentsDataSource.changeProfileImage(url: url)
     }
+
+    public func withdrawal() -> AnyPublisher<Void, DmsError> {
+        remoteStudentsDataSource.withdrawal()
+    }
 }

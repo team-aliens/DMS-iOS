@@ -209,6 +209,9 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     var logoutUseCase: any LogoutUseCase {
         return appComponent.logoutUseCase
     }
+    var withdrawalUseCase: any WithdrawalUseCase {
+        return appComponent.withdrawalUseCase
+    }
     var changeProfileComponent: ChangeProfileComponent {
         return appComponent.changeProfileComponent
     }
@@ -572,6 +575,7 @@ extension AppComponent: Registration {
         localTable["checkExistGradeClassNumberUseCase-any CheckExistGradeClassNumberUseCase"] = { [unowned self] in self.checkExistGradeClassNumberUseCase as Any }
         localTable["fetchMyProfileUseCase-any FetchMyProfileUseCase"] = { [unowned self] in self.fetchMyProfileUseCase as Any }
         localTable["changeProfileImageUseCase-any ChangeProfileImageUseCase"] = { [unowned self] in self.changeProfileImageUseCase as Any }
+        localTable["withdrawalUseCase-any WithdrawalUseCase"] = { [unowned self] in self.withdrawalUseCase as Any }
         localTable["remoteUsersDataSource-any RemoteUsersDataSource"] = { [unowned self] in self.remoteUsersDataSource as Any }
         localTable["usersRepository-any UsersRepository"] = { [unowned self] in self.usersRepository as Any }
         localTable["changePasswordUseCase-any ChangePasswordUseCase"] = { [unowned self] in self.changePasswordUseCase as Any }
@@ -665,6 +669,7 @@ extension MyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyPageDependency.fetchMyProfileUseCase] = "fetchMyProfileUseCase-any FetchMyProfileUseCase"
         keyPathToName[\MyPageDependency.logoutUseCase] = "logoutUseCase-any LogoutUseCase"
+        keyPathToName[\MyPageDependency.withdrawalUseCase] = "withdrawalUseCase-any WithdrawalUseCase"
         keyPathToName[\MyPageDependency.changeProfileComponent] = "changeProfileComponent-ChangeProfileComponent"
         keyPathToName[\MyPageDependency.rewardPointDetailComponent] = "rewardPointDetailComponent-RewardPointDetailComponent"
         keyPathToName[\MyPageDependency.checkPasswordComponent] = "checkPasswordComponent-CheckPasswordComponent"

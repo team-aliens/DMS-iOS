@@ -63,6 +63,7 @@ struct NoticeListView: View {
                 viewModel.onAppear()
             }
         }
+        .navigationViewStyle(.stack)
     }
 
     @ViewBuilder
@@ -75,6 +76,7 @@ struct NoticeListView: View {
                 VStack(alignment: .leading) {
                     Text(title)
                         .dmsFont(.body(.body2), color: .System.backgroundTitle)
+                        .multilineTextAlignment(.leading)
 
                     Text("\(String(date.year))/\(date.month)/\(date.day)")
                         .dmsFont(.etc(.caption), color: .System.backgroundText)

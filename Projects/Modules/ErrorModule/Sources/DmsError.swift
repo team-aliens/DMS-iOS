@@ -36,11 +36,13 @@ public enum DmsError: Error {
     // MARK: - Users
     case currentPasswordMismatch
     case photoCapacityIsLarge
+    case failedToWithdrawal
 
     // MARK: - StudyRooms
     case seatIsAlreadyExist
     case notFoundAppliedSeat
     case noPermissionApplySeat
+    case unavailableSex
 
     // MARK: - Remains
     case forbiddenRemainPeriod
@@ -120,6 +122,9 @@ extension DmsError: LocalizedError {
         case .photoCapacityIsLarge:
             return "사진의 최대 용량을 초과했습니다."
 
+        case .failedToWithdrawal:
+            return "회원탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요."
+
         // MARK: - StudyRooms
         case .seatIsAlreadyExist:
             return "이미 신청된 자리입니다"
@@ -128,7 +133,10 @@ extension DmsError: LocalizedError {
             return "신청한 자리가 없습니다"
 
         case .noPermissionApplySeat:
-            return "신청 불가능한 자습실입니다"
+            return "신청 불가능한 자리입니다"
+
+        case .unavailableSex:
+            return "신청 불가능한 성별입니다"
 
         // MARK: - Remains
         case .forbiddenRemainPeriod:
