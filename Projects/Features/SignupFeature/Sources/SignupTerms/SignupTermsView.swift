@@ -1,8 +1,10 @@
 import DesignSystem
+import BaseFeature
 import SwiftUI
 import Utility
 
 struct SignupTermsView: View {
+    @EnvironmentObject var appState: AppState
     @StateObject var viewModel: SignupTermsViewModel
     @Environment(\.dismiss) var dismiss
 
@@ -41,7 +43,6 @@ struct SignupTermsView: View {
                 .padding(.bottom, 40)
             }
             .padding(.top, 16)
-            .dmsBackground()
             .shadow(
                 color: .GrayScale.gray4.opacity(0.24),
                 y: 1,
@@ -53,8 +54,8 @@ struct SignupTermsView: View {
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .padding(.horizontal, 24)
         .alert(viewModel.alertMessage, isPresented: $viewModel.isShowingAlert) {
-            Button("로그인 화면으로", role: .cancel) {
-                NavigationUtil.popToRootView()
+            Button("확인", role: .cancel) {
+                appState.sceneFlow = .  main
             }
         }
     }
