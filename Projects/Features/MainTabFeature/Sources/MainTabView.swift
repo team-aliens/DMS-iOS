@@ -76,7 +76,7 @@ struct MainTabView: View {
                 }
             }
         }
-        .onAppear {
+        .onChange(of: tabbarHidden) { _ in
             UITabBar.hideTabBar()
         }
         .environment(\.dmsSelectionTabbKey, $selection)
