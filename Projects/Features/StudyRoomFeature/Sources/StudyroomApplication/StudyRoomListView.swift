@@ -18,35 +18,52 @@ struct StudyRoomListView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
+        VStack {
+            Spacer()
+                .frame(height: 1)
 
-                ScrollView(showsIndicators: false) {
-                    if viewModel.isStudyRoomTime {
-                        StudyRoomNoticeView(text: viewModel.rangeString)
-                    }
-                    LazyVStack(spacing: 16) {
-                        Spacer()
-                            .frame(height: 10)
-                        ForEach(viewModel.studyRoomList, id: \.self) { studyRoomList in
-                            Button {
-                                viewModel.isNavigateDetail.toggle()
-                                viewModel.studyRoomDetail = studyRoomList
-                            } label: {
-                                StudyRoomListCellView(studyRoomEntity: studyRoomList)
-                                    .padding(.top, 5)
-                                    .padding(.bottom, 10)
-                            }
+            ScrollView {
+                if viewModel.isStudyRoomTime {
+                    StudyRoomNoticeView(text: viewModel.rangeString)
+                }
+                LazyVStack(spacing: 16) {
+                    Spacer()
+                        .frame(height: 10)
+                    ForEach(viewModel.studyRoomList, id: \.self) { studyRoomList in
+                        Button {
+                            viewModel.isNavigateDetail.toggle()
+                            viewModel.studyRoomDetail = studyRoomList
+                        } label: {
+                            StudyRoomListCellView(studyRoomEntity: studyRoomList)
+                                .padding(.top, 5)
+                                .padding(.bottom, 10)
                         }
-                        .padding(.horizontal, 24)
-
-                        Spacer()
-                            .frame(height: 110)
                     }
+                    .padding(.horizontal, 24)
+
+                    Spacer()
+                        .frame(height: 110)
                 }
             }
+            .navigationTitle("자습실 신청")
+            .navigationBarTitleDisplayMode(.inline)
+            .dmsBackButton(dismiss: dismiss)
+            .dmsBackground()
+            .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+            .onAppear {
+                viewModel.fetchStudyRoomList()
+                viewModel.fetchStudyAvailableTime()
+            }
+            .onChange(of: viewModel.isNavigateDetail) { newValue in
+                withAnimation {
+                    tabbarHidden.wrappedValue = newValue
+                }
+            }
+            .navigate(
+                to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),
+                when: $viewModel.isNavigateDetail
+            )
+            .navigationViewStyle(.stack)
         }
-        .navigationViewStyle(.stack)
     }
 }

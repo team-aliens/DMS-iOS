@@ -73,6 +73,7 @@ struct ApplyPageView: View {
                 to: remainApplyComponent.makeView(),
                 when: $viewModel.isNavigateToRemain
             )
+            .navigationViewStyle(.stack)
         }
     }
 
