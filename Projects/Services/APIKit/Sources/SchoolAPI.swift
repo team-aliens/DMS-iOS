@@ -84,7 +84,7 @@ extension SchoolAPI: DmsAPI {
         case .checkSchoolCode:
             return [
                 400: .badRequest,
-                401: .invalidQuestionAnswer,
+                401: .authCodeMismatch,
                 404: .notFoundSchool,
                 429: .tooManyRequest,
                 500: .internalServerError
