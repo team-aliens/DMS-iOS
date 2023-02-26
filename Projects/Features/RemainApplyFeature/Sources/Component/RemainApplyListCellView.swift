@@ -56,7 +56,7 @@ struct RemainApplyListCellView: View {
     // swiftlint:disable function_body_length
     func remainApplyListCellView(list: ApplyDummy, applyType: ApplyType) -> some View {
         VStack {
-            HStack {
+            HStack(alignment: .center) {
                 Button(action: {
                     uiState.selectedType = list.listName
                     uiState.selectedNum = list.listNum
@@ -83,8 +83,6 @@ struct RemainApplyListCellView: View {
                     Image(systemName: uiState.isDetailTapped == true && uiState.selectedNum == applyType.rawValue
                           ? "chevron.up" : "chevron.down")
                         .foregroundColor(uiState.selectedNum == applyType.rawValue ? .System.primary : .GrayScale.gray7)
-                        .padding(.vertical, 26)
-                        .padding(.trailing, 25)
                         .onTapGesture {
                             uiState.selectedNum = applyType.rawValue
                             uiState.selectedType = list.listName
