@@ -30,5 +30,13 @@ public struct DeferView<Content: View>: View {
 
     public var body: some View {
         content()
+            .onAppear {
+                UIApplication.shared.sendAction(
+                    #selector(UIResponder.resignFirstResponder),
+                    to: nil,
+                    from: nil,
+                    for: nil
+                )
+            }
     }
 }

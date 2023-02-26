@@ -40,7 +40,6 @@ struct MainTabView: View {
         self.applyPageComponent = applyPageComponent
         self.noticeComponent = noticeComponent
         self.myPageComponent = myPageComponent
-        UITabBar.hideTabBar()
     }
 
     var body: some View {
@@ -76,6 +75,9 @@ struct MainTabView: View {
                         .environment(\.dmsSelectionTabbKey, $selection)
                 }
             }
+        }
+        .onChange(of: tabbarHidden) { _ in
+            UITabBar.hideTabBar()
         }
         .environment(\.dmsSelectionTabbKey, $selection)
     }

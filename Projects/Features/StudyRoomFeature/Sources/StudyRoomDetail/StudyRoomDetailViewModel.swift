@@ -100,6 +100,7 @@ final class StudyRoomDetailViewModel: BaseViewModel {
             self?.fetchDetailStudyRoom()
             self?.isShowingToast = true
             self?.toastMessage = "자습실 신청이 완료되었습니다."
+            self?.selectedSeat = nil
         } onReceiveError: { [weak self] error in
             self?.toastMessage = error.localizedDescription
         }

@@ -28,6 +28,7 @@ public enum DmsError: Error {
     case invalidStudentInfoByFindID
     case notFoundStudentByFindID
     case notFoundGradeClassNumber
+    case mismatchEmailAndName
 
     // MARK: - School
     case notFoundSchool
@@ -41,7 +42,7 @@ public enum DmsError: Error {
     // MARK: - StudyRooms
     case seatIsAlreadyExist
     case notFoundAppliedSeat
-    case noPermissionApplySeat
+    case noPermissionApplyTime
     case unavailableSex
 
     // MARK: - Remains
@@ -108,6 +109,9 @@ extension DmsError: LocalizedError {
         case .notFoundGradeClassNumber:
             return "학번을 확인해주세요."
 
+        case .mismatchEmailAndName:
+            return "이름과 이메일이 일치하는 학생을 찾을 수 없습니다."
+
         // MARK: - School
         case .notFoundSchool:
             return "학교를 찾을 수 없습니다."
@@ -132,8 +136,8 @@ extension DmsError: LocalizedError {
         case .notFoundAppliedSeat:
             return "신청한 자리가 없습니다"
 
-        case .noPermissionApplySeat:
-            return "신청 불가능한 자리입니다"
+        case .noPermissionApplyTime:
+            return "신청 불가능한 시간대입니다"
 
         case .unavailableSex:
             return "신청 불가능한 성별입니다"
