@@ -8,7 +8,6 @@ struct EnterInformationView: View {
         case email
     }
 
-    @State private var idTextFieldEnabled: Bool = false
     @FocusState private var focusField: FocusField?
     @StateObject var viewModel: EnterInformationViewModel
     private let authenticationEmailComponent: AuthenticationEmailComponent
@@ -28,8 +27,8 @@ struct EnterInformationView: View {
             viewModel.email.isEmpty {
             viewModel.returnEmailTextField {
                 self.focusField = .name
+                viewModel.idTextFieldEnabled = true
             }
-            self.idTextFieldEnabled = true
         } else if viewModel.name.isEmpty {
             focusField = .name
         } else if viewModel.email.isEmpty {
@@ -57,7 +56,7 @@ struct EnterInformationView: View {
                 }
                 .focused($focusField, equals: .id)
                 .textContentType(.username)
-                .disabled(idTextFieldEnabled)
+                .disabled(viewModel.idTextFieldEnabled)
 
                 if viewModel.isShowFoundEmail {
                     BlockEmailView(email: $viewModel.blockEmail)

@@ -15,9 +15,10 @@ final class EnterInformationViewModel: BaseViewModel {
     }
     @Published var isShowFoundEmail = false
     @Published var isNavigateAuthenticationEmail = false
+    @Published var idTextFieldEnabled = false
 
     var isNextButtonEnabled: Bool {
-        email.isEmpty
+        id.isEmpty
     }
 
     private let checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase
