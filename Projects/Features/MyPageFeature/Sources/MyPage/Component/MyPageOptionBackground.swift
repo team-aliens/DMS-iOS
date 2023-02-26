@@ -1,7 +1,7 @@
 import SwiftUI
 import DesignSystem
 
-public struct MyPageBackground: ViewModifier {
+public struct MyPageOptionBackground: ViewModifier {
     public func body(content: Content) -> some View {
         content
             .background {
@@ -13,8 +13,8 @@ public struct MyPageBackground: ViewModifier {
 }
 
 public extension View {
-    func myPageBackground() -> some View {
+    func myPageOptionBackground() -> some View {
         self
-            .modifier(MyPageBackground())
+            .modifier(MyPageOptionBackground())
     }
 }

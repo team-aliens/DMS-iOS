@@ -29,7 +29,7 @@ extension StudyRoomDetailView {
 
                     studyRoomSeatDetailView()
 
-                    Text(viewModel.studyRoomDetail?.southDescription ?? "ska")
+                    Text(viewModel.studyRoomDetail?.southDescription ?? "남")
                         .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
                         .padding(.bottom, 8)
                 }

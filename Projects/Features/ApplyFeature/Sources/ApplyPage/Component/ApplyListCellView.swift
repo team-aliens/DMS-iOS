@@ -14,7 +14,7 @@ struct ApplyListCellView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
+            HStack(alignment: .center) {
                 Text(name)
                     .dmsFont(.title(.title2), color: .GrayScale.gray7)
                     .frame(height: 32)
