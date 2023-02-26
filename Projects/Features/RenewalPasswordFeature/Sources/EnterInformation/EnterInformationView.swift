@@ -88,7 +88,7 @@ struct EnterInformationView: View {
             DMSWideButton(text: "다음", color: .PrimaryVariant.primary) {
                 nextButtonDidTap()
             }
-            .disabled(viewModel.id.isEmpty)
+            .disabled(viewModel.isNextButtonEnabled)
             .padding(.bottom, 40)
         }
         .onAppear {
