@@ -157,7 +157,7 @@ extension StudentsAPI: DmsAPI {
             return [
                 400: .badRequest,
                 401: .invalidStudentInfoByFindID,
-                404: .notFoundUserBySignin,
+                404: .notFoundStudentByFindID,
                 500: .internalServerError
             ]
 
