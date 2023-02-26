@@ -8,6 +8,7 @@ struct EnterInformationView: View {
         case email
     }
 
+    @State private var idTextFieldEnabled: Bool = false
     @FocusState private var focusField: FocusField?
     @StateObject var viewModel: EnterInformationViewModel
     private let authenticationEmailComponent: AuthenticationEmailComponent
@@ -19,6 +20,23 @@ struct EnterInformationView: View {
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.authenticationEmailComponent = authenticationEmailComponent
+    }
+
+    private func nextButtonDidTap() {
+        if !viewModel.id.isEmpty &&
+            viewModel.name.isEmpty &&
+            viewModel.email.isEmpty {
+            viewModel.returnEmailTextField {
+                self.focusField = .name
+            }
+            self.idTextFieldEnabled = true
+        } else if viewModel.name.isEmpty {
+            focusField = .name
+        } else if viewModel.email.isEmpty {
+            focusField = .email
+        } else {
+            viewModel.enterInfoDidComplete()
+        }
     }
 
     var body: some View {
@@ -34,13 +52,12 @@ struct EnterInformationView: View {
                     errorMessage: viewModel.errorMessage
                 ) {
                     withAnimation(Animation.easeIn(duration: 0.2)) {
-                        viewModel.returnEmailTextField {
-                            self.focusField = .name
-                        }
+                        nextButtonDidTap()
                     }
                 }
                 .focused($focusField, equals: .id)
                 .textContentType(.username)
+                .disabled(idTextFieldEnabled)
 
                 if viewModel.isShowFoundEmail {
                     BlockEmailView(email: $viewModel.blockEmail)
@@ -52,13 +69,13 @@ struct EnterInformationView: View {
             if viewModel.isShowFoundEmail {
                 VStack(spacing: 60) {
                     DMSFloatingTextField("이름", text: $viewModel.name) {
-                        focusField = .email
+                        nextButtonDidTap()
                     }
                     .focused($focusField, equals: .name)
                     .textContentType(.name)
 
                     DMSFloatingTextField("이메일", text: $viewModel.email) {
-                        viewModel.nextButtonDidTap()
+                        nextButtonDidTap()
                     }
                     .focused($focusField, equals: .email)
                     .textContentType(.emailAddress)
@@ -69,9 +86,9 @@ struct EnterInformationView: View {
             Spacer()
 
             DMSWideButton(text: "다음", color: .PrimaryVariant.primary) {
-                viewModel.nextButtonDidTap()
+                nextButtonDidTap()
             }
-            .disabled(!viewModel.isNextButtonEnabled)
+            .disabled(viewModel.isNextButtonEnabled)
             .padding(.bottom, 40)
         }
         .onAppear {

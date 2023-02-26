@@ -17,7 +17,7 @@ final class EnterInformationViewModel: BaseViewModel {
     @Published var isNavigateAuthenticationEmail = false
 
     var isNextButtonEnabled: Bool {
-        !email.isEmpty && !id.isEmpty && !name.isEmpty
+        email.isEmpty
     }
 
     private let checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase
@@ -28,7 +28,7 @@ final class EnterInformationViewModel: BaseViewModel {
         self.checkAccountIDIsExistUseCase = checkAccountIDIsExistUseCase
     }
 
-    func nextButtonDidTap() {
+    func enterInfoDidComplete() {
         self.isNavigateAuthenticationEmail = true
     }
 
