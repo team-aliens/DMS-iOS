@@ -65,6 +65,7 @@ struct RemainApplyListCellView: View {
                         Text(list.listName)
                             .dmsFont(.title(.title2), color: uiState.selectedNum == applyType.rawValue
                                      ? .System.primary : .GrayScale.gray7)
+                            .frame(height: 32)
                             .padding(.vertical, 14)
                             .padding(.horizontal, 20)
 
@@ -83,6 +84,7 @@ struct RemainApplyListCellView: View {
                     Image(systemName: uiState.isDetailTapped == true && uiState.selectedNum == applyType.rawValue
                           ? "chevron.up" : "chevron.down")
                         .foregroundColor(uiState.selectedNum == applyType.rawValue ? .System.primary : .GrayScale.gray7)
+                        .padding(.trailing, 25)
                         .onTapGesture {
                             uiState.selectedNum = applyType.rawValue
                             uiState.selectedType = list.listName
