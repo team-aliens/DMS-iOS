@@ -148,7 +148,7 @@ extension StudentsAPI: DmsAPI {
         case .renewalPassword:
             return [
                 400: .badRequest,
-                401: .authCodeMismatch,
+                401: .mismatchEmailAndName,
                 404: .notFoundAuthInfo,
                 500: .internalServerError
             ]

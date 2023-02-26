@@ -28,6 +28,7 @@ public enum DmsError: Error {
     case invalidStudentInfoByFindID
     case notFoundStudentByFindID
     case notFoundGradeClassNumber
+    case mismatchEmailAndName
 
     // MARK: - School
     case notFoundSchool
@@ -107,6 +108,9 @@ extension DmsError: LocalizedError {
 
         case .notFoundGradeClassNumber:
             return "학번을 확인해주세요."
+
+        case .mismatchEmailAndName:
+            return "이름과 이메일이 일치하는 학생을 찾을 수 없습니다."
 
         // MARK: - School
         case .notFoundSchool:
