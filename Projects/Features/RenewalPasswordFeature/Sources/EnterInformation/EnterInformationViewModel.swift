@@ -28,7 +28,7 @@ final class EnterInformationViewModel: BaseViewModel {
         self.checkAccountIDIsExistUseCase = checkAccountIDIsExistUseCase
     }
 
-    func nextButtonDidTap() {
+    func enterInfoDidComplete() {
         self.isNavigateAuthenticationEmail = true
     }
 
