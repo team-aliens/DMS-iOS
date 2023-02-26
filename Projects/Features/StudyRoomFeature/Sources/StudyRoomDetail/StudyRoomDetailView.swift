@@ -61,7 +61,11 @@ struct StudyRoomDetailView: View {
 
                 DMSWideButton(text: "신청", style: .contained, color: .System.primary) {
                     viewModel.applyStudyRoomSeat()
-                    studyRoomState = viewModel.studyRoomEntity.name
+                    if viewModel.isErrorOcuured == true {
+                        studyRoomState?.removeAll()
+                    } else {
+                        studyRoomState = viewModel.studyRoomEntity.name
+                    }
                 }
                 .disabled(viewModel.selectedSeat == nil)
             }

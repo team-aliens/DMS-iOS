@@ -68,9 +68,10 @@ struct RemainApplyListCellView: View {
                             .padding(.vertical, 14)
                             .padding(.horizontal, 20)
 
-                        if viewModel.isAlreadyApplied == true && viewModel.appliedStateNum == applyType.rawValue {
+                        if viewModel.isAlreadyApplied == true && viewModel.appliedNum == applyType.rawValue {
                             Text("신청 완료")
                                 .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
+                                .frame(height: 22)
                                 .padding(.vertical, 6)
                                 .padding(.horizontal, 14)
                                 .background(Color.PrimaryVariant.lighten2)

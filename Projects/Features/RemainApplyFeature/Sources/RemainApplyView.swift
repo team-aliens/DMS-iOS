@@ -47,8 +47,8 @@ struct RemainApplyView: View {
                 }(),
                 action: {
                     viewModel.appliedState = viewModel.selectedType
-                    viewModel.isAlreadyApplied = true
-                    viewModel.appliedStateNum = viewModel.selectedNum
+                    viewModel.isAlreadyApplied = (viewModel.isErrorOcuured ? false : true)
+                    viewModel.appliedNum = viewModel.selectedNum
                     remainState = viewModel.appliedState
                 })
             .padding(.bottom, 71)

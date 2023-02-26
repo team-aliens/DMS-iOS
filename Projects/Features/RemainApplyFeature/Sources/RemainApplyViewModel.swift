@@ -1,12 +1,13 @@
 import BaseFeature
 import Combine
+import SwiftUI
 
 final class RemainApplyViewModel: BaseViewModel {
     @Published var selectedNum: Int = 10
     @Published var selectedType: String = ""
-    @Published var isAlreadyApplied: Bool = false
+    @AppStorage("isApplied") var isAlreadyApplied: Bool = false
     @Published var appliedState: String = ""
-    @Published var appliedStateNum: Int = 10
+    @AppStorage("appliedNum") var appliedNum: Int = 10
     @Published var isDetailTapped: Bool = false
 
     @Published var isApplicationTime = true
