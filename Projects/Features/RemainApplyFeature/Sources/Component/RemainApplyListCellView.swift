@@ -2,7 +2,7 @@ import DesignSystem
 import SwiftUI
 
 struct RemainApplyListCellView: View {
-    @EnvironmentObject var uiState: RemainStateModel
+    @StateObject var viewModel: RemainApplyViewModel
 
     let dummy1 = ApplyDummy(
         listNum: 0,
@@ -49,7 +49,6 @@ struct RemainApplyListCellView: View {
 
             remainApplyListCellView(list: dummy3, applyType: .stay)
         }
-        .environmentObject(uiState)
     }
 
     @ViewBuilder
@@ -58,18 +57,18 @@ struct RemainApplyListCellView: View {
         VStack {
             HStack(alignment: .center) {
                 Button(action: {
-                    uiState.selectedType = list.listName
-                    uiState.selectedNum = list.listNum
+                    viewModel.selectedType = list.listName
+                    viewModel.selectedNum = list.listNum
                 }, label: {
                     HStack {
                         Text(list.listName)
-                            .dmsFont(.title(.title2), color: uiState.selectedNum == applyType.rawValue
+                            .dmsFont(.title(.title2), color: viewModel.selectedNum == applyType.rawValue
                                      ? .System.primary : .GrayScale.gray7)
                             .frame(height: 32)
                             .padding(.vertical, 14)
                             .padding(.horizontal, 20)
 
-                        if uiState.isAlreadyApplied == true && uiState.appliedStateNum == applyType.rawValue {
+                        if viewModel.isAlreadyApplied == true && viewModel.appliedStateNum == applyType.rawValue {
                             Text("신청 완료")
                                 .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
                                 .padding(.vertical, 6)
@@ -81,18 +80,19 @@ struct RemainApplyListCellView: View {
 
                     Spacer()
 
-                    Image(systemName: uiState.isDetailTapped == true && uiState.selectedNum == applyType.rawValue
+                    Image(systemName: viewModel.isDetailTapped == true && viewModel.selectedNum == applyType.rawValue
                           ? "chevron.up" : "chevron.down")
-                        .foregroundColor(uiState.selectedNum == applyType.rawValue ? .System.primary : .GrayScale.gray7)
+                        .foregroundColor(viewModel.selectedNum == applyType.rawValue
+                                         ? .System.primary : .GrayScale.gray7)
                         .padding(.trailing, 25)
                         .onTapGesture {
-                            uiState.selectedNum = applyType.rawValue
-                            uiState.selectedType = list.listName
-                            uiState.isDetailTapped.toggle()
+                            viewModel.selectedNum = applyType.rawValue
+                            viewModel.selectedType = list.listName
+                            viewModel.isDetailTapped.toggle()
                         }
                 })
             }
-            if uiState.isDetailTapped == true && uiState.selectedNum == applyType.rawValue {
+            if viewModel.isDetailTapped == true && viewModel.selectedNum == applyType.rawValue {
                 Text(list.listContent)
                     .multilineTextAlignment(.leading)
                     .dmsFont(.body(.body3), color: .GrayScale.gray9)
@@ -104,7 +104,7 @@ struct RemainApplyListCellView: View {
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .inset(by: 1)
-                .stroke(uiState.selectedNum == applyType.rawValue ?
+                .stroke(viewModel.selectedNum == applyType.rawValue ?
                         Color.System.primary : .clear, lineWidth: 1.5)
         )
         .padding(.bottom, 12)

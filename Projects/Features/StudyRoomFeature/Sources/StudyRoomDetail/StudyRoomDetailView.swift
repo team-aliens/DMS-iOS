@@ -4,8 +4,8 @@ import DomainModule
 import SwiftUI
 
 struct StudyRoomDetailView: View {
+    @AppStorage("StudyRoomState") var studyRoomState: String?
     @StateObject var viewModel: StudyRoomDetailViewModel
-    @EnvironmentObject var studyState: StudyRoomStateModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.tabbarHidden) var tabbarHidden
 
@@ -60,10 +60,9 @@ struct StudyRoomDetailView: View {
                 }
 
                 DMSWideButton(text: "신청", style: .contained, color: .System.primary) {
-                    studyState.appliedState = viewModel.studyRoomEntity.name
                     viewModel.applyStudyRoomSeat()
+                    studyRoomState = viewModel.studyRoomEntity.name
                 }
-                .environmentObject(studyState)
                 .disabled(viewModel.selectedSeat == nil)
             }
             .padding(.bottom, 40)
