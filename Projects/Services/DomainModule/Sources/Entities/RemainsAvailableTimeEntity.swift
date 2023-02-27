@@ -4,18 +4,18 @@ import DataMappingModule
 public struct RemainsAvailableTimeEntity: Equatable, Hashable {
     public init(
         startDayOfWeek: WeekType,
-        startAt: Date,
+        startTime: Date,
         endDayOfWeek: WeekType,
-        endAt: Date
+        endTime: Date
     ) {
         self.startDayOfWeek = startDayOfWeek
-        self.startAt = startAt
+        self.startTime = startTime
         self.endDayOfWeek = endDayOfWeek
-        self.endAt = endAt
+        self.endTime = endTime
     }
 
     public let startDayOfWeek: WeekType
-    public let startAt: Date
+    public let startTime: Date
     public let endDayOfWeek: WeekType
-    public let endAt: Date
+    public let endTime: Date
 }

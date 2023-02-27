@@ -3,25 +3,25 @@ import Foundation
 public struct FetchRemainsAvailableTimeResponseDTO: Decodable {
     public init(
         startDayOfWeek: WeekType,
-        startAt: String,
+        startTime: Date,
         endDayOfWeek: WeekType,
-        endAt: String
+        endTime: Date
     ) {
         self.startDayOfWeek = startDayOfWeek
-        self.startAt = startAt
+        self.startTime = startTime
         self.endDayOfWeek = endDayOfWeek
-        self.endAt = endAt
+        self.endTime = endTime
     }
 
     public let startDayOfWeek: WeekType
-    public let startAt: String
+    public let startTime: Date
     public let endDayOfWeek: WeekType
-    public let endAt: String
+    public let endTime: Date
 
     enum CodingKeys: String, CodingKey {
         case startDayOfWeek = "start_day_of_week"
-        case startAt = "start_time"
+        case startTime = "start_time"
         case endDayOfWeek = "end_day_of_week"
-        case endAt = "end_time"
+        case endTime = "end_time"
     }
 }
