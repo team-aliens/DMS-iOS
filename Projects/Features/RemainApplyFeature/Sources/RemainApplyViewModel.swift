@@ -10,13 +10,15 @@ final class RemainApplyViewModel: BaseViewModel {
     @AppStorage("isApplied") var isAlreadyApplied: Bool = false
     @Published var appliedState: String = ""
     @AppStorage("appliedNum") var appliedNum: Int = 10
-    @Published var isDetailTapped: Bool = false
 
     @Published var isApplicationTime = true
     @Published var isShowingToast = false
-    @Published var toastMessage = "잔류 신청 시간이 아닙니다."
+    @Published var toastMessage = ""
 
     @Published var remainsAvailableTime: RemainsAvailableTimeEntity?
+    @Published var remainApplicationList = RemainApplicationListEntity(remainOptions: [])
+    @Published var selectedRemainOptionEntity: SelectedRemainOptionEntity?
+    @Published var selectedEntity: RemainOptionEntity?
 
     var rangeString: String {
         if let time = remainsAvailableTime {
@@ -51,6 +53,14 @@ final class RemainApplyViewModel: BaseViewModel {
             fetchRemainsAvailableTimeUseCase.execute()
         ) { [weak self] remainsAvailableTime  in
             self?.remainsAvailableTime = remainsAvailableTime
+        }
+    }
+
+    func fetchRemainApplicationList() {
+        addCancellable(
+            fetchRemainApplicationListUseCase.execute()
+        ) { [weak self] remainApplicationList in
+            self?.remainApplicationList = remainApplicationList
         }
     }
 }
