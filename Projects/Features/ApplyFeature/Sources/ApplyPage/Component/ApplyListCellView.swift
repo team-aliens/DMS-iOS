@@ -9,17 +9,20 @@ struct ApplyListCellView: View {
     var name: String
     var content: String
     var buttonTitle: String
+    var applyState: String?
     var onTapped: () -> Void
 
     init(
         name: String,
         content: String,
         buttonTitle: String,
+        applyState: String?,
         onTapped: @escaping () -> Void
     ) {
         self.name = name
         self.content = content
         self.buttonTitle = buttonTitle
+        self.applyState = applyState
         self.onTapped = onTapped
     }
 
@@ -34,7 +37,7 @@ struct ApplyListCellView: View {
 
                 Spacer()
 
-                Text((name == "자습실" ? studyRoomState : remainState) ?? "")
+                Text(applyState ?? "")
                     .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
                     .frame(height: 22)
                     .padding(.vertical, 6)
