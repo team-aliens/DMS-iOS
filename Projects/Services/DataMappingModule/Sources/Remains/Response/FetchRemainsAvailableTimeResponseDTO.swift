@@ -20,8 +20,8 @@ public struct FetchRemainsAvailableTimeResponseDTO: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case startDayOfWeek = "start_day_of_week"
-        case startAt = "start_at"
+        case startAt = "start_time"
         case endDayOfWeek = "end_day_of_week"
-        case endAt = "end_at"
+        case endAt = "end_time"
     }
 }

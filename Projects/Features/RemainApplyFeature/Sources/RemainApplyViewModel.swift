@@ -20,11 +20,12 @@ final class RemainApplyViewModel: BaseViewModel {
 
     var rangeString: String {
         if let time = remainsAvailableTime {
-            let text = "잔류 신청 시간은 " + time.startDayOfWeek.rawValue + " " + time.startAt.toSmallDMSTimeString() +
-            " ~ " + time.endDayOfWeek.rawValue + time.endAt.toSmallDMSTimeString() + " 까지 입니다."
+            let startString = "\(time.startDayOfWeek.rawValue) \(time.startAt.toSmallDMSTimeString())"
+            let endString = "\(time.endDayOfWeek.rawValue) \(time.endAt.toSmallDMSTimeString())"
+            let text = "잔류 신청 시간은 \(startString) ~ \(endString) 까지 입니다."
             return text
         } else {
-            return "null"
+            return ""
         }
     }
 
