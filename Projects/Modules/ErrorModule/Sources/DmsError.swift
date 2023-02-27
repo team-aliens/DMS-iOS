@@ -140,7 +140,7 @@ extension DmsError: LocalizedError {
             return "신청 불가능한 시간대입니다"
 
         case .unavailableSex:
-            return "신청 불가능한 성별입니다"
+            return "신청할 수 없는 학년 혹은 성별입니다"
 
         // MARK: - Remains
         case .forbiddenRemainPeriod:
