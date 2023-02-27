@@ -16,12 +16,16 @@ final class RemainApplyViewModel: BaseViewModel {
     @Published var isShowingToast = false
     @Published var toastMessage = "잔류 신청 시간이 아닙니다."
 
-    var startTime = "화 18:00"
-    var endTime = "목 18:00"
+    @Published var remainsAvailableTime: RemainsAvailableTimeEntity?
+
     var rangeString: String {
-        let text = "잔류 신청 시간은 " + startTime +
-        " ~ " + endTime + " 까지 입니다."
-        return text
+        if let time = remainsAvailableTime {
+            let text = "잔류 신청 시간은 " + time.startDayOfWeek.rawValue + " " + time.startAt.toSmallDMSTimeString() +
+            " ~ " + time.endDayOfWeek.rawValue + time.endAt.toSmallDMSTimeString() + " 까지 입니다."
+            return text
+        } else {
+            return "null"
+        }
     }
 
     private let fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase
@@ -41,6 +45,11 @@ final class RemainApplyViewModel: BaseViewModel {
         self.remainingApplicationsChangesUseCase = remainingApplicationsChangesUseCase
     }
 
-    func onAppear() {
+    func fetchRemainsAvailableTime() {
+        addCancellable(
+            fetchRemainsAvailableTimeUseCase.execute()
+        ) { [weak self] remainsAvailableTime  in
+            self?.remainsAvailableTime = remainsAvailableTime
+        }
     }
 }

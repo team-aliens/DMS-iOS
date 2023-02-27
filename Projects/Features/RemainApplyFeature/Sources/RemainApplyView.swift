@@ -63,5 +63,8 @@ struct RemainApplyView: View {
             message: viewModel.toastMessage,
             style: .error
         )
+        .onAppear {
+            viewModel.fetchRemainsAvailableTime()
+        }
     }
 }
