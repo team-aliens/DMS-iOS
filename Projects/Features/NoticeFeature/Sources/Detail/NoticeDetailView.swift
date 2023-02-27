@@ -7,7 +7,7 @@ struct NoticeDetailView: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack {
                 VStack(alignment: .leading, spacing: 0) {
                     Text(viewModel.title)
@@ -29,7 +29,7 @@ struct NoticeDetailView: View {
                     .dmsFont(.body(.body2), color: .GrayScale.gray6)
                     .padding(.top, 24)
 
-                Spacer()
+                Spacer(minLength: 83)
             }
         }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)

@@ -26,18 +26,18 @@ struct MainTabView: View {
     }
 
     private let homeComponent: HomeComponent
-    private let studyRoomListComponent: StudyRoomListComponent
+    private let applyPageComponent: ApplyPageComponent
     private let noticeComponent: NoticeListComponent
     private let myPageComponent: MyPageComponent
 
     init(
         homeComponent: HomeComponent,
-        studyRoomListComponent: StudyRoomListComponent,
+        applyPageComponent: ApplyPageComponent,
         noticeComponent: NoticeListComponent,
         myPageComponent: MyPageComponent
     ) {
         self.homeComponent = homeComponent
-        self.studyRoomListComponent = studyRoomListComponent
+        self.applyPageComponent = applyPageComponent
         self.noticeComponent = noticeComponent
         self.myPageComponent = myPageComponent
     }
@@ -49,7 +49,7 @@ struct MainTabView: View {
                     .tag(TabFlow.home)
 
                 if appState.features.studyRoomService {
-                    studyRoomListComponent.makeView()
+                    applyPageComponent.makeView()
                         .tag(TabFlow.apply)
                 }
 

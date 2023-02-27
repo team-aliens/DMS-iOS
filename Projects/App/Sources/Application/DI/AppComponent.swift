@@ -9,6 +9,8 @@ import RenewalPasswordFeature
 import MainTabFeature
 import HomeFeature
 import ApplyFeature
+import StudyRoomFeature
+import RemainApplyFeature
 import MyPageFeature
 import NoticeFeature
 import SplashFeature
@@ -111,5 +113,11 @@ public extension AppComponent {
     }
     var studyRoomListComponent: StudyRoomListComponent {
         StudyRoomListComponent(parent: self)
+    }
+    var applyPageComponent: ApplyPageComponent {
+        ApplyPageComponent(parent: self)
+    }
+    var remainApplyComponent: RemainApplyComponent {
+        RemainApplyComponent(parent: self)
     }
 }

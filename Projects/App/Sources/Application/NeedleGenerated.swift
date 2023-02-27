@@ -14,11 +14,13 @@ import MyPageFeature
 import NeedleFoundation
 import NetworkModule
 import NoticeFeature
+import RemainApplyFeature
 import RenewalPasswordFeature
 import RootFeature
 import SigninFeature
 import SignupFeature
 import SplashFeature
+import StudyRoomFeature
 import SwiftUI
 
 // swiftlint:disable unused_declaration
@@ -182,8 +184,8 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
     var homeComponent: HomeComponent {
         return appComponent.homeComponent
     }
-    var studyRoomListComponent: StudyRoomListComponent {
-        return appComponent.studyRoomListComponent
+    var applyPageComponent: ApplyPageComponent {
+        return appComponent.applyPageComponent
     }
     var noticeListComponent: NoticeListComponent {
         return appComponent.noticeListComponent
@@ -286,6 +288,50 @@ private class CheckPasswordDependencyd8ff624643356835c570Provider: CheckPassword
 private func factorycb24ea072925f86bef40f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return CheckPasswordDependencyd8ff624643356835c570Provider(appComponent: parent1(component) as! AppComponent)
 }
+private class StudyRoomDetailDependency00589e4f8d1416a01b43Provider: StudyRoomDetailDependency {
+    var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
+        return appComponent.fetchStudyAvailableTimeUseCase
+    }
+    var fetchSeatTypesUseCase: any FetchSeatTypesUseCase {
+        return appComponent.fetchSeatTypesUseCase
+    }
+    var fetchDetailStudyRoomUseCase: any FetchDetailStudyRoomUseCase {
+        return appComponent.fetchDetailStudyRoomUseCase
+    }
+    var applyStudyRoomSeatUseCase: any ApplyStudyRoomSeatUseCase {
+        return appComponent.applyStudyRoomSeatUseCase
+    }
+    var cancelStudyRoomSeatUseCase: any CancelStudyRoomSeatUseCase {
+        return appComponent.cancelStudyRoomSeatUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->StudyRoomDetailComponent
+private func factorya36f40c25dcb280bae0ff47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return StudyRoomDetailDependency00589e4f8d1416a01b43Provider(appComponent: parent1(component) as! AppComponent)
+}
+private class StudyRoomListDependencyef56e26c25d5de596604Provider: StudyRoomListDependency {
+    var fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase {
+        return appComponent.fetchStudyRoomListUseCase
+    }
+    var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
+        return appComponent.fetchStudyAvailableTimeUseCase
+    }
+    var studyRoomDetailComponent: StudyRoomDetailComponent {
+        return appComponent.studyRoomDetailComponent
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->StudyRoomListComponent
+private func factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return StudyRoomListDependencyef56e26c25d5de596604Provider(appComponent: parent1(component) as! AppComponent)
+}
 private class RootDependency3944cc797a4a88956fb5Provider: RootDependency {
     var signinComponent: SigninComponent {
         return appComponent.signinComponent
@@ -343,49 +389,21 @@ private class HomeDependency443c4e1871277bd8432aProvider: HomeDependency {
 private func factory67229cdf0f755562b2b1f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return HomeDependency443c4e1871277bd8432aProvider(appComponent: parent1(component) as! AppComponent)
 }
-private class StudyRoomDetailDependency00589e4f8d1416a01b43Provider: StudyRoomDetailDependency {
-    var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
-        return appComponent.fetchStudyAvailableTimeUseCase
+private class ApplyPageDependency3fe4e7c221b14c86d427Provider: ApplyPageDependency {
+    var studyRoomListComponent: StudyRoomListComponent {
+        return appComponent.studyRoomListComponent
     }
-    var fetchSeatTypesUseCase: any FetchSeatTypesUseCase {
-        return appComponent.fetchSeatTypesUseCase
-    }
-    var fetchDetailStudyRoomUseCase: any FetchDetailStudyRoomUseCase {
-        return appComponent.fetchDetailStudyRoomUseCase
-    }
-    var applyStudyRoomSeatUseCase: any ApplyStudyRoomSeatUseCase {
-        return appComponent.applyStudyRoomSeatUseCase
-    }
-    var cancelStudyRoomSeatUseCase: any CancelStudyRoomSeatUseCase {
-        return appComponent.cancelStudyRoomSeatUseCase
+    var remainApplyComponent: RemainApplyComponent {
+        return appComponent.remainApplyComponent
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
     }
 }
-/// ^->AppComponent->StudyRoomDetailComponent
-private func factorya36f40c25dcb280bae0ff47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return StudyRoomDetailDependency00589e4f8d1416a01b43Provider(appComponent: parent1(component) as! AppComponent)
-}
-private class StudyRoomListDependencyef56e26c25d5de596604Provider: StudyRoomListDependency {
-    var fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase {
-        return appComponent.fetchStudyRoomListUseCase
-    }
-    var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
-        return appComponent.fetchStudyAvailableTimeUseCase
-    }
-    var studyRoomDetailComponent: StudyRoomDetailComponent {
-        return appComponent.studyRoomDetailComponent
-    }
-    private let appComponent: AppComponent
-    init(appComponent: AppComponent) {
-        self.appComponent = appComponent
-    }
-}
-/// ^->AppComponent->StudyRoomListComponent
-private func factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return StudyRoomListDependencyef56e26c25d5de596604Provider(appComponent: parent1(component) as! AppComponent)
+/// ^->AppComponent->ApplyPageComponent
+private func factory45f688c5d4c7f313fc8df47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return ApplyPageDependency3fe4e7c221b14c86d427Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class AuthenticationEmailDependency73189eb572618b10e0fbProvider: AuthenticationEmailDependency {
     var verifyAuthCodeUseCase: any VerifyAuthCodeUseCase {
@@ -434,6 +452,28 @@ private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInfor
 /// ^->AppComponent->EnterInformationComponent
 private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
+}
+private class RemainApplyDependency4d8caef674dc801cbb54Provider: RemainApplyDependency {
+    var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase {
+        return appComponent.fetchMyRemainApplicationItemsUseCase
+    }
+    var fetchRemainApplicationListUseCase: any FetchRemainApplicationListUseCase {
+        return appComponent.fetchRemainApplicationListUseCase
+    }
+    var fetchRemainsAvailableTimeUseCase: any FetchRemainsAvailableTimeUseCase {
+        return appComponent.fetchRemainsAvailableTimeUseCase
+    }
+    var remainingApplicationsChangesUseCase: any RemainingApplicationsChangesUseCase {
+        return appComponent.remainingApplicationsChangesUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->RemainApplyComponent
+private func factory9615846346c92a2f8176f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return RemainApplyDependency4d8caef674dc801cbb54Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class NoticeListDependency0e93eb53be8626c408e4Provider: NoticeListDependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase {
@@ -529,6 +569,8 @@ extension AppComponent: Registration {
         localTable["checkPasswordComponent-CheckPasswordComponent"] = { [unowned self] in self.checkPasswordComponent as Any }
         localTable["modifyPasswordComponent-ModifyPasswordComponent"] = { [unowned self] in self.modifyPasswordComponent as Any }
         localTable["studyRoomListComponent-StudyRoomListComponent"] = { [unowned self] in self.studyRoomListComponent as Any }
+        localTable["applyPageComponent-ApplyPageComponent"] = { [unowned self] in self.applyPageComponent as Any }
+        localTable["remainApplyComponent-RemainApplyComponent"] = { [unowned self] in self.remainApplyComponent as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { [unowned self] in self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { [unowned self] in self.noticeRepository as Any }
         localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { [unowned self] in self.fetchWhetherNewNoticeUseCase as Any }
@@ -629,7 +671,7 @@ extension SignupProfileImageComponent: Registration {
 extension MainTabComponent: Registration {
     public func registerItems() {
         keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
-        keyPathToName[\MainTabDependency.studyRoomListComponent] = "studyRoomListComponent-StudyRoomListComponent"
+        keyPathToName[\MainTabDependency.applyPageComponent] = "applyPageComponent-ApplyPageComponent"
         keyPathToName[\MainTabDependency.noticeListComponent] = "noticeListComponent-NoticeListComponent"
         keyPathToName[\MainTabDependency.myPageComponent] = "myPageComponent-MyPageComponent"
     }
@@ -666,6 +708,22 @@ extension CheckPasswordComponent: Registration {
         keyPathToName[\CheckPasswordDependency.modifyPasswordComponent] = "modifyPasswordComponent-ModifyPasswordComponent"
     }
 }
+extension StudyRoomDetailComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\StudyRoomDetailDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
+        keyPathToName[\StudyRoomDetailDependency.fetchSeatTypesUseCase] = "fetchSeatTypesUseCase-any FetchSeatTypesUseCase"
+        keyPathToName[\StudyRoomDetailDependency.fetchDetailStudyRoomUseCase] = "fetchDetailStudyRoomUseCase-any FetchDetailStudyRoomUseCase"
+        keyPathToName[\StudyRoomDetailDependency.applyStudyRoomSeatUseCase] = "applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"
+        keyPathToName[\StudyRoomDetailDependency.cancelStudyRoomSeatUseCase] = "cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"
+    }
+}
+extension StudyRoomListComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\StudyRoomListDependency.fetchStudyRoomListUseCase] = "fetchStudyRoomListUseCase-any FetchStudyRoomListUseCase"
+        keyPathToName[\StudyRoomListDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
+        keyPathToName[\StudyRoomListDependency.studyRoomDetailComponent] = "studyRoomDetailComponent-StudyRoomDetailComponent"
+    }
+}
 extension RootComponent: Registration {
     public func registerItems() {
         keyPathToName[\RootDependency.signinComponent] = "signinComponent-SigninComponent"
@@ -687,20 +745,10 @@ extension HomeComponent: Registration {
         keyPathToName[\HomeDependency.fetchWhetherNewNoticeUseCase] = "fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"
     }
 }
-extension StudyRoomDetailComponent: Registration {
+extension ApplyPageComponent: Registration {
     public func registerItems() {
-        keyPathToName[\StudyRoomDetailDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
-        keyPathToName[\StudyRoomDetailDependency.fetchSeatTypesUseCase] = "fetchSeatTypesUseCase-any FetchSeatTypesUseCase"
-        keyPathToName[\StudyRoomDetailDependency.fetchDetailStudyRoomUseCase] = "fetchDetailStudyRoomUseCase-any FetchDetailStudyRoomUseCase"
-        keyPathToName[\StudyRoomDetailDependency.applyStudyRoomSeatUseCase] = "applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"
-        keyPathToName[\StudyRoomDetailDependency.cancelStudyRoomSeatUseCase] = "cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"
-    }
-}
-extension StudyRoomListComponent: Registration {
-    public func registerItems() {
-        keyPathToName[\StudyRoomListDependency.fetchStudyRoomListUseCase] = "fetchStudyRoomListUseCase-any FetchStudyRoomListUseCase"
-        keyPathToName[\StudyRoomListDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
-        keyPathToName[\StudyRoomListDependency.studyRoomDetailComponent] = "studyRoomDetailComponent-StudyRoomDetailComponent"
+        keyPathToName[\ApplyPageDependency.studyRoomListComponent] = "studyRoomListComponent-StudyRoomListComponent"
+        keyPathToName[\ApplyPageDependency.remainApplyComponent] = "remainApplyComponent-RemainApplyComponent"
     }
 }
 extension AuthenticationEmailComponent: Registration {
@@ -719,6 +767,14 @@ extension EnterInformationComponent: Registration {
     public func registerItems() {
         keyPathToName[\EnterInformationDependency.checkAccountIDIsExistUseCase] = "checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"
         keyPathToName[\EnterInformationDependency.authenticationEmailComponent] = "authenticationEmailComponent-AuthenticationEmailComponent"
+    }
+}
+extension RemainApplyComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\RemainApplyDependency.fetchMyRemainApplicationItemsUseCase] = "fetchMyRemainApplicationItemsUseCase-any FetchMyRemainApplicationItemsUseCase"
+        keyPathToName[\RemainApplyDependency.fetchRemainApplicationListUseCase] = "fetchRemainApplicationListUseCase-any FetchRemainApplicationListUseCase"
+        keyPathToName[\RemainApplyDependency.fetchRemainsAvailableTimeUseCase] = "fetchRemainsAvailableTimeUseCase-any FetchRemainsAvailableTimeUseCase"
+        keyPathToName[\RemainApplyDependency.remainingApplicationsChangesUseCase] = "remainingApplicationsChangesUseCase-any RemainingApplicationsChangesUseCase"
     }
 }
 extension NoticeListComponent: Registration {
@@ -770,14 +826,16 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->AppComponent->RewardPointDetailComponent", factory87993268d9e212be8b1af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangeProfileComponent", factory239204ef0c47c0c68c97f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->CheckPasswordComponent", factorycb24ea072925f86bef40f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->StudyRoomDetailComponent", factorya36f40c25dcb280bae0ff47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->StudyRoomListComponent", factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->RootComponent", factory264bfc4d4cb6b0629b40f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SigninComponent", factory2882a056d84a613debccf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->HomeComponent", factory67229cdf0f755562b2b1f47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->StudyRoomDetailComponent", factorya36f40c25dcb280bae0ff47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->StudyRoomListComponent", factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->ApplyPageComponent", factory45f688c5d4c7f313fc8df47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->RemainApplyComponent", factory9615846346c92a2f8176f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->NoticeListComponent", factorye14e687c08985bdffcd0f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->NoticeDetailComponent", factory3db143c2f80d621d5a7ff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)

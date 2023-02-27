@@ -3,6 +3,7 @@ import DomainModule
 import DataMappingModule
 import Combine
 import Foundation
+import SwiftUI
 
 final class StudyRoomDetailViewModel: BaseViewModel {
     @Published var studyRoomDetail: DetailStudyRoomEntity?
@@ -12,6 +13,7 @@ final class StudyRoomDetailViewModel: BaseViewModel {
     @Published var isShowingToast = false
     @Published var toastMessage = ""
     @Published var selectedSeat: SeatEntity?
+    @AppStorage("StudyRoomState") var studyRoomState: String?
 
     let studyRoomEntity: StudyRoomEntity
 
@@ -103,6 +105,7 @@ final class StudyRoomDetailViewModel: BaseViewModel {
             self?.selectedSeat = nil
         } onReceiveError: { [weak self] error in
             self?.toastMessage = error.localizedDescription
+            self?.studyRoomState = nil
         }
     }
 
@@ -113,6 +116,7 @@ final class StudyRoomDetailViewModel: BaseViewModel {
             self?.fetchDetailStudyRoom()
             self?.isShowingToast = true
             self?.toastMessage = "자습실 취소가 완료되었습니다."
+            self?.studyRoomState = nil
         } onReceiveError: { [weak self] error in
             self?.toastMessage = error.localizedDescription
         }
