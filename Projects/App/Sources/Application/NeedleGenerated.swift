@@ -454,15 +454,26 @@ private func factory359a960501e79e833f64f47b58f8f304c97af4d5(_ component: Needle
     return EnterInformationDependency9204f24c784151f429ddProvider(appComponent: parent1(component) as! AppComponent)
 }
 private class RemainApplyDependency4d8caef674dc801cbb54Provider: RemainApplyDependency {
-
-
-    init() {
-
+    var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase {
+        return appComponent.fetchMyRemainApplicationItemsUseCase
+    }
+    var fetchRemainApplicationListUseCase: any FetchRemainApplicationListUseCase {
+        return appComponent.fetchRemainApplicationListUseCase
+    }
+    var fetchRemainsAvailableTimeUseCase: any FetchRemainsAvailableTimeUseCase {
+        return appComponent.fetchRemainsAvailableTimeUseCase
+    }
+    var remainingApplicationsChangesUseCase: any RemainingApplicationsChangesUseCase {
+        return appComponent.remainingApplicationsChangesUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
     }
 }
 /// ^->AppComponent->RemainApplyComponent
-private func factory9615846346c92a2f8176e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return RemainApplyDependency4d8caef674dc801cbb54Provider()
+private func factory9615846346c92a2f8176f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return RemainApplyDependency4d8caef674dc801cbb54Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class NoticeListDependency0e93eb53be8626c408e4Provider: NoticeListDependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase {
@@ -760,7 +771,10 @@ extension EnterInformationComponent: Registration {
 }
 extension RemainApplyComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\RemainApplyDependency.fetchMyRemainApplicationItemsUseCase] = "fetchMyRemainApplicationItemsUseCase-any FetchMyRemainApplicationItemsUseCase"
+        keyPathToName[\RemainApplyDependency.fetchRemainApplicationListUseCase] = "fetchRemainApplicationListUseCase-any FetchRemainApplicationListUseCase"
+        keyPathToName[\RemainApplyDependency.fetchRemainsAvailableTimeUseCase] = "fetchRemainsAvailableTimeUseCase-any FetchRemainsAvailableTimeUseCase"
+        keyPathToName[\RemainApplyDependency.remainingApplicationsChangesUseCase] = "remainingApplicationsChangesUseCase-any RemainingApplicationsChangesUseCase"
     }
 }
 extension NoticeListComponent: Registration {
@@ -821,7 +835,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->AppComponent->AuthenticationEmailComponent", factory8798d0becd9d2870112af47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ChangePasswordComponent", factoryab7c4d87dab53e0a51b9f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->EnterInformationComponent", factory359a960501e79e833f64f47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->RemainApplyComponent", factory9615846346c92a2f8176e3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->RemainApplyComponent", factory9615846346c92a2f8176f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->NoticeListComponent", factorye14e687c08985bdffcd0f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->NoticeDetailComponent", factory3db143c2f80d621d5a7ff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)

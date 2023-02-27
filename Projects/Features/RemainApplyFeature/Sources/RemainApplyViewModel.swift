@@ -1,4 +1,6 @@
 import BaseFeature
+import DomainModule
+import DataMappingModule
 import Combine
 import SwiftUI
 
@@ -20,5 +22,25 @@ final class RemainApplyViewModel: BaseViewModel {
         let text = "잔류 신청 시간은 " + startTime +
         " ~ " + endTime + " 까지 입니다."
         return text
+    }
+
+    private let fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase
+    private let fetchRemainApplicationListUseCase: any FetchRemainApplicationListUseCase
+    private let fetchRemainsAvailableTimeUseCase: any FetchRemainsAvailableTimeUseCase
+    private let remainingApplicationsChangesUseCase: any RemainingApplicationsChangesUseCase
+
+    public init(
+        fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase,
+        fetchRemainApplicationListUseCase: any FetchRemainApplicationListUseCase,
+        fetchRemainsAvailableTimeUseCase: any FetchRemainsAvailableTimeUseCase,
+        remainingApplicationsChangesUseCase: any RemainingApplicationsChangesUseCase
+    ) {
+        self.fetchMyRemainApplicationItemsUseCase = fetchMyRemainApplicationItemsUseCase
+        self.fetchRemainApplicationListUseCase = fetchRemainApplicationListUseCase
+        self.fetchRemainsAvailableTimeUseCase = fetchRemainsAvailableTimeUseCase
+        self.remainingApplicationsChangesUseCase = remainingApplicationsChangesUseCase
+    }
+
+    func onAppear() {
     }
 }

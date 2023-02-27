@@ -9,20 +9,17 @@ struct ApplyListCellView: View {
     var name: String
     var content: String
     var buttonTitle: String
-    var state: String
     var onTapped: (String) -> Void
 
     init(
         name: String,
         content: String,
         buttonTitle: String,
-        state: String,
         onTapped: @escaping (String) -> Void
     ) {
         self.name = name
         self.content = content
         self.buttonTitle = buttonTitle
-        self.state = state
         self.onTapped = onTapped
     }
 

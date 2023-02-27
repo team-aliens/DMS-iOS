@@ -36,7 +36,6 @@ struct ApplyPageView: View {
                             자습실 사용이 필요한 경우, 자습실 신청을 통해서 원하는 자리를 신청해 보세요.
                             """,
                             buttonTitle: "자습실 신청하기",
-                            state: "2층 자습실",
                             onTapped: { name in
                                 if name == "자습실" {
                                     viewModel.isNavigateToStudy.toggle()
@@ -52,7 +51,6 @@ struct ApplyPageView: View {
                             주말 기숙사 잔류 여부를 확인하고, 잔류 신청을 통해서 잔류 또는 귀가를 신청해 보세요.
                             """,
                             buttonTitle: "잔류 신청하기",
-                            state: "금요 귀가",
                             onTapped: { name in
                                 if name == "자습실" {
                                     viewModel.isNavigateToStudy.toggle()
@@ -95,14 +93,12 @@ struct ApplyPageView: View {
         name: String,
         content: String,
         buttonTitle: String,
-        state: String?,
         onTapped: @escaping (String) -> Void
     ) -> some View {
         ApplyListCellView(
             name: name,
             content: content,
             buttonTitle: buttonTitle,
-            state: state ?? "",
             onTapped: onTapped
         )
     }
