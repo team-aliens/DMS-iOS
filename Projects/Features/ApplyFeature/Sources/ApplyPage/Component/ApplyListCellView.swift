@@ -9,13 +9,13 @@ struct ApplyListCellView: View {
     var name: String
     var content: String
     var buttonTitle: String
-    var onTapped: (String) -> Void
+    var onTapped: () -> Void
 
     init(
         name: String,
         content: String,
         buttonTitle: String,
-        onTapped: @escaping (String) -> Void
+        onTapped: @escaping () -> Void
     ) {
         self.name = name
         self.content = content
@@ -53,9 +53,7 @@ struct ApplyListCellView: View {
             DMSWideButton(
                 text: buttonTitle,
                 color: .PrimaryVariant.primary,
-                action: {
-                    onTapped(name)
-                }
+                action: onTapped
             )
             .padding(20)
         }
