@@ -18,15 +18,18 @@ struct RemainApplyListCellView: View {
 
     @ViewBuilder
     func remainApplyListCellView(list: RemainOptionEntity) -> some View {
-        var isSelected: Bool = {
-            list == viewModel.selectedEntity
+        let isSelected: Bool = {
+            list == viewModel.selectedRemainOptionEntity?.selectedEntity
         }()
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
                 Button(action: {
                     if !isSelected {
-                        viewModel.selectedEntity = list
+                        viewModel.selectedRemainOptionEntity?.selectedEntity = list
+                        print("삽입")
                     }
+                    print(isSelected)
+                    print(list, viewModel.selectedRemainOptionEntity?.selectedEntity)
                 }, label: {
                     HStack {
                         Text(list.title)

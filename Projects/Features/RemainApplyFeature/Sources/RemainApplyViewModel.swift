@@ -18,7 +18,8 @@ final class RemainApplyViewModel: BaseViewModel {
     @Published var remainsAvailableTime: RemainsAvailableTimeEntity?
     @Published var remainApplicationList = RemainApplicationListEntity(remainOptions: [])
     @Published var selectedRemainOptionEntity: SelectedRemainOptionEntity?
-    @Published var selectedEntity: RemainOptionEntity?
+    // 이부분에 옵셔널 처리가 아닌 값처리를 해주면 값이 잘 바껴요
+//    @Published var selectedEntity: RemainOptionEntity?
 
     var rangeString: String {
         if let time = remainsAvailableTime {
