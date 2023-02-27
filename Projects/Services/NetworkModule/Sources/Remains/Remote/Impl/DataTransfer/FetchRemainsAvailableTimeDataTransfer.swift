@@ -6,9 +6,9 @@ public extension FetchRemainsAvailableTimeResponseDTO {
     func toDomain() -> RemainsAvailableTimeEntity {
         RemainsAvailableTimeEntity(
             startDayOfWeek: startDayOfWeek,
-            startAt: startAt.toDMSTime(),
+            startTime: startTime.toDMSTime(),
             endDayOfWeek: endDayOfWeek,
-            endAt: endAt.toDMSTime()
+            endTime: endTime.toDMSTime()
         )
     }
 }
