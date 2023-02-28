@@ -77,14 +77,14 @@ final class RemainApplyViewModel: BaseViewModel {
             remainingApplicationsChangesUseCase.execute(id: entity.id)
         ) { [weak self] _ in
             let remainOptions = self?.remainApplicationList.remainOptions
-            .map {
-                return RemainOptionEntity(
-                    id: $0.id,
-                    title: $0.title,
-                    description: $0.description,
-                    isApplied: entity.id == $0.id
-                )
-            }
+                .map {
+                    return RemainOptionEntity(
+                        id: $0.id,
+                        title: $0.title,
+                        description: $0.description,
+                        isApplied: entity.id == $0.id
+                    )
+                }
             self?.remainApplicationList = RemainApplicationListEntity(remainOptions: remainOptions ?? [])
             self?.myRemainsApplicationItems?.title = entity.title
         }
