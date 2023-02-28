@@ -76,8 +76,16 @@ final class RemainApplyViewModel: BaseViewModel {
         addCancellable(
             remainingApplicationsChangesUseCase.execute(id: id)
         ) { [weak self] _ in
-            self?.fetchMyRemainApplicationItems()
-            self?.fetchRemainApplicationList()
+            let remainOptions = self?.remainApplicationList.remainOptions
+            .map {
+                return RemainOptionEntity(
+                    id: $0.id,
+                    title: $0.title,
+                    description: $0.description,
+                    isApplied: id == $0.id
+                )
+            }
+            self?.remainApplicationList = RemainApplicationListEntity(remainOptions: remainOptions ?? [])
         }
     }
 
