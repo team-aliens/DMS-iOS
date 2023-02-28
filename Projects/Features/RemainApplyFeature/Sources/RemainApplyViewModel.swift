@@ -26,7 +26,7 @@ final class RemainApplyViewModel: BaseViewModel {
     }
 
     var buttonTitle: String {
-        if let selectedEntity = self.selectedEntity {
+        if let selectedEntity {
             if selectedEntity.title == myRemainsApplicationItems?.title {
                 return "신청 완료"
             } else if myRemainsApplicationItems == nil {
