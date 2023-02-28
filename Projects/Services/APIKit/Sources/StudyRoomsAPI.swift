@@ -36,6 +36,7 @@ extension StudyRoomsAPI: DmsAPI {
 
         case .cancelStudyRoomSeat:
             return "/seats"
+
         case .fetchMyStudyRoomApplicationItems:
             return "/my"
         }
