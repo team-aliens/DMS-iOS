@@ -56,7 +56,7 @@ final class RemainApplyViewModel: BaseViewModel {
         self.remainingApplicationsChangesUseCase = remainingApplicationsChangesUseCase
     }
 
-    func fetchRemainsAvailableTime() {
+    private func fetchRemainsAvailableTime() {
         addCancellable(
             fetchRemainsAvailableTimeUseCase.execute()
         ) { [weak self] remainsAvailableTime  in
@@ -73,14 +73,11 @@ final class RemainApplyViewModel: BaseViewModel {
     }
 
     func changeRemainApply() {
-        remainingApplicationsChanges(
-            entity: selectedEntity ?? RemainOptionEntity(
-                id: "",
-                title: "",
-                description: "",
-                isApplied: false
+        if let selectedEntity {
+            remainingApplicationsChanges(
+                entity: selectedEntity
             )
-        )
+        }
     }
 
     private func remainingApplicationsChanges(entity: RemainOptionEntity) {
@@ -98,14 +95,24 @@ final class RemainApplyViewModel: BaseViewModel {
                 }
             self?.remainApplicationList = RemainApplicationListEntity(remainOptions: remainOptions ?? [])
             self?.myRemainsApplicationItems?.title = entity.title
+            self?.toastMessage = "잔류 신청이 완료되었습니다."
+            self?.isShowingToast = true
+        } onReceiveError: { [weak self] _ in
+            self?.isShowingToast = true
+            self?.toastMessage = "잔류 신청 시간이 아닙니다."
         }
     }
 
-    func fetchMyRemainApplicationItems() {
+    private func fetchMyRemainApplicationItems() {
         addCancellable(
             fetchMyRemainApplicationItemsUseCase.execute()
         ) { [weak self] myRemainsApplicationItems in
             self?.myRemainsApplicationItems = myRemainsApplicationItems
         }
+    }
+
+    func onAppear() {
+        fetchRemainsAvailableTime()
+        fetchMyRemainApplicationItems()
     }
 }

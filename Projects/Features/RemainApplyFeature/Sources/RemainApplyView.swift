@@ -40,13 +40,17 @@ struct RemainApplyView: View {
         .dmsBackground()
         .dmsBackButton(dismiss: dismiss)
         .dmsToast(
-            isShowing: $viewModel.isErrorOcuured,
+            isShowing: $viewModel.isShowingToast,
             message: viewModel.toastMessage,
             style: .error
         )
+        .dmsToast(
+            isShowing: $viewModel.isShowingToast,
+            message: viewModel.toastMessage,
+            style: .success
+        )
         .onAppear {
-            viewModel.fetchRemainsAvailableTime()
-            viewModel.fetchMyRemainApplicationItems()
+            viewModel.onAppear()
         }
     }
 }

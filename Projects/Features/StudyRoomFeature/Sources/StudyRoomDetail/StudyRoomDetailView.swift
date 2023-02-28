@@ -42,6 +42,7 @@ struct StudyRoomDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .onAppear {
             viewModel.onAppear()
         }
