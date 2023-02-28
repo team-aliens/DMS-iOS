@@ -35,8 +35,8 @@ struct ApplyListCellView: View {
 
                 Spacer()
 
-                if applyState != nil {
-                    Text(applyState ?? "")
+                if let applyState {
+                    Text(applyState)
                         .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
                         .frame(height: 22)
                         .padding(.vertical, 6)
