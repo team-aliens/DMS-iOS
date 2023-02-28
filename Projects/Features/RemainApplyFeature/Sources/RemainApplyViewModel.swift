@@ -72,7 +72,18 @@ final class RemainApplyViewModel: BaseViewModel {
         }
     }
 
-    func remainingApplicationsChanges(entity: RemainOptionEntity) {
+    func changeRemainApply() {
+        remainingApplicationsChanges(
+            entity: selectedEntity ?? RemainOptionEntity(
+                id: "",
+                title: "",
+                description: "",
+                isApplied: false
+            )
+        )
+    }
+
+    private func remainingApplicationsChanges(entity: RemainOptionEntity) {
         addCancellable(
             remainingApplicationsChangesUseCase.execute(id: entity.id)
         ) { [weak self] _ in
