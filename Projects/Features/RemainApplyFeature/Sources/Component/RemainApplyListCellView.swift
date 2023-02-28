@@ -1,35 +1,32 @@
-import DesignSystem
-import DomainModule
 import SwiftUI
+import DomainModule
+import DesignSystem
 
 struct RemainApplyListCellView: View {
-    @StateObject var viewModel: RemainApplyViewModel
-
-    var body: some View {
-        VStack(spacing: 12) {
-            ForEach(viewModel.remainApplicationList.remainOptions, id: \.self) { remainApplication in
-                remainApplyListCellView(list: remainApplication)
-            }
-        }
-        .onAppear {
-            viewModel.fetchRemainApplicationList()
-        }
+    @State private var isShowingDetail = false
+    @Binding var selectedObject: RemainOptionEntity?
+    var list: RemainOptionEntity
+    let isSelected: Bool
+    let action: () -> Void
+    public init(
+        list: RemainOptionEntity,
+        isSelected: Bool,
+        action: @escaping () -> Void,
+        selectedObject: Binding<RemainOptionEntity?>
+    ) {
+        self.list = list
+        self.isSelected = isSelected
+        self.action = action
+        _selectedObject = selectedObject
     }
-
-    @ViewBuilder
-    func remainApplyListCellView(list: RemainOptionEntity) -> some View {
-        let isSelected: Bool = {
-            list == viewModel.selectedRemainOptionEntity?.selectedEntity
-        }()
+    var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
                 Button(action: {
                     if !isSelected {
-                        viewModel.selectedRemainOptionEntity?.selectedEntity = list
-                        print("삽입")
+                        action()
+                        selectedObject = list
                     }
-                    print(isSelected)
-                    print(list, viewModel.selectedRemainOptionEntity?.selectedEntity)
                 }, label: {
                     HStack {
                         Text(list.title)
@@ -52,23 +49,28 @@ struct RemainApplyListCellView: View {
 
                     Spacer()
 
-                    Image(systemName: isSelected ? "chevron.up" : "chevron.down")
+                    Image(systemName: "chevron.down")
                         .foregroundColor(isSelected
                                          ? .System.primary : .GrayScale.gray7)
-                        .padding(.trailing, 25)
+                        .rotationEffect(
+                            isShowingDetail
+                            ? Angle.degrees(180)
+                            : .degrees(0)
+                        )
+                        .padding(25)
                         .onTapGesture {
-//                            viewModel.selectedNum = applyType.rawValue
-//                            viewModel.selectedType = list.title
-//                            viewModel.isDetailTapped.toggle()
+                            withAnimation {
+                                isShowingDetail.toggle()
+                            }
                         }
                 })
             }
-//            if viewModel.isDetailTapped == true && viewModel.selectedNum == applyType.rawValue {
-//                Text(list.description)
-//                    .multilineTextAlignment(.leading)
-//                    .dmsFont(.body(.body3), color: .GrayScale.gray9)
-//                    .padding([.horizontal, .bottom], 20)
-//            }
+            if isShowingDetail {
+                Text(list.description)
+                    .multilineTextAlignment(.leading)
+                    .dmsFont(.body(.body3), color: .GrayScale.gray9)
+                    .padding([.horizontal, .bottom], 20)
+            }
         }
         .background(Color.System.surface)
         .cornerRadius(10)

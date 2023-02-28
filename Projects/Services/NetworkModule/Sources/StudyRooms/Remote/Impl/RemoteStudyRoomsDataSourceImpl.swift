@@ -5,6 +5,13 @@ import DomainModule
 import ErrorModule
 
 public final class RemoteStudyRoomsDataSourceImpl: BaseRemoteDataSource<StudyRoomsAPI>, RemoteStudyRoomsDataSource {
+    public func fetchMyRemainApplicationItems() ->
+    AnyPublisher<DomainModule.MyStudyRoomAppItemsEntity, ErrorModule.DmsError> {
+        request(.fetchMyStudyRoomApplicationItems, dto: FehtchMyStudyRoomApplicationItemsDTO.self)
+            .map { $0.toDomain() }
+            .eraseToAnyPublisher()
+    }
+
     public func fetchStudyAvailableTime() -> AnyPublisher<StudyAvailableTimeEntity, DmsError> {
         request(.fetchStudyAvailableTime, dto: FetchStudyAvailableTimeResponseDTO.self)
             .map { $0.toDomain() }

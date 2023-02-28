@@ -4,8 +4,6 @@ import RemainApplyFeature
 import DesignSystem
 
 struct ApplyListCellView: View {
-    @AppStorage("StudyRoomState") var studyRoomState: String?
-    @AppStorage("RemainState") var remainState: String?
     var name: String
     var content: String
     var buttonTitle: String
@@ -37,15 +35,17 @@ struct ApplyListCellView: View {
 
                 Spacer()
 
-                Text(applyState ?? "")
-                    .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
-                    .frame(height: 22)
-                    .padding(.vertical, 6)
-                    .padding(.horizontal, 14)
-                    .background(Color.PrimaryVariant.lighten2)
-                    .cornerRadius(24)
-                    .padding(.trailing, 16)
-                    .padding(.top, -2)
+                if applyState != nil {
+                    Text(applyState ?? "")
+                        .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
+                        .frame(height: 22)
+                        .padding(.vertical, 6)
+                        .padding(.horizontal, 14)
+                        .background(Color.PrimaryVariant.lighten2)
+                        .cornerRadius(24)
+                        .padding(.trailing, 16)
+                        .padding(.top, -2)
+                }
             }
 
             Text(content)

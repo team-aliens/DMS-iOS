@@ -7,6 +7,7 @@ public enum StudyRoomsAPI {
     case fetchSeatTypes
     case fetchStudyRoomList
     case fetchDetailStudyRoom(roomID: String)
+    case fetchMyStudyRoomApplicationItems
     case applyStudyRoomSeat(seatID: String)
     case cancelStudyRoomSeat
 }
@@ -35,12 +36,14 @@ extension StudyRoomsAPI: DmsAPI {
 
         case .cancelStudyRoomSeat:
             return "/seats"
+        case .fetchMyStudyRoomApplicationItems:
+            return "/my"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-        case .fetchStudyAvailableTime, .fetchSeatTypes, .fetchStudyRoomList, .fetchDetailStudyRoom:
+        case .fetchStudyAvailableTime, .fetchSeatTypes, .fetchStudyRoomList, .fetchDetailStudyRoom, .fetchMyStudyRoomApplicationItems:
             return .get
 
         case .applyStudyRoomSeat:

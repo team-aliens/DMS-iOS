@@ -4,7 +4,6 @@ import DomainModule
 import SwiftUI
 
 struct StudyRoomDetailView: View {
-    @AppStorage("StudyRoomState") var studyRoomState: String?
     @StateObject var viewModel: StudyRoomDetailViewModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.tabbarHidden) var tabbarHidden

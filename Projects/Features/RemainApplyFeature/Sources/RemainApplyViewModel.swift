@@ -5,21 +5,13 @@ import Combine
 import SwiftUI
 
 final class RemainApplyViewModel: BaseViewModel {
-    @Published var selectedNum: Int = 10
-    @Published var selectedType: String = ""
-    @AppStorage("isApplied") var isAlreadyApplied: Bool = false
-    @Published var appliedState: String = ""
-    @AppStorage("appliedNum") var appliedNum: Int = 10
 
-    @Published var isApplicationTime = true
     @Published var isShowingToast = false
     @Published var toastMessage = ""
 
     @Published var remainsAvailableTime: RemainsAvailableTimeEntity?
     @Published var remainApplicationList = RemainApplicationListEntity(remainOptions: [])
-    @Published var selectedRemainOptionEntity: SelectedRemainOptionEntity?
-    // 이부분에 옵셔널 처리가 아닌 값처리를 해주면 값이 잘 바껴요
-//    @Published var selectedEntity: RemainOptionEntity?
+    @Published var myRemainsApplicationItems: MyRemainApplicationItemsEntity?
 
     var rangeString: String {
         if let time = remainsAvailableTime {
@@ -62,6 +54,23 @@ final class RemainApplyViewModel: BaseViewModel {
             fetchRemainApplicationListUseCase.execute()
         ) { [weak self] remainApplicationList in
             self?.remainApplicationList = remainApplicationList
+        }
+    }
+
+    func remainingApplicationsChanges(id: String) {
+        addCancellable(
+            remainingApplicationsChangesUseCase.execute(id: id),
+            onReceiveValue: {
+
+            }
+        )
+    }
+
+    func fetchMyRemainApplicationItems() {
+        addCancellable(
+            fetchMyRemainApplicationItemsUseCase.execute()
+        ) { [weak self] myRemainsApplicationItems in
+            self?.myRemainsApplicationItems = myRemainsApplicationItems
         }
     }
 }

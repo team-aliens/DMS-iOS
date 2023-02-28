@@ -1,10 +1,13 @@
 import DesignSystem
+import DomainModule
 import SwiftUI
 
 struct RemainApplyView: View {
-    @AppStorage("RemainState") var remainState: String?
     @StateObject var viewModel: RemainApplyViewModel
     @Environment(\.dismiss) var dismiss
+    @State private var selectedObject: RemainOptionEntity?
+
+    @State private var isEnabled: Bool = false
 
     init(
         viewModel: RemainApplyViewModel
@@ -18,39 +21,27 @@ struct RemainApplyView: View {
                 .frame(height: 1)
 
             ScrollView(showsIndicators: false) {
-                if viewModel.isApplicationTime {
-                    RemainApplyNoticeView(notice: viewModel.rangeString)
-                }
-                RemainApplyListCellView(viewModel: viewModel)
+                RemainApplyNoticeView(notice: viewModel.rangeString)
+                RemainApplyListView(viewModel: viewModel, selectedObject: $selectedObject)
                     .padding(.horizontal, 24)
             }
 
             DMSWideButton(
                 text: {
-                    if viewModel.isAlreadyApplied && (viewModel.selectedType == viewModel.appliedState) {
+                    if isEnabled {
                         return "신청 완료"
-                    } else if viewModel.isAlreadyApplied && (viewModel.selectedType != viewModel.appliedState) {
-                        return viewModel.selectedType + "로 변경하기"
+                    } else if viewModel.myRemainsApplicationItems?.title == selectedObject?.title {
+                        return selectedObject?.title ?? "nul" + "로 변경하기"
                     } else {
-                        return viewModel.selectedType + " 신청하기"
+                        return selectedObject?.title ?? "nul" + " 신청하기"
                     }
                 }(),
                 style: .contained,
-                color: {
-                    if viewModel.isAlreadyApplied && (viewModel.selectedType == viewModel.appliedState) {
-                        return .System.primary.opacity(0.5)
-                    } else if viewModel.selectedType.isEmpty {
-                        return .clear
-                    } else {
-                        return .System.primary
-                    }
-                }(),
+                color: .PrimaryVariant.primary,
                 action: {
-                    viewModel.appliedState = viewModel.selectedType
-                    viewModel.isAlreadyApplied = (viewModel.isErrorOcuured ? false : true)
-                    viewModel.appliedNum = viewModel.selectedNum
-                    remainState = viewModel.appliedState
+                    viewModel.remainingApplicationsChanges(id: selectedObject?.id ?? "")
                 })
+            .disabled(isEnabled)
             .padding(.bottom, 71)
             .padding(.horizontal, 24)
         }
@@ -64,7 +55,10 @@ struct RemainApplyView: View {
             style: .error
         )
         .onAppear {
-            viewModel.fetchRemainsAvailableTime()
+            isEnabled = {
+                selectedObject?.isApplied ?? false
+            }()
+            viewModel.fetchMyRemainApplicationItems()
         }
     }
 }
