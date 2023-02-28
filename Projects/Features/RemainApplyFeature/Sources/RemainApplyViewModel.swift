@@ -5,23 +5,38 @@ import Combine
 import SwiftUI
 
 final class RemainApplyViewModel: BaseViewModel {
-    @Published var selectedNum: Int = 10
-    @Published var selectedType: String = ""
-    @AppStorage("isApplied") var isAlreadyApplied: Bool = false
-    @Published var appliedState: String = ""
-    @AppStorage("appliedNum") var appliedNum: Int = 10
-    @Published var isDetailTapped: Bool = false
 
-    @Published var isApplicationTime = true
     @Published var isShowingToast = false
-    @Published var toastMessage = "잔류 신청 시간이 아닙니다."
+    @Published var toastMessage = ""
 
-    var startTime = "화 18:00"
-    var endTime = "목 18:00"
+    @Published var remainsAvailableTime: RemainsAvailableTimeEntity?
+    @Published var remainApplicationList = RemainApplicationListEntity(remainOptions: [])
+    @Published var myRemainsApplicationItems: MyRemainApplicationItemsEntity?
+    @Published var selectedEntity: RemainOptionEntity?
+
     var rangeString: String {
-        let text = "잔류 신청 시간은 " + startTime +
-        " ~ " + endTime + " 까지 입니다."
-        return text
+        if let time = remainsAvailableTime {
+            let startString = "\(time.startDayOfWeek.displayString()) \(time.startTime.toSmallDMSTimeString())"
+            let endString = "\(time.endDayOfWeek.displayString()) \(time.endTime.toSmallDMSTimeString())"
+            let text = "잔류 신청 시간은 \(startString) ~ \(endString) 까지 입니다."
+            return text
+        } else {
+            return ""
+        }
+    }
+
+    var buttonTitle: String {
+        if let selectedEntity {
+            if selectedEntity.title == myRemainsApplicationItems?.title {
+                return "신청 완료"
+            } else if myRemainsApplicationItems == nil {
+                return selectedEntity.title + " 신청하기"
+            } else {
+                return selectedEntity.title + "로 변경하기"
+            }
+        } else {
+            return ""
+        }
     }
 
     private let fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase
@@ -41,6 +56,63 @@ final class RemainApplyViewModel: BaseViewModel {
         self.remainingApplicationsChangesUseCase = remainingApplicationsChangesUseCase
     }
 
+    private func fetchRemainsAvailableTime() {
+        addCancellable(
+            fetchRemainsAvailableTimeUseCase.execute()
+        ) { [weak self] remainsAvailableTime  in
+            self?.remainsAvailableTime = remainsAvailableTime
+        }
+    }
+
+    func fetchRemainApplicationList() {
+        addCancellable(
+            fetchRemainApplicationListUseCase.execute()
+        ) { [weak self] remainApplicationList in
+            self?.remainApplicationList = remainApplicationList
+        }
+    }
+
+    func changeRemainApply() {
+        if let selectedEntity {
+            remainingApplicationsChanges(
+                entity: selectedEntity
+            )
+        }
+    }
+
+    private func remainingApplicationsChanges(entity: RemainOptionEntity) {
+        addCancellable(
+            remainingApplicationsChangesUseCase.execute(id: entity.id)
+        ) { [weak self] _ in
+            let remainOptions = self?.remainApplicationList.remainOptions
+                .map {
+                    return RemainOptionEntity(
+                        id: $0.id,
+                        title: $0.title,
+                        description: $0.description,
+                        isApplied: entity.id == $0.id
+                    )
+                }
+            self?.remainApplicationList = RemainApplicationListEntity(remainOptions: remainOptions ?? [])
+            self?.myRemainsApplicationItems?.title = entity.title
+            self?.toastMessage = "잔류 신청이 완료되었습니다."
+            self?.isShowingToast = true
+        } onReceiveError: { [weak self] _ in
+            self?.isShowingToast = true
+            self?.toastMessage = "잔류 신청 시간이 아닙니다."
+        }
+    }
+
+    private func fetchMyRemainApplicationItems() {
+        addCancellable(
+            fetchMyRemainApplicationItemsUseCase.execute()
+        ) { [weak self] myRemainsApplicationItems in
+            self?.myRemainsApplicationItems = myRemainsApplicationItems
+        }
+    }
+
     func onAppear() {
+        fetchRemainsAvailableTime()
+        fetchMyRemainApplicationItems()
     }
 }

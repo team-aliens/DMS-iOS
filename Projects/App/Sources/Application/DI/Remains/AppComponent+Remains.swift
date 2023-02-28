@@ -18,25 +18,25 @@ public extension AppComponent {
 
     var remainingApplicationsChangesUseCase: any RemainingApplicationsChangesUseCase {
         shared {
-            RemainingApplicationsChangesUseCaselmpl(remainsRepository: remainsRepository)
+            RemainingApplicationsChangesUseCaseImpl(remainsRepository: remainsRepository)
         }
     }
 
     var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase {
         shared {
-            FetchMyRemainApplicationItemsUseCaselmpl(remainsRepository: remainsRepository)
+            FetchMyRemainApplicationItemsUseCaseImpl(remainsRepository: remainsRepository)
         }
     }
 
     var fetchRemainApplicationListUseCase: any FetchRemainApplicationListUseCase {
         shared {
-            FetchRemainAppListUseCaselmpl(remainsRepository: remainsRepository)
+            FetchRemainAppListUseCaseImpl(remainsRepository: remainsRepository)
         }
     }
 
     var fetchRemainsAvailableTimeUseCase: any FetchRemainsAvailableTimeUseCase {
         shared {
-            FetchRemainsAvailableTimeUseCaselmpl(remainsRepository: remainsRepository)
+            FetchRemainsAvailableTimeUseCaseImpl(remainsRepository: remainsRepository)
         }
     }
 }

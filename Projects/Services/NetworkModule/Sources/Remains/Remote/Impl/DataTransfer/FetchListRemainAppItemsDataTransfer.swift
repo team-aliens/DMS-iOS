@@ -4,7 +4,6 @@ import DomainModule
 public extension FetchRemainAppListResponseDTO {
     func toDomain() -> RemainApplicationListEntity {
         RemainApplicationListEntity(
-            selectedOption: selectedOption,
             remainOptions: remainOptions.map { $0.toDomain() }
         )
     }
@@ -15,7 +14,8 @@ public extension RemainOptionResponseDTO {
         RemainOptionEntity(
             id: id,
             title: title,
-            description: description
+            description: description,
+            isApplied: isApplied
         )
     }
 }

@@ -534,6 +534,7 @@ extension AppComponent: Registration {
         localTable["fetchDetailStudyRoomUseCase-any FetchDetailStudyRoomUseCase"] = { [unowned self] in self.fetchDetailStudyRoomUseCase as Any }
         localTable["applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"] = { [unowned self] in self.applyStudyRoomSeatUseCase as Any }
         localTable["cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"] = { [unowned self] in self.cancelStudyRoomSeatUseCase as Any }
+        localTable["fehtchMyStudyRoomAppItemsUseCase-any FetchMyStudyRoomAppItemsUseCase"] = { [unowned self] in self.fehtchMyStudyRoomAppItemsUseCase as Any }
         localTable["localAuthDataSource-any LocalAuthDataSource"] = { [unowned self] in self.localAuthDataSource as Any }
         localTable["remoteAuthDataSource-any RemoteAuthDataSource"] = { [unowned self] in self.remoteAuthDataSource as Any }
         localTable["authRepository-any AuthRepository"] = { [unowned self] in self.authRepository as Any }

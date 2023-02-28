@@ -1,13 +1,14 @@
 import DataMappingModule
 import DomainModule
+import Utility
 
 public extension FetchRemainsAvailableTimeResponseDTO {
     func toDomain() -> RemainsAvailableTimeEntity {
         RemainsAvailableTimeEntity(
             startDayOfWeek: startDayOfWeek,
-            startAt: startAt,
+            startTime: startTime.toDMSTime(),
             endDayOfWeek: endDayOfWeek,
-            endAt: endAt
+            endTime: endTime.toDMSTime()
         )
     }
 }

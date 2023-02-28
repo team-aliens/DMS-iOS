@@ -4,7 +4,6 @@ import DomainModule
 import SwiftUI
 
 struct StudyRoomDetailView: View {
-    @AppStorage("StudyRoomState") var studyRoomState: String?
     @StateObject var viewModel: StudyRoomDetailViewModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.tabbarHidden) var tabbarHidden
@@ -43,6 +42,7 @@ struct StudyRoomDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .onAppear {
             viewModel.onAppear()
         }

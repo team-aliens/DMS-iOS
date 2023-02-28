@@ -12,4 +12,5 @@ public protocol RemoteStudyRoomsDataSource {
     func fetchDetailStudyRoom(roomID: String) -> AnyPublisher<DetailStudyRoomEntity, DmsError>
     func applyStudyRoomSeat(seatID: String) -> AnyPublisher<Void, DmsError>
     func cancelStudyRoomSeat() -> AnyPublisher<Void, DmsError>
+    func fetchMyRemainApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError>
 }
