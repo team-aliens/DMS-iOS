@@ -5,6 +5,7 @@ public struct FehtchMyStudyRoomApplicationItemsDTO: Decodable {
         self.floor = floor
         self.name = name
     }
+
     public let floor: String
     public let name: String
 }
