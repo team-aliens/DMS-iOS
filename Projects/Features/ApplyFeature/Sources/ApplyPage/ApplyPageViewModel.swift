@@ -24,7 +24,7 @@ final class ApplyPageViewModel: BaseViewModel {
 
     var studyRoomState: String? {
         if let item = myStudyRoomApplicationItems {
-            return item.floor + "층 " + item.name
+            return String(item.floor) + "층 " + item.name
         } else {
             return nil
         }
@@ -46,7 +46,7 @@ final class ApplyPageViewModel: BaseViewModel {
         }
     }
 
-    func fehtchMyStudyRoomApplicationItems() {
+    func fetchMyStudyRoomApplicationItems() {
         addCancellable(
             fetchMyStudyRoomAppItemsUseCase.execute()
         ) { [weak self] myStudyRoomApplicationItems in

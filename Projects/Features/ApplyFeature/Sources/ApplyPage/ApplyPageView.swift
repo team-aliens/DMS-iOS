@@ -61,8 +61,8 @@ struct ApplyPageView: View {
             .navigationBarTitleDisplayMode(.inline)
             .dmsBackground()
             .onAppear {
-//                viewModel.fehtchMyStudyRoomApplicationItems()
-//                viewModel.fetchMyRemainApplicationItems()
+                viewModel.fetchMyStudyRoomApplicationItems()
+                viewModel.fetchMyRemainApplicationItems()
             }
             .onChange(of: viewModel.isNavigateToStudy) { newValue in
                 withAnimation {

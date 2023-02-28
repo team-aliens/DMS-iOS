@@ -35,7 +35,7 @@ public struct StudyRoomsRepositoryImpl: StudyRoomsRepository {
         remoteStudyRoomsDataSource.cancelStudyRoomSeat()
     }
 
-    public func fehtchMyStudyRoomApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError> {
+    public func fetchMyStudyRoomApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError> {
         remoteStudyRoomsDataSource.fetchMyRemainApplicationItems()
     }
 }

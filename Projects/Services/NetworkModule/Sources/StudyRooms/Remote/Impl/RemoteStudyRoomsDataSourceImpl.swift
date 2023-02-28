@@ -6,7 +6,7 @@ import ErrorModule
 
 public final class RemoteStudyRoomsDataSourceImpl: BaseRemoteDataSource<StudyRoomsAPI>, RemoteStudyRoomsDataSource {
     public func fetchMyRemainApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError> {
-        request(.fetchMyStudyRoomApplicationItems, dto: FehtchMyStudyRoomApplicationItemsDTO.self)
+        request(.fetchMyStudyRoomApplicationItems, dto: FetchMyStudyRoomApplicationItemsDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }

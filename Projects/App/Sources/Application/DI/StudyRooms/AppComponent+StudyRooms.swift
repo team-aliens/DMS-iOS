@@ -36,7 +36,7 @@ public extension AppComponent {
         CancelStudyRoomSeatUseCaseImpl(studyRoomsRepository: studyRoomsRepository)
     }
 
-    var fehtchMyStudyRoomAppItemsUseCase: any FetchMyStudyRoomAppItemsUseCase {
+    var fetchMyStudyRoomAppItemsUseCase: any FetchMyStudyRoomAppItemsUseCase {
         FetchMyStudyRoomAppItemsUseCaseImpl(studyRoomsRepository: studyRoomsRepository)
     }
 }

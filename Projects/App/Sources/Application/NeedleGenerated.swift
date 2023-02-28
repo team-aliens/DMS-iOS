@@ -396,6 +396,12 @@ private class ApplyPageDependency3fe4e7c221b14c86d427Provider: ApplyPageDependen
     var remainApplyComponent: RemainApplyComponent {
         return appComponent.remainApplyComponent
     }
+    var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase {
+        return appComponent.fetchMyRemainApplicationItemsUseCase
+    }
+    var fetchMyStudyRoomAppItemsUseCase: any FetchMyStudyRoomAppItemsUseCase {
+        return appComponent.fetchMyStudyRoomAppItemsUseCase
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -534,7 +540,7 @@ extension AppComponent: Registration {
         localTable["fetchDetailStudyRoomUseCase-any FetchDetailStudyRoomUseCase"] = { [unowned self] in self.fetchDetailStudyRoomUseCase as Any }
         localTable["applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"] = { [unowned self] in self.applyStudyRoomSeatUseCase as Any }
         localTable["cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"] = { [unowned self] in self.cancelStudyRoomSeatUseCase as Any }
-        localTable["fehtchMyStudyRoomAppItemsUseCase-any FetchMyStudyRoomAppItemsUseCase"] = { [unowned self] in self.fehtchMyStudyRoomAppItemsUseCase as Any }
+        localTable["fetchMyStudyRoomAppItemsUseCase-any FetchMyStudyRoomAppItemsUseCase"] = { [unowned self] in self.fetchMyStudyRoomAppItemsUseCase as Any }
         localTable["localAuthDataSource-any LocalAuthDataSource"] = { [unowned self] in self.localAuthDataSource as Any }
         localTable["remoteAuthDataSource-any RemoteAuthDataSource"] = { [unowned self] in self.remoteAuthDataSource as Any }
         localTable["authRepository-any AuthRepository"] = { [unowned self] in self.authRepository as Any }
@@ -750,6 +756,8 @@ extension ApplyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\ApplyPageDependency.studyRoomListComponent] = "studyRoomListComponent-StudyRoomListComponent"
         keyPathToName[\ApplyPageDependency.remainApplyComponent] = "remainApplyComponent-RemainApplyComponent"
+        keyPathToName[\ApplyPageDependency.fetchMyRemainApplicationItemsUseCase] = "fetchMyRemainApplicationItemsUseCase-any FetchMyRemainApplicationItemsUseCase"
+        keyPathToName[\ApplyPageDependency.fetchMyStudyRoomAppItemsUseCase] = "fetchMyStudyRoomAppItemsUseCase-any FetchMyStudyRoomAppItemsUseCase"
     }
 }
 extension AuthenticationEmailComponent: Registration {
