@@ -2,6 +2,6 @@ import Combine
 import DataMappingModule
 import ErrorModule
 
-public protocol FetchMyStudyRoomAppItemsUserCase {
+public protocol FetchMyStudyRoomAppItemsUseCase {
     func execute() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError>
 }

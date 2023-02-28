@@ -3,7 +3,7 @@ import DataMappingModule
 import DomainModule
 import ErrorModule
 
-public struct FetchMyStudyRoomAppItemsUserCaseImpl: FetchMyStudyRoomAppItemsUserCase {
+public struct FetchMyStudyRoomAppItemsUseCaseImpl: FetchMyStudyRoomAppItemsUseCase {
     private let studyRoomsRepository: any StudyRoomsRepository
 
     public init(studyRoomsRepository: any StudyRoomsRepository) {
