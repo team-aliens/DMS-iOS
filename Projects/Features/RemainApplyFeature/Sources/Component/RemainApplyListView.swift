@@ -6,7 +6,7 @@ struct RemainApplyListView: View {
     @StateObject var viewModel: RemainApplyViewModel
 
     var body: some View {
-        VStack(spacing: 12) {
+        LazyVStack(spacing: 12) {
             ForEach(viewModel.remainApplicationList.remainOptions, id: \.self) { remainApplication in
                 RemainApplyListCellView(
                     list: remainApplication,
