@@ -75,7 +75,7 @@ final class RemainApplyViewModel: BaseViewModel {
     func remainingApplicationsChanges(id: String) {
         addCancellable(
             remainingApplicationsChangesUseCase.execute(id: id)
-        ) { _ in
+        ) { [weak self] _ in
             self.fetchMyRemainApplicationItems()
             self.fetchRemainApplicationList()
         }
