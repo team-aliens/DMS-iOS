@@ -28,7 +28,14 @@ struct RemainApplyView: View {
                 style: .contained,
                 color: .PrimaryVariant.primary,
                 action: {
-                    viewModel.remainingApplicationsChanges(id: viewModel.selectedEntity?.id ?? "")
+                    viewModel.remainingApplicationsChanges(
+                        entity: viewModel.selectedEntity ?? RemainOptionEntity(
+                            id: "",
+                            title: "",
+                            description: "",
+                            isApplied: false
+                        )
+                    )
                 })
             .disabled(viewModel.selectedEntity?.title == viewModel.myRemainsApplicationItems?.title)
             .padding(.bottom, 71)

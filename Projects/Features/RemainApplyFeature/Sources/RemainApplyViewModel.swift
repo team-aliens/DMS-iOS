@@ -72,9 +72,9 @@ final class RemainApplyViewModel: BaseViewModel {
         }
     }
 
-    func remainingApplicationsChanges(id: String) {
+    func remainingApplicationsChanges(entity: RemainOptionEntity) {
         addCancellable(
-            remainingApplicationsChangesUseCase.execute(id: id)
+            remainingApplicationsChangesUseCase.execute(id: entity.id)
         ) { [weak self] _ in
             let remainOptions = self?.remainApplicationList.remainOptions
             .map {
@@ -82,10 +82,11 @@ final class RemainApplyViewModel: BaseViewModel {
                     id: $0.id,
                     title: $0.title,
                     description: $0.description,
-                    isApplied: id == $0.id
+                    isApplied: entity.id == $0.id
                 )
             }
             self?.remainApplicationList = RemainApplicationListEntity(remainOptions: remainOptions ?? [])
+            self?.myRemainsApplicationItems?.title = entity.title
         }
     }
 
