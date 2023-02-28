@@ -4,18 +4,16 @@ import SwiftUI
 
 struct RemainApplyListView: View {
     @StateObject var viewModel: RemainApplyViewModel
-    @Binding var selectedObject: RemainOptionEntity?
 
     var body: some View {
         VStack(spacing: 12) {
             ForEach(viewModel.remainApplicationList.remainOptions, id: \.self) { remainApplication in
                 RemainApplyListCellView(
                     list: remainApplication,
-                    isSelected: remainApplication == selectedObject,
+                    isSelected: remainApplication.id == viewModel.selectedEntity?.id,
                     action: {
-                        selectedObject = remainApplication
-                    },
-                    selectedObject: $selectedObject
+                        viewModel.selectedEntity = remainApplication
+                    }
                 )
             }
         }

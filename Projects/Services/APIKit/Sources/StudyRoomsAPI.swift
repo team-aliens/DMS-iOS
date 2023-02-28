@@ -43,7 +43,8 @@ extension StudyRoomsAPI: DmsAPI {
 
     public var method: Moya.Method {
         switch self {
-        case .fetchStudyAvailableTime, .fetchSeatTypes, .fetchStudyRoomList, .fetchDetailStudyRoom, .fetchMyStudyRoomApplicationItems:
+        case .fetchStudyAvailableTime, .fetchSeatTypes,
+                .fetchStudyRoomList, .fetchDetailStudyRoom, .fetchMyStudyRoomApplicationItems:
             return .get
 
         case .applyStudyRoomSeat:

@@ -12,6 +12,7 @@ final class RemainApplyViewModel: BaseViewModel {
     @Published var remainsAvailableTime: RemainsAvailableTimeEntity?
     @Published var remainApplicationList = RemainApplicationListEntity(remainOptions: [])
     @Published var myRemainsApplicationItems: MyRemainApplicationItemsEntity?
+    @Published var selectedEntity: RemainOptionEntity?
 
     var rangeString: String {
         if let time = remainsAvailableTime {
@@ -19,6 +20,20 @@ final class RemainApplyViewModel: BaseViewModel {
             let endString = "\(time.endDayOfWeek.displayString()) \(time.endTime.toSmallDMSTimeString())"
             let text = "잔류 신청 시간은 \(startString) ~ \(endString) 까지 입니다."
             return text
+        } else {
+            return ""
+        }
+    }
+
+    var buttonTitle: String {
+        if let selectedEntity = self.selectedEntity {
+            if selectedEntity.title == myRemainsApplicationItems?.title {
+                return "신청 완료"
+            } else if myRemainsApplicationItems == nil {
+                return selectedEntity.title + " 신청하기"
+            } else {
+                return selectedEntity.title + "로 변경하기"
+            }
         } else {
             return ""
         }
@@ -59,11 +74,11 @@ final class RemainApplyViewModel: BaseViewModel {
 
     func remainingApplicationsChanges(id: String) {
         addCancellable(
-            remainingApplicationsChangesUseCase.execute(id: id),
-            onReceiveValue: {
-
-            }
-        )
+            remainingApplicationsChangesUseCase.execute(id: id)
+        ) { _ in
+            self.fetchMyRemainApplicationItems()
+            self.fetchRemainApplicationList()
+        }
     }
 
     func fetchMyRemainApplicationItems() {

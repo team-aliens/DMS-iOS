@@ -5,9 +5,6 @@ import SwiftUI
 struct RemainApplyView: View {
     @StateObject var viewModel: RemainApplyViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var selectedObject: RemainOptionEntity?
-
-    @State private var isEnabled: Bool = false
 
     init(
         viewModel: RemainApplyViewModel
@@ -22,28 +19,21 @@ struct RemainApplyView: View {
 
             ScrollView(showsIndicators: false) {
                 RemainApplyNoticeView(notice: viewModel.rangeString)
-                RemainApplyListView(viewModel: viewModel, selectedObject: $selectedObject)
+                RemainApplyListView(viewModel: viewModel)
                     .padding(.horizontal, 24)
             }
 
             DMSWideButton(
-                text: {
-                    if isEnabled {
-                        return "신청 완료"
-                    } else if viewModel.myRemainsApplicationItems?.title == selectedObject?.title {
-                        return selectedObject?.title ?? "nul" + "로 변경하기"
-                    } else {
-                        return selectedObject?.title ?? "nul" + " 신청하기"
-                    }
-                }(),
+                text: viewModel.buttonTitle,
                 style: .contained,
                 color: .PrimaryVariant.primary,
                 action: {
-                    viewModel.remainingApplicationsChanges(id: selectedObject?.id ?? "")
+                    viewModel.remainingApplicationsChanges(id: viewModel.selectedEntity?.id ?? "")
                 })
-            .disabled(isEnabled)
+            .disabled(viewModel.selectedEntity?.title == viewModel.myRemainsApplicationItems?.title)
             .padding(.bottom, 71)
             .padding(.horizontal, 24)
+            .opacity(viewModel.selectedEntity == nil ? 0 : 1)
         }
         .navigationTitle("잔류 신청")
         .navigationBarTitleDisplayMode(.inline)
@@ -55,9 +45,7 @@ struct RemainApplyView: View {
             style: .error
         )
         .onAppear {
-            isEnabled = {
-                selectedObject?.isApplied ?? false
-            }()
+            viewModel.fetchRemainsAvailableTime()
             viewModel.fetchMyRemainApplicationItems()
         }
     }

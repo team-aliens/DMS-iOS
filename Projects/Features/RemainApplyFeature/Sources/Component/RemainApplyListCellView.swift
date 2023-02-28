@@ -4,20 +4,17 @@ import DesignSystem
 
 struct RemainApplyListCellView: View {
     @State private var isShowingDetail = false
-    @Binding var selectedObject: RemainOptionEntity?
     var list: RemainOptionEntity
     let isSelected: Bool
     let action: () -> Void
     public init(
         list: RemainOptionEntity,
         isSelected: Bool,
-        action: @escaping () -> Void,
-        selectedObject: Binding<RemainOptionEntity?>
+        action: @escaping () -> Void
     ) {
         self.list = list
         self.isSelected = isSelected
         self.action = action
-        _selectedObject = selectedObject
     }
     var body: some View {
         VStack(alignment: .leading) {
@@ -25,7 +22,6 @@ struct RemainApplyListCellView: View {
                 Button(action: {
                     if !isSelected {
                         action()
-                        selectedObject = list
                     }
                 }, label: {
                     HStack {

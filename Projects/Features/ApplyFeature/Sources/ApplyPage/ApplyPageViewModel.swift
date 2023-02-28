@@ -11,8 +11,8 @@ final class ApplyPageViewModel: BaseViewModel {
     @Published var myRemainApplicationItem: MyRemainApplicationItemsEntity?
     @Published var myStudyRoomApplicationItems: MyStudyRoomAppItemsEntity?
 
-    private let fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase
-    private let fehtchMyStudyRoomAppItemsUserCase: any FetchMyStudyRoomAppItemsUserCase
+//    private let fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase
+//    private let fehtchMyStudyRoomAppItemsUserCase: any FetchMyStudyRoomAppItemsUserCase
 
     var remainState: String? {
         if let item = myRemainApplicationItem {
@@ -29,28 +29,28 @@ final class ApplyPageViewModel: BaseViewModel {
             return nil
         }
     }
+//
+//    public init(
+//        fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase,
+//        fehtchMyStudyRoomAppItemsUserCase: any FetchMyStudyRoomAppItemsUserCase
+//    ) {
+//        self.fetchMyRemainApplicationItemsUseCase = fetchMyRemainApplicationItemsUseCase
+//        self.fehtchMyStudyRoomAppItemsUserCase = fehtchMyStudyRoomAppItemsUserCase
+//    }
 
-    public init(
-        fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase,
-        fehtchMyStudyRoomApplicationItemsUserCase: any FetchMyStudyRoomAppItemsUserCase
-    ) {
-        self.fetchMyRemainApplicationItemsUseCase = fetchMyRemainApplicationItemsUseCase
-        self.fehtchMyStudyRoomAppItemsUserCase = fehtchMyStudyRoomApplicationItemsUserCase
-    }
-
-    func fetchMyRemainApplicationItems() {
-        addCancellable(
-            fetchMyRemainApplicationItemsUseCase.execute()
-        ) { [weak self] myRemainApplicationItem in
-            self?.myRemainApplicationItem = myRemainApplicationItem
-        }
-    }
-
-    func fehtchMyStudyRoomApplicationItems() {
-        addCancellable(
-            fehtchMyStudyRoomAppItemsUserCase.execute()
-        ) { [weak self] myStudyRoomApplicationItems in
-            self?.myStudyRoomApplicationItems = myStudyRoomApplicationItems
-        }
-    }
+//    func fetchMyRemainApplicationItems() {
+//        addCancellable(
+//            fetchMyRemainApplicationItemsUseCase.execute()
+//        ) { [weak self] myRemainApplicationItem in
+//            self?.myRemainApplicationItem = myRemainApplicationItem
+//        }
+//    }
+//
+//    func fehtchMyStudyRoomApplicationItems() {
+//        addCancellable(
+//            fehtchMyStudyRoomAppItemsUserCase.execute()
+//        ) { [weak self] myStudyRoomApplicationItems in
+//            self?.myStudyRoomApplicationItems = myStudyRoomApplicationItems
+//        }
+//    }
 }
