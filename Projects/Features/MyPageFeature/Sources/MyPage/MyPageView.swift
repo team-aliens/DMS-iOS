@@ -33,9 +33,10 @@ struct MyPageView: View {
                                 .dmsFont(.title(.title1), color: .GrayScale.gray7)
 
                             Text(viewModel.sexType)
-                                .dmsFont(.etc(.button),
-                                         color: viewModel.sexType == "남" ?
-                                    .PrimaryVariant.primary : .System.error
+                                .dmsFont(
+                                    .etc(.button),
+                                    color: viewModel.sexType == "남" ?
+                                        .PrimaryVariant.primary : .System.error
                                 )
                                 .padding(.vertical, 4)
                                 .padding(.horizontal, 23.5)
