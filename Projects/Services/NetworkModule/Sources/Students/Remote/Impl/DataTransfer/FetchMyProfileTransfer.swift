@@ -9,6 +9,7 @@ public extension FetchMyProfileResponseDTO {
             name: name,
             gcn: gcn,
             profileImageURL: URL(string: profileImageURL),
+            sex: sex,
             bonusPoint: bonusPoint,
             minusPoint: minusPoint,
             phrase: phrase
