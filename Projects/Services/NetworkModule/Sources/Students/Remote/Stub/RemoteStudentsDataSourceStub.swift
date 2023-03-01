@@ -46,6 +46,7 @@ public struct RemoteStudentsDataSourceStub: RemoteStudentsDataSource {
                 name: "변찬우",
                 gcn: "2118",
                 profileImageURL: URL(string: "https://avatars.githubusercontent.com/u/57276315?v=4"),
+                sex: "MALE",
                 bonusPoint: 0,
                 minusPoint: 24,
                 phrase: "벌점이 12점이예요. 더 바른 생활을 위해 노력해주세요!"

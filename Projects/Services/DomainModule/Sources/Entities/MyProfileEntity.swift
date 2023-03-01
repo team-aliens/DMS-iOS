@@ -6,6 +6,7 @@ public struct MyProfileEntity: Equatable {
         name: String,
         gcn: String,
         profileImageURL: URL?,
+        sex: String,
         bonusPoint: Int,
         minusPoint: Int,
         phrase: String
@@ -14,6 +15,7 @@ public struct MyProfileEntity: Equatable {
         self.name = name
         self.gcn = gcn
         self.profileImageURL = profileImageURL
+        self.sex = sex
         self.bonusPoint = bonusPoint
         self.minusPoint = minusPoint
         self.phrase = phrase
@@ -23,6 +25,7 @@ public struct MyProfileEntity: Equatable {
     public let name: String
     public let gcn: String
     public let profileImageURL: URL?
+    public let sex: String
     public let bonusPoint: Int
     public let minusPoint: Int
     public let phrase: String
