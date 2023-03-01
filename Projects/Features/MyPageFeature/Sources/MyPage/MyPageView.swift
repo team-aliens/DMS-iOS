@@ -32,16 +32,16 @@ struct MyPageView: View {
                             Text("\(viewModel.profile?.gcn ?? "") \(viewModel.profile?.name ?? "Loading...")")
                                 .dmsFont(.title(.title1), color: .GrayScale.gray7)
 
-                            Text(viewModel.sexType)
+                            Text(viewModel.sexType?.rawValue ?? "")
                                 .dmsFont(
                                     .etc(.button),
-                                    color: viewModel.sexType == "남" ?
+                                    color: viewModel.sexType == .male ?
                                         .PrimaryVariant.primary : .System.error
                                 )
                                 .padding(.vertical, 4)
                                 .padding(.horizontal, 23.5)
                                 .background {
-                                    viewModel.sexType == "남" ?
+                                    viewModel.sexType == .male ?
                                     Color.PrimaryVariant.lighten2 : Color.System.errorContainer
                                 }
                                 .cornerRadius(24)
