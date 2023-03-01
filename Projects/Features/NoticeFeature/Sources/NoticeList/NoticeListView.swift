@@ -73,19 +73,20 @@ struct NoticeListView: View {
                 .cornerRadius(6)
 
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .dmsFont(.body(.body2), color: .System.backgroundTitle)
                         .multilineTextAlignment(.leading)
+                        .padding(.top, 12)
 
                     Text("\(String(date.year))/\(date.month)/\(date.day)")
                         .dmsFont(.etc(.caption), color: .System.backgroundText)
+                        .padding(.bottom, 9)
                 }
                 Spacer()
             }
             .padding(.horizontal, 16)
         }
-        .frame(height: 68)
         .dmsShadow(style: .surface)
     }
 }
