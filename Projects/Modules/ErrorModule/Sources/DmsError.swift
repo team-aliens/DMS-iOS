@@ -13,6 +13,8 @@ public enum DmsError: Error {
     case notFoundAuthInfo
 
     // MARK: - Auth
+    case notFoundRoomStudent
+
     // MARK: Signin
     case passwordMismatch
     case notFoundUserBySignin
@@ -88,6 +90,9 @@ extension DmsError: LocalizedError {
 
         case .notFoundAccountID:
             return "존재하지 않는 아이디입니다."
+
+        case .notFoundRoomStudent:
+            return "학생이 등록되지 않았습니다."
 
         // MARK: - Students
 

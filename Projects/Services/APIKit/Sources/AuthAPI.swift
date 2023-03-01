@@ -97,6 +97,7 @@ extension AuthAPI: DmsAPI {
                 400: .badRequest,
                 401: .passwordMismatch,
                 404: .notFoundUserBySignin,
+                409: .notFoundRoomStudent,
                 500: .internalServerError
             ]
 
