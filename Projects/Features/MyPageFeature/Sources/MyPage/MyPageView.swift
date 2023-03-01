@@ -41,8 +41,10 @@ struct MyPageView: View {
                                 .padding(.vertical, 4)
                                 .padding(.horizontal, 23.5)
                                 .background {
-                                    viewModel.sexType == .male ?
-                                    Color.PrimaryVariant.lighten2 : Color.System.errorContainer
+                                    if let sexType = viewModel.sexType {
+                                        sexType == .male ?
+                                        Color.PrimaryVariant.lighten2 : Color.System.errorContainer
+                                    } else { Color.GrayScale.gray4 }
                                 }
                                 .cornerRadius(24)
                                 .padding(.leading, 16)
