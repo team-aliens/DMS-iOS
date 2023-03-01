@@ -36,6 +36,7 @@ struct SignupProfileImageView: View {
                                 .resizable()
                         }
                     }
+                    .aspectRatio(contentMode: .fill)
                     .foregroundColor(.GrayScale.gray4)
                     .frame(width: 150, height: 150)
                     .clipShape(Circle())

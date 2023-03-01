@@ -60,6 +60,7 @@ struct MyPageView: View {
                         AsyncImage(url: viewModel.profile?.profileImageURL) { image in
                             image
                                 .resizable()
+                                .aspectRatio(contentMode: .fill)
                                 .frame(width: 74, height: 74)
                                 .clipShape(Circle())
                                 .scaledToFill()
