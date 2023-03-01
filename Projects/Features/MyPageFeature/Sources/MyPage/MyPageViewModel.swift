@@ -10,6 +10,7 @@ final class MyPageViewModel: BaseViewModel {
     @Published var isNavigateRewardPointDetail = false
     @Published var isPresentedWithdrawalAlert = false
     @Published var isSuccessLogout = false
+    @Published var sexType: String = ""
 
     private let fetchMyProfileUseCase: any FetchMyProfileUseCase
     private let logoutUseCase: any LogoutUseCase
@@ -30,6 +31,18 @@ final class MyPageViewModel: BaseViewModel {
             fetchMyProfileUseCase.execute()
         ) { [weak self] profile in
             self?.profile = profile
+            self?.convertSexType()
+        }
+    }
+
+    func convertSexType() {
+        switch self.profile?.sex {
+        case "MALE":
+            sexType = "남"
+        case "FEMALE":
+            sexType = "여"
+        default:
+            sexType = ""
         }
     }
 

@@ -47,6 +47,7 @@ public struct StudentsRepositoryStub: StudentsRepository {
                 name: "변찬우",
                 gcn: "2118",
                 profileImageURL: URL(string: "https://avatars.githubusercontent.com/u/57276315?v=4"),
+                sex: "MALE",
                 bonusPoint: 0,
                 minusPoint: 24,
                 phrase: "안녕하세요"

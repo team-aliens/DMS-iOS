@@ -5,6 +5,7 @@ public struct FetchMyProfileResponseDTO: Decodable {
     public let name: String
     public let gcn: String
     public let profileImageURL: String
+    public let sex: String
     public let bonusPoint: Int
     public let minusPoint: Int
     public let phrase: String
@@ -14,6 +15,7 @@ public struct FetchMyProfileResponseDTO: Decodable {
         name: String,
         gcn: String,
         profileImageURL: String,
+        sex: String,
         bonusPoint: Int,
         minusPoint: Int,
         phrase: String
@@ -22,6 +24,7 @@ public struct FetchMyProfileResponseDTO: Decodable {
         self.name = name
         self.gcn = gcn
         self.profileImageURL = profileImageURL
+        self.sex = sex
         self.bonusPoint = bonusPoint
         self.minusPoint = minusPoint
         self.phrase = phrase
@@ -32,6 +35,6 @@ public struct FetchMyProfileResponseDTO: Decodable {
         case bonusPoint = "bonus_point"
         case minusPoint = "minus_point"
         case profileImageURL = "profile_image_url"
-        case name, gcn, phrase
+        case name, gcn, sex, phrase
     }
 }

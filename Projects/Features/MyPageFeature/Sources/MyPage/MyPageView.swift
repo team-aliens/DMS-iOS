@@ -28,8 +28,24 @@ struct MyPageView: View {
             VStack {
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("\(viewModel.profile?.gcn ?? "") \(viewModel.profile?.name ?? "Loading...")")
-                            .dmsFont(.title(.title1), color: .GrayScale.gray7)
+                        HStack {
+                            Text("\(viewModel.profile?.gcn ?? "") \(viewModel.profile?.name ?? "Loading...")")
+                                .dmsFont(.title(.title1), color: .GrayScale.gray7)
+
+                            Text(viewModel.sexType)
+                                .dmsFont(.etc(.button),
+                                         color: viewModel.sexType == "남" ?
+                                    .PrimaryVariant.primary : .System.error
+                                )
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 23.5)
+                                .background {
+                                    viewModel.sexType == "남" ?
+                                    Color.PrimaryVariant.lighten2 : Color.System.errorContainer
+                                }
+                                .cornerRadius(24)
+                                .padding(.leading, 16)
+                        }
 
                         Text(viewModel.profile?.schoolName ?? "")
                             .dmsFont(.body(.body3), color: .GrayScale.gray6)
