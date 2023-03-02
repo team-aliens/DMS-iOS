@@ -37,6 +37,7 @@ struct RemainApplyView: View {
         }
         .navigationTitle("잔류 신청")
         .navigationBarTitleDisplayMode(.inline)
+        .ignoresSafeArea(edges: .bottom)
         .dmsBackground()
         .dmsBackButton(dismiss: dismiss)
         .dmsToast(
