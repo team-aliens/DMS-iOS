@@ -43,6 +43,8 @@ final class ApplyPageViewModel: BaseViewModel {
             fetchMyRemainApplicationItemsUseCase.execute()
         ) { [weak self] myRemainApplicationItem in
             self?.myRemainApplicationItem = myRemainApplicationItem
+        } onReceiveError: { [weak self] _ in
+            self?.myRemainApplicationItem = nil
         }
     }
 
@@ -51,6 +53,8 @@ final class ApplyPageViewModel: BaseViewModel {
             fetchMyStudyRoomAppItemsUseCase.execute()
         ) { [weak self] myStudyRoomApplicationItems in
             self?.myStudyRoomApplicationItems = myStudyRoomApplicationItems
+        } onReceiveError: { [weak self] _ in
+            self?.myStudyRoomApplicationItems = nil
         }
     }
 }
