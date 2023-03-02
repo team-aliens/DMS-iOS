@@ -36,7 +36,8 @@ let targets: [Target] = [
         scripts: scripts,
         dependencies: [
             .Project.Features.RootFeature,
-            .Project.Service.Data
+            .Project.Service.Data,
+            .target(name: "\(Environment.appName)Widget")
         ],
         settings: .settings(base: Environment.baseSetting)
     ),
@@ -57,6 +58,13 @@ let targets: [Target] = [
         platform: .iOS,
         product: .appExtension,
         bundleId: "\(Environment.organizationName).\(Environment.targetName).WidgetExtension",
+        infoPlist: .extendingDefault(
+            with: [
+                "NSExtension": .dictionary([
+                    "NSExtensionPointIdentifier":.string("com.apple.widgetkit-extension")
+                ])
+            ]
+        ),
         sources: ["AppExtension/Sources/**"],
         resources: ["AppExtension/Resources/**"],
         scripts: widgetScripts,
