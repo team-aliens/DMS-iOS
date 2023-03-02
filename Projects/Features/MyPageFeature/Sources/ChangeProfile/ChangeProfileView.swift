@@ -27,9 +27,11 @@ struct ChangeProfileView: View {
                 ZStack(alignment: .bottomTrailing) {
                     Group {
                         if let image = viewModel.selectedImage {
-                            Image(uiImage: image)
-//                            KFImage(
-                                .resizable()
+                            KFImage(URL(string: ""))
+                                .placeholder { _ in
+                                    Image(uiImage: image)
+                                        .resizable()
+                                }
                         } else {
                             Image(systemName: "person.crop.circle.fill")
                                 .resizable()
