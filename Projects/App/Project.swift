@@ -20,6 +20,7 @@ let settinges: Settings =
               defaultSettings: .recommended)
 
 let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .needle]
+let widgetScripts: [TargetScript] = isCI ? [] : [.widgetNeedle]
 
 let targets: [Target] = [
     .init(
@@ -49,6 +50,20 @@ let targets: [Target] = [
         sources: ["Tests/**"],
         dependencies: [
             .target(name: Environment.targetName)
+        ]
+    ),
+    .init(
+        name: "\(Environment.appName)Widget",
+        platform: .iOS,
+        product: .appExtension,
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).WidgetExtension",
+        sources: ["AppExtension/Sources/**"],
+        resources: ["AppExtension/Resources/**"],
+        scripts: widgetScripts,
+        dependencies: [
+            .Project.UserInterfaces.DesignSystem,
+            .Project.Service.Data,
+            .SPM.Needle
         ]
     )
 ]
