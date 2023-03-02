@@ -98,5 +98,6 @@ struct SignupProfileImageView: View {
             ),
             when: $viewModel.isNavigateSignupTerms
         )
+        .progress(isPresented: $viewModel.isLoading)
     }
 }
