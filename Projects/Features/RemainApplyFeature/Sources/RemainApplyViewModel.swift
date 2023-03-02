@@ -35,7 +35,7 @@ final class RemainApplyViewModel: BaseViewModel {
                 return selectedEntity.title + "로 변경하기"
             }
         } else {
-            return ""
+            return "인터넷 연결을 확인해 주세요."
         }
     }
 
@@ -98,8 +98,8 @@ final class RemainApplyViewModel: BaseViewModel {
             self?.toastMessage = "잔류 신청이 완료되었습니다."
             self?.isShowingToast = true
         } onReceiveError: { [weak self] _ in
-            self?.isShowingToast = true
             self?.toastMessage = "잔류 신청 시간이 아닙니다."
+            self?.isErrorOcuured = true
         }
     }
 
