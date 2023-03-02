@@ -1,6 +1,5 @@
 import DesignSystem
 import SwiftUI
-import Kingfisher
 
 struct SignupProfileImageView: View {
     @StateObject var viewModel: SignupProfileImageViewModel
@@ -30,11 +29,8 @@ struct SignupProfileImageView: View {
                 ZStack(alignment: .bottomTrailing) {
                     Group {
                         if let image = viewModel.selectedImage {
-                            KFImage(URL(string: ""))
-                                .placeholder { _ in
-                                    Image(uiImage: image)
-                                        .resizable()
-                                }
+                            Image(uiImage: image)
+                                .resizable()
                         } else {
                             Image(systemName: "person.crop.circle.fill")
                                 .resizable()
