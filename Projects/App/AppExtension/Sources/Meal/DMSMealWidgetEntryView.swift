@@ -16,6 +16,20 @@ struct DMSMealWidgetEntryView: View {
 
     @ViewBuilder
     func widgetBody() -> some View {
-        
+        switch widgetFamily {
+        case .systemSmall:
+            SmallDMSMealWidgetView(entry: entry)
+
+        default:
+            EmptyView()
+        }
+    }
+}
+
+private struct SmallDMSMealWidgetView: View {
+    let entry: DMSMealProvider.Entry
+
+    var body: some View {
+        EmptyView()
     }
 }

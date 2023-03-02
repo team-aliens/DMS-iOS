@@ -20,6 +20,8 @@ struct DMSMealWidget: Widget {
         ) { entry in
             DMSMealWidgetEntryView(entry: entry)
         }
+        .configurationDisplayName("DMS 급식")
+        .description("DMS의 위젯을 통해 급식을 확인해보세요!")
     }
 }
 
