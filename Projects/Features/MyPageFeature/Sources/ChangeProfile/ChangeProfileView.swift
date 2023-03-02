@@ -1,5 +1,6 @@
 import DesignSystem
 import SwiftUI
+import Kingfisher
 
 struct ChangeProfileView: View {
     @StateObject var viewModel: ChangeProfileViewModel
@@ -27,6 +28,7 @@ struct ChangeProfileView: View {
                     Group {
                         if let image = viewModel.selectedImage {
                             Image(uiImage: image)
+//                            KFImage(
                                 .resizable()
                         } else {
                             Image(systemName: "person.crop.circle.fill")
