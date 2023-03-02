@@ -50,6 +50,7 @@ struct DMSMealProvider: TimelineProvider {
 struct DMSMealEntry: TimelineEntry {
     let date: Date
     let meal: MealEntity
+    let displayMealPart: DisplayMealPart
 
     static func placeholder() -> DMSMealEntry {
         DMSMealEntry(
@@ -59,7 +60,8 @@ struct DMSMealEntry: TimelineEntry {
                 breakfast: [],
                 lunch: [],
                 dinner: []
-            )
+            ),
+            displayMealPart: .breakfast
         )
     }
 }
