@@ -19,7 +19,7 @@ struct SignupTermsView: View {
             DMSHeaderTitleView(subTitle: "약관 동의")
                 .padding(.top, 24)
 
-            DMSWebView(urlToLoad: "https://team-aliens-webview.dsm-dms.com/policy/privacy")
+            DMSWebView(urlToLoad: "https://webview.aliens-dms.com/policy/privacy")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.top, 56)
 
