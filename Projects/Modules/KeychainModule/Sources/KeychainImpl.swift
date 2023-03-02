@@ -3,14 +3,19 @@ import Foundation
 public struct KeychainImpl: Keychain {
     public init() {}
 
-    private let service: String = Bundle.main.bundleIdentifier ?? ""
+    private let bundleIdentifier: String = Bundle.main.bundleIdentifier ?? ""
+    private let appIdentifierPrefix = Bundle.main.infoDictionary!["AppIdentifierPrefix"] as? String ?? ""
+    private var accessGroup: String {
+        "\(appIdentifierPrefix)\(bundleIdentifier)"
+    }
 
     public func save(type: KeychainType, value: String) {
         let query: NSDictionary = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrService: service,
+            kSecAttrService: bundleIdentifier,
             kSecAttrAccount: type.rawValue,
-            kSecValueData: value.data(using: .utf8, allowLossyConversion: false) ?? .init()
+            kSecValueData: value.data(using: .utf8, allowLossyConversion: false) ?? .init(),
+            kSecAttrAccessGroup: accessGroup
         ]
         SecItemDelete(query)
         SecItemAdd(query, nil)
@@ -19,10 +24,11 @@ public struct KeychainImpl: Keychain {
     public func load(type: KeychainType) -> String {
         let query: NSDictionary = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrService: service,
+            kSecAttrService: bundleIdentifier,
             kSecAttrAccount: type.rawValue,
             kSecReturnData: kCFBooleanTrue!,
-            kSecMatchLimit: kSecMatchLimitOne
+            kSecMatchLimit: kSecMatchLimitOne,
+            kSecAttrAccessGroup: accessGroup
         ]
         var dataTypeRef: AnyObject?
         let status = withUnsafeMutablePointer(to: &dataTypeRef) { SecItemCopyMatching(query, UnsafeMutablePointer($0)) }
@@ -36,8 +42,9 @@ public struct KeychainImpl: Keychain {
     public func delete(type: KeychainType) {
         let query: NSDictionary = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrService: service,
-            kSecAttrAccount: type.rawValue
+            kSecAttrService: bundleIdentifier,
+            kSecAttrAccount: type.rawValue,
+            kSecAttrAccessGroup: accessGroup
         ]
         SecItemDelete(query)
     }
