@@ -1,6 +1,7 @@
 import BaseFeature
 import DesignSystem
 import SwiftUI
+import Kingfisher
 
 struct MyPageView: View {
     @StateObject var viewModel: MyPageViewModel
@@ -57,22 +58,21 @@ struct MyPageView: View {
                     Spacer()
 
                     ZStack(alignment: .bottomTrailing) {
-                        AsyncImage(url: viewModel.profile?.profileImageURL) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 74, height: 74)
-                                .clipShape(Circle())
-                                .scaledToFill()
-                        } placeholder: {
-                            ProgressView()
-                                .progressViewStyle(
-                                    CircularProgressViewStyle(tint: .white)
-                                )
-                                .frame(width: 74, height: 74)
-                                .background(Color.GrayScale.gray5)
-                                .clipShape(Circle())
-                        }
+                        KFImage(viewModel.profile?.profileImageURL)
+                            .placeholder { _ in
+                                ProgressView()
+                                    .progressViewStyle(
+                                        CircularProgressViewStyle(tint: .white)
+                                    )
+                                    .frame(width: 74, height: 74)
+                                    .background(Color.GrayScale.gray5)
+                                    .clipShape(Circle())
+                            }
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 74, height: 74)
+                            .clipShape(Circle())
+                            .scaledToFill()
 
                         Circle()
                             .fill(Color.GrayScale.gray3)
