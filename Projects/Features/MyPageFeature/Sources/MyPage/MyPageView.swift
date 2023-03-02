@@ -65,8 +65,12 @@ struct MyPageView: View {
                                 .clipShape(Circle())
                                 .scaledToFill()
                         } placeholder: {
-                            Color.GrayScale.gray5
+                            ProgressView()
+                                .progressViewStyle(
+                                    CircularProgressViewStyle(tint: .white)
+                                )
                                 .frame(width: 74, height: 74)
+                                .background(Color.GrayScale.gray5)
                                 .clipShape(Circle())
                         }
 
