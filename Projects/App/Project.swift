@@ -33,6 +33,7 @@ let targets: [Target] = [
         infoPlist: .file(path: "Support/Info.plist"),
         sources: ["Sources/**"],
         resources: ["Resources/**"],
+        entitlements: "Support/\(Environment.appName).entitlements",
         scripts: scripts,
         dependencies: [
             .Project.Features.RootFeature,
@@ -67,6 +68,7 @@ let targets: [Target] = [
         ),
         sources: ["AppExtension/Sources/**"],
         resources: ["AppExtension/Resources/**"],
+        entitlements: "AppExtension/Support/\(Environment.appName)Widget.entitlements",
         scripts: widgetScripts,
         dependencies: [
             .Project.UserInterfaces.DesignSystem,
