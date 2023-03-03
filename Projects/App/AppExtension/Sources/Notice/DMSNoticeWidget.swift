@@ -22,6 +22,9 @@ struct DMSNoticeWidget: Widget {
         ) { entry in
             DMSNoticeEntryView(entry: entry)
         }
+        .configurationDisplayName("DMS 공지")
+        .description("DMS의 위젯을 통해 공지를 확인해보세요!")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
