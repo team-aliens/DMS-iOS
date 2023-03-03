@@ -1,12 +1,22 @@
 import NeedleFoundation
 import SwiftUI
+import KeychainModule
 
 final class WidgetComponent: BootstrapComponent {
-    var dmsMealComponent: DMSMealComponent {
-        DMSMealComponent(parent: self)
+    var keychain: any Keychain {
+        shared {
+            KeychainImpl()
+        }
     }
 
     func makeWidget() -> some Widget {
         dmsMealComponent.makeWidget()
+    }
+}
+
+// MARK: - Components
+extension WidgetComponent {
+    var dmsMealComponent: DMSMealComponent {
+        DMSMealComponent(parent: self)
     }
 }

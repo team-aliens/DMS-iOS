@@ -59,13 +59,7 @@ let targets: [Target] = [
         platform: .iOS,
         product: .appExtension,
         bundleId: "\(Environment.organizationName).\(Environment.targetName).WidgetExtension",
-        infoPlist: .extendingDefault(
-            with: [
-                "NSExtension": .dictionary([
-                    "NSExtensionPointIdentifier":.string("com.apple.widgetkit-extension")
-                ])
-            ]
-        ),
+        infoPlist: .file(path: "AppExtension/Support/Widget-Info.plist"),
         sources: ["AppExtension/Sources/**"],
         resources: ["AppExtension/Resources/**"],
         entitlements: "AppExtension/Support/\(Environment.appName)Widget.entitlements",

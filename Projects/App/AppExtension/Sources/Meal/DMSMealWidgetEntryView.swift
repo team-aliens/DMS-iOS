@@ -31,7 +31,7 @@ private struct SmallDMSMealWidgetView: View {
     let entry: DMSMealProvider.Entry
 
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 8) {
             Image(systemName: entry.displayMealPart.systemName)
                 .resizable()
                 .frame(width: 15, height: 15)

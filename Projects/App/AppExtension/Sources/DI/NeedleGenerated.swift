@@ -1,7 +1,11 @@
 
 
+import DataModule
+import DomainModule
 import Foundation
+import KeychainModule
 import NeedleFoundation
+import NetworkModule
 import SwiftUI
 
 // swiftlint:disable unused_declaration
@@ -18,15 +22,17 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 #if !NEEDLE_DYNAMIC
 
 private class DMSMealDependency70d41dc5104d5ffc5b95Provider: DMSMealDependency {
-
-
-    init() {
-
+    var fetchMealListUseCase: any FetchMealListUseCase {
+        return widgetComponent.fetchMealListUseCase
+    }
+    private let widgetComponent: WidgetComponent
+    init(widgetComponent: WidgetComponent) {
+        self.widgetComponent = widgetComponent
     }
 }
 /// ^->WidgetComponent->DMSMealComponent
-private func factory13e7c61b417a59a148c6e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return DMSMealDependency70d41dc5104d5ffc5b95Provider()
+private func factory13e7c61b417a59a148c64da471824a033c398cee(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return DMSMealDependency70d41dc5104d5ffc5b95Provider(widgetComponent: parent1(component) as! WidgetComponent)
 }
 
 #else
@@ -38,7 +44,7 @@ extension WidgetComponent: Registration {
 }
 extension DMSMealComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\DMSMealDependency.fetchMealListUseCase] = "fetchMealListUseCase-any FetchMealListUseCase"
     }
 }
 
@@ -58,7 +64,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 @inline(never) private func register1() {
     registerProviderFactory("^->WidgetComponent", factoryEmptyDependencyProvider)
-    registerProviderFactory("^->WidgetComponent->DMSMealComponent", factory13e7c61b417a59a148c6e3b0c44298fc1c149afb)
+    registerProviderFactory("^->WidgetComponent->DMSMealComponent", factory13e7c61b417a59a148c64da471824a033c398cee)
 }
 #endif
 
