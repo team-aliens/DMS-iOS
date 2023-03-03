@@ -6,6 +6,7 @@ import SwiftUI
 
 final class RemainApplyViewModel: BaseViewModel {
 
+    @Published var isShowingErrorToast = false
     @Published var isShowingToast = false
     @Published var toastMessage = ""
 
@@ -21,7 +22,7 @@ final class RemainApplyViewModel: BaseViewModel {
             let text = "잔류 신청 시간은 \(startString) ~ \(endString) 까지 입니다."
             return text
         } else {
-            return ""
+            return "인터넷 연결을 확인해 주세요."
         }
     }
 
@@ -35,7 +36,7 @@ final class RemainApplyViewModel: BaseViewModel {
                 return selectedEntity.title + "로 변경하기"
             }
         } else {
-            return "인터넷 연결을 확인해 주세요."
+            return ""
         }
     }
 
@@ -97,9 +98,10 @@ final class RemainApplyViewModel: BaseViewModel {
             self?.myRemainsApplicationItems?.title = entity.title
             self?.toastMessage = "잔류 신청이 완료되었습니다."
             self?.isShowingToast = true
+            self?.fetchMyRemainApplicationItems()
         } onReceiveError: { [weak self] _ in
             self?.toastMessage = "잔류 신청 시간이 아닙니다."
-            self?.isErrorOcuured = true
+            self?.isShowingErrorToast = true
         }
     }
 
