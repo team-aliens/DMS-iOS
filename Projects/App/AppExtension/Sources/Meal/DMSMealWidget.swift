@@ -3,7 +3,6 @@ import DomainModule
 import SwiftUI
 import Utility
 import WidgetKit
-import OSLog
 
 struct DMSMealWidget: Widget {
     let kind: String = "DMSMealWidget"
