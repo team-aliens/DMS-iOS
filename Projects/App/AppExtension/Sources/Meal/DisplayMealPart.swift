@@ -35,4 +35,17 @@ enum DisplayMealPart {
             return "moon"
         }
     }
+
+    var display: String {
+        switch self {
+        case .breakfast:
+            return "아침"
+
+        case .lunch:
+            return "점심"
+
+        case .dinner:
+            return "저녁"
+        }
+    }
 }
