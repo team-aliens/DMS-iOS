@@ -41,7 +41,7 @@ struct RemainApplyView: View {
         .dmsBackground()
         .dmsBackButton(dismiss: dismiss)
         .dmsToast(
-            isShowing: $viewModel.isErrorOcuured,
+            isShowing: $viewModel.isShowingErrorToast,
             message: viewModel.toastMessage,
             style: .error
         )
