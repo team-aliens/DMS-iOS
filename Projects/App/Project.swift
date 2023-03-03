@@ -31,7 +31,7 @@ let targets: [Target] = [
         bundleId: "\(Environment.organizationName).\(Environment.targetName)",
         deploymentTarget: Environment.deploymentTarget,
         infoPlist: .file(path: "Support/Info.plist"),
-        sources: ["Sources/**"],
+        sources: ["Sources/**", "AppExtension/Sources/**/*.intentdefinition"],
         resources: ["Resources/**"],
         entitlements: "Support/\(Environment.appName).entitlements",
         scripts: scripts,
