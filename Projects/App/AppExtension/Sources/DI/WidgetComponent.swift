@@ -19,4 +19,8 @@ extension WidgetComponent {
     var dmsMealComponent: DMSMealComponent {
         DMSMealComponent(parent: self)
     }
+
+    var dmsNoticeComponent: DMSNoticeComponent {
+        DMSNoticeComponent(parent: self)
+    }
 }
