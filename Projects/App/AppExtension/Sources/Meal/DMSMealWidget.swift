@@ -69,7 +69,7 @@ final class DMSMealProvider: TimelineProvider {
     func getTimeline(
         in context: Context,
         completion: @escaping (Timeline<DMSMealEntry>) -> Void
-    ) { 
+    ) {
         let nextUpdate = Calendar.current.date(byAdding: .hour, value: 1, to: Date()) ?? .init()
         let date = Date()
         let displayPart = DisplayMealPart(date: date)
