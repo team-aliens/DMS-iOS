@@ -9,8 +9,10 @@ final class WidgetComponent: BootstrapComponent {
         }
     }
 
+    @WidgetBundleBuilder
     func makeWidget() -> some Widget {
         dmsMealComponent.makeWidget()
+        dmsNoticeComponent.makeWidget()
     }
 }
 

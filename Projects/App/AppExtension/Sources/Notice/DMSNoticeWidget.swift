@@ -5,6 +5,26 @@ import Utility
 import WidgetKit
 import OSLog
 
+struct DMSNoticeWidget: Widget {
+    let kind: String = "DMSNoticeWidget"
+    let provider: DMSNoticeProvider
+
+    init() { fatalError() }
+
+    init(provider: DMSNoticeProvider) {
+        self.provider = provider
+    }
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(
+            kind: kind,
+            provider: provider
+        ) { entry in
+            DMSNoticeEntryView(entry: entry)
+        }
+    }
+}
+
 final class DMSNoticeProvider: TimelineProvider {
     private let fetchNoticeListUseCase: any FetchNoticeListUseCase
     private var bag = Set<AnyCancellable>()

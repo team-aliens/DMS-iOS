@@ -7,6 +7,7 @@ import KeychainModule
 import NeedleFoundation
 import NetworkModule
 import SwiftUI
+import WidgetKit
 
 // swiftlint:disable unused_declaration
 private let needleDependenciesHash : String? = nil
