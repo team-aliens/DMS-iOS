@@ -4,7 +4,7 @@ import SwiftUI
 import Utility
 import WidgetKit
 
-final class DMSPointProvider: TimelineProvider {
+final class DMSPointProvider: IntentTimelineProvider {
     private let fetchPointListUseCase: any FetchPointListUseCase
     private var bag = Set<AnyCancellable>()
 
@@ -12,6 +12,7 @@ final class DMSPointProvider: TimelineProvider {
         self.fetchPointListUseCase = fetchPointListUseCase
     }
 
+    typealias Intent = DMSPointIntent
     typealias Entry = DMSPointEntry
 
     func placeholder(in context: Context) -> DMSPointEntry {
@@ -19,6 +20,7 @@ final class DMSPointProvider: TimelineProvider {
     }
 
     func getSnapshot(
+        for configuration: Intent,
         in context: Context,
         completion: @escaping (DMSPointEntry) -> Void
     ) {
@@ -26,6 +28,7 @@ final class DMSPointProvider: TimelineProvider {
     }
 
     func getTimeline(
+        for configuration: Intent,
         in context: Context,
         completion: @escaping (Timeline<DMSPointEntry>) -> Void
     ) {
