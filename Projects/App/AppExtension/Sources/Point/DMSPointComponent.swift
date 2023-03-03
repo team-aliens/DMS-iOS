@@ -7,7 +7,11 @@ protocol DMSPointDependency: Dependency {
 }
 
 final class DMSPointComponent: Component<DMSPointDependency> {
-//    func makeWidget() -> some Widget {
-//        
-//    }
+    func makeWidget() -> some Widget {
+        DMSPointWidget(
+            provider: .init(
+                fetchPointListUseCase: dependency.fetchPointListUseCase
+            )
+        )
+    }
 }

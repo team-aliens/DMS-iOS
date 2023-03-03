@@ -22,6 +22,19 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 
 #if !NEEDLE_DYNAMIC
 
+private class DMSPointDependencyff176818a996115c0c0aProvider: DMSPointDependency {
+    var fetchPointListUseCase: any FetchPointListUseCase {
+        return widgetComponent.fetchPointListUseCase
+    }
+    private let widgetComponent: WidgetComponent
+    init(widgetComponent: WidgetComponent) {
+        self.widgetComponent = widgetComponent
+    }
+}
+/// ^->WidgetComponent->DMSPointComponent
+private func factory330becbd0c489e2a02704da471824a033c398cee(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return DMSPointDependencyff176818a996115c0c0aProvider(widgetComponent: parent1(component) as! WidgetComponent)
+}
 private class DMSNoticeDependency5ec5a495e74657f18148Provider: DMSNoticeDependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase {
         return widgetComponent.fetchNoticeListUseCase
@@ -56,6 +69,11 @@ extension WidgetComponent: Registration {
 
     }
 }
+extension DMSPointComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\DMSPointDependency.fetchPointListUseCase] = "fetchPointListUseCase-any FetchPointListUseCase"
+    }
+}
 extension DMSNoticeComponent: Registration {
     public func registerItems() {
         keyPathToName[\DMSNoticeDependency.fetchNoticeListUseCase] = "fetchNoticeListUseCase-any FetchNoticeListUseCase"
@@ -83,6 +101,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 @inline(never) private func register1() {
     registerProviderFactory("^->WidgetComponent", factoryEmptyDependencyProvider)
+    registerProviderFactory("^->WidgetComponent->DMSPointComponent", factory330becbd0c489e2a02704da471824a033c398cee)
     registerProviderFactory("^->WidgetComponent->DMSNoticeComponent", factory46bd7c514c98f34ee9e64da471824a033c398cee)
     registerProviderFactory("^->WidgetComponent->DMSMealComponent", factory13e7c61b417a59a148c64da471824a033c398cee)
 }

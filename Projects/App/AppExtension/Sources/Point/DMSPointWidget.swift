@@ -23,6 +23,9 @@ struct DMSPointWidget: Widget {
         ) { entry in
             DMSPointEntryView(entry: entry)
         }
+        .configurationDisplayName("DMS 상벌점")
+        .description("DMS의 위젯을 통해 상벌점를 확인해보세요!")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 

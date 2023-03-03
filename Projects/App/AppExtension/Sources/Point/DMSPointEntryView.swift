@@ -35,14 +35,37 @@ private struct SmallDMSPointWidgetView: View {
     var body: some View {
         VStack(spacing: 10) {
             Group {
-                VStack {
-                    Text("A")
-                }
+                HStack(alignment: .center) {
+                    VStack {
+                        Text("상점")
+                            .dmsFont(.etc(.caption), color: .PrimaryVariant.primary)
 
-                VStack {
-                    Text("B")
+                        Spacer()
+                    }
+
+                    Spacer()
+
+                    Text("\(entry.bonusPoint)")
+                        .dmsFont(.headline(.headline3), color: .PrimaryVariant.primary)
                 }
+                .padding(.top, 10)
+
+                HStack(alignment: .center) {
+                    VStack {
+                        Text("벌점")
+                            .dmsFont(.etc(.caption), color: .ErrorVariant.darken1)
+
+                        Spacer()
+                    }
+
+                    Spacer()
+
+                    Text("\(entry.minusPoint)")
+                        .dmsFont(.headline(.headline3), color: .ErrorVariant.darken1)
+                }
+                .padding(.top, 10)
             }
+            .padding(.horizontal, 16)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 18)
@@ -50,5 +73,6 @@ private struct SmallDMSPointWidgetView: View {
                     .dmsShadow(style: .surface)
             }
         }
+        .padding(12)
     }
 }

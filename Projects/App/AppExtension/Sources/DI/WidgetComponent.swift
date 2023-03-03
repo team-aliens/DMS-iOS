@@ -13,6 +13,7 @@ final class WidgetComponent: BootstrapComponent {
     func makeWidget() -> some Widget {
         dmsMealComponent.makeWidget()
         dmsNoticeComponent.makeWidget()
+        dmsPointComponent.makeWidget()
     }
 }
 
@@ -24,5 +25,9 @@ extension WidgetComponent {
 
     var dmsNoticeComponent: DMSNoticeComponent {
         DMSNoticeComponent(parent: self)
+    }
+
+    var dmsPointComponent: DMSPointComponent {
+        DMSPointComponent(parent: self)
     }
 }
