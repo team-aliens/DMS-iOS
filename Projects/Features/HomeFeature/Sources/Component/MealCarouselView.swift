@@ -51,7 +51,7 @@ struct MealCarouselView: View {
                 .unredacted()
 
             VStack {
-                if meal.isEmpty {
+                if meal == [""] {
                     Text("급식이 없습니다.")
                         .dmsFont(.body(.body1), color: .GrayScale.gray6)
                         .frame(maxHeight: .infinity)

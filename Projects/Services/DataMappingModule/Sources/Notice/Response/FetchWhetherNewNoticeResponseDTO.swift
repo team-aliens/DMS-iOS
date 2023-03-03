@@ -8,6 +8,6 @@ public struct FetchWhetherNewNoticeResponseDTO: Decodable {
     public let whetherNewNotice: Bool
 
     enum CodingKeys: String, CodingKey {
-        case whetherNewNotice = "whether_new_notice"
+        case whetherNewNotice = "whether_new_notices"
     }
 }
