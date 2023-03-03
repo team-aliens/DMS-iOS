@@ -17,13 +17,13 @@ struct RemainApplyListCellView: View {
         self.action = action
     }
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack(alignment: .center) {
-                Button(action: {
-                    if !isSelected {
-                        action()
-                    }
-                }, label: {
+        HStack(alignment: .center) {
+            Button(action: {
+                if !isSelected {
+                    action()
+                }
+            }, label: {
+                VStack(alignment: .leading) {
                     HStack {
                         Text(list.title)
                             .dmsFont(.title(.title2), color: isSelected
@@ -41,32 +41,32 @@ struct RemainApplyListCellView: View {
                                 .background(Color.PrimaryVariant.lighten2)
                                 .cornerRadius(24)
                         }
-                    }
 
-                    Spacer()
+                        Spacer()
 
-                    Image(systemName: "chevron.down")
-                        .foregroundColor(isSelected
-                                         ? .System.primary : .GrayScale.gray7)
-                        .rotationEffect(
-                            isShowingDetail
-                            ? Angle.degrees(180)
-                            : .degrees(0)
-                        )
-                        .padding(25)
-                        .onTapGesture {
-                            withAnimation {
-                                isShowingDetail.toggle()
+                        Image(systemName: "chevron.down")
+                            .foregroundColor(isSelected
+                                             ? .System.primary : .GrayScale.gray7)
+                            .rotationEffect(
+                                isShowingDetail
+                                ? Angle.degrees(180)
+                                : .degrees(0)
+                            )
+                            .padding(25)
+                            .onTapGesture {
+                                withAnimation {
+                                    isShowingDetail.toggle()
+                                }
                             }
-                        }
-                })
-            }
-            if isShowingDetail {
-                Text(list.description)
-                    .multilineTextAlignment(.leading)
-                    .dmsFont(.body(.body3), color: .GrayScale.gray9)
-                    .padding([.horizontal, .bottom], 20)
-            }
+                    }
+                    if isShowingDetail {
+                        Text(list.description)
+                            .multilineTextAlignment(.leading)
+                            .dmsFont(.body(.body3), color: .GrayScale.gray9)
+                            .padding([.horizontal, .bottom], 20)
+                    }
+                }
+            })
         }
         .background(Color.System.surface)
         .cornerRadius(10)
