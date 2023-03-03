@@ -5,6 +5,27 @@ import SwiftUI
 import Utility
 import WidgetKit
 
+struct DMSPointWidget: Widget {
+    let kind: String = "DMSPointWidget"
+    let provider: DMSPointProvider
+
+    init() { fatalError() }
+
+    init(provider: DMSPointProvider) {
+        self.provider = provider
+    }
+
+    var body: some WidgetConfiguration {
+        IntentConfiguration(
+            kind: kind,
+            intent: DMSPointIntent.self,
+            provider: provider
+        ) { entry in
+            DMSPointEntryView(entry: entry)
+        }
+    }
+}
+
 final class DMSPointProvider: IntentTimelineProvider {
     private let fetchPointListUseCase: any FetchPointListUseCase
     private var bag = Set<AnyCancellable>()
@@ -47,41 +68,22 @@ final class DMSPointProvider: IntentTimelineProvider {
         configuration: Intent,
         completion: @escaping (DMSPointEntry) -> Void
     ) {
-        if configuration.displayPoint == .both {
-            Publishers.Zip(
-                fetchPointListUseCase.execute(type: .bonus),
-                fetchPointListUseCase.execute(type: .minus)
+        Publishers.Zip(
+            fetchPointListUseCase.execute(type: .bonus),
+            fetchPointListUseCase.execute(type: .minus)
+        )
+        .map { ($0.0.totalPoint, $0.1.totalPoint) }
+        .sink { _ in
+        } receiveValue: { (bonus, minus) in
+            let entry = DMSPointEntry(
+                date: date,
+                displayPointPart: configuration.displayPoint.toDisplayPointPart(),
+                bonusPoint: bonus,
+                minusPoint: minus
             )
-            .map { ($0.0.totalPoint, $0.1.totalPoint) }
-            .sink { _ in
-            } receiveValue: { (bonus, minus) in
-                let entry = DMSPointEntry(
-                    date: date,
-                    displayPointPart: configuration.displayPoint.toDisplayPointPart(),
-                    bonusPoint: bonus,
-                    minusPoint: minus
-                )
-                completion(entry)
-            }
-            .store(in: &bag)
-        } else {
-            let pointsType: PointsType = configuration.displayPoint == .bonus ? .bonus : .minus
-            fetchPointListUseCase.execute(type: pointsType)
-                .map(\.totalPoint)
-                .sink { _ in
-                } receiveValue: { point in
-                    let bonusPoint = pointsType == .bonus ? point : 0
-                    let minusPoint = pointsType == .minus ? point : 0
-                    let entry = DMSPointEntry(
-                        date: date,
-                        displayPointPart: configuration.displayPoint.toDisplayPointPart(),
-                        bonusPoint: bonusPoint,
-                        minusPoint: minusPoint
-                    )
-                    completion(entry)
-                }
-                .store(in: &bag)
+            completion(entry)
         }
+        .store(in: &bag)
     }
 }
 
