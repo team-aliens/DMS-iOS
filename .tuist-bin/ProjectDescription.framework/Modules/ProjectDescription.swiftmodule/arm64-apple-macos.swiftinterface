@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
 // swift-module-flags: -target arm64-apple-macos11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ProjectDescription
 import Foundation
 import Swift
@@ -248,6 +248,9 @@ public enum DeploymentTarget : Swift.Codable, Swift.Hashable {
   case macOS(targetVersion: Swift.String)
   case watchOS(targetVersion: Swift.String)
   case tvOS(targetVersion: Swift.String)
+  public var targetVersion: Swift.String {
+    get
+  }
   public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: ProjectDescription.DeploymentTarget, b: ProjectDescription.DeploymentTarget) -> Swift.Bool
   public func encode(to encoder: Swift.Encoder) throws
@@ -258,7 +261,6 @@ public enum DeploymentTarget : Swift.Codable, Swift.Hashable {
 }
 @dynamicMemberLookup public enum Environment {
   public enum Value : Swift.Equatable {
-    case boolean(Swift.Bool)
     case string(Swift.String)
     public static func == (a: ProjectDescription.Environment.Value, b: ProjectDescription.Environment.Value) -> Swift.Bool
   }
@@ -509,8 +511,8 @@ public struct Path : Swift.ExpressibleByStringInterpolation, Swift.Codable, Swif
   public static func relativeToManifest(_ pathString: Swift.String) -> ProjectDescription.Path
   public static func relativeToRoot(_ pathString: Swift.String) -> ProjectDescription.Path
   public init(stringLiteral: Swift.String)
-  public static func == (a: ProjectDescription.Path, b: ProjectDescription.Path) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: ProjectDescription.Path, b: ProjectDescription.Path) -> Swift.Bool
   public typealias ExtendedGraphemeClusterLiteralType = Swift.String
   public typealias StringInterpolation = Swift.DefaultStringInterpolation
   public typealias StringLiteralType = Swift.String
@@ -615,13 +617,14 @@ public struct Project : Swift.Codable, Swift.Equatable {
 extension ProjectDescription.Project {
   public struct Options : Swift.Codable, Swift.Equatable {
     public let automaticSchemesOptions: ProjectDescription.Project.Options.AutomaticSchemesOptions
+    public let defaultKnownRegions: [Swift.String]?
     public let developmentRegion: Swift.String?
     public let disableBundleAccessors: Swift.Bool
     public let disableShowEnvironmentVarsInScriptPhases: Swift.Bool
     public let disableSynthesizedResourceAccessors: Swift.Bool
     public let textSettings: ProjectDescription.Project.Options.TextSettings
     public let xcodeProjectName: Swift.String?
-    public static func options(automaticSchemesOptions: ProjectDescription.Project.Options.AutomaticSchemesOptions = .enabled(), developmentRegion: Swift.String? = nil, disableBundleAccessors: Swift.Bool = false, disableShowEnvironmentVarsInScriptPhases: Swift.Bool = false, disableSynthesizedResourceAccessors: Swift.Bool = false, textSettings: ProjectDescription.Project.Options.TextSettings = .textSettings(), xcodeProjectName: Swift.String? = nil) -> ProjectDescription.Project.Options
+    public static func options(automaticSchemesOptions: ProjectDescription.Project.Options.AutomaticSchemesOptions = .enabled(), defaultKnownRegions: [Swift.String]? = nil, developmentRegion: Swift.String? = nil, disableBundleAccessors: Swift.Bool = false, disableShowEnvironmentVarsInScriptPhases: Swift.Bool = false, disableSynthesizedResourceAccessors: Swift.Bool = false, textSettings: ProjectDescription.Project.Options.TextSettings = .textSettings(), xcodeProjectName: Swift.String? = nil) -> ProjectDescription.Project.Options
     public static func == (a: ProjectDescription.Project.Options, b: ProjectDescription.Project.Options) -> Swift.Bool
     public func encode(to encoder: Swift.Encoder) throws
     public init(from decoder: Swift.Decoder) throws
@@ -849,6 +852,7 @@ public struct Scheme : Swift.Equatable, Swift.Codable {
 }
 public enum SchemeDiagnosticsOption : Swift.String, Swift.Equatable, Swift.Codable {
   case mainThreadChecker
+  case performanceAntipatternChecker
   public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
@@ -1092,6 +1096,7 @@ public enum TargetDependency : Swift.Codable, Swift.Hashable {
   case xctest
   case external(name: Swift.String)
   public static func sdk(name: Swift.String, type: ProjectDescription.SDKType) -> ProjectDescription.TargetDependency
+  public static func target(_ target: ProjectDescription.Target) -> ProjectDescription.TargetDependency
   public var typeName: Swift.String {
     get
   }
@@ -1296,8 +1301,8 @@ public struct Version : Swift.Hashable, Swift.Codable {
   public let prereleaseIdentifiers: [Swift.String]
   public let buildMetadataIdentifiers: [Swift.String]
   public init(_ major: Swift.Int, _ minor: Swift.Int, _ patch: Swift.Int, prereleaseIdentifiers: [Swift.String] = [], buildMetadataIdentifiers: [Swift.String] = [])
-  public static func == (a: ProjectDescription.Version, b: ProjectDescription.Version) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: ProjectDescription.Version, b: ProjectDescription.Version) -> Swift.Bool
   public func encode(to encoder: Swift.Encoder) throws
   public var hashValue: Swift.Int {
     get

@@ -10,6 +10,9 @@
 #elseif os(tvOS) || os(watchOS)
   import UIKit
 #endif
+#if canImport(SwiftUI)
+  import SwiftUI
+#endif
 
 // swiftlint:disable superfluous_disable_command file_length implicit_return
 
