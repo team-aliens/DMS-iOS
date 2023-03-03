@@ -5,7 +5,7 @@ fi
 export PATH
 
 if which needle > /dev/null; then
-	needle generate Sources/Application/NeedleGenerated.swift ../
+	needle generate Sources/Application/NeedleGenerated.swift ../ --exclude-paths AppExtension/
 else
 	echo "warning: Needle not installed, plz run 'brew install needle'"
 fi

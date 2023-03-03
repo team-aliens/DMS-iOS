@@ -20,6 +20,7 @@ let settinges: Settings =
               defaultSettings: .recommended)
 
 let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .needle]
+let widgetScripts: [TargetScript] = isCI ? [] : [.widgetNeedle]
 
 let targets: [Target] = [
     .init(
@@ -30,12 +31,14 @@ let targets: [Target] = [
         bundleId: "\(Environment.organizationName).\(Environment.targetName)",
         deploymentTarget: Environment.deploymentTarget,
         infoPlist: .file(path: "Support/Info.plist"),
-        sources: ["Sources/**"],
+        sources: ["Sources/**", "AppExtension/Sources/**/*.intentdefinition"],
         resources: ["Resources/**"],
+        entitlements: "Support/\(Environment.appName).entitlements",
         scripts: scripts,
         dependencies: [
             .Project.Features.RootFeature,
-            .Project.Service.Data
+            .Project.Service.Data,
+            .target(name: "\(Environment.appName)Widget")
         ],
         settings: .settings(base: Environment.baseSetting)
     ),
@@ -49,6 +52,22 @@ let targets: [Target] = [
         sources: ["Tests/**"],
         dependencies: [
             .target(name: Environment.targetName)
+        ]
+    ),
+    .init(
+        name: "\(Environment.appName)Widget",
+        platform: .iOS,
+        product: .appExtension,
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).WidgetExtension",
+        infoPlist: .file(path: "AppExtension/Support/Widget-Info.plist"),
+        sources: ["AppExtension/Sources/**"],
+        resources: ["AppExtension/Resources/**"],
+        entitlements: "AppExtension/Support/\(Environment.appName)Widget.entitlements",
+        scripts: widgetScripts,
+        dependencies: [
+            .Project.UserInterfaces.DesignSystem,
+            .Project.Service.Data,
+            .SPM.Needle
         ]
     )
 ]

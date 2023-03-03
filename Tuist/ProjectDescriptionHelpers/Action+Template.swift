@@ -12,4 +12,10 @@ public extension TargetScript {
         name: "Needle",
         basedOnDependencyAnalysis: false
     )
+
+    static let widgetNeedle = TargetScript.pre(
+        path: .relativeToRoot("Scripts/WidgetNeedleScript.sh"),
+        name: "Widget Needle",
+        basedOnDependencyAnalysis: false
+    )
 }
