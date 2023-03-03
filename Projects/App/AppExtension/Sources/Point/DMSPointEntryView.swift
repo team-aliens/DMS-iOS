@@ -142,8 +142,58 @@ private struct MediumDMSPointWidgetView: View {
 
     var body: some View {
         HStack(spacing: 18) {
-            
+            switch entry.displayPointPart {
+            case .both:
+                Group {
+                    pointView(.bonus, point: entry.bonusPoint, color: .PrimaryVariant.darken2)
+
+                    pointView(.minus, point: entry.minusPoint, color: .ErrorVariant.darken1)
+                }
+                .background {
+                    RoundedRectangle(cornerRadius: 18)
+                        .fill(Color.GrayScale.gray1)
+                        .dmsShadow(style: .surface)
+                }
+
+            case .bonus:
+                pointView(.bonus, point: entry.bonusPoint, color: .PrimaryVariant.darken2)
+
+            case .minus:
+                pointView(.minus, point: entry.minusPoint, color: .ErrorVariant.darken1)
+            }
+
         }
         .padding(12)
+    }
+
+    @ViewBuilder
+    func pointView(
+        _ part: DisplayPointPart,
+        point: Int,
+        color: Color
+    ) -> some View {
+        VStack {
+            HStack {
+                Text(part.display)
+                    .dmsFont(.body(.body2))
+
+                Spacer()
+            }
+            .padding(8)
+
+            Spacer()
+
+            HStack {
+                Spacer()
+
+                Text("\(point)")
+                    .dmsFont(.headline(.headline2))
+            }
+            .padding(8)
+        }
+        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .foregroundColor(color)
     }
 }
