@@ -22,6 +22,9 @@ struct DMSPointEntryView: View {
         case .systemSmall:
             SmallDMSPointWidgetView(entry: entry)
 
+        case .systemMedium:
+            MediumDMSPointWidgetView(entry: entry)
+
         default:
             EmptyView()
         }
@@ -34,10 +37,23 @@ private struct SmallDMSPointWidgetView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            if entry.displayPointPart == .both {
+            switch entry.displayPointPart {
+            case .both:
                 bothView()
-            } else {
-                pointView()
+
+            case .bonus:
+                singlePointView(
+                    .bonus,
+                    point: entry.bonusPoint,
+                    color: .PrimaryVariant.darken2
+                )
+
+            case .minus:
+                singlePointView(
+                    .minus,
+                    point: entry.minusPoint,
+                    color: .ErrorVariant.darken1
+                )
             }
         }
         .padding(12)
@@ -46,35 +62,17 @@ private struct SmallDMSPointWidgetView: View {
     @ViewBuilder
     func bothView() -> some View {
         Group {
-            HStack(alignment: .center) {
-                VStack {
-                    Text("상점")
-                        .dmsFont(.etc(.caption), color: .PrimaryVariant.primary)
+            bothPointCardView(
+                "상점",
+                point: entry.bonusPoint,
+                color: .PrimaryVariant.primary
+            )
 
-                    Spacer()
-                }
-                .padding(.top, 10)
-
-                Spacer()
-
-                Text("\(entry.bonusPoint)")
-                    .dmsFont(.headline(.headline3), color: .PrimaryVariant.primary)
-            }
-
-            HStack(alignment: .center) {
-                VStack {
-                    Text("벌점")
-                        .dmsFont(.etc(.caption), color: .ErrorVariant.darken1)
-
-                    Spacer()
-                }
-                .padding(.top, 10)
-
-                Spacer()
-
-                Text("\(entry.minusPoint)")
-                    .dmsFont(.headline(.headline3), color: .ErrorVariant.darken1)
-            }
+            bothPointCardView(
+                "벌점",
+                point: entry.minusPoint,
+                color: .ErrorVariant.darken1
+            )
         }
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -86,11 +84,38 @@ private struct SmallDMSPointWidgetView: View {
     }
 
     @ViewBuilder
-    func pointView() -> some View {
+    func bothPointCardView(
+        _ label: String,
+        point: Int,
+        color: Color
+    ) -> some View {
+        HStack(alignment: .center) {
+            VStack {
+                Text(label)
+                    .dmsFont(.etc(.caption))
+
+                Spacer()
+            }
+            .padding(.top, 10)
+
+            Spacer()
+
+            Text("\(point)")
+                .dmsFont(.headline(.headline3))
+        }
+        .foregroundColor(color)
+    }
+
+    @ViewBuilder
+    func singlePointView(
+        _ part: DisplayPointPart,
+        point: Int,
+        color: Color
+    ) -> some View {
         HStack {
             VStack {
-                Text(entry.displayPointPart.display)
-                    .dmsFont(.body(.body2), color: entry.displayPointPart.foreground)
+                Text(part.display)
+                    .dmsFont(.body(.body2))
 
                 Spacer()
             }
@@ -100,16 +125,25 @@ private struct SmallDMSPointWidgetView: View {
             VStack {
                 Spacer()
 
-                Text(
-                    entry.displayPointPart == .bonus
-                    ? "\(entry.bonusPoint)"
-                    : "\(entry.minusPoint)"
-                )
-                .dmsFont(.headline(.headline2), color: entry.displayPointPart.foreground)
+                Text("\(point)")
+                    .dmsFont(.headline(.headline2))
             }
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .foregroundColor(color)
+    }
+}
+
+private struct MediumDMSPointWidgetView: View {
+    @Environment(\.colorScheme) var colorScheme
+    let entry: DMSPointProvider.Entry
+
+    var body: some View {
+        HStack(spacing: 18) {
+            
+        }
+        .padding(12)
     }
 }
