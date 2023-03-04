@@ -25,7 +25,7 @@ struct NoticeView: View {
                     .dmsFont(.etc(.caption))
 
                 Text(notice.createdAt.toSmallDMSString())
-                    .dmsFont(.etc(.overline))
+                    .dmsFont(.etc(.overline), color: .GrayScale.gray5)
             }
 
             Spacer()
