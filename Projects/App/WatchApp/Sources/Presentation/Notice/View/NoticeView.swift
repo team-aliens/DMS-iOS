@@ -30,6 +30,7 @@ struct NoticeView: View {
                         }
                     }
                 }
+                .padding(.horizontal, 8)
             }
 
             if state.noticeList.isEmpty, !state.isLoading {

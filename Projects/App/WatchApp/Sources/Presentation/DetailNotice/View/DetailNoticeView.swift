@@ -26,7 +26,7 @@ struct DetailNoticeView: View {
                         .progressViewStyle(.circular)
                 }
             }
-            .padding(.horizontal, 4)
+            .padding(.horizontal, 8)
         }
     }
 }
