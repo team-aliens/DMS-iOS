@@ -8,7 +8,7 @@ public class BaseRemoteDataSource<API: DMSAPI> {
 
     public typealias API = API
 
-    init(
+    public init(
         jwtStore: any JwtStore,
         provider: MoyaProvider<API>? = nil
     ) {
