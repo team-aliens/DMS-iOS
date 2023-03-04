@@ -22,6 +22,7 @@ struct DMSPointWidget: Widget {
             provider: provider
         ) { entry in
             DMSPointEntryView(entry: entry)
+                .widgetURL(URL(string: "widget://deeplink?text=point"))
         }
         .configurationDisplayName("DMS 상벌점")
         .description("DMS의 위젯을 통해 상벌점를 확인해보세요!")
