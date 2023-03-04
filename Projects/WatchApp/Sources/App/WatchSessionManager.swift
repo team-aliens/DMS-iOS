@@ -1,15 +1,17 @@
 import Foundation
 import WatchConnectivity
+import WatchRestAPIModule
 
 final class WatchSessionManager: NSObject, WCSessionDelegate, ObservableObject {
     private let session: WCSession
-    static let shared = WatchSessionManager()
+    private let jwtStore: any JwtStore
     var isRechable: Bool {
         session.activationState == .activated
     }
 
-    private override init() {
-        session = .default
+    init(jwtStore: any JwtStore) {
+        self.jwtStore = jwtStore
+        self.session = .default
         super.init()
         if WCSession.isSupported() {
             session.delegate = self
@@ -22,7 +24,16 @@ final class WatchSessionManager: NSObject, WCSessionDelegate, ObservableObject {
         activationDidCompleteWith activationState: WCSessionActivationState,
         error: Error?
     ) {
-        
+        sendMessage(message: [:]) { [weak self] reply in
+            guard let self,
+                  let accessToken = reply["accessToken"] as? String,
+                  let accessExpiredAt = reply["accessExpiredAt"] as? String
+            else {
+                return
+            }
+            self.jwtStore.save(type: .accessToken, value: accessToken)
+            self.jwtStore.save(type: .accessExpiredAt, value: accessExpiredAt)
+        }
     }
 
     func sendMessage(

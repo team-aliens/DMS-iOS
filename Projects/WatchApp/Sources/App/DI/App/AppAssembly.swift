@@ -6,5 +6,9 @@ struct AppAssembly: Assembly {
         container.register(JwtStore.self) { _ in
             JwtStoreImpl()
         }.inObjectScope(.container)
+
+        container.register(WatchSessionManager.self) { resolver in
+            WatchSessionManager(jwtStore: resolver.resolve(JwtStore.self)!)
+        }.inObjectScope(.container)
     }
 }
