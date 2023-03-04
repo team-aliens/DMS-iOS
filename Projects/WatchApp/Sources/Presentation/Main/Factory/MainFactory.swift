@@ -2,9 +2,14 @@ import SwiftUI
 
 struct MainFactory {
     private let mealFactory: MealFactory
+    private let noticeFactory: NoticeFactory
 
-    init(mealFactory: MealFactory) {
+    init(
+        mealFactory: MealFactory,
+        noticeFactory: NoticeFactory
+    ) {
         self.mealFactory = mealFactory
+        self.noticeFactory = noticeFactory
     }
 
     func makeView() -> some View {
@@ -17,7 +22,8 @@ struct MainFactory {
         )
         return MainView(
             container: container,
-            mealFactory: mealFactory
+            mealFactory: mealFactory,
+            noticeFactory: noticeFactory
         )
     }
 }
