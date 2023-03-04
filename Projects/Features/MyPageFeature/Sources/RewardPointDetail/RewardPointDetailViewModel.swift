@@ -9,7 +9,6 @@ import DesignSystem
 final class RewardPointDetailViewModel: BaseViewModel {
     @Published var point: PointEntity?
     @Published var pointsType: PointsType = .all
-    @Published var isShowRefresh = false
 
     private let fetchPointListUseCase: any FetchPointListUseCase
 
@@ -34,9 +33,5 @@ final class RewardPointDetailViewModel: BaseViewModel {
         ) { [weak self] point in
             self?.point = point
         }
-    }
-
-    func refresh() {
-        isShowRefresh = false
     }
 }
