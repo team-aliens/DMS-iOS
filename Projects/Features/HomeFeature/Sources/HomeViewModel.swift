@@ -10,7 +10,6 @@ final class HomeViewModel: BaseViewModel {
     @Published var isExistNewNotice = true
     @Published var meals: [String: MealEntity] = [:]
     @Published var prevMonth = Date().month
-    @Published var isShowRefresh = false
     var selectedDateString: String {
         "\(selectedDate.customFormat("yyyy/MM/dd")) (\(selectedDate.dayOfWeek()))"
     }
@@ -56,9 +55,5 @@ final class HomeViewModel: BaseViewModel {
                 self?.meals[meal.date] = meal
             }
         }
-    }
-
-    func refresh() {
-        isShowRefresh = false
     }
 }

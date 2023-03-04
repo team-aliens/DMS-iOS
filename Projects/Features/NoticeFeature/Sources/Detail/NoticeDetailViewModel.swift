@@ -7,7 +7,6 @@ final class NoticeDetailViewModel: BaseViewModel {
     @Published var title = ""
     @Published var content = ""
     @Published var date = Date()
-    @Published var isShowRefresh = false
     var displayDate: String {
         "\(date.year)/\(date.month)/\(date.day) \(date.hour):\(date.minute)"
     }
@@ -33,9 +32,5 @@ final class NoticeDetailViewModel: BaseViewModel {
             self?.date = noticeDetail.createdAt
         }
 
-    }
-
-    func refresh() {
-        isShowRefresh = false
     }
 }
