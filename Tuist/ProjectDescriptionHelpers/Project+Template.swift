@@ -112,8 +112,8 @@ public extension Project {
         : [.makeScheme(target: .dev, name: name)]
         
         let targets: [Target] = hasDemoApp
-        ? [appTarget, demoAppTarget]
-        : [appTarget]
+        ? [appTarget, testTarget, demoAppTarget]
+        : [appTarget, testTarget]
         
         return Project(
             name: name,
