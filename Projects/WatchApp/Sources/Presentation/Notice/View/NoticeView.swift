@@ -20,7 +20,13 @@ struct NoticeView: View {
         ScrollView {
             LazyVStack(spacing: 4) {
                 ForEach(state.noticeList, id: \.id) { notice in
-                    noticeListView(notice: notice)
+                    NavigationLink {
+                        DeferView {
+                            detailNoticeFactory.makeView(noticeID: notice.id)
+                        }
+                    } label: {
+                        noticeListView(notice: notice)
+                    }
                 }
             }
         }
