@@ -49,6 +49,9 @@ struct RewardPointDetailView: View {
                     }
                 }
             }
+            .refreshable {
+                viewModel.refresh()
+            }
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
