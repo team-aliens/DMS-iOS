@@ -17,7 +17,10 @@ struct DetailNoticeView: View {
                     Text(notice.createdAt.toSmallDMSString())
                         .dmsFont(.etc(.overline), color: .GrayScale.gray5)
 
-                    
+                    Divider()
+
+                    Text(notice.content)
+                        .lineLimit(0)
                 } else {
                     ProgressView()
                         .progressViewStyle(.circular)
