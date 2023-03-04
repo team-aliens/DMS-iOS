@@ -1,21 +1,17 @@
 import Foundation
 
 public struct NoticeRepositoryImpl: NoticeRepository {
-    private let provider: any RemoteAPIProvider
+    private let remoteDataSource: any RemoteNoticeDataSource
 
-    public init(provider: any RemoteAPIProvider) {
-        self.provider = provider
+    public init(remoteDataSource: any RemoteNoticeDataSource) {
+        self.remoteDataSource = remoteDataSource
     }
 
     public func fetchNoticeList(order: NoticeOrderType) async throws -> [NoticeEntity] {
-        let response = try await provider.request(
-            NoticeAPI.fetchNoticeList(order: order),
-            dto: FetchNoticeListResponseDTO.self
-        )
-        
+        return try await remoteDataSource.fetchNoticeList(order: order)
     }
 
     public func fetchDetailNotice(id: String) async throws -> DetailNoticeEntity {
-        
+        return try await remoteDataSource.fetchDetailNotice(id: id)
     }
 }

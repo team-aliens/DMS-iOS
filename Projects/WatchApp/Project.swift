@@ -10,11 +10,11 @@ let settinges: Settings = .settings(
     configurations: [
         .debug(name: .dev, xcconfig: isCI ? nil : .relativeToXCConfig(
             type: .dev,
-            name: "\(Environment.targetName)Watch")
+            name: "\(Environment.targetName)WatchApp")
         ),
         .release(name: .prod, xcconfig: isCI ? nil : .relativeToXCConfig(
             type: .prod,
-            name: "\(Environment.targetName)Watch")
+            name: "\(Environment.targetName)WatchApp")
         )
     ],
     defaultSettings: .recommended
@@ -28,19 +28,34 @@ let scripts: [TargetScript] = isCI ? [] : [.swiftLint]
 
 let targets: [Target] = [
     .init(
+        name: "\(Environment.targetName)WatchApp",
+        platform: .watchOS,
+        product: .watch2App,
+        productName: Environment.appName,
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp",
+        deploymentTarget: .watchOS(targetVersion: "7.0"),
+        infoPlist: .file(path: "Support/Info.plist"),
+        resources: ["Resources/**"],
+        dependencies: [
+            .target(name: "\(Environment.targetName)Watch")
+        ]
+    ),
+    .init(
         name: "\(Environment.targetName)Watch",
         platform: .watchOS,
         product: .watch2Extension,
         productName: Environment.appName,
-        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitextension",
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp.extension",
         deploymentTarget: .watchOS(targetVersion: "7.0"),
-//        infoPlist: .file(path: "Support/Info.plist"),
+        infoPlist: .file(path: "Support/Info.plist"),
         sources: ["Sources/**"],
         resources: ["Resources/**"],
         scripts: scripts,
         dependencies: [
             .Project.UserInterfaces.WatchDesignSystem,
-            .Project.Service.WatchRestAPIModule
+            .Project.Service.WatchRestAPIModule,
+
+            .SPM.Swinject
         ],
         settings: .settings(base: Environment.baseSetting)
     )
@@ -50,7 +65,7 @@ let schemes: [Scheme] = [
     .init(
       name: "\(Environment.targetName)Watch-DEV",
       shared: true,
-      buildAction: .buildAction(targets: ["\(Environment.targetName)Watch"]),
+      buildAction: .buildAction(targets: ["\(Environment.targetName)WatchApp"]),
       testAction: nil,
       runAction: .runAction(configuration: .dev),
       archiveAction: .archiveAction(configuration: .dev),
@@ -60,7 +75,7 @@ let schemes: [Scheme] = [
     .init(
       name: "\(Environment.targetName)Watch-PROD",
       shared: true,
-      buildAction: BuildAction(targets: ["\(Environment.targetName)Watch"]),
+      buildAction: BuildAction(targets: ["\(Environment.targetName)WatchApp"]),
       testAction: nil,
       runAction: .runAction(configuration: .prod),
       archiveAction: .archiveAction(configuration: .prod),
@@ -71,7 +86,7 @@ let schemes: [Scheme] = [
 
 let project: Project =
     .init(
-        name: "\(Environment.targetName)Watch",
+        name: "\(Environment.targetName)WatchApp",
         organizationName: Environment.organizationName,
         settings: settinges,
         targets: targets,
