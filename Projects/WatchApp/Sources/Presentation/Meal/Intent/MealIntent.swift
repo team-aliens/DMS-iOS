@@ -40,7 +40,6 @@ final class MealIntent: MealIntentProtocol {
             } catch {
                 model?.updateIsError(isError: true)
             }
-            model?.updateIsLoading(isLoading: false)
         }
     }
 }
