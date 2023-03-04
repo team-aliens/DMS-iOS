@@ -19,7 +19,7 @@ let settinges: Settings =
               ],
               defaultSettings: .recommended)
 
-let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .needle]
+let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .widgetNeedle, .needle]
 let widgetScripts: [TargetScript] = isCI ? [] : [.widgetNeedle]
 
 let targets: [Target] = [
@@ -38,7 +38,8 @@ let targets: [Target] = [
         dependencies: [
             .Project.Features.RootFeature,
             .Project.Service.Data,
-            .target(name: "\(Environment.appName)Widget")
+            .target(name: "\(Environment.appName)Widget"),
+            .target(name: "\(Environment.appName)WatchApp")
         ],
         settings: .settings(base: Environment.baseSetting)
     ),
@@ -69,6 +70,36 @@ let targets: [Target] = [
             .Project.UserInterfaces.DesignSystem,
             .Project.Service.Data,
             .SPM.Needle
+        ]
+    ),
+    .init(
+        name: "\(Environment.targetName)WatchApp",
+        platform: .watchOS,
+        product: .watch2App,
+        productName: "\(Environment.appName)WatchApp",
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp",
+        deploymentTarget: .watchOS(targetVersion: "7.0"),
+        infoPlist: .file(path: "WatchApp/Support/Info.plist"),
+        resources: ["WatchApp/Resources/**"],
+        dependencies: [
+            .target(name: "\(Environment.targetName)WatchExtension")
+        ]
+    ),
+    .init(
+        name: "\(Environment.targetName)WatchExtension",
+        platform: .watchOS,
+        product: .watch2Extension,
+        productName: "\(Environment.appName)WatchExtension",
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp.extension",
+        deploymentTarget: .watchOS(targetVersion: "7.0"),
+        infoPlist: .file(path: "WatchApp/Support/Info.plist"),
+        sources: ["WatchApp/Sources/**"],
+        resources: ["WatchApp/Resources/**"],
+        scripts: scripts,
+        dependencies: [
+            .Project.UserInterfaces.WatchDesignSystem,
+            .Project.Service.WatchRestAPIModule,
+            .SPM.Swinject
         ]
     )
 ]
