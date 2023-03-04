@@ -4,7 +4,7 @@ import WatchRestAPIModule
 struct DetailNoticeFactory {
     private let noticeRepository: any NoticeRepository
 
-    init(noticeRepository: any NoticeRepository){
+    init(noticeRepository: any NoticeRepository) {
         self.noticeRepository = noticeRepository
     }
 
