@@ -33,13 +33,14 @@ let targets: [Target] = [
         product: .watch2Extension,
         productName: Environment.appName,
         bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitextension",
-        deploymentTarget: .watchOS(targetVersion: "8.0"),
+        deploymentTarget: .watchOS(targetVersion: "7.0"),
 //        infoPlist: .file(path: "Support/Info.plist"),
         sources: ["Sources/**"],
         resources: ["Resources/**"],
         scripts: scripts,
         dependencies: [
-            .Project.UserInterfaces.WatchDesignSystem
+            .Project.UserInterfaces.WatchDesignSystem,
+            .Project.Service.WatchRestAPIModule
         ],
         settings: .settings(base: Environment.baseSetting)
     )

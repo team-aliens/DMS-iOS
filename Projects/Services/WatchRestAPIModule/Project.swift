@@ -2,11 +2,9 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "WatchDesignSystem",
+    name: "WatchRestAPIModule",
     platform: .watchOS,
-    product: .framework,
+    product: .staticLibrary,
     deploymentTarget: .watchOS(targetVersion: "7.0"),
-    dependencies: [],
-    testDependencies: [],
-    resources: ["Resources/**"]
+    testDependencies: []
 )
