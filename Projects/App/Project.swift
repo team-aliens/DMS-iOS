@@ -100,8 +100,7 @@ let targets: [Target] = [
             .Project.UserInterfaces.WatchDesignSystem,
             .Project.Service.WatchRestAPIModule,
             .SPM.Swinject
-        ],
-        settings: .settings(base: Environment.baseSetting)
+        ]
     )
 ]
 
