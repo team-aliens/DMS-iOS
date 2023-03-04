@@ -48,7 +48,7 @@ struct HomeView: View {
 
                     Text("오늘의 급식")
                         .dmsFont(.title(.title1), color: .GrayScale.gray7)
-                        .padding(.top, 16)
+                        .padding(.top, viewModel.isExistNewNotice ? 16 : 46)
 
                     selectDateView()
                         .padding(.top, 24)
@@ -58,7 +58,8 @@ struct HomeView: View {
                         isLoading: $viewModel.isLoading
                     )
                     .padding(.top, 36)
-                    .padding(.bottom, 50)
+
+                    Spacer()
                 }
             }
         }
