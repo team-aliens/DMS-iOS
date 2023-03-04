@@ -6,5 +6,8 @@ let project = Project.makeModule(
     platform: .watchOS,
     product: .staticLibrary,
     deploymentTarget: .watchOS(targetVersion: "7.0"),
+    dependencies: [
+        .SPM.Moya
+    ],
     testDependencies: []
 )

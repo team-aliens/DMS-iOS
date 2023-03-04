@@ -11,7 +11,6 @@ struct FetchMealListResponseDTO: Decodable {
     }
 }
 
-
 extension FetchMealListResponseDTO.SingleMealResponseDTO {
     func toDomain() -> MealEntity {
         MealEntity(
@@ -20,5 +19,11 @@ extension FetchMealListResponseDTO.SingleMealResponseDTO {
             lunch: lunch,
             dinner: dinner
         )
+    }
+}
+
+extension FetchMealListResponseDTO {
+    func toDomain() -> [MealEntity] {
+        meals.map { $0.toDomain() }
     }
 }

@@ -19,5 +19,5 @@ let dependencies = Dependencies(
                 ]
             )
         ),
-    platforms: [.iOS]
+    platforms: [.iOS, .watchOS]
 )
