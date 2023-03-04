@@ -9,7 +9,7 @@ struct DetailNoticeView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 4) {
+            VStack(alignment: .leading, spacing: 4) {
                 if let notice = state.notice {
                     Text(notice.title)
                         .dmsFont(.body(.body3))
@@ -20,12 +20,13 @@ struct DetailNoticeView: View {
                     Divider()
 
                     Text(notice.content)
-                        .lineLimit(0)
+                        .lineLimit(nil)
                 } else {
                     ProgressView()
                         .progressViewStyle(.circular)
                 }
             }
+            .padding(.horizontal, 4)
         }
     }
 }

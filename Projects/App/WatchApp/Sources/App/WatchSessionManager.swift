@@ -36,6 +36,21 @@ final class WatchSessionManager: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
 
+    func refresh(completion: @escaping () -> Void) {
+        sendMessage(message: [:]) { [weak self] reply in
+            guard let self,
+                  let accessToken = reply["accessToken"] as? String,
+                  let accessExpiredAt = reply["accessExpiredAt"] as? String
+            else {
+                return
+            }
+            self.jwtStore.save(type: .accessToken, value: accessToken)
+            self.jwtStore.save(type: .accessExpiredAt, value: accessExpiredAt)
+
+            completion()
+        }
+    }
+
     func session(
         _ session: WCSession,
         didReceiveMessage message: [String: Any],
