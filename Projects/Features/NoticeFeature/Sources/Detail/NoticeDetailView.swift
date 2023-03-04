@@ -32,6 +32,9 @@ struct NoticeDetailView: View {
                 Spacer(minLength: 83)
             }
         }
+        .refreshable {
+            viewModel.refresh()
+        }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .navigationTitle("공지")
         .navigationBarTitleDisplayMode(.inline)

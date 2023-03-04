@@ -45,6 +45,9 @@ struct StudyRoomListView: View {
                         .frame(height: 110)
                 }
             }
+            .refreshable {
+                viewModel.refresh()
+            }
             .navigationTitle("자습실 신청")
             .navigationBarTitleDisplayMode(.inline)
             .dmsBackButton(dismiss: dismiss)

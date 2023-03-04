@@ -22,6 +22,9 @@ struct RemainApplyView: View {
                 RemainApplyListView(viewModel: viewModel)
                     .padding(.horizontal, 24)
             }
+            .refreshable {
+                viewModel.refresh()
+            }
 
             DMSWideButton(
                 text: viewModel.buttonTitle,

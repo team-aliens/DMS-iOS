@@ -7,6 +7,7 @@ import SwiftUI
 final class ApplyPageViewModel: BaseViewModel {
     @Published var isNavigateToStudy: Bool = false
     @Published var isNavigateToRemain: Bool = false
+    @Published var isShowRefresh = false
 
     @Published var myRemainApplicationItem: MyRemainApplicationItemsEntity?
     @Published var myStudyRoomApplicationItems: MyStudyRoomAppItemsEntity?
@@ -56,5 +57,9 @@ final class ApplyPageViewModel: BaseViewModel {
         } onReceiveError: { [weak self] _ in
             self?.myStudyRoomApplicationItems = nil
         }
+    }
+
+    func refresh() {
+        isShowRefresh = false
     }
 }

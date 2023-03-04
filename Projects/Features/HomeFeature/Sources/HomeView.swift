@@ -63,6 +63,9 @@ struct HomeView: View {
                     .padding(.top, viewModel.isExistNewNotice ? 0 : 30)
                     Spacer()
                 }
+                .refreshable {
+                    viewModel.refresh()
+                }
             }
         }
         .onChange(of: viewModel.selectedDate) { _ in

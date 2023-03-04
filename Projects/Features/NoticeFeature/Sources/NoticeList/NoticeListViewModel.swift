@@ -8,6 +8,7 @@ import DataMappingModule
 final class NoticeListViewModel: BaseViewModel {
     @Published var noticeList: [NoticeEntity] = []
     @Published var noticeOrderType: NoticeOrderType = .new
+    @Published var isShowRefresh = false
 
     private let fetchNoticeListUseCase: any FetchNoticeListUseCase
 
@@ -30,5 +31,9 @@ final class NoticeListViewModel: BaseViewModel {
     func orderTypeButtonDidTap() {
         self.noticeOrderType = noticeOrderType == .new ? .old : .new
         onAppear()
+    }
+    
+    func refresh() {
+        isShowRefresh = false
     }
 }

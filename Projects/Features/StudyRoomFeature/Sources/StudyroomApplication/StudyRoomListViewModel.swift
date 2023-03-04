@@ -12,6 +12,7 @@ final class StudyRoomListViewModel: BaseViewModel {
     @Published var toastMessage = ""
     @Published var studyAvailableTime: StudyAvailableTimeEntity?
     @Published var isNavigateDetail: Bool = false
+    @Published var isShowRefresh = false
     @Published var studyRoomDetail: StudyRoomEntity = .init(
         id: "",
         floor: 0,
@@ -59,5 +60,9 @@ final class StudyRoomListViewModel: BaseViewModel {
         ) { [weak self] studyAvailableTime  in
             self?.studyAvailableTime = studyAvailableTime
         }
+    }
+
+    func refresh() {
+        isShowRefresh = false
     }
 }

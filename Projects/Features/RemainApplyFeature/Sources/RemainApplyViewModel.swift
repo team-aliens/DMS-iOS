@@ -9,6 +9,7 @@ final class RemainApplyViewModel: BaseViewModel {
     @Published var isShowingErrorToast = false
     @Published var isShowingToast = false
     @Published var toastMessage = ""
+    @Published var isShowRefresh = false
 
     @Published var remainsAvailableTime: RemainsAvailableTimeEntity?
     @Published var remainApplicationList = RemainApplicationListEntity(remainOptions: [])
@@ -116,5 +117,9 @@ final class RemainApplyViewModel: BaseViewModel {
     func onAppear() {
         fetchRemainsAvailableTime()
         fetchMyRemainApplicationItems()
+    }
+
+    func refresh() {
+        isShowRefresh = false
     }
 }
