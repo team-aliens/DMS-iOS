@@ -46,19 +46,22 @@ struct HomeView: View {
                         }
                     }
 
-                    Text("오늘의 급식")
-                        .dmsFont(.title(.title1), color: .GrayScale.gray7)
-                        .padding(.top, 16)
+                    VStack {
+                        Text("오늘의 급식")
+                            .dmsFont(.title(.title1), color: .GrayScale.gray7)
+                            .padding(.top, 16)
 
-                    selectDateView()
-                        .padding(.top, 24)
+                        selectDateView()
+                            .padding(.top, 24)
 
-                    MealCarouselView(
-                        meal: viewModel.selectedDateMeal,
-                        isLoading: $viewModel.isLoading
-                    )
-                    .padding(.top, 36)
-                    .padding(.bottom, 50)
+                        MealCarouselView(
+                            meal: viewModel.selectedDateMeal,
+                            isLoading: $viewModel.isLoading
+                        )
+                        .padding(.top, 36)
+                    }
+                    .padding(.top, viewModel.isExistNewNotice ? 0 : 30)
+                    Spacer()
                 }
             }
         }

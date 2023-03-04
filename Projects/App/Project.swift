@@ -59,6 +59,7 @@ let targets: [Target] = [
         platform: .iOS,
         product: .appExtension,
         bundleId: "\(Environment.organizationName).\(Environment.targetName).WidgetExtension",
+        deploymentTarget: Environment.deploymentTarget,
         infoPlist: .file(path: "AppExtension/Support/Widget-Info.plist"),
         sources: ["AppExtension/Sources/**"],
         resources: ["AppExtension/Resources/**"],
