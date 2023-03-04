@@ -12,7 +12,10 @@ struct NoticeAssembly: Assembly {
         }
 
         container.register(NoticeFactory.self) { resolver in
-            NoticeFactory(noticeRepository: resolver.resolve(NoticeRepository.self)!)
+            NoticeFactory(
+                noticeRepository: resolver.resolve(NoticeRepository.self)!,
+                detailNoticeFactory: resolver.resolve(DetailNoticeFactory.self)!
+            )
         }
     }
 }
