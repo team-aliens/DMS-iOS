@@ -21,21 +21,6 @@ struct MealView: View {
             } else {
                 Text("아이폰에서 먼저 로그인을 해주세요!")
             }
-//            TabView {
-//                Group {
-//                    if let meal = state.meal {
-//                        mealView(displayMeal: .breakfast, meals: meal.breakfast)
-//                        mealView(displayMeal: .lunch, meals: meal.lunch)
-//                        mealView(displayMeal: .dinner, meals: meal.dinner)
-//                    } else {
-//                        Text("아이폰에서 먼저 로그인을 해주세요!")
-//                    }
-//                }
-//                .rotationEffect(Angle(degrees: -90))
-//            }
-//            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//            .tabViewStyle(.page)
-//            .rotationEffect(Angle(degrees: 90))
         }
         .onAppear {
             intent.onAppear()
