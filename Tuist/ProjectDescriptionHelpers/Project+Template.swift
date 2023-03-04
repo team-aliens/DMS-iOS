@@ -10,6 +10,7 @@ public extension Project {
         packages: [Package] = [],
         deploymentTarget: DeploymentTarget? = Environment.deploymentTarget,
         dependencies: [TargetDependency] = [],
+        testDependencies: [TargetDependency] = [.SPM.Quick, .SPM.Nimble],
         sources: SourceFilesList = ["Sources/**"],
         resources: ResourceFileElements? = nil,
         demoResources: ResourceFileElements? = nil,
@@ -23,6 +24,7 @@ public extension Project {
             packages: packages,
             deploymentTarget: deploymentTarget,
             dependencies: dependencies,
+            testDependencies: testDependencies,
             sources: sources,
             resources: resources,
             demoResources: demoResources,
@@ -41,6 +43,7 @@ public extension Project {
         packages: [Package] = [],
         deploymentTarget: DeploymentTarget? = Environment.deploymentTarget,
         dependencies: [TargetDependency] = [],
+        testDependencies: [TargetDependency] = [],
         sources: SourceFilesList,
         resources: ResourceFileElements? = nil,
         demoResources: ResourceFileElements? = nil,
@@ -89,6 +92,10 @@ public extension Project {
             ]
         )
         
+        let schemes: [Scheme] = hasDemoApp
+        ? [.makeScheme(target: .dev, name: name), .makeDemoScheme(target: .dev, name: name)]
+        : [.makeScheme(target: .dev, name: name)]
+        
         let testTargetDependencies: [TargetDependency] = hasDemoApp
         ? [.target(name: "\(name)DemoApp")]
         : [.target(name: name)]
@@ -101,16 +108,9 @@ public extension Project {
             deploymentTarget: deploymentTarget,
             infoPlist: .default,
             sources: ["Tests/**"],
-            dependencies: testTargetDependencies + [
-                .SPM.Quick,
-                .SPM.Nimble
-            ]
+            dependencies: testTargetDependencies + testDependencies
         )
-        
-        let schemes: [Scheme] = hasDemoApp
-        ? [.makeScheme(target: .dev, name: name), .makeDemoScheme(target: .dev, name: name)]
-        : [.makeScheme(target: .dev, name: name)]
-        
+
         let targets: [Target] = hasDemoApp
         ? [appTarget, testTarget, demoAppTarget]
         : [appTarget, testTarget]

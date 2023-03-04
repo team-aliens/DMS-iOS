@@ -39,6 +39,7 @@ let targets: [Target] = [
         resources: ["Resources/**"],
         scripts: scripts,
         dependencies: [
+            .Project.UserInterfaces.WatchDesignSystem
         ],
         settings: .settings(base: Environment.baseSetting)
     )
