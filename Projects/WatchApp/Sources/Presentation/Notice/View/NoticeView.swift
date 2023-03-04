@@ -19,6 +19,10 @@ struct NoticeView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 4) {
+                if state.noticeList.isEmpty, !state.isLoading {
+                    Text("아이폰에서 먼저 로그인을 해주세요!")
+                }
+
                 ForEach(state.noticeList, id: \.id) { notice in
                     NavigationLink {
                         DeferView {
