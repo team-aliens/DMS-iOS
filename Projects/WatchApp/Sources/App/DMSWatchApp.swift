@@ -16,6 +16,7 @@ struct DMSWatchApp: App {
             AppAssembly()
         ], container: container)
         mainFactory = container.resolve(MainFactory.self)!
+        _ = container.resolve(WatchSessionManager.self)
     }
 
     var body: some Scene {

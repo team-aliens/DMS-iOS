@@ -17,21 +17,23 @@ struct NoticeView: View {
     }
 
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 4) {
-                if state.noticeList.isEmpty, !state.isLoading {
-                    Text("아이폰에서 먼저 로그인을 해주세요!")
-                }
-
-                ForEach(state.noticeList, id: \.id) { notice in
-                    NavigationLink {
-                        DeferView {
-                            detailNoticeFactory.makeView(noticeID: notice.id)
+        ZStack {
+            ScrollView {
+                LazyVStack(spacing: 4) {
+                    ForEach(state.noticeList, id: \.id) { notice in
+                        NavigationLink {
+                            DeferView {
+                                detailNoticeFactory.makeView(noticeID: notice.id)
+                            }
+                        } label: {
+                            noticeListView(notice: notice)
                         }
-                    } label: {
-                        noticeListView(notice: notice)
                     }
                 }
+            }
+
+            if state.noticeList.isEmpty, !state.isLoading {
+                Text("아이폰에서 먼저 로그인을 해주세요!")
             }
         }
     }

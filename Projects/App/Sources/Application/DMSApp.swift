@@ -10,16 +10,14 @@ import ApplyFeature
 struct DMSApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var appState = AppState(sceneFlow: .splash, features: .init())
-    let appComponent = AppComponent()
 
     init() {
         registerProviderFactories()
-        appDelegate.keychain = appComponent.keychain
     }
 
     var body: some Scene {
         WindowGroup {
-            appComponent.makeRootView()
+            AppComponent().makeRootView()
                 .environmentObject(appState)
         }
     }
