@@ -46,21 +46,19 @@ struct HomeView: View {
                         }
                     }
 
-                    VStack {
-                        Text("오늘의 급식")
-                            .dmsFont(.title(.title1), color: .GrayScale.gray7)
-                            .padding(.top, 16)
+                    Text("오늘의 급식")
+                        .dmsFont(.title(.title1), color: .GrayScale.gray7)
+                        .padding(.top, viewModel.isExistNewNotice ? 16 : 46)
 
-                        selectDateView()
-                            .padding(.top, 24)
+                    selectDateView()
+                        .padding(.top, 24)
 
-                        MealCarouselView(
-                            meal: viewModel.selectedDateMeal,
-                            isLoading: $viewModel.isLoading
-                        )
-                        .padding(.top, 36)
-                    }
-                    .padding(.top, viewModel.isExistNewNotice ? 0 : 30)
+                    MealCarouselView(
+                        meal: viewModel.selectedDateMeal,
+                        isLoading: $viewModel.isLoading
+                    )
+                    .padding(.top, 36)
+
                     Spacer()
                 }
             }
