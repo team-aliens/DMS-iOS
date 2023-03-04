@@ -36,6 +36,34 @@ final class WatchSessionManager: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
 
+    func session(
+        _ session: WCSession,
+        didReceiveMessage message: [String: Any],
+        replyHandler: @escaping ([String: Any]) -> Void
+    ) {
+        guard let accessToken = message["accessToken"] as? String,
+              let accessExpiredAt = message["accessExpiredAt"] as? String
+        else {
+            return
+        }
+        self.jwtStore.save(type: .accessToken, value: accessToken)
+        self.jwtStore.save(type: .accessExpiredAt, value: accessExpiredAt)
+    }
+
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        guard session.isReachable else { return }
+        sendMessage(message: [:]) { [weak self] reply in
+            guard let self,
+                  let accessToken = reply["accessToken"] as? String,
+                  let accessExpiredAt = reply["accessExpiredAt"] as? String
+            else {
+                return
+            }
+            self.jwtStore.save(type: .accessToken, value: accessToken)
+            self.jwtStore.save(type: .accessExpiredAt, value: accessExpiredAt)
+        }
+    }
+
     func sendMessage(
         message: [String: Any],
         reply: @escaping ([String: Any]) -> Void,

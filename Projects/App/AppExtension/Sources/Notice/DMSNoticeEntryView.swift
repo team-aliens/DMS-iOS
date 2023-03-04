@@ -24,7 +24,7 @@ struct DMSNoticeEntryView: View {
 
         case .systemMedium:
             MediumDMSNoticeWidgetView(entry: entry)
-            
+
         default:
             EmptyView()
         }

@@ -11,6 +11,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        self.session = .default
+        if WCSession.isSupported() {
+            session.delegate = self
+            session.activate()
+        }
         return true
     }
 }
@@ -49,7 +54,9 @@ extension AppDelegate: WCSessionDelegate {
             "accessToken": keychain.load(type: .accessToken),
             "accessExpiredAt": keychain.load(type: .accessExpiredAt)
         ]
-        sendMessage(message: message) { _ in }
+        sendMessage(message: message) { _ in } error: { error in
+            print(error.localizedDescription)
+        }
     }
 }
 

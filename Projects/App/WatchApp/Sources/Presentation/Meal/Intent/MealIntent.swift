@@ -4,13 +4,16 @@ import WatchRestAPIModule
 final class MealIntent: MealIntentProtocol {
     private weak var model: (any MealActionProtocol)?
     private let mealRepository: any MealRepository
+    private let watchSessionManager: WatchSessionManager
 
     init(
         model: any MealActionProtocol,
-        mealRepository: any MealRepository
+        mealRepository: any MealRepository,
+        watchSessionManager: WatchSessionManager
     ) {
         self.model = model
         self.mealRepository = mealRepository
+        self.watchSessionManager = watchSessionManager
     }
 
     func onAppear() {
@@ -19,7 +22,8 @@ final class MealIntent: MealIntentProtocol {
             do {
                 let currentDate = Date()
                 let mealList = try await mealRepository.fetchMealList(date: currentDate)
-                let todayMeal = mealList.filter { $0.date.compare(currentDate) == .orderedSame }
+                let todayMeal = mealList
+                    .filter { $0.date.toSmallDMSString() == currentDate.toSmallDMSString() }
                     .first
                 model?.updateMeal(meal: todayMeal)
             } catch {

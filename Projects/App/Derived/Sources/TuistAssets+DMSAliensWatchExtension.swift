@@ -19,14 +19,14 @@
 // MARK: - Asset Catalogs
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
-public enum DMSAliensAsset {
-  public static let accentColor = DMSAliensColors(name: "AccentColor")
+public enum DMSAliensWatchExtensionAsset {
+  public static let accentColor = DMSAliensWatchExtensionColors(name: "AccentColor")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
 // MARK: - Implementation Details
 
-public final class DMSAliensColors {
+public final class DMSAliensWatchExtensionColors {
   public fileprivate(set) var name: String
 
   #if os(macOS)
@@ -55,10 +55,10 @@ public final class DMSAliensColors {
   }
 }
 
-public extension DMSAliensColors.Color {
+public extension DMSAliensWatchExtensionColors.Color {
   @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
-  convenience init?(asset: DMSAliensColors) {
-    let bundle = DMSAliensResources.bundle
+  convenience init?(asset: DMSAliensWatchExtensionColors) {
+    let bundle = DMSAliensWatchExtensionResources.bundle
     #if os(iOS) || os(tvOS)
     self.init(named: asset.name, in: bundle, compatibleWith: nil)
     #elseif os(macOS)
@@ -72,8 +72,8 @@ public extension DMSAliensColors.Color {
 #if canImport(SwiftUI)
 public extension SwiftUI.Color {
   @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
-  init(asset: DMSAliensColors) {
-    let bundle = DMSAliensResources.bundle
+  init(asset: DMSAliensWatchExtensionColors) {
+    let bundle = DMSAliensWatchExtensionResources.bundle
     self.init(asset.name, bundle: bundle)
   }
 }

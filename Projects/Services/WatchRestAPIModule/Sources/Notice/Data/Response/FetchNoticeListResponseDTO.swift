@@ -1,5 +1,6 @@
 import Foundation
 
+// swiftlint: disable nesting
 struct FetchNoticeListResponseDTO: Decodable {
     let notices: [SingleNoticeResponseDTO]
 

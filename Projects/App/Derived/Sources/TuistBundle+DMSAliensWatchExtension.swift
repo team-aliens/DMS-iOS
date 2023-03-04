@@ -8,14 +8,14 @@ import Foundation
 private class BundleFinder {}
 
 extension Foundation.Bundle {
-    /// Since DMS-AliensWatch is a watch 2 extension, the bundle for classes within this module can be used directly.
+    /// Since DMS-AliensWatchExtension is a watch 2 extension, the bundle for classes within this module can be used directly.
     static let module = Bundle(for: BundleFinder.self)
 }
 
 // MARK: - Objective-C Bundle Accessor
 
 @objc
-public class DMSAliensResources: NSObject {
+public class DMSAliensWatchExtensionResources: NSObject {
     @objc public class var bundle: Bundle {
         return .module
     }

@@ -12,7 +12,10 @@ struct MealAssembly: Assembly {
         }
 
         container.register(MealFactory.self) { resolver in
-            MealFactory(mealRepository: resolver.resolve(MealRepository.self)!)
+            MealFactory(
+                mealRepository: resolver.resolve(MealRepository.self)!,
+                watchSessionManager: resolver.resolve(WatchSessionManager.self)!
+            )
         }
     }
 }
