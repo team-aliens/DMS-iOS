@@ -54,8 +54,7 @@ struct StudyRoomListView: View {
             .dmsBackground()
             .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
             .onAppear {
-                viewModel.fetchStudyRoomList()
-                viewModel.fetchStudyAvailableTime()
+                viewModel.onAppear()
             }
             .onChange(of: viewModel.isNavigateDetail) { newValue in
                 withAnimation {

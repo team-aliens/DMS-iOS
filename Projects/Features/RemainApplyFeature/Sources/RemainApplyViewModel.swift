@@ -103,6 +103,7 @@ final class RemainApplyViewModel: BaseViewModel {
         } onReceiveError: { [weak self] _ in
             self?.toastMessage = "잔류 신청 시간이 아닙니다."
             self?.isShowingErrorToast = true
+            self?.isShowRefresh = false
         }
     }
 
@@ -120,6 +121,7 @@ final class RemainApplyViewModel: BaseViewModel {
     }
 
     func refresh() {
-        isShowRefresh = false
+        fetchRemainsAvailableTime()
+        fetchMyRemainApplicationItems()
     }
 }

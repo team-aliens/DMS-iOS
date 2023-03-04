@@ -62,7 +62,14 @@ final class StudyRoomListViewModel: BaseViewModel {
         }
     }
 
+    func onAppear() {
+        fetchStudyRoomList()
+        fetchStudyAvailableTime()
+    }
+
     func refresh() {
+        fetchStudyRoomList()
+        fetchStudyAvailableTime()
         isShowRefresh = false
     }
 }

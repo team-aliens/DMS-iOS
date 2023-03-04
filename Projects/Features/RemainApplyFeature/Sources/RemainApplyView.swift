@@ -25,7 +25,6 @@ struct RemainApplyView: View {
             .refreshable {
                 viewModel.refresh()
             }
-
             DMSWideButton(
                 text: viewModel.buttonTitle,
                 style: .contained,

@@ -156,7 +156,6 @@ struct MyPageView: View {
 
                 Spacer()
             }
-            
             .padding(.horizontal, 24)
             .navigationTitle("마이페이지")
             .navigationBarTitleDisplayMode(.inline)

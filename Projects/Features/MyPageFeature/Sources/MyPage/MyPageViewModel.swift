@@ -69,9 +69,15 @@ final class MyPageViewModel: BaseViewModel {
             self?.isSuccessLogout = true
         }
     }
-    
+
     func refresh() {
-        isShowRefresh = false
+        addCancellable(
+            fetchMyProfileUseCase.execute()
+        ) { [weak self] profile in
+            self?.isShowRefresh = false
+            self?.profile = profile
+            self?.convertSexType()
+        }
     }
 
     enum SexType: String {
