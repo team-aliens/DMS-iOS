@@ -8,6 +8,7 @@ public extension Project {
         platform: Platform = .iOS,
         product: Product,
         packages: [Package] = [],
+        deploymentTarget: DeploymentTarget? = Environment.deploymentTarget,
         dependencies: [TargetDependency] = [],
         sources: SourceFilesList = ["Sources/**"],
         resources: ResourceFileElements? = nil,
@@ -20,9 +21,11 @@ public extension Project {
             platform: platform,
             product: product,
             packages: packages,
+            deploymentTarget: deploymentTarget,
             dependencies: dependencies,
             sources: sources,
             resources: resources,
+            demoResources: demoResources,
             infoPlist: infoPlist,
             hasDemoApp: hasDemoApp
         )
@@ -109,8 +112,8 @@ public extension Project {
         : [.makeScheme(target: .dev, name: name)]
         
         let targets: [Target] = hasDemoApp
-        ? [appTarget, testTarget, demoAppTarget]
-        : [appTarget, testTarget]
+        ? [appTarget, demoAppTarget]
+        : [appTarget]
         
         return Project(
             name: name,

@@ -30,17 +30,15 @@ let targets: [Target] = [
     .init(
         name: "\(Environment.targetName)Watch",
         platform: .watchOS,
-        product: .watch2App,
+        product: .watch2Extension,
         productName: Environment.appName,
-        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp",
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitextension",
         deploymentTarget: .watchOS(targetVersion: "8.0"),
 //        infoPlist: .file(path: "Support/Info.plist"),
         sources: ["Sources/**"],
         resources: ["Resources/**"],
         scripts: scripts,
         dependencies: [
-            .Project.Service.Data,
-            .Project.UserInterfaces.DesignSystem
         ],
         settings: .settings(base: Environment.baseSetting)
     )
