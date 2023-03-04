@@ -2,7 +2,7 @@ import Foundation
 import WatchRestAPIModule
 
 final class MealModel: ObservableObject, MealStateProtocol {
-    @Published var meal: MealEntity? = nil
+    @Published var meal: MealEntity?
     @Published var isLoading: Bool = false
     @Published var isError: Bool = false
 }
