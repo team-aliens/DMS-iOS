@@ -83,7 +83,7 @@ private extension BaseRemoteDataSource {
     }
 
     func checkTokenIsExpired() -> Bool {
-        let expired = jwtStore.load(type: .accessExpiredAt).toSmallDMSDate()
+        let expired = jwtStore.load(type: .accessExpiredAt).toDMSDate()
         return Date() > expired
     }
 }
