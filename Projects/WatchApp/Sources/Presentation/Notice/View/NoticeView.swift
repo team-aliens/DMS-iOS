@@ -4,9 +4,18 @@ import WatchDesignSystem
 
 struct NoticeView: View {
     @StateObject var container: MVIContainer<NoticeIntentProtocol, NoticeStateProtocol>
+    private let detailNoticeFactory: DetailNoticeFactory
     private var intent: any NoticeIntentProtocol { container.intent }
     private var state: any NoticeStateProtocol { container.model }
-    
+
+    init(
+        container: MVIContainer<NoticeIntentProtocol, NoticeStateProtocol>,
+        detailNoticeFactory: DetailNoticeFactory
+    ) {
+        _container = StateObject(wrappedValue: container)
+        self.detailNoticeFactory = detailNoticeFactory
+    }
+
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 4) {

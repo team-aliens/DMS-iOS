@@ -6,7 +6,7 @@ struct DetailNoticeView: View {
     @StateObject var container: MVIContainer<DetailNoticeIntentProtocol, DetailNoticeStateProtocol>
     private var intent: any DetailNoticeIntentProtocol { container.intent }
     private var state: any DetailNoticeStateProtocol { container.model }
-    
+
     var body: some View {
         ScrollView {
             VStack(spacing: 4) {

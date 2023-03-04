@@ -21,6 +21,9 @@ struct NoticeFactory {
             model: model as NoticeStateProtocol,
             modelChangePublisher: model.objectWillChange
         )
-        return NoticeView(container: container)
+        return NoticeView(
+            container: container,
+            detailNoticeFactory: detailNoticeFactory
+        )
     }
 }
