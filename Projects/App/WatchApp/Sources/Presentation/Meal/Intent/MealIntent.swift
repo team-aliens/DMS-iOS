@@ -32,18 +32,4 @@ final class MealIntent: MealIntentProtocol {
             model?.updateIsLoading(isLoading: false)
         }
     }
-
-    func refresh() {
-        Task {
-            do {
-                let currentDate = Date()
-                let mealList = try await mealRepository.fetchMealList(date: currentDate)
-                let todayMeal = mealList.filter { $0.date.compare(currentDate) == .orderedSame }
-                    .first
-                model?.updateMeal(meal: todayMeal)
-            } catch {
-                model?.updateIsError(isError: true)
-            }
-        }
-    }
 }
