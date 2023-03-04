@@ -36,13 +36,17 @@ struct NoticeView: View {
                 Text("아이폰에서 먼저 로그인을 해주세요!")
             }
         }
+        .onAppear {
+            intent.onAppear()
+        }
     }
 
     @ViewBuilder
     func noticeListView(notice: NoticeEntity) -> some View {
         HStack {
-            VStack {
+            VStack(alignment: .leading) {
                 Text(notice.title)
+                    .multilineTextAlignment(.leading)
                     .dmsFont(.etc(.caption))
 
                 Text(notice.createdAt.toSmallDMSString())
