@@ -11,6 +11,7 @@ struct DMSWatchApp: App {
         assembler = Assembler([
             MealAssembly(),
             NoticeAssembly(),
+            DetailNoticeAssembly(),
             MainAssembly(),
             AppAssembly()
         ], container: container)
