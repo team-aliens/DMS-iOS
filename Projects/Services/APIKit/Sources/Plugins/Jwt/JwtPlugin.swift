@@ -22,6 +22,20 @@ public struct JwtPlugin: PluginType {
         req.addValue(token, forHTTPHeaderField: jwtTokenType.rawValue)
         return req
     }
+
+    public func didReceive(
+        _ result: Result<Response, MoyaError>,
+        target: TargetType
+    ) {
+        switch result {
+        case let .success(res):
+            if let new = try? res.map(TokenDTO.self) {
+                saveToken(token: new)
+            }
+        default:
+            break
+        }
+    }
 }
 
 private extension JwtPlugin {
