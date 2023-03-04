@@ -3,9 +3,14 @@ import WatchRestAPIModule
 
 struct NoticeFactory {
     private let noticeRepository: any NoticeRepository
+    private let detailNoticeFactory: DetailNoticeFactory
 
-    init(noticeRepository: any NoticeRepository) {
+    init(
+        noticeRepository: any NoticeRepository,
+        detailNoticeFactory: DetailNoticeFactory
+    ) {
         self.noticeRepository = noticeRepository
+        self.detailNoticeFactory = detailNoticeFactory
     }
 
     func makeView() -> some View {
