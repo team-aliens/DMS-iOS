@@ -23,8 +23,7 @@ let watchSettings: Settings = .settings(
     base: Environment.watchSetting
 )
 
-let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .needle]
-let watchScripts: [TargetScript] = isCI ? [] : [.swiftLint]
+let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .widgetNeedle, .needle]
 let widgetScripts: [TargetScript] = isCI ? [] : [.widgetNeedle]
 
 let targets: [Target] = [
@@ -43,8 +42,7 @@ let targets: [Target] = [
         dependencies: [
             .Project.Features.RootFeature,
             .Project.Service.Data,
-            .target(name: "\(Environment.appName)Widget"),
-            .target(name: "\(Environment.appName)WatchApp")
+            .target(name: "\(Environment.appName)Widget")
         ],
         settings: .settings(base: Environment.baseSetting)
     ),
@@ -75,39 +73,6 @@ let targets: [Target] = [
             .Project.UserInterfaces.DesignSystem,
             .Project.Service.Data,
             .SPM.Needle
-        ]
-    ),
-    .init(
-        name: "\(Environment.targetName)WatchApp",
-        platform: .watchOS,
-        product: .app,
-        bundleId: "\(Environment.organizationName).\(Environment.targetName).WatchApp",
-        infoPlist: nil,
-        sources: ["WatchApp/Sources/**"],
-        resources: ["WatchApp/Resources/**"],
-        scripts: watchScripts,
-        dependencies: [
-            .target(name: "\(Environment.targetName)WatchAppExtension")
-        ],
-        settings: .settings(base: Environment.watchSetting)
-    ),
-    .init(
-        name: "\(Environment.targetName)WatchAppExtension",
-        platform: .watchOS,
-        product: .appExtension,
-        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchAppExtension",
-        infoPlist: .extendingDefault(with: [
-            "CFBundleDisplayName": "$(PRODUCT_NAME)",
-            "NSExtension": [
-                "NSExtensionPointIdentifier": "com.apple.widgetkit-extension",
-            ],
-        ]),
-        sources: "WatchAppExtension/Sources/**",
-        resources: "WatchAppExtension/Resources/**",
-        scripts: watchScripts,
-        dependencies: [
-            .Project.UserInterfaces.DesignSystem,
-            .Project.Service.Data
         ]
     )
 ]
