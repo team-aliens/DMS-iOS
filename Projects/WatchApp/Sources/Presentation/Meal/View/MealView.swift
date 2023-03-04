@@ -37,6 +37,11 @@ struct MealView: View {
                 Text(displayMeal.display)
                     .dmsFont(.etc(.caption))
             }
+
+            ForEach(meals, id: \.self) { meal in
+                Text(meal)
+                    .dmsFont(.etc(.caption))
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(8)
