@@ -25,15 +25,4 @@ final class NoticeIntent: NoticeIntentProtocol {
             model?.updateIsLoading(isLoading: false)
         }
     }
-
-    func refresh() {
-        Task {
-            do {
-                let noticeList = try await noticeRepository.fetchNoticeList(order: .new)
-                model?.updateNoticeList(noticeList: noticeList)
-            } catch {
-                model?.updateIsError(isError: true)
-            }
-        }
-    }
 }
