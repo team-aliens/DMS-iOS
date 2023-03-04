@@ -39,11 +39,4 @@ private extension JwtPlugin {
             return jwtStore.load(type: .refreshExpiredAt)
         }
     }
-
-    func saveToken(token: TokenDTO) {
-        jwtStore.save(type: .accessToken, value: token.accessToken)
-        jwtStore.save(type: .refreshToken, value: token.refreshToken)
-        jwtStore.save(type: .accessExpiredAt, value: token.accessExpiredAt)
-        jwtStore.save(type: .refreshExpiredAt, value: token.refreshExpiredAt)
-    }
 }
