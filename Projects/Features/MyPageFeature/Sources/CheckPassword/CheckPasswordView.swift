@@ -8,7 +8,6 @@ struct CheckPasswordView: View {
     let modifyPasswordComponent: ModifyPasswordComponent
     @Environment(\.dismiss) var dismiss
     @Environment(\.rootPresentationMode) var rootPresentationMode
-    @Environment(\.tabbarHidden) var tabbarHidden
 
     init(
         viewModel: CheckPasswordViewModel,
