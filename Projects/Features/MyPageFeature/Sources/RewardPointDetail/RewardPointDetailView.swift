@@ -48,6 +48,9 @@ struct RewardPointDetailView: View {
                             .padding(.horizontal, 24)
                     }
                 }
+
+                Spacer()
+                    .frame(height: 20)
             }
             .frame(maxWidth: .infinity)
         }

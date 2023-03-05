@@ -40,6 +40,9 @@ struct StudyRoomListView: View {
                         }
                     }
                     .padding(.horizontal, 24)
+
+                    Spacer()
+                        .frame(height: 10)
                 }
             }
         }
