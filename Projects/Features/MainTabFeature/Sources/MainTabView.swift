@@ -11,7 +11,6 @@ import Utility
 struct MainTabView: View {
     @State var selection: TabFlow = .home
     @State var tabbarHidden = false
-    @State var widgetLinkText = ""
 
     @EnvironmentObject var appState: AppState
 
