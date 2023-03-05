@@ -19,7 +19,7 @@ struct MainTabView: View {
             ("megaphone", "안내", .notice),
             ("person", "마이페이지", .myPage)
         ]
-        if appState.features.studyRoomService {
+        if appState.features.studyRoomService || appState.features.remainService {
             tabItems.insert(("plus.bubble", "신청", .apply), at: 1)
         }
         return tabItems
@@ -48,7 +48,7 @@ struct MainTabView: View {
                 homeComponent.makeView()
                     .tag(TabFlow.home)
 
-                if appState.features.studyRoomService {
+                if appState.features.studyRoomService || appState.features.remainService {
                     applyPageComponent.makeView()
                         .tag(TabFlow.apply)
                 }

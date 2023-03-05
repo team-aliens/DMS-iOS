@@ -160,6 +160,9 @@ struct MyPageView: View {
             .navigationTitle("마이페이지")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .refreshable {
+            viewModel.refresh()
+        }
         .dmsBackground()
         .onAppear(perform: viewModel.onAppear)
         .alert("", isPresented: $viewModel.isPresentedLogoutAlert) {

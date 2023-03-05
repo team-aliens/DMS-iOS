@@ -54,6 +54,9 @@ struct NoticeListView: View {
                     }
                     .padding(.horizontal, 24)
                 }
+                .refreshable {
+                    viewModel.refresh()
+                }
             }
             .navigationTitle("공지")
             .navigationBarTitleDisplayMode(.inline)
