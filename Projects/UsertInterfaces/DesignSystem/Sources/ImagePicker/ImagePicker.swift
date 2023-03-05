@@ -6,6 +6,7 @@ public extension View {
         self
             .fullScreenCover(isPresented: isShow) {
                 ImagePicker(configuration: .init(photoLibrary: .shared()), requests: uiImage)
+                    .ignoresSafeArea()
             }
     }
 }
