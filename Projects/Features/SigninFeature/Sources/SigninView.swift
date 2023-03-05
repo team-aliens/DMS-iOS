@@ -62,7 +62,7 @@ struct SigninView: View {
                 }
                 .padding(.top, 56)
 
-                HStack(spacing: 16) {
+                HStack {
                     HStack(spacing: 12) {
                         DMSCheckBox(isOn: $viewModel.isOnAutoSignin)
 
@@ -100,6 +100,7 @@ struct SigninView: View {
                     }
                 }
                 .padding(.top, 16)
+                .padding(.trailing, 1)
 
                 Spacer()
 

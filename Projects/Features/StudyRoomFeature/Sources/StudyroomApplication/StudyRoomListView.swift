@@ -35,35 +35,36 @@ struct StudyRoomListView: View {
                             viewModel.studyRoomDetail = studyRoomList
                         } label: {
                             StudyRoomListCellView(studyRoomEntity: studyRoomList)
-                                .padding(.top, 5)
+                                .padding(.top, 10)
                                 .padding(.bottom, 10)
                         }
                     }
                     .padding(.horizontal, 24)
 
                     Spacer()
-                        .frame(height: 110)
+                        .frame(height: 10)
                 }
             }
-            .navigationTitle("자습실 신청")
-            .navigationBarTitleDisplayMode(.inline)
-            .dmsBackButton(dismiss: dismiss)
-            .dmsBackground()
-            .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
-            .onAppear {
-                viewModel.fetchStudyRoomList()
-                viewModel.fetchStudyAvailableTime()
-            }
-            .onChange(of: viewModel.isNavigateDetail) { newValue in
-                withAnimation {
-                    tabbarHidden.wrappedValue = newValue
-                }
-            }
-            .navigate(
-                to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),
-                when: $viewModel.isNavigateDetail
-            )
-            .navigationViewStyle(.stack)
         }
+        .refreshable {
+            viewModel.refresh()
+        }
+        .navigationTitle("자습실 신청")
+        .navigationBarTitleDisplayMode(.inline)
+        .dmsBackButton(dismiss: dismiss)
+        .dmsBackground()
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .onAppear {
+            viewModel.onAppear()
+        }
+        .onChange(of: viewModel.isNavigateDetail) { newValue in
+            withAnimation {
+                tabbarHidden.wrappedValue = newValue
+            }
+        }
+        .navigate(
+            to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),
+            when: $viewModel.isNavigateDetail
+        )
     }
 }
