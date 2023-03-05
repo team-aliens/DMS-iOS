@@ -82,7 +82,6 @@ struct MainTabView: View {
         }
         .environment(\.dmsSelectionTabbKey, $selection)
         .onOpenURL { url in
-            widgetLinkText = url.absoluteString
             self.selection = url.absoluteString.toTabFlow()
         }
     }
