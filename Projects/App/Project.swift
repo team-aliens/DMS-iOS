@@ -92,7 +92,7 @@ let targets: [Target] = [
         productName: "\(Environment.appName)WatchExtension",
         bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp.extension",
         deploymentTarget: .watchOS(targetVersion: "7.0"),
-        infoPlist: .file(path: "WatchApp/Support/Info.plist"),
+        infoPlist: .file(path: "WatchApp/Support/Extension-Info.plist"),
         sources: ["WatchApp/Sources/**"],
         resources: ["WatchApp/Resources/**"],
         scripts: scripts,
