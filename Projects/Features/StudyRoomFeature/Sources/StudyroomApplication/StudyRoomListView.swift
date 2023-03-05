@@ -35,7 +35,7 @@ struct StudyRoomListView: View {
                             viewModel.studyRoomDetail = studyRoomList
                         } label: {
                             StudyRoomListCellView(studyRoomEntity: studyRoomList)
-                                .padding(.top, 5)
+                                .padding(.top, 10)
                                 .padding(.bottom, 10)
                         }
                     }
