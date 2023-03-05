@@ -62,9 +62,6 @@ struct StudyRoomListView: View {
                 tabbarHidden.wrappedValue = newValue
             }
         }
-        .dmsBackButton(dismiss: dismiss)
-        .dmsBackground()
-        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .navigate(
             to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),
             when: $viewModel.isNavigateDetail
