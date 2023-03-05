@@ -27,6 +27,7 @@ public extension TargetDependency.Project.Features {
 }
 
 public extension TargetDependency.Project.Module {
+    static let WebCredentialsManager = TargetDependency.module(name: "WebCredentialsManager")
     static let KeychainModule = TargetDependency.module(name: "KeychainModule")
     static let ErrorModule = TargetDependency.module(name: "ErrorModule")
     static let FeatureThirdPartyLib = TargetDependency.module(name: "FeatureThirdPartyLib")

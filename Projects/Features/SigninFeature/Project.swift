@@ -8,6 +8,7 @@ let project = Project.makeModule(
         .Project.Features.BaseFeature,
         .Project.Features.SignupFeature,
         .Project.Features.FindIDFeature,
-        .Project.Features.RenewalPasswordFeature
+        .Project.Features.RenewalPasswordFeature,
+        .Project.Module.WebCredentialsManager
     ]
 )
