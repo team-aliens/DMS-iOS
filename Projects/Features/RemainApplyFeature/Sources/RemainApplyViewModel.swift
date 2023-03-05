@@ -9,7 +9,6 @@ final class RemainApplyViewModel: BaseViewModel {
     @Published var isShowingErrorToast = false
     @Published var isShowingToast = false
     @Published var toastMessage = ""
-    @Published var isShowRefresh = false
 
     @Published var remainsAvailableTime: RemainsAvailableTimeEntity?
     @Published var remainApplicationList = RemainApplicationListEntity(remainOptions: [])
@@ -103,7 +102,6 @@ final class RemainApplyViewModel: BaseViewModel {
         } onReceiveError: { [weak self] _ in
             self?.toastMessage = "잔류 신청 시간이 아닙니다."
             self?.isShowingErrorToast = true
-            self?.isShowRefresh = false
         }
     }
 

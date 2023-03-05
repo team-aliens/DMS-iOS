@@ -8,7 +8,6 @@ import DataMappingModule
 final class NoticeListViewModel: BaseViewModel {
     @Published var noticeList: [NoticeEntity] = []
     @Published var noticeOrderType: NoticeOrderType = .new
-    @Published var isShowRefresh = false
 
     private let fetchNoticeListUseCase: any FetchNoticeListUseCase
 
@@ -40,7 +39,6 @@ final class NoticeListViewModel: BaseViewModel {
             )
         ) { [weak self]  noticeList in
             self?.noticeList = noticeList
-            self?.isShowRefresh = false
         }
     }
 }

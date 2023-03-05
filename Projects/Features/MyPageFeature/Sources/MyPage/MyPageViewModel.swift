@@ -11,7 +11,6 @@ final class MyPageViewModel: BaseViewModel {
     @Published var isPresentedWithdrawalAlert = false
     @Published var isSuccessLogout = false
     @Published var sexType: SexType?
-    @Published var isShowRefresh = false
 
     private let fetchMyProfileUseCase: any FetchMyProfileUseCase
     private let logoutUseCase: any LogoutUseCase
@@ -74,7 +73,6 @@ final class MyPageViewModel: BaseViewModel {
         addCancellable(
             fetchMyProfileUseCase.execute()
         ) { [weak self] profile in
-            self?.isShowRefresh = false
             self?.profile = profile
             self?.convertSexType()
         }
