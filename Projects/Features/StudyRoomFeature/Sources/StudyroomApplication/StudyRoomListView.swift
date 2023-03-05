@@ -66,6 +66,5 @@ struct StudyRoomListView: View {
             to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),
             when: $viewModel.isNavigateDetail
         )
-        .navigationViewStyle(.stack)
     }
 }
