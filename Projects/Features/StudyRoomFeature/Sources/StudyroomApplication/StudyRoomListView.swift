@@ -35,14 +35,14 @@ struct StudyRoomListView: View {
                             viewModel.studyRoomDetail = studyRoomList
                         } label: {
                             StudyRoomListCellView(studyRoomEntity: studyRoomList)
-                                .padding(.top, 5)
+                                .padding(.top, 10)
                                 .padding(.bottom, 10)
                         }
                     }
                     .padding(.horizontal, 24)
 
                     Spacer()
-                        .frame(height: 110)
+                        .frame(height: 10)
                 }
             }
         }
