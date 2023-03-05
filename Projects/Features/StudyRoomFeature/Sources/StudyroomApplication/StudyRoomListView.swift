@@ -45,14 +45,16 @@ struct StudyRoomListView: View {
                         .frame(height: 110)
                 }
             }
+            .refreshable {
+                viewModel.refresh()
+            }
             .navigationTitle("자습실 신청")
             .navigationBarTitleDisplayMode(.inline)
             .dmsBackButton(dismiss: dismiss)
             .dmsBackground()
             .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
             .onAppear {
-                viewModel.fetchStudyRoomList()
-                viewModel.fetchStudyAvailableTime()
+                viewModel.onAppear()
             }
             .onChange(of: viewModel.isNavigateDetail) { newValue in
                 withAnimation {
