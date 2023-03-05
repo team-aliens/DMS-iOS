@@ -62,6 +62,9 @@ struct ApplyPageView: View {
                     }
                     .padding(.horizontal, 24)
                 }
+                .refreshable {
+                    viewModel.refresh()
+                }
             }
             .navigationTitle("신청")
             .navigationBarTitleDisplayMode(.inline)

@@ -31,4 +31,14 @@ final class NoticeListViewModel: BaseViewModel {
         self.noticeOrderType = noticeOrderType == .new ? .old : .new
         onAppear()
     }
+
+    func refresh() {
+        addCancellable(
+            fetchNoticeListUseCase.execute(
+                order: noticeOrderType
+            )
+        ) { [weak self]  noticeList in
+            self?.noticeList = noticeList
+        }
+    }
 }

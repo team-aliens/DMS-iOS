@@ -60,4 +60,14 @@ final class StudyRoomListViewModel: BaseViewModel {
             self?.studyAvailableTime = studyAvailableTime
         }
     }
+
+    func onAppear() {
+        fetchStudyRoomList()
+        fetchStudyAvailableTime()
+    }
+
+    func refresh() {
+        fetchStudyRoomList()
+        fetchStudyAvailableTime()
+    }
 }

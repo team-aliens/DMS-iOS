@@ -117,4 +117,9 @@ final class RemainApplyViewModel: BaseViewModel {
         fetchRemainsAvailableTime()
         fetchMyRemainApplicationItems()
     }
+
+    func refresh() {
+        fetchRemainsAvailableTime()
+        fetchMyRemainApplicationItems()
+    }
 }
