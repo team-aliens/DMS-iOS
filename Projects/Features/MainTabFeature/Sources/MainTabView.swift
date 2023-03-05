@@ -11,6 +11,7 @@ import Utility
 struct MainTabView: View {
     @State var selection: TabFlow = .home
     @State var tabbarHidden = false
+
     @EnvironmentObject var appState: AppState
 
     var tabItem: [(String, String, TabFlow)] {
@@ -80,6 +81,9 @@ struct MainTabView: View {
             UITabBar.hideTabBar()
         }
         .environment(\.dmsSelectionTabbKey, $selection)
+        .onOpenURL { url in
+            self.selection = url.absoluteString.toTabFlow()
+        }
     }
 
     @ViewBuilder
