@@ -57,7 +57,7 @@ final class ApplyPageViewModel: BaseViewModel {
             self?.myStudyRoomApplicationItems = nil
         }
     }
-    
+
     func onAppear() {
         fetchMyRemainApplicationItems()
         fetchMyStudyRoomApplicationItems()
