@@ -530,6 +530,7 @@ private func factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5(_ component: Needle
 #else
 extension AppComponent: Registration {
     public func registerItems() {
+
         localTable["keychain-any Keychain"] = { [unowned self] in self.keychain as Any }
         localTable["remoteStudyRoomsDataSource-any RemoteStudyRoomsDataSource"] = { [unowned self] in self.remoteStudyRoomsDataSource as Any }
         localTable["studyRoomsRepository-any StudyRoomsRepository"] = { [unowned self] in self.studyRoomsRepository as Any }
