@@ -69,6 +69,15 @@ final class MyPageViewModel: BaseViewModel {
         }
     }
 
+    func refresh() {
+        addCancellable(
+            fetchMyProfileUseCase.execute()
+        ) { [weak self] profile in
+            self?.profile = profile
+            self?.convertSexType()
+        }
+    }
+
     enum SexType: String {
         case male = "남"
         case female = "여"
