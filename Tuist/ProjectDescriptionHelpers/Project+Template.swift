@@ -8,7 +8,9 @@ public extension Project {
         platform: Platform = .iOS,
         product: Product,
         packages: [Package] = [],
+        deploymentTarget: DeploymentTarget? = Environment.deploymentTarget,
         dependencies: [TargetDependency] = [],
+        testDependencies: [TargetDependency] = [.SPM.Quick, .SPM.Nimble],
         sources: SourceFilesList = ["Sources/**"],
         resources: ResourceFileElements? = nil,
         demoResources: ResourceFileElements? = nil,
@@ -20,9 +22,12 @@ public extension Project {
             platform: platform,
             product: product,
             packages: packages,
+            deploymentTarget: deploymentTarget,
             dependencies: dependencies,
+            testDependencies: testDependencies,
             sources: sources,
             resources: resources,
+            demoResources: demoResources,
             infoPlist: infoPlist,
             hasDemoApp: hasDemoApp
         )
@@ -38,19 +43,20 @@ public extension Project {
         packages: [Package] = [],
         deploymentTarget: DeploymentTarget? = Environment.deploymentTarget,
         dependencies: [TargetDependency] = [],
+        testDependencies: [TargetDependency] = [],
         sources: SourceFilesList,
         resources: ResourceFileElements? = nil,
         demoResources: ResourceFileElements? = nil,
         infoPlist: InfoPlist,
         hasDemoApp: Bool = false
     ) -> Project {
-        let isForDev = (ProcessInfo.processInfo.environment["TUIST_DEV"] ?? "0") == "1" ? true : false
-        let scripts: [TargetScript] = isForDev ? [.swiftLint] : []
+        let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? true : false
+        let scripts: [TargetScript] = isCI ? [] : [.swiftLint]
         let settings: Settings = .settings(
             base: Environment.baseSetting,
             configurations: [
-                .debug(name: .debug),
-                .release(name: .release)
+                .debug(name: .dev, xcconfig: isCI ? nil : .relativeToXCConfig(type: .dev, name: name)),
+                .release(name: .prod, xcconfig: isCI ? nil : .relativeToXCConfig(type: .prod, name: name))
             ], defaultSettings: .recommended)
         let appTarget = Target(
             name: name,
@@ -86,6 +92,10 @@ public extension Project {
             ]
         )
         
+        let schemes: [Scheme] = hasDemoApp
+        ? [.makeScheme(target: .dev, name: name), .makeDemoScheme(target: .dev, name: name)]
+        : [.makeScheme(target: .dev, name: name)]
+        
         let testTargetDependencies: [TargetDependency] = hasDemoApp
         ? [.target(name: "\(name)DemoApp")]
         : [.target(name: name)]
@@ -98,16 +108,9 @@ public extension Project {
             deploymentTarget: deploymentTarget,
             infoPlist: .default,
             sources: ["Tests/**"],
-            dependencies: testTargetDependencies + [
-                .SPM.Quick,
-                .SPM.Nimble
-            ]
+            dependencies: testTargetDependencies + testDependencies
         )
-        
-        let schemes: [Scheme] = hasDemoApp
-        ? [.makeScheme(target: .debug, name: name), .makeDemoScheme(target: .debug, name: name)]
-        : [.makeScheme(target: .debug, name: name)]
-        
+
         let targets: [Target] = hasDemoApp
         ? [appTarget, testTarget, demoAppTarget]
         : [appTarget, testTarget]

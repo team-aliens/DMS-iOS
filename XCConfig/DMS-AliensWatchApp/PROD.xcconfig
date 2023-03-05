@@ -1,0 +1,2 @@
+#include "../Shared.xcconfig"
+BASE_URL = https:/$()/api.aliens-dms.com

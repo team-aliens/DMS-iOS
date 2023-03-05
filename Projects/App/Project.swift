@@ -3,17 +3,24 @@ import ProjectDescription
 import UtilityPlugin
 import Foundation
 
+let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? true : false
+
 let settinges: Settings =
     .settings(base: Environment.baseSetting,
               configurations: [
-                .debug(name: .debug),
-                .release(name: .release)
+                .debug(name: .dev, xcconfig: isCI ? nil : .relativeToXCConfig(
+                    type: .dev,
+                    name: Environment.targetName)
+                ),
+                .release(name: .prod, xcconfig: isCI ? nil : .relativeToXCConfig(
+                    type: .prod,
+                    name: Environment.targetName)
+                )
               ],
               defaultSettings: .recommended)
 
-let isForDev = (ProcessInfo.processInfo.environment["TUIST_DEV"] ?? "0") == "1" ? true : false
-
-let scripts: [TargetScript] = isForDev ? [.swiftLint] : []
+let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .widgetNeedle, .needle]
+let widgetScripts: [TargetScript] = isCI ? [] : [.widgetNeedle]
 
 let targets: [Target] = [
     .init(
@@ -24,13 +31,15 @@ let targets: [Target] = [
         bundleId: "\(Environment.organizationName).\(Environment.targetName)",
         deploymentTarget: Environment.deploymentTarget,
         infoPlist: .file(path: "Support/Info.plist"),
-        sources: ["Sources/**"],
+        sources: ["Sources/**", "AppExtension/Sources/**/*.intentdefinition"],
         resources: ["Resources/**"],
+        entitlements: "Support/\(Environment.appName).entitlements",
         scripts: scripts,
         dependencies: [
             .Project.Features.RootFeature,
-            .Project.Module.ThirdPartyLib,
-            .Project.Service.Data
+            .Project.Service.Data,
+            .target(name: "\(Environment.appName)Widget"),
+            .target(name: "\(Environment.appName)WatchApp")
         ],
         settings: .settings(base: Environment.baseSetting)
     ),
@@ -43,38 +52,85 @@ let targets: [Target] = [
         infoPlist: .default,
         sources: ["Tests/**"],
         dependencies: [
-            .target(name: Environment.targetName),
+            .target(name: Environment.targetName)
         ]
     ),
+    .init(
+        name: "\(Environment.appName)Widget",
+        platform: .iOS,
+        product: .appExtension,
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).WidgetExtension",
+        deploymentTarget: Environment.deploymentTarget,
+        infoPlist: .file(path: "AppExtension/Support/Widget-Info.plist"),
+        sources: ["AppExtension/Sources/**"],
+        resources: ["AppExtension/Resources/**"],
+        entitlements: "AppExtension/Support/\(Environment.appName)Widget.entitlements",
+        scripts: widgetScripts,
+        dependencies: [
+            .Project.UserInterfaces.DesignSystem,
+            .Project.Service.Data,
+            .SPM.Needle
+        ]
+    ),
+    .init(
+        name: "\(Environment.targetName)WatchApp",
+        platform: .watchOS,
+        product: .watch2App,
+        productName: "\(Environment.appName)WatchApp",
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp",
+        deploymentTarget: .watchOS(targetVersion: "7.0"),
+        infoPlist: .file(path: "WatchApp/Support/Info.plist"),
+        resources: ["WatchApp/Resources/**"],
+        dependencies: [
+            .target(name: "\(Environment.targetName)WatchExtension")
+        ]
+    ),
+    .init(
+        name: "\(Environment.targetName)WatchExtension",
+        platform: .watchOS,
+        product: .watch2Extension,
+        productName: "\(Environment.appName)WatchExtension",
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp.extension",
+        deploymentTarget: .watchOS(targetVersion: "7.0"),
+        infoPlist: .file(path: "WatchApp/Support/Info.plist"),
+        sources: ["WatchApp/Sources/**"],
+        resources: ["WatchApp/Resources/**"],
+        scripts: scripts,
+        dependencies: [
+            .Project.UserInterfaces.WatchDesignSystem,
+            .Project.Service.WatchRestAPIModule,
+            .SPM.Swinject
+        ]
+    )
 ]
 
 let schemes: [Scheme] = [
     .init(
-      name: "\(Environment.targetName)-DEBUG",
+      name: "\(Environment.targetName)-DEV",
       shared: true,
       buildAction: .buildAction(targets: ["\(Environment.targetName)"]),
       testAction: TestAction.targets(
           ["\(Environment.targetTestName)"],
-          configuration: .debug,
+          configuration: .dev,
           options: TestActionOptions.options(
               coverage: true,
               codeCoverageTargets: ["\(Environment.targetName)"]
           )
       ),
-      runAction: .runAction(configuration: .debug),
-      archiveAction: .archiveAction(configuration: .debug),
-      profileAction: .profileAction(configuration: .debug),
-      analyzeAction: .analyzeAction(configuration: .debug)
+      runAction: .runAction(configuration: .dev),
+      archiveAction: .archiveAction(configuration: .dev),
+      profileAction: .profileAction(configuration: .dev),
+      analyzeAction: .analyzeAction(configuration: .dev)
     ),
     .init(
-      name: "\(Environment.targetName)-RELEASE",
+      name: "\(Environment.targetName)-PROD",
       shared: true,
       buildAction: BuildAction(targets: ["\(Environment.targetName)"]),
       testAction: nil,
-      runAction: .runAction(configuration: .release),
-      archiveAction: .archiveAction(configuration: .release),
-      profileAction: .profileAction(configuration: .release),
-      analyzeAction: .analyzeAction(configuration: .release)
+      runAction: .runAction(configuration: .prod),
+      archiveAction: .archiveAction(configuration: .prod),
+      profileAction: .profileAction(configuration: .prod),
+      analyzeAction: .analyzeAction(configuration: .prod)
     )
 ]
 

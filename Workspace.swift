@@ -4,6 +4,7 @@ import ProjectDescriptionHelpers
 let workspace = Workspace(
     name: Environment.appName,
     projects: [
-        "Projects/App"
+        "Projects/App",
+        "Projects/WatchApp"
     ]
 )

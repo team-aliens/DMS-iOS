@@ -1,0 +1,2 @@
+#include "../Shared.xcconfig"
+BASE_URL = http:/$()/3.39.162.197:8080

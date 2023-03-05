@@ -1,27 +1,74 @@
+import Foundation
+import KeychainModule
 import UIKit
+import WatchConnectivity
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
+    var session: WCSession!
+    var keychain: (any Keychain)?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
+        self.session = .default
+        if WCSession.isSupported() {
+            session.delegate = self
+            session.activate()
+        }
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-
 }
 
+extension AppDelegate: WCSessionDelegate {
+    func sessionDidBecomeInactive(_ session: WCSession) { }
+
+    func sessionDidDeactivate(_ session: WCSession) { }
+
+    func session(
+        _ session: WCSession,
+        didReceiveMessage message: [String: Any],
+        replyHandler: @escaping ([String: Any]) -> Void
+    ) {
+        guard let keychain else {
+            return
+        }
+
+        let message: [String: Any] = [
+            "accessToken": keychain.load(type: .accessToken),
+            "accessExpiredAt": keychain.load(type: .accessExpiredAt)
+        ]
+        replyHandler(message)
+    }
+
+    func session(
+        _ session: WCSession,
+        activationDidCompleteWith activationState: WCSessionActivationState,
+        error: Error?
+    ) {
+        guard let keychain else {
+            return
+        }
+
+        let message: [String: Any] = [
+            "accessToken": keychain.load(type: .accessToken),
+            "accessExpiredAt": keychain.load(type: .accessExpiredAt)
+        ]
+        sendMessage(message: message) { _ in } error: { error in
+            print(error.localizedDescription)
+        }
+    }
+}
+
+private extension AppDelegate {
+    func sendMessage(
+        message: [String: Any],
+        reply: @escaping ([String: Any]) -> Void,
+        error: ((Error) -> Void)? = nil
+    ) {
+        guard session.activationState == .activated else {
+            return
+        }
+        session.sendMessage(message, replyHandler: reply, errorHandler: error)
+    }
+}

@@ -10,16 +10,33 @@ public extension TargetDependency {
 }
 
 public extension TargetDependency.Project.Features {
-    static let CommonFeature = TargetDependency.feature(name: "CommonFeature")
+    static let RemainApplyFeature = TargetDependency.feature(name: "RemainApplyFeature")
+    static let StudyRoomFeature = TargetDependency.feature(name: "StudyRoomFeature")
+    static let SplashFeature = TargetDependency.feature(name: "SplashFeature")
+    static let MyPageFeature = TargetDependency.feature(name: "MyPageFeature")
+    static let NoticeFeature = TargetDependency.feature(name: "NoticeFeature")
+    static let ApplyFeature = TargetDependency.feature(name: "ApplyFeature")
+    static let SignupFeature = TargetDependency.feature(name: "SignupFeature")
+    static let HomeFeature = TargetDependency.feature(name: "HomeFeature")
+    static let RenewalPasswordFeature = TargetDependency.feature(name: "RenewalPasswordFeature")
+    static let MainTabFeature = TargetDependency.feature(name: "MainTabFeature")
+    static let FindIDFeature = TargetDependency.feature(name: "FindIDFeature")
+    static let SigninFeature = TargetDependency.feature(name: "SigninFeature")
+    static let BaseFeature = TargetDependency.feature(name: "BaseFeature")
     static let RootFeature = TargetDependency.feature(name: "RootFeature")
 }
 
 public extension TargetDependency.Project.Module {
+    static let KeychainModule = TargetDependency.module(name: "KeychainModule")
+    static let ErrorModule = TargetDependency.module(name: "ErrorModule")
+    static let FeatureThirdPartyLib = TargetDependency.module(name: "FeatureThirdPartyLib")
     static let ThirdPartyLib = TargetDependency.module(name: "ThirdPartyLib")
     static let Utility = TargetDependency.module(name: "Utility")
 }
 
 public extension TargetDependency.Project.Service {
+    static let WatchRestAPIModule = TargetDependency.service(name: "WatchRestAPIModule")
+    static let DataMappingModule = TargetDependency.service(name: "DataMappingModule")
     static let APIKit = TargetDependency.service(name: "APIKit")
     static let Data = TargetDependency.service(name: "DataModule")
     static let Domain = TargetDependency.service(name: "DomainModule")
@@ -29,4 +46,5 @@ public extension TargetDependency.Project.Service {
 
 public extension TargetDependency.Project.UserInterfaces {
     static let DesignSystem = TargetDependency.ui(name: "DesignSystem")
+    static let WatchDesignSystem = TargetDependency.ui(name: "WatchDesignSystem")
 }
