@@ -35,6 +35,7 @@ public extension TargetDependency.Project.Module {
 }
 
 public extension TargetDependency.Project.Service {
+    static let WatchRestAPIModule = TargetDependency.service(name: "WatchRestAPIModule")
     static let DataMappingModule = TargetDependency.service(name: "DataMappingModule")
     static let APIKit = TargetDependency.service(name: "APIKit")
     static let Data = TargetDependency.service(name: "DataModule")
@@ -45,4 +46,5 @@ public extension TargetDependency.Project.Service {
 
 public extension TargetDependency.Project.UserInterfaces {
     static let DesignSystem = TargetDependency.ui(name: "DesignSystem")
+    static let WatchDesignSystem = TargetDependency.ui(name: "WatchDesignSystem")
 }

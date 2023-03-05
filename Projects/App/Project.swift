@@ -19,7 +19,8 @@ let settinges: Settings =
               ],
               defaultSettings: .recommended)
 
-let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .needle]
+let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .widgetNeedle, .needle]
+let widgetScripts: [TargetScript] = isCI ? [] : [.widgetNeedle]
 
 let targets: [Target] = [
     .init(
@@ -30,12 +31,15 @@ let targets: [Target] = [
         bundleId: "\(Environment.organizationName).\(Environment.targetName)",
         deploymentTarget: Environment.deploymentTarget,
         infoPlist: .file(path: "Support/Info.plist"),
-        sources: ["Sources/**"],
+        sources: ["Sources/**", "AppExtension/Sources/**/*.intentdefinition"],
         resources: ["Resources/**"],
+        entitlements: "Support/\(Environment.appName).entitlements",
         scripts: scripts,
         dependencies: [
             .Project.Features.RootFeature,
-            .Project.Service.Data
+            .Project.Service.Data,
+            .target(name: "\(Environment.appName)Widget"),
+            .target(name: "\(Environment.appName)WatchApp")
         ],
         settings: .settings(base: Environment.baseSetting)
     ),
@@ -49,6 +53,53 @@ let targets: [Target] = [
         sources: ["Tests/**"],
         dependencies: [
             .target(name: Environment.targetName)
+        ]
+    ),
+    .init(
+        name: "\(Environment.appName)Widget",
+        platform: .iOS,
+        product: .appExtension,
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).WidgetExtension",
+        deploymentTarget: Environment.deploymentTarget,
+        infoPlist: .file(path: "AppExtension/Support/Widget-Info.plist"),
+        sources: ["AppExtension/Sources/**"],
+        resources: ["AppExtension/Resources/**"],
+        entitlements: "AppExtension/Support/\(Environment.appName)Widget.entitlements",
+        scripts: widgetScripts,
+        dependencies: [
+            .Project.UserInterfaces.DesignSystem,
+            .Project.Service.Data,
+            .SPM.Needle
+        ]
+    ),
+    .init(
+        name: "\(Environment.targetName)WatchApp",
+        platform: .watchOS,
+        product: .watch2App,
+        productName: "\(Environment.appName)WatchApp",
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp",
+        deploymentTarget: .watchOS(targetVersion: "7.0"),
+        infoPlist: .file(path: "WatchApp/Support/Info.plist"),
+        resources: ["WatchApp/Resources/**"],
+        dependencies: [
+            .target(name: "\(Environment.targetName)WatchExtension")
+        ]
+    ),
+    .init(
+        name: "\(Environment.targetName)WatchExtension",
+        platform: .watchOS,
+        product: .watch2Extension,
+        productName: "\(Environment.appName)WatchExtension",
+        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp.extension",
+        deploymentTarget: .watchOS(targetVersion: "7.0"),
+        infoPlist: .file(path: "WatchApp/Support/Info.plist"),
+        sources: ["WatchApp/Sources/**"],
+        resources: ["WatchApp/Resources/**"],
+        scripts: scripts,
+        dependencies: [
+            .Project.UserInterfaces.WatchDesignSystem,
+            .Project.Service.WatchRestAPIModule,
+            .SPM.Swinject
         ]
     )
 ]
