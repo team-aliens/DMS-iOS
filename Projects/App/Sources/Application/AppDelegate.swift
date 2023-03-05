@@ -25,6 +25,18 @@ extension AppDelegate: WCSessionDelegate {
 
     func sessionDidDeactivate(_ session: WCSession) { }
 
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        guard let keychain else {
+            return
+        }
+
+        let message: [String: Any] = [
+            "accessToken": keychain.load(type: .accessToken),
+            "accessExpiredAt": keychain.load(type: .accessExpiredAt)
+        ]
+        sendMessage(message: message) { _ in }
+    }
+
     func session(
         _ session: WCSession,
         didReceiveMessage message: [String: Any],
@@ -54,9 +66,7 @@ extension AppDelegate: WCSessionDelegate {
             "accessToken": keychain.load(type: .accessToken),
             "accessExpiredAt": keychain.load(type: .accessExpiredAt)
         ]
-        sendMessage(message: message) { _ in } error: { error in
-            print(error.localizedDescription)
-        }
+        sendMessage(message: message) { _ in }
     }
 }
 

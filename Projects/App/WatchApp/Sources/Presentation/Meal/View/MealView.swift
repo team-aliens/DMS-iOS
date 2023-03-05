@@ -8,8 +8,10 @@ struct MealView: View {
 
     var body: some View {
         ZStack {
-            ProgressView()
-                .progressViewStyle(.circular)
+            if state.isLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            }
 
             if let meal = state.meal {
                 List {

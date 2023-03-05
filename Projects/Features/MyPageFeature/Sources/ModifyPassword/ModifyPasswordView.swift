@@ -74,7 +74,6 @@ struct ModifyPasswordView: View {
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .onChange(of: viewModel.isSuccessRenewalPassword) { newValue in
             if newValue {
-                print("A")
                 rootPresentationMode.wrappedValue.dismiss()
             }
         }
