@@ -49,10 +49,10 @@ struct SignupTermsView: View {
                 blur: 20
             )
         }
-        .dmsBackground()
         .dmsBackButton(dismiss: dismiss)
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .padding(.horizontal, 24)
+        .dmsBackground()
         .alert(viewModel.alertMessage, isPresented: $viewModel.isShowingAlert) {
             Button("확인", role: .cancel) {
                 appState.sceneFlow = .  main
