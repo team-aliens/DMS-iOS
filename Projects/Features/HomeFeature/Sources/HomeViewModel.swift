@@ -4,10 +4,11 @@ import DomainModule
 import ErrorModule
 import Foundation
 import Utility
+import SwiftUI
 
 final class HomeViewModel: BaseViewModel {
     @Published var selectedDate = Date()
-    @Published var isExistNewNotice = true
+    @Published var isExistNewNotice = false
     @Published var meals: [String: MealEntity] = [:]
     @Published var prevMonth = Date().month
     var selectedDateString: String {
@@ -36,7 +37,11 @@ final class HomeViewModel: BaseViewModel {
 
     func onAppear() {
         addCancellable(fetchWhetherNewNoticeUseCase.execute()) { [weak self] isExistNewNotice in
-            self?.isExistNewNotice = isExistNewNotice
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                withAnimation {
+                    self?.isExistNewNotice = isExistNewNotice
+                }
+            }
         }
     }
 

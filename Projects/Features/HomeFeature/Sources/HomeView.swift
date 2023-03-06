@@ -44,14 +44,20 @@ struct HomeView: View {
                         } label: {
                             NoticeView()
                         }
+                        .offset(x: viewModel.isExistNewNotice ? 0 : 50)
+                        .opacity(viewModel.isExistNewNotice ? 1 : 0)
+                        .animation(
+                            .easeInOut(duration: 1),
+                            value: viewModel.isExistNewNotice
+                        )
                     }
 
                     Text("오늘의 급식")
                         .dmsFont(.title(.title1), color: .GrayScale.gray7)
-                        .padding(.top, viewModel.isExistNewNotice ? 16 : 46)
+                        .padding(.top, viewModel.isExistNewNotice ? 10 : 46)
 
                     selectDateView()
-                        .padding(.top, 24)
+                        .padding(.top, 15)
 
                     MealCarouselView(
                         meal: viewModel.selectedDateMeal,
