@@ -98,7 +98,8 @@ struct MyPageView: View {
                         Color.PrimaryVariant.lighten2
                             .cornerRadius(5)
                     }
-                    .padding(.top, 60)
+                    .padding(.top, 55)
+                    .padding(.bottom, 5)
 
                 HStack(spacing: 12) {
                     RewardPointCardView(
@@ -113,6 +114,7 @@ struct MyPageView: View {
                         rewardType: .minusPoint
                     )
                 }
+                .padding(.bottom, 5)
 
                 VStack(alignment: .leading, spacing: 0) {
                     Button {
@@ -136,6 +138,8 @@ struct MyPageView: View {
 
                 }
                 .myPageOptionBackground()
+                .padding(.bottom, 5)
+
                 VStack(alignment: .leading, spacing: 0) {
                     myPageOptionRowCardView(title: "로그아웃")
                         .dmsFont(.body(.body2), color: .System.error)
@@ -144,6 +148,7 @@ struct MyPageView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .myPageOptionBackground()
+                .padding(.bottom, 5)
 
                 VStack(alignment: .leading, spacing: 0) {
                     myPageOptionRowCardView(title: "회원 탈퇴")
