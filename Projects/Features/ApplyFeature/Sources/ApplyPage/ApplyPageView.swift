@@ -44,6 +44,9 @@ struct ApplyPageView: View {
                                     viewModel.isNavigateToStudy.toggle()
                                 }
                             )
+                            .onAppear {
+                                viewModel.fetchMyStudyRoomApplicationItems()
+                            }
                         }
 
                         if appState.features.remainService {
@@ -58,21 +61,20 @@ struct ApplyPageView: View {
                                     viewModel.isNavigateToRemain.toggle()
                                 }
                             )
+                            .onAppear {
+                                viewModel.fetchMyRemainApplicationItems()
+                            }
                         }
                     }
                     .padding(.horizontal, 24)
                 }
-                .refreshable {
-                    viewModel.refresh()
-                }
+            }
+            .refreshable {
+                viewModel.refresh()
             }
             .navigationTitle("신청")
             .navigationBarTitleDisplayMode(.inline)
             .dmsBackground()
-            .onAppear {
-                viewModel.fetchMyStudyRoomApplicationItems()
-                viewModel.fetchMyRemainApplicationItems()
-            }
             .onChange(of: viewModel.isNavigateToStudy) { newValue in
                 withAnimation {
                     tabbarHidden.wrappedValue = newValue
