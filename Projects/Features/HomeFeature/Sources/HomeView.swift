@@ -44,10 +44,8 @@ struct HomeView: View {
                         } label: {
                             NoticeView()
                         }
-                        .offset(x: viewModel.isExistNewNotice ? 0 : 50)
-                        .opacity(viewModel.isExistNewNotice ? 1 : 0)
                         .animation(
-                            .easeInOut(duration: 1),
+                            .easeIn(duration: 1.5),
                             value: viewModel.isExistNewNotice
                         )
                     }
