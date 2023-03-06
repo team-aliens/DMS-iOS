@@ -7,6 +7,7 @@ struct SignupTermsView: View {
     @EnvironmentObject var appState: AppState
     @StateObject var viewModel: SignupTermsViewModel
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
 
     init(
         viewModel: SignupTermsViewModel
@@ -19,7 +20,9 @@ struct SignupTermsView: View {
             DMSHeaderTitleView(subTitle: "약관 동의")
                 .padding(.top, 24)
 
-            DMSWebView(urlToLoad: "https://webview.aliens-dms.com/policy/privacy")
+            DMSWebView(urlToLoad: colorScheme == .light ?
+                       "https://webview.aliens-dms.com/policy/privacy?theme=light" :
+                        "https://webview.aliens-dms.com/policy/privacy?theme=dark")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.top, 56)
 
