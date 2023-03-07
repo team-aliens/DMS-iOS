@@ -55,6 +55,7 @@ struct ChangeProfileView: View {
             .disabled(viewModel.selectedImage == nil)
             .padding(.top, 32)
             .padding(.bottom, 40)
+            .ignoresSafeArea(edges: .bottom)
         }
         .onAppear {
             tabbarHidden.wrappedValue = true
