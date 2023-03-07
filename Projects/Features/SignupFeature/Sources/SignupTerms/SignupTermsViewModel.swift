@@ -6,6 +6,7 @@ final class SignupTermsViewModel: BaseViewModel {
     @Published var isAgreeTerms = false
     @Published var isShowingAlert = false
     @Published var alertMessage = ""
+    @Published var dmsFeatures: DmsFeatures?
 
     private let signupUseCase: any SignupUseCase
     let signupTermsParam: SignupTermsParam
@@ -34,7 +35,8 @@ final class SignupTermsViewModel: BaseViewModel {
                     profileImageUrl: signupTermsParam.profileImageURLString
                 )
             )
-        ) { [weak self] _ in
+        ) { [weak self] feature in
+            self?.dmsFeatures = feature
             self?.isShowingAlert = true
             self?.alertMessage = "회원가입이 완료되었습니다!"
         }

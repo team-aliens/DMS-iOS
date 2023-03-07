@@ -9,9 +9,15 @@ public struct AuthRepositoryStub: AuthRepository {
     public func logout() {}
 
     public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
-        Just(DmsFeatures(studyRoomService: false, remainService: false  ))
-            .setFailureType(to: DmsError.self)
-            .eraseToAnyPublisher()
+        Just(DmsFeatures(
+            mealService: true,
+            noticeService: true,
+            pointService: true,
+            studyRoomService: false,
+            remainService: false
+        ))
+        .setFailureType(to: DmsError.self)
+        .eraseToAnyPublisher()
     }
 
     public func verifyAuthCode(req: VerifyAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError> {
@@ -25,9 +31,15 @@ public struct AuthRepositoryStub: AuthRepository {
     }
 
     public func reissueToken() -> AnyPublisher<DmsFeatures, DmsError> {
-        Just(DmsFeatures(studyRoomService: false, remainService: false))
-            .setFailureType(to: DmsError.self)
-            .eraseToAnyPublisher()
+        Just(DmsFeatures(
+            mealService: true,
+            noticeService: true,
+            pointService: true,
+            studyRoomService: false,
+            remainService: false
+        ))
+        .setFailureType(to: DmsError.self)
+        .eraseToAnyPublisher()
     }
 
     public func checkEmailExistByAccountID(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, DmsError> {

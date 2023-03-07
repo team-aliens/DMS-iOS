@@ -5,8 +5,10 @@ import DomainModule
 import ErrorModule
 
 public final class RemoteStudentsDataSourceImpl: BaseRemoteDataSource<StudentsAPI>, RemoteStudentsDataSource {
-    public func signup(req: SignupRequestDTO) -> AnyPublisher<Void, DmsError> {
-        request(.signup(req))
+    public func signup(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
+        request(.signup(req), dto: DmsFeaturesResponseDTO.self)
+            .map { $0.toDomain() }
+            .eraseToAnyPublisher()
     }
 
     public func checkDuplicateAccountID(id: String) -> AnyPublisher<Void, DmsError> {

@@ -11,7 +11,7 @@ public struct StudentsRepositoryImpl: StudentsRepository {
         self.remoteStudentsDataSource = remoteStudentsDataSource
     }
 
-    public func signup(req: SignupRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func signup(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
         remoteStudentsDataSource.signup(req: req)
     }
 
