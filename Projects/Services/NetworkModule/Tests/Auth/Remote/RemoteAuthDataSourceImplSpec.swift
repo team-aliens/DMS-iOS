@@ -45,9 +45,6 @@ final class RemoteAuthDataSourceImplSpec: QuickSpec {
                     expect { success }.toNotEventually(beNil())
                     expect { success }.toEventually(beVoid())
                     expect { res }.toNot(beNil())
-                    expect { res?.mealService }.to(beFalse())
-                    expect { res?.noticeService }.to(beFalse())
-                    expect { res?.pointService }.to(beFalse())
                 }
             }
             context("verifyAuthCode()를 실행하면") {

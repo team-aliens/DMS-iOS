@@ -139,7 +139,7 @@ final class RemoteStudentsDataSourceImplSpec: QuickSpec {
             }
             context("keychain의 expiredAt이 유효한상태로 fetchMyProfile()을 실행하면 ") {
                 beforeEach {
-                    keychain.save(type: .expiredAt, value: Date().addingTimeInterval(500).toDMSDateString())
+                    keychain.save(type: .accessExpiredAt, value: Date().addingTimeInterval(500).toDMSDateString())
                 }
                 afterEach {
                     keychain.delete(type: .expiredAt)
@@ -167,11 +167,11 @@ final class RemoteStudentsDataSourceImplSpec: QuickSpec {
             context("keychain의 accessToken과 유효한 expiredAt시간을 가진상태로 fetchMyProfile()을 실행하면 ") {
                 beforeEach {
                     keychain.save(type: .accessToken, value: "Value")
-                    keychain.save(type: .expiredAt, value: Date().addingTimeInterval(500).toDMSDateString())
+                    keychain.save(type: .accessExpiredAt, value: Date().addingTimeInterval(500).toDMSDateString())
                 }
                 afterEach {
                     keychain.delete(type: .accessToken)
-                    keychain.delete(type: .expiredAt)
+                    keychain.delete(type: .accessExpiredAt)
                 }
                 it("request를 성공적으로 실행하고, sampleData가 Response로 온다.") {
                     var success: Void?
