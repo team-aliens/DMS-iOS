@@ -19,7 +19,7 @@ final class StudentsRepositoryImplSpec: QuickSpec {
         describe("StudentsRepositoryImpl에서") {
             context("signup()을 실행하면") {
                 it("request를 성공적으로 실행한다.") {
-                    var success: Void?
+                    var success: DmsFeatures?
                     sut.signup(
                         req: .init(
                             schoolCode: "",
@@ -91,7 +91,7 @@ final class StudentsRepositoryImplSpec: QuickSpec {
                     expect { success }.toNotEventually(beNil())
                     expect { success }.toEventually(beVoid())
                     expect { res }.toNotEventually(beNil())
-                    expect { res }.toEventually(equal("abc*****@gmail.com"))
+                    expect { res }.toEventually(equal("abcdef@gmail.com"))
                 }
             }
             context("fetchMyProfile()을 실행하면") {
@@ -112,7 +112,7 @@ final class StudentsRepositoryImplSpec: QuickSpec {
                     expect { res!.gcn }.toEventually(equal("2118"))
                     expect { res!.bonusPoint }.toEventually(equal(0))
                     expect { res!.minusPoint }.toEventually(equal(24))
-                    expect { res!.phrase }.toEventually(equal("안녕하세요"))
+                    expect { res!.phrase }.toEventually(equal("벌점이 12점이예요. 더 바른 생활을 위해 노력해주세요!"))
                 }
             }
         }

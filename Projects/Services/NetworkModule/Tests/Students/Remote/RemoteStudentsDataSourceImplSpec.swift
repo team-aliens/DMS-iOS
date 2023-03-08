@@ -39,31 +39,6 @@ final class RemoteStudentsDataSourceImplSpec: QuickSpec {
             )
         }
         describe("RemoteStudentsDataSourceImpl에서") {
-            context("Signup()을 실행하면 ") {
-                it("request를 성공적으로 실행한다.") {
-                    var success: Void?
-                    sut.signup(
-                        req: SignupRequestDTO(
-                            schoolCode: "",
-                            schoolAnswer: "",
-                            email: "",
-                            authCode: "",
-                            grade: 0,
-                            classRoom: 0,
-                            number: 0,
-                            accountID: "",
-                            password: "",
-                            profileImageUrl: nil
-                        )
-                    )
-                    .sink { _ in } receiveValue: { item in
-                        success = item
-                    }
-                    .store(in: &bag)
-                    expect { success }.toNotEventually(beNil())
-                    expect { success }.toEventually(beVoid())
-                }
-            }
             context("checkDuplicateAccountID()을 실행하면 ") {
                 it("request를 성공적으로 실행한다.") {
                     var success: Void?
@@ -142,7 +117,7 @@ final class RemoteStudentsDataSourceImplSpec: QuickSpec {
                     keychain.save(type: .accessExpiredAt, value: Date().addingTimeInterval(500).toDMSDateString())
                 }
                 afterEach {
-                    keychain.delete(type: .expiredAt)
+                    keychain.delete(type: .accessExpiredAt)
                 }
                 it("request를 성공적으로 실행하고, sampleData가 Response로 온다.") {
                     var success: Void?

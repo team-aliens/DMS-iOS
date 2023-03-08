@@ -17,7 +17,7 @@ final class SignupUseCaseImplSpec: QuickSpec {
         describe("SignupUseCaseImpl에서") {
             context("execute()를 실행하면") {
                 it("request를 성공적으로 실행한다.") {
-                    var success: Void?
+                    var success: DmsFeatures?
                     sut.execute(
                         req: .init(
                             schoolCode: "",
