@@ -9,5 +9,8 @@ let project = Project.makeModule(
         .Project.Features.SignupFeature,
         .Project.Features.FindIDFeature,
         .Project.Features.RenewalPasswordFeature
+    ],
+    testDependencies: [
+        .Project.Service.Data
     ]
 )
