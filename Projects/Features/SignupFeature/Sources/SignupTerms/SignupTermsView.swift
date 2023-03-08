@@ -8,7 +8,6 @@ struct SignupTermsView: View {
     @StateObject var viewModel: SignupTermsViewModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
-    @State var isNavigateHome = false
 
     init(
         viewModel: SignupTermsViewModel
@@ -54,7 +53,7 @@ struct SignupTermsView: View {
             )
         }
         .dmsBackButton(dismiss: dismiss)
-        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .dmsToast(isShowing: $viewModel.isShowingAlert, message: viewModel.alertMessage, style: .success)
         .padding(.horizontal, 24)
         .dmsBackground()
         .alert(viewModel.alertMessage, isPresented: $viewModel.isShowingAlert) {
@@ -67,6 +66,6 @@ struct SignupTermsView: View {
                 appState.features = newValue
             }
         }
-        .environment(\.rootPresentationMode, $isNavigateHome)
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
     }
 }
