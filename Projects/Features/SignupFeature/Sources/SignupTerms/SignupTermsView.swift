@@ -53,7 +53,6 @@ struct SignupTermsView: View {
             )
         }
         .dmsBackButton(dismiss: dismiss)
-        .dmsToast(isShowing: $viewModel.isShowingAlert, message: viewModel.alertMessage, style: .success)
         .padding(.horizontal, 24)
         .dmsBackground()
         .alert(viewModel.alertMessage, isPresented: $viewModel.isShowingAlert) {

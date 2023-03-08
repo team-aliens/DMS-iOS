@@ -37,8 +37,8 @@ final class SignupTermsViewModel: BaseViewModel {
             )
         ) { [weak self] feature in
             self?.dmsFeatures = feature
-            self?.alertMessage = "회원가입이 완료되었습니다!"
             self?.isShowingAlert = true
+            self?.alertMessage = "회원가입이 완료되었습니다!"
         }
     }
 }
