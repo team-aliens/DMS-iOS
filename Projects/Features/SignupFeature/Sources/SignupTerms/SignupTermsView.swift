@@ -8,6 +8,7 @@ struct SignupTermsView: View {
     @StateObject var viewModel: SignupTermsViewModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
+    @State var isNavigateHome = false
 
     init(
         viewModel: SignupTermsViewModel
@@ -61,5 +62,11 @@ struct SignupTermsView: View {
                 appState.sceneFlow = .  main
             }
         }
+        .onChange(of: viewModel.dmsFeatures) { newValue in
+            if let newValue {
+                appState.features = newValue
+            }
+        }
+        .environment(\.rootPresentationMode, $isNavigateHome)
     }
 }
