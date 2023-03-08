@@ -6,7 +6,6 @@ import SwiftUI
 struct StudyRoomListView: View {
     @StateObject var viewModel: StudyRoomListViewModel
     private let studyRoomDetailComponent: StudyRoomDetailComponent
-    @Environment(\.tabbarHidden) var tabbarHidden
     @Environment(\.dismiss) var dismiss
 
     init(
@@ -56,11 +55,6 @@ struct StudyRoomListView: View {
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .onAppear {
             viewModel.onAppear()
-        }
-        .onChange(of: viewModel.isNavigateDetail) { newValue in
-            withAnimation {
-                tabbarHidden.wrappedValue = newValue
-            }
         }
         .navigate(
             to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),

@@ -18,7 +18,9 @@ struct RemainApplyView: View {
                 .frame(height: 1)
 
             ScrollView(showsIndicators: false) {
-                RemainApplyNoticeView(notice: viewModel.rangeString)
+                if !viewModel.rangeString.isEmpty {
+                    RemainApplyNoticeView(notice: viewModel.rangeString)
+                }
                 RemainApplyListView(viewModel: viewModel)
                     .padding(.horizontal, 24)
             }

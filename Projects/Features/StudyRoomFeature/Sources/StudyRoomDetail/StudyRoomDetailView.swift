@@ -6,7 +6,6 @@ import SwiftUI
 struct StudyRoomDetailView: View {
     @StateObject var viewModel: StudyRoomDetailViewModel
     @Environment(\.dismiss) var dismiss
-    @Environment(\.tabbarHidden) var tabbarHidden
 
     init(
         viewModel: StudyRoomDetailViewModel

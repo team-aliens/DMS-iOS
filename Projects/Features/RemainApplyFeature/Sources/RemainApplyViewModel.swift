@@ -22,7 +22,7 @@ final class RemainApplyViewModel: BaseViewModel {
             let text = "잔류 신청 시간은 \(startString) ~ \(endString) 까지 입니다."
             return text
         } else {
-            return "인터넷 연결을 확인해 주세요."
+            return ""
         }
     }
 
