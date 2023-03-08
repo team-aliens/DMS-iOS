@@ -142,7 +142,7 @@ final class RemoteStudentsDataSourceImplSpec: QuickSpec {
                     keychain.save(type: .accessExpiredAt, value: Date().addingTimeInterval(500).toDMSDateString())
                 }
                 afterEach {
-                    keychain.delete(type: .expiredAt)
+                    keychain.delete(type: .accessExpiredAt)
                 }
                 it("request를 성공적으로 실행하고, sampleData가 Response로 온다.") {
                     var success: Void?

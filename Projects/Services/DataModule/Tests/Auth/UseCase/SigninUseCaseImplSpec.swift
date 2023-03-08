@@ -28,9 +28,8 @@ final class SigninUseCaseImplSpec: QuickSpec {
                     expect { success }.toNotEventually(beNil())
                     expect { success }.toEventually(beVoid())
                     expect { res }.toNot(beNil())
-                    expect { res?.mealService }.to(beFalse())
-                    expect { res?.noticeService }.to(beFalse())
-                    expect { res?.pointService }.to(beFalse())
+                    expect { res?.remainService }.to(beFalse())
+                    expect { res?.studyRoomService }.to(beFalse())
                 }
             }
         }

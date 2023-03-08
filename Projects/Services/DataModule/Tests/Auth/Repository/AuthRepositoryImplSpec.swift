@@ -3,6 +3,8 @@ import Nimble
 import Combine
 import DomainModule
 import DataModule
+import KeychainModule
+import DatabaseModule
 import NetworkModule
 
 // swiftlint: disable function_body_length
@@ -10,11 +12,13 @@ final class AuthRepositoryImplSpec: QuickSpec {
     override func spec() {
         var sut: AuthRepositoryImpl!
         var remoteAuthDS: RemoteAuthDataSource!
+        var localAuthDS: LocalAuthDataSource!
         var bag = Set<AnyCancellable>()
 
         beforeEach {
             remoteAuthDS = RemoteAuthDataSourceStub()
-            sut = AuthRepositoryImpl(remoteAuthDataSource: remoteAuthDS)
+            localAuthDS = LocalAuthDataSourceStub()
+            sut = AuthRepositoryImpl(remoteAuthDataSource: remoteAuthDS, localAuthDataSource: localAuthDS)
         }
         describe("AuthRepositoryImpl에서") {
             context("signin()를 실행하면") {
@@ -30,9 +34,8 @@ final class AuthRepositoryImplSpec: QuickSpec {
                     expect { success }.toNotEventually(beNil())
                     expect { success }.toEventually(beVoid())
                     expect { res }.toNot(beNil())
-                    expect { res?.mealService }.to(beFalse())
-                    expect { res?.noticeService }.to(beFalse())
-                    expect { res?.pointService }.to(beFalse())
+                    expect { res?.remainService }.to(beFalse())
+                    expect { res?.studyRoomService }.to(beFalse())
                 }
             }
             context("verifyAuthCode()를 실행하면") {

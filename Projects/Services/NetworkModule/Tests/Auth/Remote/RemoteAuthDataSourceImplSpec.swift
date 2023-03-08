@@ -8,7 +8,7 @@ import Quick
 import NetworkModule
 import Moya
 import XCTest
-@testable import KeychainModule
+import KeychainModule
 
 // swiftlint: disable function_body_length
 final class RemoteAuthDataSourceImplSpec: QuickSpec {
