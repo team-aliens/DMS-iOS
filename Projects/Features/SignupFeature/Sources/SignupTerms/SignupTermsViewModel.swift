@@ -38,6 +38,8 @@ final class SignupTermsViewModel: BaseViewModel {
         ) { [weak self] feature in
             self?.dmsFeatures = feature
             self?.isShowingAlert = true
+            print("thisis")
+            print(self?.dmsFeatures?.remainService ?? "failed parsing")
             self?.alertMessage = "회원가입이 완료되었습니다!"
         }
     }

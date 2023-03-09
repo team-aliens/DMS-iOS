@@ -4,10 +4,10 @@ import DomainModule
 import ErrorModule
 import Foundation
 
-public struct SigninUseCaseFake: SigninUseCase {
+public struct SignupUseCaseFake: SignupUseCase {
     public init () {}
 
-    public func execute(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
+    public func execute(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
         if req.accountID == "baekteun" && req.password == "baekteun" {
             return Just(DmsFeatures(
                 mealService: true,
