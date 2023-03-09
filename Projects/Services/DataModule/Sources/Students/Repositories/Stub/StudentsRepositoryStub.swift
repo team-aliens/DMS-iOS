@@ -8,9 +8,16 @@ import Foundation
 public struct StudentsRepositoryStub: StudentsRepository {
     public init() {}
 
-    public func signup(req: SignupRequestDTO) -> AnyPublisher<Void, DmsError> {
-        Just(()).setFailureType(to: DmsError.self)
-            .eraseToAnyPublisher()
+    public func signup(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
+        Just(DmsFeatures(
+            mealService: true,
+            noticeService: true,
+            pointService: true,
+            studyRoomService: false,
+            remainService: false
+        ))
+        .setFailureType(to: DmsError.self)
+        .eraseToAnyPublisher()
     }
 
     public func checkDuplicateAccountID(id: String) -> AnyPublisher<Void, DmsError> {

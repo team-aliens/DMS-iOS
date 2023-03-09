@@ -53,12 +53,17 @@ struct SignupTermsView: View {
             )
         }
         .dmsBackButton(dismiss: dismiss)
-        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .padding(.horizontal, 24)
         .dmsBackground()
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .alert(viewModel.alertMessage, isPresented: $viewModel.isShowingAlert) {
             Button("확인", role: .cancel) {
                 appState.sceneFlow = .  main
+            }
+        }
+        .onChange(of: viewModel.dmsFeatures) { newValue in
+            if let newValue {
+                appState.features = newValue
             }
         }
     }

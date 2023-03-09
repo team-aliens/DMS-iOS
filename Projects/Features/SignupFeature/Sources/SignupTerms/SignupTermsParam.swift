@@ -6,7 +6,6 @@ public struct SignupTermsParam: Equatable {
         profileImageURLString: String?
     ) {
         self.schoolCode = signupProfileImageParam.schoolCode
-        self.schoolID = signupProfileImageParam.schoolID
         self.schoolAnswer = signupProfileImageParam.schoolAnswer
         self.email = signupProfileImageParam.email
         self.authCode = signupProfileImageParam.authCode
@@ -19,7 +18,6 @@ public struct SignupTermsParam: Equatable {
     }
 
     public let schoolCode: String
-    public let schoolID: String
     public let schoolAnswer: String
     public let email: String
     public let authCode: String

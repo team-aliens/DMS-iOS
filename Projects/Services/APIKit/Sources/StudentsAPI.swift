@@ -127,7 +127,9 @@ extension StudentsAPI: DmsAPI {
         case .signup:
             return [
                 400: .badRequest,
+                401: .unAuthorizedEmail,
                 409: .alreadyExistUserBySignup,
+                429: .tooManyRequest,
                 500: .internalServerError
             ]
 
@@ -206,6 +208,8 @@ extension StudentsAPI: DmsAPI {
     "school_name" : "광주소프트웨어마이스터고등학교",
     "name" : "변찬우",
     "gcn" : "2118",
+    "profile_image_url": "",
+    "sex": "MALE",
     "bonus_point" : 0,
     "minus_point" : 24,
     "phrase" : "안녕하세요 프론트하는 변찬우입니다"

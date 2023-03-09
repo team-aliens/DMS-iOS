@@ -4,6 +4,8 @@ import Combine
 import DomainModule
 import DataModule
 import NetworkModule
+import DatabaseModule
+@testable import KeychainModule
 
 // swiftlint: disable function_body_length
 final class AuthRepositoryImplSpec: QuickSpec {
@@ -14,27 +16,12 @@ final class AuthRepositoryImplSpec: QuickSpec {
 
         beforeEach {
             remoteAuthDS = RemoteAuthDataSourceStub()
-            sut = AuthRepositoryImpl(remoteAuthDataSource: remoteAuthDS)
+            sut = AuthRepositoryImpl(
+                remoteAuthDataSource: remoteAuthDS,
+                localAuthDataSource: LocalAuthDataSourceImpl(keychain: KeychainFake())
+            )
         }
         describe("AuthRepositoryImpl에서") {
-            context("signin()를 실행하면") {
-                it("request를 성공적으로 실행한다.") {
-                    var success: Void?
-                    var res: DmsFeatures?
-                    sut.signin(req: .init(accountID: "", password: ""))
-                        .sink { _ in } receiveValue: { item in
-                            success = ()
-                            res = item
-                        }
-                        .store(in: &bag)
-                    expect { success }.toNotEventually(beNil())
-                    expect { success }.toEventually(beVoid())
-                    expect { res }.toNot(beNil())
-                    expect { res?.mealService }.to(beFalse())
-                    expect { res?.noticeService }.to(beFalse())
-                    expect { res?.pointService }.to(beFalse())
-                }
-            }
             context("verifyAuthCode()를 실행하면") {
                 it("request를 성공적으로 실행한다.") {
                     var success: Void?

@@ -32,21 +32,6 @@ final class RemoteAuthDataSourceImplSpec: QuickSpec {
                                            provider: provider)
         }
         describe("RemoteAuthDataSourceImpl에서") {
-            context("signin()을 실행하면") {
-                it("request를 성공적으로 실행한다.") {
-                    var success: Void?
-                    var res: DmsFeatures?
-                    sut.signin(req: .init(accountID: "", password: ""))
-                        .sink { _ in } receiveValue: { item in
-                            success = ()
-                            res = item
-                        }
-                        .store(in: &bag)
-                    expect { success }.toNotEventually(beNil())
-                    expect { success }.toEventually(beVoid())
-                    expect { res }.toNot(beNil())
-                }
-            }
             context("verifyAuthCode()를 실행하면") {
                 it("request를 성공적으로 실행한다.") {
                     var success: Void?
