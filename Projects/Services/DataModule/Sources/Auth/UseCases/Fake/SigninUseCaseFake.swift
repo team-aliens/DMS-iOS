@@ -10,9 +10,9 @@ public struct SigninUseCaseFake: SigninUseCase {
     public func execute(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
         if req.accountID == "baekteun" && req.password == "baekteun" {
             return Just(DmsFeatures(
-                mealService: true,
-                noticeService: true,
-                pointService: true,
+                mealService: false,
+                noticeService: false,
+                pointService: false,
                 studyRoomService: false,
                 remainService: false
             ))
