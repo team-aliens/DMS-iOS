@@ -24,6 +24,7 @@ public enum DmsError: Error {
     case notFoundAccountID
 
     // MARK: - Students
+    case unAuthorizedEmail
     case alreadyExistUserBySignup
     case alreadyExistIDByCheckID
     case alreadyExistEmailByCheckEmail
@@ -86,7 +87,7 @@ extension DmsError: LocalizedError {
             return "인증 정보를 찾을 수 없습니다."
 
         case .diffrentEmailByAccountID:
-            return "아이디외 이메일과 일치하지 않습니다."
+            return "아이디와 이메일이 일치하지 않습니다."
 
         case .notFoundAccountID:
             return "존재하지 않는 아이디입니다."
@@ -95,6 +96,8 @@ extension DmsError: LocalizedError {
             return "학생이 등록되지 않았습니다."
 
         // MARK: - Students
+        case .unAuthorizedEmail:
+            return "이메일이 인증되지 않았습니다."
 
         case .alreadyExistUserBySignup:
             return "이미 회원가입한 학생합니다!"

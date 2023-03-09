@@ -127,7 +127,9 @@ extension StudentsAPI: DmsAPI {
         case .signup:
             return [
                 400: .badRequest,
+                401: .unAuthorizedEmail,
                 409: .alreadyExistUserBySignup,
+                429: .tooManyRequest,
                 500: .internalServerError
             ]
 
