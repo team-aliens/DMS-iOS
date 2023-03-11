@@ -44,7 +44,7 @@ private struct SmallDMSNoticeWidgetView: View {
 
             Text(entry.notice.title)
                 .dmsFont(.etc(.caption), color: colorScheme == .light ? .GrayScale.gray6 : .GrayScale.gray7)
-                .fixedSize()
+                .fixedSize(horizontal: false, vertical: true)
 
             Text("more...")
                 .dmsFont(.etc(.overline), color: .PrimaryVariant.darken1)
