@@ -18,24 +18,26 @@ struct MealCarouselView: View {
             Carousel(
                 numberOfItems: 3,
                 spacing: spacing,
-                widthOfHiddenCards: widthOfHiddenCards
-            ) {
-                HStack(spacing: 30) {
-                    if isLoading {
-                        mealView(meal: breakfastSkeleton, mealType: .breakfast)
-                        mealView(meal: lunchSkeleton, mealType: .lunch)
-                        mealView(meal: dinnerSkeleton, mealType: .dinner)
-                    } else if let meal {
-                        mealView(meal: meal.breakfast, mealType: .breakfast)
-                        mealView(meal: meal.lunch, mealType: .lunch)
-                        mealView(meal: meal.dinner, mealType: .dinner)
-                    } else {
-                        mealView(meal: [], mealType: .breakfast)
-                        mealView(meal: [], mealType: .lunch)
-                        mealView(meal: [], mealType: .dinner)
+                widthOfHiddenCards: widthOfHiddenCards,
+                {
+                    HStack(spacing: 30) {
+                        if isLoading {
+                            mealView(meal: breakfastSkeleton, mealType: .breakfast)
+                            mealView(meal: lunchSkeleton, mealType: .lunch)
+                            mealView(meal: dinnerSkeleton, mealType: .dinner)
+                        } else if let meal {
+                            mealView(meal: meal.breakfast, mealType: .breakfast)
+                            mealView(meal: meal.lunch, mealType: .lunch)
+                            mealView(meal: meal.dinner, mealType: .dinner)
+                        } else {
+                            mealView(meal: [], mealType: .breakfast)
+                            mealView(meal: [], mealType: .lunch)
+                            mealView(meal: [], mealType: .dinner)
+                        }
                     }
-                }
-            }
+                },
+                meal: meal
+                )
             .environmentObject(uiState)
         }
     }
