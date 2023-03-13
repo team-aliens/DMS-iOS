@@ -26,8 +26,26 @@ struct StudyRoomListView: View {
                     StudyRoomNoticeView(text: viewModel.rangeString)
                 }
                 LazyVStack(spacing: 16) {
-                    Spacer()
-                        .frame(height: 10)
+                    Button {
+                        print("clicked and will show the popup")
+                    } label: {
+                        HStack(alignment: .center) {
+                            Image(systemName: "slider.horizontal.3")
+                                .foregroundColor(.PrimaryVariant.primary)
+                                .frame(width: 15)
+                                .padding(.top, 4)
+                                .padding(.trailing, 11)
+
+                            Text("10시 ~ 11시")
+                                .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
+                                .frame(height: 22)
+
+                            Spacer()
+                        }
+                    }
+                    .padding(.vertical, 9)
+                    .padding(.leading, 27)
+
                     ForEach(viewModel.studyRoomList, id: \.self) { studyRoomList in
                         Button {
                             viewModel.isNavigateDetail.toggle()
