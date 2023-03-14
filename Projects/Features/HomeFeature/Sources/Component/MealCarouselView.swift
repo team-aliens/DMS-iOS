@@ -19,7 +19,7 @@ struct MealCarouselView: View {
                 numberOfItems: 3,
                 spacing: spacing,
                 widthOfHiddenCards: widthOfHiddenCards,
-                {
+                meal: meal, {
                     HStack(spacing: 30) {
                         if isLoading {
                             mealView(meal: breakfastSkeleton, mealType: .breakfast)
@@ -35,9 +35,7 @@ struct MealCarouselView: View {
                             mealView(meal: [], mealType: .dinner)
                         }
                     }
-                },
-                meal: meal
-                )
+                })
             .environmentObject(uiState)
         }
     }
