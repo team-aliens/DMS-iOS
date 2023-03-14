@@ -16,7 +16,7 @@ public struct Carousel<Content: View>: View {
         numberOfItems: CGFloat,
         spacing: CGFloat,
         widthOfHiddenCards: CGFloat,
-        meal: MealEntity? ,
+        meal: MealEntity?,
         @ViewBuilder _ items: () -> Content
     ) {
         self.meal = meal
@@ -43,8 +43,8 @@ public struct Carousel<Content: View>: View {
             calcOffset = Float(activeOffset) + UIState.screenDrag
         }
 
-        return HStack(alignment: .center, spacing: spacing) {
-            items
+        return DeferView {
+            HStack(alignment: .center, spacing: spacing) { items }
         }
         .offset(x: CGFloat(calcOffset), y: 0)
         .gesture(
