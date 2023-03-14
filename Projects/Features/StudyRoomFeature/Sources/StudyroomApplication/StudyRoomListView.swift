@@ -27,7 +27,7 @@ struct StudyRoomListView: View {
                 }
                 LazyVStack(spacing: 16) {
                     Button {
-                        print("clicked and will show the popup")
+                        viewModel.isShowingBottomSheet.toggle()
                     } label: {
                         HStack(alignment: .center) {
                             Image(systemName: "slider.horizontal.3")
@@ -70,6 +70,11 @@ struct StudyRoomListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackButton(dismiss: dismiss)
         .dmsBackground()
+        .dmsBottomSheet(isShowing: $viewModel.isShowingBottomSheet) {
+            DeferView {
+                StudyroomTimeListView()
+            }
+        }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .onAppear {
             viewModel.onAppear()
