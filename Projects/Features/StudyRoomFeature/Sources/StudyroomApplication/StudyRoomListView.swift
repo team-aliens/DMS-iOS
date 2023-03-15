@@ -27,7 +27,9 @@ struct StudyRoomListView: View {
                 }
                 LazyVStack(spacing: 16) {
                     Button {
-                        viewModel.isShowingBottomSheet.toggle()
+                        withAnimation {
+                            viewModel.isShowingBottomSheet.toggle()
+                        }
                     } label: {
                         HStack(alignment: .center) {
                             Image(systemName: "slider.horizontal.3")
@@ -70,7 +72,7 @@ struct StudyRoomListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackButton(dismiss: dismiss)
         .dmsBackground()
-        .dmsBottomSheet(isShowing: $viewModel.isShowingBottomSheet) {
+        .dmsTimeBottomSheet(isShowing: $viewModel.isShowingBottomSheet) {
             DeferView {
                 StudyroomTimeListView()
             }
