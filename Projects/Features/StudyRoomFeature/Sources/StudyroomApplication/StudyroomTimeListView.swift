@@ -4,6 +4,15 @@ import SwiftUI
 
 struct StudyroomTimeListView: View {
     @State var isClicked: Bool = false
+    let okButtonAction: () -> Void
+    public init(
+        isClicked: Bool,
+        okButtonAction: @escaping () -> Void
+    ) {
+        self.isClicked = isClicked
+        self.okButtonAction = okButtonAction
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 37) {
             Text("시간")
@@ -50,7 +59,7 @@ struct StudyroomTimeListView: View {
                 style: .contained,
                 color: .PrimaryVariant.primary,
                 action: {
-                    print("OK")
+                    okButtonAction()
                 }
             )
             .padding(.horizontal, 24)

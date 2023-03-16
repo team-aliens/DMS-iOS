@@ -74,7 +74,14 @@ struct StudyRoomListView: View {
         .dmsBackground()
         .dmsTimeBottomSheet(isShowing: $viewModel.isShowingBottomSheet) {
             DeferView {
-                StudyroomTimeListView()
+                StudyroomTimeListView(
+                    isClicked: false,
+                    okButtonAction: {
+                        withAnimation {
+                            viewModel.isShowingBottomSheet = false
+                        }
+                    }
+                )
             }
         }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
