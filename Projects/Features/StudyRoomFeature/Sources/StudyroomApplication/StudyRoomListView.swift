@@ -71,7 +71,11 @@ struct StudyRoomListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackButton(dismiss: dismiss)
         .dmsBackground()
-        .dmsTimeBottomSheet(isShowing: $viewModel.isStudyTimeBottomSheet) {
+        .dmsBottomSheet(
+            isShowing: $viewModel.isStudyTimeBottomSheet,
+            isGrabberOn: false,
+            sheetCornerRadiusValue: 8
+        ) {
             DeferView {
                 StudyroomTimeListView(
                     isClicked: false,
