@@ -40,7 +40,6 @@ struct StudyRoomListView: View {
 
                             Text("10시 ~ 11시")
                                 .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
-                                .frame(height: 22)
 
                             Spacer()
                         }
