@@ -28,7 +28,7 @@ struct StudyRoomListView: View {
                 LazyVStack(spacing: 16) {
                     Button {
                         withAnimation {
-                            viewModel.isShowingBottomSheet.toggle()
+                            viewModel.isStudyTimeBottomSheet.toggle()
                         }
                     } label: {
                         HStack(alignment: .center) {
@@ -71,13 +71,13 @@ struct StudyRoomListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackButton(dismiss: dismiss)
         .dmsBackground()
-        .dmsTimeBottomSheet(isShowing: $viewModel.isShowingBottomSheet) {
+        .dmsTimeBottomSheet(isShowing: $viewModel.isStudyTimeBottomSheet) {
             DeferView {
                 StudyroomTimeListView(
                     isClicked: false,
                     okButtonAction: {
                         withAnimation {
-                            viewModel.isShowingBottomSheet = false
+                            viewModel.isStudyTimeBottomSheet = false
                         }
                     }
                 )

@@ -22,7 +22,7 @@ struct StudyroomTimeListView: View {
                 .padding(.leading, 24)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
+                LazyHStack {
                     ForEach(0..<5) { _ in
                         Button {
                             isClicked.toggle()
