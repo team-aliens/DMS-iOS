@@ -15,13 +15,13 @@
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
-	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<string>1</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(BUNDLE_VERSION_STRING)</string>
+	<string>1</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 	<key>CFBundleVersion</key>
-	<string>$(BUNDLE_VERSION)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
