@@ -6,6 +6,7 @@ struct StudyroomTimeListCellView: View {
     @State var isClicked: Bool = false
     var list: TimeSlotsEntity
     let buttonAction: () -> Void
+
     public init(
         isClicked: Bool,
         list: TimeSlotsEntity,
@@ -30,9 +31,9 @@ struct StudyroomTimeListCellView: View {
                         .etc(.button),
                         color: isClicked ? .GrayScale.gray1 : .GrayScale.gray4
                     )
-                    .background {
+                    .background(
                         isClicked ? Color.PrimaryVariant.primary : Color.GrayScale.gray1
-                    }
+                    )
             }
             .overlay(
                 RoundedRectangle(cornerRadius: 5)

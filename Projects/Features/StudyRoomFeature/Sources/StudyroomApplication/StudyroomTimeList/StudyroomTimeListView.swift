@@ -30,14 +30,9 @@ struct StudyroomTimeListView: View {
                 .padding(.bottom, 10)
             }
 
-            DMSWideButton(
-                text: "확인",
-                style: .contained,
-                color: .PrimaryVariant.primary,
-                action: {
-                    viewModel.isStudyTimeBottomSheet = false
-                }
-            )
+            DMSWideButton(text: "확인", style: .contained, color: .PrimaryVariant.primary) {
+                viewModel.isStudyTimeBottomSheet = false
+            }
             .padding(.horizontal, 24)
             .padding(.bottom)
         }

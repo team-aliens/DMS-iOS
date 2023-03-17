@@ -11,11 +11,12 @@ final class StudyRoomListViewModel: BaseViewModel {
     @Published var isShowingToast = false
     @Published var toastMessage = ""
 
-    @Published var studyAvailableTime: StudyAvailableTimeEntity?
     @Published var isNavigateDetail: Bool = false
     @Published var isStudyTimeBottomSheet: Bool = false
+
     @Published var studyroomTimeList = StudyroomTimeListEntity(timeSlots: [])
     @Published var selectedEntity: TimeSlotsEntity?
+    @Published var studyAvailableTime: StudyAvailableTimeEntity?
     @Published var studyRoomDetail: StudyRoomEntity = .init(
         id: "",
         floor: 0,
