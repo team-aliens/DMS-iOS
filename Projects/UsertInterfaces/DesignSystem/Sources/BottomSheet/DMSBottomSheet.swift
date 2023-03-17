@@ -2,8 +2,8 @@ import SwiftUI
 
 struct DMSBottomSheet<T: View>: ViewModifier {
     @Binding var isShowing: Bool
-    @State var isGrabberOn: Bool = true
-    @State var sheetCornerRadiusValue: CGFloat = 0
+    @State var isGrabberOn: Bool
+    @State var sheetCornerRadiusValue: CGFloat
     @State var dragHeight: CGFloat = 0
     var content: () -> T
     var height: CGFloat
@@ -29,8 +29,8 @@ struct DMSBottomSheet<T: View>: ViewModifier {
 
     init(
         isShowing: Binding<Bool>,
-        isGrabberOn: Bool,
-        sheetCornerRadiusValue: CGFloat,
+        isGrabberOn: Bool = false,
+        sheetCornerRadiusValue: CGFloat = 25,
         height: CGFloat = .infinity,
         content: @escaping () -> T
     ) {
@@ -60,7 +60,7 @@ struct DMSBottomSheet<T: View>: ViewModifier {
 
                     ZStack {
                         Color.GrayScale.gray1
-                            .cornerRadius(CGFloat(sheetCornerRadiusValue), corners: [.topLeft, .topRight])
+                            .cornerRadius(sheetCornerRadiusValue, corners: [.topLeft, .topRight])
                             .padding(.top, -dragHeight)
                             .gesture(sheetDragging)
 
