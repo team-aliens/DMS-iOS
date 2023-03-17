@@ -77,14 +77,7 @@ struct StudyRoomListView: View {
             sheetCornerRadiusValue: 8
         ) {
             DeferView {
-                StudyroomTimeListView(
-                    isClicked: false,
-                    okButtonAction: {
-                        withAnimation {
-                            viewModel.isStudyTimeBottomSheet = false
-                        }
-                    }
-                )
+                StudyroomTimeListView(viewModel: viewModel)
             }
         }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)

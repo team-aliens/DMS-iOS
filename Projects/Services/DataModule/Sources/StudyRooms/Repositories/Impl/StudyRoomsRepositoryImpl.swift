@@ -38,4 +38,8 @@ public struct StudyRoomsRepositoryImpl: StudyRoomsRepository {
     public func fetchMyStudyRoomApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError> {
         remoteStudyRoomsDataSource.fetchMyRemainApplicationItems()
     }
+
+    public func fetchStudyroomTimeList() -> AnyPublisher<StudyroomTimeListEntity, DmsError> {
+        remoteStudyRoomsDataSource.fetchStudyroomTimeList()
+    }
 }

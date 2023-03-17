@@ -10,4 +10,5 @@ public protocol StudyRoomsRepository {
     func applyStudyRoomSeat(seatID: String) -> AnyPublisher<Void, DmsError>
     func cancelStudyRoomSeat() -> AnyPublisher<Void, DmsError>
     func fetchMyStudyRoomApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError>
+    func fetchStudyroomTimeList() -> AnyPublisher<StudyroomTimeListEntity, DmsError>
 }

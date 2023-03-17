@@ -5,6 +5,12 @@ import DomainModule
 import ErrorModule
 
 public final class RemoteStudyRoomsDataSourceImpl: BaseRemoteDataSource<StudyRoomsAPI>, RemoteStudyRoomsDataSource {
+    public func fetchStudyroomTimeList() -> AnyPublisher<StudyroomTimeListEntity, DmsError> {
+        request(.fetchStudyroomTimeList, dto: FetchStudyRoomTimeListResponseDTO.self)
+            .map { $0.toDomain() }
+            .eraseToAnyPublisher()
+    }
+
     public func fetchMyRemainApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError> {
         request(.fetchMyStudyRoomApplicationItems, dto: FetchMyStudyRoomApplicationItemsDTO.self)
             .map { $0.toDomain() }
