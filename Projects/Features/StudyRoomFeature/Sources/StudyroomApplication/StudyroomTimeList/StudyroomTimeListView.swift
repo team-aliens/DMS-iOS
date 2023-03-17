@@ -23,22 +23,23 @@ struct StudyroomTimeListView: View {
                                 viewModel.selectedEntity = timeSlots
                             }
                         )
+                        .background( Color.red )
                     }
                 }
                 .padding(.horizontal, 19)
                 .padding(.bottom, 10)
-
-                DMSWideButton(
-                    text: "확인",
-                    style: .contained,
-                    color: .PrimaryVariant.primary,
-                    action: {
-                        viewModel.isStudyTimeBottomSheet = false
-                    }
-                )
-                .padding(.horizontal, 24)
-                .padding(.bottom)
             }
+
+            DMSWideButton(
+                text: "확인",
+                style: .contained,
+                color: .PrimaryVariant.primary,
+                action: {
+                    viewModel.isStudyTimeBottomSheet = false
+                }
+            )
+            .padding(.horizontal, 24)
+            .padding(.bottom)
         }
         .onAppear {
             viewModel.fetchStudyroomTimeList()
