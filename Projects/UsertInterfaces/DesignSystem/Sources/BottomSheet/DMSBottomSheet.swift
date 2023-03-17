@@ -94,8 +94,8 @@ struct DMSBottomSheet<T: View>: ViewModifier {
 public extension View {
     func dmsBottomSheet<Content: View>(
         isShowing: Binding<Bool>,
-        isGrabberOn: Bool,
-        sheetCornerRadiusValue: CGFloat,
+        isGrabberOn: Bool = false,
+        sheetCornerRadiusValue: CGFloat = 25,
         content: @escaping () -> Content
     ) -> some View {
         modifier(DMSBottomSheet(
