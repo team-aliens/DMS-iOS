@@ -26,8 +26,27 @@ struct StudyRoomListView: View {
                     StudyRoomNoticeView(text: viewModel.rangeString)
                 }
                 LazyVStack(spacing: 16) {
-                    Spacer()
-                        .frame(height: 10)
+                    Button {
+                        withAnimation {
+                            viewModel.isStudyTimeBottomSheet.toggle()
+                        }
+                    } label: {
+                        HStack(alignment: .center) {
+                            Image(systemName: "slider.horizontal.3")
+                                .foregroundColor(.PrimaryVariant.primary)
+                                .frame(width: 15)
+                                .padding(.top, 4)
+                                .padding(.trailing, 11)
+
+                            Text("10시 ~ 11시")
+                                .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
+
+                            Spacer()
+                        }
+                    }
+                    .padding(.vertical, 9)
+                    .padding(.leading, 27)
+
                     ForEach(viewModel.studyRoomList, id: \.self) { studyRoomList in
                         Button {
                             viewModel.isNavigateDetail.toggle()
@@ -52,6 +71,22 @@ struct StudyRoomListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackButton(dismiss: dismiss)
         .dmsBackground()
+        .dmsBottomSheet(
+            isShowing: $viewModel.isStudyTimeBottomSheet,
+            isGrabberOn: false,
+            sheetCornerRadiusValue: 8
+        ) {
+            DeferView {
+                StudyroomTimeListView(
+                    isClicked: false,
+                    okButtonAction: {
+                        withAnimation {
+                            viewModel.isStudyTimeBottomSheet = false
+                        }
+                    }
+                )
+            }
+        }
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .onAppear {
             viewModel.onAppear()

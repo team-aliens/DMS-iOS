@@ -2,6 +2,8 @@ import SwiftUI
 
 struct DMSBottomSheet<T: View>: ViewModifier {
     @Binding var isShowing: Bool
+    @State var isGrabberOn: Bool
+    @State var sheetCornerRadiusValue: CGFloat
     @State var dragHeight: CGFloat = 0
     var content: () -> T
     var height: CGFloat
@@ -27,10 +29,14 @@ struct DMSBottomSheet<T: View>: ViewModifier {
 
     init(
         isShowing: Binding<Bool>,
+        isGrabberOn: Bool = false,
+        sheetCornerRadiusValue: CGFloat = 25,
         height: CGFloat = .infinity,
         content: @escaping () -> T
     ) {
         _isShowing = isShowing
+        self.isGrabberOn = isGrabberOn
+        self.sheetCornerRadiusValue = sheetCornerRadiusValue
         self.height = height
         self.content = content
     }
@@ -54,15 +60,17 @@ struct DMSBottomSheet<T: View>: ViewModifier {
 
                     ZStack {
                         Color.GrayScale.gray1
-                            .cornerRadius(25, corners: [.topLeft, .topRight])
+                            .cornerRadius(sheetCornerRadiusValue, corners: [.topLeft, .topRight])
                             .padding(.top, -dragHeight)
                             .gesture(sheetDragging)
 
                         VStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.GrayScale.gray4)
-                                .frame(width: 100, height: 4)
-                                .padding(.top, 12)
+                            if isGrabberOn {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color.GrayScale.gray4)
+                                    .frame(width: 100, height: 4)
+                                    .padding(.top, 12)
+                            }
 
                             self.content()
                                 .frame(maxWidth: .infinity)
@@ -86,8 +94,15 @@ struct DMSBottomSheet<T: View>: ViewModifier {
 public extension View {
     func dmsBottomSheet<Content: View>(
         isShowing: Binding<Bool>,
+        isGrabberOn: Bool = false,
+        sheetCornerRadiusValue: CGFloat = 25,
         content: @escaping () -> Content
     ) -> some View {
-        modifier(DMSBottomSheet(isShowing: isShowing, content: content))
+        modifier(DMSBottomSheet(
+            isShowing: isShowing,
+            isGrabberOn: isGrabberOn,
+            sheetCornerRadiusValue: sheetCornerRadiusValue,
+            content: content
+        ))
     }
 }

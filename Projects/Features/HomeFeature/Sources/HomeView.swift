@@ -86,7 +86,11 @@ struct HomeView: View {
             }
         }
         .dmsBackground()
-        .dmsBottomSheet(isShowing: $isShowingCalendar) {
+        .dmsBottomSheet(
+            isShowing: $isShowingCalendar,
+            isGrabberOn: true,
+            sheetCornerRadiusValue: 25
+        ) {
             DeferView {
                 CalendarSheetView(selectedDate: $viewModel.selectedDate)
                     .padding(.top, 24)
