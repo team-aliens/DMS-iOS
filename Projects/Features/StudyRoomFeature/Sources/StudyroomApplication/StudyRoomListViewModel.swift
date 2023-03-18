@@ -15,7 +15,7 @@ final class StudyRoomListViewModel: BaseViewModel {
     @Published var isStudyTimeBottomSheet: Bool = false
 
     @Published var studyroomTimeList = StudyroomTimeListEntity(timeSlots: [])
-    @Published var selectedEntity: TimeSlotsEntity?
+    @Published var selectedTimeEntity: TimeSlotsEntity?
     @Published var studyAvailableTime: StudyAvailableTimeEntity?
     @Published var studyRoomDetail: StudyRoomEntity = .init(
         id: "",

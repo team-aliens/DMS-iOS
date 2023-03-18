@@ -17,10 +17,10 @@ struct StudyroomTimeListView: View {
                 LazyHStack {
                     ForEach(viewModel.studyroomTimeList.timeSlots, id: \.self) { timeSlots in
                         StudyroomTimeListCellView(
-                            isClicked: timeSlots.id == viewModel.selectedEntity?.id,
+                            isClicked: timeSlots.id == viewModel.selectedTimeEntity?.id,
                             timeSlots: timeSlots,
                             buttonAction: {
-                                viewModel.selectedEntity = timeSlots
+                                viewModel.selectedTimeEntity = timeSlots
                             }
                         )
                     }
