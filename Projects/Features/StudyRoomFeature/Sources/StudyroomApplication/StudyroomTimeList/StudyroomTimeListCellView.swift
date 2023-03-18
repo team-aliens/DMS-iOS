@@ -3,16 +3,16 @@ import DesignSystem
 import SwiftUI
 
 struct StudyroomTimeListCellView: View {
-    @State var isClicked: Bool = false
+    var isSelected: Bool = false
     var timeSlots: TimeSlotsEntity
     let buttonAction: () -> Void
 
     public init(
-        isClicked: Bool,
+        isSelected: Bool,
         timeSlots: TimeSlotsEntity,
         buttonAction: @escaping () -> Void
     ) {
-        self.isClicked = isClicked
+        self.isSelected = isSelected
         self.timeSlots = timeSlots
         self.buttonAction = buttonAction
     }
@@ -20,7 +20,7 @@ struct StudyroomTimeListCellView: View {
     var body: some View {
         HStack {
             Button {
-                if !isClicked {
+                if !isSelected {
                     buttonAction()
                 }
             } label: {
@@ -29,17 +29,17 @@ struct StudyroomTimeListCellView: View {
                     .padding(.vertical, 14)
                     .dmsFont(
                         .etc(.button),
-                        color: isClicked ? .GrayScale.gray1 : .GrayScale.gray4
+                        color: isSelected ? .GrayScale.gray1 : .GrayScale.gray4
                     )
                     .background(
-                        isClicked ? Color.PrimaryVariant.primary : Color.GrayScale.gray1
+                        isSelected ? Color.PrimaryVariant.primary : Color.GrayScale.gray1
                     )
             }
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
                     .inset(by: 1)
                     .stroke(
-                        isClicked ? Color.System.primary : Color.GrayScale.gray4,
+                        isSelected ? Color.System.primary : Color.GrayScale.gray4,
                         lineWidth: 2
                     )
             )
