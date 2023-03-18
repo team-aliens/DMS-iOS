@@ -4,16 +4,16 @@ import SwiftUI
 
 struct StudyroomTimeListCellView: View {
     @State var isClicked: Bool = false
-    var list: TimeSlotsEntity
+    var timeSlots: TimeSlotsEntity
     let buttonAction: () -> Void
 
     public init(
         isClicked: Bool,
-        list: TimeSlotsEntity,
+        timeSlots: TimeSlotsEntity,
         buttonAction: @escaping () -> Void
     ) {
         self.isClicked = isClicked
-        self.list = list
+        self.timeSlots = timeSlots
         self.buttonAction = buttonAction
     }
 
@@ -24,7 +24,7 @@ struct StudyroomTimeListCellView: View {
                     buttonAction()
                 }
             } label: {
-                Text("\(list.startTime) ~ \(list.endTime)")
+                Text("\(timeSlots.startTime) ~ \(timeSlots.endTime)")
                     .padding(.horizontal, 16)
                     .padding(.vertical, 14)
                     .dmsFont(

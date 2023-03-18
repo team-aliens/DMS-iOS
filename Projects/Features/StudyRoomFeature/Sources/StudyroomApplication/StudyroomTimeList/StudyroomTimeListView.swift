@@ -18,12 +18,11 @@ struct StudyroomTimeListView: View {
                     ForEach(viewModel.studyroomTimeList.timeSlots, id: \.self) { timeSlots in
                         StudyroomTimeListCellView(
                             isClicked: timeSlots.id == viewModel.selectedEntity?.id,
-                            list: timeSlots,
+                            timeSlots: timeSlots,
                             buttonAction: {
                                 viewModel.selectedEntity = timeSlots
                             }
                         )
-                        .background( Color.red )
                     }
                 }
                 .padding(.horizontal, 19)

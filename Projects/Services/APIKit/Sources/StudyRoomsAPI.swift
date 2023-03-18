@@ -40,6 +40,7 @@ extension StudyRoomsAPI: DmsAPI {
 
         case .fetchMyStudyRoomApplicationItems:
             return "/my"
+
         case .fetchStudyroomTimeList:
             return "/time-slots"
         }
