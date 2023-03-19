@@ -18,8 +18,6 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
-	<key>WKWatchKitApp</key>
-	<true/>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>UISupportedInterfaceOrientations</key>
@@ -29,5 +27,7 @@
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>com.team.aliens.DMS-Aliens</string>
+	<key>WKWatchKitApp</key>
+	<true/>
 </dict>
 </plist>

@@ -320,6 +320,9 @@ private class StudyRoomListDependencyef56e26c25d5de596604Provider: StudyRoomList
     var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase {
         return appComponent.fetchStudyAvailableTimeUseCase
     }
+    var fetchStudyroomTimeListUseCase: any FetchStudyroomTimeListUseCase {
+        return appComponent.fetchStudyroomTimeListUseCase
+    }
     var studyRoomDetailComponent: StudyRoomDetailComponent {
         return appComponent.studyRoomDetailComponent
     }
@@ -541,6 +544,7 @@ extension AppComponent: Registration {
         localTable["applyStudyRoomSeatUseCase-any ApplyStudyRoomSeatUseCase"] = { [unowned self] in self.applyStudyRoomSeatUseCase as Any }
         localTable["cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"] = { [unowned self] in self.cancelStudyRoomSeatUseCase as Any }
         localTable["fetchMyStudyRoomAppItemsUseCase-any FetchMyStudyRoomAppItemsUseCase"] = { [unowned self] in self.fetchMyStudyRoomAppItemsUseCase as Any }
+        localTable["fetchStudyroomTimeListUseCase-any FetchStudyroomTimeListUseCase"] = { [unowned self] in self.fetchStudyroomTimeListUseCase as Any }
         localTable["localAuthDataSource-any LocalAuthDataSource"] = { [unowned self] in self.localAuthDataSource as Any }
         localTable["remoteAuthDataSource-any RemoteAuthDataSource"] = { [unowned self] in self.remoteAuthDataSource as Any }
         localTable["authRepository-any AuthRepository"] = { [unowned self] in self.authRepository as Any }
@@ -728,6 +732,7 @@ extension StudyRoomListComponent: Registration {
     public func registerItems() {
         keyPathToName[\StudyRoomListDependency.fetchStudyRoomListUseCase] = "fetchStudyRoomListUseCase-any FetchStudyRoomListUseCase"
         keyPathToName[\StudyRoomListDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
+        keyPathToName[\StudyRoomListDependency.fetchStudyroomTimeListUseCase] = "fetchStudyroomTimeListUseCase-any FetchStudyroomTimeListUseCase"
         keyPathToName[\StudyRoomListDependency.studyRoomDetailComponent] = "studyRoomDetailComponent-StudyRoomDetailComponent"
     }
 }

@@ -10,9 +10,13 @@ final class StudyRoomListViewModel: BaseViewModel {
     @Published var isStudyRoomTime = true
     @Published var isShowingToast = false
     @Published var toastMessage = ""
-    @Published var studyAvailableTime: StudyAvailableTimeEntity?
+
     @Published var isNavigateDetail: Bool = false
     @Published var isStudyTimeBottomSheet: Bool = false
+
+    @Published var studyroomTimeList = StudyroomTimeListEntity(timeSlots: [])
+    @Published var selectedTimeEntity: TimeSlotsEntity?
+    @Published var studyAvailableTime: StudyAvailableTimeEntity?
     @Published var studyRoomDetail: StudyRoomEntity = .init(
         id: "",
         floor: 0,
@@ -36,13 +40,16 @@ final class StudyRoomListViewModel: BaseViewModel {
 
     private let fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase
     private let fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase
+    private let fetchStudyroomTimeListUseCase: any FetchStudyroomTimeListUseCase
 
     public init(
         fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase,
-        fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase
+        fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase,
+        fetchStudyroomTimeListUseCase: any FetchStudyroomTimeListUseCase
     ) {
         self.fetchStudyRoomListUseCase = fetchStudyRoomListUseCase
         self.fetchStudyAvailableTimeUseCase = fetchStudyAvailableTimeUseCase
+        self.fetchStudyroomTimeListUseCase = fetchStudyroomTimeListUseCase
         super.init()
     }
 
@@ -59,6 +66,14 @@ final class StudyRoomListViewModel: BaseViewModel {
             fetchStudyAvailableTimeUseCase.execute()
         ) { [weak self] studyAvailableTime  in
             self?.studyAvailableTime = studyAvailableTime
+        }
+    }
+
+    func fetchStudyroomTimeList() {
+        addCancellable(
+            fetchStudyroomTimeListUseCase.execute()
+        ) { [weak self] studyroomTimeList in
+            self?.studyroomTimeList = studyroomTimeList
         }
     }
 

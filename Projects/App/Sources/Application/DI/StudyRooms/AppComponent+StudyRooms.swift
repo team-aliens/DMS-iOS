@@ -39,4 +39,10 @@ public extension AppComponent {
     var fetchMyStudyRoomAppItemsUseCase: any FetchMyStudyRoomAppItemsUseCase {
         FetchMyStudyRoomAppItemsUseCaseImpl(studyRoomsRepository: studyRoomsRepository)
     }
+
+    var fetchStudyroomTimeListUseCase: any FetchStudyroomTimeListUseCase {
+        shared {
+            FetchStudyroomTimeListUseCaseImpl(studyRoomsRepository: studyRoomsRepository)
+        }
+    }
 }
