@@ -25,8 +25,22 @@ struct StudyRoomListCellView: View {
                         .dmsFont(.body(.body3), color: .GrayScale.gray5)
                 }
 
-                Text("\(gradeToString(studyRoomEntity.availableGrade)) \(studyRoomEntity.availableSex.displayString())")
-                    .dmsFont(.body(.body3), color: .System.primary)
+                HStack {
+                    Text(gradeToString(studyRoomEntity.availableGrade) + " " +
+                         studyRoomEntity.availableSex.displayString())
+                        .dmsFont(.body(.body3), color: .System.primary)
+
+                    Spacer()
+
+                    if studyRoomEntity.isMine {
+                        Text("신청함")
+                            .dmsFont(.etc(.overline), color: .System.surface)
+                            .padding(.vertical, 3)
+                            .padding(.horizontal, 11)
+                            .background(Color.PrimaryVariant.primary)
+                            .cornerRadius(11)
+                    }
+                }
             }
             .padding(.vertical, 16)
             .padding(.horizontal, 16)
