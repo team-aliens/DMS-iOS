@@ -38,7 +38,8 @@ struct StudyRoomListView: View {
                                 .padding(.top, 4)
                                 .padding(.trailing, 11)
 
-                            Text("10시 ~ 11시")
+                            Text((viewModel.selectedTimeEntity?.startTime ?? "")
+                                 + " ~ " + (viewModel.selectedTimeEntity?.endTime ?? ""))
                                 .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
 
                             Spacer()
@@ -85,7 +86,10 @@ struct StudyRoomListView: View {
             viewModel.onAppear()
         }
         .navigate(
-            to: studyRoomDetailComponent.makeView(studyRoomEntity: viewModel.studyRoomDetail),
+            to: studyRoomDetailComponent.makeView(
+                studyRoomEntity: viewModel.studyRoomDetail,
+                timeSlot: viewModel.timeSlotParam ?? ""
+            ),
             when: $viewModel.isNavigateDetail
         )
     }

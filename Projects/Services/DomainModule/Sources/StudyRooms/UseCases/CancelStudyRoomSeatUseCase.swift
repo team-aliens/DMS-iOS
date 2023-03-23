@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol CancelStudyRoomSeatUseCase {
-    func execute() -> AnyPublisher<Void, DmsError>
+    func execute(timeSlot: String) -> AnyPublisher<Void, DmsError>
 }

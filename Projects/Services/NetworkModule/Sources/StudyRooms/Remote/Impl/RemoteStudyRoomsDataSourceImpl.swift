@@ -29,23 +29,26 @@ public final class RemoteStudyRoomsDataSourceImpl: BaseRemoteDataSource<StudyRoo
             .eraseToAnyPublisher()
     }
 
-    public func fetchStudyRoomList() -> AnyPublisher<[StudyRoomEntity], DmsError> {
-        request(.fetchStudyRoomList, dto: FetchStudyRoomListResponDTO.self)
+    public func fetchStudyRoomList(timeSlot: String?) -> AnyPublisher<[StudyRoomEntity], DmsError> {
+        request(.fetchStudyRoomList(timeSlot: timeSlot), dto: FetchStudyRoomListResponDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
 
-    public func fetchDetailStudyRoom(roomID: String) -> AnyPublisher<DetailStudyRoomEntity, DmsError> {
-        request(.fetchDetailStudyRoom(roomID: roomID), dto: FetchDetailStudyRoomResponseDTO.self)
+    public func fetchDetailStudyRoom(
+        roomID: String,
+        timeSlot: String
+    ) -> AnyPublisher<DetailStudyRoomEntity, DmsError> {
+        request(.fetchDetailStudyRoom(roomID: roomID, timeSlot: timeSlot), dto: FetchDetailStudyRoomResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
 
-    public func applyStudyRoomSeat(seatID: String) -> AnyPublisher<Void, DmsError> {
-        request(.applyStudyRoomSeat(seatID: seatID))
+    public func applyStudyRoomSeat(seatID: String, timeSlot: String) -> AnyPublisher<Void, DmsError> {
+        request(.applyStudyRoomSeat(seatID: seatID, timeSlot: timeSlot))
     }
 
-    public func cancelStudyRoomSeat() -> AnyPublisher<Void, DmsError> {
-        request(.cancelStudyRoomSeat)
+    public func cancelStudyRoomSeat(timeSlot: String) -> AnyPublisher<Void, DmsError> {
+        request(.cancelStudyRoomSeat(timeSlot: timeSlot))
     }
 }

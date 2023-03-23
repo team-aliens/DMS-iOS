@@ -1,15 +1,16 @@
 import DataMappingModule
+import Foundation
 import ErrorModule
 import Moya
 
 public enum StudyRoomsAPI {
     case fetchStudyAvailableTime
     case fetchSeatTypes
-    case fetchStudyRoomList
-    case fetchDetailStudyRoom(roomID: String)
+    case fetchStudyRoomList(timeSlot: String?)
+    case fetchDetailStudyRoom(roomID: String, timeSlot: String)
     case fetchMyStudyRoomApplicationItems
-    case applyStudyRoomSeat(seatID: String)
-    case cancelStudyRoomSeat
+    case applyStudyRoomSeat(seatID: String, timeSlot: String)
+    case cancelStudyRoomSeat(timeSlot: String)
     case fetchStudyroomTimeList
 }
 
@@ -29,10 +30,10 @@ extension StudyRoomsAPI: DmsAPI {
         case .fetchStudyRoomList:
             return "/list/students"
 
-        case let .fetchDetailStudyRoom(id):
+        case let .fetchDetailStudyRoom(id, _):
             return "/\(id)/students"
 
-        case let .applyStudyRoomSeat(id):
+        case let .applyStudyRoomSeat(id, _):
             return "/seats/\(id)"
 
         case .cancelStudyRoomSeat:
@@ -62,7 +63,41 @@ extension StudyRoomsAPI: DmsAPI {
     }
 
     public var task: Moya.Task {
-        .requestPlain
+        switch self {
+        case let .fetchStudyRoomList(timeSlot):
+            return .requestParameters(
+                parameters: [
+                    "time_slot": timeSlot ?? ""
+                ],
+                encoding: URLEncoding.queryString
+            )
+
+        case let .fetchDetailStudyRoom(_, timeSlot):
+            return .requestParameters(
+                parameters: [
+                    "time_slot": timeSlot
+                ],
+                encoding: URLEncoding.queryString
+            )
+
+        case let .applyStudyRoomSeat(_, timeSlot):
+            return .requestParameters(
+                parameters: [
+                    "time_slot": timeSlot
+                ],
+                encoding: URLEncoding.queryString
+            )
+
+        case let .cancelStudyRoomSeat(timeSlot):
+            return .requestParameters(
+                parameters: [
+                    "time_slot": timeSlot
+                ],
+                encoding: URLEncoding.queryString
+            )
+        default:
+            return .requestPlain
+        }
     }
 
     public var jwtTokenType: JwtTokenType {

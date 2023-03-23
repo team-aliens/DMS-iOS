@@ -19,20 +19,23 @@ public struct StudyRoomsRepositoryImpl: StudyRoomsRepository {
         remoteStudyRoomsDataSource.fetchSeatTypes()
     }
 
-    public func fetchStudyRoomList() -> AnyPublisher<[StudyRoomEntity], DmsError> {
-        remoteStudyRoomsDataSource.fetchStudyRoomList()
+    public func fetchStudyRoomList(timeSlot: String?) -> AnyPublisher<[StudyRoomEntity], DmsError> {
+        remoteStudyRoomsDataSource.fetchStudyRoomList(timeSlot: timeSlot)
     }
 
-    public func fetchDetailStudyRoom(roomID: String) -> AnyPublisher<DetailStudyRoomEntity, DmsError> {
-        remoteStudyRoomsDataSource.fetchDetailStudyRoom(roomID: roomID)
+    public func fetchDetailStudyRoom(
+        roomID: String,
+        timeSlot: String
+    ) -> AnyPublisher<DetailStudyRoomEntity, DmsError> {
+        remoteStudyRoomsDataSource.fetchDetailStudyRoom(roomID: roomID, timeSlot: timeSlot)
     }
 
-    public func applyStudyRoomSeat(seatID: String) -> AnyPublisher<Void, DmsError> {
-        remoteStudyRoomsDataSource.applyStudyRoomSeat(seatID: seatID)
+    public func applyStudyRoomSeat(seatID: String, timeSlot: String) -> AnyPublisher<Void, DmsError> {
+        remoteStudyRoomsDataSource.applyStudyRoomSeat(seatID: seatID, timeSlot: timeSlot)
     }
 
-    public func cancelStudyRoomSeat() -> AnyPublisher<Void, DmsError> {
-        remoteStudyRoomsDataSource.cancelStudyRoomSeat()
+    public func cancelStudyRoomSeat(timeSlot: String) -> AnyPublisher<Void, DmsError> {
+        remoteStudyRoomsDataSource.cancelStudyRoomSeat(timeSlot: timeSlot)
     }
 
     public func fetchMyStudyRoomApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError> {

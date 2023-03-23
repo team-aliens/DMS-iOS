@@ -10,7 +10,7 @@ public struct FetchStudyRoomListUseCaseImpl: FetchStudyRoomListUseCase {
         self.studyRoomsRepository = studyRoomsRepository
     }
 
-    public func execute() -> AnyPublisher<[StudyRoomEntity], DmsError> {
-        studyRoomsRepository.fetchStudyRoomList()
+    public func execute(timeSlot: String?) -> AnyPublisher<[StudyRoomEntity], DmsError> {
+        studyRoomsRepository.fetchStudyRoomList(timeSlot: timeSlot)
     }
 }

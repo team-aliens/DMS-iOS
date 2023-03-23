@@ -21,6 +21,7 @@ struct StudyroomTimeListView: View {
                             timeSlots: timeSlots,
                             buttonAction: {
                                 viewModel.selectedTimeEntity = timeSlots
+                                viewModel.timeSlotParam = timeSlots.id
                             }
                         )
                     }
@@ -31,6 +32,7 @@ struct StudyroomTimeListView: View {
 
             DMSWideButton(text: "확인", style: .contained, color: .PrimaryVariant.primary) {
                 viewModel.isStudyTimeBottomSheet = false
+                viewModel.refresh()
             }
             .padding(.horizontal, 24)
             .padding(.bottom)
