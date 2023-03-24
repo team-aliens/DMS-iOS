@@ -4,7 +4,6 @@ import Moya
 
 public enum FilesAPI {
     case uploadFile(data: Data)
-    case fetchPresignedURL(data: Data)
 }
 
 extension FilesAPI: DmsAPI {
