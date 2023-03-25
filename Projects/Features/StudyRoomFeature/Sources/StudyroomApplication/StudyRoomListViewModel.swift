@@ -12,10 +12,11 @@ final class StudyRoomListViewModel: BaseViewModel {
     @Published var toastMessage = ""
 
     @Published var isNavigateDetail: Bool = false
-    @Published var isStudyTimeBottomSheet: Bool = false
+    @Published var isStudyTimeBottomSheet: Bool = true
 
     @Published var studyroomTimeList = StudyroomTimeListEntity(timeSlots: [])
     @Published var selectedTimeEntity: TimeSlotsEntity?
+    @Published var timeSlotParam: String?
     @Published var studyAvailableTime: StudyAvailableTimeEntity?
     @Published var studyRoomDetail: StudyRoomEntity = .init(
         id: "",
@@ -55,7 +56,9 @@ final class StudyRoomListViewModel: BaseViewModel {
 
     func fetchStudyRoomList() {
         addCancellable(
-            fetchStudyRoomListUseCase.execute()
+            fetchStudyRoomListUseCase.execute(
+                timeSlot: timeSlotParam
+            )
         ) { [weak self]  studyRoomList in
             self?.studyRoomList = studyRoomList
         }
@@ -78,12 +81,11 @@ final class StudyRoomListViewModel: BaseViewModel {
     }
 
     func onAppear() {
-        fetchStudyRoomList()
         fetchStudyAvailableTime()
     }
 
     func refresh() {
-        fetchStudyRoomList()
         fetchStudyAvailableTime()
+        fetchStudyRoomList()
     }
 }
