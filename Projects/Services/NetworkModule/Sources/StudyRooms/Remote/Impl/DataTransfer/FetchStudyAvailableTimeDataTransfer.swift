@@ -5,8 +5,8 @@ import Utility
 public extension FetchStudyAvailableTimeResponseDTO {
     func toDomain() -> StudyAvailableTimeEntity {
         StudyAvailableTimeEntity(
-            startAt: startAt.toDMSTime(),
-            endAt: endAt.toDMSTime()
+            startAt: startAt,
+            endAt: endAt
         )
     }
 }

@@ -59,8 +59,8 @@ final class StudyRoomDetailViewModel: BaseViewModel {
         addCancellable(
             fetchStudyAvailableTimeUseCase.execute()
         ) { [weak self] availableTime in
-            let startTime = availableTime.startAt.toSmallDMSTimeString()
-            let endTime = availableTime.endAt.toSmallDMSTimeString()
+            let startTime = availableTime.startAt
+            let endTime = availableTime.endAt
             self?.availableTimeString = "자습실 신청 시간은 \(startTime) ~ \(endTime) 까지 입니다."
         }
     }
