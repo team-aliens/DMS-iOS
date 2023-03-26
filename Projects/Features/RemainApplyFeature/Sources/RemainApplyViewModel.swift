@@ -17,8 +17,8 @@ final class RemainApplyViewModel: BaseViewModel {
 
     var rangeString: String {
         if let time = remainsAvailableTime {
-            let startString = "\(time.startDayOfWeek.displayString()) \(time.startTime.toSmallDMSTimeString())"
-            let endString = "\(time.endDayOfWeek.displayString()) \(time.endTime.toSmallDMSTimeString())"
+            let startString = "\(time.startDayOfWeek.displayString()) \(time.startTime)"
+            let endString = "\(time.endDayOfWeek.displayString()) \(time.endTime)"
             let text = "잔류 신청 시간은 \(startString) ~ \(endString) 까지 입니다."
             return text
         } else {
