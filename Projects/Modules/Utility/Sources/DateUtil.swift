@@ -31,15 +31,11 @@ public extension String {
     func toDMSNoticeTimeDate() -> Date {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [ .withFullDate, .withTime, .withColonSeparatorInTime ]
-        let param = formatter.date(from: self) ?? .init()
-
-        let secondFormatter = DateFormatter()
-        secondFormatter.dateFormat = "yy/MM/dd HH:mm"
-        let secondParam = secondFormatter.string(from: param)
+        let param = (formatter.date(from: self) ?? .init()).toDMSNoticeTimeString()
 
         let lastFormatter = DateFormatter()
         lastFormatter.dateFormat = "yy/MM/dd HH:mm"
-        return lastFormatter.date(from: secondParam) ?? .init()
+        return lastFormatter.date(from: param) ?? .init()
     }
 }
 
