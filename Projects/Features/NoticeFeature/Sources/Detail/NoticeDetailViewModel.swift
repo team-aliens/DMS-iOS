@@ -8,7 +8,7 @@ final class NoticeDetailViewModel: BaseViewModel {
     @Published var content = ""
     @Published var date = Date()
     var displayDate: String {
-        "\(date.year)/\(date.month)/\(date.day) \(date.hour):\(date.minute)"
+        "\(date.toDMSNoticeTimeString())"
     }
 
     private let id: String
@@ -29,8 +29,7 @@ final class NoticeDetailViewModel: BaseViewModel {
         ) { [weak self] noticeDetail in
             self?.title = noticeDetail.title
             self?.content = noticeDetail.content
-            self?.date = noticeDetail.createdAt
-        }
+            self?.date = noticeDetail.createdAt        }
 
     }
 }
