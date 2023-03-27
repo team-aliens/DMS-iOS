@@ -21,6 +21,18 @@ public extension String {
         formatter.locale = Locale(identifier: "ko_kr")
         return formatter.date(from: self) ?? .init()
     }
+
+    func toDMSNoticeDate() -> Date {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [ .withFullDate, .withDashSeparatorInDate ]
+        return formatter.date(from: self) ?? .init()
+    }
+
+    func toDMSNoticeTimeDate() -> Date {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [ .withFullDate, .withDashSeparatorInDate, .withTime, .withColonSeparatorInTime ]
+        return formatter.date(from: self) ?? .init()
+    }
 }
 
 public extension Date {

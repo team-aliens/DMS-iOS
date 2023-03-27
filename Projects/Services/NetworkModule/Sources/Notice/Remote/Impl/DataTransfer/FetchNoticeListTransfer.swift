@@ -13,7 +13,7 @@ public extension SingleNoticeResponseDTO {
         NoticeEntity(
             id: id,
             title: title,
-            createdAt: createdAt.toDMSDate()
+            createdAt: createdAt.toDMSNoticeDate()
         )
     }
 }
