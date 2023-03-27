@@ -40,8 +40,8 @@ public struct FetchPointListResponseDTO: Decodable {
         public let score: Int
 
         enum CodingKeys: String, CodingKey {
-            case date, type, name, score
             case pointID = "point_history_id"
+            case date, type, name, score
         }
     }
 }
