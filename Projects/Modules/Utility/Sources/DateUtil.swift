@@ -29,13 +29,13 @@ public extension String {
     }
 
     func toDMSNoticeTimeDate() -> Date {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [ .withFullDate, .withTime, .withColonSeparatorInTime ]
-        let param = (formatter.date(from: self) ?? .init()).toDMSNoticeTimeString()
+        let iso8601Formatter = ISO8601DateFormatter()
+        iso8601Formatter.formatOptions = [ .withFullDate, .withTime, .withColonSeparatorInTime ]
+        let param = (iso8601Formatter.date(from: self) ?? .init()).toDMSNoticeTimeString()
 
-        let lastFormatter = DateFormatter()
-        lastFormatter.dateFormat = "yy/MM/dd HH:mm"
-        return lastFormatter.date(from: param) ?? .init()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yy/MM/dd HH:mm"
+        return formatter.date(from: param) ?? .init()
     }
 }
 
