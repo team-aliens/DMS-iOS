@@ -88,52 +88,60 @@ struct MyPageView: View {
                 }
                 .padding(.top, 48)
 
-                Text(viewModel.profile?.phrase ?? "")
-                    .dmsFont(.body(.body3), color: .GrayScale.gray7)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 14)
-                    .padding(.horizontal, 20)
-                    .background {
-                        Color.PrimaryVariant.lighten2
-                            .cornerRadius(5)
+                Spacer()
+                    .frame(height: 55)
+
+                if appState.features.pointService {
+                    Text(viewModel.profile?.phrase ?? "")
+                        .dmsFont(.body(.body3), color: .GrayScale.gray7)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                        .padding(.horizontal, 20)
+                        .background {
+                            Color.PrimaryVariant.lighten2
+                                .cornerRadius(5)
+                        }
+                        .padding(.bottom, 5)
+
+                    HStack(spacing: 12) {
+                        RewardPointCardView(
+                            title: "상점",
+                            point: viewModel.profile?.bonusPoint ?? 0,
+                            rewardType: .bonusPoint
+                        )
+
+                        RewardPointCardView(
+                            title: "벌점",
+                            point: viewModel.profile?.minusPoint ?? 0,
+                            rewardType: .minusPoint
+                        )
                     }
-                    .padding(.top, 55)
-                    .padding(.bottom, 5)
-
-                HStack(spacing: 12) {
-                    RewardPointCardView(
-                        title: "상점",
-                        point: viewModel.profile?.bonusPoint ?? 0,
-                        rewardType: .bonusPoint
-                    )
-
-                    RewardPointCardView(
-                        title: "벌점",
-                        point: viewModel.profile?.minusPoint ?? 0,
-                        rewardType: .minusPoint
-                    )
                 }
-                .padding(.bottom, 5)
+
+                Spacer()
+                    .frame(height: 15)
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Button {
-                        viewModel.isNavigateRewardPointDetail.toggle()
-                    } label: {
-                        myPageOptionRowCardView(title: "상벌점 내역 확인")
-                            .dmsFont(.body(.body2), color: .GrayScale.gray6)
-                            .cornerRadius(10, corners: [.topLeft, .topRight])
-                    }
+                    if appState.features.pointService {
+                        Button {
+                            viewModel.isNavigateRewardPointDetail.toggle()
+                        } label: {
+                            myPageOptionRowCardView(title: "상벌점 내역 확인")
+                                .dmsFont(.body(.body2), color: .GrayScale.gray6)
+                                .cornerRadius(10, corners: [.topLeft, .topRight])
+                        }
 
-                    Divider()
-                        .padding(.horizontal, 10)
+                        Divider()
+                            .padding(.horizontal, 10)
+                    }
 
                     Button {
                         viewModel.isNavigateChangePassword.toggle()
                     } label: {
                         myPageOptionRowCardView(title: "비밀번호 변경")
                             .dmsFont(.body(.body2), color: .GrayScale.gray6)
-                            .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
+                            .cornerRadius(10, corners: [ appState.features.pointService ? [.bottomLeft, .bottomRight] : .allCorners ])
                     }
 
                 }
