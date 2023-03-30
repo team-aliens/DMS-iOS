@@ -7,7 +7,7 @@ public extension FetchDetailNoticeResponseDTO {
         DetailNoticeEntity(
             title: title,
             content: content,
-            createdAt: createdAt.toDMSNoticeTimeDate()
+            createdAt: createdAt.toDMSDate()
         )
     }
 }

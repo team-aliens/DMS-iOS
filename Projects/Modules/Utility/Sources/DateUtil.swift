@@ -27,22 +27,13 @@ public extension String {
         formatter.formatOptions = [ .withFullDate, .withDashSeparatorInDate ]
         return formatter.date(from: self) ?? .init()
     }
-
-    func toDMSNoticeTimeDate() -> Date {
-        let hello = DateFormatter()
-        hello.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let param = (hello.date(from: self) ?? .init()).toDMSNoticeTimeString()
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yy/MM/dd HH:mm"
-        return formatter.date(from: param) ?? .init()
-    }
 }
 
 public extension Date {
     func toDMSNoticeTimeString() -> String {
         let lastFormatter = DateFormatter()
         lastFormatter.dateFormat = "yy/MM/dd HH:mm"
+        lastFormatter.locale = Locale(identifier: "ko_kr")
         return lastFormatter.string(from: self)
     }
     func toDMSDateString() -> String {
