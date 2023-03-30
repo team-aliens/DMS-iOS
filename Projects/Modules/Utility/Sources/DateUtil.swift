@@ -29,9 +29,9 @@ public extension String {
     }
 
     func toDMSNoticeTimeDate() -> Date {
-        let iso8601Formatter = ISO8601DateFormatter()
-        iso8601Formatter.formatOptions = [ .withFullDate, .withTime, .withColonSeparatorInTime ]
-        let param = (iso8601Formatter.date(from: self) ?? .init()).toDMSNoticeTimeString()
+        let hello = DateFormatter()
+        hello.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let param = (hello.date(from: self) ?? .init()).toDMSNoticeTimeString()
 
         let formatter = DateFormatter()
         formatter.dateFormat = "yy/MM/dd HH:mm"
