@@ -21,9 +21,21 @@ public extension String {
         formatter.locale = Locale(identifier: "ko_kr")
         return formatter.date(from: self) ?? .init()
     }
+
+    func toDMSNoticeDate() -> Date {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [ .withFullDate, .withDashSeparatorInDate ]
+        return formatter.date(from: self) ?? .init()
+    }
 }
 
 public extension Date {
+    func toDMSNoticeTimeString() -> String {
+        let lastFormatter = DateFormatter()
+        lastFormatter.dateFormat = "yy/MM/dd HH:mm"
+        lastFormatter.locale = Locale(identifier: "ko_kr")
+        return lastFormatter.string(from: self)
+    }
     func toDMSDateString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"

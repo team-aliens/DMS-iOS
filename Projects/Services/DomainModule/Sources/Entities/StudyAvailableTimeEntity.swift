@@ -1,11 +1,11 @@
 import Foundation
 
 public struct StudyAvailableTimeEntity: Equatable {
-    public init(startAt: Date, endAt: Date) {
+    public init(startAt: String, endAt: String) {
         self.startAt = startAt
         self.endAt = endAt
     }
 
-    public let startAt: Date
-    public let endAt: Date
+    public let startAt: String
+    public let endAt: String
 }
