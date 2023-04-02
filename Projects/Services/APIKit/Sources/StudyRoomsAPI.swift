@@ -71,6 +71,7 @@ extension StudyRoomsAPI: DmsAPI {
                 ],
                 encoding: URLEncoding.queryString
             )
+
         case let .fetchStudyRoomList(timeSlot):
             return .requestParameters(
                 parameters: [
