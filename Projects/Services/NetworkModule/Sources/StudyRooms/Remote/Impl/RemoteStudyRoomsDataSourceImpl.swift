@@ -23,8 +23,8 @@ public final class RemoteStudyRoomsDataSourceImpl: BaseRemoteDataSource<StudyRoo
             .eraseToAnyPublisher()
     }
 
-    public func fetchSeatTypes() -> AnyPublisher<[SeatTypeEntity], DmsError> {
-        request(.fetchSeatTypes, dto: FetchSeatTypesResponseDTO.self)
+    public func fetchSeatTypes(studyroomID: String) -> AnyPublisher<[SeatTypeEntity], DmsError> {
+        request(.fetchSeatTypes(studyroomID: studyroomID), dto: FetchSeatTypesResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }

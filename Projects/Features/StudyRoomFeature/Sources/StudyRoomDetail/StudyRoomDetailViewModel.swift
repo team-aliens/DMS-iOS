@@ -49,7 +49,7 @@ final class StudyRoomDetailViewModel: BaseViewModel {
 
     func fetchSeatType() {
         addCancellable(
-            fetchSeatTypesUseCase.execute()
+            fetchSeatTypesUseCase.execute(studyroomID: studyRoomEntity.id)
         ) { [weak self] seatTypes in
             self?.seatTypes = seatTypes
         }
