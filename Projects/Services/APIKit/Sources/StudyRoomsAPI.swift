@@ -5,7 +5,7 @@ import Moya
 
 public enum StudyRoomsAPI {
     case fetchStudyAvailableTime
-    case fetchSeatTypes
+    case fetchSeatTypes(studyroomID: String)
     case fetchStudyRoomList(timeSlot: String?)
     case fetchDetailStudyRoom(roomID: String, timeSlot: String)
     case fetchMyStudyRoomApplicationItems
@@ -64,6 +64,13 @@ extension StudyRoomsAPI: DmsAPI {
 
     public var task: Moya.Task {
         switch self {
+        case let .fetchSeatTypes(studyroomID):
+            return .requestParameters(
+                parameters: [
+                    "study_room_id": studyroomID
+                ],
+                encoding: URLEncoding.queryString
+            )
         case let .fetchStudyRoomList(timeSlot):
             return .requestParameters(
                 parameters: [

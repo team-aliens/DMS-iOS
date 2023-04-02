@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol FetchSeatTypesUseCase {
-    func execute() -> AnyPublisher<[SeatTypeEntity], DmsError>
+    func execute(studyroomID: String) -> AnyPublisher<[SeatTypeEntity], DmsError>
 }

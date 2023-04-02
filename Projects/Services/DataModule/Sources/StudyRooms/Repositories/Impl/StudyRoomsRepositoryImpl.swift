@@ -15,8 +15,8 @@ public struct StudyRoomsRepositoryImpl: StudyRoomsRepository {
         remoteStudyRoomsDataSource.fetchStudyAvailableTime()
     }
 
-    public func fetchSeatTypes() -> AnyPublisher<[SeatTypeEntity], DmsError> {
-        remoteStudyRoomsDataSource.fetchSeatTypes()
+    public func fetchSeatTypes(studyroomID: String) -> AnyPublisher<[SeatTypeEntity], DmsError> {
+        remoteStudyRoomsDataSource.fetchSeatTypes(studyroomID: studyroomID)
     }
 
     public func fetchStudyRoomList(timeSlot: String?) -> AnyPublisher<[StudyRoomEntity], DmsError> {
