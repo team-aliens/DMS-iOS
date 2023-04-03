@@ -263,6 +263,9 @@ private class ChangeProfileDependency18055275199967076a28Provider: ChangeProfile
     var uploadFileUseCase: any UploadFileUseCase {
         return appComponent.uploadFileUseCase
     }
+    var fetchPresignedURLUseCase: any FetchPresignedURLUseCase {
+        return appComponent.fetchPresignedURLUseCase
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -611,6 +614,7 @@ extension AppComponent: Registration {
         localTable["remoteFilesDataSource-any RemoteFilesDataSource"] = { [unowned self] in self.remoteFilesDataSource as Any }
         localTable["filesRepository-any FilesRepository"] = { [unowned self] in self.filesRepository as Any }
         localTable["uploadFileUseCase-any UploadFileUseCase"] = { [unowned self] in self.uploadFileUseCase as Any }
+        localTable["fetchPresignedURLUseCase-any FetchPresignedURLUseCase"] = { [unowned self] in self.fetchPresignedURLUseCase as Any }
         localTable["remoteRemainsDataSource-any RemoteRemainsDataSource"] = { [unowned self] in self.remoteRemainsDataSource as Any }
         localTable["remainsRepository-any RemainsRepository"] = { [unowned self] in self.remainsRepository as Any }
         localTable["remainingApplicationsChangesUseCase-any RemainingApplicationsChangesUseCase"] = { [unowned self] in self.remainingApplicationsChangesUseCase as Any }
@@ -711,6 +715,7 @@ extension ChangeProfileComponent: Registration {
     public func registerItems() {
         keyPathToName[\ChangeProfileDependency.changeProfileImageUseCase] = "changeProfileImageUseCase-any ChangeProfileImageUseCase"
         keyPathToName[\ChangeProfileDependency.uploadFileUseCase] = "uploadFileUseCase-any UploadFileUseCase"
+        keyPathToName[\ChangeProfileDependency.fetchPresignedURLUseCase] = "fetchPresignedURLUseCase-any FetchPresignedURLUseCase"
     }
 }
 extension CheckPasswordComponent: Registration {

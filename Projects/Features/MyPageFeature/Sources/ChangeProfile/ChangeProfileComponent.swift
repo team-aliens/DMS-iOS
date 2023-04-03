@@ -6,6 +6,7 @@ import NeedleFoundation
 public protocol ChangeProfileDependency: Dependency {
     var changeProfileImageUseCase: any ChangeProfileImageUseCase { get }
     var uploadFileUseCase: any UploadFileUseCase { get }
+    var fetchPresignedURLUseCase: any FetchPresignedURLUseCase { get }
 }
 
 public final class ChangeProfileComponent: Component<ChangeProfileDependency> {
@@ -13,7 +14,8 @@ public final class ChangeProfileComponent: Component<ChangeProfileDependency> {
         ChangeProfileView(
             viewModel: .init(
                 changeProfileImageUseCase: self.dependency.changeProfileImageUseCase,
-                uploadFileUseCase: self.dependency.uploadFileUseCase
+                uploadFileUseCase: self.dependency.uploadFileUseCase,
+                fetchPresignedURLUseCase: self.dependency.fetchPresignedURLUseCase
             )
         )
     }
