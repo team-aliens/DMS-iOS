@@ -43,7 +43,7 @@ extension FilesAPI: DmsAPI {
                 )
             ])
 
-        case let .fetchPresignedURL:
+        case .fetchPresignedURL:
             return .requestParameters(
                 parameters: [
                     "file_name": "file.jpeg"

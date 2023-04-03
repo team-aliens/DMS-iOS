@@ -266,6 +266,9 @@ private class ChangeProfileDependency18055275199967076a28Provider: ChangeProfile
     var fetchPresignedURLUseCase: any FetchPresignedURLUseCase {
         return appComponent.fetchPresignedURLUseCase
     }
+    var presignedUploadFileUseCase: any PresignedUploadFileUseCase {
+        return appComponent.presignedUploadFileUseCase
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -548,6 +551,9 @@ extension AppComponent: Registration {
         localTable["cancelStudyRoomSeatUseCase-any CancelStudyRoomSeatUseCase"] = { [unowned self] in self.cancelStudyRoomSeatUseCase as Any }
         localTable["fetchMyStudyRoomAppItemsUseCase-any FetchMyStudyRoomAppItemsUseCase"] = { [unowned self] in self.fetchMyStudyRoomAppItemsUseCase as Any }
         localTable["fetchStudyroomTimeListUseCase-any FetchStudyroomTimeListUseCase"] = { [unowned self] in self.fetchStudyroomTimeListUseCase as Any }
+        localTable["remotePresignedDataSource-any RemotePresignedDataSource"] = { [unowned self] in self.remotePresignedDataSource as Any }
+        localTable["presignedRepository-any PresignedRepository"] = { [unowned self] in self.presignedRepository as Any }
+        localTable["presignedUploadFileUseCase-any PresignedUploadFileUseCase"] = { [unowned self] in self.presignedUploadFileUseCase as Any }
         localTable["localAuthDataSource-any LocalAuthDataSource"] = { [unowned self] in self.localAuthDataSource as Any }
         localTable["remoteAuthDataSource-any RemoteAuthDataSource"] = { [unowned self] in self.remoteAuthDataSource as Any }
         localTable["authRepository-any AuthRepository"] = { [unowned self] in self.authRepository as Any }
@@ -716,6 +722,7 @@ extension ChangeProfileComponent: Registration {
         keyPathToName[\ChangeProfileDependency.changeProfileImageUseCase] = "changeProfileImageUseCase-any ChangeProfileImageUseCase"
         keyPathToName[\ChangeProfileDependency.uploadFileUseCase] = "uploadFileUseCase-any UploadFileUseCase"
         keyPathToName[\ChangeProfileDependency.fetchPresignedURLUseCase] = "fetchPresignedURLUseCase-any FetchPresignedURLUseCase"
+        keyPathToName[\ChangeProfileDependency.presignedUploadFileUseCase] = "presignedUploadFileUseCase-any PresignedUploadFileUseCase"
     }
 }
 extension CheckPasswordComponent: Registration {
