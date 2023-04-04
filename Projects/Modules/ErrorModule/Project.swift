@@ -3,5 +3,5 @@ import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
     name: "ErrorModule",
-    product: .staticFramework
+    product: .framework
 )

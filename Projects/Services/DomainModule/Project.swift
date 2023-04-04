@@ -3,7 +3,7 @@ import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
     name: "DomainModule",
-    product: .staticFramework,
+    product: .framework,
     dependencies: [
         .Project.Module.ThirdPartyLib,
         .Project.Service.DataMappingModule
