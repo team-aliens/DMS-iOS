@@ -10,7 +10,7 @@ public struct FetchSeatTypesUseCaseImpl: FetchSeatTypesUseCase {
         self.studyRoomsRepository = studyRoomsRepository
     }
 
-    public func execute() -> AnyPublisher<[SeatTypeEntity], DmsError> {
-        studyRoomsRepository.fetchSeatTypes()
+    public func execute(studyroomID: String) -> AnyPublisher<[SeatTypeEntity], DmsError> {
+        studyRoomsRepository.fetchSeatTypes(studyroomID: studyroomID)
     }
 }

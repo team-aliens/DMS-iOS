@@ -141,7 +141,8 @@ struct MyPageView: View {
                     } label: {
                         myPageOptionRowCardView(title: "비밀번호 변경")
                             .dmsFont(.body(.body2), color: .GrayScale.gray6)
-                            .cornerRadius(10, corners: [ appState.features.pointService ? [.bottomLeft, .bottomRight] : .allCorners ])
+                            .cornerRadius(10, corners: appState.features.pointService
+                                          ? [.bottomLeft, .bottomRight] : .allCorners)
                     }
 
                 }
