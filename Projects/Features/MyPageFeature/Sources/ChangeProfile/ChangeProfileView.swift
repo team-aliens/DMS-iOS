@@ -70,24 +70,29 @@ struct ChangeProfileView: View {
         .padding(.horizontal, 24)
         .dmsBackground()
         .dmsActionSheet(isPresented: $isPresentedImageActionSheet) {
-            Button(role: nil) {
-                isPresentedImageActionSheet = false
-                isShowingCameraPicker.toggle()
-            } label: {
-                Label("사진 촬영", systemImage: "camera.fill")
-            }
-            .foregroundColor(.GrayScale.gray6)
+            VStack {
+                Button(role: nil) {
+                    isPresentedImageActionSheet = false
+                    isShowingCameraPicker.toggle()
+                } label: {
+                    Label("사진 촬영", systemImage: "camera.fill")
+                    Spacer()
+                }
+                .foregroundColor(.GrayScale.gray6)
 
-            Divider()
-                .foregroundColor(.GrayScale.gray4)
+                Divider()
+                    .foregroundColor(.GrayScale.gray4)
 
-            Button(role: nil) {
-                isPresentedImageActionSheet = false
-                isShowingImagePicker.toggle()
-            } label: {
-                Label("사진 선택", systemImage: "photo.tv")
+                Button(role: nil) {
+                    isPresentedImageActionSheet = false
+                    isShowingImagePicker.toggle()
+                } label: {
+                    Label("사진 선택", systemImage: "photo.tv")
+                    Spacer()
+                }
+                .foregroundColor(.GrayScale.gray6)
             }
-            .foregroundColor(.GrayScale.gray6)
+            .frame(width: UIScreen.main.bounds.width - 48)
         }
         .onChange(of: viewModel.isSuccessChangeImage) { newValue in
             if newValue {
