@@ -35,11 +35,13 @@ struct DMSActionSheet<Actions: View>: ViewModifier {
                         }
 
                         GroupBox {
-                            Button("취소", role: .cancel) {
+                            Button(role: .cancel) {
                                 isPresented = false
+                            } label: {
+                                Text("취소")
+                                    .frame(width: UIScreen.main.bounds.width - 48, alignment: .center)
                             }
                             .foregroundColor(.GrayScale.gray6)
-                            .frame(maxWidth: .infinity, alignment: .center)
                         }
                     }
                     .font(.title3)
