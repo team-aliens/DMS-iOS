@@ -79,10 +79,10 @@ struct ChangeProfileView: View {
                     Spacer()
                 }
                 .foregroundColor(.GrayScale.gray6)
-                
+
                 Divider()
                     .foregroundColor(.GrayScale.gray4)
-                
+
                 Button(role: nil) {
                     isPresentedImageActionSheet = false
                     isShowingImagePicker.toggle()
