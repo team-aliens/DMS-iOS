@@ -13,7 +13,7 @@ final class StudyRoomListViewModel: BaseViewModel {
 
     @Published var isNavigateDetail: Bool = false
     @Published var isStudyTimeBottomSheet: Bool = true
-    @Published var visitCount = 0
+    var isFetchStudyrooms = false
 
     @Published var studyroomTimeList = StudyroomTimeListEntity(timeSlots: [])
     @Published var selectedTimeEntity: TimeSlotsEntity?
@@ -56,15 +56,12 @@ final class StudyRoomListViewModel: BaseViewModel {
     }
 
     func fetchStudyRoomList() {
-        if self.visitCount > 0 {
-            addCancellable(
-                fetchStudyRoomListUseCase.execute(
-                    timeSlot: timeSlotParam
-                )
-            ) { [weak self] studyRoomList in
-                self?.studyRoomList = studyRoomList
-                self?.visitCount += 1
-            }
+        addCancellable(
+            fetchStudyRoomListUseCase.execute(
+                timeSlot: timeSlotParam
+            )
+        ) { [weak self] studyRoomList in
+            self?.studyRoomList = studyRoomList
         }
     }
 
@@ -73,7 +70,6 @@ final class StudyRoomListViewModel: BaseViewModel {
             fetchStudyAvailableTimeUseCase.execute()
         ) { [weak self] studyAvailableTime  in
             self?.studyAvailableTime = studyAvailableTime
-            self?.visitCount = 0
         }
     }
 
@@ -81,18 +77,21 @@ final class StudyRoomListViewModel: BaseViewModel {
         addCancellable(
             fetchStudyroomTimeListUseCase.execute()
         ) { [weak self] studyroomTimeList in
+            self?.isFetchStudyrooms = true
             self?.studyroomTimeList = studyroomTimeList
-            self?.visitCount += 1
+        }
+        if isFetchStudyrooms {
+            fetchStudyRoomList()
         }
     }
 
     func onAppear() {
         fetchStudyAvailableTime()
-        fetchStudyRoomList()
+        fetchStudyroomTimeList()
     }
 
     func refresh() {
         fetchStudyAvailableTime()
-        fetchStudyRoomList()
+        fetchStudyroomTimeList()
     }
 }
