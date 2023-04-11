@@ -38,7 +38,7 @@ struct StudyroomTimeListView: View {
             .padding(.bottom)
         }
         .onAppear {
-            viewModel.fetchStudyroomTimeList()
+            viewModel.onAppear()
         }
     }
 }
