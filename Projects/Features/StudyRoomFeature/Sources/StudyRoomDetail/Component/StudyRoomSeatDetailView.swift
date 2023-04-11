@@ -34,8 +34,8 @@ extension StudyRoomDetailView {
 
     func generateSeatButtonText(seat: SeatEntity) -> String {
         var text: String {
-            seat.status == .available ?
-            String(seat.number ?? 0) :
+            seat.student == nil ?
+            "\(seat.number ?? 0)" :
             seat.student?.name ?? ""
         }
         return text
@@ -48,9 +48,6 @@ extension StudyRoomDetailView {
 
         case .unavailable:
             return .unavailable
-
-        case .inUse:
-            return .inUse
 
         case .empty:
             return .empty

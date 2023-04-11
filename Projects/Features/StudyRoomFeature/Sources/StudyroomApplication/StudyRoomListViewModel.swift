@@ -13,6 +13,7 @@ final class StudyRoomListViewModel: BaseViewModel {
 
     @Published var isNavigateDetail: Bool = false
     @Published var isStudyTimeBottomSheet: Bool = true
+    var isFetchStudyrooms = false
 
     @Published var studyroomTimeList = StudyroomTimeListEntity(timeSlots: [])
     @Published var selectedTimeEntity: TimeSlotsEntity?
@@ -59,7 +60,7 @@ final class StudyRoomListViewModel: BaseViewModel {
             fetchStudyRoomListUseCase.execute(
                 timeSlot: timeSlotParam
             )
-        ) { [weak self]  studyRoomList in
+        ) { [weak self] studyRoomList in
             self?.studyRoomList = studyRoomList
         }
     }
@@ -76,16 +77,21 @@ final class StudyRoomListViewModel: BaseViewModel {
         addCancellable(
             fetchStudyroomTimeListUseCase.execute()
         ) { [weak self] studyroomTimeList in
+            self?.isFetchStudyrooms = true
             self?.studyroomTimeList = studyroomTimeList
+        }
+        if isFetchStudyrooms {
+            fetchStudyRoomList()
         }
     }
 
     func onAppear() {
         fetchStudyAvailableTime()
+        fetchStudyroomTimeList()
     }
 
     func refresh() {
         fetchStudyAvailableTime()
-        fetchStudyRoomList()
+        fetchStudyroomTimeList()
     }
 }
