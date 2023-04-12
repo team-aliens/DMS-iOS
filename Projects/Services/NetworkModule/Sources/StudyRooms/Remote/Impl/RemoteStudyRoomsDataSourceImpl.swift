@@ -48,7 +48,7 @@ public final class RemoteStudyRoomsDataSourceImpl: BaseRemoteDataSource<StudyRoo
         request(.applyStudyRoomSeat(seatID: seatID, timeSlot: timeSlot))
     }
 
-    public func cancelStudyRoomSeat(timeSlot: String) -> AnyPublisher<Void, DmsError> {
-        request(.cancelStudyRoomSeat(timeSlot: timeSlot))
+    public func cancelStudyRoomSeat(seatID: String, timeSlot: String) -> AnyPublisher<Void, DmsError> {
+        request(.cancelStudyRoomSeat(seatID: seatID, timeSlot: timeSlot))
     }
 }
