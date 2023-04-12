@@ -10,7 +10,7 @@ public enum StudyRoomsAPI {
     case fetchDetailStudyRoom(roomID: String, timeSlot: String)
     case fetchMyStudyRoomApplicationItems
     case applyStudyRoomSeat(seatID: String, timeSlot: String)
-    case cancelStudyRoomSeat(timeSlot: String)
+    case cancelStudyRoomSeat(seatID: String, timeSlot: String)
     case fetchStudyroomTimeList
 }
 
@@ -36,8 +36,8 @@ extension StudyRoomsAPI: DmsAPI {
         case let .applyStudyRoomSeat(id, _):
             return "/seats/\(id)"
 
-        case .cancelStudyRoomSeat:
-            return "/seats"
+        case let .cancelStudyRoomSeat(id, _):
+            return "/seats/\(id)"
 
         case .fetchMyStudyRoomApplicationItems:
             return "/my"
@@ -96,7 +96,7 @@ extension StudyRoomsAPI: DmsAPI {
                 encoding: URLEncoding.queryString
             )
 
-        case let .cancelStudyRoomSeat(timeSlot):
+        case let .cancelStudyRoomSeat(_, timeSlot):
             return .requestParameters(
                 parameters: [
                     "time_slot": timeSlot

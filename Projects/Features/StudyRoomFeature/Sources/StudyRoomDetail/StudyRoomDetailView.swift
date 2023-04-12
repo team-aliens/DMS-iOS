@@ -57,7 +57,7 @@ struct StudyRoomDetailView: View {
                 DMSWideButton(text: "취소", style: .contained, color: .GrayScale.gray6) {
                     viewModel.cancelStudyRoomSeat()
                 }
-//                .disabled(viewModel.selectedSeat == nil)
+                .disabled(viewModel.selectedSeat == nil)
 
                 DMSWideButton(text: "신청", style: .contained, color: .System.primary) {
                     viewModel.applyStudyRoomSeat()

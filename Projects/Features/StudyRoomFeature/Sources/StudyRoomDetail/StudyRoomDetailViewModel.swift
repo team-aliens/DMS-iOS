@@ -112,8 +112,9 @@ final class StudyRoomDetailViewModel: BaseViewModel {
     }
 
     func cancelStudyRoomSeat() {
+        guard let selectedSeat else { return }
         addCancellable(
-            cancelStudyRoomSeatUseCase.execute(timeSlot: timeSlotParam)
+            cancelStudyRoomSeatUseCase.execute(seatID: selectedSeat.id, timeSlot: timeSlotParam)
         ) { [weak self] _ in
             self?.fetchDetailStudyRoom()
             self?.isShowingToast = true

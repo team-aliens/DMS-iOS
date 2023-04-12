@@ -34,8 +34,8 @@ public struct StudyRoomsRepositoryImpl: StudyRoomsRepository {
         remoteStudyRoomsDataSource.applyStudyRoomSeat(seatID: seatID, timeSlot: timeSlot)
     }
 
-    public func cancelStudyRoomSeat(timeSlot: String) -> AnyPublisher<Void, DmsError> {
-        remoteStudyRoomsDataSource.cancelStudyRoomSeat(timeSlot: timeSlot)
+    public func cancelStudyRoomSeat(seatID: String, timeSlot: String) -> AnyPublisher<Void, DmsError> {
+        remoteStudyRoomsDataSource.cancelStudyRoomSeat(seatID: seatID, timeSlot: timeSlot)
     }
 
     public func fetchMyStudyRoomApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError> {
