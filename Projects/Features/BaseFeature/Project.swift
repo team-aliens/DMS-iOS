@@ -3,7 +3,7 @@ import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
     name: "BaseFeature",
-    product: .staticFramework,
+    product: .framework,
     dependencies: [
         .Project.Service.Domain,
         .Project.Module.Utility,
