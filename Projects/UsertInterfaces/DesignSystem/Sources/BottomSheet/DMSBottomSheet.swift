@@ -43,6 +43,9 @@ struct DMSBottomSheet<T: View>: ViewModifier {
 
     func body(content: Content) -> some View {
         ZStack {
+            Color.System.background
+                .ignoresSafeArea()
+
             content
 
             ZStack(alignment: .bottom) {
