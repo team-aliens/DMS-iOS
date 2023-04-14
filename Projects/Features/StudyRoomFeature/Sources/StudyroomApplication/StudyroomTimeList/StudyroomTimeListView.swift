@@ -32,7 +32,7 @@ struct StudyroomTimeListView: View {
 
             DMSWideButton(text: "확인", style: .contained, color: .PrimaryVariant.primary) {
                 viewModel.isStudyTimeBottomSheet = false
-                viewModel.refresh()
+                viewModel.selectStudyRoomTime()
             }
             .padding(.horizontal, 24)
             .padding(.bottom)
