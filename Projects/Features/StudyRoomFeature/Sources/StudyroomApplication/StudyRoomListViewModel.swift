@@ -87,11 +87,11 @@ final class StudyRoomListViewModel: BaseViewModel {
             fetchStudyRoomList()
         }
     }
-    
+
     func selectStudyRoomTime() {
         self.fetchStudyRoomList()
     }
-    
+
     private func onLoad() {
         fetchStudyAvailableTime()
         addCancellable(
