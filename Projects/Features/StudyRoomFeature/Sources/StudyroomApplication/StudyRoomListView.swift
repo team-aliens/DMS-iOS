@@ -22,7 +22,7 @@ struct StudyRoomListView: View {
                 .frame(height: 1)
 
             ScrollView {
-                if viewModel.isStudyRoomTime {
+                if !viewModel.rangeString.isEmpty {
                     StudyRoomNoticeView(text: viewModel.rangeString)
                 }
                 LazyVStack(spacing: 16) {
@@ -66,7 +66,7 @@ struct StudyRoomListView: View {
             }
         }
         .refreshable {
-            viewModel.refresh()
+            viewModel.onAppear()
         }
         .navigationTitle("자습실 신청")
         .navigationBarTitleDisplayMode(.inline)

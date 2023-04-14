@@ -7,13 +7,12 @@ import DataMappingModule
 
 final class StudyRoomListViewModel: BaseViewModel {
     @Published var studyRoomList: [StudyRoomEntity] = []
-    @Published var isStudyRoomTime = true
     @Published var isShowingToast = false
     @Published var toastMessage = ""
 
     @Published var isNavigateDetail: Bool = false
-    @Published var isStudyTimeBottomSheet: Bool = true
-    var isFetchStudyrooms = false
+    @Published var isStudyTimeBottomSheet: Bool = false
+    @Published var isOnLoad: Bool = false
 
     @Published var studyroomTimeList = StudyroomTimeListEntity(timeSlots: [])
     @Published var selectedTimeEntity: TimeSlotsEntity?
@@ -52,10 +51,9 @@ final class StudyRoomListViewModel: BaseViewModel {
         self.fetchStudyRoomListUseCase = fetchStudyRoomListUseCase
         self.fetchStudyAvailableTimeUseCase = fetchStudyAvailableTimeUseCase
         self.fetchStudyroomTimeListUseCase = fetchStudyroomTimeListUseCase
-        super.init()
     }
 
-    func fetchStudyRoomList() {
+    private func fetchStudyRoomList() {
         addCancellable(
             fetchStudyRoomListUseCase.execute(
                 timeSlot: timeSlotParam
@@ -65,7 +63,7 @@ final class StudyRoomListViewModel: BaseViewModel {
         }
     }
 
-    func fetchStudyAvailableTime() {
+    private func fetchStudyAvailableTime() {
         addCancellable(
             fetchStudyAvailableTimeUseCase.execute()
         ) { [weak self] studyAvailableTime  in
@@ -73,25 +71,37 @@ final class StudyRoomListViewModel: BaseViewModel {
         }
     }
 
-    func fetchStudyroomTimeList() {
+    private func fetchStudyroomTimeList() {
         addCancellable(
             fetchStudyroomTimeListUseCase.execute()
         ) { [weak self] studyroomTimeList in
-            self?.isFetchStudyrooms = true
             self?.studyroomTimeList = studyroomTimeList
-        }
-        if isFetchStudyrooms {
-            fetchStudyRoomList()
         }
     }
 
     func onAppear() {
-        fetchStudyAvailableTime()
-        fetchStudyroomTimeList()
+        if !isOnLoad {
+            onLoad()
+        } else {
+            fetchStudyroomTimeList()
+            fetchStudyRoomList()
+        }
     }
 
-    func refresh() {
+    func selectStudyRoomTime() {
+        self.fetchStudyRoomList()
+    }
+
+    private func onLoad() {
         fetchStudyAvailableTime()
-        fetchStudyroomTimeList()
+        addCancellable(
+            fetchStudyroomTimeListUseCase.execute()
+        ) { [weak self] studyroomTimeList in
+            self?.studyroomTimeList = studyroomTimeList
+            self?.selectedTimeEntity = studyroomTimeList.timeSlots.first
+            self?.timeSlotParam = studyroomTimeList.timeSlots.first?.id
+            self?.fetchStudyRoomList()
+        }
+        isOnLoad = true
     }
 }
