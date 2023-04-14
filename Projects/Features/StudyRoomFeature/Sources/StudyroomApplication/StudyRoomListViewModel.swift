@@ -12,8 +12,8 @@ final class StudyRoomListViewModel: BaseViewModel {
     @Published var toastMessage = ""
 
     @Published var isNavigateDetail: Bool = false
-    @Published var isStudyTimeBottomSheet: Bool = true
-    var isFetchStudyrooms = false
+    @Published var isStudyTimeBottomSheet: Bool = false
+    @Published var isOnLoad: Bool = false
 
     @Published var studyroomTimeList = StudyroomTimeListEntity(timeSlots: [])
     @Published var selectedTimeEntity: TimeSlotsEntity?
@@ -81,6 +81,11 @@ final class StudyRoomListViewModel: BaseViewModel {
             self?.studyroomTimeList = studyroomTimeList
         }
         if isFetchStudyrooms {
+    func onAppear() {
+        if !isOnLoad {
+            onLoad()
+        } else {
+            fetchStudyroomTimeList()
             fetchStudyRoomList()
         }
     }
@@ -89,9 +94,17 @@ final class StudyRoomListViewModel: BaseViewModel {
         fetchStudyAvailableTime()
         fetchStudyroomTimeList()
     }
-
-    func refresh() {
+    
+    private func onLoad() {
         fetchStudyAvailableTime()
-        fetchStudyroomTimeList()
+        addCancellable(
+            fetchStudyroomTimeListUseCase.execute()
+        ) { [weak self] studyroomTimeList in
+            self?.studyroomTimeList = studyroomTimeList
+            self?.selectedTimeEntity = studyroomTimeList.timeSlots.first
+            self?.timeSlotParam = studyroomTimeList.timeSlots.first?.id
+            self?.fetchStudyRoomList()
+        }
+        isOnLoad = true
     }
 }
