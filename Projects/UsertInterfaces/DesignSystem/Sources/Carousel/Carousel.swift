@@ -1,5 +1,4 @@
 import SwiftUI
-import DomainModule
 
 public struct Carousel<Content: View>: View {
     @GestureState var screenDrag: Float = 0.0
@@ -10,16 +9,13 @@ public struct Carousel<Content: View>: View {
     let widthOfHiddenCards: CGFloat
     let totalSpacing: CGFloat
     let cardWidth: CGFloat
-    let meal: MealEntity?
 
     public init(
         numberOfItems: CGFloat,
         spacing: CGFloat,
         widthOfHiddenCards: CGFloat,
-        meal: MealEntity?,
         @ViewBuilder _ items: () -> Content
     ) {
-        self.meal = meal
         self.items = items()
         self.numberOfItems = numberOfItems
         self.spacing = spacing
@@ -70,11 +66,6 @@ public struct Carousel<Content: View>: View {
         )
         .onChange(of: screenDrag) { newValue in
             UIState.screenDrag = newValue
-        }
-        .onChange(of: meal) { _ in
-            withAnimation {
-                self.UIState.activeCard = 0
-            }
         }
     }
 }
