@@ -16,33 +16,40 @@ extension StudyRoomDetailView {
             Spacer()
                 .frame(height: 15)
 
-            HStack {
-                Text(viewModel.studyRoomDetail?.westDescription ?? "서")
-                    .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
-                    .rotationEffect(.degrees(-90))
-                    .fixedSize()
-                    .frame(width: 22, height: 100)
-                    .padding(.leading, 8)
-
-                VStack(alignment: .center) {
-                    Text(viewModel.studyRoomDetail?.northDescription ?? "북")
+            ZStack {
+                HStack {
+                    Text(viewModel.studyRoomDetail?.westDescription ?? "서")
                         .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
-                        .padding(.top, 8)
+                        .rotationEffect(.degrees(-90))
+                        .fixedSize()
+                        .frame(width: 22, height: 100)
+                        .padding(.leading, 8)
 
-                    studyRoomSeatDetailView()
+                    Spacer()
 
-                    Text(viewModel.studyRoomDetail?.southDescription ?? "남")
+                    VStack(alignment: .center) {
+                        Text(viewModel.studyRoomDetail?.northDescription ?? "북")
+                            .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
+                            .padding(.top, 8)
+
+                        Spacer()
+
+                        Text(viewModel.studyRoomDetail?.southDescription ?? "남")
+                            .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
+                            .padding(.bottom, 8)
+                    }
+
+                    Spacer()
+
+                    Text(viewModel.studyRoomDetail?.eastDescription ?? "동")
                         .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
-                        .padding(.bottom, 8)
+                        .rotationEffect(.degrees(90))
+                        .fixedSize()
+                        .frame(width: 22, height: 100)
+                        .padding(.trailing, 8)
                 }
 
-                Text(viewModel.studyRoomDetail?.eastDescription ?? "동")
-                    .dmsFont(.etc(.button), color: Color.PrimaryVariant.lighten1)
-                    .rotationEffect(.degrees(90))
-                    .fixedSize()
-                    .frame(width: 22, height: 100)
-                    .padding(.trailing, 8)
-
+                studyRoomSeatDetailView()
             }
             .background {
                 Color.System.surface
