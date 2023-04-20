@@ -1,5 +1,5 @@
 import ProjectDescription
-import UtilityPlugin
+import DependencyPlugin
 
 public extension Scheme {
     struct Workspace {}

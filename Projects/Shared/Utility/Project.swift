@@ -2,9 +2,10 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "DatabaseModule",
-    product: .staticFramework,
+    name: "Utility",
+    product: .framework,
     dependencies: [
-        .Project.Module.Utility
+        .Project.Shared.ThirdPartyLib,
+        .Project.Shared.ErrorModule
     ]
 )

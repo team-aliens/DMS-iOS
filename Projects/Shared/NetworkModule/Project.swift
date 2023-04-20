@@ -5,8 +5,8 @@ let project = Project.makeModule(
     name: "NetworkModule",
     product: .staticFramework,
     dependencies: [
-        .Project.Module.Utility,
-        .Project.Service.APIKit,
-        .Project.Service.Domain
+        .Project.Shared.Utility,
+        .Project.Shared.APIKit,
+        .Project.Shared.Domain
     ]
 )

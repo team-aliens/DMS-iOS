@@ -1,11 +1,12 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
+import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "Utility",
+    name: "FeatureThirdPartyLib",
     product: .framework,
     dependencies: [
-        .Project.Module.ThirdPartyLib,
-        .Project.Module.ErrorModule
+        .SPM.Needle,
+        .SPM.Kingfisher
     ]
 )

@@ -1,5 +1,5 @@
 import ProjectDescription
-import ProjectDescriptionHelpers
+import ConfigurationPlugin
 
 let dependencies = Dependencies(
     carthage: nil,

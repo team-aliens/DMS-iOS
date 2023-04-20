@@ -1,6 +1,6 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
-import UtilityPlugin
+import DependencyPlugin
 
 let project = Project.makeModule(
     name: "ThirdPartyLib",

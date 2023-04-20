@@ -1,6 +1,7 @@
 import ProjectDescriptionHelpers
 import ProjectDescription
-import UtilityPlugin
+import DependencyPlugin
+import EnvironmentPlugin
 import Foundation
 
 let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? true : false
@@ -36,7 +37,7 @@ let targets: [Target] = [
         entitlements: "Support/\(Environment.appName).entitlements",
         scripts: scripts,
         dependencies: [
-            .Project.Features.RootFeature,
+            .Project.Feature.RootFeature,
             .Project.Service.Data,
             .target(name: "\(Environment.appName)Widget"),
             .target(name: "\(Environment.appName)WatchApp")
