@@ -5,8 +5,8 @@ let project = Project.makeModule(
     name: "DataModule",
     product: .staticFramework,
     dependencies: [
-        .Project.Service.Domain,
-        .Project.Service.DatabaseModule,
-        .Project.Service.NetworkModule
+        .Shared.Domain,
+        .Shared.DatabaseModule,
+        .Shared.NetworkModule
     ]
 )

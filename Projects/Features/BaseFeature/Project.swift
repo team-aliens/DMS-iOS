@@ -5,9 +5,9 @@ let project = Project.makeModule(
     name: "BaseFeature",
     product: .framework,
     dependencies: [
-        .Project.Service.Domain,
-        .Project.Shared.Utility,
-        .Project.Shared.FeatureThirdPartyLib,
-        .Project.Core.DesignSystem
+        .Core.DesignSystem,
+        .Shared.Domain,
+        .Shared.Utility,
+        .Shared.FeatureThirdPartyLib
     ]
 )

@@ -5,7 +5,7 @@ let project = Project.makeModule(
     name: "Utility",
     product: .framework,
     dependencies: [
-        .Project.Shared.ThirdPartyLib,
-        .Project.Shared.ErrorModule
+        .Shared.ThirdPartyLib,
+        .Shared.ErrorModule
     ]
 )

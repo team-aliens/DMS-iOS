@@ -37,8 +37,8 @@ let targets: [Target] = [
         entitlements: "Support/\(Environment.appName).entitlements",
         scripts: scripts,
         dependencies: [
-            .Project.Feature.RootFeature,
-            .Project.Service.Data,
+            .Shared.Data,
+            .Feature.RootFeature,
             .target(name: "\(Environment.appName)Widget"),
             .target(name: "\(Environment.appName)WatchApp")
         ],
@@ -68,8 +68,8 @@ let targets: [Target] = [
         entitlements: "AppExtension/Support/\(Environment.appName)Widget.entitlements",
         scripts: widgetScripts,
         dependencies: [
-            .Project.UserInterfaces.DesignSystem,
-            .Project.Service.Data,
+            .Core.DesignSystem,
+            .Shared.Data,
             .SPM.Needle
         ]
     ),
@@ -98,8 +98,8 @@ let targets: [Target] = [
         resources: ["WatchApp/Resources/**"],
         scripts: scripts,
         dependencies: [
-            .Project.UserInterfaces.WatchDesignSystem,
-            .Project.Service.WatchRestAPIModule,
+            .Core.WatchDesignSystem,
+            .Shared.WatchRestAPIModule,
             .SPM.Swinject
         ]
     )

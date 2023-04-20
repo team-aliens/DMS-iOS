@@ -5,10 +5,10 @@ let project = Project.makeModule(
     name: "APIKit",
     product: .staticFramework,
     dependencies: [
-        .Project.Module.ThirdPartyLib,
-        .Project.Module.KeychainModule,
-        .Project.Module.ErrorModule,
-        .Project.Service.DataMappingModule,
+        .Shared.ThirdPartyLib,
+        .Shared.KeychainModule,
+        .Shared.ErrorModule,
+        .Shared.DataMappingModule,
 
         .SPM.Moya,
         .SPM.CombineMoya

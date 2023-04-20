@@ -259,4 +259,3 @@ struct Bash: CommandExecuting {
         return output
     }
 }
-

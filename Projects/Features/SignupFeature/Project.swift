@@ -5,9 +5,9 @@ let project = Project.makeModule(
     name: "SignupFeature",
     product: .staticFramework,
     dependencies: [
-        .Project.Features.BaseFeature
+        .Feature.BaseFeature
     ],
     testDependencies: [
-        .Project.Service.Data
+        .Shared.Data
     ]
 )

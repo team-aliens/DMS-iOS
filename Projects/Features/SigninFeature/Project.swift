@@ -5,12 +5,12 @@ let project = Project.makeModule(
     name: "SigninFeature",
     product: .staticFramework,
     dependencies: [
-        .Project.Features.BaseFeature,
-        .Project.Features.SignupFeature,
-        .Project.Features.FindIDFeature,
-        .Project.Features.RenewalPasswordFeature
+        .Feature.BaseFeature,
+        .Feature.SignupFeature,
+        .Feature.FindIDFeature,
+        .Feature.RenewalPasswordFeature
     ],
     testDependencies: [
-        .Project.Service.Data
+        .Shared.Data
     ]
 )

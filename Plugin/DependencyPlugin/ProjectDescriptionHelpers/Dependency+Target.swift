@@ -44,8 +44,8 @@ public extension TargetDependency.Core {
 //        target: ModulePaths.Core.DesignSystem.targetName(type: .sources),
 //        path: .relativeToCore(ModulePaths.Core.DesignSystem.rawValue)
 //    )
-    static let DesignSystem = TargetDependency.shared(name: "DesignSystem")
-    static let WatchDesignSystem = TargetDependency.shared(name: "WatchDesignSystem")
+    static let DesignSystem = TargetDependency.core(name: "DesignSystem")
+    static let WatchDesignSystem = TargetDependency.core(name: "WatchDesignSystem")
 }
 
 public extension TargetDependency.Shared {
