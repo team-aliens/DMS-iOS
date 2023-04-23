@@ -1,3 +1,4 @@
+import DesignSystem
 import Foundation
 import KeychainModule
 import UIKit
@@ -16,6 +17,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             session.delegate = self
             session.activate()
         }
+        DesignSystemFontFamily.registerAllCustomFonts()
         return true
     }
 }
