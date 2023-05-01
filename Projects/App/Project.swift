@@ -37,8 +37,8 @@ let targets: [Target] = [
         entitlements: "Support/\(Environment.appName).entitlements",
         scripts: scripts,
         dependencies: [
-            .Shared.Data,
             .Feature.RootFeature,
+            .Shared.Data,
             .target(name: "\(Environment.appName)Widget"),
             .target(name: "\(Environment.appName)WatchApp")
         ],

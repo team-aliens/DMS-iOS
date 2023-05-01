@@ -1,3 +1,4 @@
+
 #!/usr/bin/swift
 import Foundation
 

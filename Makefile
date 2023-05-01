@@ -11,5 +11,8 @@ reset:
 	rm -rf **/*.xcodeproj
 	rm -rf *.xcworkspace
 
+module:
+	swift Scripts/GenerateModule.swift
+
 feature:
 	python3 Scripts/generate_new_feature.py
