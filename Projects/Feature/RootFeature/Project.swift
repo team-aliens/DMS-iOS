@@ -3,7 +3,7 @@ import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
     name: "RootFeature",
-    product: .staticFramework,
+    product: .staticLibrary,
     targets: [],
     internalDependencies: [
         .Feature.BaseFeature,
@@ -12,13 +12,3 @@ let project = Project.makeModule(
         .Feature.SplashFeature
     ]
 )
-//let project = Project.makeModule(
-//    name: "RootFeature",
-//    product: .staticFramework,
-//    dependencies: [
-//        .Feature.BaseFeature,
-//        .Feature.SigninFeature,
-//        .Feature.MainTabFeature,
-//        .Feature.SplashFeature
-//    ]
-//)
