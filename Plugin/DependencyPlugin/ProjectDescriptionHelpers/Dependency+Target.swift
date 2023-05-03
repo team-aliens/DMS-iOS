@@ -33,10 +33,12 @@ public extension TargetDependency.Feature {
 }
 
 public extension TargetDependency.Domain {
-    static let BaseDomain = TargetDependency.project(
-        target: ModulePaths.Domain.BaseDomain.targetName(type: .sources),
-        path: .relativeToDomain(ModulePaths.Domain.BaseDomain.rawValue)
-    )
+//    static let BaseDomain = TargetDependency.project(
+//        target: ModulePaths.Domain.BaseDomain.targetName(type: .sources),
+//        path: .relativeToDomain(ModulePaths.Domain.BaseDomain.rawValue)
+//    )
+    static let BaseDomain = TargetDependency.domain(name: "BaseDomain")
+    static let AuthDomain = TargetDependency.domain(name: "AuthDomain")
 }
 
 public extension TargetDependency.Core {

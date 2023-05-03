@@ -3,11 +3,10 @@ import ProjectDescriptionHelpers
 import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "Domain",
-    product: .framework,
-    targets: [.unitTest],
+    name: "AuthDomain",
+    product: .staticLibrary,
+    targets: [.interface, .testing, .unitTest],
     internalDependencies: [
-        .Shared.ThirdPartyLib,
-        .Shared.Utility
+        .Domain.BaseDomain
     ]
 )
