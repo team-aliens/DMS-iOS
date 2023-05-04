@@ -37,6 +37,7 @@ let targets: [Target] = [
         entitlements: "Support/\(Environment.appName).entitlements",
         scripts: scripts,
         dependencies: [
+            .Domain.AuthDomain,
             .Feature.RootFeature,
             .Shared.Data,
             .target(name: "\(Environment.appName)Widget"),
