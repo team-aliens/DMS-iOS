@@ -13,6 +13,6 @@ let project = Project.makeModule(
     product: .staticLibrary,
     targets: [.interface, .unitTest],
     internalDependencies: [
-        .Feature.HomeFeature
+        .Feature.BaseFeature
     ]
 )
