@@ -6,8 +6,6 @@ public extension TargetDependency {
     struct Domain {}
     struct Core {}
     struct Shared {}
-    struct Module {}
-    struct Service {}
     struct UserInterfaces {}
 }
 
