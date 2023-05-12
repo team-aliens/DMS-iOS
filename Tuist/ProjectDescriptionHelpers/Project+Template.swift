@@ -21,7 +21,7 @@ public extension Project {
         platform: Platform = .iOS,
         product: Product,
         packages: [Package] = [],
-        deploymentTarget: DeploymentTarget? = Environment.deploymentTarget,
+        deploymentTarget: DeploymentTarget? = env.deploymentTarget,
         dependencies: [TargetDependency] = [],
         testDependencies: [TargetDependency] = [.SPM.Quick, .SPM.Nimble],
         sources: SourceFilesList = ["Sources/**"],
@@ -52,6 +52,7 @@ public extension Project {
         product: Product,
         targets: Set<MicroFeatureTarget>,
         packages: [Package] = [],
+        deploymentTarget: DeploymentTarget? = env.deploymentTarget,
         externalDependencies: [TargetDependency] = [],
         internalDependencies: [TargetDependency] = [],
         interfaceDependencies: [TargetDependency] = [],
@@ -232,13 +233,14 @@ public extension Project {
 }
 
 public extension Project {
+    @available(*, deprecated)
     static func project(
         name: String,
         platform: Platform,
         product: Product,
-        organizationName: String = Environment.organizationName,
+        organizationName: String = env.organizationName,
         packages: [Package] = [],
-        deploymentTarget: DeploymentTarget? = Environment.deploymentTarget,
+        deploymentTarget: DeploymentTarget? = env.deploymentTarget,
         dependencies: [TargetDependency] = [],
         testDependencies: [TargetDependency] = [],
         sources: SourceFilesList,
@@ -250,7 +252,7 @@ public extension Project {
         let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? true : false
         let scripts: [TargetScript] = isCI ? [] : [.swiftLint]
         let settings: Settings = .settings(
-            base: Environment.baseSetting,
+            base: env.baseSetting,
             configurations: [
                 .debug(name: .dev, xcconfig: isCI ? nil : .relativeToXCConfig(type: .dev, name: name)),
                 .release(name: .prod, xcconfig: isCI ? nil : .relativeToXCConfig(type: .prod, name: name))
@@ -275,7 +277,7 @@ public extension Project {
             platform: platform,
             product: .app,
             bundleId: "\(organizationName).\(name)DemoApp",
-            deploymentTarget: Environment.deploymentTarget,
+            deploymentTarget: env.deploymentTarget,
             infoPlist: .extendingDefault(with: [
                 "UIMainStoryboardFile": "",
                 "UILaunchStoryboardName": "LaunchScreen",

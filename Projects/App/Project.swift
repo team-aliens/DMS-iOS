@@ -6,18 +6,28 @@ import Foundation
 
 let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? true : false
 
-let settinges: Settings =
-    .settings(base: Environment.baseSetting,
-              configurations: [
-                .debug(name: .dev, xcconfig: isCI ? nil : .relativeToXCConfig(
-                    type: .dev,
-                    name: Environment.targetName)
-                ),
-                .release(name: .prod, xcconfig: isCI ? nil : .relativeToXCConfig(
-                    type: .prod,
-                    name: Environment.targetName)
-                )
-              ],
+//let settinges: Settings =
+//    .settings(base: Environment.baseSetting,
+//              configurations: [
+//                .debug(name: .dev, xcconfig: isCI ? nil : .relativeToXCConfig(
+//                    type: .dev,
+//                    name: Environment.targetName)
+//                ),
+//                .release(name: .prod, xcconfig: isCI ? nil : .relativeToXCConfig(
+//                    type: .prod,
+//                    name: Environment.targetName)
+//                )
+//              ],
+//              defaultSettings: .recommended)
+let configurations: [Configuration] = [
+    .debug(name: .dev, xcconfig: .shared),
+    .debug(name: .stage, xcconfig: .shared),
+    .release(name: .prod, xcconfig: .shared)
+  ]
+
+let settings: Settings =
+    .settings(base: env.baseSetting,
+              configurations: configurations,
               defaultSettings: .recommended)
 
 let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .widgetNeedle, .needle]
@@ -25,48 +35,48 @@ let widgetScripts: [TargetScript] = isCI ? [] : [.widgetNeedle]
 
 let targets: [Target] = [
     .init(
-        name: Environment.targetName,
+        name: env.targetName,
         platform: .iOS,
         product: .app,
-        productName: Environment.appName,
-        bundleId: "\(Environment.organizationName).\(Environment.targetName)",
-        deploymentTarget: Environment.deploymentTarget,
+        productName: env.appName,
+        bundleId: "\(env.organizationName).\(env.targetName)",
+        deploymentTarget: env.deploymentTarget,
         infoPlist: .file(path: "Support/Info.plist"),
         sources: ["Sources/**", "AppExtension/Sources/**/*.intentdefinition"],
         resources: ["Resources/**"],
-        entitlements: "Support/\(Environment.appName).entitlements",
+        entitlements: "Support/\(env.appName).entitlements",
         scripts: scripts,
         dependencies: [
             .Domain.AuthDomain,
             .Feature.RootFeature,
             .Shared.Data,
-            .target(name: "\(Environment.appName)Widget"),
-            .target(name: "\(Environment.appName)WatchApp")
+            .target(name: "\(env.appName)Widget"),
+            .target(name: "\(env.appName)WatchApp")
         ],
-        settings: .settings(base: Environment.baseSetting)
+        settings: .settings(base: env.baseSetting)
     ),
     .init(
-        name: Environment.targetTestName,
+        name: env.targetTestName,
         platform: .iOS,
         product: .unitTests,
-        bundleId: "\(Environment.organizationName).\(Environment.targetName)Tests",
-        deploymentTarget: Environment.deploymentTarget,
+        bundleId: "\(env.organizationName).\(env.targetName)Tests",
+        deploymentTarget: env.deploymentTarget,
         infoPlist: .default,
         sources: ["Tests/**"],
         dependencies: [
-            .target(name: Environment.targetName)
+            .target(name: env.targetName)
         ]
     ),
     .init(
-        name: "\(Environment.appName)Widget",
+        name: "\(env.appName)Widget",
         platform: .iOS,
         product: .appExtension,
-        bundleId: "\(Environment.organizationName).\(Environment.targetName).WidgetExtension",
-        deploymentTarget: Environment.deploymentTarget,
+        bundleId: "\(env.organizationName).\(env.targetName).WidgetExtension",
+        deploymentTarget: env.deploymentTarget,
         infoPlist: .file(path: "AppExtension/Support/Widget-Info.plist"),
         sources: ["AppExtension/Sources/**"],
         resources: ["AppExtension/Resources/**"],
-        entitlements: "AppExtension/Support/\(Environment.appName)Widget.entitlements",
+        entitlements: "AppExtension/Support/\(env.appName)Widget.entitlements",
         scripts: widgetScripts,
         dependencies: [
             .Core.DesignSystem,
@@ -75,24 +85,24 @@ let targets: [Target] = [
         ]
     ),
     .init(
-        name: "\(Environment.targetName)WatchApp",
+        name: "\(env.targetName)WatchApp",
         platform: .watchOS,
         product: .watch2App,
-        productName: "\(Environment.appName)WatchApp",
-        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp",
+        productName: "\(env.appName)WatchApp",
+        bundleId: "\(env.organizationName).\(env.targetName).watchkitapp",
         deploymentTarget: .watchOS(targetVersion: "7.0"),
         infoPlist: .file(path: "WatchApp/Support/Info.plist"),
         resources: ["WatchApp/Resources/**"],
         dependencies: [
-            .target(name: "\(Environment.targetName)WatchExtension")
+            .target(name: "\(env.targetName)WatchExtension")
         ]
     ),
     .init(
-        name: "\(Environment.targetName)WatchExtension",
+        name: "\(env.targetName)WatchExtension",
         platform: .watchOS,
         product: .watch2Extension,
-        productName: "\(Environment.appName)WatchExtension",
-        bundleId: "\(Environment.organizationName).\(Environment.targetName).watchkitapp.extension",
+        productName: "\(env.appName)WatchExtension",
+        bundleId: "\(env.organizationName).\(env.targetName).watchkitapp.extension",
         deploymentTarget: .watchOS(targetVersion: "7.0"),
         infoPlist: .file(path: "WatchApp/Support/Extension-Info.plist"),
         sources: ["WatchApp/Sources/**"],
@@ -108,15 +118,15 @@ let targets: [Target] = [
 
 let schemes: [Scheme] = [
     .init(
-      name: "\(Environment.targetName)-DEV",
+      name: "\(env.targetName)-DEV",
       shared: true,
-      buildAction: .buildAction(targets: ["\(Environment.targetName)"]),
+      buildAction: .buildAction(targets: ["\(env.targetName)"]),
       testAction: TestAction.targets(
-          ["\(Environment.targetTestName)"],
+          ["\(env.targetTestName)"],
           configuration: .dev,
           options: TestActionOptions.options(
               coverage: true,
-              codeCoverageTargets: ["\(Environment.targetName)"]
+              codeCoverageTargets: ["\(env.targetName)"]
           )
       ),
       runAction: .runAction(configuration: .dev),
@@ -125,9 +135,9 @@ let schemes: [Scheme] = [
       analyzeAction: .analyzeAction(configuration: .dev)
     ),
     .init(
-      name: "\(Environment.targetName)-PROD",
+      name: "\(env.targetName)-PROD",
       shared: true,
-      buildAction: BuildAction(targets: ["\(Environment.targetName)"]),
+      buildAction: BuildAction(targets: ["\(env.targetName)"]),
       testAction: nil,
       runAction: .runAction(configuration: .prod),
       archiveAction: .archiveAction(configuration: .prod),
@@ -138,9 +148,9 @@ let schemes: [Scheme] = [
 
 let project: Project =
     .init(
-        name: Environment.targetName,
-        organizationName: Environment.organizationName,
-        settings: settinges,
+        name: env.targetName,
+        organizationName: env.organizationName,
+        settings: settings,
         targets: targets,
         schemes: schemes
     )
