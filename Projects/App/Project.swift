@@ -6,7 +6,7 @@ import Foundation
 
 let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? true : false
 
-//let settinges: Settings =
+// let settinges: Settings =
 //    .settings(base: Environment.baseSetting,
 //              configurations: [
 //                .debug(name: .dev, xcconfig: isCI ? nil : .relativeToXCConfig(

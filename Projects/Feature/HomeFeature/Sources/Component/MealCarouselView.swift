@@ -12,7 +12,7 @@ struct MealCarouselView: View {
     let breakfastSkeleton: [String] = .generateSkeletonDummy()
     let lunchSkeleton: [String] = .generateSkeletonDummy()
     let dinnerSkeleton: [String] = .generateSkeletonDummy()
-    
+
     var body: some View {
         CarouselCanvas {
             Carousel(
