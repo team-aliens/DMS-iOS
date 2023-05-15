@@ -12,7 +12,7 @@ import DependencyPlugin
 // )
 let project = Project.makeModule(
     name: "FeatureThirdPartyLib",
-    product: .framework,
+    product: .staticFramework,
     targets: [],
     externalDependencies: [
         .SPM.Needle,
