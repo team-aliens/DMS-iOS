@@ -143,6 +143,16 @@ let schemes: [Scheme] = [
       archiveAction: .archiveAction(configuration: .prod),
       profileAction: .profileAction(configuration: .prod),
       analyzeAction: .analyzeAction(configuration: .prod)
+    ),
+    .init(
+      name: "\(env.targetName)-STAGE",
+      shared: true,
+      buildAction: BuildAction(targets: ["\(env.targetName)"]),
+      testAction: nil,
+      runAction: .runAction(configuration: .stage),
+      archiveAction: .archiveAction(configuration: .stage),
+      profileAction: .profileAction(configuration: .stage),
+      analyzeAction: .analyzeAction(configuration: .stage)
     )
 ]
 
