@@ -20,9 +20,9 @@ let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? tru
 //              ],
 //              defaultSettings: .recommended)
 let configurations: [Configuration] = [
-    .debug(name: .dev, xcconfig: .shared),
-    .debug(name: .stage, xcconfig: .shared),
-    .release(name: .prod, xcconfig: .shared)
+    .debug(name: .dev, xcconfig: isCI ? nil : .relativeToXCConfig(type: .dev, name: env.targetName)),
+    .debug(name: .stage, xcconfig: isCI ? nil : .relativeToXCConfig(type: .stage, name: env.targetName)),
+    .release(name: .prod, xcconfig: isCI ? nil : .relativeToXCConfig(type: .prod, name: env.targetName))
   ]
 
 let settings: Settings =
