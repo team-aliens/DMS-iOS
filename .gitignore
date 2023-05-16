@@ -113,7 +113,7 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 XCConfig/*
-!XCConfig/Shared.xcconfig/
+!XCConfig/Shared.xcconfig
 
 # CocoaPods
 # We recommend against adding the Pods directory to your .gitignore. However
