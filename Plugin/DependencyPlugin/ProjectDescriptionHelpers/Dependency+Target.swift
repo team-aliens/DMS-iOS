@@ -10,10 +10,6 @@ public extension TargetDependency {
 }
 
 public extension TargetDependency.Feature {
-//    static let BaseFeature = TargetDependency.project(
-//        target: ModulePaths.Feature.BaseFeature.targetName(type: .sources),
-//        path: .relativeToFeature(ModulePaths.Feature.BaseFeature.rawValue)
-//    )
     static let RemainApplyFeature = TargetDependency.feature(name: "RemainApplyFeature")
     static let StudyRoomFeature = TargetDependency.feature(name: "StudyRoomFeature")
     static let SplashFeature = TargetDependency.feature(name: "SplashFeature")
@@ -31,19 +27,11 @@ public extension TargetDependency.Feature {
 }
 
 public extension TargetDependency.Domain {
-//    static let BaseDomain = TargetDependency.project(
-//        target: ModulePaths.Domain.BaseDomain.targetName(type: .sources),
-//        path: .relativeToDomain(ModulePaths.Domain.BaseDomain.rawValue)
-//    )
     static let BaseDomain = TargetDependency.domain(name: "BaseDomain")
     static let AuthDomain = TargetDependency.domain(name: "AuthDomain")
 }
 
 public extension TargetDependency.Core {
-//    static let DesignSystem = TargetDependency.project(
-//        target: ModulePaths.Core.DesignSystem.targetName(type: .sources),
-//        path: .relativeToCore(ModulePaths.Core.DesignSystem.rawValue)
-//    )
     static let DesignSystem = TargetDependency.core(name: "DesignSystem")
     static let WatchDesignSystem = TargetDependency.core(name: "WatchDesignSystem")
 }
