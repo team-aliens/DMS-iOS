@@ -15,7 +15,7 @@ public struct FetchPointListResponseDTO: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case totalPoint = "total_point"
-        case points
+        case points = "point_histories"
     }
 
     public struct SinglePointResponseDTO: Decodable {
