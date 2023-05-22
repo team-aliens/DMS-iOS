@@ -1,5 +1,5 @@
 import ProjectDescription
-import ProjectDescriptionHelpers
+import ConfigurationPlugin
 
 let dependencies = Dependencies(
     carthage: nil,
@@ -16,6 +16,7 @@ let dependencies = Dependencies(
             baseSettings: .settings(
                 configurations: [
                     .debug(name: .dev),
+                    .debug(name: .stage),
                     .release(name: .prod)
                 ]
             )
