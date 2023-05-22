@@ -27,9 +27,9 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>WKApplication</key>
+	<true/>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>com.team.aliens.DMS-Aliens</string>
-	<key>WKWatchKitApp</key>
-	<true/>
 </dict>
 </plist>
