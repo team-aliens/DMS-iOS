@@ -81,7 +81,7 @@ let targets: [Target] = [
         infoPlist: .file(path: "WatchApp/Support/Info.plist"),
         resources: ["WatchApp/Resources/**"],
         dependencies: [
-            .target(name: "\(env.targetName)WatchExtension")
+//            .target(name: "\(env.targetName)WatchExtension")
         ]
     ),
     .init(
