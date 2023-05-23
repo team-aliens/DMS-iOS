@@ -20,6 +20,15 @@ public extension ModulePaths {
 
 public extension ModulePaths {
     enum Domain: String {
+        case UsersDomain
+        case StudyRoomsDomain
+        case StudentsDomain
+        case SchoolDomain
+        case RemainsDomain
+        case PointsDomain
+        case NoticeDomain
+        case MealDomain
+        case FilesDomain
         case BaseDomain
 
         func targetName(type: MicroTargetType) -> String {
