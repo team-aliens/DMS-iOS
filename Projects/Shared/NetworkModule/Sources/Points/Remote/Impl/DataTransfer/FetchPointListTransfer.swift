@@ -18,7 +18,7 @@ public extension FetchPointListResponseDTO {
     func toDomain() -> PointEntity {
         PointEntity(
             totalPoint: totalPoint,
-            poinsts: points.map { $0.toDomain() }
+            poinsts: pointHistories.map { $0.toDomain() }
         )
     }
 }
