@@ -1,4 +1,4 @@
-import CompaniesDomainInterface
+import FilesDomainInterface
 import BaseDomain
 import Combine
 

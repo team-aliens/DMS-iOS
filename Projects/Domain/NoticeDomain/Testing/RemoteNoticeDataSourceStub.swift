@@ -1,9 +1,6 @@
-import Combine
-import DataMappingModule
-import DomainModule
+import NoticeDomainInterface
 import Foundation
-import ErrorModule
-import Utility
+import Combine
 
 public struct RemoteNoticeDataSourceStub: RemoteNoticeDataSource {
     public init() {}

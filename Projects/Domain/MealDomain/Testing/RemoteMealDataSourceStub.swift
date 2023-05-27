@@ -1,9 +1,7 @@
-import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import MealDomainInterface
 import Foundation
-import Utility
+import Combine
+import UtilityModule
 
 public struct RemoteMealDataSourceStub: RemoteMealDataSource {
     public init() {}

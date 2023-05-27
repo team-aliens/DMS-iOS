@@ -1,7 +1,4 @@
 import Combine
-import DomainModule
-import DataMappingModule
-import ErrorModule
 
 public protocol RemoteNoticeDataSource {
     func fetchWhetherNewNotice() -> AnyPublisher<Bool, Error>

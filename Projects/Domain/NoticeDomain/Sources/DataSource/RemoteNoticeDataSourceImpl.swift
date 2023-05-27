@@ -1,8 +1,6 @@
-import APIKit
+import NoticeDomainInterface
+import BaseDomain
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
 
 public final class RemoteNoticeDataSourceImpl: BaseRemoteDataSource<NoticeAPI>, RemoteNoticeDataSource {
     public func fetchWhetherNewNotice() -> AnyPublisher<Bool, Error> {

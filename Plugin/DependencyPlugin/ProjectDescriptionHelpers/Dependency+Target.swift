@@ -163,6 +163,5 @@ public extension TargetDependency.Shared {
     static let ErrorModule = TargetDependency.shared(name: "ErrorModule")
     
     static let WatchRestAPIModule = TargetDependency.shared(name: "WatchRestAPIModule")
-    static let DataMappingModule = TargetDependency.shared(name: "DataMappingModule")
     static let Domain = TargetDependency.shared(name: "DomainModule")
 }

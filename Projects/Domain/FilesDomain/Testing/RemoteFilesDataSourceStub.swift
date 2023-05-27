@@ -1,7 +1,6 @@
-import Combine
-import DataMappingModule
-import ErrorModule
+import FilesDomainInterface
 import Foundation
+import Combine
 
 public struct RemoteFilesDataSourceStub: RemoteFilesDataSource {
     public init() {}
