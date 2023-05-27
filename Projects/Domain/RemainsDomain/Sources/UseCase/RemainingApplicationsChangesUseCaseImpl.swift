@@ -10,7 +10,7 @@ public struct RemainingApplicationsChangesUseCaseImpl: RemainingApplicationsChan
         self.remainsRepository = remainsRepository
     }
 
-    public func execute(id: String) -> AnyPublisher<Void, ErrorModule.DmsError> {
+    public func execute(id: String) -> AnyPublisher<Void, ErrorModule.Error> {
         remainsRepository.remainingApplicationsChanges(id: id)
     }
 }

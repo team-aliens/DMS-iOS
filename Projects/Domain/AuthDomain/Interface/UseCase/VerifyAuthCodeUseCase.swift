@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol VerifyAuthCodeUseCase {
-    func execute(req: VerifyAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError>
+    func execute(req: VerifyAuthCodeRequestDTO) -> AnyPublisher<Void, Error>
 }

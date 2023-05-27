@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol CheckAccountIDIsExistUseCase {
-    func execute(id: String) -> AnyPublisher<String, DmsError>
+    func execute(id: String) -> AnyPublisher<String, Error>
 }

@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol SendAuthCodeUseCase {
-    func execute(req: SendAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError>
+    func execute(req: SendAuthCodeRequestDTO) -> AnyPublisher<Void, Error>
 }

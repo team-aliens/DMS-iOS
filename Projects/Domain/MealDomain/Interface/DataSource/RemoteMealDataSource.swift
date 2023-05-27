@@ -3,5 +3,5 @@ import DomainModule
 import ErrorModule
 
 public protocol RemoteMealDataSource {
-    func fetchMealList(date: String) -> AnyPublisher<[MealEntity], DmsError>
+    func fetchMealList(date: String) -> AnyPublisher<[MealEntity], Error>
 }

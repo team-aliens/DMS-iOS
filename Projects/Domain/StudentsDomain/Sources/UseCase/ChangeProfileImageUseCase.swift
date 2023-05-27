@@ -9,7 +9,7 @@ public struct ChangeProfileImageUseCaseImpl: ChangeProfileImageUseCase {
         self.studentsRepository = studentsRepository
     }
 
-    public func execute(url: String) -> AnyPublisher<Void, DmsError> {
+    public func execute(url: String) -> AnyPublisher<Void, Error> {
         studentsRepository.changeProfileImage(url: url)
     }
 }

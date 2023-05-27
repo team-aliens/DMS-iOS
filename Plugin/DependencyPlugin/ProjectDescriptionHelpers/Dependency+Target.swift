@@ -135,8 +135,14 @@ public extension TargetDependency.Domain {
         target: ModulePaths.Domain.FilesDomain.targetName(type: .sources),
         path: .relativeToDomain(ModulePaths.Domain.FilesDomain.rawValue)
     )
-    static let BaseDomain = TargetDependency.domain(name: "BaseDomain")
-    static let AuthDomain = TargetDependency.domain(name: "AuthDomain")
+    static let BaseDomain = TargetDependency.project(
+        target: ModulePaths.Domain.BaseDomain.targetName(type: .sources),
+        path: .relativeToDomain(ModulePaths.Domain.BaseDomain.rawValue)
+    )
+    static let AuthDomain = TargetDependency.project(
+        target: ModulePaths.Domain.AuthDomain.targetName(type: .sources),
+        path: .relativeToDomain(ModulePaths.Domain.AuthDomain.rawValue)
+    )
 }
 
 public extension TargetDependency.Core {
@@ -158,9 +164,5 @@ public extension TargetDependency.Shared {
     
     static let WatchRestAPIModule = TargetDependency.shared(name: "WatchRestAPIModule")
     static let DataMappingModule = TargetDependency.shared(name: "DataMappingModule")
-    static let APIKit = TargetDependency.shared(name: "APIKit")
-    static let Data = TargetDependency.shared(name: "DataModule")
     static let Domain = TargetDependency.shared(name: "DomainModule")
-    static let DatabaseModule = TargetDependency.shared(name: "DatabaseModule")
-    static let NetworkModule = TargetDependency.shared(name: "NetworkModule")
 }

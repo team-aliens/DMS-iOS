@@ -1,12 +1,11 @@
+import AuthDomainInterface
+import BaseDomain
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
 
 public struct RemoteAuthDataSourceStub: RemoteAuthDataSource {
     public init() {}
 
-    public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
+    public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
         Just(DmsFeatures(
             mealService: true,
             noticeService: true,
@@ -14,21 +13,21 @@ public struct RemoteAuthDataSourceStub: RemoteAuthDataSource {
             studyRoomService: false,
             remainService: false
         ))
-        .setFailureType(to: DmsError.self)
+        .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
     }
 
-    public func verifyAuthCode(req: VerifyAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError> {
-        Just(()).setFailureType(to: DmsError.self)
+    public func verifyAuthCode(req: VerifyAuthCodeRequestDTO) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    public func sendAuthCode(req: SendAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError> {
-        Just(()).setFailureType(to: DmsError.self)
+    public func sendAuthCode(req: SendAuthCodeRequestDTO) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    public func reissueToken() -> AnyPublisher<DmsFeatures, DmsError> {
+    public func reissueToken() -> AnyPublisher<DmsFeatures, Error> {
         Just(DmsFeatures(
             mealService: true,
             noticeService: true,
@@ -36,17 +35,17 @@ public struct RemoteAuthDataSourceStub: RemoteAuthDataSource {
             studyRoomService: false,
             remainService: false
         ))
-        .setFailureType(to: DmsError.self)
+        .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
     }
 
-    public func checkEmailExistByAccountID(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, DmsError> {
-        Just(()).setFailureType(to: DmsError.self)
+    public func checkEmailExistByAccountID(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    public func checkAccountIDIsExist(id: String) -> AnyPublisher<String, DmsError> {
-        Just("abc******@gmail.com").setFailureType(to: DmsError.self)
+    public func checkAccountIDIsExist(id: String) -> AnyPublisher<String, Error> {
+        Just("abc******@gmail.com").setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }

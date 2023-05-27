@@ -3,5 +3,5 @@ import ErrorModule
 import Foundation
 
 public protocol UploadFileUseCase {
-    func execute(data: Data) -> AnyPublisher<String, DmsError>
+    func execute(data: Data) -> AnyPublisher<String, Error>
 }

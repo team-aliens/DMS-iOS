@@ -12,6 +12,5 @@ let project = Project.makeModule(
         .Feature.RenewalPasswordFeature
     ],
     unitTestDependencies: [
-        .Shared.Data
     ]
 )

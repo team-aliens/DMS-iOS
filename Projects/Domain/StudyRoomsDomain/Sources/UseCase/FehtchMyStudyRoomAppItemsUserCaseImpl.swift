@@ -10,7 +10,7 @@ public struct FetchMyStudyRoomAppItemsUseCaseImpl: FetchMyStudyRoomAppItemsUseCa
         self.studyRoomsRepository = studyRoomsRepository
     }
 
-    public func execute() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError> {
+    public func execute() -> AnyPublisher<MyStudyRoomAppItemsEntity, Error> {
         studyRoomsRepository.fetchMyStudyRoomApplicationItems()
     }
 }

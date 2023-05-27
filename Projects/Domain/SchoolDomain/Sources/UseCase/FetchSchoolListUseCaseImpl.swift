@@ -10,7 +10,7 @@ public struct FetchSchoolListUseCaseImpl: FetchSchoolListUseCase {
         self.schoolRepository = schoolRepository
     }
 
-    public func execute() -> AnyPublisher<[SchoolEntity], DmsError> {
+    public func execute() -> AnyPublisher<[SchoolEntity], Error> {
         schoolRepository.fetchSchoolList()
     }
 

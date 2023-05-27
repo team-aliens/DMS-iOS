@@ -1,5 +1,5 @@
-import DataMappingModule
-import ErrorModule
+import PointsDomainInterface
+import BaseDomain
 import Moya
 
 public enum PointsAPI {
@@ -18,11 +18,11 @@ extension PointsAPI: DmsAPI {
         }
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         return .get
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         switch self {
         case let .fetchPointsList(type):
             return .requestParameters(parameters: [
@@ -35,7 +35,7 @@ extension PointsAPI: DmsAPI {
         .accessToken
     }
 
-    public var errorMap: [Int: ErrorModule.DmsError] {
+    public var errorMap: [Int: ErrorType] {
         [
             400: .badRequest,
             500: .internalServerError

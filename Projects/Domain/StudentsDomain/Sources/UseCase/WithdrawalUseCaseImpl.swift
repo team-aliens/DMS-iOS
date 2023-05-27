@@ -9,7 +9,7 @@ public struct WithdrawalUseCaseImpl: WithdrawalUseCase {
         self.studentsRepository = studentsRepository
     }
 
-    public func execute() -> AnyPublisher<Void, DmsError> {
+    public func execute() -> AnyPublisher<Void, Error> {
         studentsRepository.withdrawal()
     }
 }

@@ -11,41 +11,41 @@ public struct StudentsRepositoryImpl: StudentsRepository {
         self.remoteStudentsDataSource = remoteStudentsDataSource
     }
 
-    public func signup(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
+    public func signup(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
         remoteStudentsDataSource.signup(req: req)
     }
 
-    public func checkDuplicateAccountID(id: String) -> AnyPublisher<Void, DmsError> {
+    public func checkDuplicateAccountID(id: String) -> AnyPublisher<Void, Error> {
         remoteStudentsDataSource.checkDuplicateAccountID(id: id)
     }
 
-    public func checkDuplicateEmail(email: String) -> AnyPublisher<Void, DmsError> {
+    public func checkDuplicateEmail(email: String) -> AnyPublisher<Void, Error> {
         remoteStudentsDataSource.checkDuplicateEmail(email: email)
     }
 
-    public func renewalPassword(req: RenewalPasswordRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func renewalPassword(req: RenewalPasswordRequestDTO) -> AnyPublisher<Void, Error> {
         remoteStudentsDataSource.renewalPassword(req: req)
     }
 
-    public func findID(req: FindIDRequestDTO) -> AnyPublisher<String, DmsError> {
+    public func findID(req: FindIDRequestDTO) -> AnyPublisher<String, Error> {
         remoteStudentsDataSource.findID(req: req)
     }
 
     public func checkExistGradeClassNumber(
         req: CheckExistGradeClassNumberRequestDTO
-    ) -> AnyPublisher<String, DmsError> {
+    ) -> AnyPublisher<String, Error> {
         remoteStudentsDataSource.checkExistGradeClassNumber(req: req)
     }
 
-    public func fetchMyProfile() -> AnyPublisher<MyProfileEntity, DmsError> {
+    public func fetchMyProfile() -> AnyPublisher<MyProfileEntity, Error> {
         remoteStudentsDataSource.fetchMyProfile()
     }
 
-    public func changeProfileImage(url: String) -> AnyPublisher<Void, DmsError> {
+    public func changeProfileImage(url: String) -> AnyPublisher<Void, Error> {
         remoteStudentsDataSource.changeProfileImage(url: url)
     }
 
-    public func withdrawal() -> AnyPublisher<Void, DmsError> {
+    public func withdrawal() -> AnyPublisher<Void, Error> {
         remoteStudentsDataSource.withdrawal()
     }
 }

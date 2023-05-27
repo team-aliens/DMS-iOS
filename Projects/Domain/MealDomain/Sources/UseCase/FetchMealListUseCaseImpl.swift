@@ -9,7 +9,7 @@ public struct FetchMealListUseCaseImpl: FetchMealListUseCase {
         self.mealRepository = mealRepository
     }
 
-    public func execute(date: String) -> AnyPublisher<[MealEntity], DmsError> {
+    public func execute(date: String) -> AnyPublisher<[MealEntity], Error> {
         mealRepository.fetchMealList(date: date)
     }
 }

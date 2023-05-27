@@ -10,7 +10,7 @@ public struct MealRepositoryImpl: MealRepository {
         self.remoteMealDataSource = remoteMealDataSource
     }
 
-    public func fetchMealList(date: String) -> AnyPublisher<[MealEntity], DmsError> {
+    public func fetchMealList(date: String) -> AnyPublisher<[MealEntity], Error> {
         remoteMealDataSource.fetchMealList(date: date)
     }
 }

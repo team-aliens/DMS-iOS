@@ -10,7 +10,7 @@ public struct CheckSchoolQuestionUseCaseImpl: CheckSchoolQuestionUseCase {
         self.schoolRepository = schoolRepository
     }
 
-    public func execute(schoolID: String, answer: String) -> AnyPublisher<Void, DmsError> {
+    public func execute(schoolID: String, answer: String) -> AnyPublisher<Void, Error> {
         schoolRepository.checkSchoolQuestion(schoolID: schoolID, answer: answer)
     }
 }

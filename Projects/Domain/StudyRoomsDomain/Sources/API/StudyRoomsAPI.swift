@@ -1,6 +1,5 @@
-import DataMappingModule
-import Foundation
-import ErrorModule
+import BaseDomain
+import StudyRoomsDomainInterface
 import Moya
 
 public enum StudyRoomsAPI {
@@ -15,6 +14,7 @@ public enum StudyRoomsAPI {
 }
 
 extension StudyRoomsAPI: DmsAPI {
+    public typealias ErrorType = StudyRoomsDomainError
     public var domain: DmsDomain {
         .studyRooms
     }
@@ -47,7 +47,7 @@ extension StudyRoomsAPI: DmsAPI {
         }
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         switch self {
         case .fetchStudyAvailableTime, .fetchSeatTypes, .fetchStudyRoomList,
                 .fetchDetailStudyRoom, .fetchMyStudyRoomApplicationItems,
@@ -62,7 +62,7 @@ extension StudyRoomsAPI: DmsAPI {
         }
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         switch self {
         case let .fetchSeatTypes(studyroomID):
             return .requestParameters(
@@ -112,7 +112,7 @@ extension StudyRoomsAPI: DmsAPI {
         .accessToken
     }
 
-    public var errorMap: [Int: ErrorModule.DmsError] {
+    public var errorMap: [Int: ErrorType] {
         switch self {
         case .applyStudyRoomSeat:
             return [
@@ -127,7 +127,7 @@ extension StudyRoomsAPI: DmsAPI {
         case .fetchDetailStudyRoom:
             return [
                 400: .badRequest,
-                500: .photoCapacityIsLarge
+                500: .internalServerError
             ]
 
         case .cancelStudyRoomSeat:

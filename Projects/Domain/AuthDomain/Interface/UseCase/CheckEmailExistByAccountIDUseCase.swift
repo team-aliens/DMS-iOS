@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol CheckEmailExistByAccountIDUseCase {
-    func execute(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, DmsError>
+    func execute(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, Error>
 }

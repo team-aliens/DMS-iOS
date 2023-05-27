@@ -8,7 +8,7 @@ import Utility
 public struct RemoteMealDataSourceStub: RemoteMealDataSource {
     public init() {}
 
-    public func fetchMealList(date: String) -> AnyPublisher<[MealEntity], DmsError> {
+    public func fetchMealList(date: String) -> AnyPublisher<[MealEntity], Error> {
         Just([
             MealEntity(
                 date: Date().toSmallDMSDateString(),
@@ -22,7 +22,7 @@ public struct RemoteMealDataSourceStub: RemoteMealDataSource {
                     "백미밥", "바게트프랜치토스트", "된장찌개", "숙주나물무침", "오리훈제양파구이/머스타드", "배추김치", "골라먹는우유", "983.7Kcal"
                 ]
             )
-        ]).setFailureType(to: DmsError.self)
+        ]).setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }

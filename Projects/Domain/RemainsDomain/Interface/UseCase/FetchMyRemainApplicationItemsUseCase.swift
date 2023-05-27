@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol FetchMyRemainApplicationItemsUseCase {
-    func execute() -> AnyPublisher<MyRemainApplicationItemsEntity, DmsError>
+    func execute() -> AnyPublisher<MyRemainApplicationItemsEntity, Error>
 }

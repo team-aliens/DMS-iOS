@@ -1,5 +1,5 @@
-import Foundation
-import ErrorModule
+import FilesDomainInterface
+import BaseDomain
 import Moya
 
 public enum FilesAPI {
@@ -7,6 +7,8 @@ public enum FilesAPI {
 }
 
 extension FilesAPI: DmsAPI {
+    public typealias ErrorType = FilesDomainError
+    
     public var domain: DmsDomain {
         .files
     }
@@ -15,11 +17,11 @@ extension FilesAPI: DmsAPI {
         return ""
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         return .post
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         switch self {
         case let .uploadFile(data):
             return .uploadMultipart([
@@ -36,7 +38,7 @@ extension FilesAPI: DmsAPI {
         .none
     }
 
-    public var errorMap: [Int: DmsError] {
+    public var errorMap: [Int: ErrorType] {
         [
             400: .badRequest,
             500: .internalServerError

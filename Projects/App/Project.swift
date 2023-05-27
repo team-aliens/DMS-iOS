@@ -45,7 +45,6 @@ let targets: [Target] = [
             .Domain.StudentsDomain,
             .Domain.UsersDomain,
             .Feature.RootFeature,
-            .Shared.Data,
             .target(name: "\(env.appName)Widget"),
             .target(name: "\(env.appName)WatchApp")
         ],
@@ -76,7 +75,6 @@ let targets: [Target] = [
         scripts: widgetScripts,
         dependencies: [
             .Core.DesignSystem,
-            .Shared.Data,
             .SPM.Needle
         ]
     ),

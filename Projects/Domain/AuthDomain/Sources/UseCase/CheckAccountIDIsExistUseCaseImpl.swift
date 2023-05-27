@@ -10,7 +10,7 @@ public struct CheckAccountIDIsExistUseCaseImpl: CheckAccountIDIsExistUseCase {
         self.authRepository = authRepository
     }
 
-    public func execute(id: String) -> AnyPublisher<String, DmsError> {
+    public func execute(id: String) -> AnyPublisher<String, Error> {
         authRepository.checkAccountIDIsExist(id: id)
     }
 }

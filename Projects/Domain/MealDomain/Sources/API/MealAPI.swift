@@ -1,12 +1,14 @@
-import DataMappingModule
-import ErrorModule
+import MealDomainInterface
 import Moya
+import BaseDomain
 
 public enum MealAPI {
     case fetchMealList(String)
 }
 
 extension MealAPI: DmsAPI {
+    public typealias ErrorType = MealDomainError
+
     public var domain: DmsDomain {
         .meals
     }
@@ -18,11 +20,11 @@ extension MealAPI: DmsAPI {
         }
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         return .get
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         return .requestPlain
     }
 
@@ -30,7 +32,7 @@ extension MealAPI: DmsAPI {
         .accessToken
     }
 
-    public var errorMap: [Int: ErrorModule.DmsError] {
+    public var errorMap: [Int: ErrorType] {
         [
             400: .badRequest,
             500: .internalServerError

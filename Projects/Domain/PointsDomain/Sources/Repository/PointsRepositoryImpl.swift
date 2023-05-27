@@ -11,7 +11,7 @@ public struct PointsRepositoryImpl: PointsRepository {
         self.remotePointsDataSource = remotePointsDataSource
     }
 
-    public func fetchPointList(type: PointsType) -> AnyPublisher<PointEntity, DmsError> {
+    public func fetchPointList(type: PointsType) -> AnyPublisher<PointEntity, Error> {
         remotePointsDataSource.fetchPointList(type: type)
     }
 }

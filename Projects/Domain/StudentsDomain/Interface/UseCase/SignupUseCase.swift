@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol SignupUseCase {
-    func execute(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, DmsError>
+    func execute(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, Error>
 }

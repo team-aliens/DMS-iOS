@@ -10,7 +10,7 @@ public struct CheckEmailExistByAccountIDUseCaseImpl: CheckEmailExistByAccountIDU
         self.authRepository = authRepository
     }
 
-    public func execute(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func execute(req: EmailExistByAccountIDRequestDTO) -> AnyPublisher<Void, Error> {
         authRepository.checkEmailExistByAccountID(req: req)
     }
 }

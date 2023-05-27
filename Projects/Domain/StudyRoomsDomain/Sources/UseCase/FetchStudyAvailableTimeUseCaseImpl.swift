@@ -10,7 +10,7 @@ public struct FetchStudyAvailableTimeUseCaseImpl: FetchStudyAvailableTimeUseCase
         self.studyRoomsRepository = studyRoomsRepository
     }
 
-    public func execute() -> AnyPublisher<StudyAvailableTimeEntity, DmsError> {
+    public func execute() -> AnyPublisher<StudyAvailableTimeEntity, Error> {
         studyRoomsRepository.fetchStudyAvailableTime()
     }
 }

@@ -5,5 +5,5 @@ import ErrorModule
 import DataMappingModule
 
 public protocol RemotePointsDataSource {
-    func fetchPointList(type: PointsType) -> AnyPublisher<PointEntity, DmsError>
+    func fetchPointList(type: PointsType) -> AnyPublisher<PointEntity, Error>
 }

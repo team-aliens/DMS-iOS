@@ -10,7 +10,7 @@ public struct FetchNoticeListUseCaseImpl: FetchNoticeListUseCase {
         self.noticeRepository = noticeRepository
     }
 
-    public func execute(order: NoticeOrderType) -> AnyPublisher<[NoticeEntity], DmsError> {
+    public func execute(order: NoticeOrderType) -> AnyPublisher<[NoticeEntity], Error> {
         noticeRepository.fetchNoticeList(order: order)
     }
 }

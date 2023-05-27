@@ -6,8 +6,8 @@ import ErrorModule
 import Foundation
 
 public protocol RemoteRemainsDataSource {
-    func remainingApplicationsChanges(id: String) -> AnyPublisher<Void, DmsError>
-    func fetchMyRemainApplicationItems() -> AnyPublisher<MyRemainApplicationItemsEntity, DmsError>
-    func fetchRemainsAvailableTime() -> AnyPublisher<RemainsAvailableTimeEntity, DmsError>
-    func fetchRemainApplicationList() -> AnyPublisher<RemainApplicationListEntity, DmsError>
+    func remainingApplicationsChanges(id: String) -> AnyPublisher<Void, Error>
+    func fetchMyRemainApplicationItems() -> AnyPublisher<MyRemainApplicationItemsEntity, Error>
+    func fetchRemainsAvailableTime() -> AnyPublisher<RemainsAvailableTimeEntity, Error>
+    func fetchRemainApplicationList() -> AnyPublisher<RemainApplicationListEntity, Error>
 }

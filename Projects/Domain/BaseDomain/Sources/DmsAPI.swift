@@ -3,9 +3,10 @@ import Moya
 import ErrorModule
 
 public protocol DmsAPI: TargetType, JwtAuthorizable {
+    associatedtype ErrorType: Error
     var domain: DmsDomain { get }
     var urlPath: String { get }
-    var errorMap: [Int: DmsError] { get }
+    var errorMap: [Int: ErrorType] { get }
 }
 
 public extension DmsAPI {

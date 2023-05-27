@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol SigninUseCase {
-    func execute(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, DmsError>
+    func execute(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, Error>
 }

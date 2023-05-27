@@ -8,7 +8,5 @@ let project = Project.makeModule(
     internalDependencies: [
         .Feature.BaseFeature
     ],
-    unitTestDependencies: [
-        .Shared.Data
-    ]
+    unitTestDependencies: []
 )

@@ -1,7 +1,6 @@
+import SchoolDomainInterface
+import BaseDomain
 import Moya
-import DataMappingModule
-import ErrorModule
-import Foundation
 
 public enum SchoolAPI {
     case fetchSchoolList
@@ -11,6 +10,7 @@ public enum SchoolAPI {
 }
 
 extension SchoolAPI: DmsAPI {
+    typealias ErrorType = SchoolDomainError
 
     public var domain: DmsDomain {
         .schools
@@ -32,11 +32,11 @@ extension SchoolAPI: DmsAPI {
         }
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         return .get
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         switch self {
         case let .checkSchoolQuestion(_, answer):
             return .requestParameters(parameters: [
@@ -57,7 +57,7 @@ extension SchoolAPI: DmsAPI {
         return .none
     }
 
-    public var errorMap: [Int: ErrorModule.DmsError] {
+    public var errorMap: [Int: ErrorType] {
         switch self {
         case .fetchSchoolList:
             return [

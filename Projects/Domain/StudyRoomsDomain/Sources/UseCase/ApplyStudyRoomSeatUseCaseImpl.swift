@@ -10,7 +10,7 @@ public struct ApplyStudyRoomSeatUseCaseImpl: ApplyStudyRoomSeatUseCase {
         self.studyRoomsRepository = studyRoomsRepository
     }
 
-    public func execute(seatID: String, timeSlot: String) -> AnyPublisher<Void, DmsError> {
+    public func execute(seatID: String, timeSlot: String) -> AnyPublisher<Void, Error> {
         studyRoomsRepository.applyStudyRoomSeat(seatID: seatID, timeSlot: timeSlot)
     }
 }

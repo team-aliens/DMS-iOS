@@ -1,11 +1,9 @@
-import APIKit
+import CompaniesDomainInterface
+import BaseDomain
 import Combine
-import DataMappingModule
-import ErrorModule
-import Foundation
 
 public final class RemoteFilesDataSourceImpl: BaseRemoteDataSource<FilesAPI>, RemoteFilesDataSource {
-    public func uploadFile(data: Data) -> AnyPublisher<String, DmsError> {
+    public func uploadFile(data: Data) -> AnyPublisher<String, Error> {
         request(.uploadFile(data: data), dto: UploadFileResponseDTO.self)
             .map(\.fileURL)
             .eraseToAnyPublisher()

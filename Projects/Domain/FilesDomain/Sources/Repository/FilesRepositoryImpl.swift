@@ -11,7 +11,7 @@ public struct FilesRepositoryImpl: FilesRepository {
         self.remoteFilesDataSource = remoteFilesDataSource
     }
 
-    public func uploadFile(data: Data) -> AnyPublisher<String, DmsError> {
+    public func uploadFile(data: Data) -> AnyPublisher<String, Error> {
         remoteFilesDataSource.uploadFile(data: data)
     }
 }

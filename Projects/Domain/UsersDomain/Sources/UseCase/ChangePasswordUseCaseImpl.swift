@@ -10,7 +10,7 @@ public struct ChangePasswordUseCaseImpl: ChangePasswordUseCase {
         self.usersRepository = usersRepository
     }
 
-    public func execute(req: ChangePasswordRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func execute(req: ChangePasswordRequestDTO) -> AnyPublisher<Void, Error> {
         usersRepository.changePassword(req: req)
     }
 }

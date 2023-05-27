@@ -1,7 +1,6 @@
+import StudentsDomainInterface
+import BaseDomain
 import Moya
-import DataMappingModule
-import ErrorModule
-import Foundation
 
 public enum StudentsAPI {
     case signup(SignupRequestDTO)
@@ -16,6 +15,7 @@ public enum StudentsAPI {
 }
 
 extension StudentsAPI: DmsAPI {
+    typealias ErrorType = StudentsDomainError
     public var domain: DmsDomain {
         .students
     }
@@ -51,7 +51,7 @@ extension StudentsAPI: DmsAPI {
         }
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         switch self {
         case .checkDuplicateAccountID, .checkDuplicateEmail, .findID, .fetchMyProfile, .checkExistGradeClassNumber:
             return .get
@@ -67,7 +67,7 @@ extension StudentsAPI: DmsAPI {
         }
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         switch self {
         case let .signup(req):
             return .requestJSONEncodable(req)
@@ -122,7 +122,7 @@ extension StudentsAPI: DmsAPI {
         }
     }
 
-    public var errorMap: [Int: DmsError] {
+    public var errorMap: [Int: ErrorType] {
         switch self {
         case .signup:
             return [

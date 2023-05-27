@@ -11,11 +11,11 @@ public struct UsersRepositoryImpl: UsersRepository {
         self.remoteUsersDataSource = remoteUsersDataSource
     }
 
-    public func changePassword(req: ChangePasswordRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func changePassword(req: ChangePasswordRequestDTO) -> AnyPublisher<Void, Error> {
         remoteUsersDataSource.changePassword(req: req)
     }
 
-    public func compareCurrentPasssword(password: String) -> AnyPublisher<Void, DmsError> {
+    public func compareCurrentPasssword(password: String) -> AnyPublisher<Void, Error> {
         remoteUsersDataSource.compareCurrentPasssword(password: password)
     }
 }

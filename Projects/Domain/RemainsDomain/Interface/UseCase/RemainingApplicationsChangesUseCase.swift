@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol RemainingApplicationsChangesUseCase {
-    func execute(id: String) -> AnyPublisher<Void, DmsError>
+    func execute(id: String) -> AnyPublisher<Void, Error>
 }

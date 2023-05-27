@@ -10,7 +10,7 @@ public struct CheckExistGradeClassNumberUseCaseImpl: CheckExistGradeClassNumberU
         self.studentsRepository = studentsRepository
     }
 
-    public func execute(req: CheckExistGradeClassNumberRequestDTO) -> AnyPublisher<String, DmsError> {
+    public func execute(req: CheckExistGradeClassNumberRequestDTO) -> AnyPublisher<String, Error> {
         studentsRepository.checkExistGradeClassNumber(req: req)
     }
 }

@@ -1,7 +1,6 @@
+import UsersDomainInterface
+import BaseDomain
 import Moya
-import DataMappingModule
-import ErrorModule
-import Foundation
 
 public enum UsersAPI {
     case changePassword(ChangePasswordRequestDTO)
@@ -9,6 +8,7 @@ public enum UsersAPI {
 }
 
 extension UsersAPI: DmsAPI {
+    public typealias ErrorType = UsersDomainError
     public var domain: DmsDomain {
         .users
     }
@@ -20,7 +20,7 @@ extension UsersAPI: DmsAPI {
         }
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         switch self {
         case .compareCurrentPasssword:
             return .get
@@ -30,7 +30,7 @@ extension UsersAPI: DmsAPI {
         }
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         switch self {
         case let .changePassword(req):
             return .requestJSONEncodable(req)
@@ -46,7 +46,7 @@ extension UsersAPI: DmsAPI {
         .accessToken
     }
 
-    public var errorMap: [Int: DmsError] {
+    public var errorMap: [Int: ErrorType] {
         switch self {
         case .changePassword:
             return [

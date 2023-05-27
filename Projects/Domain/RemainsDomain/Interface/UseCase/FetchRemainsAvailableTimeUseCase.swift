@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol FetchRemainsAvailableTimeUseCase {
-    func execute() -> AnyPublisher<RemainsAvailableTimeEntity, DmsError>
+    func execute() -> AnyPublisher<RemainsAvailableTimeEntity, Error>
 }

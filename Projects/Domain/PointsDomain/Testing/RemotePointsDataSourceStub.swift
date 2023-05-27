@@ -9,7 +9,7 @@ import APIKit
 public struct RemotePointsDataSourceStub: RemotePointsDataSource {
     public init() {}
 
-    public func fetchPointList(type: PointsType) -> AnyPublisher<PointEntity, DmsError> {
+    public func fetchPointList(type: PointsType) -> AnyPublisher<PointEntity, Error> {
         Just(
             .init(
                 totalPoint: 10,
@@ -23,7 +23,7 @@ public struct RemotePointsDataSourceStub: RemotePointsDataSource {
                     )
                 ]
             )
-        ).setFailureType(to: DmsError.self)
+        ).setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }

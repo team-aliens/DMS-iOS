@@ -9,7 +9,7 @@ public struct CheckSchoolCodeUseCaseImpl: CheckSchoolCodeUseCase {
     public init(schoolRepository: any SchoolRepository) {
         self.schoolRepository = schoolRepository
     }
-    public func execute(code: String) -> AnyPublisher<String, DmsError> {
+    public func execute(code: String) -> AnyPublisher<String, Error> {
         schoolRepository.checkSchoolCode(code: code)
     }
 }

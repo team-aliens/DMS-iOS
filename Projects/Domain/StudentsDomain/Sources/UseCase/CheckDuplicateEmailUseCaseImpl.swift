@@ -10,7 +10,7 @@ public struct CheckDuplicateEmailUseCaseImpl: CheckDuplicateEmailUseCase {
         self.studentsRepository = studentsRepository
     }
 
-    public func execute(email: String) -> AnyPublisher<Void, DmsError> {
+    public func execute(email: String) -> AnyPublisher<Void, Error> {
         studentsRepository.checkDuplicateEmail(email: email)
     }
 }

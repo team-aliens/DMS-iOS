@@ -4,7 +4,7 @@ import DataMappingModule
 import ErrorModule
 
 public protocol RemoteNoticeDataSource {
-    func fetchWhetherNewNotice() -> AnyPublisher<Bool, DmsError>
-    func fetchNoticeList(order: NoticeOrderType) -> AnyPublisher<[NoticeEntity], DmsError>
-    func fetchDetailNotice(id: String) -> AnyPublisher<DetailNoticeEntity, DmsError>
+    func fetchWhetherNewNotice() -> AnyPublisher<Bool, Error>
+    func fetchNoticeList(order: NoticeOrderType) -> AnyPublisher<[NoticeEntity], Error>
+    func fetchDetailNotice(id: String) -> AnyPublisher<DetailNoticeEntity, Error>
 }

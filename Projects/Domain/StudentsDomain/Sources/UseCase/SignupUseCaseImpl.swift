@@ -10,7 +10,7 @@ public struct SignupUseCaseImpl: SignupUseCase {
         self.studentsRepository = studentsRepository
     }
 
-    public func execute(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, DmsError> {
+    public func execute(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
         studentsRepository.signup(req: req)
     }
 }

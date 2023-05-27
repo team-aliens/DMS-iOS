@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol CompareCurrentPasswordUseCase {
-    func execute(password: String) -> AnyPublisher<Void, DmsError>
+    func execute(password: String) -> AnyPublisher<Void, Error>
 }

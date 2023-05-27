@@ -8,13 +8,13 @@ import Foundation
 public struct UsersRepositoryStub: UsersRepository {
     public init() {}
 
-    public func changePassword(req: ChangePasswordRequestDTO) -> AnyPublisher<Void, DmsError> {
-        Just(()).setFailureType(to: DmsError.self)
+    public func changePassword(req: ChangePasswordRequestDTO) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    public func compareCurrentPasssword(password: String) -> AnyPublisher<Void, DmsError> {
-        Just(()).setFailureType(to: DmsError.self)
+    public func compareCurrentPasssword(password: String) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }

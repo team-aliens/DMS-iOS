@@ -9,7 +9,7 @@ public struct CompareCurrentPasswordUseCaseImpl: CompareCurrentPasswordUseCase {
         self.usersRepository = usersRepository
     }
 
-    public func execute(password: String) -> AnyPublisher<Void, DmsError> {
+    public func execute(password: String) -> AnyPublisher<Void, Error> {
         usersRepository.compareCurrentPasssword(password: password)
     }
 }

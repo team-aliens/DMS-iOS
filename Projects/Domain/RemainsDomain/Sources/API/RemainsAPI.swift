@@ -1,7 +1,6 @@
+import RemainsDomainInterface
+import BaseDomain
 import Moya
-import DataMappingModule
-import ErrorModule
-import Foundation
 
 public enum RemainsAPI {
     case remainingApplicationsChanges(id: String)
@@ -11,6 +10,8 @@ public enum RemainsAPI {
 }
 
 extension RemainsAPI: DmsAPI {
+    typealias ErrorType = RemainsDomainError
+
     public var domain: DmsDomain {
         .remains
     }
@@ -31,7 +32,7 @@ extension RemainsAPI: DmsAPI {
         }
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         switch self {
         case .remainingApplicationsChanges:
             return .put
@@ -41,7 +42,7 @@ extension RemainsAPI: DmsAPI {
         }
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         .requestPlain
     }
 
@@ -49,7 +50,7 @@ extension RemainsAPI: DmsAPI {
         .accessToken
     }
 
-    public var errorMap: [Int: DmsError] {
+    public var errorMap: [Int: ErrorType] {
         switch self {
         case .remainingApplicationsChanges:
             return [

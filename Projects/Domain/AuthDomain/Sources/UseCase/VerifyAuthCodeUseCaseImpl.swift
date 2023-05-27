@@ -10,7 +10,7 @@ public struct VerifyAuthCodeUseCaseImpl: VerifyAuthCodeUseCase {
         self.authRepository = authRepository
     }
 
-    public func execute(req: VerifyAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func execute(req: VerifyAuthCodeRequestDTO) -> AnyPublisher<Void, Error> {
         authRepository.verifyAuthCode(req: req)
     }
 }

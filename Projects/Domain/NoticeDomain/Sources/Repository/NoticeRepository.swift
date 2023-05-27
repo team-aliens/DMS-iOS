@@ -11,15 +11,15 @@ public struct NoticeRepositoryImpl: NoticeRepository {
         self.remoteNoticeDataSource = remoteNoticeDataSource
     }
 
-    public func fetchWhetherNewNotice() -> AnyPublisher<Bool, DmsError> {
+    public func fetchWhetherNewNotice() -> AnyPublisher<Bool, Error> {
         remoteNoticeDataSource.fetchWhetherNewNotice()
     }
 
-    public func fetchNoticeList(order: NoticeOrderType) -> AnyPublisher<[NoticeEntity], DmsError> {
+    public func fetchNoticeList(order: NoticeOrderType) -> AnyPublisher<[NoticeEntity], Error> {
         remoteNoticeDataSource.fetchNoticeList(order: order)
     }
 
-    public func fetchDetailNotice(id: String) -> AnyPublisher<DetailNoticeEntity, DmsError> {
+    public func fetchDetailNotice(id: String) -> AnyPublisher<DetailNoticeEntity, Error> {
         remoteNoticeDataSource.fetchDetailNotice(id: id)
     }
 }

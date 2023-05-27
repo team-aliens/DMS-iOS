@@ -10,7 +10,7 @@ public struct FindIDUseCaseImpl: FindIDUseCase {
         self.studentsRepository = studentsRepository
     }
 
-    public func execute(req: FindIDRequestDTO) -> AnyPublisher<String, DmsError> {
+    public func execute(req: FindIDRequestDTO) -> AnyPublisher<String, Error> {
         studentsRepository.findID(req: req)
     }
 }

@@ -10,7 +10,7 @@ public struct FetchWhetherNewNoticeUseCaseImpl: FetchWhetherNewNoticeUseCase {
         self.noticeRepository = noticeRepository
     }
 
-    public func execute() -> AnyPublisher<Bool, DmsError> {
+    public func execute() -> AnyPublisher<Bool, Error> {
         noticeRepository.fetchWhetherNewNotice()
     }
 }

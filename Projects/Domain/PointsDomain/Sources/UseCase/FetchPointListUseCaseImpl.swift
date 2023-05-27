@@ -11,7 +11,7 @@ public struct FetchPointListUseCaseImpl: FetchPointListUseCase {
         self.pointsRepository = pointsRepository
     }
 
-    public func execute(type: PointsType) -> AnyPublisher<PointEntity, DmsError> {
+    public func execute(type: PointsType) -> AnyPublisher<PointEntity, Error> {
         pointsRepository.fetchPointList(type: type)
     }
 }

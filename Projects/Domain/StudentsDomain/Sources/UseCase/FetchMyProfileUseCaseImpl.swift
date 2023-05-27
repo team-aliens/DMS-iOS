@@ -10,7 +10,7 @@ public struct FetchMyProfileUseCaseImpl: FetchMyProfileUseCase {
         self.studentsRepository = studentsRepository
     }
 
-    public func execute() -> AnyPublisher<MyProfileEntity, DmsError> {
+    public func execute() -> AnyPublisher<MyProfileEntity, Error> {
         studentsRepository.fetchMyProfile()
     }
 }

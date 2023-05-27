@@ -1,7 +1,5 @@
-import Moya
-import DataMappingModule
-import ErrorModule
-import Foundation
+import BaseDomain
+import AuthDomainInterface
 
 public enum AuthAPI {
     case signin(SigninRequestDTO)
@@ -13,6 +11,7 @@ public enum AuthAPI {
 }
 
 extension AuthAPI: DmsAPI {
+    typealias ErrorType = AuthDomainError
     public var domain: DmsDomain {
         .auth
     }
@@ -36,7 +35,7 @@ extension AuthAPI: DmsAPI {
         }
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         switch self {
         case .verifyAuthCode, .checkEmailExistByAccountID, .checkAccountIDIsExist:
             return .get
@@ -49,7 +48,7 @@ extension AuthAPI: DmsAPI {
         }
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         switch self {
         case let .signin(req):
             return .requestJSONEncodable(req)
@@ -90,7 +89,7 @@ extension AuthAPI: DmsAPI {
         }
     }
 
-    public var errorMap: [Int: DmsError] {
+    public var errorMap: [Int: ErrorType] {
         switch self {
         case .signin:
             return [

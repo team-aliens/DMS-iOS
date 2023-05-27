@@ -11,22 +11,22 @@ public struct RemainsRepositoryImpl: RemainsRepository {
         self.remoteRemainsDataSource = remoteRemainsDataSource
     }
 
-    public func remainingApplicationsChanges(id: String) -> AnyPublisher<Void, DmsError> {
+    public func remainingApplicationsChanges(id: String) -> AnyPublisher<Void, Error> {
         remoteRemainsDataSource.remainingApplicationsChanges(id: id)
     }
 
     public func fetchMyRemainApplicationItems() ->
-    AnyPublisher<MyRemainApplicationItemsEntity, DmsError> {
+    AnyPublisher<MyRemainApplicationItemsEntity, Error> {
         remoteRemainsDataSource.fetchMyRemainApplicationItems()
     }
 
     public func fetchRemainsAvailableTime() ->
-    AnyPublisher<RemainsAvailableTimeEntity, DmsError> {
+    AnyPublisher<RemainsAvailableTimeEntity, Error> {
         remoteRemainsDataSource.fetchRemainsAvailableTime()
     }
 
     public func fetchRemainApplicationList() ->
-    AnyPublisher<RemainApplicationListEntity, DmsError> {
+    AnyPublisher<RemainApplicationListEntity, Error> {
         remoteRemainsDataSource.fetchRemainApplicationList()
     }
 }

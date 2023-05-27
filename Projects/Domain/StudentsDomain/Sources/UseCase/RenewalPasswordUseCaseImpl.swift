@@ -10,7 +10,7 @@ public struct RenewalPasswordUseCaseImpl: RenewalPasswordUseCase {
         self.studentsRepository = studentsRepository
     }
 
-    public func execute(req: RenewalPasswordRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func execute(req: RenewalPasswordRequestDTO) -> AnyPublisher<Void, Error> {
         studentsRepository.renewalPassword(req: req)
     }
 }

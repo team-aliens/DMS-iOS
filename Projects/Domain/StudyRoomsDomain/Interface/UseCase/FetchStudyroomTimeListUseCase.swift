@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol FetchStudyroomTimeListUseCase {
-    func execute() -> AnyPublisher<StudyroomTimeListEntity, DmsError>
+    func execute() -> AnyPublisher<StudyroomTimeListEntity, Error>
 }

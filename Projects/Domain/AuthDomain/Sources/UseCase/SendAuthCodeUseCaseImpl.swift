@@ -10,7 +10,7 @@ public struct SendAuthCodeUseCaseImpl: SendAuthCodeUseCase {
         self.authRepository = authRepository
     }
 
-    public func execute(req: SendAuthCodeRequestDTO) -> AnyPublisher<Void, DmsError> {
+    public func execute(req: SendAuthCodeRequestDTO) -> AnyPublisher<Void, Error> {
         authRepository.sendAuthCode(req: req)
     }
 }

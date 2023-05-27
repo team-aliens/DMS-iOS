@@ -10,7 +10,7 @@ public struct FetchDetailNoticeUseCaseImpl: FetchDetailNoticeUseCase {
         self.noticeRepository = noticeRepository
     }
 
-    public func execute(id: String) -> AnyPublisher<DetailNoticeEntity, DmsError> {
+    public func execute(id: String) -> AnyPublisher<DetailNoticeEntity, Error> {
         noticeRepository.fetchDetailNotice(id: id)
     }
 }

@@ -11,38 +11,38 @@ public struct StudyRoomsRepositoryImpl: StudyRoomsRepository {
         self.remoteStudyRoomsDataSource = remoteStudyRoomsDataSource
     }
 
-    public func fetchStudyAvailableTime() -> AnyPublisher<StudyAvailableTimeEntity, DmsError> {
+    public func fetchStudyAvailableTime() -> AnyPublisher<StudyAvailableTimeEntity, Error> {
         remoteStudyRoomsDataSource.fetchStudyAvailableTime()
     }
 
-    public func fetchSeatTypes(studyroomID: String) -> AnyPublisher<[SeatTypeEntity], DmsError> {
+    public func fetchSeatTypes(studyroomID: String) -> AnyPublisher<[SeatTypeEntity], Error> {
         remoteStudyRoomsDataSource.fetchSeatTypes(studyroomID: studyroomID)
     }
 
-    public func fetchStudyRoomList(timeSlot: String?) -> AnyPublisher<[StudyRoomEntity], DmsError> {
+    public func fetchStudyRoomList(timeSlot: String?) -> AnyPublisher<[StudyRoomEntity], Error> {
         remoteStudyRoomsDataSource.fetchStudyRoomList(timeSlot: timeSlot)
     }
 
     public func fetchDetailStudyRoom(
         roomID: String,
         timeSlot: String
-    ) -> AnyPublisher<DetailStudyRoomEntity, DmsError> {
+    ) -> AnyPublisher<DetailStudyRoomEntity, Error> {
         remoteStudyRoomsDataSource.fetchDetailStudyRoom(roomID: roomID, timeSlot: timeSlot)
     }
 
-    public func applyStudyRoomSeat(seatID: String, timeSlot: String) -> AnyPublisher<Void, DmsError> {
+    public func applyStudyRoomSeat(seatID: String, timeSlot: String) -> AnyPublisher<Void, Error> {
         remoteStudyRoomsDataSource.applyStudyRoomSeat(seatID: seatID, timeSlot: timeSlot)
     }
 
-    public func cancelStudyRoomSeat(seatID: String, timeSlot: String) -> AnyPublisher<Void, DmsError> {
+    public func cancelStudyRoomSeat(seatID: String, timeSlot: String) -> AnyPublisher<Void, Error> {
         remoteStudyRoomsDataSource.cancelStudyRoomSeat(seatID: seatID, timeSlot: timeSlot)
     }
 
-    public func fetchMyStudyRoomApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, DmsError> {
+    public func fetchMyStudyRoomApplicationItems() -> AnyPublisher<MyStudyRoomAppItemsEntity, Error> {
         remoteStudyRoomsDataSource.fetchMyRemainApplicationItems()
     }
 
-    public func fetchStudyroomTimeList() -> AnyPublisher<StudyroomTimeListEntity, DmsError> {
+    public func fetchStudyroomTimeList() -> AnyPublisher<StudyroomTimeListEntity, Error> {
         remoteStudyRoomsDataSource.fetchStudyroomTimeList()
     }
 }

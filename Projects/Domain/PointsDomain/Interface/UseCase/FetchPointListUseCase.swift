@@ -3,5 +3,5 @@ import ErrorModule
 import DataMappingModule
 
 public protocol FetchPointListUseCase {
-    func execute(type: PointsType) -> AnyPublisher<PointEntity, DmsError>
+    func execute(type: PointsType) -> AnyPublisher<PointEntity, Error>
 }

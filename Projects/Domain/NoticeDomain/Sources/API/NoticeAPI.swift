@@ -1,5 +1,5 @@
-import DataMappingModule
-import ErrorModule
+import NoticeDomainInterface
+import BaseDomain
 import Moya
 
 public enum NoticeAPI {
@@ -9,6 +9,8 @@ public enum NoticeAPI {
 }
 
 extension NoticeAPI: DmsAPI {
+    public typealias ErrorType = NoticeDomainError
+
     public var domain: DmsDomain {
         .notices
     }
@@ -26,11 +28,11 @@ extension NoticeAPI: DmsAPI {
         }
     }
 
-    public var method: Moya.Method {
+    public var method: Method {
         return .get
     }
 
-    public var task: Moya.Task {
+    public var task: Task {
         switch self {
         case let .fetchNoticeList(order):
             return .requestParameters(parameters: [
@@ -46,7 +48,7 @@ extension NoticeAPI: DmsAPI {
         .accessToken
     }
 
-    public var errorMap: [Int: DmsError] {
+    public var errorMap: [Int: ErrorType] {
         switch self {
         default:
             return [

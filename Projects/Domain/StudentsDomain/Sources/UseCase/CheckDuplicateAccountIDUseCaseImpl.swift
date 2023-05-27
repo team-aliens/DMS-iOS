@@ -10,7 +10,7 @@ public struct CheckDuplicateAccountIDUseCaseImpl: CheckDuplicateAccountIDUseCase
         self.studentsRepository = studentsRepository
     }
 
-    public func execute(id: String) -> AnyPublisher<Void, DmsError> {
+    public func execute(id: String) -> AnyPublisher<Void, Error> {
         studentsRepository.checkDuplicateAccountID(id: id)
     }
 }

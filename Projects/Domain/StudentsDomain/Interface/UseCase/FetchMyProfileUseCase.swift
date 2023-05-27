@@ -3,5 +3,5 @@ import DataMappingModule
 import ErrorModule
 
 public protocol FetchMyProfileUseCase {
-    func execute() -> AnyPublisher<MyProfileEntity, DmsError>
+    func execute() -> AnyPublisher<MyProfileEntity, Error>
 }

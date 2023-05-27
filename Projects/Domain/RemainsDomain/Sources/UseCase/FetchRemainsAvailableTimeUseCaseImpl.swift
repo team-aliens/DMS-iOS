@@ -10,7 +10,7 @@ public struct FetchRemainsAvailableTimeUseCaseImpl: FetchRemainsAvailableTimeUse
         self.remainsRepository = remainsRepository
     }
 
-    public func execute() -> AnyPublisher<RemainsAvailableTimeEntity, DmsError> {
+    public func execute() -> AnyPublisher<RemainsAvailableTimeEntity, Error> {
         remainsRepository.fetchRemainsAvailableTime()
     }
 }
