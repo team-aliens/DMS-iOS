@@ -6,5 +6,10 @@ let project = Project.makeModule(
     name: ModulePaths.Domain.SchoolDomain.rawValue,
     product: .staticLibrary,
     targets: [.interface, .testing, .unitTest],
-    internalDependencies: []
+    internalDependencies: [
+        .Domain.BaseDomain
+    ],
+    additionalPlistRows: [
+        "BASE_URL": .string("$(BASE_URL)")
+    ]
 )

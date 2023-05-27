@@ -30,6 +30,7 @@ public extension ModulePaths {
         case MealDomain
         case FilesDomain
         case BaseDomain
+        case AuthDomain
 
         func targetName(type: MicroTargetType) -> String {
             "\(self.rawValue)\(type.rawValue)"
