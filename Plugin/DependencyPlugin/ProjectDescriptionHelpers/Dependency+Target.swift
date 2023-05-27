@@ -155,9 +155,6 @@ public extension TargetDependency.Shared {
     )
     static let KeychainModule = TargetDependency.shared(name: "KeychainModule")
     static let ErrorModule = TargetDependency.shared(name: "ErrorModule")
-    static let FeatureThirdPartyLib = TargetDependency.shared(name: "FeatureThirdPartyLib")
-    static let ThirdPartyLib = TargetDependency.shared(name: "ThirdPartyLib")
-    static let Utility = TargetDependency.shared(name: "Utility")
     
     static let WatchRestAPIModule = TargetDependency.shared(name: "WatchRestAPIModule")
     static let DataMappingModule = TargetDependency.shared(name: "DataMappingModule")

@@ -1,12 +1,12 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
+import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "DomainModule",
+    name: ModulePaths.Shared.UtilityModule.rawValue,
     product: .staticFramework,
     targets: [.unitTest],
     internalDependencies: [
-        .Shared.DataMappingModule,
         .Shared.GlobalThirdPartyLibrary
     ]
 )

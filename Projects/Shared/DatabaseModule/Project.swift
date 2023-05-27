@@ -2,11 +2,10 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "DomainModule",
-    product: .staticFramework,
+    name: "DatabaseModule",
+    product: .staticLibrary,
     targets: [.unitTest],
     internalDependencies: [
-        .Shared.DataMappingModule,
-        .Shared.GlobalThirdPartyLibrary
+        .Shared.UtilityModule
     ]
 )

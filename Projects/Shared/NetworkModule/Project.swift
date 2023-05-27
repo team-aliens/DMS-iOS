@@ -8,6 +8,6 @@ let project = Project.makeModule(
     internalDependencies: [
         .Shared.APIKit,
         .Shared.Domain,
-        .Shared.Utility
+        .Shared.UtilityModule
     ]
 )

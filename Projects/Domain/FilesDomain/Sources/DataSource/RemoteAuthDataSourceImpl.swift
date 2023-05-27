@@ -1,17 +1,13 @@
-import AuthDomainInterface
-import BaseDomain
+import APIKit
 import Combine
+import DataMappingModule
+import ErrorModule
+import Foundation
 
-public final class RemoteAuthDataSourceImpl: BaseRemoteDataSource<AuthAPI>, RemoteAuthDataSource {
-    public func sendAuthCode(req: SendAuthCodeRequestDTO) -> AnyPublisher<Void, Error> {
-        request(.sendAuthCode(req))
-    }
-
-    public func reissueToken() -> AnyPublisher<Void, Error> {
-        request(.reissueToken)
-    }
-
-    public func verifyAuthCode(email: String, authCode: String) -> AnyPublisher<Void, Error> {
-        request(.verifyAuthCode(email: email, authCode: authCode))
+public final class RemoteFilesDataSourceImpl: BaseRemoteDataSource<FilesAPI>, RemoteFilesDataSource {
+    public func uploadFile(data: Data) -> AnyPublisher<String, DmsError> {
+        request(.uploadFile(data: data), dto: UploadFileResponseDTO.self)
+            .map(\.fileURL)
+            .eraseToAnyPublisher()
     }
 }

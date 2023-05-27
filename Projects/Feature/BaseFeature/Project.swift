@@ -8,7 +8,7 @@ let project = Project.makeModule(
     internalDependencies: [
         .Core.DesignSystem,
         .Shared.Domain,
-        .Shared.FeatureThirdPartyLib,
-        .Shared.Utility
+        .Shared.GlobalThirdPartyLibrary,
+        .Shared.UtilityModule
     ]
 )
