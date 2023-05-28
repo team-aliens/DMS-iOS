@@ -9,7 +9,8 @@ let project = Project.makeModule(
         .Feature.BaseFeature,
         .Feature.SignupFeature,
         .Feature.FindIDFeature,
-        .Feature.RenewalPasswordFeature
+        .Feature.RenewalPasswordFeature,
+        .Domain.AuthDomain
     ],
     unitTestDependencies: [
     ]

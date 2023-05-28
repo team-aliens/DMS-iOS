@@ -1,13 +1,11 @@
-import DataMappingModule
-import DomainModule
-import Utility
+import Combine
 
 public extension FetchDetailNoticeResponseDTO {
     func toDomain() -> DetailNoticeEntity {
         DetailNoticeEntity(
             title: title,
             content: content,
-            createdAt: createdAt.toDMSDate()
+            createdAt: createdAt
         )
     }
 }

@@ -1,6 +1,4 @@
-import DataMappingModule
-import DomainModule
-import Utility
+import Combine
 
 public extension FetchNoticeListResponseDTO {
     func toDomain() -> [NoticeEntity] {
@@ -13,7 +11,7 @@ public extension SingleNoticeResponseDTO {
         NoticeEntity(
             id: id,
             title: title,
-            createdAt: createdAt.toDMSNoticeDate()
+            createdAt: createdAt
         )
     }
 }

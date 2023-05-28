@@ -10,7 +10,7 @@ public struct SigninUseCaseImpl: SigninUseCase {
         self.authRepository = authRepository
     }
 
-    public func execute(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
+    public func execute(req: SigninRequestDTO) -> AnyPublisher<SigninDmsFeatures, Error> {
         authRepository.signin(req: req)
     }
 }

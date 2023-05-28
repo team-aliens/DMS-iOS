@@ -1,6 +1,4 @@
 import Combine
-import DataMappingModule
-import ErrorModule
 
 public protocol StudyRoomsRepository {
     func fetchStudyAvailableTime() -> AnyPublisher<StudyAvailableTimeEntity, Error>

@@ -9,6 +9,15 @@ struct SignupTermsView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
 
+    let webViewURL: String {
+        switch colorScheme {
+        case .light:
+            return "https://webview.aliens-dms.com/policy/privacy?theme=light"
+        case .dark
+            return "https://webview.aliens-dms.com/policy/privacy?theme=dark"
+        }
+    }
+
     init(
         viewModel: SignupTermsViewModel
     ) {
@@ -20,9 +29,7 @@ struct SignupTermsView: View {
             DMSHeaderTitleView(subTitle: "약관 동의")
                 .padding(.top, 24)
 
-            DMSWebView(urlToLoad: colorScheme == .light ?
-                       "https://webview.aliens-dms.com/policy/privacy?theme=light" :
-                        "https://webview.aliens-dms.com/policy/privacy?theme=dark")
+            DMSWebView(urlToLoad: webViewURL)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.top, 56)
 

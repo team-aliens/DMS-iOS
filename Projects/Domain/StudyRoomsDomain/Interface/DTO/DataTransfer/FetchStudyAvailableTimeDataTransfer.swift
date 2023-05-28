@@ -1,6 +1,4 @@
-import DataMappingModule
-import DomainModule
-import Utility
+import Foundation
 
 public extension FetchStudyAvailableTimeResponseDTO {
     func toDomain() -> StudyAvailableTimeEntity {

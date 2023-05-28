@@ -2,6 +2,7 @@ import BaseFeature
 import UIKit
 import Combine
 import DomainModule
+import UtilityModule
 
 final class NoticeDetailViewModel: BaseViewModel {
     @Published var title = ""

@@ -1,7 +1,6 @@
 import NeedleFoundation
-import NetworkModule
-import DomainModule
-import DataModule
+import MealDomain
+import MealDomainInterface
 
 extension WidgetComponent {
     var remoteMealDataSource: any RemoteMealDataSource {

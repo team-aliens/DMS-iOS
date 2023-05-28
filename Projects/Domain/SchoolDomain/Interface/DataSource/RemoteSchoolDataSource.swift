@@ -1,9 +1,4 @@
-import APIKit
-import DomainModule
 import Combine
-import DataMappingModule
-import ErrorModule
-import Foundation
 
 public protocol RemoteSchoolDataSource {
     func fetchSchoolList() -> AnyPublisher<[SchoolEntity], Error>

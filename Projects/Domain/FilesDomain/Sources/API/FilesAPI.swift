@@ -3,12 +3,12 @@ import BaseDomain
 import Moya
 
 public enum FilesAPI {
-    case uploadFile(data: Data)
+    case uploadFile(data: String)
 }
 
 extension FilesAPI: DmsAPI {
     public typealias ErrorType = FilesDomainError
-    
+
     public var domain: DmsDomain {
         .files
     }
@@ -26,7 +26,7 @@ extension FilesAPI: DmsAPI {
         case let .uploadFile(data):
             return .uploadMultipart([
                 .init(
-                    provider: .data(data),
+                    provider: .data(data.toDMSDate()),
                     name: "file",
                     fileName: "\(UUID().uuidString).png"
                 )

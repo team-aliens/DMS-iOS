@@ -1,6 +1,6 @@
 import Foundation
 
-public struct DmsFeatures: Equatable {
+public struct SignupDmsFeatures: Equatable {
     public init(
         mealService: Bool,
         noticeService: Bool,

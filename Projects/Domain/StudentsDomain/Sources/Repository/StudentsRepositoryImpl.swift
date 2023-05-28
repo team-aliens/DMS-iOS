@@ -1,8 +1,5 @@
+import StudentsDomainInterface
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
-import NetworkModule
 
 public struct StudentsRepositoryImpl: StudentsRepository {
     private let remoteStudentsDataSource: any RemoteStudentsDataSource
@@ -11,7 +8,7 @@ public struct StudentsRepositoryImpl: StudentsRepository {
         self.remoteStudentsDataSource = remoteStudentsDataSource
     }
 
-    public func signup(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
+    public func signup(req: SignupRequestDTO) -> AnyPublisher<SignupDmsFeatures, Error> {
         remoteStudentsDataSource.signup(req: req)
     }
 

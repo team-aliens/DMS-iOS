@@ -1,5 +1,3 @@
-import DataMappingModule
-import DomainModule
 import Foundation
 
 public extension FetchMyProfileResponseDTO {

@@ -1,5 +1,4 @@
-import Foundation
-import DataMappingModule
+import Combine
 
 public struct RemainsAvailableTimeEntity: Equatable, Hashable {
     public init(

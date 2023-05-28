@@ -1,7 +1,7 @@
 import Foundation
 
 public struct DetailNoticeEntity: Equatable {
-    public init(title: String, content: String, createdAt: Date) {
+    public init(title: String, content: String, createdAt: String) {
         self.title = title
         self.content = content
         self.createdAt = createdAt
@@ -9,5 +9,5 @@ public struct DetailNoticeEntity: Equatable {
 
     public let title: String
     public let content: String
-    public let createdAt: Date
+    public let createdAt: String
 }

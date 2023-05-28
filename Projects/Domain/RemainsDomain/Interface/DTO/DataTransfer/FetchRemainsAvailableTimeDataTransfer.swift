@@ -1,6 +1,4 @@
-import DataMappingModule
-import DomainModule
-import Utility
+import Combine
 
 public extension FetchRemainsAvailableTimeResponseDTO {
     func toDomain() -> RemainsAvailableTimeEntity {

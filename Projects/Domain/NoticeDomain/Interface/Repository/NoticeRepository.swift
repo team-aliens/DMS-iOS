@@ -1,6 +1,4 @@
 import Combine
-import DataMappingModule
-import ErrorModule
 
 public protocol NoticeRepository {
     func fetchWhetherNewNotice() -> AnyPublisher<Bool, Error>

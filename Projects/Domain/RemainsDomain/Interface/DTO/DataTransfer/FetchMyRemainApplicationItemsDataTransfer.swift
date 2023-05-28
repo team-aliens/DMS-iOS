@@ -1,5 +1,4 @@
-import DataMappingModule
-import DomainModule
+import Combine
 
 public extension FetchMyRemainApplicationItemsResponseDTO {
     func toDomain() -> MyRemainApplicationItemsEntity {

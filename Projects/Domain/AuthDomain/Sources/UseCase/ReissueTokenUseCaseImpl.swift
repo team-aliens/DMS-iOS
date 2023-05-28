@@ -10,7 +10,7 @@ public struct ReissueTokenCaseImpl: ReissueTokenUseCase {
         self.authRepository = authRepository
     }
 
-    public func execute() -> AnyPublisher<DmsFeatures, Error> {
+    public func execute() -> AnyPublisher<SigninDmsFeatures, Error> {
         authRepository.reissueToken()
     }
 }

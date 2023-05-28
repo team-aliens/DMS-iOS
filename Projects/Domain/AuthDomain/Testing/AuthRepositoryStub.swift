@@ -1,14 +1,13 @@
+import AuthDomainInterface
 import Combine
-import DataMappingModule
-import DomainModule
 
 public struct AuthRepositoryStub: AuthRepository {
     public init() {}
 
     public func logout() {}
 
-    public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
-        Just(DmsFeatures(
+    public func signin(req: SigninRequestDTO) -> AnyPublisher<SigninDmsFeatures, Error> {
+        Just(SigninDmsFeatures(
             mealService: true,
             noticeService: true,
             pointService: true,
@@ -29,8 +28,8 @@ public struct AuthRepositoryStub: AuthRepository {
             .eraseToAnyPublisher()
     }
 
-    public func reissueToken() -> AnyPublisher<DmsFeatures, Error> {
-        Just(DmsFeatures(
+    public func reissueToken() -> AnyPublisher<SigninDmsFeatures, Error> {
+        Just(SigninDmsFeatures(
             mealService: true,
             noticeService: true,
             pointService: true,

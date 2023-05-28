@@ -1,5 +1,4 @@
 import Foundation
-import DataMappingModule
 
 public struct DetailStudyRoomEntity: Equatable {
     public init(

@@ -1,5 +1,4 @@
-import DataMappingModule
-import DomainModule
+import Foundation
 
 public extension FetchSchoolListResponseDTO {
     func toDomain() -> [SchoolEntity] {

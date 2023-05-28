@@ -58,6 +58,9 @@ extension StudentsDomainError: LocalizedError {
 
         case .mismatchEmailAndName:
             return "이름과 이메일이 일치하는 학생을 찾을 수 없습니다."
+
+        case .failedToWithdrawal:
+            return "회원탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요."
         }
     }
 }

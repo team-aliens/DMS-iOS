@@ -21,7 +21,7 @@ public struct AuthRepositoryImpl: AuthRepository {
         localAuthDataSource.logout()
     }
 
-    public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
+    public func signin(req: SigninRequestDTO) -> AnyPublisher<SigninDmsFeatures, Error> {
         remoteAuthDataSource.signin(req: req)
     }
 
@@ -33,7 +33,7 @@ public struct AuthRepositoryImpl: AuthRepository {
         remoteAuthDataSource.sendAuthCode(req: req)
     }
 
-    public func reissueToken() -> AnyPublisher<DmsFeatures, Error> {
+    public func reissueToken() -> AnyPublisher<SigninDmsFeatures, Error> {
         remoteAuthDataSource.reissueToken()
     }
 

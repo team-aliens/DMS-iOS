@@ -1,7 +1,5 @@
 import Combine
-import ErrorModule
-import Foundation
 
 public protocol UploadFileUseCase {
-    func execute(data: Data) -> AnyPublisher<String, Error>
+    func execute(data: String) -> AnyPublisher<String, Error>
 }

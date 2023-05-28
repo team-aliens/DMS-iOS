@@ -8,8 +8,8 @@ import Foundation
 public struct StudentsRepositoryStub: StudentsRepository {
     public init() {}
 
-    public func signup(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
-        Just(DmsFeatures(
+    public func signup(req: SignupRequestDTO) -> AnyPublisher<SignupDmsFeatures, Error> {
+        Just(SignupDmsFeatures(
             mealService: true,
             noticeService: true,
             pointService: true,

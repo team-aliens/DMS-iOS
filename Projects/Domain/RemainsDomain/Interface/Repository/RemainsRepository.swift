@@ -1,6 +1,4 @@
 import Combine
-import DataMappingModule
-import ErrorModule
 
 public protocol RemainsRepository {
     func remainingApplicationsChanges(id: String) -> AnyPublisher<Void, Error>

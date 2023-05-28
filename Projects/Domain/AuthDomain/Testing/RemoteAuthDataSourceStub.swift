@@ -5,8 +5,8 @@ import Combine
 public struct RemoteAuthDataSourceStub: RemoteAuthDataSource {
     public init() {}
 
-    public func signin(req: SigninRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
-        Just(DmsFeatures(
+    public func signin(req: SigninRequestDTO) -> AnyPublisher<SigninDmsFeatures, Error> {
+        Just(SigninDmsFeatures(
             mealService: true,
             noticeService: true,
             pointService: true,
@@ -27,8 +27,8 @@ public struct RemoteAuthDataSourceStub: RemoteAuthDataSource {
             .eraseToAnyPublisher()
     }
 
-    public func reissueToken() -> AnyPublisher<DmsFeatures, Error> {
-        Just(DmsFeatures(
+    public func reissueToken() -> AnyPublisher<SigninDmsFeatures, Error> {
+        Just(SigninDmsFeatures(
             mealService: true,
             noticeService: true,
             pointService: true,

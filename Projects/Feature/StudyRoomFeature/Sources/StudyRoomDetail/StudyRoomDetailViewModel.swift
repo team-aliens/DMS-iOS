@@ -1,9 +1,5 @@
+import Studyroom
 import BaseFeature
-import DomainModule
-import DataMappingModule
-import Combine
-import Foundation
-import SwiftUI
 
 final class StudyRoomDetailViewModel: BaseViewModel {
     @Published var studyRoomDetail: DetailStudyRoomEntity?

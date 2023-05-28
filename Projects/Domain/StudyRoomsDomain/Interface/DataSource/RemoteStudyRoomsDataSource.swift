@@ -1,9 +1,4 @@
-import APIKit
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
-import Foundation
 
 public protocol RemoteStudyRoomsDataSource {
     func fetchStudyAvailableTime() -> AnyPublisher<StudyAvailableTimeEntity, Error>

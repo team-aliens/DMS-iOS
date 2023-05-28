@@ -1,6 +1,4 @@
 import Combine
-import DataMappingModule
-import ErrorModule
 
 public protocol SchoolRepository {
     func fetchSchoolList() -> AnyPublisher<[SchoolEntity], Error>

@@ -1,10 +1,7 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
 
 public protocol RemoteStudentsDataSource {
-    func signup(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, Error>
+    func signup(req: SignupRequestDTO) -> AnyPublisher<SignupDmsFeatures, Error>
     func checkDuplicateAccountID(id: String) -> AnyPublisher<Void, Error>
     func checkDuplicateEmail(email: String) -> AnyPublisher<Void, Error>
     func renewalPassword(req: RenewalPasswordRequestDTO) -> AnyPublisher<Void, Error>
