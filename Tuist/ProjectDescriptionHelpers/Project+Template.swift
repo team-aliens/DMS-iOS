@@ -55,7 +55,7 @@ public extension Project {
         deploymentTarget: DeploymentTarget? = env.deploymentTarget,
         externalDependencies: [TargetDependency] = [],
         internalDependencies: [TargetDependency] = [],
-        interfaceDependencies: [TargetDependency] = [],
+        interfaceDependencies: [TargetDependency] = [.Shared.UtilityModule],
         testingDependencies: [TargetDependency] = [.Domain.BaseDomain],
         unitTestDependencies: [TargetDependency] = [.SPM.Quick, .SPM.Nimble],
         uiTestDependencies: [TargetDependency] = [],
