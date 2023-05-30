@@ -1,4 +1,5 @@
 import Combine
+import Foundation
 import MealDomainInterface
 
 public struct FetchMealListUseCaseImpl: FetchMealListUseCase {

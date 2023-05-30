@@ -1,4 +1,5 @@
 import MealDomainInterface
+import Foundation
 import BaseDomain
 import Combine
 
