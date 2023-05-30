@@ -1,7 +1,7 @@
 import DesignSystem
 import Foundation
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct CalendarSheetView: View {
     @Binding var selectedDate: Date

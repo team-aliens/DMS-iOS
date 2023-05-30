@@ -7,19 +7,19 @@ import MyPageFeatureInterface
 import MainTabFeatureInterface
 
 public protocol MainTabDependency: Dependency {
-    var homeComponent: HomeComponent { get }
-    var applyPageComponent: ApplyPageComponent { get }
-    var noticeListComponent: NoticeListComponent { get }
-    var myPageComponent: MyPageComponent { get }
+    var homeFactory: any HomeFactory { get }
+    var applyPageFactory: any ApplyPageFactory { get }
+    var noticeListFactory: any NoticeListFactory { get }
+    var myPageFactory: any MyPageFactory { get }
 }
 
 public final class MainTabComponent: Component<MainTabDependency>, MainTabFactory {
     public func makeView() -> some View {
         MainTabView(
-            homeComponent: dependency.homeComponent,
-            applyPageComponent: dependency.applyPageComponent,
-            noticeComponent: dependency.noticeListComponent,
-            myPageComponent: dependency.myPageComponent
+            homeFactory: dependency.homeFactory,
+            applyPageFactory: dependency.applyPageFactory,
+            noticeFactory: dependency.noticeListFactory,
+            myPageFactory: dependency.myPageFactory
         )
     }
 }

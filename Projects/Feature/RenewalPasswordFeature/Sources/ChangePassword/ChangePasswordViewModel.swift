@@ -1,4 +1,5 @@
 import BaseFeature
+import RenewalPasswordFeatureInterface
 import Combine
 import StudentsDomainInterface
 import UtilityModule

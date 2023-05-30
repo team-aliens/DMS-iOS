@@ -1,8 +1,14 @@
+
+
 import Foundation
 import KeychainModule
 import MealDomain
 import MealDomainInterface
 import NeedleFoundation
+import NoticeDomain
+import NoticeDomainInterface
+import PointsDomain
+import PointsDomainInterface
 import SwiftUI
 import WidgetKit
 

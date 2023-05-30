@@ -5,7 +5,7 @@ import MyPageFeatureInterface
 
 public protocol CheckPasswordDependency: Dependency {
     var compareCurrentPasswordUseCase: any CompareCurrentPasswordUseCase { get }
-    var modifyPasswordComponent: ModifyPasswordComponent { get }
+    var modifyPasswordFactory: any ModifyPasswordFactory { get }
 }
 
 public final class CheckPasswordComponent: Component<CheckPasswordDependency>, CheckPasswordFactory {
@@ -14,7 +14,7 @@ public final class CheckPasswordComponent: Component<CheckPasswordDependency>, C
             viewModel: .init(
                 compareCurrentPasswordUseCase: self.dependency.compareCurrentPasswordUseCase
             ),
-            modifyPasswordComponent: self.dependency.modifyPasswordComponent
+            modifyPasswordFactory: self.dependency.modifyPasswordFactory
         )
     }
 }

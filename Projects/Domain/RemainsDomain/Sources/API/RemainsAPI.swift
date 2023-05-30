@@ -10,7 +10,7 @@ public enum RemainsAPI {
 }
 
 extension RemainsAPI: DmsAPI {
-    typealias ErrorType = RemainsDomainError
+    public typealias ErrorType = RemainsDomainError
 
     public var domain: DmsDomain {
         .remains

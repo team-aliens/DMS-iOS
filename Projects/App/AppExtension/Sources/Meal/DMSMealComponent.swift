@@ -1,4 +1,5 @@
 import NeedleFoundation
+import SwiftUI
 import MealDomainInterface
 
 protocol DMSMealDependency: Dependency {

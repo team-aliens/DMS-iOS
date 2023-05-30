@@ -71,7 +71,7 @@ private extension BaseRemoteDataSource {
     }
 
     func checkTokenIsExpired() -> Bool {
-        let expired = keychain.load(type: .accessExpiresAt).toDMSDate()
+        let expired = keychain.load(type: .accessExpiredAt).toDMSDate()
         print(Date(), expired)
         return Date() > expired
     }

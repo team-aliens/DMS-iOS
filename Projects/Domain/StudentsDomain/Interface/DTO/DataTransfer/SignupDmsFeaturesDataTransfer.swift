@@ -1,13 +1,13 @@
 import Combine
 
-public extension SignupResponseDTO {
+public extension SignupDmsFeaturesResponseDTO {
     func toDomain() -> SignupDmsFeatures {
         SignupDmsFeatures(
-            mealService: mealService,
-            noticeService: noticeService,
-            pointService: pointService,
-            studyRoomService: studyRoomService,
-            remainService: remainService
+            mealService: features.mealService,
+            noticeService: features.noticeService,
+            pointService: features.pointService,
+            studyRoomService: features.studyRoomService,
+            remainService: features.remainService
         )
     }
 }

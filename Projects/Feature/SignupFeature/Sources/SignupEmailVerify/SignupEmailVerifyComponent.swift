@@ -5,7 +5,7 @@ import SignupFeatureInterface
 
 public protocol SignupEmailVerifyDependency: Dependency {
     var checkDuplicateEmailUseCase: any CheckDuplicateEmailUseCase { get }
-    var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent { get }
+    var signupEmailAuthCodeVerifyFactory: any SignupEmailAuthCodeVerifyFactory { get }
 }
 
 public final class SignupEmailVerifyComponent: Component<SignupEmailVerifyDependency>, SignupEmailVerifyFactory {
@@ -15,7 +15,7 @@ public final class SignupEmailVerifyComponent: Component<SignupEmailVerifyDepend
                 checkDuplicateEmailUseCase: dependency.checkDuplicateEmailUseCase,
                 signupEmailVerifyParam: signupEmailVerifyParam
             ),
-            signupEmailAuthCodeVerifyComponent: dependency.signupEmailAuthCodeVerifyComponent
+            signupEmailAuthCodeVerifyFactory: dependency.signupEmailAuthCodeVerifyFactory
         )
     }
 }

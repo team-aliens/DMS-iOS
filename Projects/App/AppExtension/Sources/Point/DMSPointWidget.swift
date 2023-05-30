@@ -1,4 +1,8 @@
 import Foundation
+import PointsDomainInterface
+import Combine
+import SwiftUI
+import WidgetKit
 
 struct DMSPointWidget: Widget {
     let kind: String = "DMSPointWidget"

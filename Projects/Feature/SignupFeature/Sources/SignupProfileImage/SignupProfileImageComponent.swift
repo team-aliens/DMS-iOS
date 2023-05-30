@@ -5,7 +5,7 @@ import SignupFeatureInterface
 
 public protocol SignupProfileImageDependency: Dependency {
     var uploadFileUseCase: any UploadFileUseCase { get }
-    var signupTermsComponent: SignupTermsComponent { get }
+    var signupTermsFactory: any SignupTermsFactory { get }
 }
 
 public final class SignupProfileImageComponent: Component<SignupProfileImageDependency>, SignupProfileImageFactory {
@@ -15,7 +15,7 @@ public final class SignupProfileImageComponent: Component<SignupProfileImageDepe
                 uploadFileUseCase: self.dependency.uploadFileUseCase,
                 signupProfileImageParam: signupProfileImageParam
             ),
-            signupTermsComponent: self.dependency.signupTermsComponent
+            signupTermsFactory: self.dependency.signupTermsFactory
         )
     }
 }

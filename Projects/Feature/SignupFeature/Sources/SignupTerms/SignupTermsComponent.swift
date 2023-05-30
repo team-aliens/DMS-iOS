@@ -1,4 +1,4 @@
-import StudentsDomain
+import StudentsDomainInterface
 import SwiftUI
 import NeedleFoundation
 import SignupFeatureInterface

@@ -1,6 +1,5 @@
 import Foundation
 import Moya
-import ErrorModule
 
 public protocol DmsAPI: TargetType, JwtAuthorizable {
     associatedtype ErrorType: Error

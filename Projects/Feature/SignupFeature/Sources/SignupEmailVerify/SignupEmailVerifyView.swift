@@ -1,5 +1,7 @@
 import DesignSystem
 import SwiftUI
+import SignupFeatureInterface
+import UtilityModule
 
 struct SignupEmailVerifyView: View {
     private enum FocusField {
@@ -9,14 +11,14 @@ struct SignupEmailVerifyView: View {
     @Environment(\.rootPresentationMode) var rootPresentationMode
     @Environment(\.dismiss) var dismiss
     @FocusState private var focusField: FocusField?
-    let signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent
+    let signupEmailAuthCodeVerifyFactory: any SignupEmailAuthCodeVerifyFactory
 
     public init(
         viewModel: SignupEmailVerifyViewModel,
-        signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent
+        signupEmailAuthCodeVerifyFactory: any SignupEmailAuthCodeVerifyFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.signupEmailAuthCodeVerifyComponent = signupEmailAuthCodeVerifyComponent
+        self.signupEmailAuthCodeVerifyFactory = signupEmailAuthCodeVerifyFactory
     }
 
     var body: some View {
@@ -54,12 +56,12 @@ struct SignupEmailVerifyView: View {
             .padding(.bottom, 40)
         }
         .navigate(
-            to: signupEmailAuthCodeVerifyComponent.makeView(
+            to: signupEmailAuthCodeVerifyFactory.makeView(
                 signupEmailAuthCodeVerifyParam: .init(
                     signupEmailVerifyParam: viewModel.signupEmailVerifyParam,
                     email: viewModel.email
                 )
-            ),
+            ).eraseToAnyView(),
             when: $viewModel.isNavigateSignupEmailAuthCodeVerify
         )
         .onAppear {

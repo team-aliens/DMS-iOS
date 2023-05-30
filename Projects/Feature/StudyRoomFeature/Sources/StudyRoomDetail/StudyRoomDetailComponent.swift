@@ -13,10 +13,10 @@ public protocol StudyRoomDetailDependency: Dependency {
 }
 
 public final class StudyRoomDetailComponent: Component<StudyRoomDetailDependency>, StudyRoomDetailFactory {
-    public func makeView(studyRoomEntity: StudyRoomEntity, timeSlot: String) -> some View {
+    public func makeView(studyRoomParam: StudyRoomParam, timeSlot: String) -> some View {
         StudyRoomDetailView(
             viewModel: .init(
-                studyRoomEntity: studyRoomEntity,
+                studyRoomEntity: studyRoomParam.toEntity(),
                 timeSlotParam: timeSlot,
                 fetchStudyAvailableTimeUseCase: dependency.fetchStudyAvailableTimeUseCase,
                 fetchSeatTypesUseCase: dependency.fetchSeatTypesUseCase,
@@ -24,6 +24,21 @@ public final class StudyRoomDetailComponent: Component<StudyRoomDetailDependency
                 applyStudyRoomSeatUseCase: dependency.applyStudyRoomSeatUseCase,
                 cancelStudyRoomSeatUseCase: dependency.cancelStudyRoomSeatUseCase
             )
+        )
+    }
+}
+
+extension StudyRoomParam {
+    func toEntity() -> StudyRoomEntity {
+        StudyRoomEntity(
+            id: id,
+            floor: floor,
+            name: name,
+            availableGrade: availableGrade,
+            availableSex: AvailableSexType(rawValue: availableSex) ?? .all,
+            inUseHeadcount: inUseHeadcount,
+            totalAvailableSeat: totalAvailableSeat,
+            isMine: isMine
         )
     }
 }

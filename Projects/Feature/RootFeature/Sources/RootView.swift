@@ -1,39 +1,43 @@
 import BaseFeature
 import SwiftUI
-import SigninFeature
-import MainTabFeature
-import SplashFeature
+import UtilityModule
+import SigninFeatureInterface
+import MainTabFeatureInterface
+import SplashFeatureInterface
 
 struct RootView: View {
     @EnvironmentObject var appState: AppState
 
-    private let signinComponent: SigninComponent
-    private let mainTabComponent: MainTabComponent
-    private let splashComponent: SplashComponent
+    private let signinFactory: any SigninFactory
+    private let mainTabFactory: any MainTabFactory
+    private let splashFactory: any SplashFactory
 
     public init(
-        signinComponent: SigninComponent,
-        mainTabComponent: MainTabComponent,
-        splashComponent: SplashComponent
+        signinFactory: any SigninFactory,
+        mainTabFactory: any MainTabFactory,
+        splashFactory: any SplashFactory
     ) {
-        self.signinComponent = signinComponent
-        self.mainTabComponent = mainTabComponent
-        self.splashComponent = splashComponent
+        self.signinFactory = signinFactory
+        self.mainTabFactory = mainTabFactory
+        self.splashFactory = splashFactory
     }
 
     var body: some View {
         ZStack {
             switch appState.sceneFlow {
             case .auth:
-                signinComponent.makeView()
+                signinFactory.makeView()
+                    .eraseToAnyView()
                     .environmentObject(appState)
 
             case .main:
-                mainTabComponent.makeView()
+                mainTabFactory.makeView()
+                    .eraseToAnyView()
                     .environmentObject(appState)
 
             case .splash:
-                splashComponent.makeView()
+                splashFactory.makeView()
+                    .eraseToAnyView()
                     .environmentObject(appState)
             }
         }

@@ -2,5 +2,5 @@ import SwiftUI
 
 public protocol AuthenticationEmailFactory {
     associatedtype SomeView: View
-    func makeView() -> SomeView
+    func makeView(authenticationEmailParam: AuthenticationEmailParam) -> SomeView
 }

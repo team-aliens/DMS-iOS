@@ -1,5 +1,7 @@
 import SwiftUI
 import DesignSystem
+import RenewalPasswordFeatureInterface
+import UtilityModule
 
 struct EnterInformationView: View {
     private enum FocusField {
@@ -10,15 +12,15 @@ struct EnterInformationView: View {
 
     @FocusState private var focusField: FocusField?
     @StateObject var viewModel: EnterInformationViewModel
-    private let authenticationEmailComponent: AuthenticationEmailComponent
+    private let authenticationEmailFactory: any AuthenticationEmailFactory
     @Environment(\.dismiss) var dismiss
 
     public init(
         viewModel: EnterInformationViewModel,
-        authenticationEmailComponent: AuthenticationEmailComponent
+        authenticationEmailFactory: any AuthenticationEmailFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.authenticationEmailComponent = authenticationEmailComponent
+        self.authenticationEmailFactory = authenticationEmailFactory
     }
 
     private func nextButtonDidTap() {
@@ -94,13 +96,14 @@ struct EnterInformationView: View {
             focusField = .id
         }
         .navigate(
-            to: authenticationEmailComponent.makeView(
+            to: authenticationEmailFactory.makeView(
                 authenticationEmailParam: .init(
                     name: viewModel.name,
                     email: viewModel.email,
                     id: viewModel.id
                 )
-            ),
+            )
+            .eraseToAnyView(),
             when: $viewModel.isNavigateAuthenticationEmail
         )
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)

@@ -1,9 +1,10 @@
 import FilesDomainInterface
+import Foundation
 import BaseDomain
 import Moya
 
 public enum FilesAPI {
-    case uploadFile(data: String)
+    case uploadFile(data: Data)
 }
 
 extension FilesAPI: DmsAPI {
@@ -17,7 +18,7 @@ extension FilesAPI: DmsAPI {
         return ""
     }
 
-    public var method: Method {
+    public var method: Moya.Method {
         return .post
     }
 
@@ -26,7 +27,7 @@ extension FilesAPI: DmsAPI {
         case let .uploadFile(data):
             return .uploadMultipart([
                 .init(
-                    provider: .data(data.toDMSDate()),
+                    provider: .data(data),
                     name: "file",
                     fileName: "\(UUID().uuidString).png"
                 )

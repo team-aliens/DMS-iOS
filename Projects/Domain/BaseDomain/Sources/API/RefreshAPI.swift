@@ -4,11 +4,11 @@ public enum RefreshAPI {
     case reissueToken
 }
 
-extension RefreshAPI: JobisAPI {
+extension RefreshAPI: DmsAPI {
     public typealias ErrorType = RefreshError
 
-    public var domain: JobisDomain {
-        .users
+    public var domain: DmsDomain {
+        .auth
     }
 
     public var urlPath: String {

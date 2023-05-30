@@ -5,7 +5,7 @@ import RenewalPasswordFeatureInterface
 
 public protocol EnterInformationDependency: Dependency {
     var checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase { get }
-    var authenticationEmailComponent: AuthenticationEmailComponent { get }
+    var authenticationEmailFactory: any AuthenticationEmailFactory { get }
 }
 
 public final class EnterInformationComponent: Component<EnterInformationDependency>, EnterInformationFactory {
@@ -14,7 +14,7 @@ public final class EnterInformationComponent: Component<EnterInformationDependen
             viewModel: .init(
                 checkAccountIDIsExistUseCase: self.dependency.checkAccountIDIsExistUseCase
             ),
-            authenticationEmailComponent: dependency.authenticationEmailComponent
+            authenticationEmailFactory: dependency.authenticationEmailFactory
         )
     }
 }

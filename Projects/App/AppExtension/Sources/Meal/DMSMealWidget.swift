@@ -2,6 +2,7 @@ import SwiftUI
 import MealDomainInterface
 import UtilityModule
 import WidgetKit
+import Combine
 
 struct DMSMealWidget: Widget {
     let kind: String = "DMSMealWidget"

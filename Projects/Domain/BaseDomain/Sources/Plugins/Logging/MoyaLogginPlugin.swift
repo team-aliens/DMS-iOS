@@ -3,7 +3,7 @@ import Moya
 
 #if DEBUG
 // swiftlint: disable line_length
-public final class CustomLoggingPlugin: PluginType {
+public final class MoyaLogginPlugin: PluginType {
     public init() {}
     public func willSend(_ request: RequestType, target: TargetType) {
         guard let httpRequest = request.request else {

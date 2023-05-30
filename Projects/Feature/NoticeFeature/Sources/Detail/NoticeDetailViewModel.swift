@@ -30,7 +30,7 @@ final class NoticeDetailViewModel: BaseViewModel {
         ) { [weak self] noticeDetail in
             self?.title = noticeDetail.title
             self?.content = noticeDetail.content
-            self?.date = noticeDetail.createdAt
+            self?.date = noticeDetail.createdAt.toSmallDMSDate()
         }
     }
 }

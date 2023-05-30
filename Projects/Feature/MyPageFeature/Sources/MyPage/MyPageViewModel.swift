@@ -1,4 +1,5 @@
 import BaseFeature
+import AuthDomainInterface
 import Combine
 import StudentsDomainInterface
 

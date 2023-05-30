@@ -1,4 +1,6 @@
 import StudentsDomainInterface
+import SwiftUI
+import Foundation
 import BaseDomain
 import Moya
 
@@ -15,7 +17,7 @@ public enum StudentsAPI {
 }
 
 extension StudentsAPI: DmsAPI {
-    typealias ErrorType = StudentsDomainError
+    public typealias ErrorType = StudentsDomainError
     public var domain: DmsDomain {
         .students
     }
@@ -51,7 +53,7 @@ extension StudentsAPI: DmsAPI {
         }
     }
 
-    public var method: Method {
+    public var method: Moya.Method {
         switch self {
         case .checkDuplicateAccountID, .checkDuplicateEmail, .findID, .fetchMyProfile, .checkExistGradeClassNumber:
             return .get

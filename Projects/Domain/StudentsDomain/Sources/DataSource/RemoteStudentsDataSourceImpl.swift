@@ -4,7 +4,7 @@ import Combine
 
 public final class RemoteStudentsDataSourceImpl: BaseRemoteDataSource<StudentsAPI>, RemoteStudentsDataSource {
     public func signup(req: SignupRequestDTO) -> AnyPublisher<SignupDmsFeatures, Error> {
-        request(.signup(req), dto: DmsFeaturesResponseDTO.self)
+        request(.signup(req), dto: SignupDmsFeaturesResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }

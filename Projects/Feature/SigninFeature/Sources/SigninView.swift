@@ -1,10 +1,10 @@
+import SwiftUI
 import BaseFeature
 import DesignSystem
-import FindIDFeature
-import RenewalPasswordFeature
-import SwiftUI
-import SignupFeature
-import Utility
+import FindIDFeatureInterface
+import RenewalPasswordFeatureInterface
+import SignupFeatureInterface
+import UtilityModule
 
 struct SigninView: View {
     private enum FocusField {
@@ -16,20 +16,20 @@ struct SigninView: View {
     @FocusState private var focusField: FocusField?
     @State var isNavigateSignup = false
 
-    private let schoolCodeComponent: SchoolCodeComponent
-    private let findIDComponent: FindIDComponent
-    private let enterInformationComponent: EnterInformationComponent
+    private let schoolCodeFactory: any SchoolCodeFactory
+    private let findIDFactory: any FindIDFactory
+    private let enterInformationFactory: any EnterInformationFactory
 
     public init(
         viewModel: SigninViewModel,
-        schoolCodeComponent: SchoolCodeComponent,
-        findIDComponent: FindIDComponent,
-        enterInformationComponent: EnterInformationComponent
+        schoolCodeFactory: any SchoolCodeFactory,
+        findIDFactory: any FindIDFactory,
+        enterInformationFactory: any EnterInformationFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.schoolCodeComponent = schoolCodeComponent
-        self.findIDComponent = findIDComponent
-        self.enterInformationComponent = enterInformationComponent
+        self.schoolCodeFactory = schoolCodeFactory
+        self.findIDFactory = findIDFactory
+        self.enterInformationFactory = enterInformationFactory
     }
 
     var body: some View {
@@ -79,7 +79,8 @@ struct SigninView: View {
 
                     NavigationLink {
                         DeferView {
-                            findIDComponent.makeView()
+                            findIDFactory.makeView()
+                                .eraseToAnyView()
                         }
                     } label: {
                         Text("아이디 찾기")
@@ -92,7 +93,8 @@ struct SigninView: View {
 
                     NavigationLink {
                         DeferView {
-                            enterInformationComponent.makeView()
+                            enterInformationFactory.makeView()
+                                .eraseToAnyView()
                         }
                     } label: {
                         Text("비밀번호 재설정")
@@ -126,7 +128,7 @@ struct SigninView: View {
             .padding(.horizontal, 24)
             .dmsBackground()
             .navigate(
-                to: schoolCodeComponent.makeView(),
+                to: schoolCodeFactory.makeView().eraseToAnyView(),
                 when: $isNavigateSignup
             )
             .ignoresSafeArea(.keyboard, edges: .bottom)

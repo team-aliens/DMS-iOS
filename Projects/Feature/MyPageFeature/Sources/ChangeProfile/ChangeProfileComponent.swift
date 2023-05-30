@@ -10,7 +10,8 @@ public protocol ChangeProfileDependency: Dependency {
     var uploadFileUseCase: any UploadFileUseCase { get }
 }
 
-public final class ChangeProfileComponent: Component<ChangeProfileDependency>, ChangeProfileFactory {
+public final class ChangeProfileComponent:
+    Component<ChangeProfileDependency>, ChangeProfileFactory {
     public func makeView() -> some View {
         ChangeProfileView(
             viewModel: .init(

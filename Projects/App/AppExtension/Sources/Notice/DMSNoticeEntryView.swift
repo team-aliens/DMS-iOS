@@ -1,7 +1,7 @@
 import DesignSystem
 import NoticeDomainInterface
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct DMSNoticeEntryView: View {
     @Environment(\.widgetFamily) var widgetFamily

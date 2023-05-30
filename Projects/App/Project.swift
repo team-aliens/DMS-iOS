@@ -84,8 +84,6 @@ let targets: [Target] = [
         infoPlist: .default,
         sources: ["Tests/**"],
         dependencies: [
-            .SPM.Quick,
-            .SPM.Nimble,
             .target(name: env.targetName)
         ]
     ),

@@ -4,7 +4,7 @@ import Combine
 
 public final class RemoteAuthDataSourceImpl: BaseRemoteDataSource<AuthAPI>, RemoteAuthDataSource {
     public func signin(req: SigninRequestDTO) -> AnyPublisher<SigninDmsFeatures, Error> {
-        request(.signin(req), dto: SigninResponseDTO.self)
+        request(.signin(req), dto: SigninDmsFeaturesResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
@@ -18,7 +18,7 @@ public final class RemoteAuthDataSourceImpl: BaseRemoteDataSource<AuthAPI>, Remo
     }
 
     public func reissueToken() -> AnyPublisher<SigninDmsFeatures, Error> {
-        request(.reissueToken, dto: DmsFeaturesResponseDTO.self)
+        request(.reissueToken, dto: SigninDmsFeaturesResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }

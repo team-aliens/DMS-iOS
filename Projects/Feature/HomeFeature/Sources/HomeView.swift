@@ -1,7 +1,7 @@
 import BaseFeature
 import DesignSystem
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel

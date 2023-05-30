@@ -2,5 +2,5 @@ import SwiftUI
 
 public protocol SignupTermsFactory {
     associatedtype SomeView: View
-    func makeView() -> SomeView
+    func makeView(signupTermsParam: SignupTermsParam) -> SomeView
 }

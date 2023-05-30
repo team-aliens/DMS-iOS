@@ -21,7 +21,7 @@ public struct FetchPointListResponseDTO: Decodable {
     public struct SinglePointResponseDTO: Decodable {
         public init(
             pointID: String,
-            date: String,
+            date: Date,
             type: String,
             name: String,
             score: Int
@@ -34,7 +34,7 @@ public struct FetchPointListResponseDTO: Decodable {
         }
 
         public let pointID: String
-        public let date: String
+        public let date: Date
         public let type: String
         public let name: String
         public let score: Int

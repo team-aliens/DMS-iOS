@@ -6,7 +6,7 @@ import SignupFeatureInterface
 public protocol IDSettingDependency: Dependency {
     var checkExistGradeClassNumberUseCase: any CheckExistGradeClassNumberUseCase { get }
     var checkDuplicateAccountIDUseCase: any CheckDuplicateAccountIDUseCase { get }
-    var signupPasswordComponent: SignupPasswordComponent { get }
+    var signupPasswordFactory: any SignupPasswordFactory { get }
 }
 
 public final class IDSettingComponent: Component<IDSettingDependency>, IDSettingFactory {
@@ -17,7 +17,7 @@ public final class IDSettingComponent: Component<IDSettingDependency>, IDSetting
                 checkExistGradeClassNumberUseCase: self.dependency.checkExistGradeClassNumberUseCase,
                 idSettingParam: idSettingParam
             ),
-            signupPasswordComponent: self.dependency.signupPasswordComponent
+            signupPasswordFactory: self.dependency.signupPasswordFactory
         )
     }
 }

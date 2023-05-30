@@ -1,4 +1,5 @@
 import StudyRoomsDomainInterface
+import SwiftUI
 
 extension StudyRoomDetailView {
 

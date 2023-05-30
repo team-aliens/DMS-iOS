@@ -29,7 +29,13 @@ final class SigninViewModel: BaseViewModel {
                 )
             )
         ) { [weak self] feature in
-            self?.dmsFeatures = feature
+            self?.dmsFeatures = DmsFeatures(
+                mealService: feature.mealService,
+                noticeService: feature.noticeService,
+                pointService: feature.pointService,
+                studyRoomService: feature.studyRoomService,
+                remainService: feature.remainService
+            )
             self?.isSuccessSignin = true
         }
     }

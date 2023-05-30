@@ -1,4 +1,3 @@
-import MealDomainInterface
 import Combine
 
 public protocol RemoteMealDataSource {

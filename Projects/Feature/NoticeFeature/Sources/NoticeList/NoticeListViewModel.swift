@@ -1,4 +1,6 @@
 import NoticeDomainInterface
+import BaseFeature
+import SwiftUI
 
 final class NoticeListViewModel: BaseViewModel {
     @Published var noticeList: [NoticeEntity] = []

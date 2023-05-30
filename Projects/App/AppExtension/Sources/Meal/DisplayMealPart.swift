@@ -1,6 +1,6 @@
 import DesignSystem
 import Foundation
-import Utility
+import UtilityModule
 
 enum DisplayMealPart {
     case breakfast

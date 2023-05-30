@@ -1,13 +1,13 @@
+import AuthDomainInterface
 import Combine
 import Foundation
-import StudentsDomainInterface
 
-public struct SignupUseCaseFake: SignupUseCase {
+public struct SigninUseCaseFake: SigninUseCase {
     public init () {}
 
-    public func execute(req: SignupRequestDTO) -> AnyPublisher<SignupDmsFeatures, Error> {
+    public func execute(req: SigninRequestDTO) -> AnyPublisher<SigninDmsFeatures, Error> {
         if req.accountID == "baekteun" && req.password == "baekteun" {
-            return Just(SignupDmsFeatures(
+            return Just(SigninDmsFeatures(
                 mealService: true,
                 noticeService: true,
                 pointService: true,
@@ -18,7 +18,7 @@ public struct SignupUseCaseFake: SignupUseCase {
             .delay(for: 1, scheduler: DispatchQueue.main)
             .eraseToAnyPublisher()
         } else {
-            return Fail(error: StudentsDomainError.badRequest)
+            return Fail(error: AuthDomainError.passwordMismatch)
                 .delay(for: 1, scheduler: DispatchQueue.main)
                 .eraseToAnyPublisher()
         }

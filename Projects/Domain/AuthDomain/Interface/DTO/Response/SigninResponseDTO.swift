@@ -1,28 +1,10 @@
 import Foundation
 
-public struct SigninResponseDTO: Codable {
-    public init(
-        mealService: Bool,
-        noticeService: Bool,
-        pointService: Bool,
-        studyRoomService: Bool,
-        remainService: Bool
-    ) {
-        self.mealService = mealService
-        self.noticeService = noticeService
-        self.pointService = pointService
-        self.studyRoomService = studyRoomService
-        self.remainService = remainService
-    }
+public struct SigninDmsFeaturesResponseDTO: Decodable {
+    public let features: SigninDmsFeaturesDTO
+}
 
-    public init() {
-        self.mealService = false
-        self.noticeService = false
-        self.pointService = false
-        self.studyRoomService = false
-        self.remainService = false
-    }
-
+public struct SigninDmsFeaturesDTO: Decodable {
     public let mealService: Bool
     public let noticeService: Bool
     public let pointService: Bool

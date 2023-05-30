@@ -5,7 +5,7 @@ import NoticeFeatureInterface
 
 public protocol NoticeListDependency: Dependency {
     var fetchNoticeListUseCase: any FetchNoticeListUseCase { get }
-    var noticeDetailComponent: NoticeDetailComponent { get }
+    var noticeDetailFactory: any NoticeDetailFactory { get }
 }
 
 public final class NoticeListComponent: Component<NoticeListDependency>, NoticeListFactory {
@@ -14,7 +14,7 @@ public final class NoticeListComponent: Component<NoticeListDependency>, NoticeL
             viewModel: .init(
                 fetchNoticeListUseCase: dependency.fetchNoticeListUseCase
             ),
-            noticeDetailComponent: dependency.noticeDetailComponent
+            noticeDetailFactory: dependency.noticeDetailFactory
         )
     }
 }

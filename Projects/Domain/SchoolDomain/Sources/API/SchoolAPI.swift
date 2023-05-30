@@ -10,7 +10,7 @@ public enum SchoolAPI {
 }
 
 extension SchoolAPI: DmsAPI {
-    typealias ErrorType = SchoolDomainError
+    public typealias ErrorType = SchoolDomainError
 
     public var domain: DmsDomain {
         .schools

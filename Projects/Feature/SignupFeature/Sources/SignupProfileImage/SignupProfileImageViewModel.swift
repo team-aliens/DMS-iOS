@@ -1,4 +1,5 @@
 import BaseFeature
+import SignupFeatureInterface
 import Combine
 import FilesDomainInterface
 import UIKit

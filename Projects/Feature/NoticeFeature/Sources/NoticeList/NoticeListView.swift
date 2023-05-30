@@ -1,17 +1,18 @@
 import DesignSystem
-import Utility
+import UtilityModule
 import SwiftUI
+import NoticeFeatureInterface
 
 struct NoticeListView: View {
     @StateObject var viewModel: NoticeListViewModel
-    private let noticeDetailComponent: NoticeDetailComponent
+    private let noticeDetailFactory: any NoticeDetailFactory
 
     init(
         viewModel: NoticeListViewModel,
-        noticeDetailComponent: NoticeDetailComponent
+        noticeDetailFactory: any NoticeDetailFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.noticeDetailComponent = noticeDetailComponent
+        self.noticeDetailFactory = noticeDetailFactory
     }
 
     var body: some View {
@@ -39,7 +40,11 @@ struct NoticeListView: View {
                             .frame(height: 10)
 
                         ForEach(viewModel.noticeList, id: \.self) { noticeList in
-                            NavigationLink(destination: noticeDetailComponent.makeView(id: noticeList.id)) {
+                            NavigationLink(
+                                destination: noticeDetailFactory
+                                    .makeView(id: noticeList.id)
+                                    .eraseToAnyView
+                            ) {
                                 noticeListCellView(
                                     title: noticeList.title,
                                     date: noticeList.createdAt

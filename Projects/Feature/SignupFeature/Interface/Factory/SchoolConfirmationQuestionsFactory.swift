@@ -2,5 +2,5 @@ import SwiftUI
 
 public protocol SchoolConfirmationQuestionsFactory {
     associatedtype SomeView: View
-    func makeView() -> SomeView
+    func makeView(schoolConfirmationQuestionsParam: SchoolConfirmationQuestionsParam) -> SomeView
 }

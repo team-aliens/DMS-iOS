@@ -1,4 +1,5 @@
 import AuthDomainInterface
+import Combine
 
 public struct AuthRepositoryImpl: AuthRepository {
     private let remoteAuthDataSource: any RemoteAuthDataSource

@@ -8,7 +8,7 @@ public protocol StudyRoomListDependency: Dependency {
     var fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase { get }
     var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase { get }
     var fetchStudyroomTimeListUseCase: any FetchStudyroomTimeListUseCase { get }
-    var studyRoomDetailComponent: StudyRoomDetailComponent { get }
+    var studyRoomDetailFactory: any StudyRoomDetailFactory { get }
 }
 
 public final class StudyRoomListComponent: Component<StudyRoomListDependency>, StudyRoomListFactory {
@@ -19,7 +19,7 @@ public final class StudyRoomListComponent: Component<StudyRoomListDependency>, S
                 fetchStudyAvailableTimeUseCase: dependency.fetchStudyAvailableTimeUseCase,
                 fetchStudyroomTimeListUseCase: dependency.fetchStudyroomTimeListUseCase
             ),
-            studyRoomDetailComponent: dependency.studyRoomDetailComponent
+            studyRoomDetailFactory: dependency.studyRoomDetailFactory
         )
     }
 }

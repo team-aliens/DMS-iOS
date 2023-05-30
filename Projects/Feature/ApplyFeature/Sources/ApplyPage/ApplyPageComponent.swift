@@ -1,14 +1,14 @@
 import SwiftUI
 import NeedleFoundation
 import StudyRoomsDomainInterface
-import StudyRoomFeature
+import StudyRoomFeatureInterface
 import RemainsDomainInterface
-import RemainApplyFeature
+import RemainApplyFeatureInterface
 import ApplyFeatureInterface
 
 public protocol ApplyPageDependency: Dependency {
-    var studyRoomListComponent: StudyRoomListComponent { get }
-    var remainApplyComponent: RemainApplyComponent { get }
+    var studyRoomListFactory: any StudyRoomListFactory { get }
+    var remainApplyFactory: any RemainApplyFactory { get }
     var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase { get }
     var fetchMyStudyRoomAppItemsUseCase: any FetchMyStudyRoomAppItemsUseCase { get }
 }
@@ -19,8 +19,8 @@ public final class ApplyPageComponent: Component<ApplyPageDependency>, ApplyPage
             viewModel: .init(
                 fetchMyRemainApplicationItemsUseCase: self.dependency.fetchMyRemainApplicationItemsUseCase,
                 fetchMyStudyRoomAppItemsUseCase: self.dependency.fetchMyStudyRoomAppItemsUseCase),
-            studyRoomListComponent: dependency.studyRoomListComponent,
-            remainApplyComponent: dependency.remainApplyComponent
+            studyRoomListFactory: dependency.studyRoomListFactory,
+            remainApplyFactory: dependency.remainApplyFactory
         )
     }
 }

@@ -2,5 +2,5 @@ import SwiftUI
 
 public protocol ChangePasswordFactory {
     associatedtype SomeView: View
-    func makeView() -> SomeView
+    func makeView(changePasswordParm: ChangePasswordParm) -> SomeView
 }

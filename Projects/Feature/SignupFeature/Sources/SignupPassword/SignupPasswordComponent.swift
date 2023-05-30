@@ -3,7 +3,7 @@ import NeedleFoundation
 import SignupFeatureInterface
 
 public protocol SignupPasswordDependency: Dependency {
-    var signupProfileImageComponent: SignupProfileImageComponent { get }
+    var signupProfileImageFactory: any SignupProfileImageFactory { get }
 }
 
 public final class SignupPasswordComponent: Component<SignupPasswordDependency>, SignupPasswordFactory {
@@ -12,7 +12,7 @@ public final class SignupPasswordComponent: Component<SignupPasswordDependency>,
             viewModel: .init(
                 signupPasswordParam: signupPasswordParam
             ),
-            signupProfileImageComponent: self.dependency.signupProfileImageComponent
+            signupProfileImageFactory: self.dependency.signupProfileImageFactory
         )
     }
 }

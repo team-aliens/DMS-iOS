@@ -40,4 +40,3 @@ public struct DmsFeatures: Equatable {
     public var studyRoomService: Bool
     public var remainService: Bool
 }
-

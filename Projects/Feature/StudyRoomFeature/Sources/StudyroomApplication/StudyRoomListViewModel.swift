@@ -1,4 +1,6 @@
 import StudyRoomsDomainInterface
+import BaseFeature
+import SwiftUI
 
 final class StudyRoomListViewModel: BaseViewModel {
     @Published var studyRoomList: [StudyRoomEntity] = []

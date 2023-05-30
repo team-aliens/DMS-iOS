@@ -7,6 +7,8 @@ public enum PointsAPI {
 }
 
 extension PointsAPI: DmsAPI {
+    public typealias ErrorType = PointsDomainError
+
     public var domain: DmsDomain {
         .points
     }

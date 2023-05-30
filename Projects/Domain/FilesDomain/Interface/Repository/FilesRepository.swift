@@ -1,5 +1,6 @@
 import Combine
+import Foundation
 
 public protocol FilesRepository {
-    func uploadFile(data: String) -> AnyPublisher<String, Error>
+    func uploadFile(data: Data) -> AnyPublisher<String, Error>
 }

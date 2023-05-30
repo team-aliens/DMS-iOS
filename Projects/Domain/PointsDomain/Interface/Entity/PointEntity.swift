@@ -13,7 +13,7 @@ public struct PointEntity: Equatable, Hashable {
     public struct SinglePoint: Equatable, Hashable {
         public init(
             pointID: String,
-            date: String,
+            date: Date,
             type: PointsType,
             name: String,
             score: Int
@@ -26,7 +26,7 @@ public struct PointEntity: Equatable, Hashable {
         }
 
         public let pointID: String
-        public let date: String
+        public let date: Date
         public let type: PointsType
         public let name: String
         public let score: Int

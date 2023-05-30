@@ -1,4 +1,5 @@
 import Combine
+import AuthDomainInterface
 import KeychainModule
 
 public struct LocalAuthDataSourceImpl: LocalAuthDataSource {

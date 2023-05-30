@@ -1,7 +1,7 @@
 import DesignSystem
 import BaseFeature
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct SignupTermsView: View {
     @EnvironmentObject var appState: AppState
@@ -9,11 +9,11 @@ struct SignupTermsView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
 
-    let webViewURL: String {
+    var webViewURL: String {
         switch colorScheme {
         case .light:
             return "https://webview.aliens-dms.com/policy/privacy?theme=light"
-        case .dark
+        default:
             return "https://webview.aliens-dms.com/policy/privacy?theme=dark"
         }
     }

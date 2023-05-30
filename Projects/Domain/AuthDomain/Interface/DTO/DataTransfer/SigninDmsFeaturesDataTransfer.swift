@@ -1,13 +1,13 @@
 import Foundation
 
-public extension SigninResponseDTO {
+public extension SigninDmsFeaturesResponseDTO {
     func toDomain() -> SigninDmsFeatures {
         SigninDmsFeatures(
-            mealService: mealService,
-            noticeService: noticeService,
-            pointService: pointService,
-            studyRoomService: studyRoomService,
-            remainService: remainService
+            mealService: features.mealService,
+            noticeService: features.noticeService,
+            pointService: features.pointService,
+            studyRoomService: features.studyRoomService,
+            remainService: features.remainService
         )
     }
 }

@@ -2,5 +2,5 @@ import SwiftUI
 
 public protocol ModifyPasswordFactory {
     associatedtype SomeView: View
-    func makeView() -> SomeView
+    func makeView(currentPassword: String) -> SomeView
 }

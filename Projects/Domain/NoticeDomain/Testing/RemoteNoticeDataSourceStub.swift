@@ -1,6 +1,7 @@
 import NoticeDomainInterface
 import Foundation
 import Combine
+import UtilityModule
 
 public struct RemoteNoticeDataSourceStub: RemoteNoticeDataSource {
     public init() {}
@@ -13,7 +14,6 @@ public struct RemoteNoticeDataSourceStub: RemoteNoticeDataSource {
 
     public func fetchNoticeList(order: NoticeOrderType) -> AnyPublisher<[NoticeEntity], Error> {
         Just([
-            NoticeEntity(id: UUID().uuidString, title: "제목1", createdAt: .init().adding(by: .day, value: -2)),
             NoticeEntity(id: UUID().uuidString, title: "제목2", createdAt: .init())
         ])
         .setFailureType(to: Error.self)

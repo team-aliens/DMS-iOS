@@ -1,5 +1,8 @@
 import SwiftUI
 import DesignSystem
+import SignupFeatureInterface
+import UtilityModule
+import BaseFeature
 
 struct SchoolConfirmationQuestionsView: View {
     private enum FocusField {
@@ -9,14 +12,14 @@ struct SchoolConfirmationQuestionsView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.rootPresentationMode) var rootPresentationMode
     @FocusState private var focusField: FocusField?
-    private let signupEmailVerifyComponent: SignupEmailVerifyComponent
+    private let signupEmailVerifyFactory: any SignupEmailVerifyFactory
 
     public init(
         viewModel: SchoolConfirmationQuestionsViewModel,
-        signupEmailVerifyComponent: SignupEmailVerifyComponent
+        signupEmailVerifyFactory: any SignupEmailVerifyFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.signupEmailVerifyComponent = signupEmailVerifyComponent
+        self.signupEmailVerifyFactory = signupEmailVerifyFactory
     }
 
     var body: some View {
@@ -74,12 +77,13 @@ struct SchoolConfirmationQuestionsView: View {
         }
         .navigationTitle("회원가입")
         .navigate(
-            to: signupEmailVerifyComponent.makeView(
+            to: signupEmailVerifyFactory.makeView(
                 signupEmailVerifyParam: .init(
                     schoolConfirmationQuestionsParam: viewModel.schoolConfirmationQuestionsParam,
                     schoolAnswer: viewModel.answer
                 )
-            ),
+            )
+            .eraseToAnyView(),
             when: $viewModel.isNavigateSignupEmailVerify
         )
     }

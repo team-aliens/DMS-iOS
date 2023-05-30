@@ -1,5 +1,57 @@
 
 
+import ApplyFeature
+import ApplyFeatureInterface
+import AuthDomain
+import AuthDomainInterface
+import BaseFeature
+import DesignSystem
+import FilesDomain
+import FilesDomainInterface
+import FindIDFeature
+import FindIDFeatureInterface
+import Foundation
+import HomeFeature
+import HomeFeatureInterface
+import KeychainModule
+import MainTabFeature
+import MainTabFeatureInterface
+import MealDomain
+import MealDomainInterface
+import MyPageFeature
+import MyPageFeatureInterface
+import NeedleFoundation
+import NoticeDomain
+import NoticeDomainInterface
+import NoticeFeature
+import NoticeFeatureInterface
+import PointsDomain
+import PointsDomainInterface
+import RemainApplyFeature
+import RemainApplyFeatureInterface
+import RemainsDomain
+import RemainsDomainInterface
+import RenewalPasswordFeature
+import RenewalPasswordFeatureInterface
+import RootFeature
+import SchoolDomain
+import SchoolDomainInterface
+import SigninFeature
+import SigninFeatureInterface
+import SignupFeature
+import SignupFeatureInterface
+import SplashFeature
+import SplashFeatureInterface
+import StudentsDomain
+import StudentsDomainInterface
+import StudyRoomFeature
+import StudyRoomFeatureInterface
+import StudyRoomsDomain
+import StudyRoomsDomainInterface
+import SwiftUI
+import UsersDomain
+import UsersDomainInterface
+
 // swiftlint:disable unused_declaration
 private let needleDependenciesHash : String? = nil
 
@@ -33,8 +85,8 @@ private class SchoolConfirmationQuestionsDependency3fa2ccd12da7c7f5cfc1Provider:
     var fetchSchoolQuestionUseCase: any FetchSchoolQuestionUseCase {
         return appComponent.fetchSchoolQuestionUseCase
     }
-    var signupEmailVerifyComponent: SignupEmailVerifyComponent {
-        return appComponent.signupEmailVerifyComponent
+    var signupEmailVerifyFactory: any SignupEmailVerifyFactory {
+        return appComponent.signupEmailVerifyFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -49,8 +101,8 @@ private class SchoolCodeDependencyc0114744c1c8c7843672Provider: SchoolCodeDepend
     var checkSchoolCodeUseCase: any CheckSchoolCodeUseCase {
         return appComponent.checkSchoolCodeUseCase
     }
-    var schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent {
-        return appComponent.schoolConfirmationQuestionsComponent
+    var schoolConfirmationQuestionsFactory: any SchoolConfirmationQuestionsFactory {
+        return appComponent.schoolConfirmationQuestionsFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -68,8 +120,8 @@ private class IDSettingDependency8007dfdeec0db237b896Provider: IDSettingDependen
     var checkDuplicateAccountIDUseCase: any CheckDuplicateAccountIDUseCase {
         return appComponent.checkDuplicateAccountIDUseCase
     }
-    var signupPasswordComponent: SignupPasswordComponent {
-        return appComponent.signupPasswordComponent
+    var signupPasswordFactory: any SignupPasswordFactory {
+        return appComponent.signupPasswordFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -81,8 +133,8 @@ private func factory8b3573203ea51120dc5af47b58f8f304c97af4d5(_ component: Needle
     return IDSettingDependency8007dfdeec0db237b896Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class SignupPasswordDependency778bf5389a70d7df6152Provider: SignupPasswordDependency {
-    var signupProfileImageComponent: SignupProfileImageComponent {
-        return appComponent.signupProfileImageComponent
+    var signupProfileImageFactory: any SignupProfileImageFactory {
+        return appComponent.signupProfileImageFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -100,8 +152,8 @@ private class SignupEmailAuthCodeVerifyDependencyaf9da1ebf0e9e5f1b708Provider: S
     var verifyAuthCodeUseCase: any VerifyAuthCodeUseCase {
         return appComponent.verifyAuthCodeUseCase
     }
-    var idSettingComponent: IDSettingComponent {
-        return appComponent.idSettingComponent
+    var idSettingFactory: any IDSettingFactory {
+        return appComponent.idSettingFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -129,8 +181,8 @@ private class SignupEmailVerifyDependencyf9d372ac752ee19b78caProvider: SignupEma
     var checkDuplicateEmailUseCase: any CheckDuplicateEmailUseCase {
         return appComponent.checkDuplicateEmailUseCase
     }
-    var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent {
-        return appComponent.signupEmailAuthCodeVerifyComponent
+    var signupEmailAuthCodeVerifyFactory: any SignupEmailAuthCodeVerifyFactory {
+        return appComponent.signupEmailAuthCodeVerifyFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -145,8 +197,8 @@ private class SignupProfileImageDependency4203088ab57581d9f871Provider: SignupPr
     var uploadFileUseCase: any UploadFileUseCase {
         return appComponent.uploadFileUseCase
     }
-    var signupTermsComponent: SignupTermsComponent {
-        return appComponent.signupTermsComponent
+    var signupTermsFactory: any SignupTermsFactory {
+        return appComponent.signupTermsFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -158,17 +210,17 @@ private func factory6792674212c15df7e9cff47b58f8f304c97af4d5(_ component: Needle
     return SignupProfileImageDependency4203088ab57581d9f871Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
-    var homeComponent: HomeComponent {
-        return appComponent.homeComponent
+    var homeFactory: any HomeFactory {
+        return appComponent.homeFactory
     }
-    var applyPageComponent: ApplyPageComponent {
-        return appComponent.applyPageComponent
+    var applyPageFactory: any ApplyPageFactory {
+        return appComponent.applyPageFactory
     }
-    var noticeListComponent: NoticeListComponent {
-        return appComponent.noticeListComponent
+    var noticeListFactory: any NoticeListFactory {
+        return appComponent.noticeListFactory
     }
-    var myPageComponent: MyPageComponent {
-        return appComponent.myPageComponent
+    var myPageFactory: any MyPageFactory {
+        return appComponent.myPageFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -189,14 +241,14 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     var withdrawalUseCase: any WithdrawalUseCase {
         return appComponent.withdrawalUseCase
     }
-    var changeProfileComponent: ChangeProfileComponent {
-        return appComponent.changeProfileComponent
+    var changeProfileFactory: any ChangeProfileFactory {
+        return appComponent.changeProfileFactory
     }
-    var rewardPointDetailComponent: RewardPointDetailComponent {
-        return appComponent.rewardPointDetailComponent
+    var rewardPointDetailFactory: any RewardPointDetailFactory {
+        return appComponent.rewardPointDetailFactory
     }
-    var checkPasswordComponent: CheckPasswordComponent {
-        return appComponent.checkPasswordComponent
+    var checkPasswordFactory: any CheckPasswordFactory {
+        return appComponent.checkPasswordFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -253,8 +305,8 @@ private class CheckPasswordDependencyd8ff624643356835c570Provider: CheckPassword
     var compareCurrentPasswordUseCase: any CompareCurrentPasswordUseCase {
         return appComponent.compareCurrentPasswordUseCase
     }
-    var modifyPasswordComponent: ModifyPasswordComponent {
-        return appComponent.modifyPasswordComponent
+    var modifyPasswordFactory: any ModifyPasswordFactory {
+        return appComponent.modifyPasswordFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -300,8 +352,8 @@ private class StudyRoomListDependencyef56e26c25d5de596604Provider: StudyRoomList
     var fetchStudyroomTimeListUseCase: any FetchStudyroomTimeListUseCase {
         return appComponent.fetchStudyroomTimeListUseCase
     }
-    var studyRoomDetailComponent: StudyRoomDetailComponent {
-        return appComponent.studyRoomDetailComponent
+    var studyRoomDetailFactory: any StudyRoomDetailFactory {
+        return appComponent.studyRoomDetailFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -313,14 +365,14 @@ private func factory7451c5364e65ee2d46bbf47b58f8f304c97af4d5(_ component: Needle
     return StudyRoomListDependencyef56e26c25d5de596604Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class RootDependency3944cc797a4a88956fb5Provider: RootDependency {
-    var signinComponent: SigninComponent {
-        return appComponent.signinComponent
+    var signinFactory: any SigninFactory {
+        return appComponent.signinFactory
     }
-    var mainTabComponent: MainTabComponent {
-        return appComponent.mainTabComponent
+    var mainTabFactory: any MainTabFactory {
+        return appComponent.mainTabFactory
     }
-    var splashComponent: SplashComponent {
-        return appComponent.splashComponent
+    var splashFactory: any SplashFactory {
+        return appComponent.splashFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -335,14 +387,14 @@ private class SigninDependencyde06a9d0b22764487733Provider: SigninDependency {
     var signinUseCase: any SigninUseCase {
         return appComponent.signinUseCase
     }
-    var schoolCodeComponent: SchoolCodeComponent {
-        return appComponent.schoolCodeComponent
+    var schoolCodeFactory: any SchoolCodeFactory {
+        return appComponent.schoolCodeFactory
     }
-    var findIDComponent: FindIDComponent {
-        return appComponent.findIDComponent
+    var findIDFactory: any FindIDFactory {
+        return appComponent.findIDFactory
     }
-    var enterInformationComponent: EnterInformationComponent {
-        return appComponent.enterInformationComponent
+    var enterInformationFactory: any EnterInformationFactory {
+        return appComponent.enterInformationFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -370,11 +422,11 @@ private func factory67229cdf0f755562b2b1f47b58f8f304c97af4d5(_ component: Needle
     return HomeDependency443c4e1871277bd8432aProvider(appComponent: parent1(component) as! AppComponent)
 }
 private class ApplyPageDependency3fe4e7c221b14c86d427Provider: ApplyPageDependency {
-    var studyRoomListComponent: StudyRoomListComponent {
-        return appComponent.studyRoomListComponent
+    var studyRoomListFactory: any StudyRoomListFactory {
+        return appComponent.studyRoomListFactory
     }
-    var remainApplyComponent: RemainApplyComponent {
-        return appComponent.remainApplyComponent
+    var remainApplyFactory: any RemainApplyFactory {
+        return appComponent.remainApplyFactory
     }
     var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase {
         return appComponent.fetchMyRemainApplicationItemsUseCase
@@ -398,8 +450,8 @@ private class AuthenticationEmailDependency73189eb572618b10e0fbProvider: Authent
     var sendAuthCodeUseCase: any SendAuthCodeUseCase {
         return appComponent.sendAuthCodeUseCase
     }
-    var changePasswordComponent: ChangePasswordComponent {
-        return appComponent.changePasswordComponent
+    var changePasswordFactory: any ChangePasswordFactory {
+        return appComponent.changePasswordFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -427,8 +479,8 @@ private class EnterInformationDependency9204f24c784151f429ddProvider: EnterInfor
     var checkAccountIDIsExistUseCase: any CheckAccountIDIsExistUseCase {
         return appComponent.checkAccountIDIsExistUseCase
     }
-    var authenticationEmailComponent: AuthenticationEmailComponent {
-        return appComponent.authenticationEmailComponent
+    var authenticationEmailFactory: any AuthenticationEmailFactory {
+        return appComponent.authenticationEmailFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -465,8 +517,8 @@ private class NoticeListDependency0e93eb53be8626c408e4Provider: NoticeListDepend
     var fetchNoticeListUseCase: any FetchNoticeListUseCase {
         return appComponent.fetchNoticeListUseCase
     }
-    var noticeDetailComponent: NoticeDetailComponent {
-        return appComponent.noticeDetailComponent
+    var noticeDetailFactory: any NoticeDetailFactory {
+        return appComponent.noticeDetailFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -532,33 +584,33 @@ extension AppComponent: Registration {
         localTable["checkEmailExistByAccountIDUseCase-any CheckEmailExistByAccountIDUseCase"] = { [unowned self] in self.checkEmailExistByAccountIDUseCase as Any }
         localTable["checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"] = { [unowned self] in self.checkAccountIDIsExistUseCase as Any }
         localTable["logoutUseCase-any LogoutUseCase"] = { [unowned self] in self.logoutUseCase as Any }
-        localTable["schoolCodeComponent-SchoolCodeComponent"] = { [unowned self] in self.schoolCodeComponent as Any }
-        localTable["findIDComponent-FindIDComponent"] = { [unowned self] in self.findIDComponent as Any }
-        localTable["signinComponent-SigninComponent"] = { [unowned self] in self.signinComponent as Any }
-        localTable["splashComponent-SplashComponent"] = { [unowned self] in self.splashComponent as Any }
-        localTable["schoolConfirmationQuestionsComponent-SchoolConfirmationQuestionsComponent"] = { [unowned self] in self.schoolConfirmationQuestionsComponent as Any }
-        localTable["signupEmailVerifyComponent-SignupEmailVerifyComponent"] = { [unowned self] in self.signupEmailVerifyComponent as Any }
-        localTable["signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"] = { [unowned self] in self.signupEmailAuthCodeVerifyComponent as Any }
-        localTable["idSettingComponent-IDSettingComponent"] = { [unowned self] in self.idSettingComponent as Any }
-        localTable["enterInformationComponent-EnterInformationComponent"] = { [unowned self] in self.enterInformationComponent as Any }
-        localTable["authenticationEmailComponent-AuthenticationEmailComponent"] = { [unowned self] in self.authenticationEmailComponent as Any }
-        localTable["changePasswordComponent-ChangePasswordComponent"] = { [unowned self] in self.changePasswordComponent as Any }
-        localTable["signupProfileImageComponent-SignupProfileImageComponent"] = { [unowned self] in self.signupProfileImageComponent as Any }
-        localTable["signupPasswordComponent-SignupPasswordComponent"] = { [unowned self] in self.signupPasswordComponent as Any }
-        localTable["signupTermsComponent-SignupTermsComponent"] = { [unowned self] in self.signupTermsComponent as Any }
-        localTable["mainTabComponent-MainTabComponent"] = { [unowned self] in self.mainTabComponent as Any }
-        localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
-        localTable["studyRoomDetailComponent-StudyRoomDetailComponent"] = { [unowned self] in self.studyRoomDetailComponent as Any }
-        localTable["noticeListComponent-NoticeListComponent"] = { [unowned self] in self.noticeListComponent as Any }
-        localTable["myPageComponent-MyPageComponent"] = { [unowned self] in self.myPageComponent as Any }
-        localTable["changeProfileComponent-ChangeProfileComponent"] = { [unowned self] in self.changeProfileComponent as Any }
-        localTable["noticeDetailComponent-NoticeDetailComponent"] = { [unowned self] in self.noticeDetailComponent as Any }
-        localTable["rewardPointDetailComponent-RewardPointDetailComponent"] = { [unowned self] in self.rewardPointDetailComponent as Any }
-        localTable["checkPasswordComponent-CheckPasswordComponent"] = { [unowned self] in self.checkPasswordComponent as Any }
-        localTable["modifyPasswordComponent-ModifyPasswordComponent"] = { [unowned self] in self.modifyPasswordComponent as Any }
-        localTable["studyRoomListComponent-StudyRoomListComponent"] = { [unowned self] in self.studyRoomListComponent as Any }
-        localTable["applyPageComponent-ApplyPageComponent"] = { [unowned self] in self.applyPageComponent as Any }
-        localTable["remainApplyComponent-RemainApplyComponent"] = { [unowned self] in self.remainApplyComponent as Any }
+        localTable["schoolCodeFactory-any SchoolCodeFactory"] = { [unowned self] in self.schoolCodeFactory as Any }
+        localTable["findIDFactory-any FindIDFactory"] = { [unowned self] in self.findIDFactory as Any }
+        localTable["signinFactory-any SigninFactory"] = { [unowned self] in self.signinFactory as Any }
+        localTable["splashFactory-any SplashFactory"] = { [unowned self] in self.splashFactory as Any }
+        localTable["schoolConfirmationQuestionsFactory-any SchoolConfirmationQuestionsFactory"] = { [unowned self] in self.schoolConfirmationQuestionsFactory as Any }
+        localTable["signupEmailVerifyFactory-any SignupEmailVerifyFactory"] = { [unowned self] in self.signupEmailVerifyFactory as Any }
+        localTable["signupEmailAuthCodeVerifyFactory-any SignupEmailAuthCodeVerifyFactory"] = { [unowned self] in self.signupEmailAuthCodeVerifyFactory as Any }
+        localTable["idSettingFactory-any IDSettingFactory"] = { [unowned self] in self.idSettingFactory as Any }
+        localTable["enterInformationFactory-any EnterInformationFactory"] = { [unowned self] in self.enterInformationFactory as Any }
+        localTable["authenticationEmailFactory-any AuthenticationEmailFactory"] = { [unowned self] in self.authenticationEmailFactory as Any }
+        localTable["changePasswordFactory-any ChangePasswordFactory"] = { [unowned self] in self.changePasswordFactory as Any }
+        localTable["signupProfileImageFactory-any SignupProfileImageFactory"] = { [unowned self] in self.signupProfileImageFactory as Any }
+        localTable["signupPasswordFactory-any SignupPasswordFactory"] = { [unowned self] in self.signupPasswordFactory as Any }
+        localTable["signupTermsFactory-any SignupTermsFactory"] = { [unowned self] in self.signupTermsFactory as Any }
+        localTable["mainTabFactory-any MainTabFactory"] = { [unowned self] in self.mainTabFactory as Any }
+        localTable["homeFactory-any HomeFactory"] = { [unowned self] in self.homeFactory as Any }
+        localTable["studyRoomDetailFactory-any StudyRoomDetailFactory"] = { [unowned self] in self.studyRoomDetailFactory as Any }
+        localTable["noticeListFactory-any NoticeListFactory"] = { [unowned self] in self.noticeListFactory as Any }
+        localTable["myPageFactory-any MyPageFactory"] = { [unowned self] in self.myPageFactory as Any }
+        localTable["changeProfileFactory-any ChangeProfileFactory"] = { [unowned self] in self.changeProfileFactory as Any }
+        localTable["noticeDetailFactory-any NoticeDetailFactory"] = { [unowned self] in self.noticeDetailFactory as Any }
+        localTable["rewardPointDetailFactory-any RewardPointDetailFactory"] = { [unowned self] in self.rewardPointDetailFactory as Any }
+        localTable["checkPasswordFactory-any CheckPasswordFactory"] = { [unowned self] in self.checkPasswordFactory as Any }
+        localTable["modifyPasswordFactory-any ModifyPasswordFactory"] = { [unowned self] in self.modifyPasswordFactory as Any }
+        localTable["studyRoomListFactory-any StudyRoomListFactory"] = { [unowned self] in self.studyRoomListFactory as Any }
+        localTable["applyPageFactory-any ApplyPageFactory"] = { [unowned self] in self.applyPageFactory as Any }
+        localTable["remainApplyFactory-any RemainApplyFactory"] = { [unowned self] in self.remainApplyFactory as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { [unowned self] in self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { [unowned self] in self.noticeRepository as Any }
         localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { [unowned self] in self.fetchWhetherNewNoticeUseCase as Any }
@@ -611,32 +663,32 @@ extension SchoolConfirmationQuestionsComponent: Registration {
     public func registerItems() {
         keyPathToName[\SchoolConfirmationQuestionsDependency.checkSchoolQuestionUseCase] = "checkSchoolQuestionUseCase-any CheckSchoolQuestionUseCase"
         keyPathToName[\SchoolConfirmationQuestionsDependency.fetchSchoolQuestionUseCase] = "fetchSchoolQuestionUseCase-any FetchSchoolQuestionUseCase"
-        keyPathToName[\SchoolConfirmationQuestionsDependency.signupEmailVerifyComponent] = "signupEmailVerifyComponent-SignupEmailVerifyComponent"
+        keyPathToName[\SchoolConfirmationQuestionsDependency.signupEmailVerifyFactory] = "signupEmailVerifyFactory-any SignupEmailVerifyFactory"
     }
 }
 extension SchoolCodeComponent: Registration {
     public func registerItems() {
         keyPathToName[\SchoolCodeDependency.checkSchoolCodeUseCase] = "checkSchoolCodeUseCase-any CheckSchoolCodeUseCase"
-        keyPathToName[\SchoolCodeDependency.schoolConfirmationQuestionsComponent] = "schoolConfirmationQuestionsComponent-SchoolConfirmationQuestionsComponent"
+        keyPathToName[\SchoolCodeDependency.schoolConfirmationQuestionsFactory] = "schoolConfirmationQuestionsFactory-any SchoolConfirmationQuestionsFactory"
     }
 }
 extension IDSettingComponent: Registration {
     public func registerItems() {
         keyPathToName[\IDSettingDependency.checkExistGradeClassNumberUseCase] = "checkExistGradeClassNumberUseCase-any CheckExistGradeClassNumberUseCase"
         keyPathToName[\IDSettingDependency.checkDuplicateAccountIDUseCase] = "checkDuplicateAccountIDUseCase-any CheckDuplicateAccountIDUseCase"
-        keyPathToName[\IDSettingDependency.signupPasswordComponent] = "signupPasswordComponent-SignupPasswordComponent"
+        keyPathToName[\IDSettingDependency.signupPasswordFactory] = "signupPasswordFactory-any SignupPasswordFactory"
     }
 }
 extension SignupPasswordComponent: Registration {
     public func registerItems() {
-        keyPathToName[\SignupPasswordDependency.signupProfileImageComponent] = "signupProfileImageComponent-SignupProfileImageComponent"
+        keyPathToName[\SignupPasswordDependency.signupProfileImageFactory] = "signupProfileImageFactory-any SignupProfileImageFactory"
     }
 }
 extension SignupEmailAuthCodeVerifyComponent: Registration {
     public func registerItems() {
         keyPathToName[\SignupEmailAuthCodeVerifyDependency.sendAuthCodeUseCase] = "sendAuthCodeUseCase-any SendAuthCodeUseCase"
         keyPathToName[\SignupEmailAuthCodeVerifyDependency.verifyAuthCodeUseCase] = "verifyAuthCodeUseCase-any VerifyAuthCodeUseCase"
-        keyPathToName[\SignupEmailAuthCodeVerifyDependency.idSettingComponent] = "idSettingComponent-IDSettingComponent"
+        keyPathToName[\SignupEmailAuthCodeVerifyDependency.idSettingFactory] = "idSettingFactory-any IDSettingFactory"
     }
 }
 extension SignupTermsComponent: Registration {
@@ -647,21 +699,21 @@ extension SignupTermsComponent: Registration {
 extension SignupEmailVerifyComponent: Registration {
     public func registerItems() {
         keyPathToName[\SignupEmailVerifyDependency.checkDuplicateEmailUseCase] = "checkDuplicateEmailUseCase-any CheckDuplicateEmailUseCase"
-        keyPathToName[\SignupEmailVerifyDependency.signupEmailAuthCodeVerifyComponent] = "signupEmailAuthCodeVerifyComponent-SignupEmailAuthCodeVerifyComponent"
+        keyPathToName[\SignupEmailVerifyDependency.signupEmailAuthCodeVerifyFactory] = "signupEmailAuthCodeVerifyFactory-any SignupEmailAuthCodeVerifyFactory"
     }
 }
 extension SignupProfileImageComponent: Registration {
     public func registerItems() {
         keyPathToName[\SignupProfileImageDependency.uploadFileUseCase] = "uploadFileUseCase-any UploadFileUseCase"
-        keyPathToName[\SignupProfileImageDependency.signupTermsComponent] = "signupTermsComponent-SignupTermsComponent"
+        keyPathToName[\SignupProfileImageDependency.signupTermsFactory] = "signupTermsFactory-any SignupTermsFactory"
     }
 }
 extension MainTabComponent: Registration {
     public func registerItems() {
-        keyPathToName[\MainTabDependency.homeComponent] = "homeComponent-HomeComponent"
-        keyPathToName[\MainTabDependency.applyPageComponent] = "applyPageComponent-ApplyPageComponent"
-        keyPathToName[\MainTabDependency.noticeListComponent] = "noticeListComponent-NoticeListComponent"
-        keyPathToName[\MainTabDependency.myPageComponent] = "myPageComponent-MyPageComponent"
+        keyPathToName[\MainTabDependency.homeFactory] = "homeFactory-any HomeFactory"
+        keyPathToName[\MainTabDependency.applyPageFactory] = "applyPageFactory-any ApplyPageFactory"
+        keyPathToName[\MainTabDependency.noticeListFactory] = "noticeListFactory-any NoticeListFactory"
+        keyPathToName[\MainTabDependency.myPageFactory] = "myPageFactory-any MyPageFactory"
     }
 }
 extension MyPageComponent: Registration {
@@ -669,9 +721,9 @@ extension MyPageComponent: Registration {
         keyPathToName[\MyPageDependency.fetchMyProfileUseCase] = "fetchMyProfileUseCase-any FetchMyProfileUseCase"
         keyPathToName[\MyPageDependency.logoutUseCase] = "logoutUseCase-any LogoutUseCase"
         keyPathToName[\MyPageDependency.withdrawalUseCase] = "withdrawalUseCase-any WithdrawalUseCase"
-        keyPathToName[\MyPageDependency.changeProfileComponent] = "changeProfileComponent-ChangeProfileComponent"
-        keyPathToName[\MyPageDependency.rewardPointDetailComponent] = "rewardPointDetailComponent-RewardPointDetailComponent"
-        keyPathToName[\MyPageDependency.checkPasswordComponent] = "checkPasswordComponent-CheckPasswordComponent"
+        keyPathToName[\MyPageDependency.changeProfileFactory] = "changeProfileFactory-any ChangeProfileFactory"
+        keyPathToName[\MyPageDependency.rewardPointDetailFactory] = "rewardPointDetailFactory-any RewardPointDetailFactory"
+        keyPathToName[\MyPageDependency.checkPasswordFactory] = "checkPasswordFactory-any CheckPasswordFactory"
     }
 }
 extension ModifyPasswordComponent: Registration {
@@ -693,7 +745,7 @@ extension ChangeProfileComponent: Registration {
 extension CheckPasswordComponent: Registration {
     public func registerItems() {
         keyPathToName[\CheckPasswordDependency.compareCurrentPasswordUseCase] = "compareCurrentPasswordUseCase-any CompareCurrentPasswordUseCase"
-        keyPathToName[\CheckPasswordDependency.modifyPasswordComponent] = "modifyPasswordComponent-ModifyPasswordComponent"
+        keyPathToName[\CheckPasswordDependency.modifyPasswordFactory] = "modifyPasswordFactory-any ModifyPasswordFactory"
     }
 }
 extension StudyRoomDetailComponent: Registration {
@@ -710,22 +762,22 @@ extension StudyRoomListComponent: Registration {
         keyPathToName[\StudyRoomListDependency.fetchStudyRoomListUseCase] = "fetchStudyRoomListUseCase-any FetchStudyRoomListUseCase"
         keyPathToName[\StudyRoomListDependency.fetchStudyAvailableTimeUseCase] = "fetchStudyAvailableTimeUseCase-any FetchStudyAvailableTimeUseCase"
         keyPathToName[\StudyRoomListDependency.fetchStudyroomTimeListUseCase] = "fetchStudyroomTimeListUseCase-any FetchStudyroomTimeListUseCase"
-        keyPathToName[\StudyRoomListDependency.studyRoomDetailComponent] = "studyRoomDetailComponent-StudyRoomDetailComponent"
+        keyPathToName[\StudyRoomListDependency.studyRoomDetailFactory] = "studyRoomDetailFactory-any StudyRoomDetailFactory"
     }
 }
 extension RootComponent: Registration {
     public func registerItems() {
-        keyPathToName[\RootDependency.signinComponent] = "signinComponent-SigninComponent"
-        keyPathToName[\RootDependency.mainTabComponent] = "mainTabComponent-MainTabComponent"
-        keyPathToName[\RootDependency.splashComponent] = "splashComponent-SplashComponent"
+        keyPathToName[\RootDependency.signinFactory] = "signinFactory-any SigninFactory"
+        keyPathToName[\RootDependency.mainTabFactory] = "mainTabFactory-any MainTabFactory"
+        keyPathToName[\RootDependency.splashFactory] = "splashFactory-any SplashFactory"
     }
 }
 extension SigninComponent: Registration {
     public func registerItems() {
         keyPathToName[\SigninDependency.signinUseCase] = "signinUseCase-any SigninUseCase"
-        keyPathToName[\SigninDependency.schoolCodeComponent] = "schoolCodeComponent-SchoolCodeComponent"
-        keyPathToName[\SigninDependency.findIDComponent] = "findIDComponent-FindIDComponent"
-        keyPathToName[\SigninDependency.enterInformationComponent] = "enterInformationComponent-EnterInformationComponent"
+        keyPathToName[\SigninDependency.schoolCodeFactory] = "schoolCodeFactory-any SchoolCodeFactory"
+        keyPathToName[\SigninDependency.findIDFactory] = "findIDFactory-any FindIDFactory"
+        keyPathToName[\SigninDependency.enterInformationFactory] = "enterInformationFactory-any EnterInformationFactory"
     }
 }
 extension HomeComponent: Registration {
@@ -736,8 +788,8 @@ extension HomeComponent: Registration {
 }
 extension ApplyPageComponent: Registration {
     public func registerItems() {
-        keyPathToName[\ApplyPageDependency.studyRoomListComponent] = "studyRoomListComponent-StudyRoomListComponent"
-        keyPathToName[\ApplyPageDependency.remainApplyComponent] = "remainApplyComponent-RemainApplyComponent"
+        keyPathToName[\ApplyPageDependency.studyRoomListFactory] = "studyRoomListFactory-any StudyRoomListFactory"
+        keyPathToName[\ApplyPageDependency.remainApplyFactory] = "remainApplyFactory-any RemainApplyFactory"
         keyPathToName[\ApplyPageDependency.fetchMyRemainApplicationItemsUseCase] = "fetchMyRemainApplicationItemsUseCase-any FetchMyRemainApplicationItemsUseCase"
         keyPathToName[\ApplyPageDependency.fetchMyStudyRoomAppItemsUseCase] = "fetchMyStudyRoomAppItemsUseCase-any FetchMyStudyRoomAppItemsUseCase"
     }
@@ -746,7 +798,7 @@ extension AuthenticationEmailComponent: Registration {
     public func registerItems() {
         keyPathToName[\AuthenticationEmailDependency.verifyAuthCodeUseCase] = "verifyAuthCodeUseCase-any VerifyAuthCodeUseCase"
         keyPathToName[\AuthenticationEmailDependency.sendAuthCodeUseCase] = "sendAuthCodeUseCase-any SendAuthCodeUseCase"
-        keyPathToName[\AuthenticationEmailDependency.changePasswordComponent] = "changePasswordComponent-ChangePasswordComponent"
+        keyPathToName[\AuthenticationEmailDependency.changePasswordFactory] = "changePasswordFactory-any ChangePasswordFactory"
     }
 }
 extension ChangePasswordComponent: Registration {
@@ -757,7 +809,7 @@ extension ChangePasswordComponent: Registration {
 extension EnterInformationComponent: Registration {
     public func registerItems() {
         keyPathToName[\EnterInformationDependency.checkAccountIDIsExistUseCase] = "checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"
-        keyPathToName[\EnterInformationDependency.authenticationEmailComponent] = "authenticationEmailComponent-AuthenticationEmailComponent"
+        keyPathToName[\EnterInformationDependency.authenticationEmailFactory] = "authenticationEmailFactory-any AuthenticationEmailFactory"
     }
 }
 extension RemainApplyComponent: Registration {
@@ -771,7 +823,7 @@ extension RemainApplyComponent: Registration {
 extension NoticeListComponent: Registration {
     public func registerItems() {
         keyPathToName[\NoticeListDependency.fetchNoticeListUseCase] = "fetchNoticeListUseCase-any FetchNoticeListUseCase"
-        keyPathToName[\NoticeListDependency.noticeDetailComponent] = "noticeDetailComponent-NoticeDetailComponent"
+        keyPathToName[\NoticeListDependency.noticeDetailFactory] = "noticeDetailFactory-any NoticeDetailFactory"
     }
 }
 extension NoticeDetailComponent: Registration {

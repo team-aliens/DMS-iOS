@@ -2,5 +2,5 @@ import SwiftUI
 
 public protocol SignupProfileImageFactory {
     associatedtype SomeView: View
-    func makeView() -> SomeView
+    func makeView(signupProfileImageParam: SignupProfileImageParam) -> SomeView
 }
