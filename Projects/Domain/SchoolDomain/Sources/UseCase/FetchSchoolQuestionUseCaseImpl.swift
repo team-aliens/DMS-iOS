@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import SchoolDomainInterface
 
 public struct FetchSchoolQuestionUseCaseImpl: FetchSchoolQuestionUseCase {
     private let schoolRepository: any SchoolRepository

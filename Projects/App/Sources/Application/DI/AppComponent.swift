@@ -2,18 +2,30 @@ import NeedleFoundation
 import SwiftUI
 import KeychainModule
 import SignupFeature
+import SignupFeatureInterface
 import RootFeature
 import FindIDFeature
+import FindIDFeatureInterface
 import SigninFeature
+import SigninFeatureInterface
 import RenewalPasswordFeature
+import RenewalPasswordFeatureInterface
 import MainTabFeature
+import MainTabFeatureInterface
 import HomeFeature
+import HomeFeatureInterface
 import ApplyFeature
+import ApplyFeatureInterface
 import StudyRoomFeature
+import StudyRoomFeatureInterface
 import RemainApplyFeature
+import RemainApplyFeatureInterface
 import MyPageFeature
+import MyPageFeatureInterface
 import NoticeFeature
+import NoticeFeatureInterface
 import SplashFeature
+import SplashFeatureInterface
 
 public final class AppComponent: BootstrapComponent {
     private let _keychain: any Keychain
@@ -41,89 +53,89 @@ public final class AppComponent: BootstrapComponent {
 
 // MARK: - Auth
 public extension AppComponent {
-    var schoolCodeComponent: SchoolCodeComponent {
+    var schoolCodeFactory: any SchoolCodeFactory {
         SchoolCodeComponent(parent: self)
     }
-    var findIDComponent: FindIDComponent {
+    var findIDFactory: any FindIDFactory {
         FindIDComponent(parent: self)
     }
-    var signinComponent: SigninComponent {
+    var signinFactory: any SigninFactory {
         SigninComponent(parent: self)
     }
-    var splashComponent: SplashComponent {
+    var splashFactory: any SplashFactory {
         SplashComponent(parent: self)
     }
-    var schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent {
+    var schoolConfirmationQuestionsFactory: any SchoolConfirmationQuestionsFactory {
         SchoolConfirmationQuestionsComponent(parent: self)
     }
-    var signupEmailVerifyComponent: SignupEmailVerifyComponent {
+    var signupEmailVerifyFactory: any SignupEmailVerifyFactory {
         SignupEmailVerifyComponent(parent: self)
     }
-    var signupEmailAuthCodeVerifyComponent: SignupEmailAuthCodeVerifyComponent {
+    var signupEmailAuthCodeVerifyFactory: any SignupEmailAuthCodeVerifyFactory {
         SignupEmailAuthCodeVerifyComponent(parent: self)
     }
-    var idSettingComponent: IDSettingComponent {
+    var idSettingFactory: any IDSettingFactory {
         IDSettingComponent(parent: self)
     }
-    var enterInformationComponent: EnterInformationComponent {
+    var enterInformationFactory: any EnterInformationFactory {
         EnterInformationComponent(parent: self)
     }
-    var authenticationEmailComponent: AuthenticationEmailComponent {
+    var authenticationEmailFactory: any AuthenticationEmailFactory {
         AuthenticationEmailComponent(parent: self)
     }
-    var changePasswordComponent: ChangePasswordComponent {
+    var changePasswordFactory: any ChangePasswordFactory {
         ChangePasswordComponent(parent: self)
     }
-    var signupProfileImageComponent: SignupProfileImageComponent {
+    var signupProfileImageFactory: any SignupProfileImageFactory {
         SignupProfileImageComponent(parent: self)
     }
-    var signupPasswordComponent: SignupPasswordComponent {
+    var signupPasswordFactory: any SignupPasswordFactory {
         SignupPasswordComponent(parent: self)
     }
-    var signupTermsComponent: SignupTermsComponent {
+    var signupTermsFactory: any SignupTermsFactory {
         SignupTermsComponent(parent: self)
     }
 }
 
 // MARK: - Main
 public extension AppComponent {
-    var mainTabComponent: MainTabComponent {
+    var mainTabFactory: any MainTabFactory {
         MainTabComponent(parent: self)
     }
-    var homeComponent: HomeComponent {
+    var homeFactory: any HomeFactory {
         HomeComponent(parent: self)
     }
-    var studyRoomDetailComponent: StudyRoomDetailComponent {
+    var studyRoomDetailFactory: any StudyRoomDetailFactory {
         StudyRoomDetailComponent(parent: self)
     }
-    var noticeListComponent: NoticeListComponent {
+    var noticeListFactory: any NoticeListFactory {
         NoticeListComponent(parent: self)
     }
-    var myPageComponent: MyPageComponent {
+    var myPageFactory: any MyPageFactory {
         MyPageComponent(parent: self)
     }
-    var changeProfileComponent: ChangeProfileComponent {
+    var changeProfileFactory: any ChangeProfileFactory {
         ChangeProfileComponent(parent: self)
     }
-    var noticeDetailComponent: NoticeDetailComponent {
+    var noticeDetailFactory: any NoticeDetailFactory {
         NoticeDetailComponent(parent: self)
     }
-    var rewardPointDetailComponent: RewardPointDetailComponent {
+    var rewardPointDetailFactory: any RewardPointDetailFactory {
         RewardPointDetailComponent(parent: self)
     }
-    var checkPasswordComponent: CheckPasswordComponent {
+    var checkPasswordFactory: any CheckPasswordFactory {
         CheckPasswordComponent(parent: self)
     }
-    var modifyPasswordComponent: ModifyPasswordComponent {
+    var modifyPasswordFactory: any ModifyPasswordFactory {
         ModifyPasswordComponent(parent: self)
     }
-    var studyRoomListComponent: StudyRoomListComponent {
+    var studyRoomListFactory: any StudyRoomListFactory {
         StudyRoomListComponent(parent: self)
     }
-    var applyPageComponent: ApplyPageComponent {
+    var applyPageFactory: any ApplyPageFactory {
         ApplyPageComponent(parent: self)
     }
-    var remainApplyComponent: RemainApplyComponent {
+    var remainApplyFactory: any RemainApplyFactory {
         RemainApplyComponent(parent: self)
     }
 }

@@ -1,9 +1,4 @@
-import Combine
-import DataMappingModule
-import DomainModule
-import SwiftUI
-import Utility
-import WidgetKit
+import Foundation
 
 struct DMSPointWidget: Widget {
     let kind: String = "DMSPointWidget"

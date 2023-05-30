@@ -1,8 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
-import Foundation
+import UsersDomainInterface
 
 public struct RemoteUsersDataSourceStub: RemoteUsersDataSource {
     public init() {}

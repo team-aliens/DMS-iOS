@@ -1,8 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
-import NetworkModule
+import SchoolDomainInterface
 
 public struct SchoolRepositoryImpl: SchoolRepository {
     private let remoteSchoolDataSource: any RemoteSchoolDataSource

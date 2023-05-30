@@ -1,9 +1,10 @@
 import NeedleFoundation
 import SwiftUI
-import HomeFeature
-import ApplyFeature
-import NoticeFeature
-import MyPageFeature
+import HomeFeatureInterface
+import ApplyFeatureInterface
+import NoticeFeatureInterface
+import MyPageFeatureInterface
+import MainTabFeatureInterface
 
 public protocol MainTabDependency: Dependency {
     var homeComponent: HomeComponent { get }
@@ -12,7 +13,7 @@ public protocol MainTabDependency: Dependency {
     var myPageComponent: MyPageComponent { get }
 }
 
-public final class MainTabComponent: Component<MainTabDependency> {
+public final class MainTabComponent: Component<MainTabDependency>, MainTabFactory {
     public func makeView() -> some View {
         MainTabView(
             homeComponent: dependency.homeComponent,

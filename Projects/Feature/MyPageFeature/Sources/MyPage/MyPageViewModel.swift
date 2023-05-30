@@ -1,6 +1,6 @@
 import BaseFeature
 import Combine
-import DomainModule
+import StudentsDomainInterface
 
 final class MyPageViewModel: BaseViewModel {
     @Published var profile: MyProfileEntity?

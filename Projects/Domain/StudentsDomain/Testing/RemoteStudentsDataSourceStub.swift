@@ -1,14 +1,13 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
 import Foundation
+import BaseDomain
+import StudentsDomainInterface
 
 public struct RemoteStudentsDataSourceStub: RemoteStudentsDataSource {
     public init() {}
 
-    public func signup(req: SignupRequestDTO) -> AnyPublisher<DmsFeatures, Error> {
-        Just(DmsFeatures(
+    public func signup(req: SignupRequestDTO) -> AnyPublisher<SignupDmsFeatures, Error> {
+        Just(SignupDmsFeatures(
             mealService: true,
             noticeService: true,
             pointService: true,

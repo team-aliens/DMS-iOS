@@ -1,9 +1,11 @@
-import DomainModule
+import SchoolDomainInterface
+import AuthDomainInterface
 import FindIDFeature
 import NeedleFoundation
 import SwiftUI
 import SignupFeature
 import RenewalPasswordFeature
+import SigninFeatureInterface
 
 public protocol SigninDependency: Dependency {
     var signinUseCase: any SigninUseCase { get }
@@ -12,7 +14,7 @@ public protocol SigninDependency: Dependency {
     var enterInformationComponent: EnterInformationComponent { get }
 }
 
-public final class SigninComponent: Component<SigninDependency> {
+public final class SigninComponent: Component<SigninDependency>, SigninFactory {
     public func makeView() -> some View {
         SigninView(
             viewModel: .init(

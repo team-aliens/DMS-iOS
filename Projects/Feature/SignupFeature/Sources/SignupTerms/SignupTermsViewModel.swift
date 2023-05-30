@@ -1,6 +1,6 @@
 import BaseFeature
 import Combine
-import DomainModule
+import StudentsDomain
 
 final class SignupTermsViewModel: BaseViewModel {
     @Published var isAgreeTerms = false

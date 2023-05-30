@@ -1,4 +1,4 @@
-import DomainModule
+import PointsDomainInterface
 import NeedleFoundation
 import SwiftUI
 

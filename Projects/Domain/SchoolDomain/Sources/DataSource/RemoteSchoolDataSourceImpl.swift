@@ -1,8 +1,6 @@
-import APIKit
-import DomainModule
 import Combine
-import DataMappingModule
-import ErrorModule
+import BaseDomain
+import SchoolDomainInterface
 
 public final class RemoteSchoolDataSourceImpl: BaseRemoteDataSource<SchoolAPI>, RemoteSchoolDataSource {
     public func fetchSchoolList() -> AnyPublisher<[SchoolEntity], Error> {

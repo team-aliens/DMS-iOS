@@ -34,6 +34,31 @@ let targets: [Target] = [
         entitlements: "Support/\(env.appName).entitlements",
         scripts: scripts,
         dependencies: [
+            .Feature.SignupFeature,
+            .Feature.SignupFeatureInterface,
+            .Feature.RootFeature,
+            .Feature.FindIDFeature,
+            .Feature.FindIDFeatureInterface,
+            .Feature.SigninFeature,
+            .Feature.SigninFeatureInterface,
+            .Feature.RenewalPasswordFeature,
+            .Feature.RenewalPasswordFeatureInterface,
+            .Feature.MainTabFeature,
+            .Feature.MainTabFeatureInterface,
+            .Feature.HomeFeature,
+            .Feature.HomeFeatureInterface,
+            .Feature.ApplyFeature,
+            .Feature.ApplyFeatureInterface,
+            .Feature.StudyRoomFeature,
+            .Feature.StudyRoomFeatureInterface,
+            .Feature.RemainApplyFeature,
+            .Feature.RemainApplyFeatureInterface,
+            .Feature.MyPageFeature,
+            .Feature.MyPageFeatureInterface,
+            .Feature.NoticeFeature,
+            .Feature.NoticeFeatureInterface,
+            .Feature.SplashFeature,
+            .Feature.SplashFeatureInterface,
             .Domain.AuthDomain,
             .Domain.FilesDomain,
             .Domain.MealDomain,
@@ -59,6 +84,8 @@ let targets: [Target] = [
         infoPlist: .default,
         sources: ["Tests/**"],
         dependencies: [
+            .SPM.Quick,
+            .SPM.Nimble,
             .target(name: env.targetName)
         ]
     ),
@@ -74,8 +101,10 @@ let targets: [Target] = [
         entitlements: "AppExtension/Support/\(env.appName)Widget.entitlements",
         scripts: widgetScripts,
         dependencies: [
-            .Core.DesignSystem,
-            .SPM.Needle
+            .Domain.MealDomain,
+            .Domain.NoticeDomain,
+            .Domain.PointsDomain,
+            .Core.DesignSystem
         ]
     ),
     .init(

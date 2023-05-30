@@ -5,7 +5,7 @@ import KeychainModule
 import Moya
 import UtilityModule
 
-open class BaseRemoteDataSource<API: JobisAPI> {
+open class BaseRemoteDataSource<API: DmsAPI> {
     private let keychain: any Keychain
     private let provider: MoyaProvider<API>
     private let decoder = JSONDecoder()

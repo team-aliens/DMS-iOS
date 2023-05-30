@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import UsersDomainInterface
 
 public struct ChangePasswordUseCaseImpl: ChangePasswordUseCase {
     private let usersRepository: any UsersRepository

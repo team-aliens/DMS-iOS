@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import StudyRoomsDomainInterface
 
 public struct FetchMyStudyRoomAppItemsUseCaseImpl: FetchMyStudyRoomAppItemsUseCase {
     private let studyRoomsRepository: any StudyRoomsRepository

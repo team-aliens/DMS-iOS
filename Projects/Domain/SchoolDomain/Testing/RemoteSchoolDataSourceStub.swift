@@ -1,7 +1,6 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import BaseDomain
+import SchoolDomainInterface
 
 public struct RemoteSchoolDataSourceStub: RemoteSchoolDataSource {
     public init() {}

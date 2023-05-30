@@ -1,7 +1,7 @@
 import DesignSystem
-import DomainModule
+import MealDomainInterface
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct MealCarouselView: View {
     @StateObject var uiState = UIStateModel()

@@ -1,6 +1,5 @@
 import Combine
-import DomainModule
-import ErrorModule
+import MealDomainInterface
 
 public struct FetchMealListUseCaseImpl: FetchMealListUseCase {
     private let mealRepository: any MealRepository

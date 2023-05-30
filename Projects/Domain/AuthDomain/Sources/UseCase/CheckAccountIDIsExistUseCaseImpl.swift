@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import AuthDomainInterface
 
 public struct CheckAccountIDIsExistUseCaseImpl: CheckAccountIDIsExistUseCase {
     private let authRepository: any AuthRepository

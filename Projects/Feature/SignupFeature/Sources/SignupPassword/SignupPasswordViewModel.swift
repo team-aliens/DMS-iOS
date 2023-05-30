@@ -1,6 +1,6 @@
 import BaseFeature
 import Combine
-import Utility
+import UtilityModule
 
 final class SignupPasswordViewModel: BaseViewModel {
     @Published var password = "" {

@@ -1,7 +1,6 @@
 import BaseFeature
 import Combine
-import DomainModule
-import ErrorModule
+import SchoolDomainInterface
 
 final class SchoolCodeViewModel: BaseViewModel {
     @Published var schoolCode = ""

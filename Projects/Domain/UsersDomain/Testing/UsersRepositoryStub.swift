@@ -1,9 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
-import NetworkModule
-import Foundation
+import UsersDomainInterface
 
 public struct UsersRepositoryStub: UsersRepository {
     public init() {}

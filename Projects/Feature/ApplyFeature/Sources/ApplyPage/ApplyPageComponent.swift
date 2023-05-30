@@ -1,8 +1,10 @@
 import SwiftUI
-import StudyRoomFeature
-import RemainApplyFeature
 import NeedleFoundation
-import DomainModule
+import StudyRoomsDomainInterface
+import StudyRoomFeature
+import RemainsDomainInterface
+import RemainApplyFeature
+import ApplyFeatureInterface
 
 public protocol ApplyPageDependency: Dependency {
     var studyRoomListComponent: StudyRoomListComponent { get }
@@ -11,7 +13,7 @@ public protocol ApplyPageDependency: Dependency {
     var fetchMyStudyRoomAppItemsUseCase: any FetchMyStudyRoomAppItemsUseCase { get }
 }
 
-public final class ApplyPageComponent: Component<ApplyPageDependency> {
+public final class ApplyPageComponent: Component<ApplyPageDependency>, ApplyPageFactory {
     public func makeView() -> some View {
         ApplyPageView(
             viewModel: .init(

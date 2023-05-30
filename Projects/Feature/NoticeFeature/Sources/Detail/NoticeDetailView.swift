@@ -1,6 +1,6 @@
 import DesignSystem
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct NoticeDetailView: View {
     @StateObject var viewModel: NoticeDetailViewModel

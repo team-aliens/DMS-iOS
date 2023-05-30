@@ -1,9 +1,4 @@
-import BaseFeature
-import Foundation
-import DomainModule
-import ErrorModule
-import Combine
-import DataMappingModule
+import NoticeDomainInterface
 
 final class NoticeListViewModel: BaseViewModel {
     @Published var noticeList: [NoticeEntity] = []

@@ -1,8 +1,4 @@
-import DesignSystem
-import DomainModule
-import DataMappingModule
-import SwiftUI
-import Utility
+import StudyRoomsDomainInterface
 
 extension StudyRoomDetailView {
 

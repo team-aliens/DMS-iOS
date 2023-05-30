@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import RemainsDomainInterface
 
 public struct RemainingApplicationsChangesUseCaseImpl: RemainingApplicationsChangesUseCase {
     private let remainsRepository: any RemainsRepository
@@ -10,7 +8,7 @@ public struct RemainingApplicationsChangesUseCaseImpl: RemainingApplicationsChan
         self.remainsRepository = remainsRepository
     }
 
-    public func execute(id: String) -> AnyPublisher<Void, ErrorModule.Error> {
+    public func execute(id: String) -> AnyPublisher<Void, Error> {
         remainsRepository.remainingApplicationsChanges(id: id)
     }
 }

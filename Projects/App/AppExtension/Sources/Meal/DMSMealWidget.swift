@@ -1,7 +1,6 @@
-import Combine
-import DomainModule
 import SwiftUI
-import Utility
+import MealDomainInterface
+import UtilityModule
 import WidgetKit
 
 struct DMSMealWidget: Widget {

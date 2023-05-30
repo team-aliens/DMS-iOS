@@ -1,7 +1,6 @@
 import NeedleFoundation
-import NetworkModule
-import DomainModule
-import DataModule
+import RemainsDomain
+import RemainsDomainInterface
 
 public extension AppComponent {
     var remoteRemainsDataSource: any RemoteRemainsDataSource {

@@ -1,6 +1,8 @@
-import DomainModule
+import StudentsDomainInterface
+import AuthDomainInterface
 import SwiftUI
 import NeedleFoundation
+import MyPageFeatureInterface
 
 public protocol MyPageDependency: Dependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase { get }
@@ -11,7 +13,7 @@ public protocol MyPageDependency: Dependency {
     var checkPasswordComponent: CheckPasswordComponent { get }
 }
 
-public final class MyPageComponent: Component<MyPageDependency> {
+public final class MyPageComponent: Component<MyPageDependency>, MyPageFactory {
     public func makeView() -> some View {
         NavigationView {
             MyPageView(

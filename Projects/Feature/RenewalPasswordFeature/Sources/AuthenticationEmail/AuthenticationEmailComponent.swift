@@ -1,5 +1,6 @@
-import DomainModule
+import AuthDomainInterface
 import NeedleFoundation
+import RenewalPasswordFeatureInterface
 import SwiftUI
 
 public protocol AuthenticationEmailDependency: Dependency {
@@ -9,7 +10,7 @@ public protocol AuthenticationEmailDependency: Dependency {
 
 }
 
-public final class AuthenticationEmailComponent: Component<AuthenticationEmailDependency> {
+public final class AuthenticationEmailComponent: Component<AuthenticationEmailDependency>, AuthenticationEmailFactory {
     public func makeView(authenticationEmailParam: AuthenticationEmailParam) -> some View {
         AuthenticationEmailView(
             viewModel: .init(

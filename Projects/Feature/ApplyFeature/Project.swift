@@ -7,8 +7,8 @@ let project = Project.makeModule(
     targets: [.interface, .unitTest],
     internalDependencies: [
         .Feature.BaseFeature,
-        .Feature.StudyRoomFeature,
-        .Feature.RemainApplyFeature,
+        .Feature.StudyRoomFeatureInterface,
+        .Feature.RemainApplyFeatureInterface,
         .Domain.StudyRoomsDomainInterface,
         .Domain.RemainsDomainInterface
     ]

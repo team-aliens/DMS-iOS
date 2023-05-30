@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import StudentsDomainInterface
 
 public struct FindIDUseCaseImpl: FindIDUseCase {
     private let studentsRepository: any StudentsRepository

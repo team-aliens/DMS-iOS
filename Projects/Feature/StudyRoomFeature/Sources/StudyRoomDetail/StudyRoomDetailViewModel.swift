@@ -1,5 +1,6 @@
-import Studyroom
+import StudyRoomsDomainInterface
 import BaseFeature
+import SwiftUI
 
 final class StudyRoomDetailViewModel: BaseViewModel {
     @Published var studyRoomDetail: DetailStudyRoomEntity?

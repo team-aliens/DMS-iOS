@@ -1,5 +1,6 @@
 import SwiftUI
-import DomainModule
+import StudyRoomsDomainInterface
+import StudyRoomFeatureInterface
 import NeedleFoundation
 
 public protocol StudyRoomDetailDependency: Dependency {
@@ -11,7 +12,7 @@ public protocol StudyRoomDetailDependency: Dependency {
 
 }
 
-public final class StudyRoomDetailComponent: Component<StudyRoomDetailDependency> {
+public final class StudyRoomDetailComponent: Component<StudyRoomDetailDependency>, StudyRoomDetailFactory {
     public func makeView(studyRoomEntity: StudyRoomEntity, timeSlot: String) -> some View {
         StudyRoomDetailView(
             viewModel: .init(

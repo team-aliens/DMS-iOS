@@ -1,8 +1,6 @@
-import APIKit
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import BaseDomain
+import PointsDomainInterface
 
 public final class RemotePointsDataSourceImpl: BaseRemoteDataSource<PointsAPI>, RemotePointsDataSource {
     public func fetchPointList(type: PointsType) -> AnyPublisher<PointEntity, Error> {

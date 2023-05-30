@@ -1,6 +1,5 @@
 import Combine
-import DomainModule
-import ErrorModule
+import StudentsDomainInterface
 
 public struct ChangeProfileImageUseCaseImpl: ChangeProfileImageUseCase {
     private let studentsRepository: any StudentsRepository

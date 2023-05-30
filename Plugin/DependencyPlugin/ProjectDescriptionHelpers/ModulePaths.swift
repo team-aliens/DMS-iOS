@@ -10,7 +10,20 @@ public enum ModulePaths {
 
 public extension ModulePaths {
     enum Feature: String {
+        case ApplyFeature
         case BaseFeature
+        case FindIDFeature
+        case HomeFeature
+        case MainTabFeature
+        case MyPageFeature
+        case NoticeFeature
+        case RemainApplyFeature
+        case RenewalPasswordFeature
+        case RootFeature
+        case SigninFeature
+        case SignupFeature
+        case SplashFeature
+        case StudyRoomFeature
 
         func targetName(type: MicroTargetType) -> String {
             "\(self.rawValue)\(type.rawValue)"
@@ -41,6 +54,7 @@ public extension ModulePaths {
 public extension ModulePaths {
     enum Core: String {
         case DesignSystem
+        case WatchDesignSystem
 
         func targetName(type: MicroTargetType) -> String {
             "\(self.rawValue)\(type.rawValue)"
@@ -52,7 +66,9 @@ public extension ModulePaths {
     enum Shared: String {
         case UtilityModule
         case GlobalThirdPartyLibrary
-
+        case KeychainModule
+        case WatchRestAPIModule
+        
         func targetName(type: MicroTargetType) -> String {
             "\(self.rawValue)\(type.rawValue)"
         }

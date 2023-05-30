@@ -1,6 +1,7 @@
-import DomainModule
+import AuthDomainInterface
 import NeedleFoundation
 import SwiftUI
+import SignupFeatureInterface
 
 public protocol SignupEmailAuthCodeVerifyDependency: Dependency {
     var sendAuthCodeUseCase: any SendAuthCodeUseCase { get }
@@ -8,7 +9,7 @@ public protocol SignupEmailAuthCodeVerifyDependency: Dependency {
     var idSettingComponent: IDSettingComponent { get }
 }
 
-public final class SignupEmailAuthCodeVerifyComponent: Component<SignupEmailAuthCodeVerifyDependency> {
+public final class SignupEmailAuthCodeVerifyComponent: Component<SignupEmailAuthCodeVerifyDependency>, SignupEmailAuthCodeVerifyFactory {
     public func makeView(signupEmailAuthCodeVerifyParam: SignupEmailAuthCodeVerifyParam) -> some View {
         SignupEmailAuthCodeVerifyView(
             viewModel: .init(

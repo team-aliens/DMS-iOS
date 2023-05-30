@@ -1,9 +1,4 @@
-import BaseFeature
-import Foundation
-import DomainModule
-import ErrorModule
-import Combine
-import DataMappingModule
+import StudyRoomsDomainInterface
 
 final class StudyRoomListViewModel: BaseViewModel {
     @Published var studyRoomList: [StudyRoomEntity] = []

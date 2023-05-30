@@ -1,8 +1,6 @@
-import APIKit
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import BaseDomain
+import RemainsDomainInterface
 
 public final class RemoteRemainsDataSourceImpl: BaseRemoteDataSource<RemainsAPI>,
                                                 RemoteRemainsDataSource {

@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import StudyRoomsDomainInterface
 
 public struct ApplyStudyRoomSeatUseCaseImpl: ApplyStudyRoomSeatUseCase {
     private let studyRoomsRepository: any StudyRoomsRepository

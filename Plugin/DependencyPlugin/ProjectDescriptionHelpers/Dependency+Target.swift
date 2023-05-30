@@ -10,20 +10,110 @@ public extension TargetDependency {
 }
 
 public extension TargetDependency.Feature {
-    static let RemainApplyFeature = TargetDependency.feature(name: "RemainApplyFeature")
-    static let StudyRoomFeature = TargetDependency.feature(name: "StudyRoomFeature")
-    static let SplashFeature = TargetDependency.feature(name: "SplashFeature")
-    static let MyPageFeature = TargetDependency.feature(name: "MyPageFeature")
-    static let NoticeFeature = TargetDependency.feature(name: "NoticeFeature")
-    static let ApplyFeature = TargetDependency.feature(name: "ApplyFeature")
-    static let SignupFeature = TargetDependency.feature(name: "SignupFeature")
-    static let HomeFeature = TargetDependency.feature(name: "HomeFeature")
-    static let RenewalPasswordFeature = TargetDependency.feature(name: "RenewalPasswordFeature")
-    static let MainTabFeature = TargetDependency.feature(name: "MainTabFeature")
-    static let FindIDFeature = TargetDependency.feature(name: "FindIDFeature")
-    static let SigninFeature = TargetDependency.feature(name: "SigninFeature")
-    static let BaseFeature = TargetDependency.feature(name: "BaseFeature")
-    static let RootFeature = TargetDependency.feature(name: "RootFeature")
+    static let ApplyFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.ApplyFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.ApplyFeature.rawValue)
+    )
+    static let ApplyFeature = TargetDependency.project(
+        target: ModulePaths.Feature.ApplyFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.ApplyFeature.rawValue)
+    )
+    static let BaseFeature = TargetDependency.project(
+        target: ModulePaths.Feature.BaseFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.BaseFeature.rawValue)
+    )
+    static let FindIDFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.FindIDFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.FindIDFeature.rawValue)
+    )
+    static let FindIDFeature = TargetDependency.project(
+        target: ModulePaths.Feature.FindIDFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.FindIDFeature.rawValue)
+    )
+    static let HomeFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.HomeFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.HomeFeature.rawValue)
+    )
+    static let HomeFeature = TargetDependency.project(
+        target: ModulePaths.Feature.HomeFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.HomeFeature.rawValue)
+    )
+    static let MainTabFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.MainTabFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.MainTabFeature.rawValue)
+    )
+    static let MainTabFeature = TargetDependency.project(
+        target: ModulePaths.Feature.MainTabFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.MainTabFeature.rawValue)
+    )
+    static let MyPageFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.MyPageFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.MyPageFeature.rawValue)
+    )
+    static let MyPageFeature = TargetDependency.project(
+        target: ModulePaths.Feature.MyPageFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.MyPageFeature.rawValue)
+    )
+    static let NoticeFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.NoticeFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.NoticeFeature.rawValue)
+    )
+    static let NoticeFeature = TargetDependency.project(
+        target: ModulePaths.Feature.NoticeFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.NoticeFeature.rawValue)
+    )
+    static let RemainApplyFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.RemainApplyFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.RemainApplyFeature.rawValue)
+    )
+    static let RemainApplyFeature = TargetDependency.project(
+        target: ModulePaths.Feature.RemainApplyFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.RemainApplyFeature.rawValue)
+    )
+    static let RenewalPasswordFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.RenewalPasswordFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.RenewalPasswordFeature.rawValue)
+    )
+    static let RenewalPasswordFeature = TargetDependency.project(
+        target: ModulePaths.Feature.RenewalPasswordFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.RenewalPasswordFeature.rawValue)
+    )
+    static let RootFeature = TargetDependency.project(
+        target: ModulePaths.Feature.RootFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.RootFeature.rawValue)
+    )
+    static let SigninFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.SigninFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.SigninFeature.rawValue)
+    )
+    static let SigninFeature = TargetDependency.project(
+        target: ModulePaths.Feature.SigninFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.SigninFeature.rawValue)
+    )
+    static let SignupFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.SignupFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.SignupFeature.rawValue)
+    )
+    static let SignupFeature = TargetDependency.project(
+        target: ModulePaths.Feature.SignupFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.SignupFeature.rawValue)
+    )
+    static let SplashFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.SplashFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.SplashFeature.rawValue)
+    )
+    static let SplashFeature = TargetDependency.project(
+        target: ModulePaths.Feature.SplashFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.SplashFeature.rawValue)
+    )
+    static let StudyRoomFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.SplashFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.SplashFeature.rawValue)
+    )
+    static let StudyRoomFeature = TargetDependency.project(
+        target: ModulePaths.Feature.StudyRoomFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.StudyRoomFeature.rawValue)
+    )
 }
 
 public extension TargetDependency.Domain {
@@ -139,6 +229,14 @@ public extension TargetDependency.Domain {
         target: ModulePaths.Domain.BaseDomain.targetName(type: .sources),
         path: .relativeToDomain(ModulePaths.Domain.BaseDomain.rawValue)
     )
+    static let AuthDomainTesting = TargetDependency.project(
+        target: ModulePaths.Domain.AuthDomain.targetName(type: .testing),
+        path: .relativeToDomain(ModulePaths.Domain.AuthDomain.rawValue)
+    )
+    static let AuthDomainInterface = TargetDependency.project(
+        target: ModulePaths.Domain.AuthDomain.targetName(type: .interface),
+        path: .relativeToDomain(ModulePaths.Domain.AuthDomain.rawValue)
+    )
     static let AuthDomain = TargetDependency.project(
         target: ModulePaths.Domain.AuthDomain.targetName(type: .sources),
         path: .relativeToDomain(ModulePaths.Domain.AuthDomain.rawValue)
@@ -146,8 +244,14 @@ public extension TargetDependency.Domain {
 }
 
 public extension TargetDependency.Core {
-    static let DesignSystem = TargetDependency.core(name: "DesignSystem")
-    static let WatchDesignSystem = TargetDependency.core(name: "WatchDesignSystem")
+    static let DesignSystem = TargetDependency.project(
+        target: ModulePaths.Core.DesignSystem.targetName(type: .sources),
+        path: .relativeToCore(ModulePaths.Core.DesignSystem.rawValue)
+    )
+    static let WatchDesignSystem = TargetDependency.project(
+        target: ModulePaths.Core.WatchDesignSystem.targetName(type: .sources),
+        path: .relativeToCore(ModulePaths.Core.WatchDesignSystem.rawValue)
+    )
 }
 
 public extension TargetDependency.Shared {
@@ -159,8 +263,12 @@ public extension TargetDependency.Shared {
         target: ModulePaths.Shared.GlobalThirdPartyLibrary.targetName(type: .sources),
         path: .relativeToShared(ModulePaths.Shared.GlobalThirdPartyLibrary.rawValue)
     )
-    static let KeychainModule = TargetDependency.shared(name: "KeychainModule")
-    static let ErrorModule = TargetDependency.shared(name: "ErrorModule")
-    
-    static let WatchRestAPIModule = TargetDependency.shared(name: "WatchRestAPIModule")
+    static let KeychainModule = TargetDependency.project(
+        target: ModulePaths.Shared.KeychainModule.targetName(type: .sources),
+        path: .relativeToShared(ModulePaths.Shared.KeychainModule.rawValue)
+    )
+    static let WatchRestAPIModule = TargetDependency.project(
+        target: ModulePaths.Shared.WatchRestAPIModule.targetName(type: .sources),
+        path: .relativeToShared(ModulePaths.Shared.WatchRestAPIModule.rawValue)
+    )
 }

@@ -1,6 +1,6 @@
 import DesignSystem
-import DomainModule
-import Utility
+import StudyRoomsDomainInterface
+import UtilityModule
 import SwiftUI
 
 struct StudyRoomListCellView: View {

@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import RemainsDomainInterface
 
 public struct FetchRemainsAvailableTimeUseCaseImpl: FetchRemainsAvailableTimeUseCase {
     private let remainsRepository: any RemainsRepository

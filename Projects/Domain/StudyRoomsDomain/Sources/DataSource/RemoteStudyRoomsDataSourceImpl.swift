@@ -1,8 +1,6 @@
-import APIKit
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import BaseDomain
+import StudyRoomsDomainInterface
 
 public final class RemoteStudyRoomsDataSourceImpl: BaseRemoteDataSource<StudyRoomsAPI>, RemoteStudyRoomsDataSource {
     public func fetchStudyroomTimeList() -> AnyPublisher<StudyroomTimeListEntity, Error> {

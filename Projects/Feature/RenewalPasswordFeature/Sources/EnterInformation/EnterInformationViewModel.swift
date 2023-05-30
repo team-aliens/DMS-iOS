@@ -1,6 +1,6 @@
 import BaseFeature
 import Combine
-import DomainModule
+import AuthDomainInterface
 
 final class EnterInformationViewModel: BaseViewModel {
     @Published var email = "" {

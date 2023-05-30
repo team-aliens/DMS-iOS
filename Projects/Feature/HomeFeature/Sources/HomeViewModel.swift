@@ -1,9 +1,9 @@
 import BaseFeature
 import Combine
-import DomainModule
-import ErrorModule
 import Foundation
-import Utility
+import UtilityModule
+import MealDomainInterface
+import NoticeDomainInterface
 import SwiftUI
 
 final class HomeViewModel: BaseViewModel {

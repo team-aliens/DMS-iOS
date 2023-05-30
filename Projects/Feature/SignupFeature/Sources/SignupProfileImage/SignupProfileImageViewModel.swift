@@ -1,6 +1,6 @@
 import BaseFeature
 import Combine
-import DomainModule
+import FilesDomainInterface
 import UIKit
 
 final class SignupProfileImageViewModel: BaseViewModel {

@@ -1,10 +1,6 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
 import Foundation
-import Utility
-import APIKit
+import PointsDomainInterface
 
 public struct RemotePointsDataSourceStub: RemotePointsDataSource {
     public init() {}

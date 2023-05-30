@@ -1,8 +1,8 @@
 import BaseFeature
 import Combine
 import DesignSystem
-import DomainModule
-import Utility
+import StudentsDomainInterface
+import UtilityModule
 
 final class IDSettingViewModel: BaseViewModel {
     @Published var grade = "" {

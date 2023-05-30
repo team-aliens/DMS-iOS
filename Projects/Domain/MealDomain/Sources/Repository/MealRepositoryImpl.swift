@@ -1,7 +1,5 @@
 import Combine
-import DomainModule
-import ErrorModule
-import NetworkModule
+import MealDomainInterface
 
 public struct MealRepositoryImpl: MealRepository {
     private let remoteMealDataSource: any RemoteMealDataSource

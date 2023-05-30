@@ -1,9 +1,4 @@
-import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
-import NetworkModule
-import DatabaseModule
+import AuthDomainInterface
 
 public struct AuthRepositoryImpl: AuthRepository {
     private let remoteAuthDataSource: any RemoteAuthDataSource

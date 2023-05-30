@@ -1,8 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
-import NetworkModule
+import UsersDomainInterface
 
 public struct UsersRepositoryImpl: UsersRepository {
     private let remoteUsersDataSource: any RemoteUsersDataSource

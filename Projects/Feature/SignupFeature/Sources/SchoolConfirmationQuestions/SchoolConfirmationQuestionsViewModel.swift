@@ -1,6 +1,6 @@
 import BaseFeature
 import Combine
-import DomainModule
+import SchoolDomainInterface
 
 final class SchoolConfirmationQuestionsViewModel: BaseViewModel {
     @Published var question = "질문을 가져오는 중입니다..!"

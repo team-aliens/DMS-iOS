@@ -1,7 +1,5 @@
 import DesignSystem
-import DomainModule
 import SwiftUI
-import Utility
 
 extension StudyRoomDetailView {
 

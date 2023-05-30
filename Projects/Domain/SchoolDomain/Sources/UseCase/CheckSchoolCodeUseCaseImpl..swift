@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import SchoolDomainInterface
 
 public struct CheckSchoolCodeUseCaseImpl: CheckSchoolCodeUseCase {
     private let schoolRepository: any SchoolRepository

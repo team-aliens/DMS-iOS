@@ -1,7 +1,5 @@
 import Combine
-import DomainModule
-import ErrorModule
-import Foundation
+import FilesDomainInterface
 
 public struct UploadFileUseCaseImpl: UploadFileUseCase {
     private let filesRepository: any FilesRepository
@@ -11,6 +9,6 @@ public struct UploadFileUseCaseImpl: UploadFileUseCase {
     }
 
     public func execute(data: String) -> AnyPublisher<String, Error> {
-        filesRepository.uploadFile(data: String)
+        filesRepository.uploadFile(data: data)
     }
 }

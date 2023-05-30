@@ -1,7 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
+import NoticeDomainInterface
 
 public struct FetchNoticeListUseCaseImpl: FetchNoticeListUseCase {
     private let noticeRepository: any NoticeRepository

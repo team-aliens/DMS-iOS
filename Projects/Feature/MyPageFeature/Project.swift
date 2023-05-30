@@ -8,6 +8,6 @@ let project = Project.makeModule(
     internalDependencies: [
         .Feature.BaseFeature,
         .Domain.StudentsDomainInterface,
-        .Domain.AuthDomain
+        .Domain.AuthDomainInterface
     ]
 )

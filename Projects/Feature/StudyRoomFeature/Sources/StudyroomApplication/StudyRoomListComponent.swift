@@ -1,7 +1,8 @@
 import DesignSystem
-import DomainModule
+import StudyRoomsDomainInterface
 import SwiftUI
 import NeedleFoundation
+import StudyRoomFeatureInterface
 
 public protocol StudyRoomListDependency: Dependency {
     var fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase { get }
@@ -10,7 +11,7 @@ public protocol StudyRoomListDependency: Dependency {
     var studyRoomDetailComponent: StudyRoomDetailComponent { get }
 }
 
-public final class StudyRoomListComponent: Component<StudyRoomListDependency> {
+public final class StudyRoomListComponent: Component<StudyRoomListDependency>, StudyRoomListFactory {
     public func makeView() -> some View {
         StudyRoomListView(
             viewModel: .init(

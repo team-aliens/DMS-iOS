@@ -1,7 +1,6 @@
+import Combine
 import DesignSystem
-import DataMappingModule
-import SwiftUI
-import DomainModule
+import PointsDomainInterface
 
 struct RewardPointDetailView: View {
     @StateObject var viewModel: RewardPointDetailViewModel

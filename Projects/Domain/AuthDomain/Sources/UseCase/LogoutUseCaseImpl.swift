@@ -1,4 +1,4 @@
-import DomainModule
+import AuthDomainInterface
 
 public struct LogoutUseCaseImpl: LogoutUseCase {
     private let authRepository: any AuthRepository

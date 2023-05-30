@@ -1,5 +1,5 @@
 import SwiftUI
-import DomainModule
+import RemainsDomainInterface
 import DesignSystem
 
 struct RemainApplyListCellView: View {

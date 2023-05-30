@@ -1,8 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
-import NetworkModule
+import NoticeDomainInterface
 
 public struct NoticeRepositoryImpl: NoticeRepository {
     private let remoteNoticeDataSource: any RemoteNoticeDataSource

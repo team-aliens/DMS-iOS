@@ -1,8 +1,7 @@
 import Quick
 import Nimble
 import Combine
-import DomainModule
-import DataModule
+import AuthDomainInterface
 @testable import SigninFeature
 
 // swiftlint: disable function_body_length

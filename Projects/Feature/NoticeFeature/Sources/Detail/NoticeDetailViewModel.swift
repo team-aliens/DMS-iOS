@@ -1,7 +1,7 @@
 import BaseFeature
 import UIKit
 import Combine
-import DomainModule
+import NoticeDomainInterface
 import UtilityModule
 
 final class NoticeDetailViewModel: BaseViewModel {

@@ -1,6 +1,7 @@
-import DomainModule
+import StudentsDomainInterface
 import NeedleFoundation
 import SwiftUI
+import SignupFeatureInterface
 
 public protocol IDSettingDependency: Dependency {
     var checkExistGradeClassNumberUseCase: any CheckExistGradeClassNumberUseCase { get }
@@ -8,7 +9,7 @@ public protocol IDSettingDependency: Dependency {
     var signupPasswordComponent: SignupPasswordComponent { get }
 }
 
-public final class IDSettingComponent: Component<IDSettingDependency> {
+public final class IDSettingComponent: Component<IDSettingDependency>, IDSettingFactory {
     public func makeView(idSettingParam: IDSettingParam) -> some View {
         IDSettingView(
             viewModel: .init(

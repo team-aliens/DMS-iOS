@@ -1,5 +1,5 @@
 import DesignSystem
-import DomainModule
+import NoticeDomainInterface
 import SwiftUI
 import Utility
 

@@ -1,7 +1,6 @@
 import BaseFeature
 import Combine
-import DomainModule
-import ErrorModule
+import AuthDomainInterface
 import Foundation
 
 final class AuthenticationEmailViewModel: BaseViewModel {

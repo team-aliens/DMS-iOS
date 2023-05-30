@@ -1,6 +1,5 @@
 import Combine
-import DomainModule
-import ErrorModule
+import UsersDomainInterface
 
 public struct CompareCurrentPasswordUseCaseImpl: CompareCurrentPasswordUseCase {
     private let usersRepository: any UsersRepository

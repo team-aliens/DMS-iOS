@@ -1,5 +1,5 @@
 import SwiftUI
-import DataMappingModule
+import StudyRoomsDomainInterface
 
 public struct DMSSeatButton: View {
     var text: String

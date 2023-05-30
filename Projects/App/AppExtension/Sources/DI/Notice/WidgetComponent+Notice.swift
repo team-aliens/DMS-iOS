@@ -1,7 +1,6 @@
-import DataModule
-import DomainModule
 import NeedleFoundation
-import NetworkModule
+import NoticeDomain
+import NoticeDomainInterface
 
 extension WidgetComponent {
     var remoteNoticeDataSource: any RemoteNoticeDataSource {

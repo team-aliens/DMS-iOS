@@ -1,7 +1,7 @@
 import BaseFeature
 import Combine
-import DomainModule
-import Utility
+import StudentsDomainInterface
+import UtilityModule
 
 final class ChangePasswordViewModel: BaseViewModel {
     @Published var password = "" {

@@ -1,5 +1,6 @@
-import DomainModule
+import SchoolDomainInterface
 import NeedleFoundation
+import SignupFeatureInterface
 import SwiftUI
 
 public protocol SchoolCodeDependency: Dependency {
@@ -7,7 +8,7 @@ public protocol SchoolCodeDependency: Dependency {
     var schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent { get }
 }
 
-public final class SchoolCodeComponent: Component<SchoolCodeDependency> {
+public final class SchoolCodeComponent: Component<SchoolCodeDependency>, SchoolCodeFactory {
     public func makeView() -> some View {
         SchoolCodeView(
             viewModel: .init(

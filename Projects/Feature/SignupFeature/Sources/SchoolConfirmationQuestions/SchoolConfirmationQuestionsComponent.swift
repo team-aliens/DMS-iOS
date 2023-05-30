@@ -1,6 +1,7 @@
-import DomainModule
+import SchoolDomainInterface
 import NeedleFoundation
 import SwiftUI
+import SignupFeatureInterface
 
 public protocol SchoolConfirmationQuestionsDependency: Dependency {
     var checkSchoolQuestionUseCase: any CheckSchoolQuestionUseCase { get }
@@ -8,7 +9,7 @@ public protocol SchoolConfirmationQuestionsDependency: Dependency {
     var signupEmailVerifyComponent: SignupEmailVerifyComponent { get }
 }
 
-public final class SchoolConfirmationQuestionsComponent: Component<SchoolConfirmationQuestionsDependency> {
+public final class SchoolConfirmationQuestionsComponent: Component<SchoolConfirmationQuestionsDependency>, SchoolConfirmationQuestionsFactory {
     public func makeView(schoolConfirmationQuestionsParam: SchoolConfirmationQuestionsParam) -> some View {
         SchoolConfirmationQuestionsView(
             viewModel: .init(

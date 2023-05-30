@@ -1,8 +1,5 @@
 import Combine
-import DataMappingModule
-import DomainModule
-import ErrorModule
-import NetworkModule
+import PointsDomainInterface
 
 public struct FetchPointListUseCaseImpl: FetchPointListUseCase {
     private let pointsRepository: any PointsRepository

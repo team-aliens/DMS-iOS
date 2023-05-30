@@ -1,7 +1,7 @@
 import Combine
-import DomainModule
+import NoticeDomainInterface
 import SwiftUI
-import Utility
+import UtilityModule
 import WidgetKit
 
 struct DMSNoticeWidget: Widget {

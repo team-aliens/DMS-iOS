@@ -1,6 +1,5 @@
 import Combine
-import DomainModule
-import ErrorModule
+import StudentsDomainInterface
 
 public struct WithdrawalUseCaseImpl: WithdrawalUseCase {
     private let studentsRepository: any StudentsRepository

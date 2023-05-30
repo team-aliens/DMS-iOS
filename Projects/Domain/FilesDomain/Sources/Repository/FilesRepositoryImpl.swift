@@ -1,8 +1,6 @@
 import Combine
-import DomainModule
-import ErrorModule
 import Foundation
-import NetworkModule
+import FilesDomainInterface
 
 public struct FilesRepositoryImpl: FilesRepository {
     private let remoteFilesDataSource: any RemoteFilesDataSource
@@ -11,7 +9,7 @@ public struct FilesRepositoryImpl: FilesRepository {
         self.remoteFilesDataSource = remoteFilesDataSource
     }
 
-    public func uploadFile(data: Data) -> AnyPublisher<String, Error> {
+    public func uploadFile(data: String) -> AnyPublisher<String, Error> {
         remoteFilesDataSource.uploadFile(data: data)
     }
 }

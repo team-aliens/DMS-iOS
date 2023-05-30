@@ -1,6 +1,5 @@
 import DesignSystem
-import DomainModule
-import Utility
+import UtilityModule
 import SwiftUI
 
 struct StudyRoomListView: View {
