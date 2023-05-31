@@ -1,5 +1,5 @@
 import Combine
-import UtilityModule
+import Foundation
 
 public extension FetchNoticeListResponseDTO {
     func toDomain() -> [NoticeEntity] {
@@ -9,10 +9,13 @@ public extension FetchNoticeListResponseDTO {
 
 public extension SingleNoticeResponseDTO {
     func toDomain() -> NoticeEntity {
-        NoticeEntity(
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [ .withFullDate, .withDashSeparatorInDate ]
+        let date = formatter.date(from: createdAt) ?? .init()
+        return NoticeEntity(
             id: id,
             title: title,
-            createdAt: createdAt.toDMSNoticeDate()
+            createdAt: date
         )
     }
 }
