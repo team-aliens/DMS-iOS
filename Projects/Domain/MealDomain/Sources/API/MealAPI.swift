@@ -20,11 +20,11 @@ extension MealAPI: DmsAPI {
         }
     }
 
-    public var method: Method {
+    public var method: Moya.Method {
         return .get
     }
 
-    public var task: Task {
+    public var task: Moya.Task {
         return .requestPlain
     }
 

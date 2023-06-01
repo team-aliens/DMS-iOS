@@ -69,7 +69,7 @@ extension StudentsAPI: DmsAPI {
         }
     }
 
-    public var task: Task {
+    public var task: Moya.Task {
         switch self {
         case let .signup(req):
             return .requestJSONEncodable(req)

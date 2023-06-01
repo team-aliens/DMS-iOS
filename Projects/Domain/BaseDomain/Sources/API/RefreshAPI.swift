@@ -18,14 +18,14 @@ extension RefreshAPI: DmsAPI {
         }
     }
 
-    public var method: Method {
+    public var method: Moya.Method {
         switch self {
         case .reissueToken:
             return .put
         }
     }
 
-    public var task: Task {
+    public var task: Moya.Task {
         switch self {
         default:
             return .requestPlain

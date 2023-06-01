@@ -22,7 +22,7 @@ extension FilesAPI: DmsAPI {
         return .post
     }
 
-    public var task: Task {
+    public var task: Moya.Task {
         switch self {
         case let .uploadFile(data):
             return .uploadMultipart([

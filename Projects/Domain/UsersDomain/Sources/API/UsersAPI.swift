@@ -20,7 +20,7 @@ extension UsersAPI: DmsAPI {
         }
     }
 
-    public var method: Method {
+    public var method: Moya.Method {
         switch self {
         case .compareCurrentPasssword:
             return .get
@@ -30,7 +30,7 @@ extension UsersAPI: DmsAPI {
         }
     }
 
-    public var task: Task {
+    public var task: Moya.Task {
         switch self {
         case let .changePassword(req):
             return .requestJSONEncodable(req)

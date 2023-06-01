@@ -47,7 +47,7 @@ extension StudyRoomsAPI: DmsAPI {
         }
     }
 
-    public var method: Method {
+    public var method: Moya.Method {
         switch self {
         case .fetchStudyAvailableTime, .fetchSeatTypes, .fetchStudyRoomList,
                 .fetchDetailStudyRoom, .fetchMyStudyRoomApplicationItems,
@@ -62,7 +62,7 @@ extension StudyRoomsAPI: DmsAPI {
         }
     }
 
-    public var task: Task {
+    public var task: Moya.Task {
         switch self {
         case let .fetchSeatTypes(studyroomID):
             return .requestParameters(

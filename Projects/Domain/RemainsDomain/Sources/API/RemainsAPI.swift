@@ -32,7 +32,7 @@ extension RemainsAPI: DmsAPI {
         }
     }
 
-    public var method: Method {
+    public var method: Moya.Method {
         switch self {
         case .remainingApplicationsChanges:
             return .put
@@ -42,7 +42,7 @@ extension RemainsAPI: DmsAPI {
         }
     }
 
-    public var task: Task {
+    public var task: Moya.Task {
         .requestPlain
     }
 
