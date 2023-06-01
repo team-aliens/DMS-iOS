@@ -1,6 +1,6 @@
 import Combine
 import AuthDomainInterface
-import KeychainModule
+import Keychain
 
 public struct LocalAuthDataSourceImpl: LocalAuthDataSource {
     private let keychain: any Keychain

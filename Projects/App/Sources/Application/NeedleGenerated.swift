@@ -13,7 +13,7 @@ import FindIDFeatureInterface
 import Foundation
 import HomeFeature
 import HomeFeatureInterface
-import KeychainModule
+import Keychain
 import MainTabFeature
 import MainTabFeatureInterface
 import MealDomain

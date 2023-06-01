@@ -1,7 +1,7 @@
 import Combine
 import CombineMoya
 import Foundation
-import KeychainModule
+import Keychain
 import Moya
 import UtilityModule
 

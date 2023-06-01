@@ -1,7 +1,7 @@
 
 
 import Foundation
-import KeychainModule
+import Keychain
 import MealDomain
 import MealDomainInterface
 import NeedleFoundation

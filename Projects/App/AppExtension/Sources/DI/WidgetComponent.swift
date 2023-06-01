@@ -1,6 +1,6 @@
 import NeedleFoundation
 import SwiftUI
-import KeychainModule
+import Keychain
 
 final class WidgetComponent: BootstrapComponent {
     var keychain: any Keychain {
