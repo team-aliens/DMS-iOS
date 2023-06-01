@@ -1,8 +1,10 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
+import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "KeychainModule",
+    name: ModulePaths.Core.Keychain.rawValue,
     product: .staticLibrary,
-    targets: [.unitTest]
+    targets: [.unitTest],
+    internalDependencies: []
 )

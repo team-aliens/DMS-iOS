@@ -102,7 +102,7 @@ let targets: [Target] = [
             .Domain.MealDomain,
             .Domain.NoticeDomain,
             .Domain.PointsDomain,
-            .Core.DesignSystem
+            .Shared.DesignSystem
         ]
     ),
     .init(
@@ -130,7 +130,7 @@ let targets: [Target] = [
         resources: ["WatchApp/Resources/**"],
         scripts: scripts,
         dependencies: [
-            .Core.WatchDesignSystem,
+            .Shared.WatchDesignSystem,
             .Shared.WatchRestAPIModule,
             .SPM.Swinject
         ]

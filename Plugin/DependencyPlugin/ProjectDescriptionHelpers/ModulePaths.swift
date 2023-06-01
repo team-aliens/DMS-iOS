@@ -53,8 +53,7 @@ public extension ModulePaths {
 
 public extension ModulePaths {
     enum Core: String {
-        case DesignSystem
-        case WatchDesignSystem
+        case Keychain
 
         func targetName(type: MicroTargetType) -> String {
             "\(self.rawValue)\(type.rawValue)"
@@ -66,7 +65,8 @@ public extension ModulePaths {
     enum Shared: String {
         case UtilityModule
         case GlobalThirdPartyLibrary
-        case KeychainModule
+        case DesignSystem
+        case WatchDesignSystem
         case WatchRestAPIModule
         
         func targetName(type: MicroTargetType) -> String {

@@ -244,17 +244,21 @@ public extension TargetDependency.Domain {
 }
 
 public extension TargetDependency.Core {
-    static let DesignSystem = TargetDependency.project(
-        target: ModulePaths.Core.DesignSystem.targetName(type: .sources),
-        path: .relativeToCore(ModulePaths.Core.DesignSystem.rawValue)
-    )
-    static let WatchDesignSystem = TargetDependency.project(
-        target: ModulePaths.Core.WatchDesignSystem.targetName(type: .sources),
-        path: .relativeToCore(ModulePaths.Core.WatchDesignSystem.rawValue)
+    static let Keychain = TargetDependency.project(
+        target: ModulePaths.Core.Keychain.targetName(type: .sources),
+        path: .relativeToCore(ModulePaths.Core.Keychain.rawValue)
     )
 }
 
 public extension TargetDependency.Shared {
+    static let DesignSystem = TargetDependency.project(
+        target: ModulePaths.Shared.DesignSystem.targetName(type: .sources),
+        path: .relativeToShared(ModulePaths.Shared.DesignSystem.rawValue)
+    )
+    static let WatchDesignSystem = TargetDependency.project(
+        target: ModulePaths.Shared.WatchDesignSystem.targetName(type: .sources),
+        path: .relativeToShared(ModulePaths.Shared.WatchDesignSystem.rawValue)
+    )
     static let UtilityModule = TargetDependency.project(
         target: ModulePaths.Shared.UtilityModule.targetName(type: .sources),
         path: .relativeToShared(ModulePaths.Shared.UtilityModule.rawValue)
@@ -262,10 +266,6 @@ public extension TargetDependency.Shared {
     static let GlobalThirdPartyLibrary = TargetDependency.project(
         target: ModulePaths.Shared.GlobalThirdPartyLibrary.targetName(type: .sources),
         path: .relativeToShared(ModulePaths.Shared.GlobalThirdPartyLibrary.rawValue)
-    )
-    static let KeychainModule = TargetDependency.project(
-        target: ModulePaths.Shared.KeychainModule.targetName(type: .sources),
-        path: .relativeToShared(ModulePaths.Shared.KeychainModule.rawValue)
     )
     static let WatchRestAPIModule = TargetDependency.project(
         target: ModulePaths.Shared.WatchRestAPIModule.targetName(type: .sources),

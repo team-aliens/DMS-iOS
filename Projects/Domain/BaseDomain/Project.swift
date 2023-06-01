@@ -13,7 +13,7 @@ let project = Project.makeModule(
     internalDependencies: [
         .Shared.GlobalThirdPartyLibrary,
         .Shared.UtilityModule,
-        .Shared.KeychainModule
+        .Core.Keychain
     ],
     additionalPlistRows: [
         "BASE_URL": .string("$(BASE_URL)")
