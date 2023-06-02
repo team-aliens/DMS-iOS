@@ -6,6 +6,6 @@ let project = Project.makeModule(
     platform: .watchOS,
     product: .framework,
     targets: [],
-    deploymentTarget: .watchOS(targetVersion: "9.4"),
+    deploymentTarget: .watchOS(targetVersion: "9.0"),
     resources: ["Resources/**"]
 )

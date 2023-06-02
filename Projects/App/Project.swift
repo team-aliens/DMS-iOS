@@ -77,11 +77,11 @@ let targets: [Target] = [
         product: .watch2App,
         productName: "\(env.appName)WatchApp",
         bundleId: "\(env.organizationName).\(env.targetName).watchkitapp",
-        deploymentTarget: .watchOS(targetVersion: "9.4"),
+        deploymentTarget: .watchOS(targetVersion: "9.0"),
         infoPlist: .file(path: "WatchApp/Support/Info.plist"),
         resources: ["WatchApp/Resources/**"],
         dependencies: [
-//            .target(name: "\(env.targetName)WatchExtension")
+//            .target(name: "\(env.targetName)WatchExtension")x
         ]
     ),
     .init(
@@ -90,7 +90,7 @@ let targets: [Target] = [
         product: .watch2Extension,
         productName: "\(env.appName)WatchExtension",
         bundleId: "\(env.organizationName).\(env.targetName).watchkitapp.extension",
-        deploymentTarget: .watchOS(targetVersion: "9.4"),
+        deploymentTarget: .watchOS(targetVersion: "9.0"),
         infoPlist: .file(path: "WatchApp/Support/Extension-Info.plist"),
         sources: ["WatchApp/Sources/**"],
         resources: ["WatchApp/Resources/**"],
