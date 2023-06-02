@@ -38,6 +38,7 @@ let targets: [Target] = [
             .Feature.RootFeature,
             .Shared.Data,
             .target(name: "\(env.appName)Widget"),
+            .target(name: "\(env.appName)WatchApp")
         ],
         settings: .settings(base: env.baseSetting)
     ),
