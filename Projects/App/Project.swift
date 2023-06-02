@@ -77,7 +77,7 @@ let targets: [Target] = [
         product: .app,
         productName: "\(env.appName)WatchApp",
         bundleId: "\(env.organizationName).\(env.targetName).watchkitapp",
-        deploymentTarget: .watchOS(targetVersion: "9.0"),
+        deploymentTarget: .watchOS(targetVersion: "7.0"),
         infoPlist: .file(path: "WatchApp/Support/Info.plist"),
         sources: ["WatchApp/Sources/**"],
         resources: ["WatchApp/Resources/**"],
