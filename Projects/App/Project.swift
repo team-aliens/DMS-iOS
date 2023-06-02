@@ -86,20 +86,6 @@ let targets: [Target] = [
             .SPM.Swinject
         ]
     )
-//    .init(
-//        name: "\(env.targetName)WatchExtension",
-//        platform: .watchOS,
-//        product: .watch2Extension,
-//        productName: "\(env.appName)WatchExtension",
-//        bundleId: "\(env.organizationName).\(env.targetName).watchkitapp.extension",
-//        deploymentTarget: .watchOS(targetVersion: "9.0"),
-//        infoPlist: .file(path: "WatchApp/Support/Extension-Info.plist"),
-//        sources: ["WatchApp/Sources/**"],
-//        resources: ["WatchApp/Resources/**"],
-//        scripts: scripts,
-//        dependencies: [
-//        ]
-//    )
 ]
 
 let schemes: [Scheme] = [
