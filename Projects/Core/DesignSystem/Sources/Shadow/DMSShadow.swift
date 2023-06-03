@@ -14,14 +14,6 @@ public struct DMSShadow: ViewModifier {
                     blur: 20
                 )
 
-        case .button:
-            content
-                .shadow(
-                    color: .GrayScale.gray9.opacity(0.08),
-                    y: 2,
-                    blur: 16
-                )
-
         case .mealCarousel:
             content
                 .shadow(

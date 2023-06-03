@@ -4,18 +4,18 @@ import Foundation
 public struct FetchPointListResponseDTO: Decodable {
     public init(
         totalPoint: Int,
-        points: [SinglePointResponseDTO]
+        pointHistories: [SinglePointResponseDTO]
     ) {
         self.totalPoint = totalPoint
-        self.points = points
+        self.pointHistories = pointHistories
     }
 
     public let totalPoint: Int
-    public let points: [SinglePointResponseDTO]
+    public let pointHistories: [SinglePointResponseDTO]
 
     enum CodingKeys: String, CodingKey {
         case totalPoint = "total_point"
-        case points = "point_histories"
+        case pointHistories = "point_histories"
     }
 
     public struct SinglePointResponseDTO: Decodable {
