@@ -74,27 +74,13 @@ let targets: [Target] = [
     .init(
         name: "\(env.targetName)WatchApp",
         platform: .watchOS,
-        product: .watch2App,
+        product: .app,
         productName: "\(env.appName)WatchApp",
         bundleId: "\(env.organizationName).\(env.targetName).watchkitapp",
         deploymentTarget: .watchOS(targetVersion: "7.0"),
         infoPlist: .file(path: "WatchApp/Support/Info.plist"),
-        resources: ["WatchApp/Resources/**"],
-        dependencies: [
-//            .target(name: "\(env.targetName)WatchExtension")
-        ]
-    ),
-    .init(
-        name: "\(env.targetName)WatchExtension",
-        platform: .watchOS,
-        product: .watch2Extension,
-        productName: "\(env.appName)WatchExtension",
-        bundleId: "\(env.organizationName).\(env.targetName).watchkitapp.extension",
-        deploymentTarget: .watchOS(targetVersion: "7.0"),
-        infoPlist: .file(path: "WatchApp/Support/Extension-Info.plist"),
         sources: ["WatchApp/Sources/**"],
         resources: ["WatchApp/Resources/**"],
-        scripts: scripts,
         dependencies: [
             .Core.WatchDesignSystem,
             .Shared.WatchRestAPIModule,
