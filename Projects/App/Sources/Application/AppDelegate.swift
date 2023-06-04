@@ -3,6 +3,8 @@ import Foundation
 import KeychainModule
 import UIKit
 import WatchConnectivity
+import Firebase
+import UserNotifications
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var session: WCSession!
@@ -18,8 +20,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             session.activate()
         }
         DesignSystemFontFamily.registerAllCustomFonts()
+        FirebaseApp.configure()
         return true
     }
+}
+
+@available(iOS 10, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
 }
 
 extension AppDelegate: WCSessionDelegate {

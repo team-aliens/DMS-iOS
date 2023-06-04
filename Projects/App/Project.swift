@@ -17,7 +17,7 @@ let settings: Settings =
               configurations: configurations,
               defaultSettings: .recommended)
 
-let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .widgetNeedle, .needle]
+let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .widgetNeedle, .needle, .googleInfoPlistScripts]
 let widgetScripts: [TargetScript] = isCI ? [] : [.widgetNeedle]
 
 let targets: [Target] = [
@@ -37,6 +37,7 @@ let targets: [Target] = [
             .Domain.AuthDomain,
             .Feature.RootFeature,
             .Shared.Data,
+            .SPM.FirebaseMessaging,
             .target(name: "\(env.appName)Widget"),
             .target(name: "\(env.appName)WatchApp")
         ],
@@ -133,6 +134,7 @@ let project: Project =
     .init(
         name: env.targetName,
         organizationName: env.organizationName,
+        packages: [.FirebaseMessaging],
         settings: settings,
         targets: targets,
         schemes: schemes
