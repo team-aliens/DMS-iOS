@@ -1,4 +1,4 @@
-import DomainModule
+import StudyRoomsDomainInterface
 import DesignSystem
 import SwiftUI
 

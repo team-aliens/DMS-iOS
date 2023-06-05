@@ -1,5 +1,5 @@
 import DesignSystem
-import DomainModule
+import MealDomainInterface
 import SwiftUI
 
 struct DMSMealWidgetEntryView: View {

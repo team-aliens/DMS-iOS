@@ -1,6 +1,7 @@
 import BaseFeature
 import Combine
-import DomainModule
+import FilesDomainInterface
+import StudentsDomainInterface
 import UIKit
 
 final class ChangeProfileViewModel: BaseViewModel {

@@ -1,7 +1,5 @@
+import RemainsDomainInterface
 import BaseFeature
-import DomainModule
-import DataMappingModule
-import Combine
 import SwiftUI
 
 final class RemainApplyViewModel: BaseViewModel {

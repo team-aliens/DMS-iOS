@@ -1,8 +1,7 @@
+import Foundation
+import PointsDomainInterface
 import Combine
-import DataMappingModule
-import DomainModule
 import SwiftUI
-import Utility
 import WidgetKit
 
 struct DMSPointWidget: Widget {

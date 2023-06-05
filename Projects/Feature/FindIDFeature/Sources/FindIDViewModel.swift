@@ -1,6 +1,7 @@
 import BaseFeature
 import Combine
-import DomainModule
+import SchoolDomainInterface
+import StudentsDomainInterface
 
 final class FIndIDViewModel: BaseViewModel {
     @Published var schoolID = ""

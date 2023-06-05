@@ -1,5 +1,5 @@
 import DesignSystem
-import Utility
+import UtilityModule
 import SwiftUI
 
 struct ModifyPasswordView: View {

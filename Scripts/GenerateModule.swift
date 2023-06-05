@@ -1,4 +1,3 @@
-
 #!/usr/bin/swift
 import Foundation
 
@@ -143,7 +142,7 @@ func makeScaffold(target: MicroTargetType) {
 }
 
 func writeContentInFile(path: String, content: String) {
-    let fileURL = URL(fileURLWithPath: path)
+    let fileURL = URL(filePath: path)
     let data = Data(content.utf8)
     try? data.write(to: fileURL)
 }
@@ -153,7 +152,7 @@ func updateFileContent(
     finding findingString: String,
     inserting insertString: String
 ) {
-    let fileURL = URL(fileURLWithPath: filePath)
+    let fileURL = URL(filePath: filePath)
     guard let readHandle = try? FileHandle(forReadingFrom: fileURL) else {
         fatalError("❌ Failed to find \(filePath)")
     }
@@ -260,3 +259,4 @@ struct Bash: CommandExecuting {
         return output
     }
 }
+

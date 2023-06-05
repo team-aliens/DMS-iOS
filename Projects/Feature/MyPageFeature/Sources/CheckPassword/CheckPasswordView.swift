@@ -1,20 +1,22 @@
 import DesignSystem
-import Utility
+import UtilityModule
 import SwiftUI
+import BaseFeature
+import MyPageFeatureInterface
 
 struct CheckPasswordView: View {
 
     @StateObject var viewModel: CheckPasswordViewModel
-    let modifyPasswordComponent: ModifyPasswordComponent
+    let modifyPasswordFactory: any ModifyPasswordFactory
     @Environment(\.dismiss) var dismiss
     @Environment(\.rootPresentationMode) var rootPresentationMode
 
     init(
         viewModel: CheckPasswordViewModel,
-        modifyPasswordComponent: ModifyPasswordComponent
+        modifyPasswordFactory: any ModifyPasswordFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.modifyPasswordComponent = modifyPasswordComponent
+        self.modifyPasswordFactory = modifyPasswordFactory
     }
 
     var body: some View {
@@ -49,9 +51,11 @@ struct CheckPasswordView: View {
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .navigate(
-            to: modifyPasswordComponent.makeView(
+            to: modifyPasswordFactory.makeView(
                 currentPassword: viewModel.password
-            ).environment(\.rootPresentationMode, rootPresentationMode),
+            )
+            .eraseToAnyView()
+            .environment(\.rootPresentationMode, rootPresentationMode),
             when: $viewModel.isSuccessCheckPassword
         )
     }

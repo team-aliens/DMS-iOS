@@ -1,5 +1,4 @@
 import DesignSystem
-import DomainModule
 import SwiftUI
 
 struct RemainApplyView: View {

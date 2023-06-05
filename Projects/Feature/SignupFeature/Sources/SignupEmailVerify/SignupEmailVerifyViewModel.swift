@@ -1,7 +1,8 @@
 import BaseFeature
+import SignupFeatureInterface
 import Combine
-import DomainModule
-import Utility
+import StudentsDomainInterface
+import UtilityModule
 
 final class SignupEmailVerifyViewModel: BaseViewModel {
     @Published var email = "" {

@@ -1,26 +1,27 @@
-import DomainModule
-import FindIDFeature
-import NeedleFoundation
+import SigninFeatureInterface
 import SwiftUI
-import SignupFeature
-import RenewalPasswordFeature
+import AuthDomainInterface
+import NeedleFoundation
+import FindIDFeatureInterface
+import SignupFeatureInterface
+import RenewalPasswordFeatureInterface
 
 public protocol SigninDependency: Dependency {
     var signinUseCase: any SigninUseCase { get }
-    var schoolCodeComponent: SchoolCodeComponent { get }
-    var findIDComponent: FindIDComponent { get }
-    var enterInformationComponent: EnterInformationComponent { get }
+    var schoolCodeFactory: any SchoolCodeFactory { get }
+    var findIDFactory: any FindIDFactory { get }
+    var enterInformationFactory: any EnterInformationFactory { get }
 }
 
-public final class SigninComponent: Component<SigninDependency> {
+public final class SigninComponent: Component<SigninDependency>, SigninFactory {
     public func makeView() -> some View {
         SigninView(
             viewModel: .init(
                 signinUseCase: self.dependency.signinUseCase
             ),
-            schoolCodeComponent: self.dependency.schoolCodeComponent,
-            findIDComponent: self.dependency.findIDComponent,
-            enterInformationComponent: self.dependency.enterInformationComponent
+            schoolCodeFactory: self.dependency.schoolCodeFactory,
+            findIDFactory: self.dependency.findIDFactory,
+            enterInformationFactory: self.dependency.enterInformationFactory
         )
     }
 }

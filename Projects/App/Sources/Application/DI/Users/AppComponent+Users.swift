@@ -1,7 +1,6 @@
-import DataModule
-import DomainModule
 import NeedleFoundation
-import NetworkModule
+import UsersDomain
+import UsersDomainInterface
 
 public extension AppComponent {
     var remoteUsersDataSource: any RemoteUsersDataSource {

@@ -1,11 +1,14 @@
 
 
-import DataModule
-import DomainModule
 import Foundation
-import KeychainModule
+import Keychain
+import MealDomain
+import MealDomainInterface
 import NeedleFoundation
-import NetworkModule
+import NoticeDomain
+import NoticeDomainInterface
+import PointsDomain
+import PointsDomainInterface
 import SwiftUI
 import WidgetKit
 

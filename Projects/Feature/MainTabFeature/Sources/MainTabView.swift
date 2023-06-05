@@ -1,11 +1,11 @@
 import SwiftUI
-import HomeFeature
-import ApplyFeature
-import NoticeFeature
-import MyPageFeature
+import HomeFeatureInterface
+import ApplyFeatureInterface
+import NoticeFeatureInterface
+import MyPageFeatureInterface
 import BaseFeature
 import DesignSystem
-import Utility
+import UtilityModule
 
 // swiftlint: disable large_tuple
 struct MainTabView: View {
@@ -26,38 +26,42 @@ struct MainTabView: View {
         return tabItems
     }
 
-    private let homeComponent: HomeComponent
-    private let applyPageComponent: ApplyPageComponent
-    private let noticeComponent: NoticeListComponent
-    private let myPageComponent: MyPageComponent
+    private let homeFactory: any HomeFactory
+    private let applyPageFactory: any ApplyPageFactory
+    private let noticeFactory: any NoticeListFactory
+    private let myPageFactory: any MyPageFactory
 
     init(
-        homeComponent: HomeComponent,
-        applyPageComponent: ApplyPageComponent,
-        noticeComponent: NoticeListComponent,
-        myPageComponent: MyPageComponent
+        homeFactory: any HomeFactory,
+        applyPageFactory: any ApplyPageFactory,
+        noticeFactory: any NoticeListFactory,
+        myPageFactory: any MyPageFactory
     ) {
-        self.homeComponent = homeComponent
-        self.applyPageComponent = applyPageComponent
-        self.noticeComponent = noticeComponent
-        self.myPageComponent = myPageComponent
+        self.homeFactory = homeFactory
+        self.applyPageFactory = applyPageFactory
+        self.noticeFactory = noticeFactory
+        self.myPageFactory = myPageFactory
     }
 
     var body: some View {
         ZStack {
             TabView(selection: $selection) {
-                homeComponent.makeView()
+                homeFactory.makeView()
+                    .eraseToAnyView()
                     .tag(TabFlow.home)
 
                 if appState.features.studyRoomService || appState.features.remainService {
-                    applyPageComponent.makeView()
+                    applyPageFactory.makeView()
+                        .eraseToAnyView()
                         .tag(TabFlow.apply)
                 }
 
-                noticeComponent.makeView()
+                noticeFactory.makeView()
+                    .eraseToAnyView()
                     .tag(TabFlow.notice)
 
-                myPageComponent.makeView()
+                myPageFactory.makeView()
+                    .eraseToAnyView()
                     .tag(TabFlow.myPage)
             }
             .environment(\.tabbarHidden, $tabbarHidden)

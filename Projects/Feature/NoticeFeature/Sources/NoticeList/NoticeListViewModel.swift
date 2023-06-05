@@ -1,9 +1,6 @@
+import NoticeDomainInterface
 import BaseFeature
-import Foundation
-import DomainModule
-import ErrorModule
-import Combine
-import DataMappingModule
+import SwiftUI
 
 final class NoticeListViewModel: BaseViewModel {
     @Published var noticeList: [NoticeEntity] = []
