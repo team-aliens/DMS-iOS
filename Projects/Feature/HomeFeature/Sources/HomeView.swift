@@ -10,9 +10,6 @@ struct HomeView: View {
     @Environment(\.dmsSelectionTabbKey) var dmsSelectionTabbKey
     @EnvironmentObject var appState: AppState
 
-    @State var title = "오늘의 급식"
-    let titleArr = ["오늘의 급식", "오늘의 급식?", "오늘의 급식!", "먹지마~"]
-
     init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -53,7 +50,7 @@ struct HomeView: View {
                         )
                     }
 
-                    Text(title)
+                    Text("오늘의 급식")
                         .dmsFont(.title(.title1), color: .GrayScale.gray7)
                         .padding(.top, viewModel.isExistNewNotice ? 10 : 46)
 
@@ -62,6 +59,7 @@ struct HomeView: View {
 
                     MealCarouselView(
                         meal: viewModel.selectedDateMeal,
+                        selectedDate: viewModel.selectedDate,
                         isLoading: $viewModel.isLoading
                     )
                     .padding(.top, 36)
@@ -98,9 +96,6 @@ struct HomeView: View {
                 CalendarSheetView(selectedDate: $viewModel.selectedDate)
                     .padding(.top, 24)
             }
-        }
-        .onShake {
-            title = titleArr[Int.random(in: 0...3)]
         }
     }
 
