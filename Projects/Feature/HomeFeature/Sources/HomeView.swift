@@ -50,7 +50,7 @@ struct HomeView: View {
                         )
                     }
 
-                    Text(title)
+                    Text("오늘의 급식")
                         .dmsFont(.title(.title1), color: .GrayScale.gray7)
                         .padding(.top, viewModel.isExistNewNotice ? 10 : 46)
 
