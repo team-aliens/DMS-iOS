@@ -1,21 +1,19 @@
-import DesignSystem
 import Foundation
-import UtilityModule
 
-enum DisplayMealPart {
-    case breakfast
-    case lunch
-    case dinner
+public enum DisplayMealPart: Int {
+    case breakfast = 0
+    case lunch = 1
+    case dinner = 2
 
-    init(date: Date) {
-        switch date.hour {
+    public init(date: Date) {
+        switch Calendar.current.component(.hour, from: date) {
         case 0..<8:
             self = .breakfast
 
         case 8..<13:
             self = .lunch
 
-        case 13..<24:
+        case 13..<19:
             self = .dinner
 
         default:
@@ -23,7 +21,7 @@ enum DisplayMealPart {
         }
     }
 
-    var systemName: String {
+    public var systemName: String {
         switch self {
         case .breakfast:
             return "sun.haze"
@@ -36,7 +34,7 @@ enum DisplayMealPart {
         }
     }
 
-    var display: String {
+    public var display: String {
         switch self {
         case .breakfast:
             return "아침"
