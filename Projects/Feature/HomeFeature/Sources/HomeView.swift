@@ -100,9 +100,9 @@ struct HomeView: View {
                     .padding(.top, 24)
             }
         }
-        .onShake {
-            title = titleArr[Int.random(in: 0...3)]
-        }
+//        .onShake {
+//            title = titleArr[Int.random(in: 0...3)]
+//        }
     }
 
     @ViewBuilder
