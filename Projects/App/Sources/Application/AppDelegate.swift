@@ -4,9 +4,9 @@ import KeychainModule
 import UIKit
 import WatchConnectivity
 import Firebase
-import UserNotifications
+import FirebaseMessaging
 
-final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
     var session: WCSession!
     var keychain: (any Keychain)?
 
@@ -39,25 +39,48 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         }
 
         application.registerForRemoteNotifications()
+
         Messaging.messaging().delegate = self
+
+        UNUserNotificationCenter.current().delegate = self
 
         return true
     }
 
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("fcmToken: \\(fcmToken)")
-    }
-
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-      Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().apnsToken = deviceToken
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("fcmToken: \(String(describing: fcmToken))")
     }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler:
+        @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        print("willPresent: userInfo: ", userInfo)
+        completionHandler([.banner, .sound, .badge])
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        print("didReceive: userInfo: ", userInfo)
+        completionHandler()
+    }
+
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
       Messaging.messaging().apnsToken = deviceToken
     }
-    
 }
 
 extension AppDelegate: WCSessionDelegate {
