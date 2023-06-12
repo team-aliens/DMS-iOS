@@ -1,6 +1,7 @@
 import BaseFeature
+import SignupFeatureInterface
 import Combine
-import DomainModule
+import StudentsDomainInterface
 
 final class SignupTermsViewModel: BaseViewModel {
     @Published var isAgreeTerms = false
@@ -36,7 +37,13 @@ final class SignupTermsViewModel: BaseViewModel {
                 )
             )
         ) { [weak self] feature in
-            self?.dmsFeatures = feature
+            self?.dmsFeatures = DmsFeatures(
+                mealService: feature.mealService,
+                noticeService: feature.noticeService,
+                pointService: feature.pointService,
+                studyRoomService: feature.studyRoomService,
+                remainService: feature.remainService
+            )
             self?.isShowingAlert = true
             print("thisis")
             print(self?.dmsFeatures?.remainService ?? "failed parsing")

@@ -34,9 +34,30 @@ let targets: [Target] = [
         entitlements: "Support/\(env.appName).entitlements",
         scripts: scripts,
         dependencies: [
-            .Domain.AuthDomain,
+            .Feature.SignupFeature,
             .Feature.RootFeature,
-            .Shared.Data,
+            .Feature.FindIDFeature,
+            .Feature.SigninFeature,
+            .Feature.RenewalPasswordFeature,
+            .Feature.MainTabFeature,
+            .Feature.HomeFeature,
+            .Feature.ApplyFeature,
+            .Feature.StudyRoomFeature,
+            .Feature.RemainApplyFeature,
+            .Feature.MyPageFeature,
+            .Feature.NoticeFeature,
+            .Feature.SplashFeature,
+            .Domain.AuthDomain,
+            .Domain.FilesDomain,
+            .Domain.MealDomain,
+            .Domain.NoticeDomain,
+            .Domain.PointsDomain,
+            .Domain.RemainsDomain,
+            .Domain.SchoolDomain,
+            .Domain.StudyRoomsDomain,
+            .Domain.StudentsDomain,
+            .Domain.UsersDomain,
+            .Feature.RootFeature,
             .SPM.FirebaseMessaging,
             .target(name: "\(env.appName)Widget"),
             .target(name: "\(env.appName)WatchApp")
@@ -67,9 +88,10 @@ let targets: [Target] = [
         entitlements: "AppExtension/Support/\(env.appName)Widget.entitlements",
         scripts: widgetScripts,
         dependencies: [
-            .Core.DesignSystem,
-            .Shared.Data,
-            .SPM.Needle
+            .Domain.MealDomain,
+            .Domain.NoticeDomain,
+            .Domain.PointsDomain,
+            .Shared.DesignSystem
         ]
     ),
     .init(
@@ -83,7 +105,7 @@ let targets: [Target] = [
         sources: ["WatchApp/Sources/**"],
         resources: ["WatchApp/Resources/**"],
         dependencies: [
-            .Core.WatchDesignSystem,
+            .Shared.WatchDesignSystem,
             .Shared.WatchRestAPIModule,
             .SPM.Swinject
         ]

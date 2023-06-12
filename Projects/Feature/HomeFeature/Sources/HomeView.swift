@@ -1,7 +1,7 @@
 import BaseFeature
 import DesignSystem
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
@@ -59,6 +59,7 @@ struct HomeView: View {
 
                     MealCarouselView(
                         meal: viewModel.selectedDateMeal,
+                        selectedDate: viewModel.selectedDate,
                         isLoading: $viewModel.isLoading
                     )
                     .padding(.top, 36)

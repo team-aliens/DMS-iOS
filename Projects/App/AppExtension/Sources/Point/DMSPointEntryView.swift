@@ -1,7 +1,7 @@
 import DesignSystem
-import DomainModule
+import PointsDomainInterface
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct DMSPointEntryView: View {
     @Environment(\.widgetFamily) var widgetFamily

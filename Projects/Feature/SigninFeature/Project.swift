@@ -9,9 +9,9 @@ let project = Project.makeModule(
         .Feature.BaseFeature,
         .Feature.SignupFeature,
         .Feature.FindIDFeature,
-        .Feature.RenewalPasswordFeature
+        .Feature.RenewalPasswordFeatureInterface,
+        .Domain.AuthDomainInterface
     ],
     unitTestDependencies: [
-        .Shared.Data
     ]
 )

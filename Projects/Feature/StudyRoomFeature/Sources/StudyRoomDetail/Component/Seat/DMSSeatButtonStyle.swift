@@ -1,5 +1,5 @@
 import SwiftUI
-import DataMappingModule
+import DesignSystem
 
 public struct DMSSeatButtonStyle: ButtonStyle {
     public enum Style {

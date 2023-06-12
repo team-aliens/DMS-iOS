@@ -1,4 +1,4 @@
-import DomainModule
+import NoticeDomainInterface
 import NeedleFoundation
 import SwiftUI
 

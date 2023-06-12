@@ -1,7 +1,6 @@
 import NeedleFoundation
-import NetworkModule
-import DomainModule
-import DataModule
+import StudyRoomsDomain
+import StudyRoomsDomainInterface
 
 public extension AppComponent {
     var remoteStudyRoomsDataSource: any RemoteStudyRoomsDataSource {

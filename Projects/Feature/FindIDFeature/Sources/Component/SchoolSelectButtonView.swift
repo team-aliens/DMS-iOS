@@ -1,5 +1,6 @@
 import SwiftUI
-import DomainModule
+import SchoolDomainInterface
+import DesignSystem
 
 struct SchoolSelectButtonView: View {
     @State var placeholderText = "학교를 선택해 주세요"

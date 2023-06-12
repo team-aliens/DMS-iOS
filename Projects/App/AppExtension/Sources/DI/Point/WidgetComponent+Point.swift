@@ -1,7 +1,6 @@
 import NeedleFoundation
-import NetworkModule
-import DomainModule
-import DataModule
+import PointsDomain
+import PointsDomainInterface
 
 extension WidgetComponent {
     var remotePointsDataSource: any RemotePointsDataSource {

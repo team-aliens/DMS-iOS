@@ -1,8 +1,5 @@
+import StudyRoomsDomainInterface
 import BaseFeature
-import DomainModule
-import DataMappingModule
-import Combine
-import Foundation
 import SwiftUI
 
 final class StudyRoomDetailViewModel: BaseViewModel {

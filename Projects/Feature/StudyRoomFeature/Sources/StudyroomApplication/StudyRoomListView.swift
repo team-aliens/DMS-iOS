@@ -1,19 +1,19 @@
 import DesignSystem
-import DomainModule
-import Utility
+import UtilityModule
 import SwiftUI
+import StudyRoomFeatureInterface
 
 struct StudyRoomListView: View {
     @StateObject var viewModel: StudyRoomListViewModel
-    private let studyRoomDetailComponent: StudyRoomDetailComponent
+    private let studyRoomDetailFactory: any StudyRoomDetailFactory
     @Environment(\.dismiss) var dismiss
 
     init(
         viewModel: StudyRoomListViewModel,
-        studyRoomDetailComponent: StudyRoomDetailComponent
+        studyRoomDetailFactory: any StudyRoomDetailFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.studyRoomDetailComponent = studyRoomDetailComponent
+        self.studyRoomDetailFactory = studyRoomDetailFactory
     }
 
     var body: some View {
@@ -86,10 +86,20 @@ struct StudyRoomListView: View {
             viewModel.onAppear()
         }
         .navigate(
-            to: studyRoomDetailComponent.makeView(
-                studyRoomEntity: viewModel.studyRoomDetail,
+            to: studyRoomDetailFactory.makeView(
+                studyRoomParam: StudyRoomParam(
+                    id: viewModel.studyRoomDetail.id,
+                    floor: viewModel.studyRoomDetail.floor,
+                    name: viewModel.studyRoomDetail.name,
+                    availableGrade: viewModel.studyRoomDetail.availableGrade,
+                    availableSex: viewModel.studyRoomDetail.availableSex.rawValue,
+                    inUseHeadcount: viewModel.studyRoomDetail.inUseHeadcount,
+                    totalAvailableSeat: viewModel.studyRoomDetail.totalAvailableSeat,
+                    isMine: viewModel.studyRoomDetail.isMine
+                ),
                 timeSlot: viewModel.timeSlotParam ?? ""
-            ),
+            )
+            .eraseToAnyView(),
             when: $viewModel.isNavigateDetail
         )
     }

@@ -1,6 +1,5 @@
 import BaseFeature
-import Combine
-import DomainModule
+import AuthDomainInterface
 
 final class SplashViewModel: BaseViewModel {
     private let reissueTokenUseCase: any ReissueTokenUseCase
@@ -12,7 +11,7 @@ final class SplashViewModel: BaseViewModel {
     }
 
     func onAppear(
-        receiveData: @escaping (DmsFeatures) -> Void,
+        receiveData: @escaping (SigninDmsFeatures) -> Void,
         onError: @escaping (Error) -> Void
     ) {
         addCancellable(reissueTokenUseCase.execute()) { features in

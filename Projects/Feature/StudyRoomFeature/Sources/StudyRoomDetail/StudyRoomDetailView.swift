@@ -1,6 +1,5 @@
 import BaseFeature
 import DesignSystem
-import DomainModule
 import SwiftUI
 
 struct StudyRoomDetailView: View {

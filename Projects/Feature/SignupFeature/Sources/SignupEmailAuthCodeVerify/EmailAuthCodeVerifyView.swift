@@ -1,19 +1,21 @@
 import BaseFeature
 import DesignSystem
 import SwiftUI
+import SignupFeatureInterface
+import UtilityModule
 
 struct SignupEmailAuthCodeVerifyView: View {
     @StateObject var viewModel: SignupEmailAuthCodeVerifyViewModel
     @Environment(\.dismiss) var dismiss
     @State var isViewDidLoad = false
-    private let idSettingComponent: IDSettingComponent
+    private let idSettingFactory: any IDSettingFactory
 
     init(
         viewModel: SignupEmailAuthCodeVerifyViewModel,
-        idSettingComponent: IDSettingComponent
+        idSettingFactory: any IDSettingFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.idSettingComponent = idSettingComponent
+        self.idSettingFactory = idSettingFactory
     }
 
     var body: some View {
@@ -63,12 +65,13 @@ struct SignupEmailAuthCodeVerifyView: View {
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .navigate(
-            to: idSettingComponent.makeView(
+            to: idSettingFactory.makeView(
                 idSettingParam: .init(
                     signupEmailAuthCodeVerifyParam: viewModel.signupEmailAuthCodeVerifyParam,
                     authCode: viewModel.authCode
                 )
-            ),
+            )
+            .eraseToAnyView(),
             when: $viewModel.isNavigateSignupID
         )
     }

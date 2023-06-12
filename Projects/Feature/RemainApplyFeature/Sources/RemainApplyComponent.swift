@@ -1,6 +1,7 @@
 import SwiftUI
-import DomainModule
+import RemainsDomainInterface
 import NeedleFoundation
+import RemainApplyFeatureInterface
 
 public protocol RemainApplyDependency: Dependency {
     var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase { get }
@@ -9,7 +10,7 @@ public protocol RemainApplyDependency: Dependency {
     var remainingApplicationsChangesUseCase: any RemainingApplicationsChangesUseCase { get }
 }
 
-public final class RemainApplyComponent: Component<RemainApplyDependency> {
+public final class RemainApplyComponent: Component<RemainApplyDependency>, RemainApplyFactory {
     public func makeView() -> some View {
         RemainApplyView(
             viewModel: .init(

@@ -1,7 +1,6 @@
-import DomainModule
-import Foundation
 import NeedleFoundation
 import SwiftUI
+import MealDomainInterface
 
 protocol DMSMealDependency: Dependency {
     var fetchMealListUseCase: any FetchMealListUseCase { get }

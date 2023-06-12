@@ -1,17 +1,19 @@
 import DesignSystem
-import DomainModule
+import MealDomainInterface
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct MealCarouselView: View {
     @StateObject var uiState = UIStateModel()
     var meal: MealEntity?
+    var selectedDate: Date
     @Binding var isLoading: Bool
     let spacing: CGFloat = 30
     let widthOfHiddenCards: CGFloat = UIScreen.main.bounds.width / 2 * 0.15
     let breakfastSkeleton: [String] = .generateSkeletonDummy()
     let lunchSkeleton: [String] = .generateSkeletonDummy()
     let dinnerSkeleton: [String] = .generateSkeletonDummy()
+    let displayMealPart: DisplayMealPart = DisplayMealPart(date: Date())
 
     var body: some View {
         CarouselCanvas {
@@ -37,11 +39,14 @@ struct MealCarouselView: View {
                 }
             }
             .environmentObject(uiState)
-            .onChange(of: meal) { _ in
+            .onChange(of: selectedDate) { _ in
                 withAnimation {
                     self.uiState.activeCard = 0
                 }
             }
+        }
+        .onAppear {
+            uiState.activeCard = displayMealPart.rawValue
         }
     }
 

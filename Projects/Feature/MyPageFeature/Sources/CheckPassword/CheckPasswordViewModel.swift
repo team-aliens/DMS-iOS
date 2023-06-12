@@ -1,7 +1,7 @@
 import BaseFeature
 import Combine
-import DomainModule
-import Utility
+import UsersDomainInterface
+import UtilityModule
 
 final class CheckPasswordViewModel: BaseViewModel {
     @Published var password = "" {

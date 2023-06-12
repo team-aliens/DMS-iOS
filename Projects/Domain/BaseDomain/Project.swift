@@ -3,11 +3,19 @@ import ProjectDescriptionHelpers
 import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "BaseDomain",
+    name: ModulePaths.Domain.BaseDomain.rawValue,
     product: .framework,
     targets: [.unitTest],
+    externalDependencies: [
+        .SPM.Moya,
+        .SPM.CombineMoya
+    ],
     internalDependencies: [
-        .Shared.ThirdPartyLib,
-        .Shared.Utility
+        .Shared.GlobalThirdPartyLibrary,
+        .Shared.UtilityModule,
+        .Core.Keychain
+    ],
+    additionalPlistRows: [
+        "BASE_URL": .string("$(BASE_URL)")
     ]
 )

@@ -1,8 +1,6 @@
 import NeedleFoundation
-import NetworkModule
-import DomainModule
-import DataModule
-import DatabaseModule
+import AuthDomain
+import AuthDomainInterface
 
 public extension AppComponent {
     var localAuthDataSource: any LocalAuthDataSource {

@@ -1,16 +1,17 @@
 import DesignSystem
-import DomainModule
+import StudyRoomsDomainInterface
 import SwiftUI
 import NeedleFoundation
+import StudyRoomFeatureInterface
 
 public protocol StudyRoomListDependency: Dependency {
     var fetchStudyRoomListUseCase: any FetchStudyRoomListUseCase { get }
     var fetchStudyAvailableTimeUseCase: any FetchStudyAvailableTimeUseCase { get }
     var fetchStudyroomTimeListUseCase: any FetchStudyroomTimeListUseCase { get }
-    var studyRoomDetailComponent: StudyRoomDetailComponent { get }
+    var studyRoomDetailFactory: any StudyRoomDetailFactory { get }
 }
 
-public final class StudyRoomListComponent: Component<StudyRoomListDependency> {
+public final class StudyRoomListComponent: Component<StudyRoomListDependency>, StudyRoomListFactory {
     public func makeView() -> some View {
         StudyRoomListView(
             viewModel: .init(
@@ -18,7 +19,7 @@ public final class StudyRoomListComponent: Component<StudyRoomListDependency> {
                 fetchStudyAvailableTimeUseCase: dependency.fetchStudyAvailableTimeUseCase,
                 fetchStudyroomTimeListUseCase: dependency.fetchStudyroomTimeListUseCase
             ),
-            studyRoomDetailComponent: dependency.studyRoomDetailComponent
+            studyRoomDetailFactory: dependency.studyRoomDetailFactory
         )
     }
 }

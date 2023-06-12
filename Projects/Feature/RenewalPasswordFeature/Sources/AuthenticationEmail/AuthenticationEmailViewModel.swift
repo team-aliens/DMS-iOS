@@ -1,7 +1,7 @@
 import BaseFeature
+import RenewalPasswordFeatureInterface
 import Combine
-import DomainModule
-import ErrorModule
+import AuthDomainInterface
 import Foundation
 
 final class AuthenticationEmailViewModel: BaseViewModel {
@@ -37,7 +37,7 @@ final class AuthenticationEmailViewModel: BaseViewModel {
         super.init()
 
         addCancellable(
-            timer.setFailureType(to: DmsError.self).eraseToAnyPublisher()
+            timer.setFailureType(to: Error.self).eraseToAnyPublisher()
         ) { [weak self] _ in
             guard let self, self.timeRemaining > 0 else { return }
             self.timeRemaining -= 1

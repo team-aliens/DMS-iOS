@@ -1,10 +1,6 @@
+import PointsDomainInterface
 import BaseFeature
-import Foundation
-import DomainModule
-import ErrorModule
-import Combine
-import DataMappingModule
-import DesignSystem
+import SwiftUI
 
 final class RewardPointDetailViewModel: BaseViewModel {
     @Published var point: PointEntity?

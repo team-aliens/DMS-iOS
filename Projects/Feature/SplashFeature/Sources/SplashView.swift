@@ -16,7 +16,11 @@ struct SplashView: View {
         VStack {}
             .onAppear {
                 viewModel.onAppear { features in
-                    appState.features = features
+                    appState.features.mealService = features.mealService
+                    appState.features.noticeService = features.noticeService
+                    appState.features.pointService = features.pointService
+                    appState.features.remainService = features.remainService
+                    appState.features.studyRoomService = features.studyRoomService
                     appState.sceneFlow = .main
                 } onError: { _ in
                     appState.sceneFlow = .auth
