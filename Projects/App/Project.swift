@@ -17,7 +17,7 @@ let settings: Settings =
               configurations: configurations,
               defaultSettings: .recommended)
 
-let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .widgetNeedle, .needle, .googleInfoPlistScripts]
+let scripts: [TargetScript] = isCI ? [] : [.swiftLint, .widgetNeedle, .needle]
 let widgetScripts: [TargetScript] = isCI ? [] : [.widgetNeedle]
 
 let targets: [Target] = [
