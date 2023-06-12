@@ -62,6 +62,7 @@ struct HomeView: View {
 
                     MealCarouselView(
                         meal: viewModel.selectedDateMeal,
+                        selectedDate: viewModel.selectedDate,
                         isLoading: $viewModel.isLoading
                     )
                     .padding(.top, 36)
