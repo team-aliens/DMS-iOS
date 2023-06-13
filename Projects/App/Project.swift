@@ -57,7 +57,7 @@ let targets: [Target] = [
             .Domain.StudyRoomsDomain,
             .Domain.StudentsDomain,
             .Domain.UsersDomain,
-            .Feature.RootFeature,
+            .Domain.NotificationDomain,
             .SPM.FirebaseMessaging,
             .target(name: "\(env.appName)Widget"),
             .target(name: "\(env.appName)WatchApp")
