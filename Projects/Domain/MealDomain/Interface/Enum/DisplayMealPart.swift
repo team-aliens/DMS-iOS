@@ -2,8 +2,9 @@ import Foundation
 
 public enum DisplayMealPart: Int {
     case breakfast = 0
-    case lunch = 1
-    case dinner = 2
+    case lunch
+    case dinner
+    case nextDayBreakfast
 
     public init(date: Date) {
         switch Calendar.current.component(.hour, from: date) {
