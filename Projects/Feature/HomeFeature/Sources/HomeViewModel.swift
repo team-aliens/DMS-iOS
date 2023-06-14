@@ -36,6 +36,9 @@ final class HomeViewModel: BaseViewModel {
     }
 
     func onAppear() {
+        if DisplayMealPart(date: Date()) == .nextDayBreakfast {
+            selectedDate = selectedDate.adding(by: .day, value: 1)
+        }
         addCancellable(fetchWhetherNewNoticeUseCase.execute()) { [weak self] isExistNewNotice in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 withAnimation {
