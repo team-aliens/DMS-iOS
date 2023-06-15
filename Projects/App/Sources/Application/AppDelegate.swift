@@ -5,9 +5,8 @@ import UIKit
 import WatchConnectivity
 import Firebase
 import FirebaseMessaging
-import NotificationDomain
 
-final class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     var session: WCSession!
     var keychain: (any Keychain)?
 
@@ -25,7 +24,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         if #available(iOS 10.0, *) {
-          // For iOS 10 display notification (sent via APNS)
           UNUserNotificationCenter.current().delegate = self
 
           let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -53,11 +51,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("fcmToken: \(String(describing: fcmToken))")
-    }
-}
+//extension AppDelegate: MessagingDelegate {
+//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+//        print("fcmToken: \(String(describing: fcmToken))")
+//    }
+//}
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(

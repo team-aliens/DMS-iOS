@@ -25,6 +25,8 @@ import NoticeDomain
 import NoticeDomainInterface
 import NoticeFeature
 import NoticeFeatureInterface
+import NotificationDomain
+import NotificationDomainInterface
 import PointsDomain
 import PointsDomainInterface
 import RemainApplyFeature
