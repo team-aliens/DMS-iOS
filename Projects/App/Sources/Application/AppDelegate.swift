@@ -5,6 +5,7 @@ import UIKit
 import WatchConnectivity
 import Firebase
 import FirebaseMessaging
+import NotificationDomain
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var session: WCSession!

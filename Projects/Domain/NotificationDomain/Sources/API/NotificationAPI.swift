@@ -1,33 +1,55 @@
-import DataMappingModule
-import ErrorModule
+import BaseDomain
 import Moya
+import NotificationDomainInterface
 
 public enum NotificationAPI {
-    
+    case postDeviceToken(token: String)
 }
 
 extension NotificationAPI: DmsAPI {
+    public typealias ErrorType = NotificationDomainError
     public var domain: DmsDomain {
-        <#Domain#>
+        .notifications
     }
 
     public var urlPath: String {
-        return ""
+        switch self {
+        case .postDeviceToken:
+            return "/token"
+        }
     }
 
     public var method: Moya.Method {
-        return .get
+        switch self {
+        case .postDeviceToken:
+            return .post
+        }
     }
 
     public var task: Moya.Task {
-        return .requestPlain
+        switch self {
+        case let .postDeviceToken(token):
+            return  .requestParameters(
+                parameters: [
+                    "token": token
+                ], encoding: JSONEncoding.default
+            )
+        }
     }
 
     public var jwtTokenType: JwtTokenType {
         .accessToken
     }
 
-    public var errorMap: [Int: ErrorModule.DmsError] {
-        [:]
+    public var errorMap: [Int: ErrorType] {
+        switch self {
+        case .postDeviceToken:
+            return [
+                400: .badRequest,
+                401: .tokenExpired,
+                403: .tooManyRequest,
+                500: .internalServerError
+            ]
+        }
     }
 }
