@@ -8,13 +8,13 @@ public enum DisplayMealPart: Int {
 
     public init(date: Date) {
         switch Calendar.current.component(.hour, from: date) {
-        case 0..<8:
+        case 0..<9:
             self = .breakfast
 
-        case 8..<13:
+        case 8..<14:
             self = .lunch
 
-        case 13..<19:
+        case 14..<19:
             self = .dinner
 
         default:
