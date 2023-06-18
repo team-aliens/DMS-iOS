@@ -23,25 +23,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         FirebaseApp.configure()
 
-        if #available(iOS 10.0, *) {
-          UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
 
-          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-          UNUserNotificationCenter.current().requestAuthorization(
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
             options: authOptions,
             completionHandler: { _, _ in }
-          )
-        } else {
-          let settings: UIUserNotificationSettings =
-            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-          application.registerUserNotificationSettings(settings)
-        }
+        )
 
         application.registerForRemoteNotifications()
-
-        Messaging.messaging().delegate = self
-
-        UNUserNotificationCenter.current().delegate = self
 
         return true
     }
@@ -51,34 +43,26 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 }
 
-//extension AppDelegate: MessagingDelegate {
-//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-//        print("fcmToken: \(String(describing: fcmToken))")
-//    }
-//}
-
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler:
-        @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        print("willPresent: userInfo: ", userInfo)
-        completionHandler([.banner, .sound, .badge])
+        @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.banner, .sound, .list, .badge])
     }
 
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        print("didReceive: userInfo: ", userInfo)
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         completionHandler()
     }
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-      Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().apnsToken = deviceToken
     }
 }
 

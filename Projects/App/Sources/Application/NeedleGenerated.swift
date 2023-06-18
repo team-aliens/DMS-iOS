@@ -71,6 +71,9 @@ private class SplashDependencye0cb7136f2ec3edfd60aProvider: SplashDependency {
     var reissueTokenUseCase: any ReissueTokenUseCase {
         return appComponent.reissueTokenUseCase
     }
+    var postDeviceTokenUseCase: any PostDeviceTokenUseCase {
+        return appComponent.postDeviceTokenUseCase
+    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent
@@ -586,6 +589,9 @@ extension AppComponent: Registration {
         localTable["checkEmailExistByAccountIDUseCase-any CheckEmailExistByAccountIDUseCase"] = { [unowned self] in self.checkEmailExistByAccountIDUseCase as Any }
         localTable["checkAccountIDIsExistUseCase-any CheckAccountIDIsExistUseCase"] = { [unowned self] in self.checkAccountIDIsExistUseCase as Any }
         localTable["logoutUseCase-any LogoutUseCase"] = { [unowned self] in self.logoutUseCase as Any }
+        localTable["remoteNotificationDataSource-any RemoteNotificationDataSource"] = { [unowned self] in self.remoteNotificationDataSource as Any }
+        localTable["notificationRepository-any NotificationRepository"] = { [unowned self] in self.notificationRepository as Any }
+        localTable["postDeviceTokenUseCase-any PostDeviceTokenUseCase"] = { [unowned self] in self.postDeviceTokenUseCase as Any }
         localTable["schoolCodeFactory-any SchoolCodeFactory"] = { [unowned self] in self.schoolCodeFactory as Any }
         localTable["findIDFactory-any FindIDFactory"] = { [unowned self] in self.findIDFactory as Any }
         localTable["signinFactory-any SigninFactory"] = { [unowned self] in self.signinFactory as Any }
@@ -659,6 +665,7 @@ extension AppComponent: Registration {
 extension SplashComponent: Registration {
     public func registerItems() {
         keyPathToName[\SplashDependency.reissueTokenUseCase] = "reissueTokenUseCase-any ReissueTokenUseCase"
+        keyPathToName[\SplashDependency.postDeviceTokenUseCase] = "postDeviceTokenUseCase-any PostDeviceTokenUseCase"
     }
 }
 extension SchoolConfirmationQuestionsComponent: Registration {

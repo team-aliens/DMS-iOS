@@ -8,13 +8,13 @@ public extension AppComponent {
             RemoteNotificationDataSourceImpl(keychain: keychain)
         }
     }
-    
+
     var notificationRepository: any NotificationRepository {
         shared {
             NotificationRepositoryImpl(remoteNotificationDataSource: remoteNotificationDataSource)
         }
     }
-    
+
     var postDeviceTokenUseCase: any PostDeviceTokenUseCase {
         shared {
             PostDeviceTokenUseCaseImpl(notificationRepository: notificationRepository)
