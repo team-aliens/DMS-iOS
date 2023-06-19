@@ -13,7 +13,6 @@ struct MealCarouselView: View {
     let breakfastSkeleton: [String] = .generateSkeletonDummy()
     let lunchSkeleton: [String] = .generateSkeletonDummy()
     let dinnerSkeleton: [String] = .generateSkeletonDummy()
-    let displayMealPart: DisplayMealPart = DisplayMealPart(date: Date())
 
     var body: some View {
         CarouselCanvas {
@@ -46,12 +45,12 @@ struct MealCarouselView: View {
             }
         }
         .onAppear {
-            uiState.activeCard = displayMealPart.rawValue
+            uiState.activeCard = DisplayMealPart(date: Date()).rawValue % 4
         }
     }
 
     @ViewBuilder
-    func mealView(meal: [String], mealType: MealType) -> some View {
+    func mealView(meal: [String], mealType: DisplayMealPart) -> some View {
         VStack(spacing: 8) {
             Image(systemName: mealType.systemName)
                 .resizable()
@@ -103,24 +102,5 @@ struct MealCarouselView: View {
         .dmsShadow(style: .mealCarousel)
         .transition(.slide)
         .animation(.spring(), value: uiState.screenDrag)
-    }
-}
-
-enum MealType: Int {
-    case breakfast = 0
-    case lunch
-    case dinner
-
-    var systemName: String {
-        switch self {
-        case .breakfast:
-            return "sun.haze"
-
-        case .lunch:
-            return "sun.max"
-
-        case .dinner:
-            return "moon"
-        }
     }
 }

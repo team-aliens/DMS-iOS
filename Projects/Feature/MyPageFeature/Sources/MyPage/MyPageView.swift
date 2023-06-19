@@ -163,7 +163,7 @@ struct MyPageView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     myPageOptionRowCardView(title: "회원 탈퇴")
-                        .dmsFont(.body(.body2), color: .GrayScale.gray6)
+                        .dmsFont(.body(.body2), color: .ErrorVariant.error)
                         .onTapGesture(perform: viewModel.withdrawalButtonDidTap)
                         .cornerRadius(10)
                 }

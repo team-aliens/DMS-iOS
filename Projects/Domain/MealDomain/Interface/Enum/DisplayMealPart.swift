@@ -2,28 +2,29 @@ import Foundation
 
 public enum DisplayMealPart: Int {
     case breakfast = 0
-    case lunch = 1
-    case dinner = 2
+    case lunch
+    case dinner
+    case nextDayBreakfast
 
     public init(date: Date) {
         switch Calendar.current.component(.hour, from: date) {
-        case 0..<8:
+        case 0..<9:
             self = .breakfast
 
-        case 8..<13:
+        case 8..<14:
             self = .lunch
 
-        case 13..<19:
+        case 14..<19:
             self = .dinner
 
         default:
-            self = .breakfast
+            self = .nextDayBreakfast
         }
     }
 
     public var systemName: String {
         switch self {
-        case .breakfast:
+        case .breakfast, .nextDayBreakfast:
             return "sun.haze"
 
         case .lunch:
@@ -36,7 +37,7 @@ public enum DisplayMealPart: Int {
 
     public var display: String {
         switch self {
-        case .breakfast:
+        case .breakfast, .nextDayBreakfast:
             return "아침"
 
         case .lunch:
