@@ -13,17 +13,20 @@ struct MyPageView: View {
     private let changeProfileFactory: any ChangeProfileFactory
     private let rewardPointDetailFactory: any RewardPointDetailFactory
     private let checkPasswordFactory: any CheckPasswordFactory
+    private let setNotificationFactory: any SetNotificationFactory
 
     init(
         viewModel: MyPageViewModel,
         changeProfileFactory: any ChangeProfileFactory,
         rewardPointDetailFactory: any RewardPointDetailFactory,
-        checkPasswordFactory: any CheckPasswordFactory
+        checkPasswordFactory: any CheckPasswordFactory,
+        setNotificationFactory: any SetNotificationFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.changeProfileFactory = changeProfileFactory
         self.rewardPointDetailFactory = rewardPointDetailFactory
         self.checkPasswordFactory = checkPasswordFactory
+        self.setNotificationFactory = setNotificationFactory
     }
 
     var body: some View {
@@ -139,6 +142,16 @@ struct MyPageView: View {
                     }
 
                     Button {
+                        viewModel.isNavigateSetNotifcation.toggle()
+                    } label: {
+                        myPageOptionRowCardView(title: "알림 설정")
+                            .dmsFont(.body(.body2), color: .GrayScale.gray6)
+                    }
+
+                    Divider()
+                        .padding(.horizontal, 10)
+
+                    Button {
                         viewModel.isNavigateChangePassword.toggle()
                     } label: {
                         myPageOptionRowCardView(title: "비밀번호 변경")
@@ -224,6 +237,10 @@ struct MyPageView: View {
         .navigate(
             to: rewardPointDetailFactory.makeView().eraseToAnyView(),
             when: $viewModel.isNavigateRewardPointDetail
+        )
+        .navigate(
+            to: setNotificationFactory.makeView().eraseToAnyView(),
+            when: $viewModel.isNavigateSetNotifcation
         )
     }
 

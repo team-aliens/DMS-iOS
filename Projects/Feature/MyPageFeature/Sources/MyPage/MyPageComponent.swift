@@ -11,6 +11,7 @@ public protocol MyPageDependency: Dependency {
     var changeProfileFactory: any ChangeProfileFactory { get }
     var rewardPointDetailFactory: any RewardPointDetailFactory { get }
     var checkPasswordFactory: any CheckPasswordFactory { get }
+    var setNotificationFactory: any SetNotificationFactory { get }
 }
 
 public final class MyPageComponent: Component<MyPageDependency>, MyPageFactory {
@@ -24,7 +25,8 @@ public final class MyPageComponent: Component<MyPageDependency>, MyPageFactory {
                 ),
                 changeProfileFactory: self.dependency.changeProfileFactory,
                 rewardPointDetailFactory: self.dependency.rewardPointDetailFactory,
-                checkPasswordFactory: self.dependency.checkPasswordFactory
+                checkPasswordFactory: self.dependency.checkPasswordFactory,
+                setNotificationFactory: self.dependency.setNotificationFactory
             )
         }
         .navigationViewStyle(.stack)

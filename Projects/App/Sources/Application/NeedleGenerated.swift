@@ -236,6 +236,17 @@ private class MainTabDependency2826cdb310ed0b17a725Provider: MainTabDependency {
 private func factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return MainTabDependency2826cdb310ed0b17a725Provider(appComponent: parent1(component) as! AppComponent)
 }
+private class SetNotificationDependency51c11ff0b19da5469478Provider: SetNotificationDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->AppComponent->SetNotificationComponent
+private func factory7b192ee7636dfe394db2e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SetNotificationDependency51c11ff0b19da5469478Provider()
+}
 private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase {
         return appComponent.fetchMyProfileUseCase
@@ -254,6 +265,9 @@ private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     }
     var checkPasswordFactory: any CheckPasswordFactory {
         return appComponent.checkPasswordFactory
+    }
+    var setNotificationFactory: any SetNotificationFactory {
+        return appComponent.setNotificationFactory
     }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
@@ -616,6 +630,7 @@ extension AppComponent: Registration {
         localTable["rewardPointDetailFactory-any RewardPointDetailFactory"] = { [unowned self] in self.rewardPointDetailFactory as Any }
         localTable["checkPasswordFactory-any CheckPasswordFactory"] = { [unowned self] in self.checkPasswordFactory as Any }
         localTable["modifyPasswordFactory-any ModifyPasswordFactory"] = { [unowned self] in self.modifyPasswordFactory as Any }
+        localTable["setNotificationFactory-any SetNotificationFactory"] = { [unowned self] in self.setNotificationFactory as Any }
         localTable["studyRoomListFactory-any StudyRoomListFactory"] = { [unowned self] in self.studyRoomListFactory as Any }
         localTable["applyPageFactory-any ApplyPageFactory"] = { [unowned self] in self.applyPageFactory as Any }
         localTable["remainApplyFactory-any RemainApplyFactory"] = { [unowned self] in self.remainApplyFactory as Any }
@@ -725,6 +740,11 @@ extension MainTabComponent: Registration {
         keyPathToName[\MainTabDependency.myPageFactory] = "myPageFactory-any MyPageFactory"
     }
 }
+extension SetNotificationComponent: Registration {
+    public func registerItems() {
+
+    }
+}
 extension MyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyPageDependency.fetchMyProfileUseCase] = "fetchMyProfileUseCase-any FetchMyProfileUseCase"
@@ -733,6 +753,7 @@ extension MyPageComponent: Registration {
         keyPathToName[\MyPageDependency.changeProfileFactory] = "changeProfileFactory-any ChangeProfileFactory"
         keyPathToName[\MyPageDependency.rewardPointDetailFactory] = "rewardPointDetailFactory-any RewardPointDetailFactory"
         keyPathToName[\MyPageDependency.checkPasswordFactory] = "checkPasswordFactory-any CheckPasswordFactory"
+        keyPathToName[\MyPageDependency.setNotificationFactory] = "setNotificationFactory-any SetNotificationFactory"
     }
 }
 extension ModifyPasswordComponent: Registration {
@@ -873,6 +894,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->AppComponent->SignupEmailVerifyComponent", factory3b1904c76335d70151ebf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->SetNotificationComponent", factory7b192ee7636dfe394db2e3b0c44298fc1c149afb)
     registerProviderFactory("^->AppComponent->MyPageComponent", factory0f6f456ebf157d02dfb3f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ModifyPasswordComponent", factoryf1815b12945a9aa456a2f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->RewardPointDetailComponent", factory87993268d9e212be8b1af47b58f8f304c97af4d5)

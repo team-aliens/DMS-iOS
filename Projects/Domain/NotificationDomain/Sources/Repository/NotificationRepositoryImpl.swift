@@ -11,4 +11,8 @@ public struct NotificationRepositoryImpl: NotificationRepository {
     public func postDeviceToken(token: String) -> AnyPublisher<Void, Error> {
         remoteNotificationDataSource.postDeviceToken(token: token)
     }
+
+    public func subscribeTopic(token: String, topic: TopicType) -> AnyPublisher<Void, Error> {
+        <#code#>
+    }
 }

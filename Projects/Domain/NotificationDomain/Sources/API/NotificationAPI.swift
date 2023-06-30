@@ -4,6 +4,7 @@ import NotificationDomainInterface
 
 public enum NotificationAPI {
     case postDeviceToken(token: String)
+    case subscribeTopic(token: String, topic: TopicType)
 }
 
 extension NotificationAPI: DmsAPI {
@@ -16,6 +17,8 @@ extension NotificationAPI: DmsAPI {
         switch self {
         case .postDeviceToken:
             return "/token"
+        case .subscribeTopic:
+            return "/topic"
         }
     }
 
@@ -23,16 +26,25 @@ extension NotificationAPI: DmsAPI {
         switch self {
         case .postDeviceToken:
             return .post
+        case .subscribeTopic:
+            return .post
         }
     }
 
     public var task: Moya.Task {
         switch self {
         case let .postDeviceToken(token):
-            return  .requestParameters(
+            return .requestParameters(
                 parameters: [
                     "token": token
                 ], encoding: JSONEncoding.default
+            )
+        case let .subscribeTopic(token, topic):
+            return .requestParameters(
+                parameters: [
+                
+                ],
+                encoding: <#T##ParameterEncoding#>
             )
         }
     }
