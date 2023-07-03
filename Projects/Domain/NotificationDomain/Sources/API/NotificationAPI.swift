@@ -42,9 +42,10 @@ extension NotificationAPI: DmsAPI {
         case let .subscribeTopic(token, topic):
             return .requestParameters(
                 parameters: [
-                
+                    "device_token": token,
+                    "topic": topic
                 ],
-                encoding: <#T##ParameterEncoding#>
+                encoding: JSONEncoding.default
             )
         }
     }
@@ -56,6 +57,14 @@ extension NotificationAPI: DmsAPI {
     public var errorMap: [Int: ErrorType] {
         switch self {
         case .postDeviceToken:
+            return [
+                400: .badRequest,
+                401: .tokenExpired,
+                403: .tooManyRequest,
+                500: .internalServerError
+            ]
+
+        case .subscribeTopic:
             return [
                 400: .badRequest,
                 401: .tokenExpired,
