@@ -13,6 +13,6 @@ public struct NotificationRepositoryImpl: NotificationRepository {
     }
 
     public func subscribeTopic(token: String, topic: TopicType) -> AnyPublisher<Void, Error> {
-        <#code#>
+        remoteNotificationDataSource.subscribeTopic(token: token, topic: topic)
     }
 }

@@ -237,15 +237,17 @@ private func factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5(_ component: Needle
     return MainTabDependency2826cdb310ed0b17a725Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class SetNotificationDependency51c11ff0b19da5469478Provider: SetNotificationDependency {
-
-
-    init() {
-
+    var subscribeTopicUseCase: any SubscribeTopicUseCase {
+        return appComponent.subscribeTopicUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
     }
 }
 /// ^->AppComponent->SetNotificationComponent
-private func factory7b192ee7636dfe394db2e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return SetNotificationDependency51c11ff0b19da5469478Provider()
+private func factory7b192ee7636dfe394db2f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SetNotificationDependency51c11ff0b19da5469478Provider(appComponent: parent1(component) as! AppComponent)
 }
 private class MyPageDependency48d84b530313b3ee40feProvider: MyPageDependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase {
@@ -606,6 +608,7 @@ extension AppComponent: Registration {
         localTable["remoteNotificationDataSource-any RemoteNotificationDataSource"] = { [unowned self] in self.remoteNotificationDataSource as Any }
         localTable["notificationRepository-any NotificationRepository"] = { [unowned self] in self.notificationRepository as Any }
         localTable["postDeviceTokenUseCase-any PostDeviceTokenUseCase"] = { [unowned self] in self.postDeviceTokenUseCase as Any }
+        localTable["subscribeTopicUseCase-any SubscribeTopicUseCase"] = { [unowned self] in self.subscribeTopicUseCase as Any }
         localTable["schoolCodeFactory-any SchoolCodeFactory"] = { [unowned self] in self.schoolCodeFactory as Any }
         localTable["findIDFactory-any FindIDFactory"] = { [unowned self] in self.findIDFactory as Any }
         localTable["signinFactory-any SigninFactory"] = { [unowned self] in self.signinFactory as Any }
@@ -742,7 +745,7 @@ extension MainTabComponent: Registration {
 }
 extension SetNotificationComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\SetNotificationDependency.subscribeTopicUseCase] = "subscribeTopicUseCase-any SubscribeTopicUseCase"
     }
 }
 extension MyPageComponent: Registration {
@@ -894,7 +897,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->AppComponent->SignupEmailVerifyComponent", factory3b1904c76335d70151ebf47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->SignupProfileImageComponent", factory6792674212c15df7e9cff47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MainTabComponent", factory1ab5a747ddf21e1393f9f47b58f8f304c97af4d5)
-    registerProviderFactory("^->AppComponent->SetNotificationComponent", factory7b192ee7636dfe394db2e3b0c44298fc1c149afb)
+    registerProviderFactory("^->AppComponent->SetNotificationComponent", factory7b192ee7636dfe394db2f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->MyPageComponent", factory0f6f456ebf157d02dfb3f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->ModifyPasswordComponent", factoryf1815b12945a9aa456a2f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->RewardPointDetailComponent", factory87993268d9e212be8b1af47b58f8f304c97af4d5)
