@@ -29,7 +29,8 @@ final class SplashViewModel: BaseViewModel {
     }
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("FCM TOKEN WILL BE SENT")
+//        print("FCM TOKEN WILL BE SENT")
+        print("FCM TOKEN: " + (fcmToken ?? "nothing"))
         addCancellable(
             postDeviceTokenUseCase.execute(token: fcmToken ?? "")
         ) { _ in
