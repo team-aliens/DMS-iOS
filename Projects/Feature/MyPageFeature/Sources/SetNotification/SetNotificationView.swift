@@ -17,50 +17,23 @@ struct SetNotificationView: View {
                 .dmsFont(.title(.title3), color: .GrayScale.gray6)
                 .padding(.bottom, 15)
 
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("공지 알림")
-                        .dmsFont(.body(.body2), color: .GrayScale.gray8)
-                    Text("기숙사 공지에 대한 알림입니다.")
-                        .dmsFont(.etc(.caption), color: .GrayScale.gray6)
-                }
-                Spacer()
-                Toggle("공지 알림", isOn: $viewModel.isNoticeOn)
-                    .labelsHidden()
-                    .toggleStyle(SwitchToggleStyle(tint: .PrimaryVariant.primary))
-            }
-            .padding(.bottom, 30)
+            notificationToggleView(title: "공지 알림", detail: "기숙사 공지에 대한 알림입니다.", isToggleOn: $viewModel.isNoticeOn)
 
             Text("자습실")
                 .dmsFont(.title(.title3), color: .GrayScale.gray6)
                 .padding(.bottom, 15)
 
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("이용 시간 알림")
-                        .dmsFont(.body(.body2), color: .GrayScale.gray8)
-                    Text("자습실 이용 시작 10분 전에 알림을 받을 수 있습니다.")
-                        .dmsFont(.etc(.caption), color: .GrayScale.gray6)
-                }
-                Spacer()
-                Toggle("이용 시간 알림", isOn: $viewModel.isTimeSlotOn)
-                    .labelsHidden()
-                    .toggleStyle(SwitchToggleStyle(tint: .PrimaryVariant.primary))
-            }
-            .padding(.bottom, 30)
+            notificationToggleView(
+                title: "이용 시간 알림",
+                detail: "자습실 이용 시작 10분 전에 알림을 받을 수 있습니다.",
+                isToggleOn: $viewModel.isTimeSlotOn
+            )
 
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("신청 시간 알림")
-                        .dmsFont(.body(.body2), color: .GrayScale.gray8)
-                    Text("자습실 신청 시간을 알리는 알림입니다.")
-                        .dmsFont(.etc(.caption), color: .GrayScale.gray6)
-                }
-                Spacer()
-                Toggle("신청 시간 알림", isOn: $viewModel.isAvailableTimeOn)
-                    .labelsHidden()
-                    .toggleStyle(SwitchToggleStyle(tint: .PrimaryVariant.primary))
-            }
+            notificationToggleView(
+                title: "신청 시간 알림",
+                detail: "자습실 신청 시간을 알리는 알림입니다.",
+                isToggleOn: $viewModel.isAvailableTimeOn
+            )
 
             Spacer()
         }
@@ -71,5 +44,22 @@ struct SetNotificationView: View {
         .navigationBarTitleDisplayMode(.inline)
         .dmsBackground()
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+    }
+
+    @ViewBuilder
+    func notificationToggleView(title: String, detail: String, isToggleOn: Binding<Bool>) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(title)
+                    .dmsFont(.body(.body2), color: .GrayScale.gray8)
+                Text(detail)
+                    .dmsFont(.etc(.caption), color: .GrayScale.gray6)
+            }
+            Spacer()
+            Toggle(title, isOn: isToggleOn)
+                .labelsHidden()
+                .toggleStyle(SwitchToggleStyle(tint: .PrimaryVariant.primary))
+        }
+        .padding(.bottom, 30)
     }
 }
