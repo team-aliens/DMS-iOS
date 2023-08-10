@@ -3,10 +3,8 @@ import Foundation
 import Keychain
 import UIKit
 import WatchConnectivity
-import Firebase
-import FirebaseMessaging
 
-final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
     var session: WCSession!
     var keychain: (any Keychain)?
 
@@ -20,49 +18,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             session.activate()
         }
         DesignSystemFontFamily.registerAllCustomFonts()
-
-        FirebaseApp.configure()
-
-        UNUserNotificationCenter.current().delegate = self
-        Messaging.messaging().delegate = self
-        UNUserNotificationCenter.current().delegate = self
-
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: { _, _ in }
-        )
-
-        application.registerForRemoteNotifications()
-
         return true
-    }
-
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken = deviceToken
-    }
-}
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
-        withCompletionHandler completionHandler:
-        @escaping (UNNotificationPresentationOptions) -> Void
-    ) {
-        completionHandler([.banner, .sound, .list, .badge])
-    }
-
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
-        completionHandler()
-    }
-
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken = deviceToken
     }
 }
 
