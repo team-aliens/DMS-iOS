@@ -1,0 +1,19 @@
+import Combine
+import Foundation
+import FilesDomainInterface
+
+public struct FilesRepositoryImpl: FilesRepository {
+    private let remoteFilesDataSource: any RemoteFilesDataSource
+
+    public init(remoteFilesDataSource: any RemoteFilesDataSource) {
+        self.remoteFilesDataSource = remoteFilesDataSource
+    }
+
+    public func uploadFile(data: Data) -> AnyPublisher<String, Error> {
+        remoteFilesDataSource.uploadFile(data: data)
+    }
+
+    public func fetchPresignedURL() -> AnyPublisher<PresignedURLEntity, DmsError> {
+        remoteFilesDataSource.fetchPresignedURL()
+    }
+}

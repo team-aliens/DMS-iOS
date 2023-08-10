@@ -1,8 +1,8 @@
-import Combine
-import DomainModule
 import SwiftUI
-import Utility
+import MealDomainInterface
+import UtilityModule
 import WidgetKit
+import Combine
 
 struct DMSMealWidget: Widget {
     let kind: String = "DMSMealWidget"

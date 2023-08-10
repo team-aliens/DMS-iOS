@@ -1,13 +1,22 @@
 import DesignSystem
 import BaseFeature
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct SignupTermsView: View {
     @EnvironmentObject var appState: AppState
     @StateObject var viewModel: SignupTermsViewModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
+
+    var webViewURL: String {
+        switch colorScheme {
+        case .light:
+            return "https://webview.aliens-dms.com/policy/privacy?theme=light"
+        default:
+            return "https://webview.aliens-dms.com/policy/privacy?theme=dark"
+        }
+    }
 
     init(
         viewModel: SignupTermsViewModel
@@ -20,9 +29,7 @@ struct SignupTermsView: View {
             DMSHeaderTitleView(subTitle: "약관 동의")
                 .padding(.top, 24)
 
-            DMSWebView(urlToLoad: colorScheme == .light ?
-                       "https://webview.aliens-dms.com/policy/privacy?theme=light" :
-                        "https://webview.aliens-dms.com/policy/privacy?theme=dark")
+            DMSWebView(urlToLoad: webViewURL)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.top, 56)
 

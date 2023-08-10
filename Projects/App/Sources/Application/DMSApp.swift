@@ -1,6 +1,6 @@
 import SwiftUI
 import BaseFeature
-import KeychainModule
+import Keychain
 
 @main
 struct DMSApp: App {

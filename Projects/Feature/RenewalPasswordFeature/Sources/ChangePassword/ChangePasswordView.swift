@@ -1,6 +1,6 @@
 import SwiftUI
 import DesignSystem
-import Utility
+import UtilityModule
 
 struct ChangePasswordView: View {
     private enum FocusField {

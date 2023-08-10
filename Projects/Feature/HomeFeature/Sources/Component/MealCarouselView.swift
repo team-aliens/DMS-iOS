@@ -1,11 +1,12 @@
 import DesignSystem
-import DomainModule
+import MealDomainInterface
 import SwiftUI
-import Utility
+import UtilityModule
 
 struct MealCarouselView: View {
     @StateObject var uiState = UIStateModel()
     var meal: MealEntity?
+    var selectedDate: Date
     @Binding var isLoading: Bool
     let spacing: CGFloat = 30
     let widthOfHiddenCards: CGFloat = UIScreen.main.bounds.width / 2 * 0.15
@@ -37,16 +38,19 @@ struct MealCarouselView: View {
                 }
             }
             .environmentObject(uiState)
-            .onChange(of: meal) { _ in
+            .onChange(of: selectedDate) { _ in
                 withAnimation {
                     self.uiState.activeCard = 0
                 }
             }
         }
+        .onAppear {
+            uiState.activeCard = DisplayMealPart(date: Date()).rawValue % 4
+        }
     }
 
     @ViewBuilder
-    func mealView(meal: [String], mealType: MealType) -> some View {
+    func mealView(meal: [String], mealType: DisplayMealPart) -> some View {
         VStack(spacing: 8) {
             Image(systemName: mealType.systemName)
                 .resizable()
@@ -98,24 +102,5 @@ struct MealCarouselView: View {
         .dmsShadow(style: .mealCarousel)
         .transition(.slide)
         .animation(.spring(), value: uiState.screenDrag)
-    }
-}
-
-enum MealType: Int {
-    case breakfast = 0
-    case lunch
-    case dinner
-
-    var systemName: String {
-        switch self {
-        case .breakfast:
-            return "sun.haze"
-
-        case .lunch:
-            return "sun.max"
-
-        case .dinner:
-            return "moon"
-        }
     }
 }

@@ -1,17 +1,20 @@
 import SwiftUI
 import DesignSystem
+import SignupFeatureInterface
+import UtilityModule
+import BaseFeature
 
 struct SchoolCodeView: View {
     @StateObject var viewModel: SchoolCodeViewModel
     @Environment(\.dismiss) var dismiss
-    private let schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent
+    private let schoolConfirmationQuestionsFactory: any SchoolConfirmationQuestionsFactory
 
     public init(
         viewModel: SchoolCodeViewModel,
-        schoolConfirmationQuestionsComponent: SchoolConfirmationQuestionsComponent
+        schoolConfirmationQuestionsFactory: any SchoolConfirmationQuestionsFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.schoolConfirmationQuestionsComponent = schoolConfirmationQuestionsComponent
+        self.schoolConfirmationQuestionsFactory = schoolConfirmationQuestionsFactory
     }
 
     var body: some View {
@@ -46,12 +49,13 @@ struct SchoolCodeView: View {
         .navigationTitle("회원가입")
         .dmsBackButton(dismiss: dismiss)
         .navigate(
-            to: schoolConfirmationQuestionsComponent.makeView(
+            to: schoolConfirmationQuestionsFactory.makeView(
                 schoolConfirmationQuestionsParam: .init(
                     schoolCode: viewModel.schoolCode,
                     schoolID: viewModel.schoolID
                 )
-            ),
+            )
+            .eraseToAnyView(),
             when: $viewModel.isNavigateSchoolQuestion
         )
     }

@@ -1,8 +1,7 @@
-import BaseFeature
-import DomainModule
-import DataMappingModule
 import Combine
-import SwiftUI
+import BaseFeature
+import RemainsDomainInterface
+import StudyRoomsDomainInterface
 
 final class ApplyPageViewModel: BaseViewModel {
     @Published var isNavigateToStudy: Bool = false

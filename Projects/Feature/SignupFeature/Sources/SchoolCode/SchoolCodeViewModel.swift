@@ -1,7 +1,6 @@
 import BaseFeature
 import Combine
-import DomainModule
-import ErrorModule
+import SchoolDomainInterface
 
 final class SchoolCodeViewModel: BaseViewModel {
     @Published var schoolCode = ""
@@ -19,7 +18,7 @@ final class SchoolCodeViewModel: BaseViewModel {
         super.init()
 
         addCancellable(
-            $schoolCode.setFailureType(to: DmsError.self).eraseToAnyPublisher()
+            $schoolCode.setFailureType(to: Error.self).eraseToAnyPublisher()
         ) { [weak self] code in
             if code.count == 8 {
                 self?.verifyAuthCodeButtonDidTap()

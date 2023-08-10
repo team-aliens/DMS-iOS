@@ -1,5 +1,7 @@
 import DesignSystem
 import SwiftUI
+import SignupFeatureInterface
+import UtilityModule
 
 struct IDSettingView: View {
     private enum FocusField {
@@ -12,14 +14,14 @@ struct IDSettingView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @FocusState private var focusField: FocusField?
-    private let signupPasswordComponent: SignupPasswordComponent
+    private let signupPasswordFactory: any SignupPasswordFactory
 
     public init(
         viewModel: IDSettingViewModel,
-        signupPasswordComponent: SignupPasswordComponent
+        signupPasswordFactory: any SignupPasswordFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.signupPasswordComponent = signupPasswordComponent
+        self.signupPasswordFactory = signupPasswordFactory
     }
 
     var body: some View {
@@ -122,7 +124,7 @@ struct IDSettingView: View {
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .dmsToast(isShowing: $viewModel.isShowingErrorToast, message: viewModel.errorToastMessage, style: .error)
         .navigate(
-            to: signupPasswordComponent.makeView(
+            to: signupPasswordFactory.makeView(
                 signupPasswordParam: .init(
                     idSettingParam: viewModel.idSettingParam,
                     grade: Int(viewModel.grade) ?? 0,
@@ -130,7 +132,8 @@ struct IDSettingView: View {
                     number: Int(viewModel.number) ?? 0,
                     accountID: viewModel.id
                 )
-            ),
+            )
+            .eraseToAnyView(),
             when: $viewModel.isNavigateSignupPassword
         )
     }

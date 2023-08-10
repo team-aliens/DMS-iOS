@@ -1,17 +1,19 @@
-import DomainModule
+import StudentsDomainInterface
+import AuthDomainInterface
 import SwiftUI
 import NeedleFoundation
+import MyPageFeatureInterface
 
 public protocol MyPageDependency: Dependency {
     var fetchMyProfileUseCase: any FetchMyProfileUseCase { get }
     var logoutUseCase: any LogoutUseCase { get }
     var withdrawalUseCase: any WithdrawalUseCase { get }
-    var changeProfileComponent: ChangeProfileComponent { get }
-    var rewardPointDetailComponent: RewardPointDetailComponent { get }
-    var checkPasswordComponent: CheckPasswordComponent { get }
+    var changeProfileFactory: any ChangeProfileFactory { get }
+    var rewardPointDetailFactory: any RewardPointDetailFactory { get }
+    var checkPasswordFactory: any CheckPasswordFactory { get }
 }
 
-public final class MyPageComponent: Component<MyPageDependency> {
+public final class MyPageComponent: Component<MyPageDependency>, MyPageFactory {
     public func makeView() -> some View {
         NavigationView {
             MyPageView(
@@ -20,9 +22,9 @@ public final class MyPageComponent: Component<MyPageDependency> {
                     logoutUseCase: self.dependency.logoutUseCase,
                     withdrawalUseCase: self.dependency.withdrawalUseCase
                 ),
-                changeProfileComponent: self.dependency.changeProfileComponent,
-                rewardPointDetailComponent: self.dependency.rewardPointDetailComponent,
-                checkPasswordComponent: self.dependency.checkPasswordComponent
+                changeProfileFactory: self.dependency.changeProfileFactory,
+                rewardPointDetailFactory: self.dependency.rewardPointDetailFactory,
+                checkPasswordFactory: self.dependency.checkPasswordFactory
             )
         }
         .navigationViewStyle(.stack)

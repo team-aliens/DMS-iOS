@@ -1,5 +1,7 @@
 import DesignSystem
 import SwiftUI
+import SignupFeatureInterface
+import UtilityModule
 
 struct SignupProfileImageView: View {
     @StateObject var viewModel: SignupProfileImageViewModel
@@ -8,14 +10,14 @@ struct SignupProfileImageView: View {
     @State var isPresentedImageActionSheet = false
     @Environment(\.dismiss) var dismiss
 
-    private let signupTermsComponent: SignupTermsComponent
+    private let signupTermsFactory: any SignupTermsFactory
 
     public init(
         viewModel: SignupProfileImageViewModel,
-        signupTermsComponent: SignupTermsComponent
+        signupTermsFactory: any SignupTermsFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.signupTermsComponent = signupTermsComponent
+        self.signupTermsFactory = signupTermsFactory
     }
 
     var body: some View {
@@ -90,12 +92,13 @@ struct SignupProfileImageView: View {
             .foregroundColor(.GrayScale.gray6)
         }
         .navigate(
-            to: signupTermsComponent.makeView(
+            to: signupTermsFactory.makeView(
                 signupTermsParam: .init(
                     signupProfileImageParam: viewModel.signupProfileImageParam,
                     profileImageURLString: viewModel.isSkip ? nil : viewModel.selectedImageURLString
                 )
-            ),
+            )
+            .eraseToAnyView(),
             when: $viewModel.isNavigateSignupTerms
         )
         .progress(isPresented: $viewModel.isLoading)

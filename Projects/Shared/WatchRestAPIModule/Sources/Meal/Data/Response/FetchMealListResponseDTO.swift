@@ -4,7 +4,7 @@ struct FetchMealListResponseDTO: Decodable {
     let meals: [SingleMealResponseDTO]
 
     struct SingleMealResponseDTO: Decodable {
-        let date: String
+        let date: Date
         let breakfast: [String]
         let lunch: [String]
         let dinner: [String]
@@ -14,7 +14,7 @@ struct FetchMealListResponseDTO: Decodable {
 extension FetchMealListResponseDTO.SingleMealResponseDTO {
     func toDomain() -> MealEntity {
         MealEntity(
-            date: date.toSmallDMSDate(),
+            date: date,
             breakfast: breakfast,
             lunch: lunch,
             dinner: dinner

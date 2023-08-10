@@ -1,18 +1,20 @@
 import SwiftUI
 import DesignSystem
+import UtilityModule
+import RenewalPasswordFeatureInterface
 
 struct AuthenticationEmailView: View {
     @StateObject var viewModel: AuthenticationEmailViewModel
-    private let changePasswordComponent: ChangePasswordComponent
+    private let changePasswordFactory: any ChangePasswordFactory
     @Environment(\.dismiss) var dismiss
     @State var isViewDidLoad = false
 
     init(
         viewModel: AuthenticationEmailViewModel,
-        changePasswordComponent: ChangePasswordComponent
+        changePasswordFactory: any ChangePasswordFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.changePasswordComponent = changePasswordComponent
+        self.changePasswordFactory = changePasswordFactory
     }
 
     var body: some View {
@@ -59,14 +61,15 @@ struct AuthenticationEmailView: View {
         }
         .dmsToast(isShowing: $viewModel.isShowingToast, message: viewModel.toastMessage, style: .success)
         .navigate(
-            to: changePasswordComponent.makeView(
+            to: changePasswordFactory.makeView(
                 changePasswordParm: .init(
                     name: viewModel.authenticationEmailParam.name,
                     email: viewModel.authenticationEmailParam.email,
                     id: viewModel.authenticationEmailParam.id,
                     authCode: viewModel.authCode
                 )
-            ),
+            )
+            .eraseToAnyView(),
             when: $viewModel.isNavigateChangePassword
         )
         .dmsBackButton(dismiss: dismiss)

@@ -7,9 +7,9 @@ let project = Project.makeModule(
     targets: [.interface, .unitTest],
     internalDependencies: [
         .Feature.BaseFeature,
-        .Feature.HomeFeature,
-        .Feature.ApplyFeature,
-        .Feature.NoticeFeature,
-        .Feature.MyPageFeature
+        .Feature.HomeFeatureInterface,
+        .Feature.ApplyFeatureInterface,
+        .Feature.NoticeFeatureInterface,
+        .Feature.MyPageFeatureInterface
     ]
 )

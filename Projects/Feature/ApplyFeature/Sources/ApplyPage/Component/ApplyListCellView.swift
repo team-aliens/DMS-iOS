@@ -1,6 +1,4 @@
 import SwiftUI
-import StudyRoomFeature
-import RemainApplyFeature
 import DesignSystem
 
 struct ApplyListCellView: View {

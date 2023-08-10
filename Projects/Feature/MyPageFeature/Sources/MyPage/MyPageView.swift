@@ -1,6 +1,8 @@
 import BaseFeature
+import MyPageFeatureInterface
 import DesignSystem
 import SwiftUI
+import UtilityModule
 import Kingfisher
 
 struct MyPageView: View {
@@ -8,20 +10,20 @@ struct MyPageView: View {
     @Environment(\.tabbarHidden) var tabbarHidden
     @EnvironmentObject var appState: AppState
 
-    private let changeProfileComponent: ChangeProfileComponent
-    private let rewardPointDetailComponent: RewardPointDetailComponent
-    private let checkPasswordComponent: CheckPasswordComponent
+    private let changeProfileFactory: any ChangeProfileFactory
+    private let rewardPointDetailFactory: any RewardPointDetailFactory
+    private let checkPasswordFactory: any CheckPasswordFactory
 
     init(
         viewModel: MyPageViewModel,
-        changeProfileComponent: ChangeProfileComponent,
-        rewardPointDetailComponent: RewardPointDetailComponent,
-        checkPasswordComponent: CheckPasswordComponent
+        changeProfileFactory: any ChangeProfileFactory,
+        rewardPointDetailFactory: any RewardPointDetailFactory,
+        checkPasswordFactory: any CheckPasswordFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.changeProfileComponent = changeProfileComponent
-        self.rewardPointDetailComponent = rewardPointDetailComponent
-        self.checkPasswordComponent = checkPasswordComponent
+        self.changeProfileFactory = changeProfileFactory
+        self.rewardPointDetailFactory = rewardPointDetailFactory
+        self.checkPasswordFactory = checkPasswordFactory
     }
 
     var body: some View {
@@ -161,7 +163,7 @@ struct MyPageView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     myPageOptionRowCardView(title: "회원 탈퇴")
-                        .dmsFont(.body(.body2), color: .GrayScale.gray6)
+                        .dmsFont(.body(.body2), color: .ErrorVariant.error)
                         .onTapGesture(perform: viewModel.withdrawalButtonDidTap)
                         .cornerRadius(10)
                 }
@@ -211,16 +213,16 @@ struct MyPageView: View {
             }
         })
         .navigate(
-            to: changeProfileComponent.makeView(),
+            to: changeProfileFactory.makeView().eraseToAnyView(),
             when: $viewModel.isNavigateChangeProfile
         )
         .navigate(
-            to: checkPasswordComponent.makeView()
+            to: checkPasswordFactory.makeView().eraseToAnyView()
                 .environment(\.rootPresentationMode, $viewModel.isNavigateChangePassword),
             when: $viewModel.isNavigateChangePassword
         )
         .navigate(
-            to: rewardPointDetailComponent.makeView(),
+            to: rewardPointDetailFactory.makeView().eraseToAnyView(),
             when: $viewModel.isNavigateRewardPointDetail
         )
     }

@@ -1,24 +1,25 @@
 import BaseFeature
-import StudyRoomFeature
-import RemainApplyFeature
+import StudyRoomFeatureInterface
+import RemainApplyFeatureInterface
 import SwiftUI
+import UtilityModule
 
 struct ApplyPageView: View {
     @EnvironmentObject var appState: AppState
     @StateObject var viewModel: ApplyPageViewModel
     @Environment(\.tabbarHidden) var tabbarHidden
 
-    private let studyRoomListComponent: StudyRoomListComponent
-    private let remainApplyComponent: RemainApplyComponent
+    private let studyRoomListFactory: any StudyRoomListFactory
+    private let remainApplyFactory: any RemainApplyFactory
 
     init(
         viewModel: ApplyPageViewModel,
-        studyRoomListComponent: StudyRoomListComponent,
-        remainApplyComponent: RemainApplyComponent
+        studyRoomListFactory: any StudyRoomListFactory,
+        remainApplyFactory: any RemainApplyFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.studyRoomListComponent = studyRoomListComponent
-        self.remainApplyComponent = remainApplyComponent
+        self.studyRoomListFactory = studyRoomListFactory
+        self.remainApplyFactory = remainApplyFactory
     }
 
     var body: some View {
@@ -86,11 +87,11 @@ struct ApplyPageView: View {
                 }
             }
             .navigate(
-                to: studyRoomListComponent.makeView(),
+                to: studyRoomListFactory.makeView().eraseToAnyView(),
                 when: $viewModel.isNavigateToStudy
             )
             .navigate(
-                to: remainApplyComponent.makeView(),
+                to: remainApplyFactory.makeView().eraseToAnyView(),
                 when: $viewModel.isNavigateToRemain
             )
         }

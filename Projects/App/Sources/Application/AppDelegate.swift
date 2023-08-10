@@ -1,6 +1,6 @@
 import DesignSystem
 import Foundation
-import KeychainModule
+import Keychain
 import UIKit
 import WatchConnectivity
 

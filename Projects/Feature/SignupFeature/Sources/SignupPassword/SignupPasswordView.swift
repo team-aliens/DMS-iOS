@@ -1,5 +1,7 @@
 import DesignSystem
 import SwiftUI
+import SignupFeatureInterface
+import UtilityModule
 
 struct SignupPasswordView: View {
     private enum FocusField {
@@ -9,14 +11,14 @@ struct SignupPasswordView: View {
     @StateObject var viewModel: SignupPasswordViewModel
     @FocusState private var focusField: FocusField?
     @Environment(\.dismiss) var dismiss
-    private let signupProfileImageComponent: SignupProfileImageComponent
+    private let signupProfileImageFactory: any SignupProfileImageFactory
 
     public init(
         viewModel: SignupPasswordViewModel,
-        signupProfileImageComponent: SignupProfileImageComponent
+        signupProfileImageFactory: any SignupProfileImageFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.signupProfileImageComponent = signupProfileImageComponent
+        self.signupProfileImageFactory = signupProfileImageFactory
     }
 
     var body: some View {
@@ -69,12 +71,13 @@ struct SignupPasswordView: View {
         .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .dmsBackButton(dismiss: dismiss)
         .navigate(
-            to: signupProfileImageComponent.makeView(
+            to: signupProfileImageFactory.makeView(
                 signupProfileImageParam: .init(
                     signupPasswordParam: viewModel.signupPasswordParam,
                     password: viewModel.password
                 )
-            ),
+            )
+            .eraseToAnyView(),
             when: $viewModel.isNavigateSignupProfileImage
         )
     }

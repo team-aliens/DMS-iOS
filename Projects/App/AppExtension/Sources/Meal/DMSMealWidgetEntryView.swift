@@ -1,5 +1,5 @@
 import DesignSystem
-import DomainModule
+import MealDomainInterface
 import SwiftUI
 
 struct DMSMealWidgetEntryView: View {
@@ -111,7 +111,7 @@ private struct MediumMealWidgetView: View {
 private extension MealEntity {
     func byDisplayMealPart(by part: DisplayMealPart) -> [String] {
         switch part {
-        case .breakfast:
+        case .breakfast, .nextDayBreakfast:
             return self.breakfast
 
         case .lunch:
