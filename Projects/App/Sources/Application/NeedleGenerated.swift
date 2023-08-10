@@ -71,9 +71,6 @@ private class SplashDependencye0cb7136f2ec3edfd60aProvider: SplashDependency {
     var reissueTokenUseCase: any ReissueTokenUseCase {
         return appComponent.reissueTokenUseCase
     }
-    var postDeviceTokenUseCase: any PostDeviceTokenUseCase {
-        return appComponent.postDeviceTokenUseCase
-    }
     private let appComponent: AppComponent
     init(appComponent: AppComponent) {
         self.appComponent = appComponent

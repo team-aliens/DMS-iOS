@@ -3,7 +3,6 @@ import Moya
 import NotificationDomainInterface
 
 public enum NotificationAPI {
-    case postDeviceToken(token: String)
     case subscribeTopic(token: String, topic: TopicType)
 }
 
@@ -15,8 +14,6 @@ extension NotificationAPI: DmsAPI {
 
     public var urlPath: String {
         switch self {
-        case .postDeviceToken:
-            return "/token"
         case .subscribeTopic:
             return "/topic"
         }
@@ -24,8 +21,6 @@ extension NotificationAPI: DmsAPI {
 
     public var method: Moya.Method {
         switch self {
-        case .postDeviceToken:
-            return .post
         case .subscribeTopic:
             return .post
         }
@@ -33,12 +28,6 @@ extension NotificationAPI: DmsAPI {
 
     public var task: Moya.Task {
         switch self {
-        case let .postDeviceToken(token):
-            return .requestParameters(
-                parameters: [
-                    "token": token
-                ], encoding: JSONEncoding.default
-            )
         case let .subscribeTopic(token, topic):
             return .requestParameters(
                 parameters: [
@@ -56,14 +45,6 @@ extension NotificationAPI: DmsAPI {
 
     public var errorMap: [Int: ErrorType] {
         switch self {
-        case .postDeviceToken:
-            return [
-                400: .badRequest,
-                401: .tokenExpired,
-                403: .tooManyRequest,
-                500: .internalServerError
-            ]
-
         case .subscribeTopic:
             return [
                 400: .badRequest,

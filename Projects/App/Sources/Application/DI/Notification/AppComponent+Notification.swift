@@ -15,12 +15,6 @@ public extension AppComponent {
         }
     }
 
-    var postDeviceTokenUseCase: any PostDeviceTokenUseCase {
-        shared {
-            PostDeviceTokenUseCaseImpl(notificationRepository: notificationRepository)
-        }
-    }
-
     var subscribeTopicUseCase: any SubscribeTopicUseCase {
         shared {
             SubscribeTopicUseCaseImpl(notificationRepository: notificationRepository)
