@@ -26,15 +26,13 @@ final class SplashViewModel: BaseViewModel {
         } onReceiveError: { error in
             onError(error)
         }
-    }
 
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-//        print("FCM TOKEN WILL BE SENT")
-        print("FCM TOKEN: " + (fcmToken ?? "nothing"))
         addCancellable(
-            postDeviceTokenUseCase.execute(token: fcmToken ?? "")
+            postDeviceTokenUseCase.execute(token: Messaging.messaging().fcmToken ?? "dms")
         ) { _ in
-            print("Device Token was successly posted.")
+            print("FCM TOKEN: " + (Messaging.messaging().fcmToken ?? "dms"))
+        } onReceiveError: { error in
+            onError(error)
         }
     }
 }
