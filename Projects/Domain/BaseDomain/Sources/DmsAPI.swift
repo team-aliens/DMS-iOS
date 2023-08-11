@@ -41,6 +41,7 @@ public enum DmsDomain: String {
     case studyRooms = "study-rooms"
     case remains
     case presigned = ""
+    case notifications
 }
 
 extension DmsDomain {

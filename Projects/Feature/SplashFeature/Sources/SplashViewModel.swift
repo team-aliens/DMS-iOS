@@ -1,5 +1,7 @@
+import UIKit
 import BaseFeature
 import AuthDomainInterface
+import NotificationDomainInterface
 
 final class SplashViewModel: BaseViewModel {
     private let reissueTokenUseCase: any ReissueTokenUseCase

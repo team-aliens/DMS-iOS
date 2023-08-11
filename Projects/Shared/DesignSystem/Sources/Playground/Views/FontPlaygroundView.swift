@@ -10,7 +10,7 @@ struct FontPlaygroundView: View {
         ("Title", [
             .title(.title1),
             .title(.title2),
-            .title(.subTitle1)
+            .title(.title3)
         ]),
         ("Body", [
             .body(.body1),

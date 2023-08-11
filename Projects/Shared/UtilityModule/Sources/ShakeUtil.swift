@@ -17,7 +17,7 @@ public extension UIWindow {
 
 public struct ShakeDetector: ViewModifier {
     public let onShake: () -> Void
-    
+
     public func body(content: Content) -> some View {
         content
             .onAppear() // this has to be here because of a SwiftUI bug

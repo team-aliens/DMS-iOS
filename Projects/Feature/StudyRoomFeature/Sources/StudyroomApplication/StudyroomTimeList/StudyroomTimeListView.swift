@@ -7,7 +7,7 @@ struct StudyroomTimeListView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 37) {
             Text("시간")
-                .dmsFont(.title(.subTitle1), color: .GrayScale.gray10)
+                .dmsFont(.title(.title3), color: .GrayScale.gray10)
                 .frame(height: 28)
                 .padding(.top, 40)
                 .padding(.leading, 24)
