@@ -5,6 +5,7 @@ import Moya
 
 public enum FilesAPI {
     case uploadFile(data: Data)
+    case fetchPresignedURL
 }
 
 extension FilesAPI: DmsAPI {
@@ -15,11 +16,23 @@ extension FilesAPI: DmsAPI {
     }
 
     public var urlPath: String {
-        return ""
+        switch self {
+        case .fetchPresignedURL:
+            return "/url"
+
+        default:
+            return ""
+        }
     }
 
     public var method: Moya.Method {
-        return .post
+        switch self {
+        case .fetchPresignedURL:
+            return .get
+
+        case .uploadFile:
+            return .post
+        }
     }
 
     public var task: Moya.Task {
@@ -29,9 +42,17 @@ extension FilesAPI: DmsAPI {
                 .init(
                     provider: .data(data),
                     name: "file",
-                    fileName: "\(UUID().uuidString).png"
+                    fileName: "\(UUID().uuidString).jpeg"
                 )
             ])
+
+        case .fetchPresignedURL:
+            return .requestParameters(
+                parameters: [
+                    "file_name": "file.jpeg"
+                ],
+                encoding: URLEncoding.queryString
+            )
         }
     }
 

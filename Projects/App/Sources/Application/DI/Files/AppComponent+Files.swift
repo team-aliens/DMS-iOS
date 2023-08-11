@@ -19,4 +19,9 @@ public extension AppComponent {
             UploadFileUseCaseImpl(filesRepository: filesRepository)
         }
     }
+    var fetchPresignedURLUseCase: any FetchPresignedURLUseCase {
+        shared {
+            FetchPresignedURLUseCaseImpl(filesRepository: filesRepository)
+        }
+    }
 }
