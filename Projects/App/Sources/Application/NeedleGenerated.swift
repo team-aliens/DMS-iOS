@@ -604,7 +604,6 @@ extension AppComponent: Registration {
         localTable["logoutUseCase-any LogoutUseCase"] = { [unowned self] in self.logoutUseCase as Any }
         localTable["remoteNotificationDataSource-any RemoteNotificationDataSource"] = { [unowned self] in self.remoteNotificationDataSource as Any }
         localTable["notificationRepository-any NotificationRepository"] = { [unowned self] in self.notificationRepository as Any }
-        localTable["postDeviceTokenUseCase-any PostDeviceTokenUseCase"] = { [unowned self] in self.postDeviceTokenUseCase as Any }
         localTable["subscribeTopicUseCase-any SubscribeTopicUseCase"] = { [unowned self] in self.subscribeTopicUseCase as Any }
         localTable["schoolCodeFactory-any SchoolCodeFactory"] = { [unowned self] in self.schoolCodeFactory as Any }
         localTable["findIDFactory-any FindIDFactory"] = { [unowned self] in self.findIDFactory as Any }
@@ -680,7 +679,6 @@ extension AppComponent: Registration {
 extension SplashComponent: Registration {
     public func registerItems() {
         keyPathToName[\SplashDependency.reissueTokenUseCase] = "reissueTokenUseCase-any ReissueTokenUseCase"
-        keyPathToName[\SplashDependency.postDeviceTokenUseCase] = "postDeviceTokenUseCase-any PostDeviceTokenUseCase"
     }
 }
 extension SchoolConfirmationQuestionsComponent: Registration {
