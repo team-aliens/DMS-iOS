@@ -26,7 +26,7 @@ public enum DMSFontStyle: Hashable {
     public enum Title: CGFloat, DMSFontable {
         case title1 = 22
         case title2 = 20
-        case subTitle1 = 18
+        case title3 = 18
     }
 
     public enum Body: CGFloat, DMSFontable {
@@ -63,7 +63,7 @@ public extension DMSFontStyle.Headline {
 public extension DMSFontStyle.Title {
     var weight: DMSFontWeight {
         switch self {
-        case .title1, .title2, .subTitle1:
+        case .title1, .title2, .title3:
             return .bold
         }
     }

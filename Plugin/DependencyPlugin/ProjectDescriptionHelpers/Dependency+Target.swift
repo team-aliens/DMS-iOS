@@ -117,6 +117,18 @@ public extension TargetDependency.Feature {
 }
 
 public extension TargetDependency.Domain {
+    static let NotificationDomainTesting = TargetDependency.project(
+        target: ModulePaths.Domain.NotificationDomain.targetName(type: .testing),
+        path: .relativeToDomain(ModulePaths.Domain.NotificationDomain.rawValue)
+    )
+    static let NotificationDomainInterface = TargetDependency.project(
+        target: ModulePaths.Domain.NotificationDomain.targetName(type: .interface),
+        path: .relativeToDomain(ModulePaths.Domain.NotificationDomain.rawValue)
+    )
+    static let NotificationDomain = TargetDependency.project(
+        target: ModulePaths.Domain.NotificationDomain.targetName(type: .sources),
+        path: .relativeToDomain(ModulePaths.Domain.NotificationDomain.rawValue)
+    )
     static let UsersDomainTesting = TargetDependency.project(
         target: ModulePaths.Domain.UsersDomain.targetName(type: .testing),
         path: .relativeToDomain(ModulePaths.Domain.UsersDomain.rawValue)

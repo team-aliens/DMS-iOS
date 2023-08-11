@@ -9,6 +9,7 @@ final class MyPageViewModel: BaseViewModel {
     @Published var isNavigateChangeProfile = false
     @Published var isNavigateChangePassword = false
     @Published var isNavigateRewardPointDetail = false
+    @Published var isNavigateSetNotifcation = false
     @Published var isPresentedWithdrawalAlert = false
     @Published var isSuccessLogout = false
     @Published var sexType: SexType?

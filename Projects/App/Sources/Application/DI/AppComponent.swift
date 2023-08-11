@@ -129,6 +129,9 @@ public extension AppComponent {
     var modifyPasswordFactory: any ModifyPasswordFactory {
         ModifyPasswordComponent(parent: self)
     }
+    var setNotificationFactory: any SetNotificationFactory {
+        SetNotificationComponent(parent: self)
+    }
     var studyRoomListFactory: any StudyRoomListFactory {
         StudyRoomListComponent(parent: self)
     }
