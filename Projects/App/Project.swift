@@ -58,7 +58,6 @@ let targets: [Target] = [
             .Domain.StudentsDomain,
             .Domain.UsersDomain,
             .Domain.NotificationDomain,
-            .SPM.FirebaseMessaging,
             .target(name: "\(env.appName)Widget"),
             .target(name: "\(env.appName)WatchApp")
         ],
@@ -156,7 +155,6 @@ let project: Project =
     .init(
         name: env.targetName,
         organizationName: env.organizationName,
-        packages: [.FirebaseMessaging],
         settings: settings,
         targets: targets,
         schemes: schemes

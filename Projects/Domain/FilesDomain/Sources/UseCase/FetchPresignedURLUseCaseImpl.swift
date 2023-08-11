@@ -1,7 +1,6 @@
 import Combine
 import Foundation
-import DomainModule
-import ErrorModule
+import FilesDomainInterface
 
 public struct FetchPresignedURLUseCaseImpl: FetchPresignedURLUseCase {
     private let filesRepository: any FilesRepository
@@ -10,7 +9,7 @@ public struct FetchPresignedURLUseCaseImpl: FetchPresignedURLUseCase {
         self.filesRepository = filesRepository
     }
 
-    public func execute() -> AnyPublisher<PresignedURLEntity, DmsError> {
+    public func execute() -> AnyPublisher<PresignedURLEntity, Error> {
         filesRepository.fetchPresignedURL()
     }
 }

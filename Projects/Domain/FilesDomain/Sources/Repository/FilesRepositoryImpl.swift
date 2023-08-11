@@ -13,7 +13,7 @@ public struct FilesRepositoryImpl: FilesRepository {
         remoteFilesDataSource.uploadFile(data: data)
     }
 
-    public func fetchPresignedURL() -> AnyPublisher<PresignedURLEntity, DmsError> {
+    public func fetchPresignedURL() -> AnyPublisher<PresignedURLEntity, Error> {
         remoteFilesDataSource.fetchPresignedURL()
     }
 }

@@ -1,5 +1,6 @@
 import Foundation
-import ErrorModule
+import BaseDomain
+import FilesDomainInterface
 import Moya
 
 var presignedBaseURL = ""
@@ -9,6 +10,8 @@ public enum PresignedAPI {
 }
 
 extension PresignedAPI: DmsAPI {
+    public typealias ErrorType = FilesDomainError
+    
     func setBaseURL() {
         switch self {
         case let .presignedUploadFile(uploadURL, _):
@@ -54,7 +57,7 @@ extension PresignedAPI: DmsAPI {
         .none
     }
 
-    public var errorMap: [Int: ErrorModule.DmsError] {
+    public var errorMap: [Int: ErrorType] {
         [
             400: .badRequest,
             500: .internalServerError

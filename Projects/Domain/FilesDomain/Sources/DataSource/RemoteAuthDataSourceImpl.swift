@@ -10,7 +10,7 @@ public final class RemoteFilesDataSourceImpl: BaseRemoteDataSource<FilesAPI>, Re
             .eraseToAnyPublisher()
     }
 
-    public func fetchPresignedURL() -> AnyPublisher<PresignedURLEntity, DmsError> {
+    public func fetchPresignedURL() -> AnyPublisher<PresignedURLEntity, Error> {
         request(.fetchPresignedURL, dto: FetchPresignedURLResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()

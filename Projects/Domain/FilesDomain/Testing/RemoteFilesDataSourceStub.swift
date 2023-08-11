@@ -11,12 +11,12 @@ public struct RemoteFilesDataSourceStub: RemoteFilesDataSource {
             .eraseToAnyPublisher()
     }
 
-    public func fetchPresignedURL() -> AnyPublisher<PresignedURLEntity, DmsError> {
+    public func fetchPresignedURL() -> AnyPublisher<PresignedURLEntity, Error> {
         Just(PresignedURLEntity(
             fileUploadURL: "https://admin.aliens-dms.com",
             fileURL: "https://admin.aliens-dms.com"
         ))
-            .setFailureType(to: DmsError.self)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }

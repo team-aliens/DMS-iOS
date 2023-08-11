@@ -1,6 +1,6 @@
+import NotificationDomainInterface
 import BaseDomain
 import Moya
-import NotificationDomainInterface
 
 public enum NotificationAPI {
     case subscribeTopic(token: String, topic: TopicType)
@@ -8,6 +8,7 @@ public enum NotificationAPI {
 
 extension NotificationAPI: DmsAPI {
     public typealias ErrorType = NotificationDomainError
+
     public var domain: DmsDomain {
         .notifications
     }
