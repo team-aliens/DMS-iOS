@@ -1,7 +1,6 @@
-import Combine
-import DomainModule
 import Foundation
-import ErrorModule
+import Combine
+import FilesDomainInterface
 
 public struct PresignedUploadFileUseCaseImpl: PresignedUploadFileUseCase {
     private let presignedRepository: any PresignedRepository
@@ -10,7 +9,7 @@ public struct PresignedUploadFileUseCaseImpl: PresignedUploadFileUseCase {
         self.presignedRepository = presignedRepository
     }
 
-    public func execute(uploadURL: String, data: Data) -> AnyPublisher<Void, DmsError> {
+    public func execute(uploadURL: String, data: Data) -> AnyPublisher<Void, Error> {
         presignedRepository.presignedUploadFile(uploadURL: uploadURL, data: data)
     }
 }

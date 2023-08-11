@@ -1,6 +1,6 @@
-import DomainModule
-import DataModule
-import NetworkModule
+import NeedleFoundation
+import FilesDomain
+import FilesDomainInterface
 
 public extension AppComponent {
     var remotePresignedDataSource: any RemotePresignedDataSource {
