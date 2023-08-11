@@ -11,7 +11,7 @@ public enum PresignedAPI {
 
 extension PresignedAPI: DmsAPI {
     public typealias ErrorType = FilesDomainError
-    
+
     func setBaseURL() {
         switch self {
         case let .presignedUploadFile(uploadURL, _):
