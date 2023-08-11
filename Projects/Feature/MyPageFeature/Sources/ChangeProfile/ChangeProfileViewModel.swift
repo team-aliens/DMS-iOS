@@ -27,20 +27,20 @@ final class ChangeProfileViewModel: BaseViewModel {
     }
 
     func completeButtonDidTap() {
-//        guard let data = selectedImage?.jpegData(compressionQuality: 0.1) else { return }
-//        addCancellable(
-//            uploadFileUseCase.execute(data: data)
-//                .flatMap(changeProfileImageUseCase.execute)
-//                .eraseToAnyPublisher()
-//        ) { [weak self] _ in
-//            self?.isSuccessChangeImage = true
-//        }
+        guard let data = selectedImage?.jpegData(compressionQuality: 0.1) else { return }
         addCancellable(
-            fetchPresignedURLUseCase.execute()
-        ) { [weak self] presignedURLEntity in
-            self?.presignedURLEntity = presignedURLEntity
-            self?.uploadFile()
+            uploadFileUseCase.execute(data: data)
+                .flatMap(changeProfileImageUseCase.execute)
+                .eraseToAnyPublisher()
+        ) { [weak self] _ in
+            self?.isSuccessChangeImage = true
         }
+//        addCancellable(
+//            fetchPresignedURLUseCase.execute()
+//        ) { [weak self] presignedURLEntity in
+//            self?.presignedURLEntity = presignedURLEntity
+//            self?.uploadFile()
+//        }
     }
 
     func uploadFile() {
