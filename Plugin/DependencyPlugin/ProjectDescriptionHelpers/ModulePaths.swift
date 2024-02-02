@@ -17,6 +17,7 @@ public extension ModulePaths {
         case MainTabFeature
         case MyPageFeature
         case NoticeFeature
+        case OutingApplyFeature
         case RemainApplyFeature
         case RenewalPasswordFeature
         case RootFeature
@@ -38,6 +39,7 @@ public extension ModulePaths {
         case StudyRoomsDomain
         case StudentsDomain
         case SchoolDomain
+        case OutingDomain
         case RemainsDomain
         case PointsDomain
         case NoticeDomain

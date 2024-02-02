@@ -6,12 +6,21 @@ import StudyRoomsDomainInterface
 final class ApplyPageViewModel: BaseViewModel {
     @Published var isNavigateToStudy: Bool = false
     @Published var isNavigateToRemain: Bool = false
+    @Published var isNavigateToGoOut: Bool = false
 
     @Published var myRemainApplicationItem: MyRemainApplicationItemsEntity?
     @Published var myStudyRoomApplicationItems: MyStudyRoomAppItemsEntity?
 
     private let fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase
     private let fetchMyStudyRoomAppItemsUseCase: any FetchMyStudyRoomAppItemsUseCase
+
+    var studyRoomState: String? {
+        if let item = myStudyRoomApplicationItems {
+            return String(item.floor) + "층 " + item.name
+        } else {
+            return nil
+        }
+    }
 
     var remainState: String? {
         if let item = myRemainApplicationItem {
@@ -21,9 +30,9 @@ final class ApplyPageViewModel: BaseViewModel {
         }
     }
 
-    var studyRoomState: String? {
-        if let item = myStudyRoomApplicationItems {
-            return String(item.floor) + "층 " + item.name
+    var outState: String? {
+        if let item = myRemainApplicationItem {
+            return item.title
         } else {
             return nil
         }

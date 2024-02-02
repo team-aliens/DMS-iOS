@@ -37,7 +37,8 @@ struct HomeView: View {
                 }
                 .ignoresSafeArea()
 
-                ScrollView(showsIndicators: false) {
+//                ScrollView(showsIndicators: false) {
+                VStack(alignment: .center) {
                     if viewModel.isExistNewNotice {
                         Button {
                             dmsSelectionTabbKey.wrappedValue = .notice
