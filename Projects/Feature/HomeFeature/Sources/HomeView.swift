@@ -37,35 +37,36 @@ struct HomeView: View {
                 }
                 .ignoresSafeArea()
 
-//                ScrollView(showsIndicators: false) {
-                VStack(alignment: .center) {
-                    if viewModel.isExistNewNotice {
-                        Button {
-                            dmsSelectionTabbKey.wrappedValue = .notice
-                        } label: {
-                            NoticeView()
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .center) {
+                        if viewModel.isExistNewNotice {
+                            Button {
+                                dmsSelectionTabbKey.wrappedValue = .notice
+                            } label: {
+                                NoticeView()
+                            }
+                            .animation(
+                                .easeIn(duration: 1.5),
+                                value: viewModel.isExistNewNotice
+                            )
                         }
-                        .animation(
-                            .easeIn(duration: 1.5),
-                            value: viewModel.isExistNewNotice
+
+                        Text("오늘의 급식")
+                            .dmsFont(.title(.title1), color: .GrayScale.gray7)
+                            .padding(.top, viewModel.isExistNewNotice ? 10 : 46)
+
+                        selectDateView()
+                            .padding(.top, 15)
+
+                        MealCarouselView(
+                            meal: viewModel.selectedDateMeal,
+                            selectedDate: viewModel.selectedDate,
+                            isLoading: $viewModel.isLoading
                         )
+                        .padding(.top, 36)
+
+                        Spacer()
                     }
-
-                    Text("오늘의 급식")
-                        .dmsFont(.title(.title1), color: .GrayScale.gray7)
-                        .padding(.top, viewModel.isExistNewNotice ? 10 : 46)
-
-                    selectDateView()
-                        .padding(.top, 15)
-
-                    MealCarouselView(
-                        meal: viewModel.selectedDateMeal,
-                        selectedDate: viewModel.selectedDate,
-                        isLoading: $viewModel.isLoading
-                    )
-                    .padding(.top, 36)
-
-                    Spacer()
                 }
             }
         }
