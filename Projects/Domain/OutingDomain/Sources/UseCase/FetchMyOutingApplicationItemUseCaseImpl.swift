@@ -1,5 +1,5 @@
 import Combine
-import RemainsDomainInterface
+import OutingDomainInterface
 
 public struct FetchMyOutingApplicationItemUseCaseImpl: FetchMyOutingApplicationItemUseCase {
     private let outingRepository: any OutingRepository

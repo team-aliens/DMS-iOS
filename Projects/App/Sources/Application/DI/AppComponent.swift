@@ -20,6 +20,8 @@ import StudyRoomFeature
 import StudyRoomFeatureInterface
 import RemainApplyFeature
 import RemainApplyFeatureInterface
+import OutingApplyFeature
+import OutingApplyFeatureInterface
 import MyPageFeature
 import MyPageFeatureInterface
 import NoticeFeature
@@ -140,5 +142,8 @@ public extension AppComponent {
     }
     var remainApplyFactory: any RemainApplyFactory {
         RemainApplyComponent(parent: self)
+    }
+    var outingApplyFactory: any OutingApplyFactory {
+        OutingApplyComponent(parent: self)
     }
 }

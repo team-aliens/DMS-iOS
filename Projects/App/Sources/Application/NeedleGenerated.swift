@@ -27,6 +27,10 @@ import NoticeFeature
 import NoticeFeatureInterface
 import NotificationDomain
 import NotificationDomainInterface
+import OutingApplyFeature
+import OutingApplyFeatureInterface
+import OutingDomain
+import OutingDomainInterface
 import PointsDomain
 import PointsDomainInterface
 import RemainApplyFeature
@@ -566,6 +570,19 @@ private class NoticeDetailDependency714af3aed40eaebda420Provider: NoticeDetailDe
 private func factory3db143c2f80d621d5a7ff47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
     return NoticeDetailDependency714af3aed40eaebda420Provider(appComponent: parent1(component) as! AppComponent)
 }
+private class OutingApplyDependency9697a35706d45fe3b1a6Provider: OutingApplyDependency {
+    var fetchMyOutingApplicationItemUseCase: any FetchMyOutingApplicationItemUseCase {
+        return appComponent.fetchMyOutingApplicationItemUseCase
+    }
+    private let appComponent: AppComponent
+    init(appComponent: AppComponent) {
+        self.appComponent = appComponent
+    }
+}
+/// ^->AppComponent->OutingApplyComponent
+private func factory7be30f25c2431cde1fd8f47b58f8f304c97af4d5(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return OutingApplyDependency9697a35706d45fe3b1a6Provider(appComponent: parent1(component) as! AppComponent)
+}
 private class FindIDDependencyb481fe947a844cc29913Provider: FindIDDependency {
     var findIDUseCase: any FindIDUseCase {
         return appComponent.findIDUseCase
@@ -642,6 +659,7 @@ extension AppComponent: Registration {
         localTable["studyRoomListFactory-any StudyRoomListFactory"] = { [unowned self] in self.studyRoomListFactory as Any }
         localTable["applyPageFactory-any ApplyPageFactory"] = { [unowned self] in self.applyPageFactory as Any }
         localTable["remainApplyFactory-any RemainApplyFactory"] = { [unowned self] in self.remainApplyFactory as Any }
+        localTable["outingApplyFactory-any OutingApplyFactory"] = { [unowned self] in self.outingApplyFactory as Any }
         localTable["remoteNoticeDataSource-any RemoteNoticeDataSource"] = { [unowned self] in self.remoteNoticeDataSource as Any }
         localTable["noticeRepository-any NoticeRepository"] = { [unowned self] in self.noticeRepository as Any }
         localTable["fetchWhetherNewNoticeUseCase-any FetchWhetherNewNoticeUseCase"] = { [unowned self] in self.fetchWhetherNewNoticeUseCase as Any }
@@ -665,6 +683,9 @@ extension AppComponent: Registration {
         localTable["remotePointsDataSource-any RemotePointsDataSource"] = { [unowned self] in self.remotePointsDataSource as Any }
         localTable["pointsRepository-any PointsRepository"] = { [unowned self] in self.pointsRepository as Any }
         localTable["fetchPointListUseCase-any FetchPointListUseCase"] = { [unowned self] in self.fetchPointListUseCase as Any }
+        localTable["remoteOutingDataSource-any RemoteOutingDataSource"] = { [unowned self] in self.remoteOutingDataSource as Any }
+        localTable["outingRepository-any OutingRepository"] = { [unowned self] in self.outingRepository as Any }
+        localTable["fetchMyOutingApplicationItemUseCase-any FetchMyOutingApplicationItemUseCase"] = { [unowned self] in self.fetchMyOutingApplicationItemUseCase as Any }
         localTable["remoteMealDataSource-any RemoteMealDataSource"] = { [unowned self] in self.remoteMealDataSource as Any }
         localTable["mealRepository-any MealRepository"] = { [unowned self] in self.mealRepository as Any }
         localTable["fetchMealListUseCase-any FetchMealListUseCase"] = { [unowned self] in self.fetchMealListUseCase as Any }
@@ -871,6 +892,11 @@ extension NoticeDetailComponent: Registration {
         keyPathToName[\NoticeDetailDependency.fetchDetailNoticeUseCase] = "fetchDetailNoticeUseCase-any FetchDetailNoticeUseCase"
     }
 }
+extension OutingApplyComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\OutingApplyDependency.fetchMyOutingApplicationItemUseCase] = "fetchMyOutingApplicationItemUseCase-any FetchMyOutingApplicationItemUseCase"
+    }
+}
 extension FindIDComponent: Registration {
     public func registerItems() {
         keyPathToName[\FindIDDependency.findIDUseCase] = "findIDUseCase-any FindIDUseCase"
@@ -922,6 +948,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->AppComponent->RemainApplyComponent", factory9615846346c92a2f8176f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->NoticeListComponent", factorye14e687c08985bdffcd0f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->NoticeDetailComponent", factory3db143c2f80d621d5a7ff47b58f8f304c97af4d5)
+    registerProviderFactory("^->AppComponent->OutingApplyComponent", factory7be30f25c2431cde1fd8f47b58f8f304c97af4d5)
     registerProviderFactory("^->AppComponent->FindIDComponent", factory8dd2f9e0b545ead35ecaf47b58f8f304c97af4d5)
 }
 #endif
