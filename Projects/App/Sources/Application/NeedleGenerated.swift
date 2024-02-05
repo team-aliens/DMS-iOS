@@ -456,6 +456,9 @@ private class ApplyPageDependency3fe4e7c221b14c86d427Provider: ApplyPageDependen
     var remainApplyFactory: any RemainApplyFactory {
         return appComponent.remainApplyFactory
     }
+    var outingApplyFactory: any OutingApplyFactory {
+        return appComponent.outingApplyFactory
+    }
     var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase {
         return appComponent.fetchMyRemainApplicationItemsUseCase
     }
@@ -851,6 +854,7 @@ extension ApplyPageComponent: Registration {
     public func registerItems() {
         keyPathToName[\ApplyPageDependency.studyRoomListFactory] = "studyRoomListFactory-any StudyRoomListFactory"
         keyPathToName[\ApplyPageDependency.remainApplyFactory] = "remainApplyFactory-any RemainApplyFactory"
+        keyPathToName[\ApplyPageDependency.outingApplyFactory] = "outingApplyFactory-any OutingApplyFactory"
         keyPathToName[\ApplyPageDependency.fetchMyRemainApplicationItemsUseCase] = "fetchMyRemainApplicationItemsUseCase-any FetchMyRemainApplicationItemsUseCase"
         keyPathToName[\ApplyPageDependency.fetchMyStudyRoomAppItemsUseCase] = "fetchMyStudyRoomAppItemsUseCase-any FetchMyStudyRoomAppItemsUseCase"
     }

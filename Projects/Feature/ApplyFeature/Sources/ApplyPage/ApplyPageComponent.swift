@@ -4,11 +4,14 @@ import StudyRoomsDomainInterface
 import StudyRoomFeatureInterface
 import RemainsDomainInterface
 import RemainApplyFeatureInterface
+import OutingDomainInterface
+import OutingApplyFeatureInterface
 import ApplyFeatureInterface
 
 public protocol ApplyPageDependency: Dependency {
     var studyRoomListFactory: any StudyRoomListFactory { get }
     var remainApplyFactory: any RemainApplyFactory { get }
+    var outingApplyFactory: any OutingApplyFactory { get }
     var fetchMyRemainApplicationItemsUseCase: any FetchMyRemainApplicationItemsUseCase { get }
     var fetchMyStudyRoomAppItemsUseCase: any FetchMyStudyRoomAppItemsUseCase { get }
 }
@@ -20,7 +23,8 @@ public final class ApplyPageComponent: Component<ApplyPageDependency>, ApplyPage
                 fetchMyRemainApplicationItemsUseCase: self.dependency.fetchMyRemainApplicationItemsUseCase,
                 fetchMyStudyRoomAppItemsUseCase: self.dependency.fetchMyStudyRoomAppItemsUseCase),
             studyRoomListFactory: dependency.studyRoomListFactory,
-            remainApplyFactory: dependency.remainApplyFactory
+            remainApplyFactory: dependency.remainApplyFactory,
+            outingApplyFactory: dependency.outingApplyFactory
         )
     }
 }

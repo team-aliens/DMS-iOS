@@ -1,6 +1,7 @@
 import BaseFeature
 import StudyRoomFeatureInterface
 import RemainApplyFeatureInterface
+import OutingApplyFeatureInterface
 import SwiftUI
 import UtilityModule
 
@@ -11,15 +12,18 @@ struct ApplyPageView: View {
 
     private let studyRoomListFactory: any StudyRoomListFactory
     private let remainApplyFactory: any RemainApplyFactory
+    private let outingApplyFactory: any OutingApplyFactory
 
     init(
         viewModel: ApplyPageViewModel,
         studyRoomListFactory: any StudyRoomListFactory,
-        remainApplyFactory: any RemainApplyFactory
+        remainApplyFactory: any RemainApplyFactory,
+        outingApplyFactory: any OutingApplyFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.studyRoomListFactory = studyRoomListFactory
         self.remainApplyFactory = remainApplyFactory
+        self.outingApplyFactory = outingApplyFactory
     }
 
     var body: some View {
@@ -73,7 +77,7 @@ struct ApplyPageView: View {
                                 buttonTitle: "외출 신청하기",
                                 applyState: viewModel.outState,
                                 onTapped: {
-                                    viewModel.isNavigateToGoOut.toggle()
+                                    viewModel.isNavigateToOuting.toggle()
                                 }
                             )
                             .onAppear {
@@ -107,6 +111,10 @@ struct ApplyPageView: View {
             .navigate(
                 to: remainApplyFactory.makeView().eraseToAnyView(),
                 when: $viewModel.isNavigateToRemain
+            )
+            .navigate(
+                to: outingApplyFactory.makeView().eraseToAnyView(),
+                when: $viewModel.isNavigateToOuting
             )
         }
         .navigationViewStyle(.stack)

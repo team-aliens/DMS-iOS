@@ -2,11 +2,12 @@ import Combine
 import BaseFeature
 import RemainsDomainInterface
 import StudyRoomsDomainInterface
+import OutingDomainInterface
 
 final class ApplyPageViewModel: BaseViewModel {
     @Published var isNavigateToStudy: Bool = false
     @Published var isNavigateToRemain: Bool = false
-    @Published var isNavigateToGoOut: Bool = false
+    @Published var isNavigateToOuting: Bool = false
 
     @Published var myRemainApplicationItem: MyRemainApplicationItemsEntity?
     @Published var myStudyRoomApplicationItems: MyStudyRoomAppItemsEntity?
