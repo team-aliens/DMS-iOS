@@ -12,6 +12,13 @@ struct OutingApplyView: View {
     }
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            OutingApplyNoticeView(notice: viewModel.rangeString)
+        }
+        .navigationTitle("외출 신청")
+        .navigationBarTitleDisplayMode(.inline)
+        .ignoresSafeArea(edges: .bottom)
+        .dmsBackground()
+        .dmsBackButton(dismiss: dismiss)
     }
 }

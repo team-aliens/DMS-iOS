@@ -83,6 +83,9 @@ struct ApplyPageView: View {
                             .onAppear {
                                 viewModel.fetchMyRemainApplicationItems()
                             }
+
+                            Spacer()
+                                .frame(height: 5)
                         }
                     }
                     .padding(.horizontal, 24)
@@ -100,6 +103,11 @@ struct ApplyPageView: View {
                 }
             }
             .onChange(of: viewModel.isNavigateToRemain) { newValue in
+                withAnimation {
+                    tabbarHidden.wrappedValue = newValue
+                }
+            }
+            .onChange(of: viewModel.isNavigateToOuting) { newValue in
                 withAnimation {
                     tabbarHidden.wrappedValue = newValue
                 }
