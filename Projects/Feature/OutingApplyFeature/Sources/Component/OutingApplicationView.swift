@@ -26,8 +26,11 @@ struct OutingApplyTextField: View {
             TextField(placeholder, text: $text)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
-                .cornerRadius(4)
-                .border(Color.GrayScale.gray5, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(Color.GrayScale.gray5, lineWidth: 1)
+                }
         }
+        .padding(.horizontal, 20)
     }
 }

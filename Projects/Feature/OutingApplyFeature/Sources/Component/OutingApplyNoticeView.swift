@@ -21,6 +21,5 @@ struct OutingApplyNoticeView: View {
         .padding(.top, 11)
         .padding(.bottom, 25)
         .dmsShadow(style: .surface)
-        .padding(.horizontal, 8)
     }
 }

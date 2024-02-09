@@ -6,7 +6,7 @@ struct OutingApplyView: View {
     @Environment(\.dismiss) var dismiss
     @State var dateText = ""
     @State var timeText = ""
-    @State var typeText = ""
+    @State var typeText = "선택 1"
     @State var placeText = ""
     @State var reasonText = ""
 
@@ -17,7 +17,7 @@ struct OutingApplyView: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             OutingApplyNoticeView(notice: viewModel.rangeString)
 
             if viewModel.isApplied {
@@ -37,16 +37,46 @@ struct OutingApplyView: View {
                 )
             } else {
                 OutingApplyTextField("외출 일자", "2023.06.28(수)", $dateText)
+                    .padding(.bottom, 40)
 
                 OutingApplyTextField("외출 시간", "12:00 ~ 13:00", $timeText)
+                    .padding(.bottom, 40)
 
                 HStack {
-                    OutingApplyTextField("외출 유형", "식사 외출", $typeText)
+                    Menu {
+                        Button("식사 외출", action: { typeText = "식사 외출" })
+                        Button("유형 1", action: { typeText = "유형 1" })
+                        Button("유형 2", action: { typeText = "유형 2" })
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text("외출 유형")
+                                .dmsFont(.body(.body2), color: .GrayScale.gray10)
+                                .padding(.bottom, 8)
+
+                            HStack {
+                                Text(typeText)
+                                    .dmsFont(.body(.body2), color: .GrayScale.gray5)
+                                    .padding(.trailing, 10)
+
+                                Image(systemName: "chevron.down")
+                                    .foregroundColor(.System.icon)
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 12)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .stroke(Color.GrayScale.gray5, lineWidth: 1)
+                            }
+                        }
+                    }
 
                     OutingApplyTextField("외출 장소", "외출 장소를 입력해주세요.", $placeText)
                 }
+                .padding(.leading, 20)
+                .padding(.bottom, 40)
 
                 OutingApplyTextField("외출 사유", "내용을 입력해주세요. \n\n\n\n", $reasonText)
+                    .padding(.bottom, 40)
 
             }
         }
