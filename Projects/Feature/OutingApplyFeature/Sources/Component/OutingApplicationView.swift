@@ -23,14 +23,7 @@ struct OutingApplyTextField: View {
                 .padding(.leading, 1)
                 .padding(.bottom, 8)
 
-            TextField(placeholder, text: $text)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(Color.GrayScale.gray5, lineWidth: 1)
-                }
+            DMSFormTextField(placeholder, text: $text)
         }
-        .padding(.horizontal, 20)
     }
 }

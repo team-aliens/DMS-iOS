@@ -63,6 +63,5 @@ struct OutingApplyContentView: View {
         .background(Color.GrayScale.gray1)
         .cornerRadius(10)
         .dmsShadow(style: .surface)
-        .padding(.horizontal, 20)
     }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct DMSFormTextField: View {
-    var placeholder: String
+    @State var placeholder: String
     @Binding var text: String
     @FocusState var isFocused: Bool
 
@@ -26,13 +26,12 @@ public struct DMSFormTextField: View {
             }
 
             TextField("", text: $text)
-                .dmsFont(.body(.body2), color: .GrayScale.gray5)
-                .foregroundColor(.GrayScale.gray6)
+                .dmsFont(.body(.body2), color: .GrayScale.gray6)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 15)
                 .overlay {
                     RoundedRectangle(cornerRadius: 4)
-                        .strokeBorder(Color.GrayScale.gray4)
+                        .strokeBorder(Color.GrayScale.gray5)
                 }
         }
     }

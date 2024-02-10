@@ -15,6 +15,8 @@ struct OutingApplyNoticeView: View {
             Text(notice)
                 .dmsFont(.body(.body3), color: .GrayScale.gray6)
                 .padding(.trailing, 18)
+
+            Spacer()
         }
         .background(Color.System.surface)
         .cornerRadius(100)
