@@ -1,7 +1,7 @@
 import DesignSystem
 import SwiftUI
 
-struct OutingApplyContentView: View {
+struct RecentOutingApplyView: View {
     let date: String
     let type: String
     let isAccepted: Bool
@@ -12,56 +12,64 @@ struct OutingApplyContentView: View {
     let reason: String
 
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            VStack(alignment: .leading) {
-                Text(date)
-                    .dmsFont(.body(.body3), color: .PrimaryVariant.primary)
-                    .padding(.top, 3)
-                    .padding(.bottom, 8)
+        VStack(alignment: .leading) {
+            Text("최근 내역")
+                .dmsFont(.body(.body2), color: .GrayScale.gray5)
+                .padding(.top, 5)
+                .padding(.bottom, 10)
 
-                Text(type)
-                    .dmsFont(.title(.title3), color: .GrayScale.gray10)
+            ZStack(alignment: .topTrailing) {
+                VStack(alignment: .leading) {
+                    Text(date)
+                        .dmsFont(.body(.body3), color: .PrimaryVariant.primary)
+                        .padding(.top, 3)
+                        .padding(.bottom, 8)
 
-                Text("\(startTime) ~ \(endTime)")
-                    .dmsFont(.body(.body2), color: .GrayScale.gray6)
-                    .padding(.bottom, 26)
+                    Text(type)
+                        .dmsFont(.title(.title3), color: .GrayScale.gray10)
 
-                HStack {
-                    Text("동행자 : ")
-                        .dmsFont(.etc(.button), color: .GrayScale.gray7)
+                    Text("\(startTime) ~ \(endTime)")
+                        .dmsFont(.body(.body2), color: .GrayScale.gray6)
+                        .padding(.bottom, 26)
 
-                    Text(people)
-                        .dmsFont(.body(.body3), color: .GrayScale.gray7)
+                    HStack {
+                        Text("동행자 : ")
+                            .dmsFont(.etc(.button), color: .GrayScale.gray7)
+
+                        Text(people)
+                            .dmsFont(.body(.body3), color: .GrayScale.gray7)
+                    }
+
+                    HStack {
+                        Text("외출 장소 : ")
+                            .dmsFont(.etc(.button), color: .GrayScale.gray7)
+
+                        Text(place)
+                            .dmsFont(.body(.body3), color: .GrayScale.gray7)
+                    }
+
+                    Text(reason)
+                        .dmsFont(.body(.body3), color: .GrayScale.gray6)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 16)
+                        .background(Color.GrayScale.gray2)
+                        .cornerRadius(10)
                 }
 
-                HStack {
-                    Text("외출 장소 : ")
-                        .dmsFont(.etc(.button), color: .GrayScale.gray7)
-
-                    Text(place)
-                        .dmsFont(.body(.body3), color: .GrayScale.gray7)
+                if isAccepted {
+                    Text("수락됨")
+                        .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 16)
+                        .background(Color.PrimaryVariant.lighten2)
+                        .cornerRadius(24)
                 }
-
-                Text(reason)
-                    .dmsFont(.body(.body3), color: .GrayScale.gray6)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 16)
-                    .background(Color.GrayScale.gray2)
-                    .cornerRadius(10)
             }
-
-            if isAccepted {
-                Text("수락됨")
-                    .dmsFont(.etc(.button), color: .PrimaryVariant.primary)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                    .background(Color.PrimaryVariant.lighten2)
-                    .cornerRadius(24)
-            }
+            .padding(.all, 20)
+            .background(Color.System.surface)
+            .cornerRadius(10)
+            .dmsShadow(style: .surface)
         }
-        .padding(.all, 20)
-        .background(Color.GrayScale.gray1)
-        .cornerRadius(10)
-        .dmsShadow(style: .surface)
+        .padding(.horizontal, 24)
     }
 }
