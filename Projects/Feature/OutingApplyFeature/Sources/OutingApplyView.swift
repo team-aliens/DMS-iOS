@@ -9,6 +9,7 @@ struct OutingApplyView: View {
     @State var typeText = "선택 1"
     @State var placeText = ""
     @State var reasonText = ""
+    @State var studentName = ""
 
     init(
         viewModel: OutingApplyViewModel
@@ -85,9 +86,11 @@ struct OutingApplyView: View {
                             DMSFormTextEditor("내용을 입력해주세요.", text: $reasonText, minHeight: 150)
                         }
 
-                        DMSWideButton(text: "외출 신청하기", color: .PrimaryVariant.primary)
-                            .padding(.top, 60)
-                            .padding(.bottom, 70)
+                        DMSWideButton(text: "외출 신청하기", color: .PrimaryVariant.primary) {
+                            viewModel.isShowingBottomSheet = true
+                        }
+                        .padding(.top, 60)
+                        .padding(.bottom, 70)
                     }
                     .padding(.horizontal, 24)
                 }
@@ -98,5 +101,14 @@ struct OutingApplyView: View {
         .ignoresSafeArea(edges: .bottom)
         .dmsBackground()
         .dmsBackButton(dismiss: dismiss)
+        .dmsBottomSheet(
+            isShowing: $viewModel.isShowingBottomSheet,
+            isGrabberOn: false,
+            sheetCornerRadiusValue: 8
+        ) {
+            DeferView {
+                SelectStudentView(text: $studentName)
+            }
+        }
     }
 }
