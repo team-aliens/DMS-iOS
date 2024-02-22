@@ -108,6 +108,7 @@ struct OutingApplyView: View {
         ) {
             DeferView {
                 SelectStudentView(text: $studentName)
+                    .padding(.vertical, 24)
             }
         }
     }

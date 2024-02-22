@@ -9,30 +9,38 @@ struct SelectStudentView: View {
     }
     var body: some View {
         VStack {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .padding(.vertical, 15)
+            RoundedRectangle(cornerRadius: 30)
+                .frame(height: 48)
+                .dmsShadow(style: .surface)
+                .overlay(
+                    HStack {
+                        Image(systemName: "magnifyingglass")
 
-                Divider()
-                    .padding(.leading, 14)
-
-                TextField("", text: $text)
-                    .dmsFont(.body(.body2), color: .GrayScale.gray10)
-                    .padding(.leading, 16)
-                    .padding(.vertical, 15)
-
-                Button(action: {
-                    text = ""
-                }, label: {
-                    Image(systemName: "xmark")
-                })
-                .padding(.vertical, 18)
-            }
-            .padding(.horizontal, 22)
+                        Divider()
+                            .padding(.leading, 14)
+                        
+                        TextField("", text: $text)
+                            .dmsFont(.body(.body2), color: .GrayScale.gray10)
+                            .padding(.leading, 16)
+                        
+                        Button(action: {
+                            text = ""
+                        }, label: {
+                            Image(systemName: "xmark")
+                        })
+                    }
+                )
+                .padding(.horizontal, 24)
 
             ScrollView(showsIndicators: false) {
                 Circle()
             }
+            .padding(.horizontal, 24)
+            .border(.blue)
+
+            DMSWideButton(text: "동행자 선택", color: .PrimaryVariant.primary)
+                .padding(.top, 24)
+                .padding(.horizontal, 24)
         }
     }
 }
