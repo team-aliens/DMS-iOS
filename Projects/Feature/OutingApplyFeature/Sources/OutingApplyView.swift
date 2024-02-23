@@ -104,10 +104,11 @@ struct OutingApplyView: View {
         .dmsBottomSheet(
             isShowing: $viewModel.isShowingBottomSheet,
             isGrabberOn: false,
-            sheetCornerRadiusValue: 8
+            sheetCornerRadiusValue: 16
         ) {
             DeferView {
                 SelectStudentView(text: $studentName)
+                    .frame(height: 512)
                     .padding(.vertical, 24)
             }
         }
