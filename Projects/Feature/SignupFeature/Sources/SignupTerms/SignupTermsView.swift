@@ -12,9 +12,11 @@ struct SignupTermsView: View {
     var webViewURL: String {
         switch colorScheme {
         case .light:
-            return "https://webview.aliens-dms.com/policy/privacy?theme=light"
+//            return "https://webview.aliens-dms.com/policy/privacy?theme=light"
+            return "https://webview.dms-dsm.com/policy/privacy?theme=light"
         default:
-            return "https://webview.aliens-dms.com/policy/privacy?theme=dark"
+//            return "https://webview.aliens-dms.com/policy/privacy?theme=dark"
+            return "https://webview.dms-dsm.com/policy/privacy?theme=dark"
         }
     }
 
