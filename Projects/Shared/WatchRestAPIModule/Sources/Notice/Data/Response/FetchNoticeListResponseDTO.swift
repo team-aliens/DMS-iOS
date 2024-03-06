@@ -27,3 +27,4 @@ extension FetchNoticeListResponseDTO {
         notices.map { $0.toDomain() }
     }
 }
+// swiftlint: enable nesting

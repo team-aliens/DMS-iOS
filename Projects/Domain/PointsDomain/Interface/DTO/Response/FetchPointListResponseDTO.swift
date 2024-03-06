@@ -45,3 +45,4 @@ public struct FetchPointListResponseDTO: Decodable {
         }
     }
 }
+// swiftlint: enable nesting
