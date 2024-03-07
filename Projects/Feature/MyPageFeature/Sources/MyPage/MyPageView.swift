@@ -183,7 +183,7 @@ struct MyPageView: View {
                 .frame(maxWidth: .infinity)
                 .myPageOptionBackground()
 
-                Spacer()
+                Spacer(minLength: 40)
             }
             .padding(.horizontal, 24)
             .navigationTitle("마이페이지")
