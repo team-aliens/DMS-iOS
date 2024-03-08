@@ -83,3 +83,4 @@ final class SigninViewModelSpec: QuickSpec {
         }
     }
 }
+// swiftlint: enable function_body_length

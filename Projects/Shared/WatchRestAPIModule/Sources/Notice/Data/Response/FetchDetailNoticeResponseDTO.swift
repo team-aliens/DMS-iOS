@@ -1,5 +1,6 @@
 import Foundation
 
+// swiftlint:disable unneeded_synthesized_initializer
 struct FetchDetailNoticeResponseDTO: Decodable {
     init(title: String, content: String, createdAt: String) {
         self.title = title
@@ -26,3 +27,4 @@ extension FetchDetailNoticeResponseDTO {
         )
     }
 }
+// swiftlint:enable unneeded_synthesized_initializer

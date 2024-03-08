@@ -123,3 +123,4 @@ struct MainTabView: View {
 
     }
 }
+// swiftlint: enable large_tuple
