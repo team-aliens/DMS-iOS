@@ -69,20 +69,18 @@ struct ApplyPageView: View {
                             .onAppear {
                                 viewModel.fetchMyRemainApplicationItems()
                             }
+
                             ApplyListCellView(
                                 name: "외출",
                                 content: """
                                 기숙사 생활 중 밖으로 나갈 일이 있다면, 외출 신청을 통해서 외출해보세요.
                                 """,
                                 buttonTitle: "외출 신청하기",
-                                applyState: viewModel.outState,
+                                applyState: nil,
                                 onTapped: {
                                     viewModel.isNavigateToOuting.toggle()
                                 }
                             )
-                            .onAppear {
-                                viewModel.fetchMyRemainApplicationItems()
-                            }
 
                             Spacer()
                                 .frame(height: 5)

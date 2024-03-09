@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct DMSFormTextEditor: View {
-    @State var placeholder: String
+    var placeholder: String
     @Binding var text: String
     var minHeight: CGFloat
     @FocusState var isFocused: Bool
