@@ -65,7 +65,7 @@ struct RecentOutingApplyView: View {
                         .cornerRadius(24)
                 }
             }
-            .padding(.all, 20)
+            .padding(20)
             .background(Color.System.surface)
             .cornerRadius(10)
             .dmsShadow(style: .surface)

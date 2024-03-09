@@ -36,14 +36,14 @@ struct SelectStudentView: View {
                                 .foregroundStyle(Color.GrayScale.gray9)
                         })
                     }
-                        .padding(.horizontal, 22)
+                    .padding(.horizontal, 22)
                 )
                 .padding(.horizontal, 24)
 
             ScrollView(showsIndicators: false) {
-                Button(action: {
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -61,10 +61,10 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
-                Button(action: {
+                }
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -82,10 +82,10 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
-                Button(action: {
+                }
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -103,10 +103,10 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
-                Button(action: {
+                }
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -124,10 +124,10 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
-                Button(action: {
+                }
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -145,10 +145,10 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
-                Button(action: {
+                }
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -166,10 +166,10 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
-                Button(action: {
+                }
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -187,10 +187,10 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
-                Button(action: {
+                }
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -208,10 +208,10 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
-                Button(action: {
+                }
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -229,10 +229,10 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
-                Button(action: {
+                }
+                Button {
                     selected += 1
-                }, label: {
+                } label: {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.GrayScale.gray3, lineWidth: 1)
@@ -250,7 +250,7 @@ struct SelectStudentView: View {
                         }
                     }
                     .frame(height: 64)
-                })
+                }
             }
             .padding(.top, 16)
             .padding(.horizontal, 24)

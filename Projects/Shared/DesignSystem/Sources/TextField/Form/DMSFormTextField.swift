@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct DMSFormTextField: View {
-    @State var placeholder: String
+    var placeholder: String
     @Binding var text: String
     @FocusState var isFocused: Bool
 
