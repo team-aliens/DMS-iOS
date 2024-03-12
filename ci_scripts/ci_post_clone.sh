@@ -4,6 +4,8 @@ curl https://mise.run | sh
 mise install tuist
 eval "$(~/.local/bin/mise activate zsh)"
 
+chmod +x ci_install_tuist.sh
+
 sh ci_install_tuist.sh
 cd ../
 git clone https://github.com/team-aliens/DMS-XCConfig.git
