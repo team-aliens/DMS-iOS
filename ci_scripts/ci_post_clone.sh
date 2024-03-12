@@ -2,7 +2,7 @@
 curl https://mise.jdx.dev/install.sh | sh
 curl https://mise.run | sh
 mise install tuist
-eval "$(mise activate bash --shims)"
+eval "$(~/.local/bin/mise activate zsh)"
 
 sh ci_install_tuist.sh
 cd ../
