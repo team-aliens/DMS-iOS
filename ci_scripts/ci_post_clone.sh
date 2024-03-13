@@ -1,10 +1,12 @@
 #!/bin/sh
-chmod +x ci_install_tuist.sh
-./ci_install_tuist.sh
+
+curl -Ls https://install.tuist.io | bash
 
 cd ../
 git clone https://github.com/team-aliens/DMS-XCConfig.git
 mv DMS-XCConfig/XCConfig/ .
 
-ci_scripts/tuist/tuist fetch
-TUIST_CI=1 ci_scripts/tuist/tuist generate
+echo "tuist generate..."
+tuist clean --path ..
+tuist fetch --path ..
+TUIST_CI=1 tuist generate --path ,,
