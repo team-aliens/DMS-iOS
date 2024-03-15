@@ -1,11 +1,10 @@
 #!/bin/bash
 
 curl -Ls https://install.tuist.io | bash
-tuist bundle
 
-.tuist_bin/tuist clean --path ..
-.tuist_bin/tuist fetch --path ..
-TUIST_CI=1 .tuist_bin/tuist generate --path ..
+tuist clean --path ..
+tuist fetch --path ..
+TUIST_CI=1 tuist generate --path ..
 
 #set -e
 #
