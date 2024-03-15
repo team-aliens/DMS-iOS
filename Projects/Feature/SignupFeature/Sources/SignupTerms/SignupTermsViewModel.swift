@@ -45,7 +45,6 @@ final class SignupTermsViewModel: BaseViewModel {
                 remainService: feature.remainService
             )
             self?.isShowingAlert = true
-            print("thisis")
             print(self?.dmsFeatures?.remainService ?? "failed parsing")
             self?.alertMessage = "회원가입이 완료되었습니다!"
         }
