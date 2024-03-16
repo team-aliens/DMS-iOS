@@ -22,7 +22,7 @@ public struct DMSFormTextEditor: View {
             ScrollView {
                 ZStack(alignment: .topLeading) {
                     RoundedRectangle(cornerRadius: 4)
-                        .strokeBorder(Color.GrayScale.gray4)
+                        .strokeBorder(Color.GrayScale.gray5)
 
                     TextEditor(text: $text)
                         .dmsFont(.body(.body2), color: .GrayScale.gray6)

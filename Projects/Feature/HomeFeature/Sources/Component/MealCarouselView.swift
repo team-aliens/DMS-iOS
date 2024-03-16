@@ -45,7 +45,8 @@ struct MealCarouselView: View {
             }
         }
         .onAppear {
-            uiState.activeCard = DisplayMealPart(date: Date()).rawValue % 4
+            let mealType = DisplayMealPart(date: Date()).rawValue % 4
+            uiState.activeCard = mealType == 3 ? 0 : mealType
         }
     }
 

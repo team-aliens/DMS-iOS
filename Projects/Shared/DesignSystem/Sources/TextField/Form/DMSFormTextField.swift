@@ -26,13 +26,12 @@ public struct DMSFormTextField: View {
             }
 
             TextField("", text: $text)
-                .dmsFont(.body(.body2), color: .GrayScale.gray5)
-                .foregroundColor(.GrayScale.gray6)
+                .dmsFont(.body(.body2), color: .GrayScale.gray6)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 15)
                 .overlay {
                     RoundedRectangle(cornerRadius: 4)
-                        .strokeBorder(Color.GrayScale.gray4)
+                        .strokeBorder(Color.GrayScale.gray5)
                 }
         }
     }

@@ -1,6 +1,7 @@
 import BaseFeature
 import StudyRoomFeatureInterface
 import RemainApplyFeatureInterface
+import OutingApplyFeatureInterface
 import SwiftUI
 import UtilityModule
 
@@ -11,15 +12,18 @@ struct ApplyPageView: View {
 
     private let studyRoomListFactory: any StudyRoomListFactory
     private let remainApplyFactory: any RemainApplyFactory
+    private let outingApplyFactory: any OutingApplyFactory
 
     init(
         viewModel: ApplyPageViewModel,
         studyRoomListFactory: any StudyRoomListFactory,
-        remainApplyFactory: any RemainApplyFactory
+        remainApplyFactory: any RemainApplyFactory,
+        outingApplyFactory: any OutingApplyFactory
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.studyRoomListFactory = studyRoomListFactory
         self.remainApplyFactory = remainApplyFactory
+        self.outingApplyFactory = outingApplyFactory
     }
 
     var body: some View {
@@ -65,6 +69,21 @@ struct ApplyPageView: View {
                             .onAppear {
                                 viewModel.fetchMyRemainApplicationItems()
                             }
+
+                            ApplyListCellView(
+                                name: "외출",
+                                content: """
+                                기숙사 생활 중 밖으로 나갈 일이 있다면, 외출 신청을 통해서 외출해보세요.
+                                """,
+                                buttonTitle: "외출 신청하기",
+                                applyState: nil,
+                                onTapped: {
+                                    viewModel.isNavigateToOuting.toggle()
+                                }
+                            )
+
+                            Spacer()
+                                .frame(height: 5)
                         }
                     }
                     .padding(.horizontal, 24)
@@ -86,6 +105,11 @@ struct ApplyPageView: View {
                     tabbarHidden.wrappedValue = newValue
                 }
             }
+            .onChange(of: viewModel.isNavigateToOuting) { newValue in
+                withAnimation {
+                    tabbarHidden.wrappedValue = newValue
+                }
+            }
             .navigate(
                 to: studyRoomListFactory.makeView().eraseToAnyView(),
                 when: $viewModel.isNavigateToStudy
@@ -93,6 +117,10 @@ struct ApplyPageView: View {
             .navigate(
                 to: remainApplyFactory.makeView().eraseToAnyView(),
                 when: $viewModel.isNavigateToRemain
+            )
+            .navigate(
+                to: outingApplyFactory.makeView().eraseToAnyView(),
+                when: $viewModel.isNavigateToOuting
             )
         }
         .navigationViewStyle(.stack)

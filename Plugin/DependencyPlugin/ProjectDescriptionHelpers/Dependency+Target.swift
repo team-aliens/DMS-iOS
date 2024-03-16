@@ -62,6 +62,14 @@ public extension TargetDependency.Feature {
         target: ModulePaths.Feature.NoticeFeature.targetName(type: .sources),
         path: .relativeToFeature(ModulePaths.Feature.NoticeFeature.rawValue)
     )
+    static let OutingApplyFeatureInterface = TargetDependency.project(
+        target: ModulePaths.Feature.OutingApplyFeature.targetName(type: .interface),
+        path: .relativeToFeature(ModulePaths.Feature.OutingApplyFeature.rawValue)
+    )
+    static let OutingApplyFeature = TargetDependency.project(
+        target: ModulePaths.Feature.OutingApplyFeature.targetName(type: .sources),
+        path: .relativeToFeature(ModulePaths.Feature.OutingApplyFeature.rawValue)
+    )
     static let RemainApplyFeatureInterface = TargetDependency.project(
         target: ModulePaths.Feature.RemainApplyFeature.targetName(type: .interface),
         path: .relativeToFeature(ModulePaths.Feature.RemainApplyFeature.rawValue)
@@ -176,6 +184,18 @@ public extension TargetDependency.Domain {
     static let SchoolDomain = TargetDependency.project(
         target: ModulePaths.Domain.SchoolDomain.targetName(type: .sources),
         path: .relativeToDomain(ModulePaths.Domain.SchoolDomain.rawValue)
+    )
+    static let OutingDomainTesting = TargetDependency.project(
+        target: ModulePaths.Domain.OutingDomain.targetName(type: .testing),
+        path: .relativeToDomain(ModulePaths.Domain.OutingDomain.rawValue)
+    )
+    static let OutingDomainInterface = TargetDependency.project(
+        target: ModulePaths.Domain.OutingDomain.targetName(type: .interface),
+        path: .relativeToDomain(ModulePaths.Domain.OutingDomain.rawValue)
+    )
+    static let OutingDomain = TargetDependency.project(
+        target: ModulePaths.Domain.OutingDomain.targetName(type: .sources),
+        path: .relativeToDomain(ModulePaths.Domain.OutingDomain.rawValue)
     )
     static let RemainsDomainTesting = TargetDependency.project(
         target: ModulePaths.Domain.RemainsDomain.targetName(type: .testing),
