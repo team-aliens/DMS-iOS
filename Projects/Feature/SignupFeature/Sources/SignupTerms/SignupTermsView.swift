@@ -54,7 +54,7 @@ struct SignupTermsView: View {
                 .disabled(!viewModel.isAgreeTerms)
                 .padding(.bottom, 40)
             }
-            .padding(.top, 16)
+            .padding(.top, 26)
             .shadow(
                 color: .GrayScale.gray4.opacity(0.24),
                 y: 1,
