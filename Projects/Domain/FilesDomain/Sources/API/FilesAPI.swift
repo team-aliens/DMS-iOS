@@ -57,7 +57,10 @@ extension FilesAPI: DmsAPI {
     }
 
     public var jwtTokenType: JwtTokenType {
-        .none
+        switch self {
+        case .uploadFile, .fetchPresignedURL:
+            return .accessToken
+        }
     }
 
     public var errorMap: [Int: ErrorType] {
